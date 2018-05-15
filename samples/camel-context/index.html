@@ -243,12 +243,12 @@ the SOAP server endpoint. Lets add configuration for this in Citrus:</p>
     <span class="nd">@CitrusTest</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"NewsFeed_Ok_IT"</span><span class="o">)</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">newsFeed_Ok_Test</span><span class="o">()</span> <span class="o">{</span>
         <span class="n">send</span><span class="o">(</span><span class="s">"newsJmsEndpoint"</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"&lt;nf:News xmlns:nf=\"http://citrusframework.org/schemas/samples/news\"&gt;"</span> <span class="o">+</span>
+                <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"&lt;nf:News xmlns:nf=\"https://citrusframework.org/schemas/samples/news\"&gt;"</span> <span class="o">+</span>
                             <span class="s">"&lt;nf:Message&gt;Citrus rocks!&lt;/nf:Message&gt;"</span> <span class="o">+</span>
                         <span class="s">"&lt;/nf:News&gt;"</span><span class="o">);</span>
 
         <span class="n">receive</span><span class="o">(</span><span class="s">"newsSoapServer"</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"&lt;nf:News xmlns:nf=\"http://citrusframework.org/schemas/samples/news\"&gt;"</span> <span class="o">+</span>
+                <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"&lt;nf:News xmlns:nf=\"https://citrusframework.org/schemas/samples/news\"&gt;"</span> <span class="o">+</span>
                             <span class="s">"&lt;nf:Message&gt;Citrus rocks!&lt;/nf:Message&gt;"</span> <span class="o">+</span>
                         <span class="s">"&lt;/nf:News&gt;"</span><span class="o">)</span>
                 <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">SoapMessageHeaders</span><span class="o">.</span><span class="na">SOAP_ACTION</span><span class="o">,</span> <span class="s">"newsFeed"</span><span class="o">);</span>

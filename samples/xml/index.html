@@ -266,7 +266,7 @@ in the expressions. Here we have used a namespace prefix <strong><em>t:</em></st
 <span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">NamespaceContextBuilder</span> <span class="nf">namespaceContextBuilder</span><span class="o">()</span> <span class="o">{</span>
     <span class="n">NamespaceContextBuilder</span> <span class="n">namespaceContextBuilder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NamespaceContextBuilder</span><span class="o">();</span>
-    <span class="n">namespaceContextBuilder</span><span class="o">.</span><span class="na">setNamespaceMappings</span><span class="o">(</span><span class="n">Collections</span><span class="o">.</span><span class="na">singletonMap</span><span class="o">(</span><span class="s">"t"</span><span class="o">,</span> <span class="s">"http://citrusframework.org/samples/todolist"</span><span class="o">));</span>
+    <span class="n">namespaceContextBuilder</span><span class="o">.</span><span class="na">setNamespaceMappings</span><span class="o">(</span><span class="n">Collections</span><span class="o">.</span><span class="na">singletonMap</span><span class="o">(</span><span class="s">"t"</span><span class="o">,</span> <span class="s">"https://citrusframework.org/samples/todolist"</span><span class="o">));</span>
     <span class="k">return</span> <span class="n">namespaceContextBuilder</span><span class="o">;</span>
 <span class="o">}</span></code></pre></figure>
 
@@ -278,7 +278,7 @@ namespace context for each receive action individually.</p>
     <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
     <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
     <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">namespace</span><span class="o">(</span><span class="s">"t"</span><span class="o">,</span> <span class="s">"http://citrusframework.org/samples/todolist"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">namespace</span><span class="o">(</span><span class="s">"t"</span><span class="o">,</span> <span class="s">"https://citrusframework.org/samples/todolist"</span><span class="o">)</span>
     <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"/t:todo/t:id"</span><span class="o">,</span> <span class="s">"${todoId}"</span><span class="o">)</span>
     <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"/t:todo/t:title"</span><span class="o">,</span> <span class="s">"${todoName}"</span><span class="o">)</span>
     <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"/t:todo/t:description"</span><span class="o">,</span> <span class="s">"${todoDescription}"</span><span class="o">);</span></code></pre></figure>

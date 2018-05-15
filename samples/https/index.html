@@ -298,7 +298,7 @@ that defines the certificates and on the secure port <strong>8443</strong>. Clie
     <span class="k">return</span> <span class="k">new</span> <span class="nf">StaticEndpointAdapter</span><span class="o">()</span> <span class="o">{</span>
         <span class="nd">@Override</span>
         <span class="kd">protected</span> <span class="n">Message</span> <span class="nf">handleMessageInternal</span><span class="o">(</span><span class="n">Message</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nf">HttpMessage</span><span class="o">(</span><span class="s">"&lt;todo xmlns=\"http://citrusframework.org/samples/todolist\"&gt;"</span> <span class="o">+</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nf">HttpMessage</span><span class="o">(</span><span class="s">"&lt;todo xmlns=\"https://citrusframework.org/samples/todolist\"&gt;"</span> <span class="o">+</span>
                         <span class="s">"&lt;id&gt;100&lt;/id&gt;"</span> <span class="o">+</span>
                         <span class="s">"&lt;title&gt;todoName&lt;/title&gt;"</span> <span class="o">+</span>
                         <span class="s">"&lt;description&gt;todoDescription&lt;/description&gt;"</span> <span class="o">+</span>

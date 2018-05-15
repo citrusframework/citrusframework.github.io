@@ -249,8 +249,8 @@ adapters.</p>
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">EndpointAdapter</span> <span class="nf">todoResponseAdapter</span><span class="o">()</span> <span class="o">{</span>
     <span class="n">StaticResponseEndpointAdapter</span> <span class="n">endpointAdapter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StaticResponseEndpointAdapter</span><span class="o">();</span>
-    <span class="n">endpointAdapter</span><span class="o">.</span><span class="na">setMessagePayload</span><span class="o">(</span><span class="s">"&lt;getTodoResponse xmlns=\"http://citrusframework.org/samples/todolist\"&gt;"</span> <span class="o">+</span>
-                <span class="s">"&lt;todoEntry xmlns=\"http://citrusframework.org/samples/todolist\"&gt;"</span> <span class="o">+</span>
+    <span class="n">endpointAdapter</span><span class="o">.</span><span class="na">setMessagePayload</span><span class="o">(</span><span class="s">"&lt;getTodoResponse xmlns=\"https://citrusframework.org/samples/todolist\"&gt;"</span> <span class="o">+</span>
+                <span class="s">"&lt;todoEntry xmlns=\"https://citrusframework.org/samples/todolist\"&gt;"</span> <span class="o">+</span>
                     <span class="s">"&lt;id&gt;${todoId}&lt;/id&gt;"</span> <span class="o">+</span>
                     <span class="s">"&lt;title&gt;${todoName}&lt;/title&gt;"</span> <span class="o">+</span>
                     <span class="s">"&lt;description&gt;${todoDescription}&lt;/description&gt;"</span> <span class="o">+</span>
@@ -263,7 +263,7 @@ adapters.</p>
 <span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">EndpointAdapter</span> <span class="nf">todoListResponseAdapter</span><span class="o">()</span> <span class="o">{</span>
     <span class="n">StaticResponseEndpointAdapter</span> <span class="n">endpointAdapter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StaticResponseEndpointAdapter</span><span class="o">();</span>
-    <span class="n">endpointAdapter</span><span class="o">.</span><span class="na">setMessagePayload</span><span class="o">(</span><span class="s">"&lt;getTodoListResponse xmlns=\"http://citrusframework.org/samples/todolist\"&gt;"</span> <span class="o">+</span>
+    <span class="n">endpointAdapter</span><span class="o">.</span><span class="na">setMessagePayload</span><span class="o">(</span><span class="s">"&lt;getTodoListResponse xmlns=\"https://citrusframework.org/samples/todolist\"&gt;"</span> <span class="o">+</span>
                 <span class="s">"&lt;list&gt;"</span> <span class="o">+</span>
                     <span class="s">"&lt;todoEntry&gt;"</span> <span class="o">+</span>
                         <span class="s">"&lt;id&gt;${todoId}&lt;/id&gt;"</span> <span class="o">+</span>

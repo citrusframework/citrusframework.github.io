@@ -214,12 +214,12 @@ server endpoint validates incoming requests and expects WSAddressing headers to 
     <span class="n">WsAddressingHeaders</span> <span class="n">addressingHeaders</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WsAddressingHeaders</span><span class="o">();</span>
 
     <span class="n">addressingHeaders</span><span class="o">.</span><span class="na">setVersion</span><span class="o">(</span><span class="n">WsAddressingVersion</span><span class="o">.</span><span class="na">VERSION200408</span><span class="o">);</span>
-    <span class="n">addressingHeaders</span><span class="o">.</span><span class="na">setAction</span><span class="o">(</span><span class="n">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"http://citrusframework.org/samples/todolist"</span><span class="o">));</span>
-    <span class="n">addressingHeaders</span><span class="o">.</span><span class="na">setTo</span><span class="o">(</span><span class="n">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"http://citrusframework.org/samples/todolist"</span><span class="o">));</span>
+    <span class="n">addressingHeaders</span><span class="o">.</span><span class="na">setAction</span><span class="o">(</span><span class="n">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"https://citrusframework.org/samples/todolist"</span><span class="o">));</span>
+    <span class="n">addressingHeaders</span><span class="o">.</span><span class="na">setTo</span><span class="o">(</span><span class="n">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"https://citrusframework.org/samples/todolist"</span><span class="o">));</span>
 
-    <span class="n">addressingHeaders</span><span class="o">.</span><span class="na">setFrom</span><span class="o">(</span><span class="k">new</span> <span class="n">EndpointReference</span><span class="o">(</span><span class="n">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"http://citrusframework.org/samples/client"</span><span class="o">)));</span>
-    <span class="n">addressingHeaders</span><span class="o">.</span><span class="na">setReplyTo</span><span class="o">(</span><span class="k">new</span> <span class="n">EndpointReference</span><span class="o">(</span><span class="n">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"http://citrusframework.org/samples/client"</span><span class="o">)));</span>
-    <span class="n">addressingHeaders</span><span class="o">.</span><span class="na">setFaultTo</span><span class="o">(</span><span class="k">new</span> <span class="n">EndpointReference</span><span class="o">(</span><span class="n">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"http://citrusframework.org/samples/client/fault"</span><span class="o">)));</span>
+    <span class="n">addressingHeaders</span><span class="o">.</span><span class="na">setFrom</span><span class="o">(</span><span class="k">new</span> <span class="n">EndpointReference</span><span class="o">(</span><span class="n">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"https://citrusframework.org/samples/client"</span><span class="o">)));</span>
+    <span class="n">addressingHeaders</span><span class="o">.</span><span class="na">setReplyTo</span><span class="o">(</span><span class="k">new</span> <span class="n">EndpointReference</span><span class="o">(</span><span class="n">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"https://citrusframework.org/samples/client"</span><span class="o">)));</span>
+    <span class="n">addressingHeaders</span><span class="o">.</span><span class="na">setFaultTo</span><span class="o">(</span><span class="k">new</span> <span class="n">EndpointReference</span><span class="o">(</span><span class="n">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"https://citrusframework.org/samples/client/fault"</span><span class="o">)));</span>
 
     <span class="k">return</span> <span class="k">new</span> <span class="nf">WsAddressingMessageConverter</span><span class="o">(</span><span class="n">addressingHeaders</span><span class="o">);</span>
 <span class="o">}</span></code></pre></figure>
@@ -228,21 +228,21 @@ server endpoint validates incoming requests and expects WSAddressing headers to 
 
 <figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;SOAP-ENV:Envelope</span> <span class="na">xmlns:SOAP-ENV=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;SOAP-ENV:Header</span> <span class="na">xmlns:wsa=</span><span class="s">"http://schemas.xmlsoap.org/ws/2004/08/addressing"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;wsa:To</span> <span class="na">SOAP-ENV:mustUnderstand=</span><span class="s">"1"</span><span class="nt">&gt;</span>http://citrusframework.org/samples/todolist<span class="nt">&lt;/wsa:To&gt;</span>
+        <span class="nt">&lt;wsa:To</span> <span class="na">SOAP-ENV:mustUnderstand=</span><span class="s">"1"</span><span class="nt">&gt;</span>https://citrusframework.org/samples/todolist<span class="nt">&lt;/wsa:To&gt;</span>
         <span class="nt">&lt;wsa:From&gt;</span>
-            <span class="nt">&lt;wsa:Address</span> <span class="na">xmlns:wsa=</span><span class="s">"http://schemas.xmlsoap.org/ws/2004/08/addressing"</span><span class="nt">&gt;</span>http://citrusframework.org/samples/client<span class="nt">&lt;/wsa:Address&gt;</span>
+            <span class="nt">&lt;wsa:Address</span> <span class="na">xmlns:wsa=</span><span class="s">"http://schemas.xmlsoap.org/ws/2004/08/addressing"</span><span class="nt">&gt;</span>https://citrusframework.org/samples/client<span class="nt">&lt;/wsa:Address&gt;</span>
         <span class="nt">&lt;/wsa:From&gt;</span>
         <span class="nt">&lt;wsa:ReplyTo&gt;</span>
-            <span class="nt">&lt;wsa:Address</span> <span class="na">xmlns:wsa=</span><span class="s">"http://schemas.xmlsoap.org/ws/2004/08/addressing"</span><span class="nt">&gt;</span>http://citrusframework.org/samples/client<span class="nt">&lt;/wsa:Address&gt;</span>
+            <span class="nt">&lt;wsa:Address</span> <span class="na">xmlns:wsa=</span><span class="s">"http://schemas.xmlsoap.org/ws/2004/08/addressing"</span><span class="nt">&gt;</span>https://citrusframework.org/samples/client<span class="nt">&lt;/wsa:Address&gt;</span>
         <span class="nt">&lt;/wsa:ReplyTo&gt;</span>
         <span class="nt">&lt;wsa:FaultTo&gt;</span>
-            <span class="nt">&lt;wsa:Address</span> <span class="na">xmlns:wsa=</span><span class="s">"http://schemas.xmlsoap.org/ws/2004/08/addressing"</span><span class="nt">&gt;</span>http://citrusframework.org/samples/client<span class="nt">&lt;/wsa:Address&gt;</span>
+            <span class="nt">&lt;wsa:Address</span> <span class="na">xmlns:wsa=</span><span class="s">"http://schemas.xmlsoap.org/ws/2004/08/addressing"</span><span class="nt">&gt;</span>https://citrusframework.org/samples/client<span class="nt">&lt;/wsa:Address&gt;</span>
         <span class="nt">&lt;/wsa:FaultTo&gt;</span>
-        <span class="nt">&lt;wsa:Action&gt;</span>http://citrusframework.org/samples/todolist<span class="nt">&lt;/wsa:Action&gt;</span>
+        <span class="nt">&lt;wsa:Action&gt;</span>https://citrusframework.org/samples/todolist<span class="nt">&lt;/wsa:Action&gt;</span>
         <span class="nt">&lt;wsa:MessageID&gt;</span>urn:uuid:a3975ef6-68f2-4074-b157-db6c230120b6<span class="nt">&lt;/wsa:MessageID&gt;</span>
     <span class="nt">&lt;/SOAP-ENV:Header&gt;</span>
     <span class="nt">&lt;SOAP-ENV:Body&gt;</span>
-        <span class="nt">&lt;todo:getTodoListRequest</span> <span class="na">xmlns:todo=</span><span class="s">"http://citrusframework.org/samples/todolist"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;todo:getTodoListRequest</span> <span class="na">xmlns:todo=</span><span class="s">"https://citrusframework.org/samples/todolist"</span><span class="nt">&gt;</span>
         <span class="nt">&lt;/todo:getTodoListRequest&gt;</span>
     <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span></code></pre></figure>
@@ -289,17 +289,17 @@ server endpoint validates incoming requests and expects WSAddressing headers to 
 <p>We do this by adding the complete SOAP header as expected XML structure. The header information is loaded from external file resource.</p>
 
 <figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;SOAP-ENV:Header</span> <span class="na">xmlns:SOAP-ENV=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:wsa=</span><span class="s">"http://schemas.xmlsoap.org/ws/2004/08/addressing"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;wsa:To</span> <span class="na">SOAP-ENV:mustUnderstand=</span><span class="s">"1"</span><span class="nt">&gt;</span>http://citrusframework.org/samples/todolist<span class="nt">&lt;/wsa:To&gt;</span>
+  <span class="nt">&lt;wsa:To</span> <span class="na">SOAP-ENV:mustUnderstand=</span><span class="s">"1"</span><span class="nt">&gt;</span>https://citrusframework.org/samples/todolist<span class="nt">&lt;/wsa:To&gt;</span>
   <span class="nt">&lt;wsa:From&gt;</span>
-    <span class="nt">&lt;wsa:Address&gt;</span>http://citrusframework.org/samples/client<span class="nt">&lt;/wsa:Address&gt;</span>
+    <span class="nt">&lt;wsa:Address&gt;</span>https://citrusframework.org/samples/client<span class="nt">&lt;/wsa:Address&gt;</span>
   <span class="nt">&lt;/wsa:From&gt;</span>
   <span class="nt">&lt;wsa:ReplyTo&gt;</span>
-    <span class="nt">&lt;wsa:Address&gt;</span>http://citrusframework.org/samples/client<span class="nt">&lt;/wsa:Address&gt;</span>
+    <span class="nt">&lt;wsa:Address&gt;</span>https://citrusframework.org/samples/client<span class="nt">&lt;/wsa:Address&gt;</span>
   <span class="nt">&lt;/wsa:ReplyTo&gt;</span>
   <span class="nt">&lt;wsa:FaultTo&gt;</span>
-    <span class="nt">&lt;wsa:Address&gt;</span>http://citrusframework.org/samples/client<span class="nt">&lt;/wsa:Address&gt;</span>
+    <span class="nt">&lt;wsa:Address&gt;</span>https://citrusframework.org/samples/client<span class="nt">&lt;/wsa:Address&gt;</span>
   <span class="nt">&lt;/wsa:FaultTo&gt;</span>
-  <span class="nt">&lt;wsa:Action&gt;</span>http://citrusframework.org/samples/todolist<span class="nt">&lt;/wsa:Action&gt;</span>
+  <span class="nt">&lt;wsa:Action&gt;</span>https://citrusframework.org/samples/todolist<span class="nt">&lt;/wsa:Action&gt;</span>
   <span class="nt">&lt;wsa:MessageID&gt;</span>@ignore@<span class="nt">&lt;/wsa:MessageID&gt;</span>
 <span class="nt">&lt;/SOAP-ENV:Header&gt;</span>     </code></pre></figure>
 
@@ -312,7 +312,7 @@ simply because this is a generated UUID value that is newly generated on the cli
     <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
     <span class="o">.</span><span class="na">send</span><span class="o">()</span>
     <span class="o">.</span><span class="na">soapAction</span><span class="o">(</span><span class="s">"addTodoEntry"</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">WsAddressingMessageHeaders</span><span class="o">.</span><span class="na">ACTION</span><span class="o">,</span> <span class="s">"http://citrusframework.org/samples/todolist/addTodoEntry"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">WsAddressingMessageHeaders</span><span class="o">.</span><span class="na">ACTION</span><span class="o">,</span> <span class="s">"https://citrusframework.org/samples/todolist/addTodoEntry"</span><span class="o">)</span>
     <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">WsAddressingMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_ID</span><span class="o">,</span> <span class="s">"urn:uuid:citrus:randomUUID()"</span><span class="o">)</span>
     <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="k">new</span> <span class="n">ClassPathResource</span><span class="o">(</span><span class="s">"templates/addTodoEntryRequest.xml"</span><span class="o">));</span></code></pre></figure>
 

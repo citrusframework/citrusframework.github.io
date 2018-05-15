@@ -1083,7 +1083,7 @@ which will create a citrus project with a basic pom file and some sample integra
 <ul>
   <li>Create a new directory for the project.</li>
   <li>Change to this directory</li>
-  <li>Execute: mvn archetype:generate -DarchetypeCatalog=http://citrusframework.org</li>
+  <li>Execute: mvn archetype:generate -DarchetypeCatalog=https://citrusframework.org</li>
   <li>When prompted select archetype ‘1’</li>
   <li>For the groupId, artifactId and package enter whatever you like. I entered
     <ul>
@@ -2180,7 +2180,7 @@ We need to add this library to our project as test scoped dependency if not alre
 <figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>citrus-camel<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>${citrus.version}<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;version&gt;</span>2.7.5<span class="nt">&lt;/version&gt;</span>
   <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span></code></pre></figure>
 
@@ -2376,12 +2376,12 @@ add some error scenarios where the Seda endpoint component is forcing an excepti
 <figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>org.apache.activemq<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>activemq-broker<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>5.15.2<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;version&gt;</span>${activemq.version}<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 <span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>org.apache.activemq<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>activemq-spring<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>5.15.2<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;version&gt;</span>${activemq.version}<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 <span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>org.apache.xbean<span class="nt">&lt;/groupId&gt;</span>
