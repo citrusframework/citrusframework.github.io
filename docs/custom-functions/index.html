@@ -1,0 +1,611 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 2.7.5">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="https://citrusframework.org/feed.xml" title="Citrus Integration Tests" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/christophd/citrus/commits/master.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="current">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/christophd/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="current">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/christophd/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="docs">
+    <div class="grid">
+
+      <div class="docs-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the docs…</option>
+    <option value="/docs/home">Home</option>
+    
+    <optgroup label="Getting Started">
+      
+  
+  
+  <option value="/docs/home/">Welcome</option>
+
+  
+  
+  <option value="/docs/user-guide/">User Guide</option>
+
+  
+  
+  <option value="/docs/setup-maven/">Setup with Maven</option>
+
+  
+  
+  <option value="/docs/setup-gradle/">Setup with Gradle</option>
+
+  
+  
+  <option value="/docs/setup-ant/">Setup with ANT</option>
+
+  
+  
+  <option value="/docs/features/">Features</option>
+
+  
+  
+  <option value="/docs/download/">Download</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Sources">
+      
+  
+  
+  <option value="/docs/repository/">Source repository</option>
+
+  
+  
+  <option value="/docs/issues/">Issues</option>
+
+  
+  
+  <option value="/docs/development/">Development</option>
+
+  
+  
+  <option value="/docs/contributing/">Contributing</option>
+
+  
+  
+  <option value="/docs/conventions/">Conventions</option>
+
+  
+  
+  <option value="/docs/conduct/">Code of Conduct</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Customize">
+      
+  
+  
+  <option value="/docs/custom-endpoints/"></option>
+
+  
+  
+  <option value="/docs/custom-actions/">Custom actions</option>
+
+  
+  
+  <option value="/docs/custom-functions/">Custom functions</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Tools">
+      
+  
+  
+  <option value="/docs/maven-plugin/">Maven plugin</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Miscellaneous">
+      
+  
+  
+  <option value="/docs/team/">Team</option>
+
+  
+  
+  <option value="/docs/config-sheet/"></option>
+
+  
+  
+  <option value="/docs/upgrade-migration/"></option>
+
+  
+  
+  <option value="/docs/consulting/">Consulting</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Meta">
+      
+  
+  
+  <option value="/docs/license/">License</option>
+
+  
+  
+  <option value="/docs/modules/">Modules</option>
+
+  
+  
+  <option value="/docs/history/">History</option>
+
+
+    </optgroup>
+    
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+          <div class="improve right hide-on-mobiles">
+            <a href="https://github.com/christophd/citrus/edit/master/src/site/_docs/custom-functions.md"><i class="fa fa-pencil"></i> &nbsp;Improve this page</a>
+          </div>
+          <h1>Custom functions</h1>
+          <p>This tutorial tries to explain how to write and include your own functions in Citrus. First of all let us keep in mind 
+what functions do. Functions can ease up your life when working with dynamic values and test variables. For instance if 
+you need the current date in a test case you may use the Citrus function currentDate() in your test case.</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">  
+<span class="nt">&lt;variable</span> <span class="na">name=</span><span class="s">"date"</span> <span class="na">value=</span><span class="s">"citrus:currentDate()"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;variable</span> <span class="na">name=</span><span class="s">"dateCustomFormat"</span> <span class="na">value=</span><span class="s">"citrus:currentDate('yyyy-mm-dd')"</span><span class="nt">/&gt;</span></code></pre></figure>
+
+<p>Citrus offers a lot of functions to be used out of the box (function prefix: citrus). See the reference documentation 
+for a detailed function overview. However you might need to write your own functions in order to implement a specific 
+logic in your test. We will deal with an id generating function in this tutorial. Maybe your project needs special 
+identifiers in a special format and you are tired of statically defining the ids in all your tests. Therefore a function 
+shall generate the id strings in the special format:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Lx0x123456789xM
+</code></pre>
+</div>
+
+<p>So the generated identifiers must have a static prefix “Lx0x” and a static ending “xM”. In between there is a number of 
+9 digits that should be randomly generated. The function should be accessible from every test case with the function name 
+<em>“generateId”</em>. No function parameters are needed so far. So much for the requirements. No let us start implementing this 
+function in Java.</p>
+
+<p>All functions in Citrus need to implement the common function interface:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Function</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">execute</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">parameterList</span><span class="o">,</span> <span class="n">TestContext</span> <span class="n">context</span><span class="o">);</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>The function interface defines an execute method that will return a String value. Lets see how we can implement our id generating function.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">mycompany</span><span class="o">.</span><span class="na">citrus</span><span class="o">.</span><span class="na">extension</span><span class="o">.</span><span class="na">functions</span><span class="o">;</span>
+ 
+<span class="kn">import</span> <span class="nn">java.util.Collections</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+ 
+<span class="kn">import</span> <span class="nn">com.consol.citrus.context.TestContext</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.consol.citrus.exceptions.CitrusRuntimeException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.consol.citrus.functions.core.RandomNumberFunction</span><span class="o">;</span>
+ 
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">IdGeneratingFunction</span> <span class="kd">implements</span> <span class="n">Function</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">execute</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">parameterList</span><span class="o">,</span> <span class="n">TestContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">StringBuffer</span> <span class="n">idBuffer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuffer</span><span class="o">();</span>
+        
+        <span class="n">idBuffer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"Lx0x"</span><span class="o">);</span>
+        <span class="n">idBuffer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="k">new</span> <span class="n">RandomNumberFunction</span><span class="o">().</span><span class="na">execute</span><span class="o">(</span><span class="n">Collections</span><span class="o">.</span><span class="na">singletonList</span><span class="o">(</span><span class="s">"9"</span><span class="o">)));</span>
+        <span class="n">idBuffer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"xM"</span><span class="o">);</span>
+        
+        <span class="k">return</span> <span class="n">idBuffer</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Our function implementation is very simple. We use a StringBuffer to build the resulting identifyer string with its 
+static prefix (“Lx0x”) and suffix (“xM”). For the generated random number of 9 digits we use the existing random number 
+function of Citrus. The function receives the number length of 9 as a singelton parameter list and will do all the number 
+generating work for us.</p>
+
+<p>That’s it! We return the identifyer string as a result of our function and we are done!</p>
+
+<p>Now we need to publish the function to Citrus so that test cases can call the function. Every function in Citrus belongs 
+to a function library. The library holds one or more functions and provides the prefix to identify the functions inside 
+the test case. Let us define a custom function library in the Spring configuration to see how it is done:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">  
+<span class="nt">&lt;citrus:function-library</span> <span class="na">id=</span><span class="s">"myCustomFunctionLibrary"</span> <span class="na">prefix=</span><span class="s">"mcfl:"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;citrus:function</span> <span class="na">name=</span><span class="s">"generateId"</span> <span class="na">class=</span><span class="s">"com.mycompany.citrus.extension.functions.IdGeneratingFunction"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/citrus:function-library&gt;</span></code></pre></figure>
+
+<p>Once you have placed the function library into the Spring configuration Citrus is ready to use it inside the test cases. 
+The library defines a custom function prefix (in our example “mcfl” for “my custom function library”). Usually this prefix 
+would reflect the name of your project or your companies name. The library holds one or more functions as members in a 
+simple map. Every function needs to have a name and the implementing Java object. Here we use our previously coded 
+IdGeneratingFunction in the package <em>“com.mycompany.citrus.extension.functions”</em>.</p>
+
+<p>Inside a test case we have to use the function prefix as well as the defined function name to access the new function:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">  
+<span class="nt">&lt;variable</span> <span class="na">name=</span><span class="s">"correlationId"</span> <span class="na">value=</span><span class="s">"mcfl:generateId()"</span><span class="nt">/&gt;</span></code></pre></figure>
+
+<p>Now you can add as many functions as you want to the new function library. You can extend Citrus with own functionalities
+fitting the special needs of your project. In the following we will add another function that will use parameters.</p>
+
+<h2 id="writing-functions-with-parameters">Writing functions with parameters</h2>
+
+<p>The common function interface says that a function gets a list of parameters while executing. This parameters are 
+automatically converted into a Java list implementation so you can easily handle the parameters passed to your function.</p>
+
+<p>Let us implement another function called “greeting”. The function will return a greeting phrase when executed. The 
+function looks for a parameter specifying the language. Let us see the detailed implementation:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">GreetingFunction</span> <span class="kd">implements</span> <span class="n">Function</span> <span class="o">{</span>
+ 
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">execute</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">parameterList</span><span class="o">,</span> <span class="n">TestContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">parameterList</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">InvalidFunctionUsageException</span><span class="o">(</span><span class="s">"Function parameters must not be empty. Specify language as parameter (US, GERMAN, SPANISH)!"</span><span class="o">);</span>
+        <span class="o">}</span>
+        
+        <span class="k">if</span><span class="o">(</span><span class="n">parameterList</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">InvalidFunctionUsageException</span><span class="o">(</span><span class="s">"Function does not support multiple parameters"</span><span class="o">);</span>
+        <span class="o">}</span>
+        
+        <span class="n">String</span> <span class="n">language</span> <span class="o">=</span> <span class="n">parameterList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">toUpperCase</span><span class="o">();</span>
+        
+        <span class="k">if</span><span class="o">(</span><span class="n">language</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"US"</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="s">"Welcome"</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">language</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"GERMAN"</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="s">"Willkommen"</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">language</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"SPANISH"</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="s">"Bienvenido"</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">UnsupportedOperationException</span><span class="o">(</span><span class="s">"Unsupported language: '"</span> <span class="o">+</span> <span class="n">language</span> <span class="o">+</span> <span class="s">"'"</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>The function is again very simple. After the parameter list is checked for possible usage errors the function returns 
+the correct greeting phrase according to the passed language. I bet fantastic function was just missing in your project, 
+right? However lets add it to the function library and use it in our test. This time we use a Spring bean reference when 
+including the new function in our library:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">  
+<span class="nt">&lt;citrus:function-library</span> <span class="na">id=</span><span class="s">"myCustomFunctionLibrary"</span> <span class="na">prefix=</span><span class="s">"mcfl:"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;citrus:function</span> <span class="na">name=</span><span class="s">"generateId"</span> <span class="na">class=</span><span class="s">"com.mycompany.citrus.extension.functions.IdGeneratingFunction"</span><span class="nt">/&gt;</span>
+            <span class="nt">&lt;citrus:function</span> <span class="na">name=</span><span class="s">"greeting"</span> <span class="na">ref=</span><span class="s">"greetingFunction"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/citrus:function-library&gt;</span>
+ 
+<span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">"greetingFunction"</span> <span class="na">class=</span><span class="s">"com.mycompany.citrus.extension.functions.GreetingFunction"</span><span class="nt">/&gt;</span></code></pre></figure>
+
+<p>Another member entry for the function library and the function is ready for usage in our test cases:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">  
+<span class="nt">&lt;testcase</span> <span class="na">name=</span><span class="s">"greetingTest"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;variables&gt;</span>
+        <span class="nt">&lt;variable</span> <span class="na">name=</span><span class="s">"user"</span> <span class="na">value=</span><span class="s">"Mickey Mouse"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/variables&gt;</span>
+    <span class="nt">&lt;actions&gt;</span>
+        <span class="nt">&lt;echo&gt;</span>
+            <span class="nt">&lt;message&gt;</span>mcfl:greeting('GERMAN') ${user}!<span class="nt">&lt;/message&gt;</span>
+        <span class="nt">&lt;/echo&gt;</span>
+        <span class="nt">&lt;echo&gt;</span>
+            <span class="nt">&lt;message&gt;</span>mcfl:greeting('US') ${user}!<span class="nt">&lt;/message&gt;</span>
+        <span class="nt">&lt;/echo&gt;</span>
+        <span class="nt">&lt;echo&gt;</span>
+            <span class="nt">&lt;message&gt;</span>mcfl:greeting('SPANISH') ${user}!<span class="nt">&lt;/message&gt;</span>
+        <span class="nt">&lt;/echo&gt;</span>
+    <span class="nt">&lt;/actions&gt;</span>
+<span class="nt">&lt;/testcase&gt;</span></code></pre></figure>
+
+<p>Note that functions can be used wherever you use variables. Inside echo messages for example as shown in our test example. 
+Citrus will parse the function string and execute the function with the respective parameter list.</p>
+
+<p>The output of the test proves that the function is working as expected:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>echo Willkommen MickeyMouse!
+echo Welcome MickeyMouse!
+echo Bienvenido MickeyMouse!
+</code></pre>
+</div>
+
+<p>That’s it for the writing functions tutorial. I think it is quite easy to include own logic into a test case using custom 
+function implementations. We are glad to here about your functions and maybe we can include your function into the Citrus 
+function library so all Citrus users can take the benefit.</p>
+
+        </article>
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    
+    <h4>Getting Started</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/home/">Welcome</a></li>
+
+  
+  
+  <li class=""><a href="/docs/user-guide/">User Guide</a></li>
+
+  
+  
+  <li class=""><a href="/docs/setup-maven/">Setup with Maven</a></li>
+
+  
+  
+  <li class=""><a href="/docs/setup-gradle/">Setup with Gradle</a></li>
+
+  
+  
+  <li class=""><a href="/docs/setup-ant/">Setup with ANT</a></li>
+
+  
+  
+  <li class=""><a href="/docs/features/">Features</a></li>
+
+  
+  
+  <li class=""><a href="/docs/download/">Download</a></li>
+
+</ul>
+
+    
+    <h4>Sources</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/repository/">Source repository</a></li>
+
+  
+  
+  <li class=""><a href="/docs/issues/">Issues</a></li>
+
+  
+  
+  <li class=""><a href="/docs/development/">Development</a></li>
+
+  
+  
+  <li class=""><a href="/docs/contributing/">Contributing</a></li>
+
+  
+  
+  <li class=""><a href="/docs/conventions/">Conventions</a></li>
+
+  
+  
+  <li class=""><a href="/docs/conduct/">Code of Conduct</a></li>
+
+</ul>
+
+    
+    <h4>Customize</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/custom-endpoints/"></a></li>
+
+  
+  
+  <li class=""><a href="/docs/custom-actions/">Custom actions</a></li>
+
+  
+  
+  <li class="current"><a href="/docs/custom-functions/">Custom functions</a></li>
+
+</ul>
+
+    
+    <h4>Tools</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/maven-plugin/">Maven plugin</a></li>
+
+</ul>
+
+    
+    <h4>Miscellaneous</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/team/">Team</a></li>
+
+  
+  
+  <li class=""><a href="/docs/config-sheet/"></a></li>
+
+  
+  
+  <li class=""><a href="/docs/upgrade-migration/"></a></li>
+
+  
+  
+  <li class=""><a href="/docs/consulting/">Consulting</a></li>
+
+</ul>
+
+    
+    <h4>Meta</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/license/">License</a></li>
+
+  
+  
+  <li class=""><a href="/docs/modules/">Modules</a></li>
+
+  
+  
+  <li class=""><a href="/docs/history/">History</a></li>
+
+</ul>
+
+    
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache&nbsp;License&nbsp;2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/christophd/citrus/blob/master/LICENSE">MIT&nbsp;License</a>.</p>
+      <br/>
+      <p>&copy;&nbsp;2018 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p>&nbsp;</p>
+      <br/>
+      <br/>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>

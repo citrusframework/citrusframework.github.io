@@ -1,0 +1,657 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 2.7.5">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="https://citrusframework.org/feed.xml" title="Citrus Integration Tests" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/christophd/citrus/commits/master.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="current">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/christophd/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="current">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/christophd/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="docs">
+    <div class="grid">
+
+      <div class="docs-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the docs…</option>
+    <option value="/docs/home">Home</option>
+    
+    <optgroup label="Getting Started">
+      
+  
+  
+  <option value="/docs/home/">Welcome</option>
+
+  
+  
+  <option value="/docs/user-guide/">User Guide</option>
+
+  
+  
+  <option value="/docs/setup-maven/">Setup with Maven</option>
+
+  
+  
+  <option value="/docs/setup-gradle/">Setup with Gradle</option>
+
+  
+  
+  <option value="/docs/setup-ant/">Setup with ANT</option>
+
+  
+  
+  <option value="/docs/features/">Features</option>
+
+  
+  
+  <option value="/docs/download/">Download</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Sources">
+      
+  
+  
+  <option value="/docs/repository/">Source repository</option>
+
+  
+  
+  <option value="/docs/issues/">Issues</option>
+
+  
+  
+  <option value="/docs/development/">Development</option>
+
+  
+  
+  <option value="/docs/contributing/">Contributing</option>
+
+  
+  
+  <option value="/docs/conventions/">Conventions</option>
+
+  
+  
+  <option value="/docs/conduct/">Code of Conduct</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Customize">
+      
+  
+  
+  <option value="/docs/custom-endpoints/"></option>
+
+  
+  
+  <option value="/docs/custom-actions/">Custom actions</option>
+
+  
+  
+  <option value="/docs/custom-functions/">Custom functions</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Tools">
+      
+  
+  
+  <option value="/docs/maven-plugin/">Maven plugin</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Miscellaneous">
+      
+  
+  
+  <option value="/docs/team/">Team</option>
+
+  
+  
+  <option value="/docs/config-sheet/"></option>
+
+  
+  
+  <option value="/docs/upgrade-migration/"></option>
+
+  
+  
+  <option value="/docs/consulting/">Consulting</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Meta">
+      
+  
+  
+  <option value="/docs/license/">License</option>
+
+  
+  
+  <option value="/docs/modules/">Modules</option>
+
+  
+  
+  <option value="/docs/history/">History</option>
+
+
+    </optgroup>
+    
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+          <div class="improve right hide-on-mobiles">
+            <a href="https://github.com/christophd/citrus/edit/master/src/site/_docs/license.md"><i class="fa fa-pencil"></i> &nbsp;Improve this page</a>
+          </div>
+          <h1>License</h1>
+          <p>Typically the licenses listed for the project are that of the project itself, and not of dependencies.</p>
+
+<h2 id="apache-license-version-20">Apache License, Version 2.0</h2>
+
+<p>Citrus is published free of charge under Apache License, Version 2.0. You are allowed to use Citrus to test any kind of 
+software (also commercial applications). If you do this, we kindly ask you to tell us about it so that we can add you to 
+our references list. You may also use our “Tested using Citrus” logo in your online or printed documentation.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>                                Apache License
+                           Version 2.0, January 2004
+                        http://www.apache.org/licenses/
+
+   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+
+   1. Definitions.
+
+      &amp;quot;License&amp;quot; shall mean the terms and conditions for use, reproduction,
+      and distribution as defined by Sections 1 through 9 of this document.
+
+      &amp;quot;Licensor&amp;quot; shall mean the copyright owner or entity authorized by
+      the copyright owner that is granting the License.
+
+      &amp;quot;Legal Entity&amp;quot; shall mean the union of the acting entity and all
+      other entities that control, are controlled by, or are under common
+      control with that entity. For the purposes of this definition,
+      &amp;quot;control&amp;quot; means (i) the power, direct or indirect, to cause the
+      direction or management of such entity, whether by contract or
+      otherwise, or (ii) ownership of fifty percent (50%) or more of the
+      outstanding shares, or (iii) beneficial ownership of such entity.
+
+      &amp;quot;You&amp;quot; (or &amp;quot;Your&amp;quot;) shall mean an individual or Legal Entity
+      exercising permissions granted by this License.
+
+      &amp;quot;Source&amp;quot; form shall mean the preferred form for making modifications,
+      including but not limited to software source code, documentation
+      source, and configuration files.
+
+      &amp;quot;Object&amp;quot; form shall mean any form resulting from mechanical
+      transformation or translation of a Source form, including but
+      not limited to compiled object code, generated documentation,
+      and conversions to other media types.
+
+      &amp;quot;Work&amp;quot; shall mean the work of authorship, whether in Source or
+      Object form, made available under the License, as indicated by a
+      copyright notice that is included in or attached to the work
+      (an example is provided in the Appendix below).
+
+      &amp;quot;Derivative Works&amp;quot; shall mean any work, whether in Source or Object
+      form, that is based on (or derived from) the Work and for which the
+      editorial revisions, annotations, elaborations, or other modifications
+      represent, as a whole, an original work of authorship. For the purposes
+      of this License, Derivative Works shall not include works that remain
+      separable from, or merely link (or bind by name) to the interfaces of,
+      the Work and Derivative Works thereof.
+
+      &amp;quot;Contribution&amp;quot; shall mean any work of authorship, including
+      the original version of the Work and any modifications or additions
+      to that Work or Derivative Works thereof, that is intentionally
+      submitted to Licensor for inclusion in the Work by the copyright owner
+      or by an individual or Legal Entity authorized to submit on behalf of
+      the copyright owner. For the purposes of this definition, &amp;quot;submitted&amp;quot;
+      means any form of electronic, verbal, or written communication sent
+      to the Licensor or its representatives, including but not limited to
+      communication on electronic mailing lists, source code control systems,
+      and issue tracking systems that are managed by, or on behalf of, the
+      Licensor for the purpose of discussing and improving the Work, but
+      excluding communication that is conspicuously marked or otherwise
+      designated in writing by the copyright owner as &amp;quot;Not a Contribution.&amp;quot;
+
+      &amp;quot;Contributor&amp;quot; shall mean Licensor and any individual or Legal Entity
+      on behalf of whom a Contribution has been received by Licensor and
+      subsequently incorporated within the Work.
+
+   2. Grant of Copyright License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      copyright license to reproduce, prepare Derivative Works of,
+      publicly display, publicly perform, sublicense, and distribute the
+      Work and such Derivative Works in Source or Object form.
+
+   3. Grant of Patent License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      (except as stated in this section) patent license to make, have made,
+      use, offer to sell, sell, import, and otherwise transfer the Work,
+      where such license applies only to those patent claims licensable
+      by such Contributor that are necessarily infringed by their
+      Contribution(s) alone or by combination of their Contribution(s)
+      with the Work to which such Contribution(s) was submitted. If You
+      institute patent litigation against any entity (including a
+      cross-claim or counterclaim in a lawsuit) alleging that the Work
+      or a Contribution incorporated within the Work constitutes direct
+      or contributory patent infringement, then any patent licenses
+      granted to You under this License for that Work shall terminate
+      as of the date such litigation is filed.
+
+   4. Redistribution. You may reproduce and distribute copies of the
+      Work or Derivative Works thereof in any medium, with or without
+      modifications, and in Source or Object form, provided that You
+      meet the following conditions:
+
+      (a) You must give any other recipients of the Work or
+          Derivative Works a copy of this License; and
+
+      (b) You must cause any modified files to carry prominent notices
+          stating that You changed the files; and
+
+      (c) You must retain, in the Source form of any Derivative Works
+          that You distribute, all copyright, patent, trademark, and
+          attribution notices from the Source form of the Work,
+          excluding those notices that do not pertain to any part of
+          the Derivative Works; and
+
+      (d) If the Work includes a &amp;quot;NOTICE&amp;quot; text file as part of its
+          distribution, then any Derivative Works that You distribute must
+          include a readable copy of the attribution notices contained
+          within such NOTICE file, excluding those notices that do not
+          pertain to any part of the Derivative Works, in at least one
+          of the following places: within a NOTICE text file distributed
+          as part of the Derivative Works; within the Source form or
+          documentation, if provided along with the Derivative Works; or,
+          within a display generated by the Derivative Works, if and
+          wherever such third-party notices normally appear. The contents
+          of the NOTICE file are for informational purposes only and
+          do not modify the License. You may add Your own attribution
+          notices within Derivative Works that You distribute, alongside
+          or as an addendum to the NOTICE text from the Work, provided
+          that such additional attribution notices cannot be construed
+          as modifying the License.
+
+      You may add Your own copyright statement to Your modifications and
+      may provide additional or different license terms and conditions
+      for use, reproduction, or distribution of Your modifications, or
+      for any such Derivative Works as a whole, provided Your use,
+      reproduction, and distribution of the Work otherwise complies with
+      the conditions stated in this License.
+
+   5. Submission of Contributions. Unless You explicitly state otherwise,
+      any Contribution intentionally submitted for inclusion in the Work
+      by You to the Licensor shall be under the terms and conditions of
+      this License, without any additional terms or conditions.
+      Notwithstanding the above, nothing herein shall supersede or modify
+      the terms of any separate license agreement you may have executed
+      with Licensor regarding such Contributions.
+
+   6. Trademarks. This License does not grant permission to use the trade
+      names, trademarks, service marks, or product names of the Licensor,
+      except as required for reasonable and customary use in describing the
+      origin of the Work and reproducing the content of the NOTICE file.
+
+   7. Disclaimer of Warranty. Unless required by applicable law or
+      agreed to in writing, Licensor provides the Work (and each
+      Contributor provides its Contributions) on an &amp;quot;AS IS&amp;quot; BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+      implied, including, without limitation, any warranties or conditions
+      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
+      PARTICULAR PURPOSE. You are solely responsible for determining the
+      appropriateness of using or redistributing the Work and assume any
+      risks associated with Your exercise of permissions under this License.
+
+   8. Limitation of Liability. In no event and under no legal theory,
+      whether in tort (including negligence), contract, or otherwise,
+      unless required by applicable law (such as deliberate and grossly
+      negligent acts) or agreed to in writing, shall any Contributor be
+      liable to You for damages, including any direct, indirect, special,
+      incidental, or consequential damages of any character arising as a
+      result of this License or out of the use or inability to use the
+      Work (including but not limited to damages for loss of goodwill,
+      work stoppage, computer failure or malfunction, or any and all
+      other commercial damages or losses), even if such Contributor
+      has been advised of the possibility of such damages.
+
+   9. Accepting Warranty or Additional Liability. While redistributing
+      the Work or Derivative Works thereof, You may choose to offer,
+      and charge a fee for, acceptance of support, warranty, indemnity,
+      or other liability obligations and/or rights consistent with this
+      License. However, in accepting such obligations, You may act only
+      on Your own behalf and on Your sole responsibility, not on behalf
+      of any other Contributor, and only if You agree to indemnify,
+      defend, and hold each Contributor harmless for any liability
+      incurred by, or claims asserted against, such Contributor by reason
+      of your accepting any such warranty or additional liability.
+
+   END OF TERMS AND CONDITIONS
+
+   APPENDIX: How to apply the Apache License to your work.
+
+      To apply the Apache License to your work, attach the following
+      boilerplate notice, with the fields enclosed by brackets &amp;quot;[]&amp;quot;
+      replaced with your own identifying information. (Don't include
+      the brackets!)  The text should be enclosed in the appropriate
+      comment syntax for the file format. We also recommend that a
+      file or class name and description of purpose be included on the
+      same &amp;quot;printed page&amp;quot; as the copyright notice for easier
+      identification within third-party archives.
+
+   Copyright 2006-2018 ConSol Software GmbH.
+
+   Licensed under the Apache License, Version 2.0 (the &amp;quot;License&amp;quot;);
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an &amp;quot;AS IS&amp;quot; BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+</code></pre>
+</div>
+
+        </article>
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    
+    <h4>Getting Started</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/home/">Welcome</a></li>
+
+  
+  
+  <li class=""><a href="/docs/user-guide/">User Guide</a></li>
+
+  
+  
+  <li class=""><a href="/docs/setup-maven/">Setup with Maven</a></li>
+
+  
+  
+  <li class=""><a href="/docs/setup-gradle/">Setup with Gradle</a></li>
+
+  
+  
+  <li class=""><a href="/docs/setup-ant/">Setup with ANT</a></li>
+
+  
+  
+  <li class=""><a href="/docs/features/">Features</a></li>
+
+  
+  
+  <li class=""><a href="/docs/download/">Download</a></li>
+
+</ul>
+
+    
+    <h4>Sources</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/repository/">Source repository</a></li>
+
+  
+  
+  <li class=""><a href="/docs/issues/">Issues</a></li>
+
+  
+  
+  <li class=""><a href="/docs/development/">Development</a></li>
+
+  
+  
+  <li class=""><a href="/docs/contributing/">Contributing</a></li>
+
+  
+  
+  <li class=""><a href="/docs/conventions/">Conventions</a></li>
+
+  
+  
+  <li class=""><a href="/docs/conduct/">Code of Conduct</a></li>
+
+</ul>
+
+    
+    <h4>Customize</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/custom-endpoints/"></a></li>
+
+  
+  
+  <li class=""><a href="/docs/custom-actions/">Custom actions</a></li>
+
+  
+  
+  <li class=""><a href="/docs/custom-functions/">Custom functions</a></li>
+
+</ul>
+
+    
+    <h4>Tools</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/maven-plugin/">Maven plugin</a></li>
+
+</ul>
+
+    
+    <h4>Miscellaneous</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/team/">Team</a></li>
+
+  
+  
+  <li class=""><a href="/docs/config-sheet/"></a></li>
+
+  
+  
+  <li class=""><a href="/docs/upgrade-migration/"></a></li>
+
+  
+  
+  <li class=""><a href="/docs/consulting/">Consulting</a></li>
+
+</ul>
+
+    
+    <h4>Meta</h4>
+    <ul>
+
+  
+  
+  <li class="current"><a href="/docs/license/">License</a></li>
+
+  
+  
+  <li class=""><a href="/docs/modules/">Modules</a></li>
+
+  
+  
+  <li class=""><a href="/docs/history/">History</a></li>
+
+</ul>
+
+    
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache&nbsp;License&nbsp;2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/christophd/citrus/blob/master/LICENSE">MIT&nbsp;License</a>.</p>
+      <br/>
+      <p>&copy;&nbsp;2018 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p>&nbsp;</p>
+      <br/>
+      <br/>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>

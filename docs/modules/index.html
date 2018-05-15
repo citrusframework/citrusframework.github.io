@@ -1,0 +1,565 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 2.7.5">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="https://citrusframework.org/feed.xml" title="Citrus Integration Tests" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/christophd/citrus/commits/master.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="current">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/christophd/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="current">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/christophd/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="docs">
+    <div class="grid">
+
+      <div class="docs-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the docs…</option>
+    <option value="/docs/home">Home</option>
+    
+    <optgroup label="Getting Started">
+      
+  
+  
+  <option value="/docs/home/">Welcome</option>
+
+  
+  
+  <option value="/docs/user-guide/">User Guide</option>
+
+  
+  
+  <option value="/docs/setup-maven/">Setup with Maven</option>
+
+  
+  
+  <option value="/docs/setup-gradle/">Setup with Gradle</option>
+
+  
+  
+  <option value="/docs/setup-ant/">Setup with ANT</option>
+
+  
+  
+  <option value="/docs/features/">Features</option>
+
+  
+  
+  <option value="/docs/download/">Download</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Sources">
+      
+  
+  
+  <option value="/docs/repository/">Source repository</option>
+
+  
+  
+  <option value="/docs/issues/">Issues</option>
+
+  
+  
+  <option value="/docs/development/">Development</option>
+
+  
+  
+  <option value="/docs/contributing/">Contributing</option>
+
+  
+  
+  <option value="/docs/conventions/">Conventions</option>
+
+  
+  
+  <option value="/docs/conduct/">Code of Conduct</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Customize">
+      
+  
+  
+  <option value="/docs/custom-endpoints/"></option>
+
+  
+  
+  <option value="/docs/custom-actions/">Custom actions</option>
+
+  
+  
+  <option value="/docs/custom-functions/">Custom functions</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Tools">
+      
+  
+  
+  <option value="/docs/maven-plugin/">Maven plugin</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Miscellaneous">
+      
+  
+  
+  <option value="/docs/team/">Team</option>
+
+  
+  
+  <option value="/docs/config-sheet/"></option>
+
+  
+  
+  <option value="/docs/upgrade-migration/"></option>
+
+  
+  
+  <option value="/docs/consulting/">Consulting</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Meta">
+      
+  
+  
+  <option value="/docs/license/">License</option>
+
+  
+  
+  <option value="/docs/modules/">Modules</option>
+
+  
+  
+  <option value="/docs/history/">History</option>
+
+
+    </optgroup>
+    
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+          <div class="improve right hide-on-mobiles">
+            <a href="https://github.com/christophd/citrus/edit/master/src/site/_docs/modules.md"><i class="fa fa-pencil"></i> &nbsp;Improve this page</a>
+          </div>
+          <h1>Modules</h1>
+          <h3 id="citrus-pom">citrus (POM)</h3>
+
+<p>This is the main parent project containing general configurations, such as</p>
+
+<ul>
+  <li>site generation</li>
+  <li>dependency management</li>
+  <li>plugin management</li>
+  <li>overall project information, such as mailing lists, team-members, scm, bug-tracking, …</li>
+  <li>sub modules</li>
+</ul>
+
+<h3 id="citrus-core-jar">citrus-core (JAR)</h3>
+
+<p>The citrus-core module builds the core functionality such as</p>
+
+<ul>
+  <li>domain model (TestCase, TestAction, CitrusApplication, …)</li>
+  <li>test actions (send, receive, sleep, sql, …)</li>
+  <li>validation implementation (XML tree validation, XPath element validation) utility</li>
+  <li>The module also includes basic JMS and Spring integration message channel support in these two sections:</li>
+  <li>citrus-channel (message channel sender and receiver implementations)</li>
+</ul>
+
+<h3 id="citrus-jms-jar">citrus-jms (JAR)</h3>
+
+<p>Module contains classes for JMS support for connection to JMS message brokers.</p>
+
+<h3 id="citrus-jdbc-jar">citrus-jdbc (JAR)</h3>
+
+<p>Module contains classes for JDBC database server mocking support so users can verify SQL statement calls on the database with proper result set return values.</p>
+
+<h3 id="citrus-http-jar">citrus-http (JAR)</h3>
+
+<p>This module contains special HTTP client/server implementation. With this adapter Citrus is able to send and receive 
+messages over HTTP.</p>
+
+<h3 id="citrus-websocket-jar">citrus-websocket (JAR)</h3>
+
+<p>This module contains special WebSocket client/server implementation. With this adapter Citrus is able to send and receive 
+messages over bidirectional HTTP WebSocket connections.</p>
+
+<h3 id="citrus-ws-jar">citrus-ws (JAR)</h3>
+
+<p>Special adapter implementation for SOAP WebServices. Module contains classes for SOAP client and server connections over 
+SOAP/HTTP.</p>
+
+<h3 id="citrus-ssh-jar">citrus-ssh (JAR)</h3>
+
+<p>SSH adapter implementation for connecting to SSH servers. The module contains classes for SSH client and server connectivity.</p>
+
+<h3 id="citrus-vertx-jar">citrus-vertx (JAR)</h3>
+
+<p>Vert.x adapter implementation for connecting to the Vert.x event bus. The module contains classes for accessing the event 
+bus as producer or consumer.</p>
+
+<h3 id="citrus-camel-jar">citrus-camel (JAR)</h3>
+
+<p>Apache Camel adapter implementation for connecting to camel context and route definitions. The module contains classes 
+for sending and receiving messages both to and from Apache Camel routes.</p>
+
+<h3 id="citrus-ftp-jar">citrus-ftp (JAR)</h3>
+
+<p>Ftp module connects to a ftp server as a client and provides full qualified ftp server for simulation. Server accepts 
+incoming commands that can be validated in a test case. Server supports user management with different home directories 
+and permissions per user.</p>
+
+<h3 id="citrus-java-dsl-jar">citrus-java-dsl (JAR)</h3>
+
+<p>Module for writing Citrus test cases with Java only. This is an alternative to writing test cases in XML syntax.</p>
+
+<h3 id="citrus-arquillian-jar">citrus-arquillian (JAR)</h3>
+
+<p>Module providing utility classes and helper for Arquillian test framework integration with Citrus.</p>
+
+<h3 id="citrus-docker-jar">citrus-docker (JAR)</h3>
+
+<p>Module providing utility classes and helper for Docker integration with Citrus.</p>
+
+<h3 id="citrus-kubernetes-jar">citrus-kubernetes (JAR)</h3>
+
+<p>Module providing utility classes and helper for Kubernetes integration with Citrus.</p>
+
+<h3 id="citrus-selenium-jar">citrus-selenium (JAR)</h3>
+
+<p>Module providing utility classes and helper for Selenium integration with Citrus.</p>
+
+<h3 id="citrus-rmi-jar">citrus-rmi (JAR)</h3>
+
+<p>Module providing client and server implementations for Java RMI integration with Citrus.</p>
+
+<h3 id="citrus-jmx-jar">citrus-jmx (JAR)</h3>
+
+<p>Module providing client and server implementations for Java JMX mbean integration with Citrus.</p>
+
+<h3 id="citrus-integration-jar">citrus-integration (JAR)</h3>
+
+<p>Internal integration tests executed during the Citrus build lifecycle. The tests help to ensure the integration test 
+quality of Citrus.</p>
+
+<h3 id="citrus-samples-pom">citrus-samples (POM)</h3>
+
+<p>Samples module holding several self runnable sample applications that are tested with Citrus. Currently this module 
+knows following sample applications:</p>
+
+<ul>
+  <li>citrus-samples-flightbooking</li>
+  <li>citrus-samples-greeting</li>
+  <li>citrus-samples-bookstore</li>
+  <li>citrus-samples-incident</li>
+  <li>citrus-tools (POM)</li>
+</ul>
+
+<p>Tool collection with Maven plugin, archetypes and ANT tasks for executing Citrus tests:</p>
+
+<p>citrus-anttasks
+citrus-maven-plugin
+citrus-quickstart
+citrus-quickstart-soap</p>
+
+        </article>
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    
+    <h4>Getting Started</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/home/">Welcome</a></li>
+
+  
+  
+  <li class=""><a href="/docs/user-guide/">User Guide</a></li>
+
+  
+  
+  <li class=""><a href="/docs/setup-maven/">Setup with Maven</a></li>
+
+  
+  
+  <li class=""><a href="/docs/setup-gradle/">Setup with Gradle</a></li>
+
+  
+  
+  <li class=""><a href="/docs/setup-ant/">Setup with ANT</a></li>
+
+  
+  
+  <li class=""><a href="/docs/features/">Features</a></li>
+
+  
+  
+  <li class=""><a href="/docs/download/">Download</a></li>
+
+</ul>
+
+    
+    <h4>Sources</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/repository/">Source repository</a></li>
+
+  
+  
+  <li class=""><a href="/docs/issues/">Issues</a></li>
+
+  
+  
+  <li class=""><a href="/docs/development/">Development</a></li>
+
+  
+  
+  <li class=""><a href="/docs/contributing/">Contributing</a></li>
+
+  
+  
+  <li class=""><a href="/docs/conventions/">Conventions</a></li>
+
+  
+  
+  <li class=""><a href="/docs/conduct/">Code of Conduct</a></li>
+
+</ul>
+
+    
+    <h4>Customize</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/custom-endpoints/"></a></li>
+
+  
+  
+  <li class=""><a href="/docs/custom-actions/">Custom actions</a></li>
+
+  
+  
+  <li class=""><a href="/docs/custom-functions/">Custom functions</a></li>
+
+</ul>
+
+    
+    <h4>Tools</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/maven-plugin/">Maven plugin</a></li>
+
+</ul>
+
+    
+    <h4>Miscellaneous</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/team/">Team</a></li>
+
+  
+  
+  <li class=""><a href="/docs/config-sheet/"></a></li>
+
+  
+  
+  <li class=""><a href="/docs/upgrade-migration/"></a></li>
+
+  
+  
+  <li class=""><a href="/docs/consulting/">Consulting</a></li>
+
+</ul>
+
+    
+    <h4>Meta</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/license/">License</a></li>
+
+  
+  
+  <li class="current"><a href="/docs/modules/">Modules</a></li>
+
+  
+  
+  <li class=""><a href="/docs/history/">History</a></li>
+
+</ul>
+
+    
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache&nbsp;License&nbsp;2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/christophd/citrus/blob/master/LICENSE">MIT&nbsp;License</a>.</p>
+      <br/>
+      <p>&copy;&nbsp;2018 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p>&nbsp;</p>
+      <br/>
+      <br/>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>

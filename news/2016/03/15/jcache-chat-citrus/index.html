@@ -1,0 +1,957 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 2.7.5">
+  <meta name="description" content="Citrus Framework Website">
+  <meta name="author" content="ConSol Software GmbH">
+  <link type="application/atom+xml" rel="alternate" href="https://citrusframework.org/feed.xml" title="Citrus Integration Tests">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/christophd/citrus/commits/master.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="current">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/christophd/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="current">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/christophd/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="news">
+    <div class="grid">
+
+      <div class="docs-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the blog…</option>
+    <option value="/news/">Home</option>
+    
+    <option value="/news/2017/09/21/introducing-citrus-simulator/">Simulating 3rd party services with Spring Boot and Citrus</option>
+    
+    <option value="/news/2017/07/07/introducing-citrus-admin/">Introducing Citrus Admin Web UI</option>
+    
+    <option value="/news/2016/03/15/jcache-chat-citrus/">Testing WebSockets with a Citrus twist</option>
+    
+    <option value="/news/2015/08/19/arquillian-extension-part-2/">Arquillian &amp; Citrus in combination - Part 2</option>
+    
+    <option value="/news/2015/06/29/arquillian-extension-part-1/">Arquillian &amp; Citrus in combination - Part 1</option>
+    
+    <option value="/news/2015/06/03/camel-testing-part-3/">Apache Camel Integration Testing - Part 3</option>
+    
+    <option value="/news/2015/05/27/camel-testing-part-2/">Apache Camel Integration Testing - Part 2</option>
+    
+    <option value="/news/2014/11/21/camel-testing-part-1/">Apache Camel Integration Testing - Part 1</option>
+    
+    <option value="/news/2014/05/30/testing-webmethods-with-citrus-part-ii/">Testing webMethods with Citrus Part II</option>
+    
+    <option value="/news/2014/03/06/testing-webmethods-with-citrus-part-i/">Testing webMethods with Citrus Part I</option>
+    
+    <option value="/news/2011/06/22/excel-validation/">Validate Excel files in Citrus</option>
+    
+    <option value="/news/2011/06/17/testng-data-provider/">Use TestNG data providers in Citrus</option>
+    
+    <option value="/news/2010/12/14/integrate-your-own-validator/">Integrate your own validator into your Citrus project</option>
+    
+    <option value="/news/2010/08/13/testng-groups/">Citrus and TestNG groups</option>
+    
+    <option value="/news/2010/05/19/soap-mustunderstand/">Handle SOAP-ENV:mustUnderstand headers</option>
+    
+    <option value="/news/2010/01/18/custom-meta-info/">Customize meta information</option>
+    
+    
+    <option value="/news/2017/07/07/release-2-7-2/">Release 2.7.2</option>
+    
+    <option value="/news/2017/01/30/release-2-7/">Release 2.7</option>
+    
+    <option value="/news/2016/11/13/release-2-6-2/">Release 2.6.2</option>
+    
+    <option value="/news/2016/06/27/release-2-6/">Release 2.6</option>
+    
+    <option value="/news/2016/01/28/release-2-5/">Release 2.5</option>
+    
+    <option value="/news/2015/11/03/release-2-4/">Release 2.4</option>
+    
+    <option value="/news/2015/08/18/release-2-3/">Release 2.3</option>
+    
+    <option value="/news/2015/06/26/release-2-2/">Release 2.2</option>
+    
+    <option value="/news/2015/02/20/release-2-1/">Release 2.1</option>
+    
+    <option value="/news/2014/11/01/release-2-0/">Release 2.0</option>
+    
+    <option value="/news/2014/05/02/release-1-4/">Release 1.4</option>
+    
+    <option value="/news/2013/04/01/release-1-3/">Release 1.3</option>
+    
+    <option value="/news/2012/07/05/release-1-2/">Release 1.2</option>
+    
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+  <h2>
+    Testing WebSockets with a Citrus twist
+    <a href="/news/2016/03/15/jcache-chat-citrus/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      blog
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      15 Mar 2016
+    </span>
+    <a href="https://github.com/martinmaher" class="post-author">
+      Martin Maher
+    </a>
+  </div>
+  <div class="post-content">
+    <p>In a previous <a href="https://labs.consol.de/cache/java/2016/03/12/caching-with-jcache.html">article</a> we went through how to build a chat room web application that used REST and STOMP for communicating between the client and server. 
+In this article I use the very same application and show how to write automated integration tests using the open source Citrus integration test framework.</p>
+
+<p>If you haven’t read the first article don’t worry. A quick summary of all the important bits will be shown shortly below. But before I get to that lets talk a little bit about automated integration testing and citrus.</p>
+
+<p>One of the biggest challenges when testing any application is being able to simulate all endpoints.</p>
+
+<!--more-->
+
+<p>If you take an online web shop for example it typically interacts with numerous backend services (product catalogue, credit check, shipping, billing, etc.) during the course of processing the order. 
+When writing an automated integration test that tests the placement of an order you’ll have to simulate each of these services. Some services may expose a REST/HTTP interface whereas others may expose a SOAP/JMS interface. 
+In some scenarios the online web shop will be acting as a client, consuming the backend services. In other cases it will be acting as a server, processing customer requests.</p>
+
+<p>The point is that testing such a scenario can be very complex. A simple application today with one or two interfaces may quickly grow into a complex application with 10s or even 100s of interfaces later on. 
+When you look at integration test tools then don’t loose sight of this. Sure some tools are great at simulating REST interfaces. Others are great at simulating SOAP. 
+However for me the most important criteria is to find a test tool that combines these and many other messaging protocols. The tool should be flexible and extensible. And this is where citrus comes into the equation.</p>
+
+<p>Before I dive into integration testing, let’s do a quick recap on the chat room application.</p>
+
+<h1 id="chat-room">Chat Room</h1>
+
+<p>The basic architecture of the chat room application is presented below:</p>
+
+<div align="center">
+<img src="https://labs.consol.de/assets/2016-03-15-jcache-chat-citrus/02_Architecture.png" width="500">
+</div>
+
+<p>We have a client-server architecture, using web sockets and REST for communicating between the client and the server. The system under test is the blue box above and I’m going to write some tests that simulate the two green arrows.</p>
+
+<p>The application’s entity model is very modest, using just the two entities shown below:</p>
+
+<div align="center">
+<img src="https://labs.consol.de/assets/2016-03-15-jcache-chat-citrus/03_DomainModel.png" width="500">
+</div>
+
+<p>A room contains a list of messages and the name of the user that created the room. A message contains some text and the name of the user that sent the message. That’s basically it.</p>
+
+<p>The following REST operations can be sent from the client to the server:</p>
+
+<ul>
+  <li>Join or leave the chat application</li>
+  <li>Get the list of logged in users</li>
+  <li>Get the list of rooms</li>
+  <li>Create or remove a room</li>
+  <li>Send a message to a room</li>
+</ul>
+
+<p>The server can push the following notifications to connected clients using STOMP over WebSocket:</p>
+
+<ul>
+  <li>Notify room created or removed</li>
+  <li>Notify chat message sent</li>
+  <li>Notify user logged-in or logged-out</li>
+</ul>
+
+<h1 id="starting-the-application">Starting the application</h1>
+
+<p>The source code for the application is available on <a href="https://github.com/martinmaher/jcache-chat">github</a>.</p>
+
+<p>To run the application you need to have Java 8+ and Maven 3.3.3+ installed and configured on your system.</p>
+
+<p>The application comes shipped with the H2 database that you need to start firing up the application:</p>
+
+<ul>
+  <li>Open up a shell</li>
+  <li>Change to the H2 directory under <em>../support/h2_v1.3.176/</em>
+</li>
+  <li>Run the H2 start-up script (either h2.bat or h2.sh).</li>
+</ul>
+
+<p>Now you can start the application. This can be done either from the command line or from inside your favourite IDE.</p>
+
+<p>From the command line type:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">shell
+<span class="gp">$ </span>mvn clean install spring-boot:run</code></pre></figure>
+
+<p>This will start up one instance on port 8090.</p>
+
+<p>Alternatively you can start the application from inside your IDE by running the following main class:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">de.consol.chat.ChatApplication</code></pre></figure>
+
+<p>Now go ahead and check that the application is running by opening the application in your browser:</p>
+
+<p><a href="http://localhost:8090/">http://localhost:8090/</a></p>
+
+<h1 id="testing-the-application">Testing the application</h1>
+
+<p>All the source code I’ll be displaying below is available here: <a href="https://github.com/martinmaher/jcache-chat-citrus">https://github.com/martinmaher/jcache-chat-citrus</a>. 
+I will show you how to build the project from scratch so you can either clone the above repository or just follow the instructions below, whatever you prefer.</p>
+
+<p>The first thing I need to do is to create an empty maven project for storing and executing our tests. The quickest way of doing this is to execute the maven archtetype goal, 
+which will create a citrus project with a basic pom file and some sample integration tests. This can be done as follows:</p>
+
+<ul>
+  <li>Create a new directory for the project.</li>
+  <li>Change to this directory</li>
+  <li>Execute: mvn archetype:generate -DarchetypeCatalog=http://citrusframework.org</li>
+  <li>When prompted select archetype ‘1’</li>
+  <li>For the groupId, artifactId and package enter whatever you like. I entered
+    <ul>
+      <li>groupId: de.consol</li>
+      <li>artifactId: chat-citrus</li>
+      <li>package: de.consol.chat.citrus</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Assuming all goes well you’ll find the following files in the project:</p>
+
+<ul>
+  <li>pom.xml – contains the maven project configuration</li>
+  <li>src/test/resources/citrus-context.xml – contains the citrus configuration</li>
+  <li>src/test/resources/citrus.properties – contains global properties used by citrus</li>
+  <li>src/test/resources/log4j.xml – contains the log configuration used by citrus</li>
+</ul>
+
+<p>There may be some other files like SampleJavaIT and SampleXmlIT that can be removed if you like, since I wont be using here.</p>
+
+<h2 id="simulating-the-rest-requests">Simulating the REST requests</h2>
+
+<p>To keep things simple I’ll start by simulating the REST requests sent by the client. To begin with lets take the requests where a user joins the chat room.</p>
+
+<p>The request I want to simulate is:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">POST /users/&lt;USERNAME&gt; HTTP/1.1
+Accept: text/plain, application/json, application/<span class="k">*</span>+json, <span class="k">*</span>/<span class="k">*</span>
+Content-Type: application/json;charset<span class="o">=</span>UTF-8</code></pre></figure>
+
+<p>and if all goes well I should get the response:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">HTTP/1.1 200 OK</code></pre></figure>
+
+<p>The first thing I need to do is to create a new java class for executing my test. I extend the <em>TestNGCitrusTestDesigner</em> class, which allows me to use Citrus’s Java DSL and add I’ll add a variable for storing a random name, which will be used for the user name when joining the chat room.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test_01_RestIT</span> <span class="kd">extends</span> <span class="n">TestNGCitrusTestDesigner</span> <span class="o">{</span>
+    <span class="nd">@CitrusTest</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testJoiningAndLeaving</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">variable</span><span class="o">(</span><span class="s">"username"</span><span class="o">,</span> <span class="s">"citrus:randomString(10, UPPERCASE)"</span><span class="o">);</span>
+
+        <span class="n">echo</span><span class="o">(</span><span class="s">"Joining with user: ${username}"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>If you like you can run this test and it should output “Joining with user ..” to the console.</p>
+
+<p>Next I add the test actions to join the chat room.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="o">[...]</span>
+
+<span class="n">echo</span><span class="o">(</span><span class="s">"Joining with user: ${username}"</span><span class="o">);</span>
+<span class="n">send</span><span class="o">(</span><span class="s">"chatRestClient"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">""</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">http</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">method</span><span class="o">(</span><span class="n">HttpMethod</span><span class="o">.</span><span class="na">POST</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">path</span><span class="o">(</span><span class="s">"/users/${username}"</span><span class="o">);</span>
+<span class="n">receive</span><span class="o">(</span><span class="s">"chatRestClient"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">JSON</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">http</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">status</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">);</span></code></pre></figure>
+
+<p>The first test action sends the request to the HTTP server. The action basically says:</p>
+
+<ul>
+  <li>send(“chatRestClient”) -&gt; send using the <em>chatRestClient</em>
+</li>
+  <li>payload(“”) -&gt; an empty payload</li>
+  <li>http() -&gt; using the HTTP protocol</li>
+  <li>method(HttpMethod.POST) -&gt; using HTTP’s <em>POST</em> method</li>
+  <li>path(“/users/${username}”) -&gt; to URI to send the HTTP request to</li>
+</ul>
+
+<p>The syntax <code class="highlighter-rouge">${variable-name}</code> is a variable placeholder used in citrus that gets resolved to the value of the variable at runtime. In the example above I use it for adding the variable <em>username</em> to the URI.</p>
+
+<p>The second action is used for verifying that the server processes the request successfully. It expects a HTTP 200 code to be returned from the server.</p>
+
+<p>You may be wondering how citrus knows which host and port to send the request to. It doesn’t, well not yet. I still have to configure this. This strange string <em>chatRestClient</em> is instructing citrus to find an endpoint using this name in the citrus configuration and use this endpoint for sending and receiving requests.</p>
+
+<p>So I’m going to add this endpoint to the citrus-context.xml file now.</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;citrus-http:client</span> <span class="na">id=</span><span class="s">"chatRestClient"</span>
+                    <span class="na">request-url=</span><span class="s">"http://localhost:8090/"</span>
+                    <span class="na">request-method=</span><span class="s">"POST"</span>
+                    <span class="na">content-type=</span><span class="s">"application/json"</span>
+                    <span class="na">timeout=</span><span class="s">"60000"</span><span class="nt">/&gt;</span></code></pre></figure>
+
+<p>I have added a new HTTP client endpoint <em>chatRestClient</em> that sends requests to the base url <em>http://localhost:8090/</em>. By default the request method <em>POST</em> will be used with the content-type <em>application/json</em>, but both of these can be overloaded in the test. After sending a request citrus will wait 60 seconds for a reply from the server before timing out. And that’s it.</p>
+
+<p>Now go ahead and run this test. If you have the application opened up in your browser then you will notice a new user joins the chat room when the test executes.</p>
+
+<p>To complete the test I’m going to add the test actions for leaving the chat.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="o">[...]</span>
+
+<span class="n">echo</span><span class="o">(</span><span class="s">"Leaving chat: ${username}"</span><span class="o">);</span>
+<span class="n">send</span><span class="o">(</span><span class="s">"chatRestClient"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">""</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">http</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">method</span><span class="o">(</span><span class="n">HttpMethod</span><span class="o">.</span><span class="na">DELETE</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">path</span><span class="o">(</span><span class="s">"/users/${username}"</span><span class="o">);</span>
+<span class="n">receive</span><span class="o">(</span><span class="s">"chatRestClient"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">JSON</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">http</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">status</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">);</span></code></pre></figure>
+
+<p>You will notice a lot of similarities to the join test actions. The only difference is that the HTTP method <em>DELETE</em> is used this time instead of <em>POST</em>.</p>
+
+<p>You can run this test again if  you like and depending on how sharp your eyes are you may notice in your browser that a user joins and almost immediately leaves the chat room.</p>
+
+<p>That’s it for the REST requests for the moment. Now I’m going to move onto WebSockets.</p>
+
+<h2 id="simulating-the-stomp-notifications">Simulating the STOMP notifications</h2>
+
+<p>Before I get into simulating STOMP notifications, I think its important to understand what STOMP is and how it’s used here.</p>
+
+<p>STOMP is a <strong>S</strong> imple <strong>T</strong> ext <strong>O</strong> rientated <strong>M</strong> essaging <strong>P</strong> rotocol. It uses a frame-based protocol, shown below, for communicating between multiple hosts.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">COMMAND
+header1:value1
+header2:value2
+
+Body^@</code></pre></figure>
+
+<p>Each frame contains a single COMMAND, zero or more HEADERS, a BODY and the null character (^@) to terminate the frame.</p>
+
+<p>In the chat room application the server sends all notifications to connected clients using this protocol. It does this using the WebSocket API since it enables bidirectional communication between the web server and clients. Each time an event occurs, like a user joining the chat room, this event data is then pushed to the clients from the server.</p>
+
+<p>In STOMP there are different types of COMMANDs that can be sent:</p>
+
+<ul>
+  <li>
+<em>CONNECT</em>: this is sent by a client to the server when it connects</li>
+  <li>
+<em>CONNECTED</em>: this is an acknowledgement sent by the server to a client on successful connection</li>
+  <li>SUBSCRIBE_: this is sent by a client to the server to indicate that it is interested in certain types of messages. The client sends a destination header to indicate which messages it is interested in.</li>
+  <li>MESSAGE_: this is sent by the server to the client when a destination, that the client has subscribed to, sends a message.</li>
+  <li>DISCONNECT_: this is sent by the client to the server when its disconnecting.</li>
+</ul>
+
+<p>This is by no means an exhaustive list of commands but covers all commands used in the chat room application.</p>
+
+<p>To put all that into perspective, this is basically what happens when the user <em>Joe Blogs</em> joins the chat room application:</p>
+
+<ol>
+  <li>The client opens a WebSocket connection to the server</li>
+  <li>The client sends a <em>CONNECT</em> frame to the server</li>
+</ol>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">CONNECT
+accept-version:1.1
+heart-beat:0,0</code></pre></figure>
+
+<ol>
+  <li>The sever sends a <em>CONNECTED</em> frame acknowledgement back to the client</li>
+</ol>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">CONNECTED
+version:1.1
+heart-beat:0,0</code></pre></figure>
+
+<ol>
+  <li>The client sends a <em>SUBSCRIBE</em> frame to the server, indicating that it is interested in messages on the destination <em>/topic/users/joined</em>
+</li>
+</ol>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">SUBSCRIBE
+id:sub-0
+destination:/topic/users/joined</code></pre></figure>
+
+<ol>
+  <li>The user <em>Joe Blogs</em> joins the chat room (using the HTTP/REST interface)</li>
+  <li>The server sends a <em>MESSAGE</em> frame to the client on the destination <em>/topic/users/joined</em> indicating that a user joined.</li>
+</ol>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">MESSAGE
+destination:/topic/users/joined
+content-type:application/json;charset<span class="o">=</span>UTF-8
+subscription:sub-0
+message-id:1-18
+content-length:11
+
+<span class="s2">"Joe Blogs"</span></code></pre></figure>
+
+<p>So I’m going to try and pack all of this into a single test. I start by creating a new Java class <em>Test_02_StompIT</em>.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test_02_StompIT</span> <span class="kd">extends</span> <span class="n">TestNGCitrusTestDesigner</span> <span class="o">{</span>
+    <span class="nd">@CitrusTest</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testJoining</span> <span class="o">()</span> <span class="o">{</span>
+        <span class="n">variable</span><span class="o">(</span><span class="s">"username"</span><span class="o">,</span> <span class="s">"citrus:randomString(10, UPPERCASE)"</span><span class="o">);</span>
+
+        <span class="n">echo</span><span class="o">(</span><span class="s">"Joining with user: ${username}"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Then I add the test actions for connecting to the STOMP server.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">send</span><span class="o">(</span><span class="err">“</span><span class="n">chatWebSocketClient</span><span class="err">”</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"CONNECT\n"</span> <span class="o">+</span>
+                    <span class="s">"accept-version:1.1\n"</span> <span class="o">+</span>
+                    <span class="s">"heart-beat:0,0\n"</span> <span class="o">+</span>
+                    <span class="s">"\n"</span> <span class="o">+</span> <span class="o">(</span><span class="kt">char</span><span class="o">)</span><span class="mi">0</span>
+            <span class="o">);</span>
+
+<span class="n">receive</span><span class="o">(</span><span class="err">“</span><span class="n">chatWebSocketClient</span><span class="err">”</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">PLAINTEXT</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"CONNECTED\n"</span> <span class="o">+</span>
+                        <span class="s">"version:1.1\n"</span> <span class="o">+</span>
+                        <span class="s">"heart-beat:0,0\n"</span> <span class="o">+</span>
+                        <span class="s">"\n"</span> <span class="o">+</span> <span class="o">(</span><span class="kt">char</span><span class="o">)</span><span class="mi">0</span>
+                <span class="o">);</span></code></pre></figure>
+
+<p>So what is going on here?</p>
+
+<p>The first test action is using the endpoint <em>chatWebSocketClient</em> to send the STOMP <em>CONNECT</em> frame to the server. The payload I just covered above only this time control characters like carriage return and the null character have been added.</p>
+
+<p>The second test action is verifying the client was successfully connected. It compares the received payload from the server against the expected payload, which is specified in the test action. Only when both payloads match exactly will the action be successful.</p>
+
+<p>Before I can execute my test I have to configure the <em>chatWebSocketClient</em> endpoint. Again this is done in the citrus-context.xml file by adding the following lines:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;citrus-websocket:client</span> <span class="na">id=</span><span class="s">"chatWebSocketClient"</span>
+                         <span class="na">url=</span><span class="s">"ws://localhost:8090/chatEndpoint/websocket"</span>
+                         <span class="na">timeout=</span><span class="s">"5000"</span><span class="nt">/&gt;</span></code></pre></figure>
+
+<p>There’s nothing special here. I just added a websocket client endpoint that connects to the server on the url <em>ws://localhost:8090/chatEndpoint/websocket</em>.</p>
+
+<p>Now you are good to go and you can run the test. If all goes well you should see a lot of console output with <em>SUCCESS</em> somewhere near the bottom.</p>
+
+<p>Ok, so the test doesn’t really do a whole lot just yet. So I’m going to add the next test actions to subscribe to the destination <em>/topic/users/joined</em>, join the chat room and then finally verify that a STOMP <em>MESSAGE</em> frame is sent to indicate a user has joined.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">echo</span><span class="o">(</span><span class="s">"Subscribe to destination: /topic/users/joined"</span><span class="o">);</span>
+<span class="n">send</span><span class="o">(</span><span class="s">"chatWebSocketClient"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"SUBSCRIBE\n"</span> <span class="o">+</span>
+                <span class="s">"id:sub-0\n"</span> <span class="o">+</span>
+                <span class="s">"destination:/topic/users/joined\n"</span> <span class="o">+</span>
+                <span class="s">"\n"</span> <span class="o">+</span> <span class="o">(</span><span class="kt">char</span><span class="o">)</span> <span class="mi">0</span>
+        <span class="o">);</span>
+
+<span class="n">echo</span><span class="o">(</span><span class="s">"Joining with user: ${username}"</span><span class="o">);</span>
+<span class="n">send</span><span class="o">(</span><span class="s">"chatRestClient"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">""</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">http</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">method</span><span class="o">(</span><span class="n">HttpMethod</span><span class="o">.</span><span class="na">POST</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">path</span><span class="o">(</span><span class="s">"/users/${username}"</span><span class="o">);</span>
+<span class="n">receive</span><span class="o">(</span><span class="s">"chatRestClient"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">JSON</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">http</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">status</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">);</span>
+
+<span class="n">echo</span><span class="o">(</span><span class="s">"Verify user-joined notification is received"</span><span class="o">);</span>
+<span class="n">receive</span><span class="o">(</span><span class="s">"chatWebSocketClient"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">PLAINTEXT</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"MESSAGE\n"</span> <span class="o">+</span>
+                <span class="s">"destination:/topic/users/joined\n"</span> <span class="o">+</span>
+                <span class="s">"content-type:application/json;charset=UTF-8\n"</span> <span class="o">+</span>
+                <span class="s">"subscription:sub-0\n"</span> <span class="o">+</span>
+                <span class="s">"message-id:6-21\n"</span> <span class="o">+</span>
+                <span class="s">"content-length:12\n"</span> <span class="o">+</span>
+                <span class="s">"\n"</span> <span class="o">+</span>
+                <span class="s">"\"${username}\""</span> <span class="o">+</span> <span class="o">(</span><span class="kt">char</span><span class="o">)</span> <span class="mi">0</span>
+        <span class="o">);</span></code></pre></figure>
+
+<p>If you look carefully at the last test action, the MESSAGE frame, you will notice the <em>message-id</em> header. The server sets the value of this header dynamically so the exact payload comparison done here is bound to fail, unless of course you are incredibly lucky. So how do I get around this problem?</p>
+
+<p>Thanks to citrus there are many ways to solve this problem:</p>
+
+<ul>
+  <li>Remove the payload verification from the test action - This just ignores the problem for the time being but doesn’t fix it.</li>
+  <li>Do a partial payload verification – It’s possible to just search for certain strings in the payload, ignoring the rest.</li>
+  <li>Unmarshall the payload, converting it into a java object and verify the individual attributes – This is slightly more complicated but offers by far the most flexibility.</li>
+</ul>
+
+<p>For the moment I’m going to go with partial payload verification. When using the Citrus Java DSL you can easily do this with a ValidationCallback as shown below:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">echo</span><span class="o">(</span><span class="s">"Verify user-joined notification is received"</span><span class="o">);</span>
+<span class="n">receive</span><span class="o">(</span><span class="s">"chatWebSocketClient"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">PLAINTEXT</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">validationCallback</span><span class="o">(</span><span class="k">new</span> <span class="n">AbstractValidationCallback</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;()</span> <span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">validate</span><span class="o">(</span><span class="n">String</span> <span class="n">payload</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">headers</span><span class="o">,</span> <span class="n">TestContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">Assert</span><span class="o">.</span><span class="na">assertTrue</span><span class="o">(</span><span class="n">payload</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s">"MESSAGE\n"</span><span class="o">));</span>
+                <span class="n">Assert</span><span class="o">.</span><span class="na">assertTrue</span><span class="o">(</span><span class="n">payload</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s">"destination:/topic/users/joined\n"</span><span class="o">));</span>
+                <span class="n">Assert</span><span class="o">.</span><span class="na">assertTrue</span><span class="o">(</span><span class="n">payload</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s">"subscription:sub-0\n"</span><span class="o">));</span>
+                <span class="n">Assert</span><span class="o">.</span><span class="na">assertTrue</span><span class="o">(</span><span class="n">payload</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">context</span><span class="o">.</span><span class="na">getVariable</span><span class="o">(</span><span class="s">"username"</span><span class="o">)));</span>
+            <span class="o">}</span>
+        <span class="o">});</span></code></pre></figure>
+
+<p>Great. Go ahead and run the test. This time it should run successfully.</p>
+
+<h2 id="cleaning-up-the-test">Cleaning up the test</h2>
+
+<p>So far I’ve covered a user joining the chat room. I still have to verify that rooms can be created, removed, messages can be sent, notifications for the above are received, etc. But before I do this lets take a step back and look at our test so far.</p>
+
+<p>It’s not bad, but it could be cleaned it somewhat. There are too many concatenated strings, too many carriage returns and other funny characters. It’s too hard to read. It would be great if I could use a fluid API for generating the STOMP frames. And since I’m planning on verifying and extracting data from the received payloads it would be equally cool if this could be somehow unmarshalled. Well guess what, you can do this with citrus. This is what I was talking about earlier when I mentioned how important it is to pick an integration test tool that is flexible. It’s not that citrus supports STOMP out of the box, because it doesn’t, at least not yet. However through its flexible API it enables a tester to add support for features or behaviour that is currently not supported. And this is what I’m going to show you now when I clean up or refactor this test.</p>
+
+<p>I’ll leave the other test class in place and create a new test class <em>Test_03_StompIT</em>, copying over the contents of the original.</p>
+
+<p>I’ll begin by creating a new StompFrame class, which is just a container for holding a STOMP frame in a structured way.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">StompFrame</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">command</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">headers</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedHashMap</span><span class="o">&lt;&gt;();</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">body</span><span class="o">;</span>
+
+    <span class="c1">// getters/setters….</span>
+
+<span class="o">}</span></code></pre></figure>
+
+<p>Then I add a StompFrameBuilder class that uses the builder pattern for creating STOMP frames.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">StompFrameBuilder</span> <span class="o">{</span>
+    <span class="n">StompFrame</span> <span class="n">stompFrame</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StompFrame</span><span class="o">();</span>
+
+    <span class="kd">public</span> <span class="n">StompFrameBuilder</span> <span class="nf">withCommand</span><span class="o">(</span><span class="n">String</span> <span class="n">command</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">stompFrame</span><span class="o">.</span><span class="na">setCommand</span><span class="o">(</span><span class="n">command</span><span class="o">);</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">StompFrameBuilder</span> <span class="nf">withHeader</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">,</span> <span class="n">String</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">stompFrame</span><span class="o">.</span><span class="na">addHeader</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">);</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">StompFrameBuilder</span> <span class="nf">withBody</span><span class="o">(</span><span class="n">String</span> <span class="n">body</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">stompFrame</span><span class="o">.</span><span class="na">setBody</span><span class="o">(</span><span class="n">body</span><span class="o">);</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">StompFrame</span> <span class="nf">build</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">stompFrame</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>And finally I’ll add a static method to the StompFrame class to convert a STOMP frame into the expected wire format.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">toWireFormat</span><span class="o">(</span><span class="n">StompFrame</span> <span class="n">stompFrame</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">StringBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span>
+
+    <span class="n">builder</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">stompFrame</span><span class="o">.</span><span class="na">getCommand</span><span class="o">());</span>
+    <span class="n">builder</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"\n"</span><span class="o">);</span>
+
+    <span class="k">for</span> <span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">header</span> <span class="o">:</span> <span class="n">stompFrame</span><span class="o">.</span><span class="na">getHeaders</span><span class="o">().</span><span class="na">entrySet</span><span class="o">())</span> <span class="o">{</span>
+        <span class="n">builder</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">header</span><span class="o">.</span><span class="na">getKey</span><span class="o">());</span>
+        <span class="n">builder</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">":"</span><span class="o">);</span>
+        <span class="n">builder</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">header</span><span class="o">.</span><span class="na">getValue</span><span class="o">());</span>
+        <span class="n">builder</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"\n"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="k">if</span><span class="o">(</span><span class="n">stompFrame</span><span class="o">.</span><span class="na">hasBody</span><span class="o">())</span> <span class="o">{</span>
+        <span class="n">builder</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">stompFrame</span><span class="o">.</span><span class="na">getBody</span><span class="o">());</span>
+        <span class="n">builder</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"\n"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="n">builder</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"\n"</span><span class="o">);</span>
+    <span class="n">builder</span><span class="o">.</span><span class="na">append</span><span class="o">((</span><span class="kt">char</span><span class="o">)</span><span class="mi">0</span><span class="o">);</span>
+
+    <span class="k">return</span> <span class="n">builder</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>After some refactoring I end up with the following test class:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test_03_StompIT</span> <span class="kd">extends</span> <span class="n">TestNGCitrusTestDesigner</span> <span class="o">{</span>
+
+    <span class="nd">@CitrusTest</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testJoiningAndLeaving</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">variable</span><span class="o">(</span><span class="s">"username"</span><span class="o">,</span> <span class="s">"citrus:randomString(10, UPPERCASE)"</span><span class="o">);</span>
+
+        <span class="n">echo</span><span class="o">(</span><span class="s">"Connecting to server with STOMP"</span><span class="o">);</span>
+        <span class="n">send</span><span class="o">(</span><span class="s">"chatWebSocketClient"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="n">StompFrame</span><span class="o">.</span><span class="na">toWireFormat</span><span class="o">(</span><span class="k">new</span> <span class="n">StompFrameBuilder</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">withCommand</span><span class="o">(</span><span class="s">"CONNECT"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">withHeader</span><span class="o">(</span><span class="s">"accept-version"</span><span class="o">,</span> <span class="s">"1.1"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">withHeader</span><span class="o">(</span><span class="s">"heart-beat"</span><span class="o">,</span> <span class="s">"0,0"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">build</span><span class="o">()));</span>
+
+        <span class="n">echo</span><span class="o">(</span><span class="s">"Verify connection is successful"</span><span class="o">);</span>
+        <span class="n">receive</span><span class="o">(</span><span class="s">"chatWebSocketClient"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">PLAINTEXT</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="n">StompFrame</span><span class="o">.</span><span class="na">toWireFormat</span><span class="o">(</span><span class="k">new</span> <span class="n">StompFrameBuilder</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">withCommand</span><span class="o">(</span><span class="s">"CONNECTED"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">withHeader</span><span class="o">(</span><span class="s">"version"</span><span class="o">,</span> <span class="s">"1.1"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">withHeader</span><span class="o">(</span><span class="s">"heart-beat"</span><span class="o">,</span> <span class="s">"0,0"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">build</span><span class="o">()));</span>
+
+        <span class="n">echo</span><span class="o">(</span><span class="s">"Subscribe to destination: /topic/users/joined"</span><span class="o">);</span>
+        <span class="n">send</span><span class="o">(</span><span class="s">"chatWebSocketClient"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="n">StompFrame</span><span class="o">.</span><span class="na">toWireFormat</span><span class="o">(</span><span class="k">new</span> <span class="n">StompFrameBuilder</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">withCommand</span><span class="o">(</span><span class="s">"SUBSCRIBE"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">withHeader</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"sub-0"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">withHeader</span><span class="o">(</span><span class="s">"destination"</span><span class="o">,</span> <span class="s">"/topic/users/joined"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">build</span><span class="o">()));</span>
+
+        <span class="n">echo</span><span class="o">(</span><span class="s">"Joining with user: ${username}"</span><span class="o">);</span>
+        <span class="n">send</span><span class="o">(</span><span class="s">"chatRestClient"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">""</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">http</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">method</span><span class="o">(</span><span class="n">HttpMethod</span><span class="o">.</span><span class="na">POST</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">path</span><span class="o">(</span><span class="s">"/users/${username}"</span><span class="o">);</span>
+        <span class="n">receive</span><span class="o">(</span><span class="s">"chatRestClient"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">JSON</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">http</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">status</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">);</span>
+
+        <span class="n">echo</span><span class="o">(</span><span class="s">"Verify user-joined notification is received"</span><span class="o">);</span>
+        <span class="n">receive</span><span class="o">(</span><span class="s">"chatWebSocketClient"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">PLAINTEXT</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">validationCallback</span><span class="o">(</span><span class="k">new</span> <span class="n">AbstractValidationCallback</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;()</span> <span class="o">{</span>
+                    <span class="nd">@Override</span>
+                    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">validate</span><span class="o">(</span><span class="n">String</span> <span class="n">payload</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">headers</span><span class="o">,</span> <span class="n">TestContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="n">Assert</span><span class="o">.</span><span class="na">assertTrue</span><span class="o">(</span><span class="n">payload</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s">"MESSAGE\n"</span><span class="o">));</span>
+                        <span class="n">Assert</span><span class="o">.</span><span class="na">assertTrue</span><span class="o">(</span><span class="n">payload</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s">"destination:/topic/users/joined\n"</span><span class="o">));</span>
+                        <span class="n">Assert</span><span class="o">.</span><span class="na">assertTrue</span><span class="o">(</span><span class="n">payload</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s">"subscription:sub-0\n"</span><span class="o">));</span>
+                        <span class="n">Assert</span><span class="o">.</span><span class="na">assertTrue</span><span class="o">(</span><span class="n">payload</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">context</span><span class="o">.</span><span class="na">getVariable</span><span class="o">(</span><span class="s">"username"</span><span class="o">)));</span>
+                    <span class="o">}</span>
+                <span class="o">});</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>I’m not quite there yet but at least it’s slightly easier on the eye. I’m still validating the MESSAGE frame using partial string comparisons, so I’m going to clean that up as well now.</p>
+
+<p>To do that I first need to add a second static method to the StompFrame class to convert the wire format into a StompFrame.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="n">StompFrame</span> <span class="nf">fromWireFormat</span><span class="o">(</span><span class="n">String</span> <span class="n">payload</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">StompFrame</span> <span class="n">stompFrame</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StompFrame</span><span class="o">();</span>
+
+    <span class="kt">int</span> <span class="n">separateAt</span> <span class="o">=</span> <span class="n">payload</span><span class="o">.</span><span class="na">indexOf</span><span class="o">(</span><span class="s">"\n\n"</span><span class="o">);</span>
+    <span class="n">String</span> <span class="n">header</span> <span class="o">=</span> <span class="n">payload</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">separateAt</span><span class="o">);</span>
+    <span class="n">String</span> <span class="n">body</span> <span class="o">=</span> <span class="n">payload</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">separateAt</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
+
+    <span class="n">StringTokenizer</span> <span class="n">stringTokenizer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringTokenizer</span><span class="o">(</span><span class="n">header</span><span class="o">,</span> <span class="s">"\n"</span><span class="o">);</span>
+
+    <span class="c1">// set command</span>
+    <span class="n">stompFrame</span><span class="o">.</span><span class="na">setCommand</span><span class="o">(</span><span class="n">stringTokenizer</span><span class="o">.</span><span class="na">nextToken</span><span class="o">());</span>
+
+    <span class="c1">// add headers</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">stringTokenizer</span><span class="o">.</span><span class="na">hasMoreTokens</span><span class="o">())</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">token</span> <span class="o">=</span> <span class="n">stringTokenizer</span><span class="o">.</span><span class="na">nextToken</span><span class="o">();</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">StringUtils</span><span class="o">.</span><span class="na">hasText</span><span class="o">(</span><span class="n">token</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">token</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">Character</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="sc">':'</span><span class="o">)))</span> <span class="o">{</span>
+            <span class="n">String</span><span class="o">[]</span> <span class="n">keyValue</span> <span class="o">=</span> <span class="n">token</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">":"</span><span class="o">);</span>
+            <span class="n">stompFrame</span><span class="o">.</span><span class="na">addHeader</span><span class="o">(</span><span class="n">keyValue</span><span class="o">[</span><span class="mi">0</span><span class="o">],</span> <span class="n">keyValue</span><span class="o">[</span><span class="mi">1</span><span class="o">]);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">// add body</span>
+    <span class="n">stompFrame</span><span class="o">.</span><span class="na">setBody</span><span class="o">(</span><span class="n">stripNullCharacter</span><span class="o">(</span><span class="n">body</span><span class="o">));</span>
+
+    <span class="k">return</span> <span class="n">stompFrame</span><span class="o">;</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Now I can finally refactor the validation callback:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">echo</span><span class="o">(</span><span class="s">"Verify user-joined notification is received"</span><span class="o">);</span>
+<span class="n">receive</span><span class="o">(</span><span class="s">"chatWebSocketClient"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">PLAINTEXT</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">validationCallback</span><span class="o">(</span><span class="k">new</span> <span class="n">AbstractValidationCallback</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;()</span> <span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">validate</span><span class="o">(</span><span class="n">String</span> <span class="n">payload</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">headers</span><span class="o">,</span> <span class="n">TestContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">StompFrame</span> <span class="n">stompFrame</span> <span class="o">=</span> <span class="n">StompFrame</span><span class="o">.</span><span class="na">fromWireFormat</span><span class="o">(</span><span class="n">payload</span><span class="o">);</span>
+                <span class="n">Assert</span><span class="o">.</span><span class="na">assertEquals</span><span class="o">(</span><span class="n">stompFrame</span><span class="o">.</span><span class="na">getCommand</span><span class="o">(),</span> <span class="s">"MESSAGE"</span><span class="o">);</span>
+                <span class="n">Assert</span><span class="o">.</span><span class="na">assertEquals</span><span class="o">(</span><span class="n">stompFrame</span><span class="o">.</span><span class="na">getHeader</span><span class="o">(</span><span class="s">"destination"</span><span class="o">),</span> <span class="s">"/topic/users/joined"</span><span class="o">);</span>
+                <span class="n">Assert</span><span class="o">.</span><span class="na">assertEquals</span><span class="o">(</span><span class="n">stompFrame</span><span class="o">.</span><span class="na">getHeader</span><span class="o">(</span><span class="s">"subscription"</span><span class="o">),</span> <span class="s">"sub-0"</span><span class="o">);</span>
+                <span class="n">String</span> <span class="n">expectedUsername</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"\"%s\""</span><span class="o">,</span> <span class="n">context</span><span class="o">.</span><span class="na">getVariable</span><span class="o">(</span><span class="s">"username"</span><span class="o">));</span>
+                <span class="n">Assert</span><span class="o">.</span><span class="na">assertEquals</span><span class="o">(</span><span class="n">stompFrame</span><span class="o">.</span><span class="na">getBody</span><span class="o">(),</span> <span class="n">expectedUsername</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">});</span></code></pre></figure>
+
+<p>I’m done.</p>
+
+<h1 id="wrap-up">Wrap-up</h1>
+
+<p>I added one final test class <em>Test_04_CompleteIT</em> which simulates all REST and STOMP communication in one single test including</p>
+
+<ul>
+  <li>subscribing to all STOMP topics,</li>
+  <li>joining the chat,</li>
+  <li>creating a room,</li>
+  <li>sending a message,</li>
+  <li>deleting a room</li>
+  <li>and finally leaving the chat</li>
+</ul>
+
+<p>You can find it in my git repository along with all the other tests.</p>
+
+<p>I hope I have inspired you in this blog to at least consider Citrus when you’re thinking about integration tests in the next or even current project. Although I concentrated mainly on testing a web application here, you can use Citrus for just about all integration test scenarios you can imagine. It’s used a lot in middleware applications, which is one of the reasons the test framework was developed to begin with, but it’s not limited to middleware as is hopefully demonstrated above.</p>
+
+  </div>
+</article>
+
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <h4>Overview</h4>
+    <ul>
+      <li class="">
+        <a href="/news/">All News</a>
+      </li>
+      <li class="">
+        <a href="/news/releases/">All Releases</a>
+      </li>
+      <li>
+        <a href="http://citrus.895196.n3.nabble.com/" target="_blank">Forum</a>
+      </li>
+    </ul>
+    <h4>Recent Releases</h4>
+    <ul>
+      
+      <li class="">
+        <a href="/news/2017/07/07/release-2-7-2/">Version 2.7.2</a>
+      </li>
+      
+      <li class="">
+        <a href="/news/2017/01/30/release-2-7/">Version 2.7</a>
+      </li>
+      
+      <li class="">
+        <a href="/news/2016/11/13/release-2-6-2/">Version 2.6.2</a>
+      </li>
+      
+      <li class="">
+        <a href="/news/2016/06/27/release-2-6/">Version 2.6</a>
+      </li>
+      
+      <li class="">
+        <a href="/news/2016/01/28/release-2-5/">Version 2.5</a>
+      </li>
+      
+      <li>
+        <a href="/docs/history/">History »</a>
+      </li>
+    </ul>
+    <h4>Other News</h4>
+    <ul>
+        
+        <li class="">
+          <a href="/news/2017/09/21/introducing-citrus-simulator/">Citrus Simulator</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2017/07/07/introducing-citrus-admin/">Admin UI</a>
+        </li>
+        
+        <li class="current">
+          <a href="/news/2016/03/15/jcache-chat-citrus/">Testing WebSockets</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2015/08/19/arquillian-extension-part-2/">Arquillian &amp; Citrus II</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2015/06/29/arquillian-extension-part-1/">Arquillian &amp; Citrus I</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2015/06/03/camel-testing-part-3/">Apache Camel III</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2015/05/27/camel-testing-part-2/">Apache Camel II</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2014/11/21/camel-testing-part-1/">Apache Camel I</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2014/05/30/testing-webmethods-with-citrus-part-ii/">Testing webMethods II</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2014/03/06/testing-webmethods-with-citrus-part-i/">Testing webMethods I</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2011/06/22/excel-validation/">Validate Excel files</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2011/06/17/testng-data-provider/">TestNG data providers</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2010/12/14/integrate-your-own-validator/">Integrate your own validator</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2010/08/13/testng-groups/">TestNG groups</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2010/05/19/soap-mustunderstand/">SOAP-ENV:mustUnderstand</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2010/01/18/custom-meta-info/">Custom meta info</a>
+        </li>
+        
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/christophd/citrus/blob/master/LICENSE">MIT License</a>.</p>
+      <br>
+      <p>© 2018 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p> </p>
+      <br>
+      <br>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>

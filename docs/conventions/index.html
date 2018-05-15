@@ -1,0 +1,574 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 2.7.5">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="https://citrusframework.org/feed.xml" title="Citrus Integration Tests" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/christophd/citrus/commits/master.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="current">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/christophd/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="current">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/christophd/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="docs">
+    <div class="grid">
+
+      <div class="docs-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the docs…</option>
+    <option value="/docs/home">Home</option>
+    
+    <optgroup label="Getting Started">
+      
+  
+  
+  <option value="/docs/home/">Welcome</option>
+
+  
+  
+  <option value="/docs/user-guide/">User Guide</option>
+
+  
+  
+  <option value="/docs/setup-maven/">Setup with Maven</option>
+
+  
+  
+  <option value="/docs/setup-gradle/">Setup with Gradle</option>
+
+  
+  
+  <option value="/docs/setup-ant/">Setup with ANT</option>
+
+  
+  
+  <option value="/docs/features/">Features</option>
+
+  
+  
+  <option value="/docs/download/">Download</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Sources">
+      
+  
+  
+  <option value="/docs/repository/">Source repository</option>
+
+  
+  
+  <option value="/docs/issues/">Issues</option>
+
+  
+  
+  <option value="/docs/development/">Development</option>
+
+  
+  
+  <option value="/docs/contributing/">Contributing</option>
+
+  
+  
+  <option value="/docs/conventions/">Conventions</option>
+
+  
+  
+  <option value="/docs/conduct/">Code of Conduct</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Customize">
+      
+  
+  
+  <option value="/docs/custom-endpoints/"></option>
+
+  
+  
+  <option value="/docs/custom-actions/">Custom actions</option>
+
+  
+  
+  <option value="/docs/custom-functions/">Custom functions</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Tools">
+      
+  
+  
+  <option value="/docs/maven-plugin/">Maven plugin</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Miscellaneous">
+      
+  
+  
+  <option value="/docs/team/">Team</option>
+
+  
+  
+  <option value="/docs/config-sheet/"></option>
+
+  
+  
+  <option value="/docs/upgrade-migration/"></option>
+
+  
+  
+  <option value="/docs/consulting/">Consulting</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Meta">
+      
+  
+  
+  <option value="/docs/license/">License</option>
+
+  
+  
+  <option value="/docs/modules/">Modules</option>
+
+  
+  
+  <option value="/docs/history/">History</option>
+
+
+    </optgroup>
+    
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+          <div class="improve right hide-on-mobiles">
+            <a href="https://github.com/christophd/citrus/edit/master/src/site/_docs/conventions.md"><i class="fa fa-pencil"></i> &nbsp;Improve this page</a>
+          </div>
+          <h1>Conventions</h1>
+          <p>We think style matters. Not for beauty but for speaking a common language when talking about code and getting familiar 
+with foreign code very fast. So please read this guide carefully when contributing extensions and patches.</p>
+
+<p>If you don’t like a rule, open a discussion - we can always talk about changes.</p>
+
+<h2 id="naming-conventions">Naming conventions</h2>
+
+<h3 id="getters-and-setters">Getters and setters</h3>
+
+<p>Name your access and setting method according to the Java Bean scheme. For instance use <em>getApple()</em> and <em>setApple(Apple a)</em> 
+<strong>not</strong> <em>fetchApple()</em> and <em>storeApple(Apple a)</em> if you merely want to set an object’s attribute. Name the accessors/setter method 
+after the object it is going to get/set if possible (e.g. <em>getStatus()</em> <strong>not</strong> <em>getMyStatus()</em>).</p>
+
+<h3 id="class-method-and-member-variable-names">Class, method and member variable names</h3>
+
+<p><strong>Classes</strong>, <strong>Methods</strong> and <strong>Member variables</strong> are given names in mixed case. There are never to capital letters adjacent. 
+Remember, even acronyms like <em>‘ID’</em> in class or method names must follow this rule. Class names always start with an upper 
+case, method names and member variables always start with lower case.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>ToDo.java  // Good
+TODO.java  // BAD, use camel back writing
+todo.java  // BAD, as reserved
+ 
+getTestId() //Good
+getTestID() //BAD
+</code></pre>
+</div>
+
+<h3 id="test-classes">Test classes</h3>
+
+<p>Unit test classes have to end with <strong>Test</strong> and should live in the appropriate package in test scoped java resource folder. 
+Example: <em>com.consol.citrus.action.SendAction</em> and <em>com.consol.citrus.action.SendActionTest</em>.</p>
+
+<h2 id="formatting">Formatting</h2>
+
+<p>Code formatting is important. The rules are based on and verified by a href=”http://checkstyle.sourceforge.net/”Checkstyle/a. 
+Please keep an eye on the checkstyle rules, for instance by monitoring the Sonar checkstyle reports generated with the 
+continuous build or with local Maven checkstyle reports.</p>
+
+<p>Here are the most important rules:</p>
+
+<h3 id="indentation">Indentation</h3>
+
+<p>No tabs! Indentation must be 4 blanks for Java and 2 blanks for XML.</p>
+
+<h3 id="braces">Braces</h3>
+
+<p>Curly braces start on the same line as the statement</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="k">if</span> <span class="o">(</span><span class="n">foo</span> <span class="o">==</span> <span class="mi">12</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">doSomething</span><span class="o">();</span>
+<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="n">doSomethingOther</span><span class="o">();</span>
+<span class="o">}</span></code></pre></figure>
+
+<p><strong>NOT</strong></p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="k">if</span> <span class="o">(</span><span class="n">foo</span> <span class="o">==</span> <span class="mi">12</span><span class="o">)</span>
+<span class="o">{</span>
+    <span class="n">doSomething</span><span class="o">();</span>
+<span class="o">}</span>
+<span class="k">else</span>
+<span class="o">{</span>
+    <span class="n">doSomethingOther</span><span class="o">();</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Each block must be surrounded by curly braces even if it is only one line. The code is more readable and more error proof, 
+as you can not forget to add the braces once an extra line is added to the block.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="k">if</span> <span class="o">(</span> <span class="n">a</span> <span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span> <span class="mi">0</span> <span class="o">)</span> <span class="o">{</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+<span class="o">}</span></code></pre></figure>
+
+<p><strong>NOT</strong></p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="k">if</span> <span class="o">(</span> <span class="n">a</span> <span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span> <span class="mi">0</span> <span class="o">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span></code></pre></figure>
+
+<h3 id="lines">Lines</h3>
+
+<p>Don’t use lines larger than 120 characters.</p>
+
+<h2 id="logging">Logging</h2>
+
+<p>We use SLF4J for logging in combination with the well known Log4J API, which is provided by SLF4J. Don’t use System.out 
+for output production. Use the logging framework as System.out is synchronized, not flexible configurable and fills the 
+log files with uncontrolled console output.</p>
+
+<h3 id="debug-level">Debug level</h3>
+
+<p>Always check the level when using debug trace messages</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="k">if</span><span class="o">(</span><span class="n">log</span><span class="o">.</span><span class="na">isDebugEnalbed</span><span class="o">())</span> <span class="o">{</span>
+   <span class="n">log</span><span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="s">"Foo"</span><span class="o">);</span>
+<span class="o">}</span></code></pre></figure>
+
+<h3 id="exceptions-logging">Exceptions logging</h3>
+
+<p>Log exceptions correctly. Never use printStackTrace for Exceptions. Let the logging and the log configuration deal with 
+it by correctly passing the exception as an additional argument.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="o">...</span>
+<span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
+   <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">"Foo causes a problem"</span><span class="o">,</span> <span class="n">ex</span><span class="o">);</span>
+   <span class="o">...</span>
+<span class="o">}</span></code></pre></figure>
+
+<h2 id="dependencies">Dependencies</h2>
+
+<p>Dependencies to other libraries and APIs are managed with Maven in various POM files. In general new dependencies go into 
+the dependencyManagement section in the Citrus parent POM. In this dependency management section the version numbers are set.</p>
+
+<p>Modules only reference the dependency without any version statement, so the version is kept in a central place. This 
+applies to the most of our dependencies, only very specific dependences in a module can go directly into the module’s POM. 
+Here is a short introduction where to put new dependencies and which rules to keep in mind when handling Maven dependencies:</p>
+
+<ul>
+  <li><strong>PROJECT_HOME/pom.xml</strong>
+Contains all available dependencies (jars) for Citrus including version numbers in the dependency management section.</li>
+  <li>All Citrus modules do always reference a dependency library defined in the dependency management section in our parent 
+Citrus POM. This way our dependency version management resides to the parent POM only.</li>
+  <li>If a new library in turn needs another new library the preferred way is to let Maven resolve this dependency as 
+transitive dependency. So you do not have to declare the dependency’s dependencies in the Maven POM. Only add a dependency if
+it is directly referenced in the module sources, and it is not transitively inherited</li>
+  <li>Do you need all transitive dependencies? Think of which transitive dependencies could be excluded from Citrus as they 
+are not needed in our project.</li>
+  <li>Be aware of the <a href="http://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Dependency_Scope">Maven scopes</a>!</li>
+</ul>
+
+        </article>
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    
+    <h4>Getting Started</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/home/">Welcome</a></li>
+
+  
+  
+  <li class=""><a href="/docs/user-guide/">User Guide</a></li>
+
+  
+  
+  <li class=""><a href="/docs/setup-maven/">Setup with Maven</a></li>
+
+  
+  
+  <li class=""><a href="/docs/setup-gradle/">Setup with Gradle</a></li>
+
+  
+  
+  <li class=""><a href="/docs/setup-ant/">Setup with ANT</a></li>
+
+  
+  
+  <li class=""><a href="/docs/features/">Features</a></li>
+
+  
+  
+  <li class=""><a href="/docs/download/">Download</a></li>
+
+</ul>
+
+    
+    <h4>Sources</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/repository/">Source repository</a></li>
+
+  
+  
+  <li class=""><a href="/docs/issues/">Issues</a></li>
+
+  
+  
+  <li class=""><a href="/docs/development/">Development</a></li>
+
+  
+  
+  <li class=""><a href="/docs/contributing/">Contributing</a></li>
+
+  
+  
+  <li class="current"><a href="/docs/conventions/">Conventions</a></li>
+
+  
+  
+  <li class=""><a href="/docs/conduct/">Code of Conduct</a></li>
+
+</ul>
+
+    
+    <h4>Customize</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/custom-endpoints/"></a></li>
+
+  
+  
+  <li class=""><a href="/docs/custom-actions/">Custom actions</a></li>
+
+  
+  
+  <li class=""><a href="/docs/custom-functions/">Custom functions</a></li>
+
+</ul>
+
+    
+    <h4>Tools</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/maven-plugin/">Maven plugin</a></li>
+
+</ul>
+
+    
+    <h4>Miscellaneous</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/team/">Team</a></li>
+
+  
+  
+  <li class=""><a href="/docs/config-sheet/"></a></li>
+
+  
+  
+  <li class=""><a href="/docs/upgrade-migration/"></a></li>
+
+  
+  
+  <li class=""><a href="/docs/consulting/">Consulting</a></li>
+
+</ul>
+
+    
+    <h4>Meta</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/license/">License</a></li>
+
+  
+  
+  <li class=""><a href="/docs/modules/">Modules</a></li>
+
+  
+  
+  <li class=""><a href="/docs/history/">History</a></li>
+
+</ul>
+
+    
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache&nbsp;License&nbsp;2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/christophd/citrus/blob/master/LICENSE">MIT&nbsp;License</a>.</p>
+      <br/>
+      <p>&copy;&nbsp;2018 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p>&nbsp;</p>
+      <br/>
+      <br/>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>

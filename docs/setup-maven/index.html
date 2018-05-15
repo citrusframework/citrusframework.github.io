@@ -1,0 +1,652 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 2.7.5">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="https://citrusframework.org/feed.xml" title="Citrus Integration Tests" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/christophd/citrus/commits/master.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="current">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/christophd/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="current">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/christophd/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="docs">
+    <div class="grid">
+
+      <div class="docs-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the docs…</option>
+    <option value="/docs/home">Home</option>
+    
+    <optgroup label="Getting Started">
+      
+  
+  
+  <option value="/docs/home/">Welcome</option>
+
+  
+  
+  <option value="/docs/user-guide/">User Guide</option>
+
+  
+  
+  <option value="/docs/setup-maven/">Setup with Maven</option>
+
+  
+  
+  <option value="/docs/setup-gradle/">Setup with Gradle</option>
+
+  
+  
+  <option value="/docs/setup-ant/">Setup with ANT</option>
+
+  
+  
+  <option value="/docs/features/">Features</option>
+
+  
+  
+  <option value="/docs/download/">Download</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Sources">
+      
+  
+  
+  <option value="/docs/repository/">Source repository</option>
+
+  
+  
+  <option value="/docs/issues/">Issues</option>
+
+  
+  
+  <option value="/docs/development/">Development</option>
+
+  
+  
+  <option value="/docs/contributing/">Contributing</option>
+
+  
+  
+  <option value="/docs/conventions/">Conventions</option>
+
+  
+  
+  <option value="/docs/conduct/">Code of Conduct</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Customize">
+      
+  
+  
+  <option value="/docs/custom-endpoints/"></option>
+
+  
+  
+  <option value="/docs/custom-actions/">Custom actions</option>
+
+  
+  
+  <option value="/docs/custom-functions/">Custom functions</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Tools">
+      
+  
+  
+  <option value="/docs/maven-plugin/">Maven plugin</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Miscellaneous">
+      
+  
+  
+  <option value="/docs/team/">Team</option>
+
+  
+  
+  <option value="/docs/config-sheet/"></option>
+
+  
+  
+  <option value="/docs/upgrade-migration/"></option>
+
+  
+  
+  <option value="/docs/consulting/">Consulting</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Meta">
+      
+  
+  
+  <option value="/docs/license/">License</option>
+
+  
+  
+  <option value="/docs/modules/">Modules</option>
+
+  
+  
+  <option value="/docs/history/">History</option>
+
+
+    </optgroup>
+    
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+          <div class="improve right hide-on-mobiles">
+            <a href="https://github.com/christophd/citrus/edit/master/src/site/_docs/setup-maven.md"><i class="fa fa-pencil"></i> &nbsp;Improve this page</a>
+          </div>
+          <h1>Setup with Maven</h1>
+          <p>This quickstart shows you how to setup a new Citrus project with Maven. You will see it is very easy and you are finished 
+within minutes.</p>
+
+<h3 id="preconditions">Preconditions</h3>
+
+<p>You need following software on your computer, in order to use the Citrus Framework:</p>
+
+<ul>
+  <li><strong>Java 8 or higher</strong>
+Installed JDK plus JAVA_HOME environment variable set up and pointing to your Java installation directory</li>
+  <li><strong>Java IDE</strong>
+A Java IDE will help you manage your Citrus project, create and execute test cases. Just use the Java IDE that you are 
+used to (e.g. <a href="http://www.eclipse.org/">Eclipse</a> or <a href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a>).</li>
+  <li><strong>Maven 3.0.x or higher</strong>
+Citrus tests will be executed with the <a href="http://maven.apache.org">Apache Maven</a> build tool.</li>
+</ul>
+
+<p>In case you already use Maven build tool in your project it is most suitable for you to include Citrus into your Maven build 
+lifecycle. In this tutorial we will setup a project with Maven and configure the Maven POM to execute all Citrus tests 
+during the Maven integration-test phase.</p>
+
+<h3 id="maven-project">Maven project</h3>
+
+<p>First of all we create a new Java project called <em>citrus-sample</em>. We 
+use the Maven command line tool in combination with Maven’s archetype plugin. In case you do not have Maven installed yet 
+it is time for you to do so before continuing this tutorial. See the <a href="http://maven.apache.org">Maven</a> 
+site for detailed installation instructions. So let’s start with creating the Citrus Java project:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">mvn archetype:generate -Dfilter<span class="o">=</span>com.consol.citrus.mvn:citrus
+
+<span class="o">[</span>...]
+
+Choose archetype:
+1: remote -&gt; com.consol.citrus.mvn:citrus-quickstart <span class="o">(</span>Citrus quickstart project<span class="o">)</span>
+2: remote -&gt; com.consol.citrus.mvn:citrus-quickstart-jms <span class="o">(</span>Citrus quickstart project with JMS consumer and producer<span class="o">)</span>
+3: remote -&gt; com.consol.citrus.mvn:citrus-quickstart-soap <span class="o">(</span>Citrus quickstart project with SOAP client and producer<span class="o">)</span>
+Choose a number: 1 
+
+Define value <span class="k">for </span>groupId: com.consol.citrus.samples
+Define value <span class="k">for </span>artifactId: citrus-sample
+Define value <span class="k">for </span>version: 1.0-SNAPSHOT
+Define value <span class="k">for </span>package: com.consol.citrus.samples
+
+<span class="o">[</span>...]</code></pre></figure>
+
+<p>In the sample above we used the Citrus archetype available in Maven central repository. 
+As the list of default archetypes available in Maven central is very long, it has been filtered for official Citrus archetypes.</p>
+
+<p>After choosing the Citrus quickstart archetype you have to define several values for your project: the groupId, the artifactId, 
+the package and the project version. After that we are done! Maven created a Citrus project structure for us which is 
+ready for testing. You should see the following basic project folder structure.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>citrus-sample
+  |   + src
+  |   |   + main
+  |   |    |   + java
+  |   |    |   + resources
+  |   |   + test
+  |   |    |   + java
+  |   |    |   + resources
+  pom.xml
+</code></pre>
+</div>
+
+<p>The Citrus project is absolutely ready for testing. With Maven we can build, package, install and test our project right 
+away without any adjustments. The project comes with a sample Citrus test <em>SampleIT</em>. You can find this test in <em>src/test/resources</em>; 
+and <em>src/test/java</em>. The Citrus test was automatically executed in the integration test phase in Maven project lifecycle.</p>
+
+<p>The next step would be to import our project into our favorite IDE (e.g. Eclipse, IntelliJ or NetBeans). Please follow the instructions
+of your IDE to integrate with Maven projects.</p>
+
+<p>Now open the new Citrus project with the Java IDE and have a closer look at the project files that were generated 
+for you. First of all open the Maven POM (pom.xml). You see the basic Maven project settings, all Citrus project dependencies 
+as well as Maven plugin configurations. In future you may add new project dependencies and Maven plugins in 
+this file. For now you do not have to change the Citrus Maven settings in your project POM, however we have a closer 
+look at them:</p>
+
+<p>The Citrus project libraries are loaded as dependencies in our Maven POM.</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-core<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>2.7.5<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-jms<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>2.7.5<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-ws<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>2.7.5<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-http<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>2.7.5<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span></code></pre></figure>
+
+<p>The Citrus Maven plugin capable of test creation and report generation.</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;plugin&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus.mvn<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>2.7.5<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;configuration&gt;</span>
+    <span class="nt">&lt;author&gt;</span>Mickey Mouse<span class="nt">&lt;/author&gt;</span>
+    <span class="nt">&lt;targetPackage&gt;</span>com.consol.citrus<span class="nt">&lt;/targetPackage&gt;</span>
+  <span class="nt">&lt;/configuration&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span></code></pre></figure>
+
+<p>The surefire and failsafe plugin configuration is responsible for executing all available tests in your project. Unit tests are traditionally executed with
+<strong>maven-surefire</strong>. Integration tests are executed with <strong>maven-failsafe</strong>. As Citrus tests are integration tests these tests will be executed in the Maven 
+<strong>integration-test</strong> phase using <strong>maven-failsafe</strong>:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;plugin&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>maven-surefire-plugin<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>2.19.1<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;configuration&gt;</span>
+    <span class="nt">&lt;forkMode&gt;</span>once<span class="nt">&lt;/forkMode&gt;</span>
+    <span class="nt">&lt;failIfNoTests&gt;</span>false<span class="nt">&lt;/failIfNoTests&gt;</span>
+    <span class="nt">&lt;workingDirectory&gt;</span>/Users/christoph/Projekte/Citrus/citrus/target<span class="nt">&lt;/workingDirectory&gt;</span>
+  <span class="nt">&lt;/configuration&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span>
+
+<span class="nt">&lt;plugin&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>maven-failsafe-plugin<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>2.19.1<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;executions&gt;</span>
+    <span class="nt">&lt;execution&gt;</span>
+      <span class="nt">&lt;id&gt;</span>integration-tests<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;goals&gt;</span>
+        <span class="nt">&lt;goal&gt;</span>integration-test<span class="nt">&lt;/goal&gt;</span>
+        <span class="nt">&lt;goal&gt;</span>verify<span class="nt">&lt;/goal&gt;</span>
+      <span class="nt">&lt;/goals&gt;</span>
+    <span class="nt">&lt;/execution&gt;</span>
+  <span class="nt">&lt;/executions&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span>        </code></pre></figure>
+
+<p>The tests are separated by naming convention. All integration tests follow the <strong>**/IT<em>.java** or ****/IT</em>.java</strong> naming pattern. These tests are explicitly 
+excluded from surefire plugin. This makes sure that the tests are not executed twice. Now you are ready to use both unit and integration tests in your Maven project.</p>
+
+<p>Another notable POM configuration is the repository section. The Citrus stable release versions are available on Maven central repository. So Maven will automatically
+download the artifacts from that servers. Now if you want to use the latest snapshot preview version of Citrus you need to add the ConSol Labs repository in your POM.</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;repositories&gt;</span>
+  [...]
+
+  <span class="nt">&lt;repository&gt;</span>
+    <span class="nt">&lt;id&gt;</span>consol-labs-snapshots<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;url&gt;</span>http://labs.consol.de/maven/snapshots-repository/<span class="nt">&lt;/url&gt;</span>
+    <span class="nt">&lt;snapshots&gt;</span>
+      <span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+    <span class="nt">&lt;/snapshots&gt;</span>
+    <span class="nt">&lt;releases&gt;</span>
+      <span class="nt">&lt;enabled&gt;</span>false<span class="nt">&lt;/enabled&gt;</span>
+    <span class="nt">&lt;/releases&gt;</span>
+  <span class="nt">&lt;/repository&gt;</span>
+  
+  [...]
+<span class="nt">&lt;/repositories&gt;</span></code></pre></figure>
+
+<p>Please note that this setting is optional and only applies for snapshot versions of Citrus.</p>
+
+<h3 id="run">Run</h3>
+
+<p>The sample application uses Maven as build tool. So you can use the Maven commands to compile, package and test the
+sample.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">mvn clean install</code></pre></figure>
+
+<p>Congratulations! You just have built the complete project and you also have executed the first Citrus tests in your 
+project.</p>
+
+<p>If you just want to execute the Citrus tests with a Maven build execute</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">mvn clean verify</code></pre></figure>
+
+<p>This executes all Citrus test cases during the build and you will see Citrus performing some integration test logging output. You can also execute
+single test cases by defining the test name as Maven system property.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">mvn clean verify -Dit.test<span class="o">=</span>SampleIT</code></pre></figure>
+
+<p>Finally we are ready to proceed with creating new test cases. So let’s add a new Citrus test case to our project. We use 
+the Citrus Maven plugin here, just type the following command:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">mvn citrus:create-test
+Enter <span class="nb">test </span>name: MyTest
+Enter <span class="nb">test </span>author: Unknown: : Christoph
+Enter <span class="nb">test </span>description: TODO: Description: : 
+Enter <span class="nb">test </span>package: com.consol.citrus.samples: : 
+Choose unit <span class="nb">test </span>framework testng: :</code></pre></figure>
+
+<p>You have to specify the test name, author, description, package and the test framework. The plugin successfully generates 
+the new test files for you. On the one hand a new Java class in src/it/java and a new XML test file in src/it/tests. The 
+test is runnable right now. Try it and execute "mvn clean verify" once more. In the Citrus test results you 
+will see that the new test was executed during integration-test phase along with the other existing test case. You can 
+also run the test manually in your IDE with a TestNG plugin.</p>
+
+<p>So now you are ready to use Citrus! Write test cases and add more logic to the test project. Have fun with it!</p>
+
+        </article>
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    
+    <h4>Getting Started</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/home/">Welcome</a></li>
+
+  
+  
+  <li class=""><a href="/docs/user-guide/">User Guide</a></li>
+
+  
+  
+  <li class="current"><a href="/docs/setup-maven/">Setup with Maven</a></li>
+
+  
+  
+  <li class=""><a href="/docs/setup-gradle/">Setup with Gradle</a></li>
+
+  
+  
+  <li class=""><a href="/docs/setup-ant/">Setup with ANT</a></li>
+
+  
+  
+  <li class=""><a href="/docs/features/">Features</a></li>
+
+  
+  
+  <li class=""><a href="/docs/download/">Download</a></li>
+
+</ul>
+
+    
+    <h4>Sources</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/repository/">Source repository</a></li>
+
+  
+  
+  <li class=""><a href="/docs/issues/">Issues</a></li>
+
+  
+  
+  <li class=""><a href="/docs/development/">Development</a></li>
+
+  
+  
+  <li class=""><a href="/docs/contributing/">Contributing</a></li>
+
+  
+  
+  <li class=""><a href="/docs/conventions/">Conventions</a></li>
+
+  
+  
+  <li class=""><a href="/docs/conduct/">Code of Conduct</a></li>
+
+</ul>
+
+    
+    <h4>Customize</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/custom-endpoints/"></a></li>
+
+  
+  
+  <li class=""><a href="/docs/custom-actions/">Custom actions</a></li>
+
+  
+  
+  <li class=""><a href="/docs/custom-functions/">Custom functions</a></li>
+
+</ul>
+
+    
+    <h4>Tools</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/maven-plugin/">Maven plugin</a></li>
+
+</ul>
+
+    
+    <h4>Miscellaneous</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/team/">Team</a></li>
+
+  
+  
+  <li class=""><a href="/docs/config-sheet/"></a></li>
+
+  
+  
+  <li class=""><a href="/docs/upgrade-migration/"></a></li>
+
+  
+  
+  <li class=""><a href="/docs/consulting/">Consulting</a></li>
+
+</ul>
+
+    
+    <h4>Meta</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/license/">License</a></li>
+
+  
+  
+  <li class=""><a href="/docs/modules/">Modules</a></li>
+
+  
+  
+  <li class=""><a href="/docs/history/">History</a></li>
+
+</ul>
+
+    
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache&nbsp;License&nbsp;2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/christophd/citrus/blob/master/LICENSE">MIT&nbsp;License</a>.</p>
+      <br/>
+      <p>&copy;&nbsp;2018 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p>&nbsp;</p>
+      <br/>
+      <br/>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>

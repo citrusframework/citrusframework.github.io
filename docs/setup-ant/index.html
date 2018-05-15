@@ -1,0 +1,714 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 2.7.5">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="https://citrusframework.org/feed.xml" title="Citrus Integration Tests" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/christophd/citrus/commits/master.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="current">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/christophd/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="current">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/christophd/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="docs">
+    <div class="grid">
+
+      <div class="docs-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the docs…</option>
+    <option value="/docs/home">Home</option>
+    
+    <optgroup label="Getting Started">
+      
+  
+  
+  <option value="/docs/home/">Welcome</option>
+
+  
+  
+  <option value="/docs/user-guide/">User Guide</option>
+
+  
+  
+  <option value="/docs/setup-maven/">Setup with Maven</option>
+
+  
+  
+  <option value="/docs/setup-gradle/">Setup with Gradle</option>
+
+  
+  
+  <option value="/docs/setup-ant/">Setup with ANT</option>
+
+  
+  
+  <option value="/docs/features/">Features</option>
+
+  
+  
+  <option value="/docs/download/">Download</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Sources">
+      
+  
+  
+  <option value="/docs/repository/">Source repository</option>
+
+  
+  
+  <option value="/docs/issues/">Issues</option>
+
+  
+  
+  <option value="/docs/development/">Development</option>
+
+  
+  
+  <option value="/docs/contributing/">Contributing</option>
+
+  
+  
+  <option value="/docs/conventions/">Conventions</option>
+
+  
+  
+  <option value="/docs/conduct/">Code of Conduct</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Customize">
+      
+  
+  
+  <option value="/docs/custom-endpoints/"></option>
+
+  
+  
+  <option value="/docs/custom-actions/">Custom actions</option>
+
+  
+  
+  <option value="/docs/custom-functions/">Custom functions</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Tools">
+      
+  
+  
+  <option value="/docs/maven-plugin/">Maven plugin</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Miscellaneous">
+      
+  
+  
+  <option value="/docs/team/">Team</option>
+
+  
+  
+  <option value="/docs/config-sheet/"></option>
+
+  
+  
+  <option value="/docs/upgrade-migration/"></option>
+
+  
+  
+  <option value="/docs/consulting/">Consulting</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Meta">
+      
+  
+  
+  <option value="/docs/license/">License</option>
+
+  
+  
+  <option value="/docs/modules/">Modules</option>
+
+  
+  
+  <option value="/docs/history/">History</option>
+
+
+    </optgroup>
+    
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+          <div class="improve right hide-on-mobiles">
+            <a href="https://github.com/christophd/citrus/edit/master/src/site/_docs/setup-ant.md"><i class="fa fa-pencil"></i> &nbsp;Improve this page</a>
+          </div>
+          <h1>Setup with ANT</h1>
+          <p>In this how-to tutorial I will use Apache Ant to manage a Citrus project and we will use Ant to execute Citrus test cases. 
+First of all I loaded the latest Citrus <a href="http://www.citrusframework.org/download.html">release archive</a> to an empty folder on my local storage. Unzip the archive in order 
+to have access to the Citrus binaries and sources.</p>
+
+<h3 id="preconditions">Preconditions</h3>
+
+<p>You need following software on your computer, in order to use the Citrus Framework:</p>
+
+<ul>
+  <li><strong>Java 8 or higher</strong>
+Installed JDK plus JAVA_HOME environment variable set up and pointing to your Java installation directory</li>
+  <li><strong>Java IDE</strong>
+A Java IDE will help you manage your Citrus project, create and execute test cases. Just use the Java IDE that you are 
+used to (e.g. <a href="http://www.eclipse.org/">Eclipse</a> or <a href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a>).</li>
+  <li><strong>Ant 1.8 or higher</strong>
+Citrus tests will be executed with the <a href="http://ant.apache.org/">Apache Ant</a> build tool. But it is not required to use Ant only. 
+You can also run tests via <a href="http://maven.apache.org">Apache Maven</a> for example.</li>
+</ul>
+
+<h3 id="ant-project">ANT project</h3>
+
+<p>So now lets start to set up a new Citrus Java project. In contrast to a Maven generated project we have to create our project 
+structure ourself when using Ant. A good starting point is the samples folder coming with the Citrus release distribution. 
+Here you can see several sample Citrus projects with given folder structure. So lets have a look at a usual Citrus project 
+structure. I am using the <a href="http://www.eclipse.org/">Eclipse</a> IDE development tool to set up the new Java project. I am also accessing Ant from the 
+command line in this tutorial so you may also want to install Ant first before continuing. See the <a href="http://ant.apache.org/">Ant homepage</a> for detailed 
+installation instructions.</p>
+
+<p>Have a look at the folder structure I created for our new Citrus project</p>
+
+<p><img src="/img/tutorial/ant/project_explorer.png" alt="project_explorer.png" /></p>
+
+<p>I created a simple Java project in Eclipse called <em>“citrus-sample”</em>. I manually added folders and files to the project 
+as follows. The Citrus project knows three source folders, that are also added to the Java build path as source folders:</p>
+
+<ul>
+  <li><strong>src/it/java:</strong> Storage for generated Java TestNG tests</li>
+  <li><strong>src/it/resources:</strong> Configuration files go in here (e.g. Spring application context files, citrus.properties, log4j.xml, …)</li>
+  <li><strong>src/it/tests:</strong> XML test case describing files (generated by Citrus)</li>
+</ul>
+
+<p>As a next step we setup a lib folder for some libraries we need for execution. This includes the Citrus Java archives 
+(citrus-core.jar, citrus-http.jar, etc.) coming from the downladed <a href="http://www.citrusframework.org/download.html">release archive</a> and all dependency libraries also 
+available in the release archive. Finally what’s missing is the Ant build file (build.xml) with following content.</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">  
+<span class="nt">&lt;project</span> <span class="na">name=</span><span class="s">"citrus-sample"</span> <span class="na">basedir=</span><span class="s">"."</span> <span class="na">default=</span><span class="s">"citrus.run.tests"</span> <span class="na">xmlns:artifact=</span><span class="s">"antlib:org.apache.maven.artifact.ant"</span><span class="nt">&gt;</span>
+  
+    <span class="nt">&lt;property</span> <span class="na">file=</span><span class="s">"src/it/resources/citrus.properties"</span><span class="nt">/&gt;</span>
+    
+    <span class="nt">&lt;path</span> <span class="na">id=</span><span class="s">"maven-ant-tasks.classpath"</span> <span class="na">path=</span><span class="s">"lib/maven-ant-tasks-2.1.3.jar"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;typedef</span> <span class="na">resource=</span><span class="s">"org/apache/maven/artifact/ant/antlib.xml"</span>
+             <span class="na">uri=</span><span class="s">"antlib:org.apache.maven.artifact.ant"</span>
+             <span class="na">classpathref=</span><span class="s">"maven-ant-tasks.classpath"</span> <span class="nt">/&gt;</span>
+ 
+    <span class="nt">&lt;artifact:pom</span> <span class="na">id=</span><span class="s">"citrus-pom"</span> <span class="na">file=</span><span class="s">"pom.xml"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;artifact:dependencies</span> <span class="na">filesetId=</span><span class="s">"citrus-dependencies"</span> <span class="na">pomRefId=</span><span class="s">"citrus-pom"</span> <span class="nt">/&gt;</span>
+ 
+    <span class="nt">&lt;path</span> <span class="na">id=</span><span class="s">"citrus-classpath"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;pathelement</span> <span class="na">path=</span><span class="s">"src/it/java"</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;pathelement</span> <span class="na">path=</span><span class="s">"src/it/resources"</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;pathelement</span> <span class="na">path=</span><span class="s">"src/it/tests"</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;fileset</span> <span class="na">refid=</span><span class="s">"citrus-dependencies"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/path&gt;</span>
+ 
+    <span class="nt">&lt;taskdef</span> <span class="na">resource=</span><span class="s">"testngtasks"</span> <span class="na">classpath=</span><span class="s">"lib/testng-6.8.8.jar"</span><span class="nt">/&gt;</span>
+    
+    <span class="nt">&lt;target</span> <span class="na">name=</span><span class="s">"compile.tests"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;javac</span> <span class="na">srcdir=</span><span class="s">"src/it/java"</span> <span class="na">classpathref=</span><span class="s">"citrus-classpath"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;javac</span> <span class="na">srcdir=</span><span class="s">"src/it/tests"</span> <span class="na">classpathref=</span><span class="s">"citrus-classpath"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/target&gt;</span>
+  
+    <span class="nt">&lt;target</span> <span class="na">name=</span><span class="s">"create.test"</span> <span class="na">description=</span><span class="s">"Creates a new empty test case"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">message=</span><span class="s">"Enter test name:"</span> <span class="na">addproperty=</span><span class="s">"test.name"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">message=</span><span class="s">"Enter test description:"</span> <span class="na">addproperty=</span><span class="s">"test.description"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">message=</span><span class="s">"Enter author's name:"</span> <span class="na">addproperty=</span><span class="s">"test.author"</span> <span class="na">defaultvalue=</span><span class="s">"${default.test.author}"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">message=</span><span class="s">"Enter package:"</span> <span class="na">addproperty=</span><span class="s">"test.package"</span> <span class="na">defaultvalue=</span><span class="s">"${default.test.package}"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">message=</span><span class="s">"Enter framework:"</span> <span class="na">addproperty=</span><span class="s">"test.framework"</span> <span class="na">defaultvalue=</span><span class="s">"testng"</span><span class="nt">/&gt;</span>
+ 
+        <span class="nt">&lt;java</span> <span class="na">classname=</span><span class="s">"com.consol.citrus.util.TestCaseCreator"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;classpath</span> <span class="na">refid=</span><span class="s">"citrus-classpath"</span><span class="nt">/&gt;</span>
+            <span class="nt">&lt;arg</span> <span class="na">line=</span><span class="s">"-name ${test.name} -author ${test.author} -description ${test.description} -package ${test.package} -framework ${test.framework}"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/java&gt;</span>
+    <span class="nt">&lt;/target&gt;</span>
+    
+    <span class="nt">&lt;target</span> <span class="na">name=</span><span class="s">"citrus.run.tests"</span> <span class="na">depends=</span><span class="s">"compile.tests"</span> <span class="na">description=</span><span class="s">"Runs all Citrus tests"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;testng</span> <span class="na">classpathref=</span><span class="s">"citrus-classpath"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;classfileset</span> <span class="na">dir=</span><span class="s">"src/it/java"</span> <span class="na">includes=</span><span class="s">"**/*.class"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/testng&gt;</span>
+    <span class="nt">&lt;/target&gt;</span>
+ 
+    <span class="nt">&lt;target</span> <span class="na">name=</span><span class="s">"citrus.run.single.test"</span> <span class="na">depends=</span><span class="s">"compile.tests"</span> <span class="na">description=</span><span class="s">"Runs a single test by name"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;touch</span> <span class="na">file=</span><span class="s">"test.history"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;loadproperties</span> <span class="na">srcfile=</span><span class="s">"test.history"</span><span class="nt">/&gt;</span>
+ 
+        <span class="nt">&lt;echo</span> <span class="na">message=</span><span class="s">"Last test executed: ${last.test.executed}"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">message=</span><span class="s">"Enter test name or leave empty for last test executed:"</span> <span class="na">addproperty=</span><span class="s">"testclass"</span> <span class="na">defaultvalue=</span><span class="s">"${last.test.executed}"</span><span class="nt">/&gt;</span>
+ 
+        <span class="nt">&lt;propertyfile</span> <span class="na">file=</span><span class="s">"test.history"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">"last.test.executed"</span> <span class="na">type=</span><span class="s">"string"</span> <span class="na">value=</span><span class="s">"${testclass}"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/propertyfile&gt;</span>
+ 
+        <span class="nt">&lt;testng</span> <span class="na">classpathref=</span><span class="s">"citrus-classpath"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;classfileset</span> <span class="na">dir=</span><span class="s">"src/it/java"</span> <span class="na">includes=</span><span class="s">"**/${testclass}.class"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/testng&gt;</span>
+    <span class="nt">&lt;/target&gt;</span>
+<span class="nt">&lt;/project&gt;</span></code></pre></figure>
+
+<p>Those who are familiar with Ant will understand this file easily. We used the maven ant tasks in order to download all 
+3rd party libraries needed for a Citrus run. You need to setup the Maven Ant tasks JAR and the TestNG JAR in the lib 
+directory before executing the build script for the first time. Further a Java classpath is defined with its conventional 
+name <em>“citrus-classpath”</em>. The classpath definition includes all Java libraries found inside the lib folder. Besides that 
+the build file declares the TestNG special Ant tasks that help us to execute the tests.</p>
+
+<p>These TestNG Ant task definitions will help to execute Citrus out of a Ant build script. We will handle the execution 
+later in this tutorial in more detail. For now we will start with the “create.test” target. This target creates new 
+test cases for your project. So let us give it a try! I execute the “create.test” target from the command line using my 
+seperate Ant installation. To be honest it is more comfortable to use the built-in Eclipse Ant plugin to execute Ant 
+targets, but I choose the command line first to be more independent from the IDE tool.</p>
+
+<p>The target will prompt for some information when executed, see the output below:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">$ </span>ant create.test
+Buildfile: build.xml
+
+create.test:
+    <span class="o">[</span>input] Enter <span class="nb">test </span>name: MyFirstTest
+    <span class="o">[</span>input] Enter <span class="nb">test </span>description: This is my first Citrus <span class="nb">test</span>
+    <span class="o">[</span>input] Enter author<span class="s1">'s name: [Christoph]
+    [input] Enter package: [com.consol.citrus.ant.sample]
+    [input] Enter framework: [testng]
+
+BUILD SUCCESSFUL
+Total time: 21 seconds</span></code></pre></figure>
+
+<p>The target will ask you for the name of the test first. After that you give a description for the test. The author’s 
+default name is located in the <em>“citrus.properties”</em>, but you can also specify another author of course. Same thing with 
+the test’s package. In the <em>“citrus.properties”</em> you can define a default package or you can type in another package when 
+prompted.</p>
+
+<p>Now that we have given all information for the test Citrus will create all test files automatically. Let us have a look 
+at the generated files.</p>
+
+<p><img src="/img/tutorial/ant/created_test_files.png" alt="created_test_files.png" /></p>
+
+<p>The generated files are:</p>
+
+<ul>
+  <li><strong>src/it/java/MyFirstTest.java:</strong> TestNG Java test case that is executable right now</li>
+  <li><strong>src/it/tests/MyFirstTest.xml:</strong> Citrus XML test case describing file</li>
+</ul>
+
+<p>With these two files you are able to run the test. Let us first have a look at the generated XML test description:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;spring:beans</span> <span class="na">xmlns=</span><span class="s">"http://www.citrusframework.org/schema/testcase"</span> 
+                 <span class="na">xmlns:spring=</span><span class="s">"http://www.springframework.org/schema/beans"</span> 
+                 <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> 
+                 <span class="na">xsi:schemaLocation=</span><span class="s">"</span>
+                 <span class="err">http://www.springframework.org/schema/beans</span> 
+                 <span class="err">http://www.springframework.org/schema/beans/spring-beans.xsd</span> 
+                 <span class="err">http://www.citrusframework.org/schema/testcase</span> 
+                 <span class="err">http://www.citrusframework.org/schema/testcase/citrus-testcase.xsd"</span><span class="nt">&gt;</span>
+                 
+    <span class="nt">&lt;testcase</span> <span class="na">name=</span><span class="s">"MyFirstTest"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;meta-info&gt;</span>
+            <span class="nt">&lt;author&gt;</span>Christoph<span class="nt">&lt;/author&gt;</span>
+            <span class="nt">&lt;creationdate&gt;</span>2009-08-19<span class="nt">&lt;/creationdate&gt;</span>
+            <span class="nt">&lt;status&gt;</span>DRAFT<span class="nt">&lt;/status&gt;</span>
+            <span class="nt">&lt;last-updated-by&gt;</span>Christoph<span class="nt">&lt;/last-updated-by&gt;</span>
+            <span class="nt">&lt;last-updated-on&gt;</span>2009-08-19T11:18:06<span class="nt">&lt;/last-updated-on&gt;</span>
+        <span class="nt">&lt;/meta-info&gt;</span>
+        
+        <span class="nt">&lt;description&gt;</span>This is my first Citrus test<span class="nt">&lt;/description&gt;</span>
+        
+        <span class="nt">&lt;actions&gt;</span>
+            <span class="nt">&lt;echo&gt;</span>
+                <span class="nt">&lt;message&gt;</span>TODO: Code the test MyFirstTest<span class="nt">&lt;/message&gt;</span>
+            <span class="nt">&lt;/echo&gt;</span>
+        <span class="nt">&lt;/actions&gt;</span>
+    <span class="nt">&lt;/testcase&gt;</span>
+<span class="nt">&lt;/spring:beans&gt;</span></code></pre></figure>
+
+<p>Citrus created an empty test case that does nothing but print a simple message to the console. The test is in status 
+<strong>DRAFT</strong> which means it is not finished yet but be aware that the test is executable in this state. In case you need to 
+disable the test because it is not entirely finished yet and may cause failures in a test run you can use the status 
+<strong>DISABLED</strong>. You may code the test first and then change its status to <strong>FINAL</strong> in order to finally enable the test for 
+execution. Right now we do not want to code any additional logic into the test case for this tutorial, so we change its 
+status right now to <strong>FINAL</strong> and try to execute the test with Ant.</p>
+
+<p>We switch again to the command line to execute the Ant target called <em>“citrus.run.single.test”</em>. We are asked to type in 
+the name of the test to execute. In our example we type <em>“MyFirstTest”</em> and Citrus will execute the test.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">$ </span>ant citrus.run.single.test
+Buildfile: build.xml
+
+citrus.run.single.test:
+<span class="o">[</span><span class="nb">echo</span><span class="o">]</span> Last <span class="nb">test </span>executed: Unknown
+<span class="o">[</span>input] Enter <span class="nb">test </span>name: <span class="o">[</span>Unknown] MyFirstTest
+
+CITRUS TESTFRAMEWORK
+
+Found <span class="nb">test</span> <span class="s1">'com.consol.citrus.ant.sample.MyFirstTest'</span>
+
+RUNNING CITRUS TESTS
+
+------------------------------------------------------------------------
+INIT
+
+Found 0 tasks <span class="k">in </span>init phase
+------------------------------------------------------------------------
+INIT successfully
+
+------------------------------------------------------------------------
+STARTING TEST: MyFirstTest
+Initializing TestCase
+TestCase using the following global variables:
+project.name <span class="o">=</span> Citrus sample
+
+1. action <span class="k">in </span><span class="nb">test </span>chain
+<span class="nb">echo </span>TODO: Code the <span class="nb">test </span>MyFirstTest
+
+TEST FINISHED: MyFirstTest
+------------------------------------------------------------------------
+FINISH CITRUS TEST
+------------------------------------------------------------------------
+________________________________________________________________________
+
+CITRUS TEST RESULTS
+
+  MyFirstTest                                       : SUCCESS
+
+Found 1 <span class="nb">test </span>cases to execute
+Skipped 0 <span class="nb">test </span>cases <span class="o">(</span>0.0%<span class="o">)</span>
+Executed 1 <span class="nb">test </span>cases
+Tests failed:            0 <span class="o">(</span>0.0%<span class="o">)</span>
+Tests successfully:      1 <span class="o">(</span>100.0%<span class="o">)</span>
+________________________________________________________________________
+Found 0 tasks after
+------------------------------------------------------------------------
+FINISH successfully</code></pre></figure>
+
+<p>The execution by test names only is suitable for executing a small amount of test cases. If you want to run a whole package 
+of tests use the package notation instead as it is used in the “citrus.run.tests” target which executes all tests in the 
+package <em>“com.consol.citrus”</em>.</p>
+
+<p>The last option you have when executing Citrus is a TestNG suite xml file. TestNG can configure test suites via XML. 
+We have a look at a very simple testng.xml.</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="cp">&lt;!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd"&gt;</span>
+<span class="nt">&lt;suite</span> <span class="na">name=</span><span class="s">"citrus-samples"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;test</span> <span class="na">verbose=</span><span class="s">"2"</span> <span class="na">name=</span><span class="s">"com.consol.citrus.ant.sample.MyFirstTest"</span> <span class="na">annotations=</span><span class="s">"JDK"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;classes&gt;</span>
+      <span class="nt">&lt;class</span> <span class="na">name=</span><span class="s">"com.consol.citrus.ant.sample.MyFirstTest"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/classes&gt;</span>
+  <span class="nt">&lt;/test&gt;</span>
+<span class="nt">&lt;/suite&gt;</span></code></pre></figure>
+
+<p>The testng.xml is very powerful and you have a lot of options how to group tests together to suites. Citrus can work on 
+those testng.xml files when executed with Ant.</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;testng&gt;</span>
+  <span class="nt">&lt;xmlfileset</span> <span class="na">dir=</span><span class="s">"configuration"</span> <span class="na">includes=</span><span class="s">"testng.xml"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/testng&gt;</span></code></pre></figure>
+
+<p>That’s it! This is how Citrus connects with a normal Eclipse Java project and Ant. With Ant you can integrate your Citrus 
+tests easily in your continuous build environment, so the tests are executed every time something has changed in the code 
+base of your project.</p>
+
+        </article>
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    
+    <h4>Getting Started</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/home/">Welcome</a></li>
+
+  
+  
+  <li class=""><a href="/docs/user-guide/">User Guide</a></li>
+
+  
+  
+  <li class=""><a href="/docs/setup-maven/">Setup with Maven</a></li>
+
+  
+  
+  <li class=""><a href="/docs/setup-gradle/">Setup with Gradle</a></li>
+
+  
+  
+  <li class="current"><a href="/docs/setup-ant/">Setup with ANT</a></li>
+
+  
+  
+  <li class=""><a href="/docs/features/">Features</a></li>
+
+  
+  
+  <li class=""><a href="/docs/download/">Download</a></li>
+
+</ul>
+
+    
+    <h4>Sources</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/repository/">Source repository</a></li>
+
+  
+  
+  <li class=""><a href="/docs/issues/">Issues</a></li>
+
+  
+  
+  <li class=""><a href="/docs/development/">Development</a></li>
+
+  
+  
+  <li class=""><a href="/docs/contributing/">Contributing</a></li>
+
+  
+  
+  <li class=""><a href="/docs/conventions/">Conventions</a></li>
+
+  
+  
+  <li class=""><a href="/docs/conduct/">Code of Conduct</a></li>
+
+</ul>
+
+    
+    <h4>Customize</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/custom-endpoints/"></a></li>
+
+  
+  
+  <li class=""><a href="/docs/custom-actions/">Custom actions</a></li>
+
+  
+  
+  <li class=""><a href="/docs/custom-functions/">Custom functions</a></li>
+
+</ul>
+
+    
+    <h4>Tools</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/maven-plugin/">Maven plugin</a></li>
+
+</ul>
+
+    
+    <h4>Miscellaneous</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/team/">Team</a></li>
+
+  
+  
+  <li class=""><a href="/docs/config-sheet/"></a></li>
+
+  
+  
+  <li class=""><a href="/docs/upgrade-migration/"></a></li>
+
+  
+  
+  <li class=""><a href="/docs/consulting/">Consulting</a></li>
+
+</ul>
+
+    
+    <h4>Meta</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/license/">License</a></li>
+
+  
+  
+  <li class=""><a href="/docs/modules/">Modules</a></li>
+
+  
+  
+  <li class=""><a href="/docs/history/">History</a></li>
+
+</ul>
+
+    
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache&nbsp;License&nbsp;2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/christophd/citrus/blob/master/LICENSE">MIT&nbsp;License</a>.</p>
+      <br/>
+      <p>&copy;&nbsp;2018 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p>&nbsp;</p>
+      <br/>
+      <br/>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>

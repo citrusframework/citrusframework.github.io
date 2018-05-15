@@ -1,0 +1,1038 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 2.7.5">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="https://citrusframework.org/feed.xml" title="Citrus Integration Tests" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/christophd/citrus/commits/master.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="current">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/christophd/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="current">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/christophd/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="docs">
+    <div class="grid">
+
+      <div class="docs-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the docs…</option>
+    <option value="/docs/home">Home</option>
+    
+    <optgroup label="Getting Started">
+      
+  
+  
+  <option value="/docs/home/">Welcome</option>
+
+  
+  
+  <option value="/docs/user-guide/">User Guide</option>
+
+  
+  
+  <option value="/docs/setup-maven/">Setup with Maven</option>
+
+  
+  
+  <option value="/docs/setup-gradle/">Setup with Gradle</option>
+
+  
+  
+  <option value="/docs/setup-ant/">Setup with ANT</option>
+
+  
+  
+  <option value="/docs/features/">Features</option>
+
+  
+  
+  <option value="/docs/download/">Download</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Sources">
+      
+  
+  
+  <option value="/docs/repository/">Source repository</option>
+
+  
+  
+  <option value="/docs/issues/">Issues</option>
+
+  
+  
+  <option value="/docs/development/">Development</option>
+
+  
+  
+  <option value="/docs/contributing/">Contributing</option>
+
+  
+  
+  <option value="/docs/conventions/">Conventions</option>
+
+  
+  
+  <option value="/docs/conduct/">Code of Conduct</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Customize">
+      
+  
+  
+  <option value="/docs/custom-endpoints/"></option>
+
+  
+  
+  <option value="/docs/custom-actions/">Custom actions</option>
+
+  
+  
+  <option value="/docs/custom-functions/">Custom functions</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Tools">
+      
+  
+  
+  <option value="/docs/maven-plugin/">Maven plugin</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Miscellaneous">
+      
+  
+  
+  <option value="/docs/team/">Team</option>
+
+  
+  
+  <option value="/docs/config-sheet/"></option>
+
+  
+  
+  <option value="/docs/upgrade-migration/"></option>
+
+  
+  
+  <option value="/docs/consulting/">Consulting</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Meta">
+      
+  
+  
+  <option value="/docs/license/">License</option>
+
+  
+  
+  <option value="/docs/modules/">Modules</option>
+
+  
+  
+  <option value="/docs/history/">History</option>
+
+
+    </optgroup>
+    
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+          <div class="improve right hide-on-mobiles">
+            <a href="https://github.com/christophd/citrus/edit/master/src/site/_docs/maven-plugin.md"><i class="fa fa-pencil"></i> &nbsp;Improve this page</a>
+          </div>
+          <h1>Maven plugin</h1>
+          <p>The Citrus Maven plugin offers several tools and handy tasks for generating test cases and reports.</p>
+
+<h2 id="system-requirements">System Requirements</h2>
+
+<p>The following specifies the minimum requirements to run this Maven plugin:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Library</th>
+      <th style="text-align: center">Version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Maven</td>
+      <td style="text-align: center">3.3</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">JDK</td>
+      <td style="text-align: center"> 1.8</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Memory</td>
+      <td style="text-align: center">No minimum requirement.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Disk Space</td>
+      <td style="text-align: center">No minimum requirement.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="usage">Usage</h2>
+
+<p>You should specify the version in your project’s plugin configuration:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">  
+<span class="nt">&lt;project&gt;</span>
+  ...
+  <span class="nt">&lt;build&gt;</span>
+    <span class="c">&lt;!-- To define the plugin version in your parent POM --&gt;</span>
+    <span class="nt">&lt;pluginManagement&gt;</span>
+      <span class="nt">&lt;plugins&gt;</span>
+        <span class="nt">&lt;plugin&gt;</span>
+          <span class="nt">&lt;groupId&gt;</span>com.consol.citrus.mvn<span class="nt">&lt;/groupId&gt;</span>
+          <span class="nt">&lt;artifactId&gt;</span>citrus-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+          <span class="nt">&lt;version&gt;</span>2.7.5<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;/plugin&gt;</span>
+        ...
+      <span class="nt">&lt;/plugins&gt;</span>
+    <span class="nt">&lt;/pluginManagement&gt;</span>
+    <span class="c">&lt;!-- To use the plugin goals in your POM or parent POM --&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+      <span class="nt">&lt;plugin&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>com.consol.citrus.mvn<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>citrus-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;configuration&gt;</span>
+          ...
+        <span class="nt">&lt;/configuration&gt;</span>
+      <span class="nt">&lt;/plugin&gt;</span>
+      ...
+    <span class="nt">&lt;/plugins&gt;</span>
+  <span class="nt">&lt;/build&gt;</span>
+  ...
+<span class="nt">&lt;/project&gt;</span></code></pre></figure>
+
+<h2 id="goals">Goals</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Goal</th>
+      <th style="text-align: center">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">citrus:create-excel-doc</td>
+      <td style="text-align: center">Creates test documentation in MS Excel listing all available tests with meta information (name, author, description, date, …)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">citrus:create-html-doc</td>
+      <td style="text-align: center">Creates test overview documentation in HTML. The web page contains a list of all available tests with meta information.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">citrus:create-test</td>
+      <td style="text-align: center">Creates new Citrus test cases with empty XML test file and executable Java class. Mojo offers an interactive mode, where the plugin prompts for parameters during execution. In non-interactive mode the parameters are given as command line arguments. Also supports automatic message XML payload generation for XSD and WSDL schemas.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">citrus:help</td>
+      <td style="text-align: center">Display help information on citrus-maven-plugin. Call **mvn citrus:help -Ddetail=true -Dgoal=<goal-name>** to display parameter details.</goal-name></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="citruscreate-excel-doc">citrus:create-excel-doc</h2>
+
+<h3 id="full-name">Full name</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>com.consol.citrus.mvn:citrus-maven-plugin:2.7.5:create-excel-doc
+</code></pre>
+</div>
+
+<h3 id="description">Description</h3>
+
+<p>Creates test documentation in MS Excel listing all available tests with meta information (name, author, description, date, …) .</p>
+
+<h3 id="optional-parameters">Optional Parameters</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Name</th>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Since</th>
+      <th style="text-align: center">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">author</td>
+      <td style="text-align: center">String</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Author name that goes into Excel meta information. Default value is: Citrus Testframework.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">company</td>
+      <td style="text-align: center">String</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Name of company that goes into Excel meta information. Default value is: Unknown.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">customHeaders</td>
+      <td style="text-align: center">String</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Customized column headers as comma separated value string (e.g. “Nr;Name;Author;Status;TestCase;Date”).</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">interactiveMode</td>
+      <td style="text-align: center">boolean</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Whether to use interactive mode where user is prompted for parameter input during execution. Default value is: true.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">outputFile</td>
+      <td style="text-align: center">String</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Name of output file (.xsl file extension is added automatically and can be left out). Defaults to “CitrusTests”. Default value is: CitrusTests.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">pageTitle</td>
+      <td style="text-align: center">String</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Page title displayed on top of the sheet. Default value is: Citrus Test Documentation.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">testDirectory</td>
+      <td style="text-align: center">String</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Mojo looks in this directory for test files that are included in this report. Defaults to “src/it/tests” Default value is: src/it/tests.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="parameter-details">Parameter Details</h3>
+
+<p><strong>author:</strong></p>
+
+<p>Author name that goes into Excel meta information.</p>
+
+<ul>
+  <li><strong>Type:</strong> java.lang.String</li>
+  <li><strong>Required:</strong> No</li>
+  <li><strong>Default:</strong> Citrus Testframework</li>
+</ul>
+
+<p><strong>company:</strong></p>
+
+<p>Name of company that goes into Excel meta information.</p>
+
+<ul>
+  <li><strong>Type:</strong> java.lang.String</li>
+  <li><strong>Required:</strong> No</li>
+  <li><strong>Default:</strong> Unknown</li>
+</ul>
+
+<p><strong>customHeaders:</strong></p>
+
+<p>Customized column headers as comma separated value string (e.g. “Nr;Name;Author;Status;TestCase;Date”).</p>
+
+<ul>
+  <li><strong>Type:</strong> java.lang.String</li>
+  <li><strong>Required:</strong> No</li>
+</ul>
+
+<p><strong>interactiveMode:</strong></p>
+
+<p>Whether to use interactive mode where user is prompted for parameter input during execution.</p>
+
+<ul>
+  <li><strong>Type:</strong> boolean</li>
+  <li><strong>Required:</strong> No</li>
+  <li><strong>Expression:</strong> ${interactiveMode}</li>
+  <li><strong>Default:</strong> true</li>
+</ul>
+
+<p><strong>outputFile:</strong></p>
+
+<p>Name of output file (.xsl file extension is added automatically and can be left out). Defaults to “CitrusTests”.</p>
+
+<ul>
+  <li><strong>Type:</strong> java.lang.String</li>
+  <li><strong>Required:</strong> No</li>
+  <li><strong>Expression:</strong> ${outputFile}</li>
+  <li><strong>Default:</strong> CitrusTests</li>
+</ul>
+
+<p><strong>pageTitle:</strong></p>
+
+<p>Page title displayed on top of the sheet.</p>
+
+<ul>
+  <li><strong>Type:</strong> java.lang.String</li>
+  <li><strong>Required:</strong> No</li>
+  <li><strong>Default:</strong> Citrus Test Documentation</li>
+</ul>
+
+<p><strong>testDirectory:</strong></p>
+
+<p>Mojo looks in this directory for test files that are included in this report. Defaults to “src/it/tests”</p>
+
+<ul>
+  <li><strong>Type:</strong> java.lang.String</li>
+  <li><strong>Required:</strong> No</li>
+  <li><strong>Default:</strong> src/it/tests</li>
+</ul>
+
+<h2 id="citruscreate-html-doc">citrus:create-html-doc</h2>
+
+<h3 id="full-name-1">Full name</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>com.consol.citrus.mvn:citrus-maven-plugin:2.7.5:create-html-doc
+</code></pre>
+</div>
+
+<h3 id="description-1">Description</h3>
+
+<p>Creates test overview documentation in HTML. The web page contains a list of all available tests with meta information.</p>
+
+<h3 id="optional-parameters-1">Optional Parameters</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Name</th>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Since</th>
+      <th style="text-align: center">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">columns</td>
+      <td style="text-align: center">String</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Number of columns in test overview table Default value is: 1.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">interactiveMode</td>
+      <td style="text-align: center">boolean</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Whether to use interactive mode where user is prompted for parameter input during execution. Default value is: true.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">logo</td>
+      <td style="text-align: center">String</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Company or project logo displayed on top of page. Defaults to “logo.png” Default value is: logo.png.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">outputFile</td>
+      <td style="text-align: center">String</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Name of output file (.html file extension is added automatically and can be left out). Defaults to “CitrusTests” Default value is: CitrusTests.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">overviewTitle</td>
+      <td style="text-align: center">String</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">The overview title displayed at the top of the test overview Default value is: Overview.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">pageTitle</td>
+      <td style="text-align: center">String</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Page title displayed at the top of the page Default value is: Citrus Test Documentation.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">testDirectory</td>
+      <td style="text-align: center">String</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">All test files in this directory are included into the report. Defaults to “src/it/tests” Default value is: src/it/tests.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="parameter-details-1">Parameter Details</h3>
+
+<p><strong>columns:</strong></p>
+
+<p>Number of columns in test overview table</p>
+
+<ul>
+  <li><strong>Type:</strong> java.lang.String</li>
+  <li><strong>Required:</strong> No</li>
+  <li><strong>Default:</strong> 1</li>
+</ul>
+
+<p><strong>interactiveMode:</strong></p>
+
+<p>Whether to use interactive mode where user is prompted for parameter input during execution.</p>
+
+<ul>
+  <li><strong>Type:</strong> boolean</li>
+  <li><strong>Required:</strong> No</li>
+  <li><strong>Expression:</strong> ${interactiveMode}</li>
+  <li><strong>Default:</strong> true</li>
+</ul>
+
+<p><strong>logo:</strong></p>
+
+<p>Company or project logo displayed on top of page. Defaults to “logo.png”</p>
+
+<ul>
+  <li><strong>Type:</strong> java.lang.String</li>
+  <li><strong>Required:</strong> No</li>
+  <li><strong>Default:</strong> logo.png</li>
+</ul>
+
+<p><strong>outputFile:</strong></p>
+
+<p>Name of output file (.html file extension is added automatically and can be left out). Defaults to “CitrusTests”</p>
+
+<ul>
+  <li><strong>Type:</strong> java.lang.String</li>
+  <li><strong>Required:</strong> No</li>
+  <li><strong>Expression:</strong> ${outputFile}</li>
+  <li><strong>Default:</strong> CitrusTests</li>
+</ul>
+
+<p><strong>overviewTitle:</strong></p>
+
+<p>The overview title displayed at the top of the test overview</p>
+
+<ul>
+  <li><strong>Type:</strong> java.lang.String</li>
+  <li><strong>Required:</strong> No</li>
+  <li><strong>Default:</strong> Overview</li>
+</ul>
+
+<p><strong>pageTitle:</strong></p>
+
+<p>Page title displayed at the top of the page</p>
+
+<ul>
+  <li><strong>Type:</strong> java.lang.String</li>
+  <li><strong>Required:</strong> No</li>
+  <li><strong>Default:</strong> Citrus Test Documentation</li>
+</ul>
+
+<p><strong>testDirectory:</strong></p>
+
+<p>All test files in this directory are included into the report. Defaults to “src/it/tests”</p>
+
+<ul>
+  <li><strong>Type:</strong> java.lang.String</li>
+  <li><strong>Required:</strong> No</li>
+  <li><strong>Default:</strong> src/it/tests</li>
+</ul>
+
+<h2 id="citruscreate-test">citrus:create-test</h2>
+
+<h3 id="full-name-2">Full name</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>com.consol.citrus.mvn:citrus-maven-plugin:2.7.5:create-test
+</code></pre>
+</div>
+
+<h3 id="description-2">Description</h3>
+
+<p>Creates new Citrus test cases with empty XML test file and executable Java class. Mojo offers an interactive mode, where 
+the plugin prompts for parameters during execution. In non-interactive mode the parameters are given as command line arguments.</p>
+
+<h3 id="optional-parameters-2">Optional Parameters</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Name</th>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Since</th>
+      <th style="text-align: center">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">author</td>
+      <td style="text-align: center">String</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">The test author Default value is: Unknown.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">description</td>
+      <td style="text-align: center">String</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Describes the test case and its actions Default value is: TODO: Description.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">framework</td>
+      <td style="text-align: center">String</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Which unit test framework to use for test execution (default: testng; options: testng, junit) Default value is: testng.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">interactiveMode</td>
+      <td style="text-align: center">boolean</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Whether to run this command in interactive mode. Defaults to “true”. Default value is: true.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">name</td>
+      <td style="text-align: center">String</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">The name of the test case (must start with upper case letter).</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">targetPackage</td>
+      <td style="text-align: center">String</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Which package (folder structure) is assigned to this test. Defaults to “com.consol.citrus” Default value is: com.consol.citrus.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">xsd</td>
+      <td style="text-align: center">String</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Path of the xsd from which the sample request and response are get from</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">xsdRequestElem</td>
+      <td style="text-align: center">String</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Name of the xsd-element used to create the xml-sample-request</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">xsdResponseElem</td>
+      <td style="text-align: center">String</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Name of the xsd-element used to create the xml-sample-response</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">wsdl</td>
+      <td style="text-align: center">String</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">The path to the wsdl from which the suite is generated.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">nameSuffix</td>
+      <td style="text-align: center">String</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">The name-suffix of all test cases. Default value is: _IT.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="parameter-details-2">Parameter Details</h3>
+
+<p><strong>author:</strong></p>
+
+<p>The test author</p>
+
+<ul>
+  <li><strong>Type:</strong> java.lang.String</li>
+  <li><strong>Required:</strong> No</li>
+  <li><strong>Expression:</strong> ${author}</li>
+  <li><strong>Default:</strong> Unknown</li>
+</ul>
+
+<p><strong>description:</strong></p>
+
+<p>Describes the test case and its actions</p>
+
+<ul>
+  <li><strong>Type:</strong> java.lang.String</li>
+  <li><strong>Required:</strong> No</li>
+  <li><strong>Expression:</strong> Citrus Test Framework</li>
+  <li><strong>Default:</strong> TODO: Description</li>
+</ul>
+
+<p><strong>framework:</strong></p>
+
+<p>Which unit test framework to use for test execution (default: testng; options: testng, junit)</p>
+
+<ul>
+  <li><strong>Type:</strong> java.lang.String</li>
+  <li><strong>Required:</strong> No</li>
+  <li><strong>Expression:</strong> ${framework}</li>
+  <li><strong>Default:</strong> testng</li>
+</ul>
+
+<p><strong>interactiveMode:</strong></p>
+
+<p>Whether to run this command in interactive mode. Defaults to “true”.</p>
+
+<ul>
+  <li><strong>Type:</strong> boolean</li>
+  <li><strong>Required:</strong> No</li>
+  <li><strong>Expression:</strong> ${interactiveMode}</li>
+  <li><strong>Default:</strong> true</li>
+</ul>
+
+<p><strong>name:</strong></p>
+
+<p>The name of the test case (must start with upper case letter).</p>
+
+<ul>
+  <li><strong>Type:</strong> java.lang.String</li>
+  <li><strong>Required:</strong> No</li>
+  <li><strong>Expression:</strong> citrus</li>
+</ul>
+
+<p><strong>targetPackage:</strong></p>
+
+<p>Which package (folder structure) is assigned to this test. Defaults to “com.consol.citrus”</p>
+
+<ul>
+  <li><strong>Type:</strong> java.lang.String</li>
+  <li><strong>Required:</strong> No</li>
+  <li><strong>Expression:</strong> ${targetPackage}</li>
+  <li><strong>Default:</strong> com.consol.citrus</li>
+</ul>
+
+<p><strong>xsd:</strong></p>
+
+<p>Path of the xsd from which the sample request and response are get from</p>
+
+<ul>
+  <li><strong>Type:</strong> java.lang.String</li>
+  <li><strong>Required:</strong> No</li>
+  <li><strong>Expression:</strong> ${xsd}</li>
+</ul>
+
+<p><strong>xsdRequestElem:</strong></p>
+
+<p>Name of the xsd-element used to create the xml-sample-request</p>
+
+<ul>
+  <li><strong>Type:</strong> java.lang.String</li>
+  <li><strong>Required:</strong> No</li>
+  <li><strong>Expression:</strong> ${xsdRequestElem}</li>
+</ul>
+
+<p><strong>xsdResponseElem:</strong></p>
+
+<p>Name of the xsd-element used to create the xml-sample-response</p>
+
+<ul>
+  <li><strong>Type:</strong> java.lang.String</li>
+  <li><strong>Required:</strong> No</li>
+  <li><strong>Expression:</strong> ${xsdResponseElem}</li>
+</ul>
+
+<p><strong>wsdl:</strong></p>
+
+<p>The path to the wsdl from which the suite is generated.</p>
+
+<ul>
+  <li><strong>Type:</strong> java.lang.String</li>
+  <li><strong>Required:</strong> No</li>
+  <li><strong>Expression:</strong> ${wsdl}</li>
+</ul>
+
+<p><strong>nameSuffix:</strong></p>
+
+<p>The name-suffix of all test cases.</p>
+
+<ul>
+  <li><strong>Type:</strong> java.lang.String</li>
+  <li><strong>Required:</strong> No</li>
+  <li><strong>Expression:</strong> ${nameSuffix}</li>
+  <li><strong>Default:</strong> _IT</li>
+</ul>
+
+        </article>
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    
+    <h4>Getting Started</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/home/">Welcome</a></li>
+
+  
+  
+  <li class=""><a href="/docs/user-guide/">User Guide</a></li>
+
+  
+  
+  <li class=""><a href="/docs/setup-maven/">Setup with Maven</a></li>
+
+  
+  
+  <li class=""><a href="/docs/setup-gradle/">Setup with Gradle</a></li>
+
+  
+  
+  <li class=""><a href="/docs/setup-ant/">Setup with ANT</a></li>
+
+  
+  
+  <li class=""><a href="/docs/features/">Features</a></li>
+
+  
+  
+  <li class=""><a href="/docs/download/">Download</a></li>
+
+</ul>
+
+    
+    <h4>Sources</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/repository/">Source repository</a></li>
+
+  
+  
+  <li class=""><a href="/docs/issues/">Issues</a></li>
+
+  
+  
+  <li class=""><a href="/docs/development/">Development</a></li>
+
+  
+  
+  <li class=""><a href="/docs/contributing/">Contributing</a></li>
+
+  
+  
+  <li class=""><a href="/docs/conventions/">Conventions</a></li>
+
+  
+  
+  <li class=""><a href="/docs/conduct/">Code of Conduct</a></li>
+
+</ul>
+
+    
+    <h4>Customize</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/custom-endpoints/"></a></li>
+
+  
+  
+  <li class=""><a href="/docs/custom-actions/">Custom actions</a></li>
+
+  
+  
+  <li class=""><a href="/docs/custom-functions/">Custom functions</a></li>
+
+</ul>
+
+    
+    <h4>Tools</h4>
+    <ul>
+
+  
+  
+  <li class="current"><a href="/docs/maven-plugin/">Maven plugin</a></li>
+
+</ul>
+
+    
+    <h4>Miscellaneous</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/team/">Team</a></li>
+
+  
+  
+  <li class=""><a href="/docs/config-sheet/"></a></li>
+
+  
+  
+  <li class=""><a href="/docs/upgrade-migration/"></a></li>
+
+  
+  
+  <li class=""><a href="/docs/consulting/">Consulting</a></li>
+
+</ul>
+
+    
+    <h4>Meta</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/license/">License</a></li>
+
+  
+  
+  <li class=""><a href="/docs/modules/">Modules</a></li>
+
+  
+  
+  <li class=""><a href="/docs/history/">History</a></li>
+
+</ul>
+
+    
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache&nbsp;License&nbsp;2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/christophd/citrus/blob/master/LICENSE">MIT&nbsp;License</a>.</p>
+      <br/>
+      <p>&copy;&nbsp;2018 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p>&nbsp;</p>
+      <br/>
+      <br/>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>

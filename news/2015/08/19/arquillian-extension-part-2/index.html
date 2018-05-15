@@ -1,0 +1,582 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 2.7.5">
+  <meta name="description" content="Citrus Framework Website">
+  <meta name="author" content="ConSol Software GmbH">
+  <link type="application/atom+xml" rel="alternate" href="https://citrusframework.org/feed.xml" title="Citrus Integration Tests">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/christophd/citrus/commits/master.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="current">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/christophd/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="current">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/christophd/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="news">
+    <div class="grid">
+
+      <div class="docs-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the blog…</option>
+    <option value="/news/">Home</option>
+    
+    <option value="/news/2017/09/21/introducing-citrus-simulator/">Simulating 3rd party services with Spring Boot and Citrus</option>
+    
+    <option value="/news/2017/07/07/introducing-citrus-admin/">Introducing Citrus Admin Web UI</option>
+    
+    <option value="/news/2016/03/15/jcache-chat-citrus/">Testing WebSockets with a Citrus twist</option>
+    
+    <option value="/news/2015/08/19/arquillian-extension-part-2/">Arquillian &amp; Citrus in combination - Part 2</option>
+    
+    <option value="/news/2015/06/29/arquillian-extension-part-1/">Arquillian &amp; Citrus in combination - Part 1</option>
+    
+    <option value="/news/2015/06/03/camel-testing-part-3/">Apache Camel Integration Testing - Part 3</option>
+    
+    <option value="/news/2015/05/27/camel-testing-part-2/">Apache Camel Integration Testing - Part 2</option>
+    
+    <option value="/news/2014/11/21/camel-testing-part-1/">Apache Camel Integration Testing - Part 1</option>
+    
+    <option value="/news/2014/05/30/testing-webmethods-with-citrus-part-ii/">Testing webMethods with Citrus Part II</option>
+    
+    <option value="/news/2014/03/06/testing-webmethods-with-citrus-part-i/">Testing webMethods with Citrus Part I</option>
+    
+    <option value="/news/2011/06/22/excel-validation/">Validate Excel files in Citrus</option>
+    
+    <option value="/news/2011/06/17/testng-data-provider/">Use TestNG data providers in Citrus</option>
+    
+    <option value="/news/2010/12/14/integrate-your-own-validator/">Integrate your own validator into your Citrus project</option>
+    
+    <option value="/news/2010/08/13/testng-groups/">Citrus and TestNG groups</option>
+    
+    <option value="/news/2010/05/19/soap-mustunderstand/">Handle SOAP-ENV:mustUnderstand headers</option>
+    
+    <option value="/news/2010/01/18/custom-meta-info/">Customize meta information</option>
+    
+    
+    <option value="/news/2017/07/07/release-2-7-2/">Release 2.7.2</option>
+    
+    <option value="/news/2017/01/30/release-2-7/">Release 2.7</option>
+    
+    <option value="/news/2016/11/13/release-2-6-2/">Release 2.6.2</option>
+    
+    <option value="/news/2016/06/27/release-2-6/">Release 2.6</option>
+    
+    <option value="/news/2016/01/28/release-2-5/">Release 2.5</option>
+    
+    <option value="/news/2015/11/03/release-2-4/">Release 2.4</option>
+    
+    <option value="/news/2015/08/18/release-2-3/">Release 2.3</option>
+    
+    <option value="/news/2015/06/26/release-2-2/">Release 2.2</option>
+    
+    <option value="/news/2015/02/20/release-2-1/">Release 2.1</option>
+    
+    <option value="/news/2014/11/01/release-2-0/">Release 2.0</option>
+    
+    <option value="/news/2014/05/02/release-1-4/">Release 1.4</option>
+    
+    <option value="/news/2013/04/01/release-1-3/">Release 1.3</option>
+    
+    <option value="/news/2012/07/05/release-1-2/">Release 1.2</option>
+    
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+  <h2>
+    Arquillian &amp; Citrus in combination - Part 2
+    <a href="/news/2015/08/19/arquillian-extension-part-2/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      blog
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      19 Aug 2015
+    </span>
+    <a href="https://github.com/christophd" class="post-author">
+      Christoph Deppisch
+    </a>
+  </div>
+  <div class="post-content">
+    <p>Some time has passed since <a href="/news/2015/06/29/arquillian-extension-part-1">part one</a> of this blog post series and we have made some improvements on the Citrus Arquillian extension.
+So we can look forward to this post as we move on with a more complex test scenario where we include some Citrus mail server within our test. In part one we have already combined both frameworks <a href="http://arquillian.org/" title="Arquillian" target="_blank">Arquillian</a>
+and <a href="http://www.citrusframework.org" title="Citrus framework" target="_blank">Citrus</a> with a basic example.</p>
+
+<p>Let me recap first what we have so far. Citrus is part of the Arquillian test execution and we are able to call our employee REST JEE service which is deployed in an embedded Wildfly application server.
+Arquillian takes care on the test deployment and provides resources such as the endpoint URL to call. In our first test we called the employee service adding new employees and getting the complete list of all employees via REST.</p>
+
+<p>Now we want to extend the employee service so that each new employee gets a welcome email message. Therefore we extend the employee JEE EJB with a mail session bean that is able to send email messages.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Singleton</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EmployeeRepository</span> <span class="o">{</span>
+
+   <span class="kd">private</span> <span class="kd">final</span> <span class="n">Employees</span> <span class="n">employees</span><span class="o">;</span>
+
+   <span class="nd">@EJB</span>
+   <span class="kd">private</span> <span class="n">MailSessionBean</span> <span class="n">mailSessionBean</span><span class="o">;</span>
+
+   <span class="kd">public</span> <span class="nf">EmployeeRepository</span><span class="o">()</span> <span class="o">{</span>
+       <span class="n">employees</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Employees</span><span class="o">();</span>
+   <span class="o">}</span>
+
+   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addEmployee</span><span class="o">(</span><span class="n">Employee</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+       <span class="n">employees</span><span class="o">.</span><span class="na">getEmployees</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
+
+       <span class="k">if</span> <span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getEmail</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">e</span><span class="o">.</span><span class="na">getEmail</span><span class="o">().</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+         <span class="n">mailSessionBean</span><span class="o">.</span><span class="na">sendMail</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getEmail</span><span class="o">(),</span> <span class="s">"Welcome new employee"</span><span class="o">,</span>
+           <span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"We welcome you '%s' to our company - now get to work!"</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getName</span><span class="o">()));</span>
+       <span class="o">}</span>
+   <span class="o">}</span>
+
+   <span class="kd">public</span> <span class="n">Employees</span> <span class="nf">getEmployees</span><span class="o">()</span> <span class="o">{</span>
+       <span class="k">return</span> <span class="n">employees</span><span class="o">;</span>
+   <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>The employee service calls a mail session bean implementation when the email field is set on the new employee. The mail message is sent to the employee mail address as recipient and is a basic text message with subject and text body part.
+Lets have a closer look at the mail session bean implementation that uses Java mail API for creating sending out the mail mime message.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Singleton</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MailSessionBean</span> <span class="o">{</span>
+
+    <span class="cm">/** Logger */</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">Logger</span> <span class="n">log</span> <span class="o">=</span> <span class="n">LoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">MailSessionBean</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">2222</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">host</span> <span class="o">=</span> <span class="s">"localhost"</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">from</span> <span class="o">=</span> <span class="s">"employee-registry@example.com"</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">username</span> <span class="o">=</span> <span class="s">"employee-registry@example.com"</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">password</span> <span class="o">=</span> <span class="s">"secretpw"</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendMail</span><span class="o">(</span><span class="n">String</span> <span class="n">to</span><span class="o">,</span> <span class="n">String</span> <span class="n">subject</span><span class="o">,</span> <span class="n">String</span> <span class="n">body</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Properties</span> <span class="n">props</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Properties</span><span class="o">();</span>
+        <span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"mail.smtp.host"</span><span class="o">,</span> <span class="n">host</span><span class="o">);</span>
+        <span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"mail.smtp.port"</span><span class="o">,</span> <span class="n">port</span><span class="o">);</span>
+        <span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"mail.smtp.auth"</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+
+        <span class="n">Authenticator</span> <span class="n">authenticator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Authenticator</span><span class="o">()</span> <span class="o">{</span>
+            <span class="kd">private</span> <span class="n">PasswordAuthentication</span> <span class="n">pa</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PasswordAuthentication</span><span class="o">(</span><span class="n">username</span><span class="o">,</span> <span class="n">password</span><span class="o">);</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="n">PasswordAuthentication</span> <span class="nf">getPasswordAuthentication</span><span class="o">()</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="n">pa</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">};</span>
+
+        <span class="n">Session</span> <span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">props</span><span class="o">,</span> <span class="n">authenticator</span><span class="o">);</span>
+        <span class="n">session</span><span class="o">.</span><span class="na">setDebug</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="n">MimeMessage</span> <span class="n">message</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MimeMessage</span><span class="o">(</span><span class="n">session</span><span class="o">);</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">message</span><span class="o">.</span><span class="na">setFrom</span><span class="o">(</span><span class="k">new</span> <span class="n">InternetAddress</span><span class="o">(</span><span class="n">from</span><span class="o">));</span>
+            <span class="n">InternetAddress</span><span class="o">[]</span> <span class="n">address</span> <span class="o">=</span> <span class="o">{</span><span class="k">new</span> <span class="n">InternetAddress</span><span class="o">(</span><span class="n">to</span><span class="o">)};</span>
+            <span class="n">message</span><span class="o">.</span><span class="na">setRecipients</span><span class="o">(</span><span class="n">Message</span><span class="o">.</span><span class="na">RecipientType</span><span class="o">.</span><span class="na">TO</span><span class="o">,</span> <span class="n">address</span><span class="o">);</span>
+            <span class="n">message</span><span class="o">.</span><span class="na">setSubject</span><span class="o">(</span><span class="n">subject</span><span class="o">);</span>
+            <span class="n">message</span><span class="o">.</span><span class="na">setSentDate</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">());</span>
+            <span class="n">message</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">body</span><span class="o">);</span>
+            <span class="n">Transport</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">message</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">MessagingException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">"Failed to send welcome mail!"</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Now in our test scenario we need a valid SMTP mail server on host <strong>localhost</strong> and port <strong>2222</strong>. Fortunately Citrus is able to provide such a mail server so we add the <strong>citrus-mail</strong> Maven module to our test project.</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-mail<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>2.3<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span></code></pre></figure>
+
+<p>Now we are ready to add the mail server as a Citrus component. Citrus is working with Spring so we need to add the mail server to the Spring application context. We add a new property to the Arquillian descriptor so the Citrus extension will
+load our new configuration:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;extension</span> <span class="na">qualifier=</span><span class="s">"citrus"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"citrusVersion"</span><span class="nt">&gt;</span>2.3<span class="nt">&lt;/property&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"autoPackage"</span><span class="nt">&gt;</span>true<span class="nt">&lt;/property&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"suiteName"</span><span class="nt">&gt;</span>citrus-arquillian-suite<span class="nt">&lt;/property&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"configurationClass"</span><span class="nt">&gt;</span>com.consol.citrus.samples.javaee.config.CitrusConfig<span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/extension&gt;</span></code></pre></figure>
+
+<p>The configuration class is a Spring Java configuration class in our project that adds the new mail server as Spring bean to the application context.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CitrusConfig</span> <span class="kd">extends</span> <span class="n">CitrusBaseConfig</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="n">MailServer</span> <span class="n">mailServer</span><span class="o">;</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">MailServer</span> <span class="nf">mailServer</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">mailServer</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">mailServer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MailServer</span><span class="o">();</span>
+            <span class="n">mailServer</span><span class="o">.</span><span class="na">setPort</span><span class="o">(</span><span class="mi">2222</span><span class="o">);</span>
+            <span class="n">mailServer</span><span class="o">.</span><span class="na">setAutoStart</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">mailServer</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>The configuration class must extend the Citrus base configuration class. This basic class adds all needed Spring beans for Citrus such as message validators, functions, validation matchers and so on. Important is our new mail server that uses the port
+<strong>2222</strong> and automatically starts with the Citrus application context. This is everything we need to do in order to add the mail server component to the Citrus runtime. We can add other Citrus endpoint components such as JMS endpoints, SOAP WebService servers
+and Camel endpoints here the same way. For now we are finished with the configuration and we can reference the mail server in our test case.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@RunWith</span><span class="o">(</span><span class="n">Arquillian</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="nd">@RunAsClient</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EmployeeMailTest</span> <span class="o">{</span>
+
+    <span class="nd">@CitrusFramework</span>
+    <span class="kd">private</span> <span class="n">Citrus</span> <span class="n">citrusFramework</span><span class="o">;</span>
+
+    <span class="nd">@ArquillianResource</span>
+    <span class="kd">private</span> <span class="n">URL</span> <span class="n">baseUri</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">serviceUri</span><span class="o">;</span>
+
+    <span class="nd">@CitrusEndpoint</span>
+    <span class="kd">private</span> <span class="n">MailServer</span> <span class="n">mailServer</span><span class="o">;</span>
+
+    <span class="nd">@Deployment</span><span class="o">(</span><span class="n">testable</span> <span class="o">=</span> <span class="kc">false</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">WebArchive</span> <span class="nf">createDeployment</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">ShrinkWrap</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">WebArchive</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">addClasses</span><span class="o">(</span>
+                <span class="n">RegistryApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">MailSessionBean</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">EmployeeResource</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
+                <span class="n">Employees</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">Employee</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">EmployeeRepository</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Before</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setUp</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">serviceUri</span> <span class="o">=</span> <span class="k">new</span> <span class="n">URL</span><span class="o">(</span><span class="n">baseUri</span><span class="o">,</span> <span class="s">"registry/employee"</span><span class="o">).</span><span class="na">toExternalForm</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="nd">@CitrusTest</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testPostWithWelcomeEmail</span><span class="o">(</span><span class="nd">@CitrusResource</span> <span class="n">TestDesigner</span> <span class="n">citrus</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">citrus</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">serviceUri</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">fork</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">(</span><span class="k">new</span> <span class="n">HttpMessage</span><span class="o">(</span><span class="s">"name=Rajesh&amp;age=20&amp;email=rajesh@example.com"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">method</span><span class="o">(</span><span class="n">HttpMethod</span><span class="o">.</span><span class="na">POST</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_FORM_URLENCODED</span><span class="o">));</span>
+
+        <span class="n">citrus</span><span class="o">.</span><span class="na">receive</span><span class="o">(</span><span class="n">mailServer</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"&lt;mail-message xmlns=\"http://www.citrusframework.org/schema/mail/message\"&gt;"</span> <span class="o">+</span>
+              <span class="s">"&lt;from&gt;employee-registry@example.com&lt;/from&gt;"</span> <span class="o">+</span>
+              <span class="s">"&lt;to&gt;rajesh@example.com&lt;/to&gt;"</span> <span class="o">+</span>
+              <span class="s">"&lt;cc&gt;&lt;/cc&gt;"</span> <span class="o">+</span>
+              <span class="s">"&lt;bcc&gt;&lt;/bcc&gt;"</span> <span class="o">+</span>
+              <span class="s">"&lt;subject&gt;Welcome new employee&lt;/subject&gt;"</span> <span class="o">+</span>
+              <span class="s">"&lt;body&gt;"</span> <span class="o">+</span>
+                <span class="s">"&lt;contentType&gt;text/plain; charset=us-ascii&lt;/contentType&gt;"</span> <span class="o">+</span>
+                <span class="s">"&lt;content&gt;We welcome you 'Rajesh' to our company - now get to work!&lt;/content&gt;"</span> <span class="o">+</span>
+              <span class="s">"&lt;/body&gt;"</span> <span class="o">+</span>
+            <span class="s">"&lt;/mail-message&gt;"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">CitrusMailMessageHeaders</span><span class="o">.</span><span class="na">MAIL_SUBJECT</span><span class="o">,</span> <span class="s">"Welcome new employee"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">CitrusMailMessageHeaders</span><span class="o">.</span><span class="na">MAIL_FROM</span><span class="o">,</span> <span class="s">"employee-registry@example.com"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">CitrusMailMessageHeaders</span><span class="o">.</span><span class="na">MAIL_TO</span><span class="o">,</span> <span class="s">"rajesh@example.com"</span><span class="o">);</span>
+
+        <span class="n">citrus</span><span class="o">.</span><span class="na">receive</span><span class="o">(</span><span class="n">serviceUri</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">(</span><span class="k">new</span> <span class="n">HttpMessage</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">statusCode</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">NO_CONTENT</span><span class="o">));</span>
+
+        <span class="n">citrus</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">serviceUri</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">fork</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">(</span><span class="k">new</span> <span class="n">HttpMessage</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">method</span><span class="o">(</span><span class="n">HttpMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_XML</span><span class="o">));</span>
+
+        <span class="n">citrus</span><span class="o">.</span><span class="na">receive</span><span class="o">(</span><span class="n">serviceUri</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">(</span><span class="k">new</span> <span class="n">HttpMessage</span><span class="o">(</span><span class="s">"&lt;employees&gt;"</span> <span class="o">+</span>
+                    <span class="s">"&lt;employee&gt;"</span> <span class="o">+</span>
+                        <span class="s">"&lt;age&gt;20&lt;/age&gt;"</span> <span class="o">+</span>
+                        <span class="s">"&lt;name&gt;Rajesh&lt;/name&gt;"</span> <span class="o">+</span>
+                        <span class="s">"&lt;email&gt;rajesh@example.com&lt;/email&gt;"</span> <span class="o">+</span>
+                    <span class="s">"&lt;/employee&gt;"</span> <span class="o">+</span>
+                <span class="s">"&lt;/employees&gt;"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">statusCode</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">));</span>
+
+        <span class="n">citrusFramework</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">citrus</span><span class="o">.</span><span class="na">getTestCase</span><span class="o">());</span>
+    <span class="o">}</span>
+
+<span class="o">}</span></code></pre></figure>
+
+<p>The Arquillian test case is basically the same as before in our first part example. The test now uses a <strong><a href="https://github.com/CitrusEndpoint" class="user-mention">@CitrusEndpoint</a></strong> annotated mail server component. The Arquillian Citrus extension will automatically inject the
+mail server Spring bean that we have added to the Citrus configuration before. In case multiple components of the same type are available in the configuration you can use the <strong><a href="https://github.com/CitrusEndpoint" class="user-mention">@CitrusEndpoint</a></strong> annotation with a Spring bean name
+like <strong><a href="https://github.com/CitrusEndpoint" class="user-mention">@CitrusEndpoint</a>(name=”myMailServer”)</strong>. We receive the mail message right after the test has called the service interface with the new employee <strong>Rajesh</strong> and a valid email field <strong>rajesh@example.com</strong>. The mail server Citrus component
+is ready to be used in a <strong>receive</strong> test action. Citrus waits for the mail message to arrive and performs message validation with an expected mail message. Citrus automatically converts the mail mime message to a XML message representation.
+We can expect the mail message content much better using the XML syntax as we can use the powerful XML validation with XPath, ignore and validation matcher support.</p>
+
+<p>In addition to that Citrus adds some special header values for explicit validation in the <strong>receive</strong> action. That completes the mail server test case. Citrus automatically start a SMTP server that receives the mail message. The mail is not sent to
+a real recipient we just want to validate the mail message content in our test. The mail server did automatically accept the authentication in default mode. We could also switch to advanced mode where we can also validate the authentication steps. For now we keep
+it simple and are happy to receive the mail message. Please note that we can mix the receive actions of different interfaces in Citrus very easy. Citrus acts both as client and server on our REST and mail interfaces in the test.</p>
+
+<p>This should close the book for this post. You can review the example code on <a href="https://github.com/christophd/citrus-samples/tree/master/javaee" title="Sample code" target="_blank">christophd@github</a>. In a next post I will show you how we can execute
+the test as part of the test deployment on the application server. Then we have direct access to container managed resources such as JMS connection factories and queues. Once again, stay tuned!</p>
+
+  </div>
+</article>
+
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <h4>Overview</h4>
+    <ul>
+      <li class="">
+        <a href="/news/">All News</a>
+      </li>
+      <li class="">
+        <a href="/news/releases/">All Releases</a>
+      </li>
+      <li>
+        <a href="http://citrus.895196.n3.nabble.com/" target="_blank">Forum</a>
+      </li>
+    </ul>
+    <h4>Recent Releases</h4>
+    <ul>
+      
+      <li class="">
+        <a href="/news/2017/07/07/release-2-7-2/">Version 2.7.2</a>
+      </li>
+      
+      <li class="">
+        <a href="/news/2017/01/30/release-2-7/">Version 2.7</a>
+      </li>
+      
+      <li class="">
+        <a href="/news/2016/11/13/release-2-6-2/">Version 2.6.2</a>
+      </li>
+      
+      <li class="">
+        <a href="/news/2016/06/27/release-2-6/">Version 2.6</a>
+      </li>
+      
+      <li class="">
+        <a href="/news/2016/01/28/release-2-5/">Version 2.5</a>
+      </li>
+      
+      <li>
+        <a href="/docs/history/">History »</a>
+      </li>
+    </ul>
+    <h4>Other News</h4>
+    <ul>
+        
+        <li class="">
+          <a href="/news/2017/09/21/introducing-citrus-simulator/">Citrus Simulator</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2017/07/07/introducing-citrus-admin/">Admin UI</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2016/03/15/jcache-chat-citrus/">Testing WebSockets</a>
+        </li>
+        
+        <li class="current">
+          <a href="/news/2015/08/19/arquillian-extension-part-2/">Arquillian &amp; Citrus II</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2015/06/29/arquillian-extension-part-1/">Arquillian &amp; Citrus I</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2015/06/03/camel-testing-part-3/">Apache Camel III</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2015/05/27/camel-testing-part-2/">Apache Camel II</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2014/11/21/camel-testing-part-1/">Apache Camel I</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2014/05/30/testing-webmethods-with-citrus-part-ii/">Testing webMethods II</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2014/03/06/testing-webmethods-with-citrus-part-i/">Testing webMethods I</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2011/06/22/excel-validation/">Validate Excel files</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2011/06/17/testng-data-provider/">TestNG data providers</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2010/12/14/integrate-your-own-validator/">Integrate your own validator</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2010/08/13/testng-groups/">TestNG groups</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2010/05/19/soap-mustunderstand/">SOAP-ENV:mustUnderstand</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2010/01/18/custom-meta-info/">Custom meta info</a>
+        </li>
+        
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/christophd/citrus/blob/master/LICENSE">MIT License</a>.</p>
+      <br>
+      <p>© 2018 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p> </p>
+      <br>
+      <br>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>

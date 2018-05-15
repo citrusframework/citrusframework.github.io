@@ -1,0 +1,627 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 2.7.5">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="https://citrusframework.org/feed.xml" title="Citrus Integration Tests" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/christophd/citrus/commits/master.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="current">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/christophd/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="current">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/christophd/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="docs">
+    <div class="grid">
+
+      <div class="docs-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the docs…</option>
+    <option value="/docs/home">Home</option>
+    
+    <optgroup label="Getting Started">
+      
+  
+  
+  <option value="/docs/home/">Welcome</option>
+
+  
+  
+  <option value="/docs/user-guide/">User Guide</option>
+
+  
+  
+  <option value="/docs/setup-maven/">Setup with Maven</option>
+
+  
+  
+  <option value="/docs/setup-gradle/">Setup with Gradle</option>
+
+  
+  
+  <option value="/docs/setup-ant/">Setup with ANT</option>
+
+  
+  
+  <option value="/docs/features/">Features</option>
+
+  
+  
+  <option value="/docs/download/">Download</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Sources">
+      
+  
+  
+  <option value="/docs/repository/">Source repository</option>
+
+  
+  
+  <option value="/docs/issues/">Issues</option>
+
+  
+  
+  <option value="/docs/development/">Development</option>
+
+  
+  
+  <option value="/docs/contributing/">Contributing</option>
+
+  
+  
+  <option value="/docs/conventions/">Conventions</option>
+
+  
+  
+  <option value="/docs/conduct/">Code of Conduct</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Customize">
+      
+  
+  
+  <option value="/docs/custom-endpoints/"></option>
+
+  
+  
+  <option value="/docs/custom-actions/">Custom actions</option>
+
+  
+  
+  <option value="/docs/custom-functions/">Custom functions</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Tools">
+      
+  
+  
+  <option value="/docs/maven-plugin/">Maven plugin</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Miscellaneous">
+      
+  
+  
+  <option value="/docs/team/">Team</option>
+
+  
+  
+  <option value="/docs/config-sheet/"></option>
+
+  
+  
+  <option value="/docs/upgrade-migration/"></option>
+
+  
+  
+  <option value="/docs/consulting/">Consulting</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Meta">
+      
+  
+  
+  <option value="/docs/license/">License</option>
+
+  
+  
+  <option value="/docs/modules/">Modules</option>
+
+  
+  
+  <option value="/docs/history/">History</option>
+
+
+    </optgroup>
+    
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+          <div class="improve right hide-on-mobiles">
+            <a href="https://github.com/christophd/citrus/edit/master/src/site/_docs/download.md"><i class="fa fa-pencil"></i> &nbsp;Improve this page</a>
+          </div>
+          <h1>Download</h1>
+          <p>Citrus 2.7.5 is the latest stable release . You may also go for the <a href="#use-latest-snapshots">latest snapshot versions</a> 
+of Citrus always being up to date with development changes. Citrus is available on <a href="http://search.maven.org/#search%7Cga%7C1%7Ccom.consol.citrus">Maven central repository</a> 
+so you can add Citrus as <a href="#maven">Maven dependency</a> to your project. All available versions and production releases for 
+manual download are listed below:</p>
+
+<h2 id="release-artifacts">Release artifacts</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Version</th>
+      <th style="text-align: left">Artifact</th>
+      <th style="text-align: left">Sources</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">2.7.5</td>
+      <td style="text-align: left">Release <a href="http://www.citrusframework.org/dist/citrus-2.7.5-release.zip">zip</a>/<a href="http://www.citrusframework.org/dist/citrus-2.7.5-release.tar.gz">tar.gz</a></td>
+      <td style="text-align: left">Sources <a href="http://www.citrusframework.org/dist/citrus-2.7.5-src.zip">zip</a>/<a href="http://www.citrusframework.org/dist/citrus-2.7.5-src.tar.gz">tar.gz</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">2.7.4</td>
+      <td style="text-align: left">Release <a href="http://www.citrusframework.org/dist/citrus-2.7.4-release.zip">zip</a>/<a href="http://www.citrusframework.org/dist/citrus-2.7.4-release.tar.gz">tar.gz</a></td>
+      <td style="text-align: left">Sources <a href="http://www.citrusframework.org/dist/citrus-2.7.4-src.zip">zip</a>/<a href="http://www.citrusframework.org/dist/citrus-2.7.4-src.tar.gz">tar.gz</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">2.7.3</td>
+      <td style="text-align: left">Release <a href="http://www.citrusframework.org/dist/citrus-2.7.3-release.zip">zip</a>/<a href="http://www.citrusframework.org/dist/citrus-2.7.3-release.tar.gz">tar.gz</a></td>
+      <td style="text-align: left">Sources <a href="http://www.citrusframework.org/dist/citrus-2.7.3-src.zip">zip</a>/<a href="http://www.citrusframework.org/dist/citrus-2.7.3-src.tar.gz">tar.gz</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">2.7.2</td>
+      <td style="text-align: left">Release <a href="http://www.citrusframework.org/dist/citrus-2.7.2-release.zip">zip</a>/<a href="http://www.citrusframework.org/dist/citrus-2.7.2-release.tar.gz">tar.gz</a></td>
+      <td style="text-align: left">Sources <a href="http://www.citrusframework.org/dist/citrus-2.7.2-src.zip">zip</a>/<a href="http://www.citrusframework.org/dist/citrus-2.7.2-src.tar.gz">tar.gz</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">2.7.1</td>
+      <td style="text-align: left">Release <a href="http://www.citrusframework.org/dist/citrus-2.7.1-release.zip">zip</a>/<a href="http://www.citrusframework.org/dist/citrus-2.7.1-release.tar.gz">tar.gz</a></td>
+      <td style="text-align: left">Sources <a href="http://www.citrusframework.org/dist/citrus-2.7.1-src.zip">zip</a>/<a href="http://www.citrusframework.org/dist/citrus-2.7.1-src.tar.gz">tar.gz</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">2.7</td>
+      <td style="text-align: left">Release <a href="http://www.citrusframework.org/dist/citrus-2.7-release.zip">zip</a>/<a href="http://www.citrusframework.org/dist/citrus-2.7-release.tar.gz">tar.gz</a></td>
+      <td style="text-align: left">Sources <a href="http://www.citrusframework.org/dist/citrus-2.7-src.zip">zip</a>/<a href="http://www.citrusframework.org/dist/citrus-2.7-src.tar.gz">tar.gz</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">2.6.2</td>
+      <td style="text-align: left">Release <a href="http://www.citrusframework.org/dist/citrus-2.6.2-release.zip">zip</a>/<a href="http://www.citrusframework.org/dist/citrus-2.6.2-release.tar.gz">tar.gz</a></td>
+      <td style="text-align: left">Sources <a href="http://www.citrusframework.org/dist/citrus-2.6.2-src.zip">zip</a>/<a href="http://www.citrusframework.org/dist/citrus-2.6.2-src.tar.gz">tar.gz</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">2.6.1</td>
+      <td style="text-align: left">Release <a href="http://www.citrusframework.org/dist/citrus-2.6.1-release.zip">zip</a>/<a href="http://www.citrusframework.org/dist/citrus-2.6.1-release.tar.gz">tar.gz</a></td>
+      <td style="text-align: left">Sources <a href="http://www.citrusframework.org/dist/citrus-2.6.1-src.zip">zip</a>/<a href="http://www.citrusframework.org/dist/citrus-2.6.1-src.tar.gz">tar.gz</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">2.6</td>
+      <td style="text-align: left">Release <a href="http://www.citrusframework.org/dist/citrus-2.6-release.zip">zip</a>/<a href="http://www.citrusframework.org/dist/citrus-2.6-release.tar.gz">tar.gz</a></td>
+      <td style="text-align: left">Sources <a href="http://www.citrusframework.org/dist/citrus-2.6-src.zip">zip</a>/<a href="http://www.citrusframework.org/dist/citrus-2.6-src.tar.gz">tar.gz</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">2.5.2</td>
+      <td style="text-align: left">Release <a href="http://www.citrusframework.org/dist/citrus-2.5.2-release.zip">zip</a>/<a href="http://www.citrusframework.org/dist/citrus-2.5.2-release.tar.gz">tar.gz</a></td>
+      <td style="text-align: left">Sources <a href="http://www.citrusframework.org/dist/citrus-2.5.2-src.zip">zip</a>/<a href="http://www.citrusframework.org/dist/citrus-2.5.2-src.tar.gz">tar.gz</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">2.5.1</td>
+      <td style="text-align: left">Release <a href="http://www.citrusframework.org/dist/citrus-2.5.1-release.zip">zip</a>/<a href="http://www.citrusframework.org/dist/citrus-2.5.1-release.tar.gz">tar.gz</a></td>
+      <td style="text-align: left">Sources <a href="http://www.citrusframework.org/dist/citrus-2.5.1-src.zip">zip</a>/<a href="http://www.citrusframework.org/dist/citrus-2.5.1-src.tar.gz">tar.gz</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">2.5</td>
+      <td style="text-align: left">Release <a href="http://www.citrusframework.org/dist/citrus-2.5-release.zip">zip</a>/<a href="http://www.citrusframework.org/dist/citrus-2.5-release.tar.gz">tar.gz</a></td>
+      <td style="text-align: left">Sources <a href="http://www.citrusframework.org/dist/citrus-2.5-src.zip">zip</a>/<a href="http://www.citrusframework.org/dist/citrus-2.5-src.tar.gz">tar.gz</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The Citrus project requires Java 8 (or newer version) to run.</p>
+
+<h2 id="maven">Maven</h2>
+
+<p>You can easily use Citrus in a Maven project by defining test-scoped dependencies. Simply add the ConSol Labs repository 
+and the following dependencies to your POM (pom.xml). See also our Maven tutorial for a detailed description.</p>
+
+<p>The Citrus core module dependency.</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-core<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>2.7.5<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span></code></pre></figure>
+
+<p>In case you need Citrus modules add following dependencies. See also our modules section for more information on Citrus modules:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-jms<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>2.7.5<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-http<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>2.7.5<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-ws<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>2.7.5<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-websocket<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>2.7.5<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-camel<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>2.7.5<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-ssh<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>2.7.5<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-vertx<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>2.7.5<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span></code></pre></figure>
+
+<p>If you would like to use the new Java DSL test writing language you have to add this dependency to your project accordingly.</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-java-dsl<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>2.7.5<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span></code></pre></figure>
+
+<h2 id="use-latest-snapshots">Use latest snapshots</h2>
+
+<p>Stable releases are available on Maven central repository. We also provide nightly snapshot releases that are available on
+ConSol Labs repository. So if you want to use latest snapshot releases of Citrus please add the following repository to 
+your Maven POM.</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;repository&gt;</span>
+  <span class="nt">&lt;id&gt;</span>consol-labs-snapshots<span class="nt">&lt;/id&gt;</span>
+  <span class="nt">&lt;url&gt;</span>http://labs.consol.de/maven/snapshots-repository/<span class="nt">&lt;/url&gt;</span>
+  <span class="nt">&lt;snapshots&gt;</span>
+    <span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+    <span class="nt">&lt;updatePolicy&gt;</span>10080<span class="nt">&lt;/updatePolicy&gt;</span>
+  <span class="nt">&lt;/snapshots&gt;</span>
+  <span class="nt">&lt;releases&gt;</span>
+    <span class="nt">&lt;enabled&gt;</span>false<span class="nt">&lt;/enabled&gt;</span>
+  <span class="nt">&lt;/releases&gt;</span>
+<span class="nt">&lt;/repository&gt;</span></code></pre></figure>
+
+<h2 id="logging-framework-notice">Logging framework notice</h2>
+
+<p>We use <a href="http://www.slf4j.org/">SLF4J</a> as logging abstraction framework, which means that you as a user are not forced to use a specific logging 
+implementation. SLF4J is similar to commons-logging, so you may use whatever logging framework you want to. All you have
+to do is add an SLF4J logging implementation to your classpath.</p>
+
+<p>In case you are currently using <a href="http://logging.apache.org/log4j">log4j</a> as logging framework just include slf4j-log4j12.jar on your classpath and Citrus 
+will use log4j too. If you want to use some other framework than please see the <a href="http://www.slf4j.org/">SLF4J</a> documentation for help.</p>
+
+        </article>
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    
+    <h4>Getting Started</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/home/">Welcome</a></li>
+
+  
+  
+  <li class=""><a href="/docs/user-guide/">User Guide</a></li>
+
+  
+  
+  <li class=""><a href="/docs/setup-maven/">Setup with Maven</a></li>
+
+  
+  
+  <li class=""><a href="/docs/setup-gradle/">Setup with Gradle</a></li>
+
+  
+  
+  <li class=""><a href="/docs/setup-ant/">Setup with ANT</a></li>
+
+  
+  
+  <li class=""><a href="/docs/features/">Features</a></li>
+
+  
+  
+  <li class="current"><a href="/docs/download/">Download</a></li>
+
+</ul>
+
+    
+    <h4>Sources</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/repository/">Source repository</a></li>
+
+  
+  
+  <li class=""><a href="/docs/issues/">Issues</a></li>
+
+  
+  
+  <li class=""><a href="/docs/development/">Development</a></li>
+
+  
+  
+  <li class=""><a href="/docs/contributing/">Contributing</a></li>
+
+  
+  
+  <li class=""><a href="/docs/conventions/">Conventions</a></li>
+
+  
+  
+  <li class=""><a href="/docs/conduct/">Code of Conduct</a></li>
+
+</ul>
+
+    
+    <h4>Customize</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/custom-endpoints/"></a></li>
+
+  
+  
+  <li class=""><a href="/docs/custom-actions/">Custom actions</a></li>
+
+  
+  
+  <li class=""><a href="/docs/custom-functions/">Custom functions</a></li>
+
+</ul>
+
+    
+    <h4>Tools</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/maven-plugin/">Maven plugin</a></li>
+
+</ul>
+
+    
+    <h4>Miscellaneous</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/team/">Team</a></li>
+
+  
+  
+  <li class=""><a href="/docs/config-sheet/"></a></li>
+
+  
+  
+  <li class=""><a href="/docs/upgrade-migration/"></a></li>
+
+  
+  
+  <li class=""><a href="/docs/consulting/">Consulting</a></li>
+
+</ul>
+
+    
+    <h4>Meta</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/license/">License</a></li>
+
+  
+  
+  <li class=""><a href="/docs/modules/">Modules</a></li>
+
+  
+  
+  <li class=""><a href="/docs/history/">History</a></li>
+
+</ul>
+
+    
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache&nbsp;License&nbsp;2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/christophd/citrus/blob/master/LICENSE">MIT&nbsp;License</a>.</p>
+      <br/>
+      <p>&copy;&nbsp;2018 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p>&nbsp;</p>
+      <br/>
+      <br/>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>

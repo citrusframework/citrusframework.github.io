@@ -1,0 +1,663 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 2.7.5">
+  <meta name="description" content="Citrus Framework Website">
+  <meta name="author" content="ConSol Software GmbH">
+  <link type="application/atom+xml" rel="alternate" href="https://citrusframework.org/feed.xml" title="Citrus Integration Tests">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/christophd/citrus/commits/master.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="current">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/christophd/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="current">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/christophd/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="docs">
+    <div class="grid">
+
+      <div class="docs-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the docs…</option>
+    <option value="/docs/home">Home</option>
+    
+    <optgroup label="Getting Started">
+      
+  
+  
+  <option value="/docs/home/">Welcome</option>
+
+  
+  
+  <option value="/docs/user-guide/">User Guide</option>
+
+  
+  
+  <option value="/docs/setup-maven/">Setup with Maven</option>
+
+  
+  
+  <option value="/docs/setup-gradle/">Setup with Gradle</option>
+
+  
+  
+  <option value="/docs/setup-ant/">Setup with ANT</option>
+
+  
+  
+  <option value="/docs/features/">Features</option>
+
+  
+  
+  <option value="/docs/download/">Download</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Sources">
+      
+  
+  
+  <option value="/docs/repository/">Source repository</option>
+
+  
+  
+  <option value="/docs/issues/">Issues</option>
+
+  
+  
+  <option value="/docs/development/">Development</option>
+
+  
+  
+  <option value="/docs/contributing/">Contributing</option>
+
+  
+  
+  <option value="/docs/conventions/">Conventions</option>
+
+  
+  
+  <option value="/docs/conduct/">Code of Conduct</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Customize">
+      
+  
+  
+  <option value="/docs/custom-endpoints/"></option>
+
+  
+  
+  <option value="/docs/custom-actions/">Custom actions</option>
+
+  
+  
+  <option value="/docs/custom-functions/">Custom functions</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Tools">
+      
+  
+  
+  <option value="/docs/maven-plugin/">Maven plugin</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Miscellaneous">
+      
+  
+  
+  <option value="/docs/team/">Team</option>
+
+  
+  
+  <option value="/docs/config-sheet/"></option>
+
+  
+  
+  <option value="/docs/upgrade-migration/"></option>
+
+  
+  
+  <option value="/docs/consulting/">Consulting</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Meta">
+      
+  
+  
+  <option value="/docs/license/">License</option>
+
+  
+  
+  <option value="/docs/modules/">Modules</option>
+
+  
+  
+  <option value="/docs/history/">History</option>
+
+
+    </optgroup>
+    
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+          <div class="improve right hide-on-mobiles">
+            <a href="https://github.com/christophd/citrus/edit/master/src/site/_docs/custom-actions.md"><i class="fa fa-pencil"></i>  Improve this page</a>
+          </div>
+          <h1>Custom actions</h1>
+          <p>Citrus comes with a powerful set of actions built-in, covering a wide range of helpful SOA integration testing aspects 
+like sending and receiving messages, database access, Java and Groovy scripting support or dealing with exceptions. For 
+a full list of provided standard actions see the <a href="/docs/user-guide">reference documentation</a>. But each project and 
+especially each system-under-test (SUT) comes along with its own specifics and characteristics, so chances are high that 
+during a project the need for an extension of the built-in citrus actions will arise. This tutorial shall show you how 
+easy and handsome it is to provide your own custom actions and reuse them inside your citrus integration tests.</p>
+
+<p>Let’s quickly refresh our memory how citrus actions are used in a test case:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">  
+<span class="nt">&lt;actions&gt;</span>
+  <span class="nt">&lt;echo&gt;</span>
+    <span class="nt">&lt;message&gt;</span>Starting integration test<span class="nt">&lt;/message&gt;</span>
+  <span class="nt">&lt;/echo&gt;</span>
+  
+  <span class="nt">&lt;sql</span> <span class="na">datasource=</span><span class="s">"someDataSource"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;statement&gt;</span>DELETE FROM CUSTOMERS<span class="nt">&lt;/statement&gt;</span>
+  <span class="nt">&lt;/sql&gt;</span>
+  
+  <span class="nt">&lt;send</span> <span class="na">endpoint=</span><span class="s">"customerEndpoint"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;message&gt;</span>
+      <span class="nt">&lt;data&gt;</span>
+        <span class="cp">&lt;![CDATA[
+          &lt;RequestMessage&gt;</span>
+                 ...
+          <span class="nt">&lt;/RequestMessage&gt;</span>
+        ]]&gt;
+      <span class="nt">&lt;/data&gt;</span>
+    <span class="nt">&lt;/message&gt;</span>
+  <span class="nt">&lt;/send&gt;</span>
+<span class="nt">&lt;/actions&gt;</span></code></pre></figure>
+
+<p>As you’ll notice (or already know) actions are written in a DSL-like syntax. But under the hood they end up as Spring 
+beans - so using standard Spring mechanisms for extending citrus with your own custom actions will work like a charm. 
+Let’s explore a first simple way to introduce a custom action into your testing project.</p>
+
+<h2 id="using-the-generic-action-element">Using the generic action element</h2>
+
+<p>This approach is almost a no-brainer, but offers less flexibility as we will see later on. Let’s imagine a simplistic 
+scenario: your SUT outputs a lot of file traffic during the tests, so that we need a simple way to clean up the mess in 
+a specific directory right after a test run. We also put away the fact that this could be as well realized by using groovy 
+or Java actions and decide to use a custom action instead.</p>
+
+<p>The first step is to create our own action class which extends com.consol.citrus.actions.AbstractTestAction:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleCleanupDirAction</span> <span class="kd">extends</span> <span class="n">AbstractTestAction</span> <span class="o">{</span>
+ 
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">directory</span><span class="o">;</span>
+ 
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doExecute</span><span class="o">(</span><span class="n">TestContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">File</span> <span class="n">dir</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">directory</span><span class="o">);</span>
+        <span class="n">deleteDirectory</span><span class="o">(</span><span class="n">dir</span><span class="o">);</span>
+    <span class="o">}</span>
+ 
+    <span class="c1">//ommitted directory getter/setter and deleteDirectory() method</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>If you want to avoid inheritance here you could as well implement the interface com.consol.citrus.TestAction instead. 
+The property directory is declared as field with appropriate getters and setters so that a value can be injected by the 
+container.</p>
+
+<p>Having your test action class ready, change to citrus-config.xml and make it available as Spring bean there:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">  
+<span class="c">&lt;!-- Custom action bean --&gt;</span>
+<span class="nt">&lt;bean</span> <span class="na">name=</span><span class="s">"simpleCleanupDirAction"</span> <span class="na">class=</span><span class="s">"com.consol.jza.citrus.tutorial.actions.SimpleCleanupDirAction"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"directory"</span> <span class="na">value=</span><span class="s">"/Users/jza/tmp/test"</span><span class="nt">/&gt;</span>    
+<span class="nt">&lt;/bean&gt;</span></code></pre></figure>
+
+<p>Note that the directory value is injected here during declaration of the bean, a drawback we will address in a second. 
+So for now, your first custom action is ready to be used in citrus tests using the generic action element provided by citrus:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">  
+<span class="nt">&lt;actions&gt;</span>
+  <span class="nt">&lt;echo&gt;</span>
+      <span class="nt">&lt;message&gt;</span>Attention! Calling my first custom action bean!!<span class="nt">&lt;/message&gt;</span>
+  <span class="nt">&lt;/echo&gt;</span>
+  <span class="nt">&lt;action</span> <span class="na">reference=</span><span class="s">"simpleCleanupDirAction"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/actions&gt;</span></code></pre></figure>
+
+<p>Run your test project and enjoy your first custom action being executed. Easy so far, but as stated earlier, our custom 
+action lacks some kind of configurability. If your SUT spammed 10 directories with files, you would have to declare one 
+bean for each directory, not an optimal solution. So let’s head on for a more generic approach using Spring’s extensible 
+XML authoring feature.</p>
+
+<h2 id="using-springs-schema-based-extensions">Using Spring’s schema-based extensions</h2>
+
+<p>Since version 2.0, Spring provides a mechanism to define your own bean definition schemas and wire them into the Spring 
+container. We will use this mechanism to define our own custom action schema, describing XML action elements which can 
+then be used in citrus tests. It is much easier than it sounds, so let’s get started. The functionality of our action 
+bean stays the same, so just copy it and name it GenericCleanupDirAction inside the same package. Our aim is to be able 
+to define actions in our tests like this:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">  
+<span class="nt">&lt;actions&gt;</span>
+  <span class="nt">&lt;custom:genericCleanupDirAction</span> <span class="na">directory=</span><span class="s">"/Users/jza/tmp/andSoOn"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/actions&gt;</span></code></pre></figure>
+
+<p>To achieve this, we define our custom namespace (http://www.citrusframework.org/schema/jza/custom/actions) together with 
+an XSD schema for our action declaration:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">  
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;xs:schema</span> <span class="na">xmlns=</span><span class="s">"http://www.citrusframework.org/schema/jza/custom/actions"</span> 
+  <span class="na">xmlns:xs=</span><span class="s">"http://www.w3.org/2001/XMLSchema"</span>
+  <span class="na">xmlns:beans=</span><span class="s">"http://www.springframework.org/schema/beans"</span>
+  <span class="na">targetNamespace=</span><span class="s">"http://www.citrusframework.org/schema/jza/custom/actions"</span>
+  <span class="na">elementFormDefault=</span><span class="s">"qualified"</span>
+  <span class="na">attributeFormDefault=</span><span class="s">"unqualified"</span><span class="nt">&gt;</span>
+ 
+  <span class="nt">&lt;xs:import</span> <span class="na">namespace=</span><span class="s">"http://www.springframework.org/schema/beans"</span><span class="nt">/&gt;</span>
+ 
+  <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">"cleanupFileDirAction"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;xs:complexType&gt;</span>
+      <span class="nt">&lt;xs:complexContent&gt;</span>
+        <span class="nt">&lt;xs:extension</span> <span class="na">base=</span><span class="s">"beans:identifiedType"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;xs:attribute</span> <span class="na">name=</span><span class="s">"directory"</span> <span class="na">type=</span><span class="s">"xs:string"</span> <span class="na">use=</span><span class="s">"required"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/xs:extension&gt;</span>
+      <span class="nt">&lt;/xs:complexContent&gt;</span>  
+    <span class="nt">&lt;/xs:complexType&gt;</span>
+  <span class="nt">&lt;/xs:element&gt;</span>
+<span class="nt">&lt;/xs:schema&gt;</span></code></pre></figure>
+
+<p>Important aspects are the declaration of the namespace we are using and the usage of Spring’s beans namespace for the 
+XSD extension mechanism to add an id attribute to our action element (as an alternative, we could simply add it ourselves). 
+Place the XSD into a package of your source tree (I used com.consol.jza.citrus.tutorial.schema in this example) and head on.</p>
+
+<p>Next, we have to write two simple classes to tell Spring how to handle the bean definitions of our newly created namespace. 
+At first, we have to provide a NamespaceHandler for our new namespace, registering a BeanDefinitionParser for our XML element:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CustomActionsNamespaceHandler</span> <span class="kd">extends</span> <span class="n">NamespaceHandlerSupport</span> <span class="o">{</span>
+        
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">registerBeanDefinitionParser</span><span class="o">(</span><span class="s">"cleanupFileDirAction"</span><span class="o">,</span> <span class="k">new</span> <span class="n">GenericCleanupDirActionDefinitionParser</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>We tell Spring to pass our top-level action element to our own parser implementation. The code for our custom 
+BeanDefinitionParser is even simpler:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">GenericCleanupDirActionDefinitionParser</span> <span class="kd">extends</span> <span class="n">AbstractSimpleBeanDefinitionParser</span> <span class="o">{</span>
+ 
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="n">Class</span> <span class="nf">getBeanClass</span><span class="o">(</span><span class="n">Element</span> <span class="n">element</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">GenericCleanupDirAction</span><span class="o">.</span><span class="na">class</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>We select the most simple form by choosing to extend AbstractSimpleBeanDefinitionParser, only providing the bean class 
+which shall be generated - the mapping (and injection) of XSD attributes to properties is performed by Spring in this 
+case. Of course parsing can be extended for more complex (nested) elements, just ase a AbstractSingleBeanDefinitionParser 
+instead and overwrite the doParse() method.</p>
+
+<p>Now that all our coding is done, one final step has to be performed. We have to make Spring XML parsing infrastructure 
+aware our new schema. To achieve this, we have to register our XSD file and the namespace handler in two special purpose 
+properties files which have to reside in the META-INF directory of your testing jar file. Spring will detect these and 
+automatically pick them up as extension. At first, we declare our handler inside META-INF/spring.handlers:</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>http\://www.citrusframework.org/schema/jza/custom/actions=com.consol.jza.citrus.tutorial.actions.xml.CustomActionsNamespaceHandler
+</code></pre>
+</div>
+
+<p>The left side is our own namespace (with escaped ‘:’) which gets assigned the package path to our custom handler 
+implementation on the right. Having our handler registered, we notify Spring about the existence of our custom schema by 
+adding META-INF/spring.schemas with the following content:</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>http\://www.citrusframework.org/schema/jza/custom/actions/custom-actions.xsd=com/consol/jza/citrus/tutorial/schema/custom-actions.xsd
+</code></pre>
+</div>
+
+<p>This entry defines a mapping of XML schema locations (which we will define right in a moment when using our new action 
+namespace in our citrus tests) to the physical location of our custom XSD on the classpath.</p>
+
+<p>So now everything is in place: we have coded our own namespace handler and bean parser, defined our custom action schema 
+and namespace and registered all of it to Spring’s XML extensible authoring mechanism. Time to bring the harvest in and 
+use our custom action in citrus tests as desired:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">  
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;spring:beans</span> <span class="na">xmlns=</span><span class="s">"http://www.citrusframework.org/schema/testcase"</span> 
+  <span class="na">xmlns:ws=</span><span class="s">"http://www.citrusframework.org/schema/ws/testcase"</span>
+  <span class="na">xmlns:my=</span><span class="s">"http://www.citrusframework.org/schema/jza/custom/actions"</span>
+  <span class="na">xmlns:spring=</span><span class="s">"http://www.springframework.org/schema/beans"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> 
+  <span class="na">xsi:schemaLocation=</span><span class="s">"http://www.springframework.org/schema/beans</span> <span class="err">http://www.springframework.org/schema/beans/spring-beans.xsd</span> 
+    <span class="err">http://www.citrusframework.org/schema/ws/testcase</span> <span class="err">http://www.citrusframework.org/schema/ws/testcase/citrus-ws-testcase.xsd</span> 
+    <span class="err">http://www.citrusframework.org/schema/testcase</span> <span class="err">http://www.citrusframework.org/schema/testcase/citrus-testcase.xsd</span>
+    <span class="err">http://www.citrusframework.org/schema/jza/custom/actions</span> <span class="err">http://www.citrusframework.org/schema/jza/custom/actions/custom-actions.xsd"</span><span class="nt">&gt;</span>
+ 
+  <span class="nt">&lt;testcase</span> <span class="na">name=</span><span class="s">"SampleIT"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;meta-info&gt;</span>
+      <span class="c">&lt;!-- ommitted --&gt;</span>
+    <span class="nt">&lt;/meta-info&gt;</span>
+ 
+    <span class="nt">&lt;actions&gt;</span>
+      <span class="nt">&lt;echo&gt;</span>
+        <span class="nt">&lt;message&gt;</span>Even more attention! Calling my first custom XML action!<span class="nt">&lt;/message&gt;</span>
+      <span class="nt">&lt;/echo&gt;</span>
+      <span class="nt">&lt;my:cleanupFileDirAction</span> <span class="na">id=</span><span class="s">"cleanLogsDir"</span> <span class="na">directory=</span><span class="s">"/Users/jza/tmp/logs"</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;my:cleanupFileDirAction</span> <span class="na">id=</span><span class="s">"cleanEtlDir"</span> <span class="na">directory=</span><span class="s">"/Users/jza/tmp/etl"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/actions&gt;</span>
+  <span class="nt">&lt;/testcase&gt;</span>
+<span class="nt">&lt;/spring:beans&gt;</span></code></pre></figure>
+
+<p>Note the declaration of our new namespace as ‘my’ and don’t forget to declare the mapping to the schemalocation as well. 
+It will save you lots of curses and hours of debugging Spring - I’m speaking from experience here. ;)</p>
+
+<p>That’s it for the custom actions tutorial. We looked at two ways to create custom citrus actions inside your test projects. 
+Using the generic citrus action element is a very easy and quick way to add your custom coded actions to a test project. 
+Using the XML extensible authoring mechanism provides you with full control and improved reusability through 
+parameterization in XML. Whichever approach you choose, we hope you enjoy extending citrus with custom actions as we do.</p>
+
+        </article>
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    
+    <h4>Getting Started</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/home/">Welcome</a></li>
+
+  
+  
+  <li class=""><a href="/docs/user-guide/">User Guide</a></li>
+
+  
+  
+  <li class=""><a href="/docs/setup-maven/">Setup with Maven</a></li>
+
+  
+  
+  <li class=""><a href="/docs/setup-gradle/">Setup with Gradle</a></li>
+
+  
+  
+  <li class=""><a href="/docs/setup-ant/">Setup with ANT</a></li>
+
+  
+  
+  <li class=""><a href="/docs/features/">Features</a></li>
+
+  
+  
+  <li class=""><a href="/docs/download/">Download</a></li>
+
+</ul>
+
+    
+    <h4>Sources</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/repository/">Source repository</a></li>
+
+  
+  
+  <li class=""><a href="/docs/issues/">Issues</a></li>
+
+  
+  
+  <li class=""><a href="/docs/development/">Development</a></li>
+
+  
+  
+  <li class=""><a href="/docs/contributing/">Contributing</a></li>
+
+  
+  
+  <li class=""><a href="/docs/conventions/">Conventions</a></li>
+
+  
+  
+  <li class=""><a href="/docs/conduct/">Code of Conduct</a></li>
+
+</ul>
+
+    
+    <h4>Customize</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/custom-endpoints/"></a></li>
+
+  
+  
+  <li class="current"><a href="/docs/custom-actions/">Custom actions</a></li>
+
+  
+  
+  <li class=""><a href="/docs/custom-functions/">Custom functions</a></li>
+
+</ul>
+
+    
+    <h4>Tools</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/maven-plugin/">Maven plugin</a></li>
+
+</ul>
+
+    
+    <h4>Miscellaneous</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/team/">Team</a></li>
+
+  
+  
+  <li class=""><a href="/docs/config-sheet/"></a></li>
+
+  
+  
+  <li class=""><a href="/docs/upgrade-migration/"></a></li>
+
+  
+  
+  <li class=""><a href="/docs/consulting/">Consulting</a></li>
+
+</ul>
+
+    
+    <h4>Meta</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/license/">License</a></li>
+
+  
+  
+  <li class=""><a href="/docs/modules/">Modules</a></li>
+
+  
+  
+  <li class=""><a href="/docs/history/">History</a></li>
+
+</ul>
+
+    
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/christophd/citrus/blob/master/LICENSE">MIT License</a>.</p>
+      <br>
+      <p>© 2018 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p> </p>
+      <br>
+      <br>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>

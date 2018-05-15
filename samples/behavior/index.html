@@ -1,0 +1,610 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 2.7.5">
+  <meta name="description" content="Citrus Framework Website">
+  <meta name="author" content="ConSol Software GmbH">
+  <link type="application/atom+xml" rel="alternate" href="https://citrusframework.org/feed.xml" title="Citrus Integration Tests">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/christophd/citrus/commits/master.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/christophd/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/christophd/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="samples">
+    <div class="grid">
+
+      <div class="samples-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the samples…</option>
+    <option value="/samples/">Overview</option>
+    <option value="/samples/todo-app/">Sample app</option>
+    <option value="/samples/run/">Running</option>
+    
+    <option value="/samples/testng/">sample-testng</option>
+    
+    <option value="/samples/message-store/">sample-message-store</option>
+    
+    <option value="/samples/junit5/">sample-junit5</option>
+    
+    <option value="/samples/junit/">sample-junit</option>
+    
+    <option value="/samples/hamcrest/">sample-hamcrest</option>
+    
+    <option value="/samples/dictionaries/">sample-dictionaries</option>
+    
+    <option value="/samples/behavior/">sample-behavior</option>
+    
+    <option value="/samples/annotation-config/">sample-annotation-config</option>
+    
+    <option value="/samples/reporting/">sample-reporting</option>
+    
+    <option value="/samples/docker/">sample-docker</option>
+    
+    <option value="/samples/soap-ssl/">sample-soap-ssl</option>
+    
+    <option value="/samples/rmi/">sample-rmi</option>
+    
+    <option value="/samples/soap-wsaddressing/">sample-soap-wsaddressing</option>
+    
+    <option value="/samples/soap-static-response/">sample-soap-static-response</option>
+    
+    <option value="/samples/http-static-response/">sample-http-static-response</option>
+    
+    <option value="/samples/arquillian/">sample-javaee</option>
+    
+    <option value="/samples/http-loadtest/">sample-http-loadtest</option>
+    
+    <option value="/samples/soap-wssecurity/">sample-soap-wssecurity</option>
+    
+    <option value="/samples/gradle/">sample-gradle</option>
+    
+    <option value="/samples/xml/">sample-xml</option>
+    
+    <option value="/samples/xhtml/">sample-xhtml</option>
+    
+    <option value="/samples/soap/">sample-soap</option>
+    
+    <option value="/samples/oxm/">sample-oxm</option>
+    
+    <option value="/samples/mail/">sample-mail</option>
+    
+    <option value="/samples/json/">sample-json</option>
+    
+    <option value="/samples/jms/">sample-jms</option>
+    
+    <option value="/samples/jdbc/">sample-jdbc</option>
+    
+    <option value="/samples/javaconfig/">sample-javaconfig</option>
+    
+    <option value="/samples/https/">sample-https</option>
+    
+    <option value="/samples/http/">sample-http</option>
+    
+    <option value="/samples/dynamic-endpoints/">sample-dynamic-endpoints</option>
+    
+    <option value="/samples/dataprovider/">sample-dataprovider</option>
+    
+    <option value="/samples/databind/">sample-databind</option>
+    
+    <option value="/samples/cucumber/">sample-cucumber</option>
+    
+    <option value="/samples/cucumber-spring/">sample-cucumber-spring</option>
+    
+    <option value="/samples/camel-context/">sample-camel-context</option>
+    
+    <option value="/samples/binary/">sample-binary</option>
+    
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+  <h2>
+    Test behavior sample
+    <a href="/samples/behavior/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <div class="right">
+    <a href="https://github.com/christophd/citrus-samples/blob/master/sample-behavior" target="_blank">
+      <i class="fa fa-pencil"></i> View source code
+    </a>
+  </div>
+  <span class="post-category">
+    <span class="label">
+      samples
+    </span>
+  </span>
+  <div class="post-content">
+    <p>This sample the usage of Citrus test behaviors when sending and receiving messages to the todo sample
+application. Read about test behaviors in <a href="http://www.citrusframework.org/reference/html/index.html#java-dsl-test-behaviors">reference guide</a></p>
+
+<h2 id="objectives">Objectives</h2>
+
+<p>The <a href="/samples/todo-app/">todo-list</a> sample application provides a REST API for managing todo entries.
+We call this API and receive Json message structures for validation in our test cases.</p>
+
+<p>This time we want to reuse specific message exchange logic by using test behaviors in our tests. The test behavior is a
+class that provides a set of test actions for reuse in other test cases. A typical test behavior looks like this:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloBehavior</span> <span class="kd">extends</span> <span class="n">AbstractTestBehavior</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">HelloBehavior</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">apply</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">echo</span><span class="o">(</span><span class="s">"Hello "</span> <span class="o">+</span> <span class="n">name</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>The behavior extends <code class="highlighter-rouge">AbstractTestBehavior</code> and defines its logic in the apply method where you can use all Citrus Java fluent API methods as you would do in a normal test.
+The behavior is then applied in your test as follows:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="nd">@CitrusTest</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testHelloBehavior</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">applyBehavior</span><span class="o">(</span><span class="k">new</span> <span class="n">HelloBehavior</span><span class="o">(</span><span class="s">"Howard"</span><span class="o">));</span>
+    <span class="n">applyBehavior</span><span class="o">(</span><span class="k">new</span> <span class="n">HelloBehavior</span><span class="o">(</span><span class="s">"Leonard"</span><span class="o">));</span>
+    <span class="n">applyBehavior</span><span class="o">(</span><span class="k">new</span> <span class="n">HelloBehavior</span><span class="o">(</span><span class="s">"Penny"</span><span class="o">));</span>
+<span class="o">}</span>   </code></pre></figure>
+
+<p>The sample above applies the behavior in the test multiple times with different names. The result will be multiple echo test actions that print out the messages to the console logging.
+Now we can use behaviors in order to add new todo entries via Http POST request.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">AddTodoBehavior</span> <span class="kd">extends</span> <span class="n">AbstractTestBehavior</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">payloadData</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">Resource</span> <span class="n">resource</span><span class="o">;</span>
+    
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">apply</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">HttpClientRequestActionBuilder</span> <span class="n">request</span> <span class="o">=</span> <span class="n">http</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">send</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/todolist"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">JSON</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="s">"application/json"</span><span class="o">);</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">StringUtils</span><span class="o">.</span><span class="na">hasText</span><span class="o">(</span><span class="n">payloadData</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">request</span><span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="n">payloadData</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">resource</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">request</span><span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="n">resource</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="n">http</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">PLAINTEXT</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"${todoId}"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="n">AddTodoBehavior</span> <span class="nf">withPayloadData</span><span class="o">(</span><span class="n">String</span> <span class="n">payload</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">payloadData</span> <span class="o">=</span> <span class="n">payload</span><span class="o">;</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="n">AddTodoBehavior</span> <span class="nf">withResource</span><span class="o">(</span><span class="n">Resource</span> <span class="n">resource</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">resource</span> <span class="o">=</span> <span class="n">resource</span><span class="o">;</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>As you can see the behavior provides support for Json payload inline data as well as file resource payloads. You can use the behavior in test then as follows:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="nd">@CitrusTest</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testJsonPayloadValidation</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">variable</span><span class="o">(</span><span class="s">"todoId"</span><span class="o">,</span> <span class="s">"citrus:randomUUID()"</span><span class="o">);</span>
+    <span class="n">variable</span><span class="o">(</span><span class="s">"todoName"</span><span class="o">,</span> <span class="s">"citrus:concat('todo_', citrus:randomNumber(4))"</span><span class="o">);</span>
+    <span class="n">variable</span><span class="o">(</span><span class="s">"todoDescription"</span><span class="o">,</span> <span class="s">"Description: ${todoName}"</span><span class="o">);</span>
+    <span class="n">variable</span><span class="o">(</span><span class="s">"done"</span><span class="o">,</span> <span class="s">"false"</span><span class="o">);</span>
+    
+    <span class="n">applyBehavior</span><span class="o">(</span><span class="k">new</span> <span class="n">AddTodoBehavior</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">withPayloadData</span><span class="o">(</span><span class="s">"{ \"id\": \"${todoId}\", \"title\": \"${todoName}\", \"description\": \"${todoDescription}\", \"done\": ${done}}"</span><span class="o">));</span>
+    
+    <span class="n">applyBehavior</span><span class="o">(</span><span class="k">new</span> <span class="n">AddTodoBehavior</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">withResource</span><span class="o">(</span><span class="k">new</span> <span class="n">ClassPathResource</span><span class="o">(</span><span class="s">"templates/todo.json"</span><span class="o">)));</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>The behavior is reused multiple times with different payload input. Now we can add more behaviors for getting todo entries via Http GET requests.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">GetTodoBehavior</span> <span class="kd">extends</span> <span class="n">AbstractTestBehavior</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">payloadData</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">Resource</span> <span class="n">resource</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">validateExpressions</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedHashMap</span><span class="o">&lt;&gt;();</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">apply</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">http</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">send</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"/todo/${todoId}"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="s">"application/json"</span><span class="o">);</span>
+
+        <span class="n">HttpClientResponseActionBuilder</span> <span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">JSON</span><span class="o">);</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">StringUtils</span><span class="o">.</span><span class="na">hasText</span><span class="o">(</span><span class="n">payloadData</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">response</span><span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="n">payloadData</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">resource</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">response</span><span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="n">resource</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="n">validateExpressions</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="nl">response:</span><span class="o">:</span><span class="n">validate</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="n">GetTodoBehavior</span> <span class="nf">validate</span><span class="o">(</span><span class="n">String</span> <span class="n">payload</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">payloadData</span> <span class="o">=</span> <span class="n">payload</span><span class="o">;</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="n">GetTodoBehavior</span> <span class="nf">validate</span><span class="o">(</span><span class="n">Resource</span> <span class="n">resource</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">resource</span> <span class="o">=</span> <span class="n">resource</span><span class="o">;</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="n">GetTodoBehavior</span> <span class="nf">validate</span><span class="o">(</span><span class="n">String</span> <span class="n">expression</span><span class="o">,</span> <span class="n">Object</span> <span class="n">expected</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">validateExpressions</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">expression</span><span class="o">,</span> <span class="n">expected</span><span class="o">);</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>This time the behavior provides different approaches how to validate the todo entry that was sent as a Json response payload. We can use payload inline data, file resource and JsonPath expressions:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">applyBehavior</span><span class="o">(</span><span class="k">new</span> <span class="n">GetTodoBehavior</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"$.id"</span><span class="o">,</span> <span class="s">"${todoId}"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"$.title"</span><span class="o">,</span> <span class="s">"${todoName}"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"$.description"</span><span class="o">,</span> <span class="s">"${todoDescription}"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"$.done"</span><span class="o">,</span> <span class="kc">false</span><span class="o">));</span>   </code></pre></figure>
+
+<p>This completes the usage of test behaviors in Citrus. This is a great way to centralize common tasks in your project to reusable pieces of Citrus Java DSL code.</p>
+
+<h2 id="run">Run</h2>
+
+<p>You can execute some sample Citrus test cases in this sample in order to write the reports.
+Open a separate command line terminal and navigate to the sample folder.</p>
+
+<p>Execute all Citrus tests by calling</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code> mvn integration-test
+</code></pre>
+</div>
+
+<p>You should see Citrus performing several tests with lots of debugging output. 
+And of course green tests at the very end of the build and some new reporting files in <code class="highlighter-rouge">target/citrus-reports</code> folder.</p>
+
+<p>Of course you can also start the Citrus tests from your favorite IDE.
+Just start the Citrus test using the TestNG IDE integration in IntelliJ, Eclipse or Netbeans.</p>
+
+  </div>
+</article>
+
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <h4>Common</h4>
+    <ul>
+      <li class="">
+        <a href="/samples/">Overview</a>
+      </li>
+      <li class="">
+        <a href="/samples/todo-app">Sample application</a>
+      </li>
+      <li class="">
+        <a href="/samples/run">Running</a>
+      </li>
+    </ul>
+    <h4>Samples</h4>
+    <ul>
+      
+      <li class="">
+        <a href="/samples/testng/">sample-testng</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/message-store/">sample-message-store</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/junit5/">sample-junit5</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/junit/">sample-junit</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/hamcrest/">sample-hamcrest</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/dictionaries/">sample-dictionaries</a>
+      </li>
+      
+      <li class="current">
+        <a href="/samples/behavior/">sample-behavior</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/annotation-config/">sample-annotation-config</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/reporting/">sample-reporting</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/docker/">sample-docker</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/soap-ssl/">sample-soap-ssl</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/rmi/">sample-rmi</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/soap-wsaddressing/">sample-soap-wsaddressing</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/soap-static-response/">sample-soap-static-response</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/http-static-response/">sample-http-static-response</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/arquillian/">sample-javaee</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/http-loadtest/">sample-http-loadtest</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/soap-wssecurity/">sample-soap-wssecurity</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/gradle/">sample-gradle</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/xml/">sample-xml</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/xhtml/">sample-xhtml</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/soap/">sample-soap</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/oxm/">sample-oxm</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/mail/">sample-mail</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/json/">sample-json</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/jms/">sample-jms</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/jdbc/">sample-jdbc</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/javaconfig/">sample-javaconfig</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/https/">sample-https</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/http/">sample-http</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/dynamic-endpoints/">sample-dynamic-endpoints</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/dataprovider/">sample-dataprovider</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/databind/">sample-databind</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/cucumber/">sample-cucumber</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/cucumber-spring/">sample-cucumber-spring</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/camel-context/">sample-camel-context</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/binary/">sample-binary</a>
+      </li>
+      
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/christophd/citrus/blob/master/LICENSE">MIT License</a>.</p>
+      <br>
+      <p>© 2018 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p> </p>
+      <br>
+      <br>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,777 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 2.7.5">
+  <meta name="description" content="Citrus Framework Website">
+  <meta name="author" content="ConSol Software GmbH">
+  <link type="application/atom+xml" rel="alternate" href="https://citrusframework.org/feed.xml" title="Citrus Integration Tests">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/christophd/citrus/commits/master.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/christophd/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/christophd/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="samples">
+    <div class="grid">
+
+      <div class="samples-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the samples…</option>
+    <option value="/samples/">Overview</option>
+    <option value="/samples/todo-app/">Sample app</option>
+    <option value="/samples/run/">Running</option>
+    
+    <option value="/samples/testng/">sample-testng</option>
+    
+    <option value="/samples/message-store/">sample-message-store</option>
+    
+    <option value="/samples/junit5/">sample-junit5</option>
+    
+    <option value="/samples/junit/">sample-junit</option>
+    
+    <option value="/samples/hamcrest/">sample-hamcrest</option>
+    
+    <option value="/samples/dictionaries/">sample-dictionaries</option>
+    
+    <option value="/samples/behavior/">sample-behavior</option>
+    
+    <option value="/samples/annotation-config/">sample-annotation-config</option>
+    
+    <option value="/samples/reporting/">sample-reporting</option>
+    
+    <option value="/samples/docker/">sample-docker</option>
+    
+    <option value="/samples/soap-ssl/">sample-soap-ssl</option>
+    
+    <option value="/samples/rmi/">sample-rmi</option>
+    
+    <option value="/samples/soap-wsaddressing/">sample-soap-wsaddressing</option>
+    
+    <option value="/samples/soap-static-response/">sample-soap-static-response</option>
+    
+    <option value="/samples/http-static-response/">sample-http-static-response</option>
+    
+    <option value="/samples/arquillian/">sample-javaee</option>
+    
+    <option value="/samples/http-loadtest/">sample-http-loadtest</option>
+    
+    <option value="/samples/soap-wssecurity/">sample-soap-wssecurity</option>
+    
+    <option value="/samples/gradle/">sample-gradle</option>
+    
+    <option value="/samples/xml/">sample-xml</option>
+    
+    <option value="/samples/xhtml/">sample-xhtml</option>
+    
+    <option value="/samples/soap/">sample-soap</option>
+    
+    <option value="/samples/oxm/">sample-oxm</option>
+    
+    <option value="/samples/mail/">sample-mail</option>
+    
+    <option value="/samples/json/">sample-json</option>
+    
+    <option value="/samples/jms/">sample-jms</option>
+    
+    <option value="/samples/jdbc/">sample-jdbc</option>
+    
+    <option value="/samples/javaconfig/">sample-javaconfig</option>
+    
+    <option value="/samples/https/">sample-https</option>
+    
+    <option value="/samples/http/">sample-http</option>
+    
+    <option value="/samples/dynamic-endpoints/">sample-dynamic-endpoints</option>
+    
+    <option value="/samples/dataprovider/">sample-dataprovider</option>
+    
+    <option value="/samples/databind/">sample-databind</option>
+    
+    <option value="/samples/cucumber/">sample-cucumber</option>
+    
+    <option value="/samples/cucumber-spring/">sample-cucumber-spring</option>
+    
+    <option value="/samples/camel-context/">sample-camel-context</option>
+    
+    <option value="/samples/binary/">sample-binary</option>
+    
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+  <h2>
+    Docker sample
+    <a href="/samples/docker/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <div class="right">
+    <a href="https://github.com/christophd/citrus-samples/blob/master/sample-docker" target="_blank">
+      <i class="fa fa-pencil"></i> View source code
+    </a>
+  </div>
+  <span class="post-category">
+    <span class="label">
+      samples
+    </span>
+  </span>
+  <div class="post-content">
+    <p>This sample uses <a href="https://www.docker.com/">Docker</a> for containerized application infrastructure. Both the system under test <a href="/samples/todo-app/">todo-list</a> application and 
+the Citrus integration tests are run as Docker container. The Citrus tests are then able to use Docker networking and DNS features in order to access the exposed services on the
+todo-list container. This way Citrus is able to participate on the Docker infrastructure for in-container testing.</p>
+
+<p>The sample uses the <a href="https://maven.fabric8.io/">Fabric8 Docker Maven plugin</a> for smooth Docker integration into the Maven build lifecylce.</p>
+
+<p>Read about the Citrus Docker integration in the <a href="http://www.citrusframework.org/reference/html/#docker">reference guide</a></p>
+
+<h2 id="objectives">Objectives</h2>
+
+<p>The <a href="/samples/todo-app/">todo-list</a> sample application provides a REST API for managing todo entries. We want to access this REST API in a integration test scenario while the application is
+run as Docker container. This means we need to build the todo-app as Docker image, run that image on Docker and start the integration tests. The Citrus tests
+are built and run as container, too. The Citrus test container is then able to connect with the todo-list REST API via Docker networking between containers. Also
+with Citrus Docker client integration we can check and manipulate the todo-app Docker container at test runtime.</p>
+
+<p>The sample uses the Fabric8 Docker Maven plugin building and running the Docker images. So lets take a deep dive into the Maven POM configuration.</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;plugin&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>io.fabric8<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>docker-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>${fabric8.plugin.version}<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;configuration&gt;</span>
+    <span class="nt">&lt;verbose&gt;</span>true<span class="nt">&lt;/verbose&gt;</span>
+    <span class="nt">&lt;images&gt;</span>
+      <span class="nt">&lt;image&gt;</span>
+        <span class="nt">&lt;alias&gt;</span>todo-app<span class="nt">&lt;/alias&gt;</span>
+        <span class="nt">&lt;name&gt;</span>citrus/todo-app:2.7.5<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;build&gt;</span>
+          <span class="nt">&lt;from&gt;</span>fabric8/tomcat-8:latest<span class="nt">&lt;/from&gt;</span>
+          <span class="nt">&lt;tags&gt;</span>
+            <span class="nt">&lt;tag&gt;</span>latest<span class="nt">&lt;/tag&gt;</span>
+          <span class="nt">&lt;/tags&gt;</span>
+          <span class="nt">&lt;assembly&gt;</span>
+            <span class="nt">&lt;inline&gt;</span>
+              <span class="nt">&lt;files&gt;</span>
+                <span class="nt">&lt;file&gt;</span>
+                  <span class="nt">&lt;source&gt;</span>/Users/christoph/.m2/repository/com/consol/citrus/samples/citrus-sample-todo/2.7.5/citrus-sample-todo-2.7.5.war<span class="nt">&lt;/source&gt;</span>
+                  <span class="nt">&lt;destName&gt;</span>ROOT.war<span class="nt">&lt;/destName&gt;</span>
+                  <span class="nt">&lt;outputDirectory&gt;</span>.<span class="nt">&lt;/outputDirectory&gt;</span>
+                <span class="nt">&lt;/file&gt;</span>
+              <span class="nt">&lt;/files&gt;</span>
+            <span class="nt">&lt;/inline&gt;</span>
+          <span class="nt">&lt;/assembly&gt;</span>
+        <span class="nt">&lt;/build&gt;</span>
+        <span class="nt">&lt;run&gt;</span>
+          <span class="nt">&lt;namingStrategy&gt;</span>alias<span class="nt">&lt;/namingStrategy&gt;</span>
+          <span class="nt">&lt;env&gt;</span>
+            <span class="nt">&lt;CATALINA_OPTS&gt;</span>-Xmx64m<span class="nt">&lt;/CATALINA_OPTS&gt;</span>
+          <span class="nt">&lt;/env&gt;</span>
+          <span class="nt">&lt;ports&gt;</span>
+            <span class="nt">&lt;port&gt;</span>8080:8080<span class="nt">&lt;/port&gt;</span>
+          <span class="nt">&lt;/ports&gt;</span>
+          <span class="nt">&lt;wait&gt;</span>
+            <span class="nt">&lt;http&gt;</span>
+              <span class="nt">&lt;url&gt;</span>http://localhost:8080/todolist<span class="nt">&lt;/url&gt;</span>
+              <span class="nt">&lt;method&gt;</span>GET<span class="nt">&lt;/method&gt;</span>
+              <span class="nt">&lt;status&gt;</span>200<span class="nt">&lt;/status&gt;</span>
+            <span class="nt">&lt;/http&gt;</span>
+            <span class="nt">&lt;time&gt;</span>60000<span class="nt">&lt;/time&gt;</span>
+            <span class="nt">&lt;shutdown&gt;</span>500<span class="nt">&lt;/shutdown&gt;</span>
+          <span class="nt">&lt;/wait&gt;</span>
+          <span class="nt">&lt;log&gt;</span>
+            <span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+            <span class="nt">&lt;color&gt;</span>green<span class="nt">&lt;/color&gt;</span>
+          <span class="nt">&lt;/log&gt;</span>
+        <span class="nt">&lt;/run&gt;</span>
+      <span class="nt">&lt;/image&gt;</span>
+      <span class="nt">&lt;image&gt;</span>
+        <span class="nt">&lt;alias&gt;</span>todo-app-tests<span class="nt">&lt;/alias&gt;</span>
+        <span class="nt">&lt;name&gt;</span>citrus/todo-app-tests:2.7.5<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;build&gt;</span>
+          <span class="nt">&lt;from&gt;</span>consol/citrus:2.7<span class="nt">&lt;/from&gt;</span>
+          <span class="nt">&lt;tags&gt;</span>
+            <span class="nt">&lt;tag&gt;</span>latest<span class="nt">&lt;/tag&gt;</span>
+          <span class="nt">&lt;/tags&gt;</span>
+          <span class="nt">&lt;assembly&gt;</span>
+            <span class="nt">&lt;descriptorRef&gt;</span>project<span class="nt">&lt;/descriptorRef&gt;</span>
+          <span class="nt">&lt;/assembly&gt;</span>
+        <span class="nt">&lt;/build&gt;</span>
+        <span class="nt">&lt;run&gt;</span>
+          <span class="nt">&lt;namingStrategy&gt;</span>alias<span class="nt">&lt;/namingStrategy&gt;</span>
+          <span class="nt">&lt;volumes&gt;</span>
+            <span class="nt">&lt;bind&gt;</span>
+              <span class="nt">&lt;volume&gt;</span>/var/run/docker.sock:/var/run/dockerhost/docker.sock<span class="nt">&lt;/volume&gt;</span>
+            <span class="nt">&lt;/bind&gt;</span>
+          <span class="nt">&lt;/volumes&gt;</span>
+          <span class="nt">&lt;links&gt;</span>
+            <span class="nt">&lt;link&gt;</span>todo-app<span class="nt">&lt;/link&gt;</span>
+          <span class="nt">&lt;/links&gt;</span>
+          <span class="nt">&lt;dependsOn&gt;</span>
+            <span class="nt">&lt;dependsOn&gt;</span>todo-app<span class="nt">&lt;/dependsOn&gt;</span>
+          <span class="nt">&lt;/dependsOn&gt;</span>
+          <span class="nt">&lt;wait&gt;</span>
+            <span class="nt">&lt;log&gt;</span>BUILD SUCCESS<span class="nt">&lt;/log&gt;</span>
+            <span class="nt">&lt;time&gt;</span>60000<span class="nt">&lt;/time&gt;</span>
+            <span class="nt">&lt;shutdown&gt;</span>500<span class="nt">&lt;/shutdown&gt;</span>
+          <span class="nt">&lt;/wait&gt;</span>
+          <span class="nt">&lt;log&gt;</span>
+            <span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+            <span class="nt">&lt;color&gt;</span>green<span class="nt">&lt;/color&gt;</span>
+          <span class="nt">&lt;/log&gt;</span>
+        <span class="nt">&lt;/run&gt;</span>
+      <span class="nt">&lt;/image&gt;</span>
+    <span class="nt">&lt;/images&gt;</span>
+  <span class="nt">&lt;/configuration&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span></code></pre></figure>
+
+<p>Wow that is lots of configuration. Let us understand this step by step. First of all we take a look at the todo-app system under test image build configuration:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;build&gt;</span>
+  <span class="nt">&lt;from&gt;</span>fabric8/tomcat-8:latest<span class="nt">&lt;/from&gt;</span>
+  <span class="nt">&lt;tags&gt;</span>
+    <span class="nt">&lt;tag&gt;</span>latest<span class="nt">&lt;/tag&gt;</span>
+  <span class="nt">&lt;/tags&gt;</span>
+  <span class="nt">&lt;assembly&gt;</span>
+    <span class="nt">&lt;inline&gt;</span>
+      <span class="nt">&lt;files&gt;</span>
+        <span class="nt">&lt;file&gt;</span>
+          <span class="nt">&lt;source&gt;</span>/Users/christoph/.m2/repository/com/consol/citrus/samples/citrus-sample-todo/2.7.5/citrus-sample-todo-2.7.5.war<span class="nt">&lt;/source&gt;</span>
+          <span class="nt">&lt;destName&gt;</span>ROOT.war<span class="nt">&lt;/destName&gt;</span>
+          <span class="nt">&lt;outputDirectory&gt;</span>.<span class="nt">&lt;/outputDirectory&gt;</span>
+        <span class="nt">&lt;/file&gt;</span>
+      <span class="nt">&lt;/files&gt;</span>
+    <span class="nt">&lt;/inline&gt;</span>
+  <span class="nt">&lt;/assembly&gt;</span>
+<span class="nt">&lt;/build&gt;</span></code></pre></figure>
+
+<p>The todolist application is a Java Spring Boot web application. So we want to deploy that WAR artifact on a Tomcat web server when running the application as Docker container. Fortunately the
+Fabric8 team provides ready to use Docker images for such purpose. So we can extend our Docker image from <em>fabric8/tomcat-8:latest</em> image. These Docker images are well prepared to work with
+artifacts that are assembled within Maven and especially those Maven POMs that use the Farbic8 Docker Maven plugin.</p>
+
+<p>In the assembly section we define the target WAR that should be deployed to the Tomcat web server in the Docker image. That is very comfortable as the assembly can be done in various ways 
+(also see <a href="https://dmp.fabric8.io/#build-assembly">Fabric8 Docker assembly</a>). In this sample above we just copy the built WAR from our local Maven repository.</p>
+
+<p>Now let us move on to the Citrus tests. We want to also run the tests as Docker container so lets use another image configuration:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;build&gt;</span>
+  <span class="nt">&lt;from&gt;</span>consol/citrus:2.7<span class="nt">&lt;/from&gt;</span>
+  <span class="nt">&lt;tags&gt;</span>
+    <span class="nt">&lt;tag&gt;</span>latest<span class="nt">&lt;/tag&gt;</span>
+  <span class="nt">&lt;/tags&gt;</span>
+  <span class="nt">&lt;assembly&gt;</span>
+    <span class="nt">&lt;descriptorRef&gt;</span>project<span class="nt">&lt;/descriptorRef&gt;</span>
+  <span class="nt">&lt;/assembly&gt;</span>
+<span class="nt">&lt;/build&gt;</span></code></pre></figure>
+
+<p>This time we extend from <em>consol/citrus:2.7</em> Docker image which is ready to execute a Citrus Maven build at container runtime. The image also works with the Docker Maven plugin assembly
+mechanism. This time the add the complete project assembly.</p>
+
+<p>We can build the Docker images by calling:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">mvn docker:build</code></pre></figure>
+
+<p>Of course you need a running Docker installation on your host. After that you should see two new images built seconds ago:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">docker images
+
+REPOSITORY              TAG                 IMAGE ID            CREATED             SIZE
+citrus/todo-app-tests   latest              e35695d5db2c        5 seconds ago       757.2 MB
+citrus/todo-app         latest              b7f03a0e751b        5 seconds ago       452.2 MB</code></pre></figure>
+
+<p>So we are now ready to run the images as containers in Docker. If you inspect the Docker Maven plugin configuration you will fin run sections that describe how the containers will be started.</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;image&gt;</span>
+    <span class="nt">&lt;alias&gt;</span>todo-app<span class="nt">&lt;/alias&gt;</span>
+    <span class="nt">&lt;name&gt;</span>citrus/todo-app:2.7.5<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;run&gt;</span>
+      <span class="nt">&lt;namingStrategy&gt;</span>alias<span class="nt">&lt;/namingStrategy&gt;</span>
+      <span class="nt">&lt;env&gt;</span>
+        <span class="nt">&lt;CATALINA_OPTS&gt;</span>-Xmx64m<span class="nt">&lt;/CATALINA_OPTS&gt;</span>
+      <span class="nt">&lt;/env&gt;</span>
+      <span class="nt">&lt;ports&gt;</span>
+        <span class="nt">&lt;port&gt;</span>8080:8080<span class="nt">&lt;/port&gt;</span>
+      <span class="nt">&lt;/ports&gt;</span>
+      <span class="nt">&lt;wait&gt;</span>
+        <span class="nt">&lt;http&gt;</span>
+          <span class="nt">&lt;url&gt;</span>http://localhost:8080/todolist<span class="nt">&lt;/url&gt;</span>
+          <span class="nt">&lt;method&gt;</span>GET<span class="nt">&lt;/method&gt;</span>
+          <span class="nt">&lt;status&gt;</span>200<span class="nt">&lt;/status&gt;</span>
+        <span class="nt">&lt;/http&gt;</span>
+        <span class="nt">&lt;time&gt;</span>60000<span class="nt">&lt;/time&gt;</span>
+        <span class="nt">&lt;shutdown&gt;</span>500<span class="nt">&lt;/shutdown&gt;</span>
+      <span class="nt">&lt;/wait&gt;</span>
+      <span class="nt">&lt;log&gt;</span>
+        <span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+        <span class="nt">&lt;color&gt;</span>green<span class="nt">&lt;/color&gt;</span>
+      <span class="nt">&lt;/log&gt;</span>
+    <span class="nt">&lt;/run&gt;</span>
+<span class="nt">&lt;/image&gt;</span></code></pre></figure>
+
+<p>When the todo-app container is started we expose port <em>8080</em> for clients. This is the default Tomcat port. In addition to that we tell the Docker Maven plugin
+to wait for the application to start up. This is done by probing the http url <em>http://localhost:8080/todolist</em> with a <em>Http GET</em> request. Once the application is
+started and Tomcat is ready we can start the Citrus test container.</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;image&gt;</span>
+    <span class="nt">&lt;alias&gt;</span>todo-app-tests<span class="nt">&lt;/alias&gt;</span>
+    <span class="nt">&lt;name&gt;</span>citrus/todo-app-tests:2.7.5<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;run&gt;</span>
+      <span class="nt">&lt;namingStrategy&gt;</span>alias<span class="nt">&lt;/namingStrategy&gt;</span>
+      <span class="nt">&lt;volumes&gt;</span>
+        <span class="nt">&lt;bind&gt;</span>
+          <span class="nt">&lt;volume&gt;</span>/var/run/docker.sock:/var/run/dockerhost/docker.sock<span class="nt">&lt;/volume&gt;</span>
+        <span class="nt">&lt;/bind&gt;</span>
+      <span class="nt">&lt;/volumes&gt;</span>
+      <span class="nt">&lt;links&gt;</span>
+        <span class="nt">&lt;link&gt;</span>todo-app<span class="nt">&lt;/link&gt;</span>
+      <span class="nt">&lt;/links&gt;</span>
+      <span class="nt">&lt;dependsOn&gt;</span>
+        <span class="nt">&lt;dependsOn&gt;</span>todo-app<span class="nt">&lt;/dependsOn&gt;</span>
+      <span class="nt">&lt;/dependsOn&gt;</span>
+      <span class="nt">&lt;wait&gt;</span>
+        <span class="nt">&lt;log&gt;</span>BUILD SUCCESS<span class="nt">&lt;/log&gt;</span>
+        <span class="nt">&lt;time&gt;</span>60000<span class="nt">&lt;/time&gt;</span>
+        <span class="nt">&lt;shutdown&gt;</span>500<span class="nt">&lt;/shutdown&gt;</span>
+      <span class="nt">&lt;/wait&gt;</span>
+      <span class="nt">&lt;log&gt;</span>
+        <span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+        <span class="nt">&lt;color&gt;</span>green<span class="nt">&lt;/color&gt;</span>
+      <span class="nt">&lt;/log&gt;</span>
+    <span class="nt">&lt;/run&gt;</span>
+ <span class="nt">&lt;/image&gt;</span></code></pre></figure>
+
+<p>This time the configuration links the container to the <em>todo-app</em> container. This enabled the Docker networking feature where DNS host resolving will
+be available for the Citrus test container. Exposed ports (8080) in the <em>todo-app</em> container are then accessible. The Citrus http client uses the following endpoint url
+for accessing the REST API:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="n">HttpClient</span> <span class="nf">todoClient</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">CitrusEndpoints</span><span class="o">.</span><span class="na">http</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">client</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">requestUrl</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"http://%s:%s"</span><span class="o">,</span> <span class="n">todoServerHost</span><span class="o">,</span> <span class="n">todoServerPort</span><span class="o">))</span>
+                        <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>As you can see the client will be able to resolve the hostname <em>todo-app</em> via Docker networking feature. The test may then access the REST API over http in order to
+add new todo items.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">http</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">send</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/todolist"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">JSON</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="s">"application/json"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"{ \"id\": \"${todoId}\", \"title\": \"${todoName}\", \"description\": \"${todoDescription}\", \"done\": ${done}}"</span><span class="o">);</span>
+
+<span class="n">http</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">PLAINTEXT</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"${todoId}"</span><span class="o">);</span></code></pre></figure>
+
+<p>In addition to that the Citrus configuration also defines a Docker client component:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="n">DockerClient</span> <span class="nf">dockerClient</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">CitrusEndpoints</span><span class="o">.</span><span class="na">docker</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">client</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"unix:///var/run/dockerhost/docker.sock"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>This client is then able to access the Docker API from within the Citrus test container in order to check the deployment state of the system under test.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">docker</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">dockerClient</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">inspectContainer</span><span class="o">(</span><span class="s">"todo-app"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">validateCommandResult</span><span class="o">((</span><span class="n">container</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">Assert</span><span class="o">.</span><span class="na">assertTrue</span><span class="o">(</span><span class="n">container</span><span class="o">.</span><span class="na">getState</span><span class="o">().</span><span class="na">getRunning</span><span class="o">()));</span></code></pre></figure>
+
+<p>The test action above verifies that the <em>todo-app</em> container is up and running. We can also think of manipulating the Docker container. With the Docker Citrus
+Java DSL we have full access to the Docker API. Please note that this is only applicable for testing purpose. In production environment the Docker API may
+not be accessible to containers at all. In this local test environment we have mounted the Docker socket into the Citrus test container (<code class="highlighter-rouge">&lt;volume&gt;/var/run/docker.sock:/var/run/dockerhost/docker.sock&lt;/volume&gt;</code>). 
+This should definitely not possible on any production like environment.</p>
+
+<p>However this is how we access other Docker containers from within the Citrus test container either by using the Docker socket or by using the normal exposed service
+ports of the system under test.</p>
+
+<p>No finally lets start the Docker containers with:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">mvn docker:start</code></pre></figure>
+
+<p>You will see that the Docker Maven plugin first of all is starting the <em>todo-app</em> Tomcat container with Spring Boot running. After that the Citrus test container is
+started to perform all integration tests. You will see the Citrus logging output. The Docker Maven plugin waits for the <em>BUILD SUCCESS</em> log entry that marks that all tests
+were executed successfully.</p>
+
+<p>You can access the log output also by</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">docker logs todo-app-tests</code></pre></figure>
+
+<p>Once the build is finished the Citrus test container is automatically stopped but the container is still there. You can see the container with:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">docker ps -a
+
+CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS                     PORTS                                        NAMES
+413b6c68076d        citrus/todo-app-tests:2.7   "/bin/sh -c 'mvn inst"   37 seconds ago      Exited (0) 7 seconds ago                                                todo-app-tests
+f26583516453        citrus/todo-app:2.7         "/bin/sh -c /opt/tomc"   52 seconds ago      Up 46 seconds              8778/tcp, 0.0.0.0:8080-&gt;8080/tcp, 9779/tcp   todo-app</code></pre></figure>
+
+<p>With <code class="highlighter-rouge">mvn docker:stop</code> we can stop and cleanup all containers.</p>
+
+<p>Lets add a Maven profile that binds the plugin goals to the integration-test build phase for automated Docker build, setup, start, test and stop.</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;profile&gt;</span>
+  <span class="nt">&lt;id&gt;</span>docker<span class="nt">&lt;/id&gt;</span>
+  <span class="nt">&lt;properties&gt;</span>
+    <span class="nt">&lt;test&gt;</span>skip<span class="nt">&lt;/test&gt;</span>
+    <span class="nt">&lt;it.test&gt;</span>skip<span class="nt">&lt;/it.test&gt;</span>
+  <span class="nt">&lt;/properties&gt;</span>
+  <span class="nt">&lt;build&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+      <span class="nt">&lt;plugin&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>io.fabric8<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>docker-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;executions&gt;</span>
+          <span class="nt">&lt;execution&gt;</span>
+            <span class="nt">&lt;id&gt;</span>start<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;phase&gt;</span>pre-integration-test<span class="nt">&lt;/phase&gt;</span>
+            <span class="nt">&lt;goals&gt;</span>
+              <span class="nt">&lt;goal&gt;</span>build<span class="nt">&lt;/goal&gt;</span>
+              <span class="nt">&lt;goal&gt;</span>start<span class="nt">&lt;/goal&gt;</span>
+            <span class="nt">&lt;/goals&gt;</span>
+          <span class="nt">&lt;/execution&gt;</span>
+          <span class="nt">&lt;execution&gt;</span>
+            <span class="nt">&lt;id&gt;</span>stop<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;phase&gt;</span>post-integration-test<span class="nt">&lt;/phase&gt;</span>
+            <span class="nt">&lt;goals&gt;</span>
+              <span class="nt">&lt;goal&gt;</span>stop<span class="nt">&lt;/goal&gt;</span>
+            <span class="nt">&lt;/goals&gt;</span>
+          <span class="nt">&lt;/execution&gt;</span>
+        <span class="nt">&lt;/executions&gt;</span>
+      <span class="nt">&lt;/plugin&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+  <span class="nt">&lt;/build&gt;</span>
+<span class="nt">&lt;/profile&gt;</span></code></pre></figure>
+
+<p>Now we are ready to call <code class="highlighter-rouge">mvn clean install -Pdocker</code> and everything is done automatically. We get a successful build when everything worked and
+in case a Citrus test failed we get a failed build. This Maven build is perfectly working with continuous integration on Jenkins for instance.</p>
+
+  </div>
+</article>
+
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <h4>Common</h4>
+    <ul>
+      <li class="">
+        <a href="/samples/">Overview</a>
+      </li>
+      <li class="">
+        <a href="/samples/todo-app">Sample application</a>
+      </li>
+      <li class="">
+        <a href="/samples/run">Running</a>
+      </li>
+    </ul>
+    <h4>Samples</h4>
+    <ul>
+      
+      <li class="">
+        <a href="/samples/testng/">sample-testng</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/message-store/">sample-message-store</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/junit5/">sample-junit5</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/junit/">sample-junit</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/hamcrest/">sample-hamcrest</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/dictionaries/">sample-dictionaries</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/behavior/">sample-behavior</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/annotation-config/">sample-annotation-config</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/reporting/">sample-reporting</a>
+      </li>
+      
+      <li class="current">
+        <a href="/samples/docker/">sample-docker</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/soap-ssl/">sample-soap-ssl</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/rmi/">sample-rmi</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/soap-wsaddressing/">sample-soap-wsaddressing</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/soap-static-response/">sample-soap-static-response</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/http-static-response/">sample-http-static-response</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/arquillian/">sample-javaee</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/http-loadtest/">sample-http-loadtest</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/soap-wssecurity/">sample-soap-wssecurity</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/gradle/">sample-gradle</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/xml/">sample-xml</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/xhtml/">sample-xhtml</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/soap/">sample-soap</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/oxm/">sample-oxm</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/mail/">sample-mail</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/json/">sample-json</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/jms/">sample-jms</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/jdbc/">sample-jdbc</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/javaconfig/">sample-javaconfig</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/https/">sample-https</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/http/">sample-http</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/dynamic-endpoints/">sample-dynamic-endpoints</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/dataprovider/">sample-dataprovider</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/databind/">sample-databind</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/cucumber/">sample-cucumber</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/cucumber-spring/">sample-cucumber-spring</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/camel-context/">sample-camel-context</a>
+      </li>
+      
+      <li class="">
+        <a href="/samples/binary/">sample-binary</a>
+      </li>
+      
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/christophd/citrus/blob/master/LICENSE">MIT License</a>.</p>
+      <br>
+      <p>© 2018 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p> </p>
+      <br>
+      <br>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>

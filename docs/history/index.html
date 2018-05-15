@@ -1,0 +1,3709 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 2.7.5">
+  <meta name="description" content="Citrus Framework Website">
+  <meta name="author" content="ConSol Software GmbH">
+  <link type="application/atom+xml" rel="alternate" href="https://citrusframework.org/feed.xml" title="Citrus Integration Tests">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/christophd/citrus/commits/master.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="current">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/christophd/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="current">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/christophd/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="docs">
+    <div class="grid">
+
+      <div class="docs-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the docs…</option>
+    <option value="/docs/home">Home</option>
+    
+    <optgroup label="Getting Started">
+      
+  
+  
+  <option value="/docs/home/">Welcome</option>
+
+  
+  
+  <option value="/docs/user-guide/">User Guide</option>
+
+  
+  
+  <option value="/docs/setup-maven/">Setup with Maven</option>
+
+  
+  
+  <option value="/docs/setup-gradle/">Setup with Gradle</option>
+
+  
+  
+  <option value="/docs/setup-ant/">Setup with ANT</option>
+
+  
+  
+  <option value="/docs/features/">Features</option>
+
+  
+  
+  <option value="/docs/download/">Download</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Sources">
+      
+  
+  
+  <option value="/docs/repository/">Source repository</option>
+
+  
+  
+  <option value="/docs/issues/">Issues</option>
+
+  
+  
+  <option value="/docs/development/">Development</option>
+
+  
+  
+  <option value="/docs/contributing/">Contributing</option>
+
+  
+  
+  <option value="/docs/conventions/">Conventions</option>
+
+  
+  
+  <option value="/docs/conduct/">Code of Conduct</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Customize">
+      
+  
+  
+  <option value="/docs/custom-endpoints/"></option>
+
+  
+  
+  <option value="/docs/custom-actions/">Custom actions</option>
+
+  
+  
+  <option value="/docs/custom-functions/">Custom functions</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Tools">
+      
+  
+  
+  <option value="/docs/maven-plugin/">Maven plugin</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Miscellaneous">
+      
+  
+  
+  <option value="/docs/team/">Team</option>
+
+  
+  
+  <option value="/docs/config-sheet/"></option>
+
+  
+  
+  <option value="/docs/upgrade-migration/"></option>
+
+  
+  
+  <option value="/docs/consulting/">Consulting</option>
+
+
+    </optgroup>
+    
+    <optgroup label="Meta">
+      
+  
+  
+  <option value="/docs/license/">License</option>
+
+  
+  
+  <option value="/docs/modules/">Modules</option>
+
+  
+  
+  <option value="/docs/history/">History</option>
+
+
+    </optgroup>
+    
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+          <div class="improve right hide-on-mobiles">
+            <a href="https://github.com/christophd/citrus/edit/master/src/site/_docs/history.md"><i class="fa fa-pencil"></i>  Improve this page</a>
+          </div>
+          <h1>History</h1>
+          
+<h2 id="latest">Release 2.7.5 / 2018-05-08</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Id</th>
+      <th style="text-align: center">Changes</th>
+      <th style="text-align: center">By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/357">#357</a></td>
+      <td style="text-align: center">Unable to initialize Citrus instance - instance has already been initialized</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/374">#374</a></td>
+      <td style="text-align: center">Message selector on non-XML payloads</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/375">#375</a></td>
+      <td style="text-align: center">Send and receive zip archives</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/345">#345</a></td>
+      <td style="text-align: center">Add “.headers” declaration that takes a Map for validation</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/363">#363</a></td>
+      <td style="text-align: center">Remove unnecessary surefire excludes</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/369">#369</a></td>
+      <td style="text-align: center">Default responses for JDBC requests</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/376">#376</a></td>
+      <td style="text-align: center">Support test variables in endpoint names</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/356">#356</a></td>
+      <td style="text-align: center">Support FTP store and retrieve file operations</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/355">#355</a></td>
+      <td style="text-align: center">Remote Citrus test report contains double entries</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/362">#362</a></td>
+      <td style="text-align: center">Correct documentation concerning maven commands</td>
+      <td style="text-align: center">FMAOuroboros</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/371">#371</a></td>
+      <td style="text-align: center">Replace parameter instead of adding them in JdbcPreparedStatement</td>
+      <td style="text-align: center">FMAOuroboros</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/367">#367</a></td>
+      <td style="text-align: center">Add binary stream validator</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/366">#366</a></td>
+      <td style="text-align: center">SQL query action requires FROM keyword</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/359">#359</a></td>
+      <td style="text-align: center">HTTP client always converts responses to String</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/353">#353</a></td>
+      <td style="text-align: center">HttpMessageController is not thread-safe</td>
+      <td style="text-align: center">imezhenkov</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/358">#358</a></td>
+      <td style="text-align: center">Transfer previously set header/contentType to Message</td>
+      <td style="text-align: center">FMAOuroboros</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="latest">Release 2.7.4 / 2018-03-12</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Id</th>
+      <th style="text-align: center">Changes</th>
+      <th style="text-align: center">By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/327">#327</a></td>
+      <td style="text-align: center">JsonPath array result type</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/322">#322</a></td>
+      <td style="text-align: center">Add JDBC db server support</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/344">#344</a></td>
+      <td style="text-align: center">Send Http request with encoded URI</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/332">#332</a></td>
+      <td style="text-align: center">Update dependency versions</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/343">#343</a></td>
+      <td style="text-align: center">Add function to resolve system properties</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/334">#334</a></td>
+      <td style="text-align: center">AntPath matching Hamcrest matcher</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/330">#330</a></td>
+      <td style="text-align: center">URL en/decode function</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/331">#331</a></td>
+      <td style="text-align: center">Missing global namespace support in send message XPath evaluation</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/329">#329</a></td>
+      <td style="text-align: center">Async test action container</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/328">#328</a></td>
+      <td style="text-align: center">SOAP server Response with MTOM attachment does not work</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="v2-7-3">Release 2.7.3 / 2018-01-15</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Id</th>
+      <th style="text-align: center">Changes</th>
+      <th style="text-align: center">By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/326">#326</a></td>
+      <td style="text-align: center">Validation of http headers should be case insensitive</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/318">#318</a></td>
+      <td style="text-align: center">TestRunner doFinally block position documentation</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/304">#304</a></td>
+      <td style="text-align: center">Multipart file upload</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/148">#148</a></td>
+      <td style="text-align: center">JSON schema validation</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/265">#265</a></td>
+      <td style="text-align: center">Http error handling thread safety</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/271">#271</a></td>
+      <td style="text-align: center">Variable in HTTP request within template not updated</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/298">#298</a></td>
+      <td style="text-align: center">TestNG Dataprovider parameters cannot be used in <variables> block</variables>
+</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/314">#314</a></td>
+      <td style="text-align: center">Extend Hamcrest matcher support in XML DSL</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/313">#313</a></td>
+      <td style="text-align: center">How to ignore text parts in plain text validator</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/312">#312</a></td>
+      <td style="text-align: center">HTTP basic authentication doesn’t work</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/310">#310</a></td>
+      <td style="text-align: center">Introduce global dictionary message direction</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/307">#307</a></td>
+      <td style="text-align: center">Package scan with custom file name pattern</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/282">#282</a></td>
+      <td style="text-align: center">How to create a container with port mapping?</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/284">#284</a></td>
+      <td style="text-align: center">Failed to convert value of type ‘java.nio.HeapByteBuffer’</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/143">#143</a></td>
+      <td style="text-align: center">Add JUnit 5 support</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/302">#302</a></td>
+      <td style="text-align: center">ConcurrentModificationException at com.consol.citrus.message.DefaultMessage.toString()</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/303">#303</a></td>
+      <td style="text-align: center">waitFor() not working with external file system resources</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/299">#299</a></td>
+      <td style="text-align: center">Remove <a href="https://github.com/Autowired" class="user-mention">@Autowired</a> from sample methods</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/300">#300</a></td>
+      <td style="text-align: center">MailMessageConverter cannot handle base64 text content</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/291">#291</a></td>
+      <td style="text-align: center">Validating XPath numbers with Hamcrest <double> matchers fails with ClassCastException</double>
+</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/297">#297</a></td>
+      <td style="text-align: center">Missing variable support in receive timeout action</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/266">#266</a></td>
+      <td style="text-align: center">Cannot use context variables for XPath in message extractor</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/183">#183</a></td>
+      <td style="text-align: center">CitrusTest does not fail if assertEquals fails</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/287">#287</a></td>
+      <td style="text-align: center">Reporting of test results</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/280">#280</a></td>
+      <td style="text-align: center">Provide listener for final actions</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/292">#292</a></td>
+      <td style="text-align: center">Update dependency versions</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/272">#272</a></td>
+      <td style="text-align: center">DelegatingTestAction should implement setName/setActor/setDescription</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/268">#268</a></td>
+      <td style="text-align: center">How to support SOAP 1.2 over JMS</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/290">#290</a></td>
+      <td style="text-align: center">Http server basic auth broken</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/288">#288</a></td>
+      <td style="text-align: center">Update validation.adoc</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/277">#277</a></td>
+      <td style="text-align: center">JSONPath validator doesn’t return array length correctly</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/270">#270</a></td>
+      <td style="text-align: center">Support node list translation in data dictionary</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/226">#226</a></td>
+      <td style="text-align: center">fixed minor typo</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="v2-7-2">Release 2.7.2 / 2017-07-07</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Id</th>
+      <th style="text-align: center">Changes</th>
+      <th style="text-align: center">By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/265">#265</a></td>
+      <td style="text-align: center">Http error handling thread safety</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/262">#262</a></td>
+      <td style="text-align: center">Switch to asciidoctor</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/243">#243</a></td>
+      <td style="text-align: center">Access test case variables in Camel Routes definitions</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/246">#246</a></td>
+      <td style="text-align: center">charset=UTF-8 appending to Content-Type for client defined in xml</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/244">#244</a></td>
+      <td style="text-align: center">SQL Testaction does not handle transactions</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/263">#263</a></td>
+      <td style="text-align: center">Update dependency versions</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/264">#264</a></td>
+      <td style="text-align: center">Support environment properties</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/187">#187</a></td>
+      <td style="text-align: center">Unable to retrieve X-CSRF-TOKEN using Header</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/184">#184</a></td>
+      <td style="text-align: center">Needing extractFromCookies()</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/231">#231</a></td>
+      <td style="text-align: center">Http client squeezed double slashes</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/238">#238</a></td>
+      <td style="text-align: center">SoapJmsMessageConverter does not create a SOAP Header</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/235">#235</a></td>
+      <td style="text-align: center">Documentation for custom servlet filters</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/229">#229</a></td>
+      <td style="text-align: center">Add documentation on Cucumber injection mode</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/239">#239</a></td>
+      <td style="text-align: center">Support header child elements</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/241">#241</a></td>
+      <td style="text-align: center">WsdlXsdSchema NullPointerException for valid WSDLs</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/245">#245</a></td>
+      <td style="text-align: center">How to Query ?WSDL from a WebService or HTTP Endpoint</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/242">#242</a></td>
+      <td style="text-align: center">Camel Documentation does not state citrusCamelContext as default name</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/256">#256</a></td>
+      <td style="text-align: center">JMS Endpoints should allow dynamic destination name</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/257">#257</a></td>
+      <td style="text-align: center">Purge JMS queue action doesn’t support variable substitution</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/258">#258</a></td>
+      <td style="text-align: center">HTTP client send doesn’t support variable substitution for header names</td>
+      <td style="text-align: center">s1hofmann</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/247">#247</a></td>
+      <td style="text-align: center">Charset cannot be set per file for resources</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/248">#248</a></td>
+      <td style="text-align: center">PlainTextValidator does not ignore whitespaces</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/249">#249</a></td>
+      <td style="text-align: center">Validation fails with null edge case</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/250">#250</a></td>
+      <td style="text-align: center">missing variable support in wait action file condition</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/260">#260</a></td>
+      <td style="text-align: center">custom web-driver is not working with citrus-selenium</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/233">#233</a></td>
+      <td style="text-align: center">Support Hamcrest matchers in header validation</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/234">#234</a></td>
+      <td style="text-align: center">Handle JMS priority header</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/228">#228</a></td>
+      <td style="text-align: center">Java DSL depends on citrus-selenium although declared optional</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="v2-7-1">Release 2.7.1 / 2017-03-15</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Id</th>
+      <th style="text-align: center">Changes</th>
+      <th style="text-align: center">By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/224">#224</a></td>
+      <td style="text-align: center">Add ignore validation matcher</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/216">#216</a></td>
+      <td style="text-align: center">Enabled mtomEnabled flag for soap send actions in Java DSL</td>
+      <td style="text-align: center">chris-weber</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/214">#214</a></td>
+      <td style="text-align: center">Line separators in plain text validation</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/221">#221</a></td>
+      <td style="text-align: center">Overwriting TestContext in AbstractServer</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/197">#197</a></td>
+      <td style="text-align: center">Citrus validates text content although I did not tell it</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/218">#218</a></td>
+      <td style="text-align: center">Auto select message type for validation</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/217">#217</a></td>
+      <td style="text-align: center">Cucumber Http steps</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/213">#213</a></td>
+      <td style="text-align: center">Cucumber Selenium steps</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/212">#212</a></td>
+      <td style="text-align: center">Cucumber Docker steps</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/219">#219</a></td>
+      <td style="text-align: center">Customize default message type</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/201">#201</a></td>
+      <td style="text-align: center">Http header validation skipped</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/200">#200</a></td>
+      <td style="text-align: center">Maven Archetype for Citrus</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/211">#211</a></td>
+      <td style="text-align: center">Mix XML and Java DSL test methods</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/210">#210</a></td>
+      <td style="text-align: center">Fixed parentheses in examples for matchers</td>
+      <td style="text-align: center">rhuss</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/209">#209</a></td>
+      <td style="text-align: center">Sporadic IllegalStateException</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/206">#206</a></td>
+      <td style="text-align: center">Link to templates was written wrong</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/204">#204</a></td>
+      <td style="text-align: center">StopTime action holding static state</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="v2-7">Release 2.7 / 2017-02-01</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Id</th>
+      <th style="text-align: center">Changes</th>
+      <th style="text-align: center">By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/133">#133</a></td>
+      <td style="text-align: center">Update to Java 8</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/150">#150</a></td>
+      <td style="text-align: center">Kubernetes integration</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/68">#68</a></td>
+      <td style="text-align: center">Selenium support</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/188">#188</a></td>
+      <td style="text-align: center">MS SQL Compatibility fix</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/180">#180</a></td>
+      <td style="text-align: center">LoggingClientInterceptor gets disabled when some interceptor is set</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/163">#163</a></td>
+      <td style="text-align: center">Enable/disable before/after suite based on env parameter</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/193">#193</a></td>
+      <td style="text-align: center">WsAddressing header customization</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/192">#192</a></td>
+      <td style="text-align: center">Hamcrest validation matcher with numeric values</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/175">#175</a></td>
+      <td style="text-align: center">Add JsonPathDataDictionary</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/164">#164</a></td>
+      <td style="text-align: center">Add test behavior documentation</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/139">#139</a></td>
+      <td style="text-align: center">MessageConstructionInterceptor causes StackOverflowError</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/185">#185</a></td>
+      <td style="text-align: center">Always give current Json element in error messages</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/179">#179</a></td>
+      <td style="text-align: center">HTTP server autostart with JavaConfig fails</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/177">#177</a></td>
+      <td style="text-align: center">MailServerBuilder in Spring Java config not working</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/176">#176</a></td>
+      <td style="text-align: center">Exception when executing single Cucumber scenario</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/172">#172</a></td>
+      <td style="text-align: center">Simply copy byte array out of input stream</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/174">#174</a></td>
+      <td style="text-align: center">JsonMappingDataDictionary breaks non string values</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/166">#166</a></td>
+      <td style="text-align: center">Test fails with enabled global dictionary</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/167">#167</a></td>
+      <td style="text-align: center">Explicit dictionary vs. global dictionary message overwrite</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/162">#162</a></td>
+      <td style="text-align: center">Remove deprecated API</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="v2-6-2">Release 2.6.2 / 2016-11-14</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Id</th>
+      <th style="text-align: center">Changes</th>
+      <th style="text-align: center">By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/160">#160</a></td>
+      <td style="text-align: center">Escape variable expression syntax</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/159">#159</a></td>
+      <td style="text-align: center">Add custom servlet filters to http server</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/158">#158</a></td>
+      <td style="text-align: center">Support Gzip message compression</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/156">#156</a></td>
+      <td style="text-align: center">Add message wait condition</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/155">#155</a></td>
+      <td style="text-align: center">Add JsonPath function</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/154">#154</a></td>
+      <td style="text-align: center">Add Xpath function</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/147">#147</a></td>
+      <td style="text-align: center">Improve XSD schema documentation</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/146">#146</a></td>
+      <td style="text-align: center">Exception handling bug on forked actions</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/145">#145</a></td>
+      <td style="text-align: center">Gradle sample</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/142">#142</a></td>
+      <td style="text-align: center">DataProvider explicit name support</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/141">#141</a></td>
+      <td style="text-align: center">Validation of JMS SoapAction not working</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/137">#137</a></td>
+      <td style="text-align: center">Support dynamic endpoints uri for https</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/130">#130</a></td>
+      <td style="text-align: center">ignore Xpath only matches first element</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/128">#128</a></td>
+      <td style="text-align: center">escapeXml function still buggy</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/122">#122</a></td>
+      <td style="text-align: center">Add variables and test context support in static response adapter</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/118">#118</a></td>
+      <td style="text-align: center">EscapeXml function not working with comments</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/113">#113</a></td>
+      <td style="text-align: center">Add configurable XML serializer</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/112">#112</a></td>
+      <td style="text-align: center">Allow Http accept header setting</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="v2-6-1">Release 2.6.1 / 2016-10-07</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Id</th>
+      <th style="text-align: center">Changes</th>
+      <th style="text-align: center">By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/132">#132</a></td>
+      <td style="text-align: center">Support variable object path</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/129">#129</a></td>
+      <td style="text-align: center">Add JsonPathFunctions to variable extractor</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/126">#126</a></td>
+      <td style="text-align: center">Handle BLOB column values in sql query action</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/121">#121</a></td>
+      <td style="text-align: center">Add payload file resource in static response adapter</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/120">#120</a></td>
+      <td style="text-align: center">Http client annotation config</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/119">#119</a></td>
+      <td style="text-align: center">XHTML message validation XPath support</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/117">#117</a></td>
+      <td style="text-align: center">EscapeXml function not working with commas</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/116">#116</a></td>
+      <td style="text-align: center">Cucumber messaging steps ambiguously defined</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/115">#115</a></td>
+      <td style="text-align: center">TestRunnerComponent TestContext initialization</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/110%20Before/after%20suite%20methods%20in%20java%20DSL">#110 Before/after suite methods in java DSL</a></td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/109%20Before%20test%20methods%20in%20Java%20DSL">#109 Before test methods in Java DSL</a></td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/107">#107</a></td>
+      <td style="text-align: center">Documentation wrong XML tags</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/106">#106</a></td>
+      <td style="text-align: center">Documentation wait wrong argument in Java DSL</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/105">#105</a></td>
+      <td style="text-align: center">Documentation missing maven dependencies</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="v2-6">Release 2.6 / 2016-06-27</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Id</th>
+      <th style="text-align: center">Changes</th>
+      <th style="text-align: center">By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/101">#101</a></td>
+      <td style="text-align: center">NoSuchElementException with custom action container in test runner</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/100">#100</a></td>
+      <td style="text-align: center">Java DSL should support test behavior inside test container</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://tree.taiga.io/project/christophd-citrus/us/57">#57</a></td>
+      <td style="text-align: center">Hamcrest matcher in iteration conditions</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://tree.taiga.io/project/christophd-citrus/us/56">#56</a></td>
+      <td style="text-align: center">Cucumber BDD support</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://tree.taiga.io/project/christophd-citrus/us/53">#53</a></td>
+      <td style="text-align: center">Spring RestDocs support</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://tree.taiga.io/project/christophd-citrus/us/7">#7</a></td>
+      <td style="text-align: center">Zookeeper support</td>
+      <td style="text-align: center">maherma</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/99">#99</a></td>
+      <td style="text-align: center">Set custom message type in Java DSL</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/97">#97</a></td>
+      <td style="text-align: center">Support configurable paths for reporters</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/96">#96</a></td>
+      <td style="text-align: center">Unique particle attribution #cos-nonambig violation in citrus-ws-testcase XSD</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/95">#95</a></td>
+      <td style="text-align: center">HttpStatus validation broken for BAD_REQUEST status code</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/94">#94</a></td>
+      <td style="text-align: center">escapeXml() not working with ',' in sub-XML</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/93">#93</a></td>
+      <td style="text-align: center">Links to blogs on front page is 404</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="v2-5-2">Release 2.5.2 / 2016-04-01</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Id</th>
+      <th style="text-align: center">Changes</th>
+      <th style="text-align: center">By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://tree.taiga.io/project/christophd-citrus/us/50">#50</a></td>
+      <td style="text-align: center">Support Hamcrest matchers</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://tree.taiga.io/project/christophd-citrus/us/49">#49</a></td>
+      <td style="text-align: center">Support Json object functions in JsonPath validation</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://tree.taiga.io/project/christophd-citrus/us/47">#47</a></td>
+      <td style="text-align: center">BinaryBase64 message validator</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://tree.taiga.io/project/christophd-citrus/us/46">#46</a></td>
+      <td style="text-align: center">Annotation config support for all modules</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/89">#89</a></td>
+      <td style="text-align: center">StringIndexOutOfBoundsException in XMLUtils.getTargetCharset()</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/90">#90</a></td>
+      <td style="text-align: center">Send binary messages with XML DSL</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/87">#87</a></td>
+      <td style="text-align: center">Validation matcher support in PlainTextMessageValidator</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/86">#86</a></td>
+      <td style="text-align: center">XML comments will counted as “normal” child element</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/85">#85</a></td>
+      <td style="text-align: center">XML comments before root element skip validation</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/84">#84</a></td>
+      <td style="text-align: center">Custom-Function, unclear Exception-Message</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/83">#83</a></td>
+      <td style="text-align: center">TestNG DataProvider and CitrusResource injection of TestRunner not working properly</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/82">#82</a></td>
+      <td style="text-align: center">Multithreaded selectors throw a ConcurrentModificationException</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/80">#80</a></td>
+      <td style="text-align: center">Empty message payload support in JSON data dictionary</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/79">#79</a></td>
+      <td style="text-align: center">SQL query file resource produces SQLSyntaxError</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="v2-5-1">Release 2.5.1 / 2016-03-03</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Id</th>
+      <th style="text-align: center">Changes</th>
+      <th style="text-align: center">By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://tree.taiga.io/project/christophd-citrus/us/46">#46</a></td>
+      <td style="text-align: center">Annotation config support</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://tree.taiga.io/project/christophd-citrus/us/41">#41</a></td>
+      <td style="text-align: center">Citrus main application class</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/78">#78</a></td>
+      <td style="text-align: center">Dynamic endpoints not working for http DSL</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/77">#77</a></td>
+      <td style="text-align: center">Missing 2.5 xsd references in spring.schemas</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/76">#76</a></td>
+      <td style="text-align: center">Nullpointer in after suite</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/74">#74</a></td>
+      <td style="text-align: center">MailServer stops on emtpy line</td>
+      <td style="text-align: center">gucce</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/73">#73</a></td>
+      <td style="text-align: center">Cant mvn install citrus with Java 1.7</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/70">#70</a></td>
+      <td style="text-align: center">Message payload lost for Http PATCH method</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/67">#67</a></td>
+      <td style="text-align: center">Form urlencoded marshaller using wrong xsd location</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/66">#66</a></td>
+      <td style="text-align: center">Empty Http request headers missing on server receive</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/65">#65</a></td>
+      <td style="text-align: center">Variable extractor not working in http:receive-response XML</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="v2-5">Release 2.5 / 2016-01-28</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Id</th>
+      <th style="text-align: center">Changes</th>
+      <th style="text-align: center">By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://tree.taiga.io/project/christophd-citrus/us/39">#39</a></td>
+      <td style="text-align: center">TestContext injection</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://tree.taiga.io/project/christophd-citrus/us/37">#37</a></td>
+      <td style="text-align: center">x-www-form-urlencoded message validator</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/62">#62</a></td>
+      <td style="text-align: center">DataDictionary not settable via Java DSL</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/61">#61</a></td>
+      <td style="text-align: center">Global scoped data dictionaries breaking message receipt</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/60">#60</a></td>
+      <td style="text-align: center">ClassPathResource name needs correction in User Guide</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/59">#59</a></td>
+      <td style="text-align: center">Docker action sharing docker command instance</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/58">#58</a></td>
+      <td style="text-align: center">JUnit4CitrusTestDesigner validateScript doesn’t work properly</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/55">#55</a></td>
+      <td style="text-align: center">x-www-form-urlencoded payload lost</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/50">#50</a></td>
+      <td style="text-align: center">allow variable value definition in cdata section</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://tree.taiga.io/project/christophd-citrus/us/36">#36</a></td>
+      <td style="text-align: center">RMI support</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://tree.taiga.io/project/christophd-citrus/us/34">#34</a></td>
+      <td style="text-align: center">Cleanup validation matcher support</td>
+      <td style="text-align: center">maherma</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://tree.taiga.io/project/christophd-citrus/us/32">#32</a></td>
+      <td style="text-align: center">Use Mockito instead of EasyMock</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://tree.taiga.io/project/christophd-citrus/us/31">#31</a></td>
+      <td style="text-align: center">Date range validation matcher</td>
+      <td style="text-align: center">maherma</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://tree.taiga.io/project/christophd-citrus/us/29">#29</a></td>
+      <td style="text-align: center">Read file resource function</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://tree.taiga.io/project/christophd-citrus/us/24">#24</a></td>
+      <td style="text-align: center">Timer action container</td>
+      <td style="text-align: center">maherma</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://tree.taiga.io/project/christophd-citrus/us/23">#23</a></td>
+      <td style="text-align: center">Optimize Jett-9 startup</td>
+      <td style="text-align: center">maherma</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://tree.taiga.io/project/christophd-citrus/us/17">#17</a></td>
+      <td style="text-align: center">Update to Vert.x 3.0</td>
+      <td style="text-align: center">maherma</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="v2-4">Release 2.4 / 2015-11-03</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Id</th>
+      <th style="text-align: center">Changes</th>
+      <th style="text-align: center">By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/christophd/citrus/issues/47">#47</a></td>
+      <td style="text-align: center">JSON data dictionary throws NullPointerException</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://tree.taiga.io/project/christophd-citrus/us/27">#27</a></td>
+      <td style="text-align: center">Validation callback with TestContext</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://tree.taiga.io/project/christophd-citrus/us/26">#26</a></td>
+      <td style="text-align: center">Improved REST support</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://tree.taiga.io/project/christophd-citrus/us/22">#22</a></td>
+      <td style="text-align: center">Wait-Condition Action</td>
+      <td style="text-align: center">maherma</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://tree.taiga.io/project/christophd-citrus/us/21">#21</a></td>
+      <td style="text-align: center">Camel route test actions</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://tree.taiga.io/project/christophd-citrus/us/20">#20</a></td>
+      <td style="text-align: center">Http DELETE with payload</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://tree.taiga.io/project/christophd-citrus/us/19">#19</a></td>
+      <td style="text-align: center">Purge endpoints action</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://tree.taiga.io/project/christophd-citrus/us/14">#14</a></td>
+      <td style="text-align: center">Update plugin versions</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://tree.taiga.io/project/christophd-citrus/us/13">#13</a></td>
+      <td style="text-align: center">Update dependency versions</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://tree.taiga.io/project/christophd-citrus/us/12">#12</a></td>
+      <td style="text-align: center">Release archetypes to central</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://tree.taiga.io/project/christophd-citrus/us/11">#11</a></td>
+      <td style="text-align: center">Release to Maven central</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://tree.taiga.io/project/christophd-citrus/us/6">#6</a></td>
+      <td style="text-align: center">Docker support</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="v2-3">Release 2.3 / 2015-08-18</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Id</th>
+      <th style="text-align: center">Changes</th>
+      <th style="text-align: center">By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-45">#45</a></td>
+      <td style="text-align: center">Assertion error in parallel not causing test case to fail</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-264">#264</a></td>
+      <td style="text-align: center">Camel direct endpoint consumer caching</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-263">#263</a></td>
+      <td style="text-align: center">Customize message validators</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-262">#262</a></td>
+      <td style="text-align: center">Boolean expression evaluation in Java DSL</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-255">#255</a></td>
+      <td style="text-align: center">Refactor Java DSL test action execution (TestRunner)</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-253">#253</a></td>
+      <td style="text-align: center">Update Jetty version</td>
+      <td style="text-align: center">maherma</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-248">#248</a></td>
+      <td style="text-align: center">Websocket support</td>
+      <td style="text-align: center">maherma</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-196">#196</a></td>
+      <td style="text-align: center">JSONPath support</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="v2-2">Release 2.2 / 2015-06-26</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Id</th>
+      <th style="text-align: center">Changes</th>
+      <th style="text-align: center">By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-261">#261</a></td>
+      <td style="text-align: center">Http server response message tracing</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-260">#260</a></td>
+      <td style="text-align: center">Customize dynamic endpoint names</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-259">#259</a></td>
+      <td style="text-align: center">Nullpointer in SoapMessageConverter</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-254">#254</a></td>
+      <td style="text-align: center">Citrus annotation support in JUnit</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-252">#252</a></td>
+      <td style="text-align: center">ANT tasks and tutorial</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-250">#250</a></td>
+      <td style="text-align: center">Start/Stop server action</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-249">#249</a></td>
+      <td style="text-align: center">Arquillian integration</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-245">#245</a></td>
+      <td style="text-align: center">Iterating action container in loops</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="v2-1">Release 2.1 / 2015-02-20</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Id</th>
+      <th style="text-align: center">Changes</th>
+      <th style="text-align: center">By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-244">#244</a></td>
+      <td style="text-align: center">Keep SOAP envelope for incoming requests</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-243">#243</a></td>
+      <td style="text-align: center">Ssh request/response XSD schema</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-242">#242</a></td>
+      <td style="text-align: center">WSDL includes not working in schema validation</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-241">#241</a></td>
+      <td style="text-align: center">SOAP MTOM support</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-240">#240</a></td>
+      <td style="text-align: center">Missing Java 7 requirements in user guide</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-239">#239</a></td>
+      <td style="text-align: center">Java test action cahing String[] method parameters</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-238">#238</a></td>
+      <td style="text-align: center">Conversion exception when logging object message payloads</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-237">#237</a></td>
+      <td style="text-align: center">TestNG data provider handling</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-236">#236</a></td>
+      <td style="text-align: center">Fallback endpoint adapter not settable</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-235">#235</a></td>
+      <td style="text-align: center">SOAP 1.2 server support missing</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-208">#208</a></td>
+      <td style="text-align: center">Namespaces lost in SOAP envelope</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-206">#206</a></td>
+      <td style="text-align: center">Mail message payload namespace</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-193">#193</a></td>
+      <td style="text-align: center">Improve TestNG data provider documentation</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="v2-0">Release 2.0 / 2014-11-01</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Id</th>
+      <th style="text-align: center">Changes</th>
+      <th style="text-align: center">By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-234">#234</a></td>
+      <td style="text-align: center">Remove deprecated classes</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-233">#233</a></td>
+      <td style="text-align: center">Separate citrus-jms module</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-232">#232</a></td>
+      <td style="text-align: center">Use message converter pattern</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-231">#231</a></td>
+      <td style="text-align: center">Schema validation on xs:any</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-230">#230</a></td>
+      <td style="text-align: center">Upgrade to Spring 4.x</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-229">#229</a></td>
+      <td style="text-align: center">Update dependency and Maven plugin versions</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-228">#228</a></td>
+      <td style="text-align: center">TestNG parameters in Java DSL</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-227">#227</a></td>
+      <td style="text-align: center">Use TestContext in validation matcher interface</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-226">#226</a></td>
+      <td style="text-align: center">Use TestContext in function interface</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-225">#225</a></td>
+      <td style="text-align: center">Create variable validation matcher</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-224">#224</a></td>
+      <td style="text-align: center">Namespace context configuration component</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-223">#223</a></td>
+      <td style="text-align: center">Correlate messages by default</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-222">#222</a></td>
+      <td style="text-align: center">Multiple SOAP attachments</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-221">#221</a></td>
+      <td style="text-align: center">Multiple SOAP header fragments</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-220">#220</a></td>
+      <td style="text-align: center">Data dictionary schema component</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-219">#219</a></td>
+      <td style="text-align: center">Auto sleep in milliseconds</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-218">#218</a></td>
+      <td style="text-align: center">Sleep action in milliseconds</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-217">#217</a></td>
+      <td style="text-align: center">Rework MessageListener interface</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-216">#216</a></td>
+      <td style="text-align: center">Log Citrus version</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-215">#215</a></td>
+      <td style="text-align: center">Rework root application context</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-214">#214</a></td>
+      <td style="text-align: center">ValidationMatcher XML schema component</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-213">#213</a></td>
+      <td style="text-align: center">Function library component</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-212">#212</a></td>
+      <td style="text-align: center">Sequence after test component</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-211">#211</a></td>
+      <td style="text-align: center">Sequence before/after suite components</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-210">#210</a></td>
+      <td style="text-align: center">Rework sample applications</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-209">#209</a></td>
+      <td style="text-align: center">Rework Maven plugin</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-188">#188</a></td>
+      <td style="text-align: center">Fail fast when validator is missing</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-171">#171</a></td>
+      <td style="text-align: center">Ftp server adapter</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-191">#191</a></td>
+      <td style="text-align: center">JMS Soap message converter</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-90">#90</a></td>
+      <td style="text-align: center">Citrus Jms header mapper</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="v1-4-1">Release 1.4.1 / 2014-07-11</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Id</th>
+      <th style="text-align: center">Changes</th>
+      <th style="text-align: center">By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-207">#207</a></td>
+      <td style="text-align: center">Dynamic endpoint components</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-205">#205</a></td>
+      <td style="text-align: center">Apache Camel support</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-203">#203</a></td>
+      <td style="text-align: center">Vert.x support</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-202">#202</a></td>
+      <td style="text-align: center">Missing soap must understand interceptor support</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-201">#201</a></td>
+      <td style="text-align: center">Custom interceptors in citrus-ws server component not loaded</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="v1-4">Release 1.4 / 2014-05-02</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Id</th>
+      <th style="text-align: center">Changes</th>
+      <th style="text-align: center">By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-200">#200</a></td>
+      <td style="text-align: center">Global variables component</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-199">#199</a></td>
+      <td style="text-align: center">Auto sleep &lt; 1 second</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-198">#198</a></td>
+      <td style="text-align: center">JSON text validator strict mode</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-197">#197</a></td>
+      <td style="text-align: center">Attachment spelling in Java DSL</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-195">#195</a></td>
+      <td style="text-align: center">Java DSL Http specific send options</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-194">#194</a></td>
+      <td style="text-align: center">Misleading create variables action in Java DSL</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-192">#192</a></td>
+      <td style="text-align: center">Nested anonymous test actions fail</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-190">#190</a></td>
+      <td style="text-align: center">Dokumentation FTP adapter description</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-187">#187</a></td>
+      <td style="text-align: center">Class cast exceptions when using object variable value</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-186">#186</a></td>
+      <td style="text-align: center">AssertionErrors not handled</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-185">#185</a></td>
+      <td style="text-align: center">SSHClient with just username/password</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-184">#184</a></td>
+      <td style="text-align: center">Mail adapter</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-183">#183</a></td>
+      <td style="text-align: center">SOAP Http Uri as header</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-166">#166</a></td>
+      <td style="text-align: center">XML data dictionary</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="v1-3-1">Release 1.3.1 / 2013-09-06</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Id</th>
+      <th style="text-align: center">Changes</th>
+      <th style="text-align: center">By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-182">#182</a></td>
+      <td style="text-align: center">Support multiple test methods in Java DSL TestBuilder class</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-181">#181</a></td>
+      <td style="text-align: center">Add true/false to BooleanExpressionParser</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-180">#180</a></td>
+      <td style="text-align: center">Attribute validation xsi:type namespace dependent</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-179">#179</a></td>
+      <td style="text-align: center">XHTML user guide missing tidy dependency</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-178">#178</a></td>
+      <td style="text-align: center">Groovy message header validation skipped</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-177">#177</a></td>
+      <td style="text-align: center">ProcessContents strategy for xs:any elements in testcase.xsd</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-176">#176</a></td>
+      <td style="text-align: center">Improve message dispatching handler</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-175">#175</a></td>
+      <td style="text-align: center">Empty control message disables validation</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-174">#174</a></td>
+      <td style="text-align: center">JAXBHelperImpl using jdk internal NamespacePrefixMapper</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-173">#173</a></td>
+      <td style="text-align: center">MatchWeekday function</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-172">#172</a></td>
+      <td style="text-align: center">ChangeDate function</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-169">#169</a></td>
+      <td style="text-align: center">FileUtils read to String encoding</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-168">#168</a></td>
+      <td style="text-align: center">Add XSD schema repository bean definition parser</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-167">#167</a></td>
+      <td style="text-align: center">Move message constructing interceptor to base interface</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="v1-3">Release 1.3 / 2013-04-01</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Id</th>
+      <th style="text-align: center">Changes</th>
+      <th style="text-align: center">By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-165">#165</a></td>
+      <td style="text-align: center">Add Http params to basic authentication</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-164">#164</a></td>
+      <td style="text-align: center">Support Jetty server with security handler</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-163">#163</a></td>
+      <td style="text-align: center">Support multiple SOAP fault detail elements</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-162">#162</a></td>
+      <td style="text-align: center">Random number function leading zero numbers</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-161">#161</a></td>
+      <td style="text-align: center">SOAP 1.2 fault detail validation</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-160">#160</a></td>
+      <td style="text-align: center">CurrentDateFunction not threadsafe with custom date format pattern</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-159">#159</a></td>
+      <td style="text-align: center">MessageSelectorBuilder breaks with ‘A’ ‘N’ ‘D’ characters</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-158">#158</a></td>
+      <td style="text-align: center">Http error code simulation</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-157">#157</a></td>
+      <td style="text-align: center">SSH adapter for mocking SSH requests</td>
+      <td style="text-align: center">roland</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-156">#156</a></td>
+      <td style="text-align: center">Extend schema repository with pattern resolver</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-155">#155</a></td>
+      <td style="text-align: center">Add WSDL support for schema repository</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-154">#154</a></td>
+      <td style="text-align: center">Add SOAP fault actor support</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-153">#153</a></td>
+      <td style="text-align: center">Test actors</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-152">#152</a></td>
+      <td style="text-align: center">JUnit test execution broken</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-151">#151</a></td>
+      <td style="text-align: center">Resolve function throwing StringIndexOutOfBounds</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-150">#150</a></td>
+      <td style="text-align: center">WebServiceEndpoint - NullPointerException when there´s no response</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-149">#149</a></td>
+      <td style="text-align: center">XPath breaks message selector with “=” character</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-148">#148</a></td>
+      <td style="text-align: center">Java action with String argument type</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-147">#147</a></td>
+      <td style="text-align: center">Comma character breaks concat function</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-146">#146</a></td>
+      <td style="text-align: center">Support variables in file resource paths</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-145">#145</a></td>
+      <td style="text-align: center">JSONArray as top level element</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-143">#143</a></td>
+      <td style="text-align: center">SOAP fault detail schema validation</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-142">#142</a></td>
+      <td style="text-align: center">Add new test action for running ANT build targets</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-91">#91</a></td>
+      <td style="text-align: center">JUnit samples</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-84">#84</a></td>
+      <td style="text-align: center">JMS durable subscribers</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-82">#82</a></td>
+      <td style="text-align: center">Fork Http send action</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="https://citrusframework.atlassian.net/browse/CITRUS-68">#68</a></td>
+      <td style="text-align: center">Java DSL for writing test cases</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="v1-2">Release 1.2 / 2012-07-05</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Id</th>
+      <th style="text-align: center">Changes</th>
+      <th style="text-align: center">By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="368">#368</a></td>
+      <td style="text-align: center">Add XML validation matcher</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="367">#367</a></td>
+      <td style="text-align: center">Add JSON slurper Groovy validation support</td>
+      <td style="text-align: center">danielp</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="366">#366</a></td>
+      <td style="text-align: center">Fixed issue with JSONArray and simple object values</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="365">#365</a></td>
+      <td style="text-align: center">Message tracing log files</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="364">#364</a></td>
+      <td style="text-align: center">Schema mappings on receive action definition</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="363">#363</a></td>
+      <td style="text-align: center">Typed message headers</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="362">#362</a></td>
+      <td style="text-align: center">Purge message channel action</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="361">#361</a></td>
+      <td style="text-align: center">Schema mapping strategy chain</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="360">#360</a></td>
+      <td style="text-align: center">Root QName schema mapping strategy</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="359">#359</a></td>
+      <td style="text-align: center">Local host address function</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="358">#358</a></td>
+      <td style="text-align: center">Function for digest authentication header creation</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="356">#356</a></td>
+      <td style="text-align: center">Message selector support for message channels</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="357">#357</a></td>
+      <td style="text-align: center">Root QName message selector on message channels</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="355">#355</a></td>
+      <td style="text-align: center">Fixed JBoss Maven repository</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="352">#352</a></td>
+      <td style="text-align: center">Upgrade to Spring 3.1.1</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="353">#353</a></td>
+      <td style="text-align: center">Upgrade to Spring WS 2.1.0</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="354">#354</a></td>
+      <td style="text-align: center">Upgrade to Spring Integration 2.1.2</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="348">#348</a></td>
+      <td style="text-align: center">Custom validation matchers</td>
+      <td style="text-align: center">cwied</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="339">#339</a></td>
+      <td style="text-align: center">Work on Sonar reported warnings</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="362">#362</a></td>
+      <td style="text-align: center">Do not use ParseException</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="331">#331</a></td>
+      <td style="text-align: center">Custom actions tutorial</td>
+      <td style="text-align: center">jza</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="346">#346</a></td>
+      <td style="text-align: center">Validation matchers</td>
+      <td style="text-align: center">cwied</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="400">#400</a></td>
+      <td style="text-align: center">Validate REST Http error status codes</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="369">#369</a></td>
+      <td style="text-align: center">Write blog entry on TestNG parameter support</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="363">#363</a></td>
+      <td style="text-align: center">Unknown test error reporting</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="366">#366</a></td>
+      <td style="text-align: center">Documentation bug on JmsConnectingMessageHandler package</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="301">#301</a></td>
+      <td style="text-align: center">Variable support in Java action</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="367">#367</a></td>
+      <td style="text-align: center">Setter on messaging template attribute in message-channel sender/receiver</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="365">#365</a></td>
+      <td style="text-align: center">property marker escaping in HTML reporter</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="364">#364</a></td>
+      <td style="text-align: center">JSON null value validation</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="312">#312</a></td>
+      <td style="text-align: center">REST support (client and server side)</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="247">#247</a></td>
+      <td style="text-align: center">Autowired tasks before/after suite</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="248">#248</a></td>
+      <td style="text-align: center">TestNG parameter as variables</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="299">#299</a></td>
+      <td style="text-align: center">Maven3 support</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="300">#300</a></td>
+      <td style="text-align: center">Update Maven plugin versions</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="361">#361</a></td>
+      <td style="text-align: center">Fixed Http server connections from other machines</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="316">#316</a></td>
+      <td style="text-align: center">Mime headers in SOAP client</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="303">#303</a></td>
+      <td style="text-align: center">Fork mode for SOAP message sending</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="317">#317</a></td>
+      <td style="text-align: center">Create variable from Groovy script</td>
+      <td style="text-align: center">jblipphaus</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="314">#314</a></td>
+      <td style="text-align: center">HTML test report</td>
+      <td style="text-align: center">philkom</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="323">#323</a></td>
+      <td style="text-align: center">Citrus Maven archetype</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="350">#350</a></td>
+      <td style="text-align: center">Variable support in templates</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="330">#330</a></td>
+      <td style="text-align: center">Groovy SQL result set validation</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="347">#347</a></td>
+      <td style="text-align: center">Custom imports in Groovy scripts</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="349">#349</a></td>
+      <td style="text-align: center">Objects as test variables</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="344">#344</a></td>
+      <td style="text-align: center">Plain text message validator</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="343">#343</a></td>
+      <td style="text-align: center">JSON message validator</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="345">#345</a></td>
+      <td style="text-align: center">No XML specifica in TestContext</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="324">#324</a></td>
+      <td style="text-align: center">Multi-line SQL validation stmts</td>
+      <td style="text-align: center">philkom</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="322">#322</a></td>
+      <td style="text-align: center">onFinish() of JUnitReporter called too late</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="342">#342</a></td>
+      <td style="text-align: center">Global namespace mappings for XPath</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="195">#195</a></td>
+      <td style="text-align: center">Validate namespaces support is broken</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="336">#336</a></td>
+      <td style="text-align: center">Support message channel name resolving</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="321">#321</a></td>
+      <td style="text-align: center">Add custom connectors to Citrus Jetty server</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="338">#338</a></td>
+      <td style="text-align: center">WsAddressing support in Soap message sender</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="308">#308</a></td>
+      <td style="text-align: center">Maven plugin for test generation from WSDL and XSD</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="334">#334</a></td>
+      <td style="text-align: center">Dynamic Http endpoint uri resolver</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="333">#333</a></td>
+      <td style="text-align: center">Dynamic SOAP endpoint uri resolver</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="332">#332</a></td>
+      <td style="text-align: center">Handle errors in before suite/class annotated methods</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="325">#325</a></td>
+      <td style="text-align: center">Log SOAP client errors properly</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="328">#328</a></td>
+      <td style="text-align: center">Handle and log errors during ApplicationContext setup</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="329">#329</a></td>
+      <td style="text-align: center">Log SOAP messages in pure nature</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="320">#320</a></td>
+      <td style="text-align: center">CDATA vs. any-element</td>
+      <td style="text-align: center">philkom</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="139">#139</a></td>
+      <td style="text-align: center">Dependency cleanup and version updates</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="315">#315</a></td>
+      <td style="text-align: center">HTTP headers in SOAP message validation</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="241">#241</a></td>
+      <td style="text-align: center">Validate multiple db rows</td>
+      <td style="text-align: center">philkom</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="305">#305</a></td>
+      <td style="text-align: center">Groovy XML message validation</td>
+      <td style="text-align: center">philkom</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="306">#306</a></td>
+      <td style="text-align: center">Groovy MarkupBuilder</td>
+      <td style="text-align: center">philkom</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="304">#304</a></td>
+      <td style="text-align: center">TestContext in Groovy action</td>
+      <td style="text-align: center">philkom</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="272">#272</a></td>
+      <td style="text-align: center">Variable support in property loader</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="v1-1">Release 1.1 / 2010-08-12</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Id</th>
+      <th style="text-align: center">Changes</th>
+      <th style="text-align: center">By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="313">#313</a></td>
+      <td style="text-align: center">Log message when validation fails</td>
+      <td style="text-align: center">maherma</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="290">#290</a></td>
+      <td style="text-align: center">Log XSD schema validation errors properly</td>
+      <td style="text-align: center">maherma</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="297">#297</a></td>
+      <td style="text-align: center">SubstringAfterFunction</td>
+      <td style="text-align: center">cwied</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="296">#296</a></td>
+      <td style="text-align: center">Attachment support for webservice replies</td>
+      <td style="text-align: center">cwied</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="295">#295</a></td>
+      <td style="text-align: center">Support for namespace uri containing “xmlns” phrase</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="287">#287</a></td>
+      <td style="text-align: center">SOAP header XML support</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="246">#246</a></td>
+      <td style="text-align: center">MessageChannelConnecting MessageHandler</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="294">#294</a></td>
+      <td style="text-align: center">Template parameter variable support</td>
+      <td style="text-align: center">dimovelev</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="293">#293</a></td>
+      <td style="text-align: center">Template parameter as CDATA</td>
+      <td style="text-align: center">dimovelev</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="292">#292</a></td>
+      <td style="text-align: center">MapValueFunction</td>
+      <td style="text-align: center">dimovelev</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="291">#291</a></td>
+      <td style="text-align: center">RandomEnumValueFunction</td>
+      <td style="text-align: center">dimovelev</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="286">#286</a></td>
+      <td style="text-align: center">Ignore placeholder</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="289">#289</a></td>
+      <td style="text-align: center">Fixed Spring wiring bug in AbstractTestNGCitrusTest in test set up methods</td>
+      <td style="text-align: center">maherma</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="288">#288</a></td>
+      <td style="text-align: center">Support setting variables in TestNG tests</td>
+      <td style="text-align: center">maherma</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="285">#285</a></td>
+      <td style="text-align: center">Finally block not executed in failure state</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="284">#284</a></td>
+      <td style="text-align: center">Provide line numbers in failure messages</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="283">#283</a></td>
+      <td style="text-align: center">Improve exception tracing in parallel container</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="191">#191</a></td>
+      <td style="text-align: center">TestExecutionAspect not working</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="268">#268</a></td>
+      <td style="text-align: center">NPE in ws:receive without attachment data</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="281">#281</a></td>
+      <td style="text-align: center">XPath result type support (boolean, string, number, node)</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="277">#277</a></td>
+      <td style="text-align: center">XML namespace context support in XPath expressions</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="274">#274</a></td>
+      <td style="text-align: center">Added SOAP fault support for sending SOAP responses</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="273">#273</a></td>
+      <td style="text-align: center">XML processing instruction in inline XML data</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="271">#271</a></td>
+      <td style="text-align: center">citrus-ant-tasks Unix file path translation</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="270">#270</a></td>
+      <td style="text-align: center">Automatic UTF-8 to UTF-16 conversion when sending messages</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="269">#269</a></td>
+      <td style="text-align: center">Receive timeout ignored when using message selector string</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="244">#244</a></td>
+      <td style="text-align: center">Purge Jms queues - adjust receive timeout</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="243">#243</a></td>
+      <td style="text-align: center">Premature EOF in Citrus WS endpoint</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="226">#226</a></td>
+      <td style="text-align: center">SOAP header to JMS header conversion using WebLogic JMS Server</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="240">#240</a></td>
+      <td style="text-align: center">Read database values to variables without validation</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="237">#237</a></td>
+      <td style="text-align: center">Variable replacement in file resource</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="236">#236</a></td>
+      <td style="text-align: center">Handle large SOAP attachments</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="235">#235</a></td>
+      <td style="text-align: center">Inline attachment data setter in ws:send</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="222">#222</a></td>
+      <td style="text-align: center">Template parameter in parallel container</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="227">#227</a></td>
+      <td style="text-align: center">Overwrite message validator instance in test case</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="225">#225</a></td>
+      <td style="text-align: center">Validate SOAP attachment with unknown content-id</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="224">#224</a></td>
+      <td style="text-align: center">Set SOAP attachment validator in test case</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="196">#196</a></td>
+      <td style="text-align: center">Add documentation for auto-sleep in repeat-on-error-until-true</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="194">#194</a></td>
+      <td style="text-align: center">Add documentation for Groovy support</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="221">#221</a></td>
+      <td style="text-align: center">JMS to SOAP header conversion</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="220">#220</a></td>
+      <td style="text-align: center">Purge JMS queue destinations (JNDI support)</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="219">#219</a></td>
+      <td style="text-align: center">Validating SOAP attachments</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="216">#216</a></td>
+      <td style="text-align: center">Improved JMS Topic support in sender/receiver</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="217">#217</a></td>
+      <td style="text-align: center">Fixed sender/receiver configuration when using JMS topics</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="215">#215</a></td>
+      <td style="text-align: center">Parallel container failing meaningful when handling single exception</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="212">#212</a></td>
+      <td style="text-align: center">JMSTemplate interference with default destination setting</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="210">#210</a></td>
+      <td style="text-align: center">Creating new test cases with ant</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="211">#211</a></td>
+      <td style="text-align: center">SOAP header mapping for WSEndpoint implementation</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="205">#205</a></td>
+      <td style="text-align: center">Receive timeout configuration not compliant with PropertyPlaceholderConfigurer</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="207">#207</a></td>
+      <td style="text-align: center">Sync reply destination holder not threadsafe</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="206">#206</a></td>
+      <td style="text-align: center">Sync reply message handler not threadsafe</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="208">#208</a></td>
+      <td style="text-align: center">JMS receiver ignoring timeout setting when adding JMS selector</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="203">#203</a></td>
+      <td style="text-align: center">Sending SOAP attachments as a client</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="189">#189</a></td>
+      <td style="text-align: center">SOAP Fault validation</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="187">#187</a></td>
+      <td style="text-align: center">Extended exception validation</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="204">#204</a></td>
+      <td style="text-align: center">Generate test documentation in Excel</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="202">#202</a></td>
+      <td style="text-align: center">Extend test case meta-info with custom elements</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="201">#201</a></td>
+      <td style="text-align: center">Write custom actions / extend test case with custom actions</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="213">#213</a></td>
+      <td style="text-align: center">Interactive test creation in Maven plugin</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="214">#214</a></td>
+      <td style="text-align: center">Interactive Excel doc generation in Maven plugin</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="186">#186</a></td>
+      <td style="text-align: center">XML validation - fixed assert error messages</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="184">#184</a></td>
+      <td style="text-align: center">Avoid lower case test names</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="183">#183</a></td>
+      <td style="text-align: center">Set targetPackage for test creation in Maven plugin</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="185">#185</a></td>
+      <td style="text-align: center">Parallel container not failing correctly</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="v1-0">Release 1.0 / 2009-09-25</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Id</th>
+      <th style="text-align: center">Changes</th>
+      <th style="text-align: center">By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="xxx">#xxx</a></td>
+      <td style="text-align: center">Switch to Maven build system</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="xxx">#xxx</a></td>
+      <td style="text-align: center">Code refactoring</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="xxx">#xxx</a></td>
+      <td style="text-align: center">Documentation update</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="xxx">#xxx</a></td>
+      <td style="text-align: center">Installation process</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="xxx">#xxx</a></td>
+      <td style="text-align: center">Maven plugin for test case creation</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="xxx">#xxx</a></td>
+      <td style="text-align: center">Citrus ANT tasks</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Add</td>
+      <td style="text-align: center"><a href="xxx">#xxx</a></td>
+      <td style="text-align: center">Custom Spring 2.x XML configuration schema</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="v0-0-0">Release 0.0.0 / 2006-05-01</h2>
+
+<ul>
+  <li>Internal usage <a href="https://github.com/ConSol" class="user-mention">@ConSol</a>
+</li>
+  <li>Birthday!</li>
+</ul>
+
+        </article>
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    
+    <h4>Getting Started</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/home/">Welcome</a></li>
+
+  
+  
+  <li class=""><a href="/docs/user-guide/">User Guide</a></li>
+
+  
+  
+  <li class=""><a href="/docs/setup-maven/">Setup with Maven</a></li>
+
+  
+  
+  <li class=""><a href="/docs/setup-gradle/">Setup with Gradle</a></li>
+
+  
+  
+  <li class=""><a href="/docs/setup-ant/">Setup with ANT</a></li>
+
+  
+  
+  <li class=""><a href="/docs/features/">Features</a></li>
+
+  
+  
+  <li class=""><a href="/docs/download/">Download</a></li>
+
+</ul>
+
+    
+    <h4>Sources</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/repository/">Source repository</a></li>
+
+  
+  
+  <li class=""><a href="/docs/issues/">Issues</a></li>
+
+  
+  
+  <li class=""><a href="/docs/development/">Development</a></li>
+
+  
+  
+  <li class=""><a href="/docs/contributing/">Contributing</a></li>
+
+  
+  
+  <li class=""><a href="/docs/conventions/">Conventions</a></li>
+
+  
+  
+  <li class=""><a href="/docs/conduct/">Code of Conduct</a></li>
+
+</ul>
+
+    
+    <h4>Customize</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/custom-endpoints/"></a></li>
+
+  
+  
+  <li class=""><a href="/docs/custom-actions/">Custom actions</a></li>
+
+  
+  
+  <li class=""><a href="/docs/custom-functions/">Custom functions</a></li>
+
+</ul>
+
+    
+    <h4>Tools</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/maven-plugin/">Maven plugin</a></li>
+
+</ul>
+
+    
+    <h4>Miscellaneous</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/team/">Team</a></li>
+
+  
+  
+  <li class=""><a href="/docs/config-sheet/"></a></li>
+
+  
+  
+  <li class=""><a href="/docs/upgrade-migration/"></a></li>
+
+  
+  
+  <li class=""><a href="/docs/consulting/">Consulting</a></li>
+
+</ul>
+
+    
+    <h4>Meta</h4>
+    <ul>
+
+  
+  
+  <li class=""><a href="/docs/license/">License</a></li>
+
+  
+  
+  <li class=""><a href="/docs/modules/">Modules</a></li>
+
+  
+  
+  <li class="current"><a href="/docs/history/">History</a></li>
+
+</ul>
+
+    
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/christophd/citrus/blob/master/LICENSE">MIT License</a>.</p>
+      <br>
+      <p>© 2018 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p> </p>
+      <br>
+      <br>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>
