@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.6">Jekyll</generator><link href="https://citrusframework.org/feed.xml" rel="self" type="application/atom+xml" /><link href="https://citrusframework.org/" rel="alternate" type="text/html" /><updated>2018-05-16T14:23:21+00:00</updated><id>https://citrusframework.org/</id><title>Citrus Integration Tests</title><subtitle>Automated integration tests for message protocols and data formats that you require</subtitle><entry><title>TestNG sample</title><link href="https://citrusframework.org/samples/testng/" rel="alternate" type="text/html" title="TestNG sample" /><published>2017-12-06T00:00:00+00:00</published><updated>2017-12-06T00:00:00+00:00</updated><id>https://citrusframework.org/samples/sample-testng</id><content type="html" xml:base="https://citrusframework.org/samples/testng/">&lt;p&gt;This sample demonstrates the TestNG support in Citrus. We write some TestNG Citrus test cases that test the REST API of the todo sample application. The TestNG support is
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.6">Jekyll</generator><link href="https://citrusframework.org/feed.xml" rel="self" type="application/atom+xml" /><link href="https://citrusframework.org/" rel="alternate" type="text/html" /><updated>2018-05-16T18:22:47+00:00</updated><id>https://citrusframework.org/</id><title>Citrus Integration Tests</title><subtitle>Automated integration tests for message protocols and data formats that you require</subtitle><entry><title>TestNG sample</title><link href="https://citrusframework.org/samples/testng/" rel="alternate" type="text/html" title="TestNG sample" /><published>2017-12-06T00:00:00+00:00</published><updated>2017-12-06T00:00:00+00:00</updated><id>https://citrusframework.org/samples/sample-testng</id><content type="html" xml:base="https://citrusframework.org/samples/testng/">&lt;p&gt;This sample demonstrates the TestNG support in Citrus. We write some TestNG Citrus test cases that test the REST API of the todo sample application. The TestNG support is
 also described in detail in &lt;a href=&quot;http://www.citrusframework.org/reference/html/index.html#run-with-testng&quot;&gt;reference guide&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;objectives&quot;&gt;Objectives&lt;/h2&gt;
@@ -740,7 +740,7 @@ a good option and you need a real simulator instance that receives requests and 
 &lt;p&gt;This is exactly what the Citrus simulator project provides for you. Standalone simulation and complex request/response processing with solid validation capabilities. The Citrus simulator provides a very easy and reliable definition of inbound and outbound messages for different scenarios. 
 Good news is that this is not only for Http REST interfaces but also for SOAP WebService, JMS, RMI, mail messaging and many more. So you can use the simulator whenever you need to integrate with another service that is simply not available on your local machine or in your test environment.&lt;/p&gt;
 
-&lt;p&gt;The &lt;a href=&quot;https://github.com/christophd/citrus-simulator&quot;&gt;citrus-simulator&lt;/a&gt; project is a side project of the test framework &lt;a href=&quot;https://www.citrusframework.org&quot;&gt;Citrus&lt;/a&gt;. The simulator uses Citrus to define server APIs and the logic to respond with predefined messages according to
+&lt;p&gt;The &lt;a href=&quot;https://github.com/citrusframework/citrus-simulator&quot;&gt;citrus-simulator&lt;/a&gt; project is a side project of the test framework &lt;a href=&quot;https://www.citrusframework.org&quot;&gt;Citrus&lt;/a&gt;. The simulator uses Citrus to define server APIs and the logic to respond with predefined messages according to
 defined scenarios.&lt;/p&gt;
 
 &lt;p&gt;In general the simulator is nothing but a normal &lt;a href=&quot;https://projects.spring.io/spring-boot/&quot;&gt;Spring Boot&lt;/a&gt; web application that you can start on your local machine. The simulator waits for incoming requests and each request executes a predefined scenario that will create a response message for the client. 
@@ -1261,7 +1261,7 @@ JMS and many other messaging transports. The integration with Citrus framework c
 content based routing.&lt;/p&gt;
 
 &lt;p&gt;You can find the complete sample sources on &lt;a href=&quot;https://github.com/citrusframework/citrus-simulator-demo&quot;&gt;github (https://github.com/citrusframework/citrus-simulator-demo)&lt;/a&gt;. Also please explore all other 
-simulator &lt;a href=&quot;https://github.com/christophd/citrus-simulator/tree/master/simulator-samples&quot;&gt;sample projects&lt;/a&gt; and find out how the simulator works best for you and your requirements.&lt;/p&gt;
+simulator &lt;a href=&quot;https://github.com/citrusframework/citrus-simulator/tree/master/simulator-samples&quot;&gt;sample projects&lt;/a&gt; and find out how the simulator works best for you and your requirements.&lt;/p&gt;
 
 &lt;p&gt;Of course any feedback is very welcome!&lt;/p&gt;</content><author><name>Christoph Deppisch</name></author></entry><entry><title>Reporting sample</title><link href="https://citrusframework.org/samples/reporting/" rel="alternate" type="text/html" title="Reporting sample" /><published>2017-09-11T00:00:00+00:00</published><updated>2017-09-11T00:00:00+00:00</updated><id>https://citrusframework.org/samples/sample-reporting</id><content type="html" xml:base="https://citrusframework.org/samples/reporting/">&lt;p&gt;This sample deals with customized reporting features in Citrus. The sample writes extent Html reports using custom test listeners that report
 test success and failure in that special way. Also the default Html reporting in Citrus is customized using application properties. 
@@ -1301,7 +1301,7 @@ We want to write custom Html reports using the &lt;a href=&quot;http://extentrep
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;You can review the complete custom reporter on this sample’s &lt;a href=&quot;https://github.com/christophd/citrus-samples/tree/master/sample-reporting/src/test/java/com/consol/citrus/samples/todolist/reporting/ExtentReporter.java&quot;&gt;github repository&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You can review the complete custom reporter on this sample’s &lt;a href=&quot;https://github.com/citrusframework/citrus-samples/tree/master/sample-reporting/src/test/java/com/consol/citrus/samples/todolist/reporting/ExtentReporter.java&quot;&gt;github repository&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;We add the new reporter implementation as Spring bean to the application context.&lt;/p&gt;
 
@@ -1315,7 +1315,7 @@ We want to write custom Html reports using the &lt;a href=&quot;http://extentrep
 As a result the reporter writes Extent styled Html reports to the folder &lt;code class=&quot;highlighter-rouge&quot;&gt;target/citrus-reports/extent-reports.html&lt;/code&gt; when Citrus tests are executed.&lt;/p&gt;
 
 &lt;p&gt;In addition to that Citrus provides some default Html reporting that is also customizable. We can use application properties to customize the report. Lets add a new application
-property file to the sample sources in &lt;a href=&quot;https://github.com/christophd/citrus-samples/tree/master/sample-reporting/src/test/resources/citrus-application.properties&quot;&gt;resources/citrus-application.properties&lt;/a&gt;.&lt;/p&gt;
+property file to the sample sources in &lt;a href=&quot;https://github.com/citrusframework/citrus-samples/tree/master/sample-reporting/src/test/resources/citrus-application.properties&quot;&gt;resources/citrus-application.properties&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;The file contains some property settings that customize the default Citrus Html reporting.&lt;/p&gt;
 
