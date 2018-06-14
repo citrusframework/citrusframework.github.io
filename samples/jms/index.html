@@ -1,14 +1,13 @@
 <!DOCTYPE HTML>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="UTF-8">
   <title>Citrus Framework</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Citrus 2.7.6">
-  <meta name="description" content="Citrus Framework Website">
-  <meta name="author" content="ConSol Software GmbH">
-  <link type="application/atom+xml" rel="alternate" href="https://citrusframework.org/feed.xml" title="Citrus Integration Tests">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
   <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/citrusframework/citrus/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
@@ -36,7 +35,7 @@
   <li class="">
     <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
   </li>
-  <li class="current">
+  <li class="">
     <a href="/samples/">Samples</a>
   </li>
   <li class="">
@@ -66,7 +65,7 @@
   <li class="">
     <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
   </li>
-  <li class="current">
+  <li class="">
     <a href="/samples/">Samples</a>
   </li>
   <li class="">
@@ -95,13 +94,14 @@
     <option value="/samples/todo-app/">Sample app</option>
     <option value="/samples/run/">Running</option>
     
-    <option value="/samples/testng/">sample-testng</option>
+    
+    <option value="/samples/binary/">sample-binary</option>
     
     <option value="/samples/message-store/">sample-message-store</option>
     
-    <option value="/samples/junit5/">sample-junit5</option>
+    <option value="/samples/camel-context/">sample-camel-context</option>
     
-    <option value="/samples/junit/">sample-junit</option>
+    <option value="/samples/dynamic-endpoints/">sample-dynamic-endpoints</option>
     
     <option value="/samples/hamcrest/">sample-hamcrest</option>
     
@@ -115,59 +115,59 @@
     
     <option value="/samples/docker/">sample-docker</option>
     
-    <option value="/samples/soap-ssl/">sample-soap-ssl</option>
+    <option value="/samples/javaconfig/">sample-javaconfig</option>
     
     <option value="/samples/rmi/">sample-rmi</option>
     
-    <option value="/samples/soap-wsaddressing/">sample-soap-wsaddressing</option>
-    
-    <option value="/samples/soap-static-response/">sample-soap-static-response</option>
-    
-    <option value="/samples/http-static-response/">sample-http-static-response</option>
-    
-    <option value="/samples/arquillian/">sample-javaee</option>
-    
-    <option value="/samples/http-loadtest/">sample-http-loadtest</option>
-    
-    <option value="/samples/soap-wssecurity/">sample-soap-wssecurity</option>
-    
-    <option value="/samples/gradle/">sample-gradle</option>
-    
-    <option value="/samples/xml/">sample-xml</option>
-    
-    <option value="/samples/xhtml/">sample-xhtml</option>
-    
-    <option value="/samples/soap/">sample-soap</option>
-    
-    <option value="/samples/oxm/">sample-oxm</option>
+    <option value="/samples/jms/">sample-jms</option>
     
     <option value="/samples/mail/">sample-mail</option>
     
-    <option value="/samples/json/">sample-json</option>
+    <option value="/samples/arquillian/">sample-javaee</option>
     
-    <option value="/samples/jms/">sample-jms</option>
-    
-    <option value="/samples/jdbc/">sample-jdbc</option>
-    
-    <option value="/samples/javaconfig/">sample-javaconfig</option>
-    
-    <option value="/samples/https/">sample-https</option>
-    
-    <option value="/samples/http/">sample-http</option>
-    
-    <option value="/samples/dynamic-endpoints/">sample-dynamic-endpoints</option>
-    
-    <option value="/samples/dataprovider/">sample-dataprovider</option>
-    
-    <option value="/samples/databind/">sample-databind</option>
+    <option value="/samples/gradle/">sample-gradle</option>
     
     <option value="/samples/cucumber/">sample-cucumber</option>
     
     <option value="/samples/cucumber-spring/">sample-cucumber-spring</option>
     
-    <option value="/samples/camel-context/">sample-camel-context</option>
+    <option value="/samples/jdbc/">sample-jdbc</option>
     
-    <option value="/samples/binary/">sample-binary</option>
+    <option value="/samples/http-loadtest/">sample-http-loadtest</option>
+    
+    <option value="/samples/https/">sample-https</option>
+    
+    <option value="/samples/http/">sample-http</option>
+    
+    <option value="/samples/json/">sample-json</option>
+    
+    <option value="/samples/databind/">sample-databind</option>
+    
+    <option value="/samples/junit5/">sample-junit5</option>
+    
+    <option value="/samples/junit/">sample-junit</option>
+    
+    <option value="/samples/http-static-response/">sample-http-static-response</option>
+    
+    <option value="/samples/soap-ssl/">sample-soap-ssl</option>
+    
+    <option value="/samples/soap-static-response/">sample-soap-static-response</option>
+    
+    <option value="/samples/soap/">sample-soap</option>
+    
+    <option value="/samples/soap-wssecurity/">sample-soap-wssecurity</option>
+    
+    <option value="/samples/soap-wsaddressing/">sample-soap-wsaddressing</option>
+    
+    <option value="/samples/dataprovider/">sample-dataprovider</option>
+    
+    <option value="/samples/testng/">sample-testng</option>
+    
+    <option value="/samples/xml/">sample-xml</option>
+    
+    <option value="/samples/oxm/">sample-oxm</option>
+    
+    <option value="/samples/xhtml/">sample-xhtml</option>
     
   </select>
 </div>
@@ -180,9 +180,12 @@
     <a href="/samples/jms/" class="permalink" title="Permalink">∞</a>
   </h2>
   <div class="right">
+    
+    
     <a href="https://github.com/citrusframework/citrus-samples/blob/master/sample-jms" target="_blank">
       <i class="fa fa-pencil"></i> View source code
     </a>
+    
   </div>
   <span class="post-category">
     <span class="label">
@@ -230,10 +233,8 @@ we have added before in the test.</p>
 <p>As we want to use the JMS capabilities of the too application we need to start the ActiveMQ message broker first. 
 You can do this with Maven:</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>mvn activemq:run
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn activemq:run
+</code></pre></div></div>
 
 <p>Read further the instructions <a href="/samples/run/">how to run</a> the sample.</p>
 
@@ -257,154 +258,250 @@ You can do this with Maven:</p>
       </li>
     </ul>
     <h4>Samples</h4>
-    <ul>
+    <ul style="margin-top: 5px;">
+      
+      
+
+      
       
       <li class="">
-        <a href="/samples/testng/">sample-testng</a>
+        <a href="/samples/binary/">sample-binary</a>
       </li>
+      
       
       <li class="">
         <a href="/samples/message-store/">sample-message-store</a>
       </li>
       
-      <li class="">
-        <a href="/samples/junit5/">sample-junit5</a>
-      </li>
-      
-      <li class="">
-        <a href="/samples/junit/">sample-junit</a>
-      </li>
-      
-      <li class="">
-        <a href="/samples/hamcrest/">sample-hamcrest</a>
-      </li>
-      
-      <li class="">
-        <a href="/samples/dictionaries/">sample-dictionaries</a>
-      </li>
-      
-      <li class="">
-        <a href="/samples/behavior/">sample-behavior</a>
-      </li>
-      
-      <li class="">
-        <a href="/samples/annotation-config/">sample-annotation-config</a>
-      </li>
-      
-      <li class="">
-        <a href="/samples/reporting/">sample-reporting</a>
-      </li>
-      
-      <li class="">
-        <a href="/samples/docker/">sample-docker</a>
-      </li>
-      
-      <li class="">
-        <a href="/samples/soap-ssl/">sample-soap-ssl</a>
-      </li>
-      
-      <li class="">
-        <a href="/samples/rmi/">sample-rmi</a>
-      </li>
-      
-      <li class="">
-        <a href="/samples/soap-wsaddressing/">sample-soap-wsaddressing</a>
-      </li>
-      
-      <li class="">
-        <a href="/samples/soap-static-response/">sample-soap-static-response</a>
-      </li>
-      
-      <li class="">
-        <a href="/samples/http-static-response/">sample-http-static-response</a>
-      </li>
-      
-      <li class="">
-        <a href="/samples/arquillian/">sample-javaee</a>
-      </li>
-      
-      <li class="">
-        <a href="/samples/http-loadtest/">sample-http-loadtest</a>
-      </li>
-      
-      <li class="">
-        <a href="/samples/soap-wssecurity/">sample-soap-wssecurity</a>
-      </li>
-      
-      <li class="">
-        <a href="/samples/gradle/">sample-gradle</a>
-      </li>
-      
-      <li class="">
-        <a href="/samples/xml/">sample-xml</a>
-      </li>
-      
-      <li class="">
-        <a href="/samples/xhtml/">sample-xhtml</a>
-      </li>
-      
-      <li class="">
-        <a href="/samples/soap/">sample-soap</a>
-      </li>
-      
-      <li class="">
-        <a href="/samples/oxm/">sample-oxm</a>
-      </li>
-      
-      <li class="">
-        <a href="/samples/mail/">sample-mail</a>
-      </li>
-      
-      <li class="">
-        <a href="/samples/json/">sample-json</a>
-      </li>
-      
-      <li class="current">
-        <a href="/samples/jms/">sample-jms</a>
-      </li>
-      
-      <li class="">
-        <a href="/samples/jdbc/">sample-jdbc</a>
-      </li>
-      
-      <li class="">
-        <a href="/samples/javaconfig/">sample-javaconfig</a>
-      </li>
-      
-      <li class="">
-        <a href="/samples/https/">sample-https</a>
-      </li>
-      
-      <li class="">
-        <a href="/samples/http/">sample-http</a>
-      </li>
-      
-      <li class="">
-        <a href="/samples/dynamic-endpoints/">sample-dynamic-endpoints</a>
-      </li>
-      
-      <li class="">
-        <a href="/samples/dataprovider/">sample-dataprovider</a>
-      </li>
-      
-      <li class="">
-        <a href="/samples/databind/">sample-databind</a>
-      </li>
-      
-      <li class="">
-        <a href="/samples/cucumber/">sample-cucumber</a>
-      </li>
-      
-      <li class="">
-        <a href="/samples/cucumber-spring/">sample-cucumber-spring</a>
-      </li>
       
       <li class="">
         <a href="/samples/camel-context/">sample-camel-context</a>
       </li>
       
+      
       <li class="">
-        <a href="/samples/binary/">sample-binary</a>
+        <a href="/samples/dynamic-endpoints/">sample-dynamic-endpoints</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/hamcrest/">sample-hamcrest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dictionaries/">sample-dictionaries</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/behavior/">sample-behavior</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/annotation-config/">sample-annotation-config</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/reporting/">sample-reporting</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/docker/">sample-docker</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/javaconfig/">sample-javaconfig</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/rmi/">sample-rmi</a>
+      </li>
+      
+      
+      <li class="current">
+        <a href="/samples/jms/">sample-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/mail/">sample-mail</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/arquillian/">sample-javaee</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/gradle/">sample-gradle</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Cucumber</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/cucumber/">sample-cucumber</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/cucumber-spring/">sample-cucumber-spring</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Db</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/jdbc/">sample-jdbc</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Http</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/http-loadtest/">sample-http-loadtest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/https/">sample-https</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http/">sample-http</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Json</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/json/">sample-json</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/databind/">sample-databind</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Junit</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/junit5/">sample-junit5</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/junit/">sample-junit</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Soap</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/http-static-response/">sample-http-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-ssl/">sample-soap-ssl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-static-response/">sample-soap-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap/">sample-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-wssecurity/">sample-soap-wssecurity</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-wsaddressing/">sample-soap-wsaddressing</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Testng</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/dataprovider/">sample-dataprovider</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/testng/">sample-testng</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Xml</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/xml/">sample-xml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/oxm/">sample-oxm</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xhtml/">sample-xhtml</a>
       </li>
       
     </ul>

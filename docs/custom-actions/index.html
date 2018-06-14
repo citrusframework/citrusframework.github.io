@@ -1,14 +1,13 @@
 <!DOCTYPE HTML>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="UTF-8">
   <title>Citrus Framework</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Citrus 2.7.6">
-  <meta name="description" content="Citrus Framework Website">
-  <meta name="author" content="ConSol Software GmbH">
-  <link type="application/atom+xml" rel="alternate" href="https://citrusframework.org/feed.xml" title="Citrus Integration Tests">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
   <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/citrusframework/citrus/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
@@ -391,19 +390,15 @@ aware our new schema. To achieve this, we have to register our XSD file and the 
 properties files which have to reside in the META-INF directory of your testing jar file. Spring will detect these and 
 automatically pick them up as extension. At first, we declare our handler inside META-INF/spring.handlers:</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>http\://www.citrusframework.org/schema/jza/custom/actions=com.consol.jza.citrus.tutorial.actions.xml.CustomActionsNamespaceHandler
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http\://www.citrusframework.org/schema/jza/custom/actions=com.consol.jza.citrus.tutorial.actions.xml.CustomActionsNamespaceHandler
+</code></pre></div></div>
 
 <p>The left side is our own namespace (with escaped ‘:’) which gets assigned the package path to our custom handler 
 implementation on the right. Having our handler registered, we notify Spring about the existence of our custom schema by 
 adding META-INF/spring.schemas with the following content:</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>http\://www.citrusframework.org/schema/jza/custom/actions/custom-actions.xsd=com/consol/jza/citrus/tutorial/schema/custom-actions.xsd
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http\://www.citrusframework.org/schema/jza/custom/actions/custom-actions.xsd=com/consol/jza/citrus/tutorial/schema/custom-actions.xsd
+</code></pre></div></div>
 
 <p>This entry defines a mapping of XML schema locations (which we will define right in a moment when using our new action 
 namespace in our citrus tests) to the physical location of our custom XSD on the classpath.</p>
@@ -418,10 +413,10 @@ use our custom action in citrus tests as desired:</p>
   <span class="na">xmlns:ws=</span><span class="s">"http://www.citrusframework.org/schema/ws/testcase"</span>
   <span class="na">xmlns:my=</span><span class="s">"http://www.citrusframework.org/schema/jza/custom/actions"</span>
   <span class="na">xmlns:spring=</span><span class="s">"http://www.springframework.org/schema/beans"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> 
-  <span class="na">xsi:schemaLocation=</span><span class="s">"http://www.springframework.org/schema/beans</span> <span class="err">http://www.springframework.org/schema/beans/spring-beans.xsd</span> 
-    <span class="err">http://www.citrusframework.org/schema/ws/testcase</span> <span class="err">http://www.citrusframework.org/schema/ws/testcase/citrus-ws-testcase.xsd</span> 
-    <span class="err">http://www.citrusframework.org/schema/testcase</span> <span class="err">http://www.citrusframework.org/schema/testcase/citrus-testcase.xsd</span>
-    <span class="err">http://www.citrusframework.org/schema/jza/custom/actions</span> <span class="err">http://www.citrusframework.org/schema/jza/custom/actions/custom-actions.xsd"</span><span class="nt">&gt;</span>
+  <span class="na">xsi:schemaLocation=</span><span class="s">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+    http://www.citrusframework.org/schema/ws/testcase http://www.citrusframework.org/schema/ws/testcase/citrus-ws-testcase.xsd 
+    http://www.citrusframework.org/schema/testcase http://www.citrusframework.org/schema/testcase/citrus-testcase.xsd
+    http://www.citrusframework.org/schema/jza/custom/actions http://www.citrusframework.org/schema/jza/custom/actions/custom-actions.xsd"</span><span class="nt">&gt;</span>
  
   <span class="nt">&lt;testcase</span> <span class="na">name=</span><span class="s">"SampleIT"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;meta-info&gt;</span>

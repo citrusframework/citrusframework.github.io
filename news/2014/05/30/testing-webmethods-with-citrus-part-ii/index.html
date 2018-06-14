@@ -7,7 +7,7 @@
   <meta name="generator" content="Citrus 2.7.6">
   <meta name="description" content="Citrus Framework Website"/>
   <meta name="author" content="ConSol Software GmbH"/>
-  <link type="application/atom+xml" rel="alternate" href="https://citrusframework.org/feed.xml" title="Citrus Integration Tests" />
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
   <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/citrusframework/citrus/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
@@ -192,7 +192,7 @@ So it might make pretty good sense to setup the Citrus project with Ant as well 
 Since version 1.4, Citrus provides a maven assembly goal which creates a directory with all dependency jar’s which can be thrown into the lib folder of your newly created Citrus project. You can trigger this assembly 
 by grabbing the Citrus sources and execute</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell">mvn assembly:assembly -Passembly-antlibs</code></pre></figure>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">mvn assembly:assembly <span class="nt">-Passembly-antlibs</span></code></pre></figure>
 
 <p>from the project root. Unfortunately I faced some issues on my Macbook with Maven version 3.0.5 so this way was blocked for me. Additionally, not everyone might have interest or possibilities to check out the sources 
 or have maven installed and setup on his machine. That’s basically why I want to provide a template project to speed up Ant project setup.</p>
@@ -260,7 +260,7 @@ work with your Citrus test projects in the Java perspective of SAG Designer. In 
         <a href="/docs/history/">History »</a>
       </li>
     </ul>
-    <h4>Other News</h4>
+    <h4>Blogs</h4>
     <ul>
         
         <li class="">

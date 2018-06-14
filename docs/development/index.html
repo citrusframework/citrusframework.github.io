@@ -7,7 +7,7 @@
   <meta name="generator" content="Citrus 2.7.6">
   <meta name="description" content="Citrus Framework Website"/>
   <meta name="author" content="ConSol Software GmbH"/>
-  <link type="application/atom+xml" rel="alternate" href="https://citrusframework.org/feed.xml" title="Citrus Integration Tests" />
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
   <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/citrusframework/citrus/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
@@ -241,7 +241,7 @@ You can verify the Java installation via command line with</li>
 </ul>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">  
-java -version
+java <span class="nt">-version</span>
 java version <span class="s2">"1.8.0_112"</span>
 Java<span class="o">(</span>TM<span class="o">)</span> SE Runtime Environment <span class="o">(</span>build 1.8.0_112-b16<span class="o">)</span>
 Java HotSpot<span class="o">(</span>TM<span class="o">)</span> 64-Bit Server VM <span class="o">(</span>build 25.112-b16, mixed mode<span class="o">)</span>&lt;/pre&gt;</code></pre></figure>
@@ -252,11 +252,11 @@ Download <a href="http://maven.apache.org">maven</a> and install Maven on your m
 </ul>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">  
-mvn -version
+mvn <span class="nt">-version</span>
 Maven version: 3.0.x
 Java version: 1.7.0_xx
 Default locale: en_US, platform encoding: MacRoman
-OS name: &amp;quot;mac os x&amp;quot; version: &amp;quot;10.9&amp;quot; arch: &amp;quot;x86_64&amp;quot; Family: &amp;quot;mac&amp;quot;&lt;/pre&gt;</code></pre></figure>
+OS name: &amp;quot<span class="p">;</span>mac os x&amp;quot<span class="p">;</span> version: &amp;quot<span class="p">;</span>10.9&amp;quot<span class="p">;</span> <span class="nb">arch</span>: &amp;quot<span class="p">;</span>x86_64&amp;quot<span class="p">;</span> Family: &amp;quot<span class="p">;</span>mac&amp;quot<span class="p">;</span>&lt;/pre&gt;</code></pre></figure>
 
 <h2 id="initial-git-clone">Initial git clone</h2>
 
@@ -274,7 +274,7 @@ website</a>.</p>
 <p>Now everything is setup properly and you can use Maven for all the rest:</p>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">  
-mvn install</code></pre></figure>
+mvn <span class="nb">install</span></code></pre></figure>
 
 <p>This command runs the full Maven build lifecycle with compilation, testing, packaging and installation of all artifacts. 
 You will find the freshly built Citrus JAR files in your local Maven repository. Using this new own Citrus version is 
@@ -304,7 +304,7 @@ your local Maven repository (typically found in <em>C:\Documents and Settings\us
 
 <p>Maven ofers a suitable command to do this automatically:</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell">mvn -Declipse.workspace<span class="o">=</span>&lt;path-to-eclipse-workspace&gt; eclipse:add-maven-repo </code></pre></figure>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">mvn <span class="nt">-Declipse</span>.workspace<span class="o">=</span>&lt;path-to-eclipse-workspace&gt; eclipse:add-maven-repo </code></pre></figure>
 
 <h2 id="whats-next">What’s next?</h2>
 

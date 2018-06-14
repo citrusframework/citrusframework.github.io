@@ -7,7 +7,7 @@
   <meta name="generator" content="Citrus 2.7.6">
   <meta name="description" content="Citrus Framework Website"/>
   <meta name="author" content="ConSol Software GmbH"/>
-  <link type="application/atom+xml" rel="alternate" href="https://citrusframework.org/feed.xml" title="Citrus Integration Tests" />
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
   <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/citrusframework/citrus/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
@@ -350,7 +350,7 @@ targets, but I choose the command line first to be more independent from the IDE
 
 <p>The target will prompt for some information when executed, see the output below:</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">$ </span>ant create.test
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nv">$ </span>ant create.test
 Buildfile: build.xml
 
 create.test:
@@ -386,11 +386,11 @@ at the generated files.</p>
 <span class="nt">&lt;spring:beans</span> <span class="na">xmlns=</span><span class="s">"http://www.citrusframework.org/schema/testcase"</span> 
                  <span class="na">xmlns:spring=</span><span class="s">"http://www.springframework.org/schema/beans"</span> 
                  <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> 
-                 <span class="na">xsi:schemaLocation=</span><span class="s">"</span>
-                 <span class="err">http://www.springframework.org/schema/beans</span> 
-                 <span class="err">http://www.springframework.org/schema/beans/spring-beans.xsd</span> 
-                 <span class="err">http://www.citrusframework.org/schema/testcase</span> 
-                 <span class="err">http://www.citrusframework.org/schema/testcase/citrus-testcase.xsd"</span><span class="nt">&gt;</span>
+                 <span class="na">xsi:schemaLocation=</span><span class="s">"
+                 http://www.springframework.org/schema/beans 
+                 http://www.springframework.org/schema/beans/spring-beans.xsd 
+                 http://www.citrusframework.org/schema/testcase 
+                 http://www.citrusframework.org/schema/testcase/citrus-testcase.xsd"</span><span class="nt">&gt;</span>
                  
     <span class="nt">&lt;testcase</span> <span class="na">name=</span><span class="s">"MyFirstTest"</span><span class="nt">&gt;</span>
         <span class="nt">&lt;meta-info&gt;</span>
@@ -421,7 +421,7 @@ status right now to <strong>FINAL</strong> and try to execute the test with Ant.
 <p>We switch again to the command line to execute the Ant target called <em>“citrus.run.single.test”</em>. We are asked to type in 
 the name of the test to execute. In our example we type <em>“MyFirstTest”</em> and Citrus will execute the test.</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">$ </span>ant citrus.run.single.test
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nv">$ </span>ant citrus.run.single.test
 Buildfile: build.xml
 
 citrus.run.single.test:
@@ -434,14 +434,14 @@ Found <span class="nb">test</span> <span class="s1">'com.consol.citrus.ant.sampl
 
 RUNNING CITRUS TESTS
 
-------------------------------------------------------------------------
+<span class="nt">------------------------------------------------------------------------</span>
 INIT
 
 Found 0 tasks <span class="k">in </span>init phase
-------------------------------------------------------------------------
+<span class="nt">------------------------------------------------------------------------</span>
 INIT successfully
 
-------------------------------------------------------------------------
+<span class="nt">------------------------------------------------------------------------</span>
 STARTING TEST: MyFirstTest
 Initializing TestCase
 TestCase using the following global variables:
@@ -451,9 +451,9 @@ project.name <span class="o">=</span> Citrus sample
 <span class="nb">echo </span>TODO: Code the <span class="nb">test </span>MyFirstTest
 
 TEST FINISHED: MyFirstTest
-------------------------------------------------------------------------
+<span class="nt">------------------------------------------------------------------------</span>
 FINISH CITRUS TEST
-------------------------------------------------------------------------
+<span class="nt">------------------------------------------------------------------------</span>
 ________________________________________________________________________
 
 CITRUS TEST RESULTS
@@ -467,7 +467,7 @@ Tests failed:            0 <span class="o">(</span>0.0%<span class="o">)</span>
 Tests successfully:      1 <span class="o">(</span>100.0%<span class="o">)</span>
 ________________________________________________________________________
 Found 0 tasks after
-------------------------------------------------------------------------
+<span class="nt">------------------------------------------------------------------------</span>
 FINISH successfully</code></pre></figure>
 
 <p>The execution by test names only is suitable for executing a small amount of test cases. If you want to run a whole package 

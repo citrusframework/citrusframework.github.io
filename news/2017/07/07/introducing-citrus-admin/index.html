@@ -7,7 +7,7 @@
   <meta name="generator" content="Citrus 2.7.6">
   <meta name="description" content="Citrus Framework Website"/>
   <meta name="author" content="ConSol Software GmbH"/>
-  <link type="application/atom+xml" rel="alternate" href="https://citrusframework.org/feed.xml" title="Citrus Integration Tests" />
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
   <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/citrusframework/citrus/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
@@ -194,15 +194,13 @@ However I would like to outline the main features of that web UI here in a short
 
 <p>Download the web archive to a local directory:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>curl -o citrus-admin.war https://labs.consol.de/maven/repository/com/consol/citrus/citrus-admin-web/1.0.1/citrus-admin-web-1.0.1-executable.war
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -o citrus-admin.war https://labs.consol.de/maven/repository/com/consol/citrus/citrus-admin-web/1.0.1/citrus-admin-web-1.0.1-executable.war
+</code></pre></div></div>
 
 <p>Once loaded you can start the admin UI as Spring boot web application from command line like this:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>java -jar citrus-admin.war
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java -jar citrus-admin.war
+</code></pre></div></div>
 
 <p>You will see the application starting up. The web server should start within seconds. Once the application is up and running you can open your browser and point to <a href="">http://localhost:8080</a>.</p>
 
@@ -262,9 +260,8 @@ executing integration tests. You can run the Citrus administrative UI as Docker 
 
 <p>The administration UI is available as <a href="https://www.docker.com/">Docker</a> image (<code class="highlighter-rouge">consol/citrus-admin:latest</code>). You can pull the image and link it to your local Citrus project:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>docker run -d -p 8080:8080 -v $PWD:/maven -e CITRUS_ADMIN_PROJECT_HOME=/maven consol/citrus-admin:latest
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run -d -p 8080:8080 -v $PWD:/maven -e CITRUS_ADMIN_PROJECT_HOME=/maven consol/citrus-admin:latest
+</code></pre></div></div>
 
 <p>The command above loads the Docker image and runs a new Citrus web UI container. The container is provided with a volume mount that makes the current directory accessible from within the container.
 This current directory is then used as project home so the admin UI will automatically open the Citrus project from that directory. Once the container is running
@@ -276,28 +273,24 @@ in your mounted working directory when starting the web UI.</p>
 <p>In case you do not have a Citrus project ready yet, the admin UI can also create a new project for you. It is possible to run a Maven archetype on container startup that creates a complete new project for you.
 You can set the Maven archetype coordinates (<em>groupId</em>, <em>artifactId</em>, <em>version</em>) as environment variables when running the container.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>docker run -d -p 8080:8080 -v $PWD:/maven -e CITRUS_ADMIN_MAVEN_ARCHETYPE_COORDINATES=com.consol.citrus.archetypes:citrus-quickstart:2.7.5 consol/citrus-admin:latest
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run -d -p 8080:8080 -v $PWD:/maven -e CITRUS_ADMIN_MAVEN_ARCHETYPE_COORDINATES=com.consol.citrus.archetypes:citrus-quickstart:2.7.5 consol/citrus-admin:latest
+</code></pre></div></div>
 
 <p>The UI will load the Maven archetype and create the project sources when the container is started. The new project gets its Maven coordinates from another environment setting:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>-e CITRUS_ADMIN_MAVEN_PROJECT_COORDINATES=com.consol.citrus:citrus-sample:1.0.0
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-e CITRUS_ADMIN_MAVEN_PROJECT_COORDINATES=com.consol.citrus:citrus-sample:1.0.0
+</code></pre></div></div>
 
 <p>Another way to load a new project on container startup is to specify a git repository URL. The Citrus admin Docker container will then load the project sources from that git repository on startup:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>docker run -d -p 8080:8080 -v $PWD:/maven -e CITRUS_ADMIN_PROJECT_REPOSITORY=https://github.com/account/citrus-project.git consol/citrus-admin:latest
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run -d -p 8080:8080 -v $PWD:/maven -e CITRUS_ADMIN_PROJECT_REPOSITORY=https://github.com/account/citrus-project.git consol/citrus-admin:latest
+</code></pre></div></div>
 
 <p>The command above will load the project sources from git with URL <code class="highlighter-rouge">https://github.com/account/citrus-project.git</code> and open that project afterwards. The git repository of course should hold the Citrus project sources. In case
 the Citrus project is located in a sub module in that git repository you can load that sub module by specifying additional environment properties:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>-e CITRUS_ADMIN_PROJECT_REPOSITORY_MODULE=/integration/citrus-test -e CITRUS_ADMIN_PROJECT_REPOSITORY_BRANCH=bugfix
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-e CITRUS_ADMIN_PROJECT_REPOSITORY_MODULE=/integration/citrus-test -e CITRUS_ADMIN_PROJECT_REPOSITORY_BRANCH=bugfix
+</code></pre></div></div>
 
 <p>With these options we are able to start the Docker image as container with special customizations via environment settings.</p>
 
@@ -350,18 +343,16 @@ the Citrus project is located in a sub module in that git repository you can loa
 
 <p>With that configuration you can just call:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>mvn docker:build
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn docker:build
 mvn docker:start
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>This loads and builds the Docker image and starts a new Docker container with running Citrus Admin UI pointing to that very same Maven project.</p>
 
 <p>Stopping the container is as easy as calling:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>mvn docker:stop
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn docker:stop
+</code></pre></div></div>
 
 <p>This is a very comfortable way to build and ship a Citrus admin UI container with your project. You can deploy the tests to any Docker environment or even use
 the container in Kubernetes as pod.</p>
@@ -421,7 +412,7 @@ read your project for some reason please tell us. When there is something wrong 
         <a href="/docs/history/">History »</a>
       </li>
     </ul>
-    <h4>Other News</h4>
+    <h4>Blogs</h4>
     <ul>
         
         <li class="">

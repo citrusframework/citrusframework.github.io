@@ -1,14 +1,13 @@
 <!DOCTYPE HTML>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="UTF-8">
   <title>Citrus Framework</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Citrus 2.7.6">
-  <meta name="description" content="Citrus Framework Website">
-  <meta name="author" content="ConSol Software GmbH">
-  <link type="application/atom+xml" rel="alternate" href="https://citrusframework.org/feed.xml" title="Citrus Integration Tests">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
   <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/citrusframework/citrus/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
@@ -216,8 +215,8 @@ As you probably already know, a SoapAttachment is referenced by a href property 
   <span class="nt">&lt;/extract&gt;</span>
   <span class="c">&lt;!-- Extract cid: (unfortunately the @ is masked by %40 and has to be replaced too) --&gt;</span>
   <span class="nt">&lt;ws:attachment</span> <span class="na">content-id=</span><span class="s">"citrus:concat(citrus:substringBefore(citrus:substringAfter('${contentId}', 'cid:'), '%40www.testdomain.com'), '@www.testdomain.com')"</span> 
-                 <span class="na">content-type=</span><span class="s">"TEXT/CALENDAR;</span> 
-                 <span class="na">charset=</span><span class="s">us-ascii"</span> 
+                 <span class="na">content-type=</span><span class="s">"TEXT/CALENDAR; 
+                 charset=us-ascii"</span> 
                  <span class="na">validator=</span><span class="s">"soapAttachmentValidator"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;ws:data&gt;</span>
       <span class="cp">&lt;![CDATA[...-the expected response-...]]&gt;</span>
@@ -380,7 +379,7 @@ END:VCALENDAR
         <a href="/docs/history/">History »</a>
       </li>
     </ul>
-    <h4>Other News</h4>
+    <h4>Blogs</h4>
     <ul>
         
         <li class="">

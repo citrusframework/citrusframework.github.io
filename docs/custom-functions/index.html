@@ -7,7 +7,7 @@
   <meta name="generator" content="Citrus 2.7.6">
   <meta name="description" content="Citrus Framework Website"/>
   <meta name="author" content="ConSol Software GmbH"/>
-  <link type="application/atom+xml" rel="alternate" href="https://citrusframework.org/feed.xml" title="Citrus Integration Tests" />
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
   <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/citrusframework/citrus/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
@@ -242,9 +242,8 @@ logic in your test. We will deal with an id generating function in this tutorial
 identifiers in a special format and you are tired of statically defining the ids in all your tests. Therefore a function 
 shall generate the id strings in the special format:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Lx0x123456789xM
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Lx0x123456789xM
+</code></pre></div></div>
 
 <p>So the generated identifiers must have a static prefix “Lx0x” and a static ending “xM”. In between there is a number of 
 9 digits that should be randomly generated. The function should be accessible from every test case with the function name 
@@ -384,11 +383,10 @@ Citrus will parse the function string and execute the function with the respecti
 
 <p>The output of the test proves that the function is working as expected:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>echo Willkommen MickeyMouse!
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>echo Willkommen MickeyMouse!
 echo Welcome MickeyMouse!
 echo Bienvenido MickeyMouse!
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>That’s it for the writing functions tutorial. I think it is quite easy to include own logic into a test case using custom 
 function implementations. We are glad to here about your functions and maybe we can include your function into the Citrus 

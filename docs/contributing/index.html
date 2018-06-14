@@ -7,7 +7,7 @@
   <meta name="generator" content="Citrus 2.7.6">
   <meta name="description" content="Citrus Framework Website"/>
   <meta name="author" content="ConSol Software GmbH"/>
-  <link type="application/atom+xml" rel="alternate" href="https://citrusframework.org/feed.xml" title="Citrus Integration Tests" />
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
   <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/citrusframework/citrus/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
@@ -235,7 +235,7 @@ request from your repository. If you are not sure how to do it please see our qu
 documentation and how-to section on <a href="http://github.com/">GitHub</a>.</p>
 
 <p>If you still have questions regarding Citrus development please do not hesitate to send us a mail regarding your problems 
-on citrus-dev <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#100;&#101;&#118;&#064;&#099;&#105;&#116;&#114;&#117;&#115;&#102;&#114;&#097;&#109;&#101;&#119;&#111;&#114;&#107;&#046;&#111;&#114;&#103;">mailing list</a>.</p>
+on citrus-dev <a href="mailto:dev@citrusframework.org">mailing list</a>.</p>
 
 <h2 id="new-code">New code</h2>
 
@@ -256,7 +256,7 @@ under the same license as Citrus to get involved into the code base.</p>
 <h2 id="feature-requests">Feature requests</h2>
 
 <p>In case you have new ideas and feature requests for Citrus but you do not want to implement those on your own, we will be happy 
-to receive your request on the citrus-dev <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#100;&#101;&#118;&#064;&#099;&#105;&#116;&#114;&#117;&#115;&#102;&#114;&#097;&#109;&#101;&#119;&#111;&#114;&#107;&#046;&#111;&#114;&#103;">mailing list</a>. You can also simply open a feature request 
+to receive your request on the citrus-dev <a href="mailto:dev@citrusframework.org">mailing list</a>. You can also simply open a feature request 
 through the issue tracker on <a href="http://github.com/citrusframework/citrus/isues">GitHub</a>. We will discuss the benefit of the new feature 
 with you and help you to get the best out of Citrus for your needs.</p>
 
@@ -265,16 +265,14 @@ with you and help you to get the best out of Citrus for your needs.</p>
 <p>If you would like to improve the site content you may need to build the html sources locally. The site generation process is 
 designed to run with <a href="https://jekyllrb.com/">Jekyll</a> Docker image. You need to start Docker on your local machine and then call:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mvn clean resources:resources package site-deploy -Psite,release-local -N
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn clean resources:resources package site-deploy <span class="nt">-Psite</span>,release-local <span class="nt">-N</span>
+</code></pre></div></div>
 
 <p>This will automatically start the Jekyll Docker container for site generation. As a result you have the generated site html sources 
 in the local Maven <em>target/site</em> build folder. For local deployment call</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mvn docker:start -Psite -N
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn docker:start <span class="nt">-Psite</span> <span class="nt">-N</span>
+</code></pre></div></div>
 
 <p>Wait for the Docker container to start and open your browser pointing to <a href="">http://localhost:4000</a>. You will be able to see and 
 navigate through the generated site locally.</p>

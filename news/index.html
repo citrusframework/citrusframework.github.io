@@ -1,14 +1,13 @@
 <!DOCTYPE HTML>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="UTF-8">
   <title>Citrus Framework</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Citrus 2.7.6">
-  <meta name="description" content="Citrus Framework Website">
-  <meta name="author" content="ConSol Software GmbH">
-  <link type="application/atom+xml" rel="alternate" href="https://citrusframework.org/feed.xml" title="Citrus Integration Tests">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
   <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/citrusframework/citrus/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
@@ -211,8 +210,7 @@ This means the foreign user login service needs to be simulated so users can exp
 <p>We start to simulate that user login service by creating a new Spring Boot project. Of course you can use any build system you like when building the simulator application. Most popular tools would be <a href="http://gradle.org/">Gradle</a> or <a href="https://maven.apache.org/">Maven</a>. 
 Here we show how to setup everything using Gradle.</p>
 
-<div class="language-groovy highlighter-rouge">
-<pre class="highlight"><code><span class="n">buildscript</span> <span class="o">{</span>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">buildscript</span> <span class="o">{</span>
     <span class="n">repositories</span> <span class="o">{</span>
         <span class="n">mavenCentral</span><span class="o">()</span>
     <span class="o">}</span>
@@ -246,16 +244,14 @@ Here we show how to setup everything using Gradle.</p>
     <span class="n">compile</span><span class="o">(</span><span class="s2">"com.consol.citrus:citrus-simulator-ui:1.0.0"</span><span class="o">)</span>
     <span class="n">testCompile</span><span class="o">(</span><span class="s2">"junit:junit"</span><span class="o">)</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>The build script defines a typical Spring Boot project with its dependencies and plugin configuration. In addition to that we add the <em>citrus-simulator-starter</em> dependency. The <em>citrus-simulator-ui</em> dependency is optional
 and provides a detailed Angular2 user interface that you can open with your browser once the simulator is up and running.</p>
 
 <p>Let’s add the Spring Boot main class for the application <code class="highlighter-rouge">com.consol.citrus.simulator.Simulator.java</code>:</p>
 
-<div class="language-java highlighter-rouge">
-<pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">consol</span><span class="o">.</span><span class="na">citrus</span><span class="o">.</span><span class="na">simulator</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">consol</span><span class="o">.</span><span class="na">citrus</span><span class="o">.</span><span class="na">simulator</span><span class="o">;</span>
 
 <span class="nd">@SpringBootApplication</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Simulator</span> <span class="kd">extends</span> <span class="n">SimulatorRestAdapter</span><span class="o">{</span>
@@ -279,8 +275,7 @@ and provides a detailed Angular2 user interface that you can open with your brow
         <span class="o">};</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>The main class is a typical Spring Boot application that uses <code class="highlighter-rouge">@SpringBootApplication</code> annotation with auto configuration of needed components. As we have added the <em>citrus-simulator-starter</em> dependency to the project we also get auto 
 configuration of all simulator related beans and components. The application can use a <code class="highlighter-rouge">SimulatorRestAdapter</code> extension in order to overwrite some simulator components such as the default <code class="highlighter-rouge">fallbackEndpointAdapter</code>. This adapter defines a 
@@ -289,8 +284,7 @@ URL <code class="highlighter-rouge">http://localhost:8080/services/rest/v1/**</c
 
 <p>Now we can add a first a default scenario that responds to incoming requests.</p>
 
-<div class="language-java highlighter-rouge">
-<pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">consol</span><span class="o">.</span><span class="na">citrus</span><span class="o">.</span><span class="na">simulator</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">consol</span><span class="o">.</span><span class="na">citrus</span><span class="o">.</span><span class="na">simulator</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">com.consol.citrus.http.message.HttpMessage</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">com.consol.citrus.simulator.scenario.*</span><span class="o">;</span>
@@ -306,8 +300,7 @@ URL <code class="highlighter-rouge">http://localhost:8080/services/rest/v1/**</c
                         <span class="o">.</span><span class="na">status</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">NOT_FOUND</span><span class="o">));</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>The scenario uses the annotation <code class="highlighter-rouge">@Scenario("DEFAULT_SCENARIO")</code> and extends <code class="highlighter-rouge">AbstractSimulatorScenario</code>. In the <code class="highlighter-rouge">run</code> method we can use the Citrus Java DSL designer to create some response generating logic.
 This default scenario is activated when no other scenario is matching the incoming request. So we send back a <code class="highlighter-rouge">Http 404 NOT FOUND</code> as we obviously did not match a scenario. Now let’s build and start the simulator application.</p>
@@ -316,10 +309,8 @@ This default scenario is activated when no other scenario is matching the incomi
 
 <p>You can build and run the simulator application from command line using the Gradle binaries.</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>./gradlew build bootRun
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./gradlew build bootRun
+</code></pre></div></div>
 
 <p>You will see the application starting up. Usually you will see some console log output. The web server should start within seconds. Once the application is up and running
 you can open your browser and point to <a href="http://localhost:8080">http://localhost:8080</a>. You will see the simulator user interface.</p>
@@ -333,164 +324,162 @@ Let’s add some scenarios representing the user login service.</p>
 
 <p>The user login service defines following REST API:</p>
 
-<div class="language-json highlighter-rouge">
-<pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"swagger"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is a user login service"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User Login Service"</span><span class="w">
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"swagger"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is a user login service"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User Login Service"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"host"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user-login-service"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"basePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v1"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"schemes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="s2">"host"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user-login-service"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"basePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"schemes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="s2">"http"</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"paths"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"/user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"post"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"operationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"createUser"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"produces"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="s2">"paths"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"/user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"post"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"operationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"createUser"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"produces"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="s2">"application/xml"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"application/json"</span><span class="w">
         </span><span class="p">],</span><span class="w">
-        </span><span class="nt">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"body"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"body"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Created user object"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"schema"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-              </span><span class="nt">"$ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#/definitions/User"</span><span class="w">
+            </span><span class="s2">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"body"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"body"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Created user object"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"schema"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"$ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#/definitions/User"</span><span class="w">
             </span><span class="p">}</span><span class="w">
           </span><span class="p">}</span><span class="w">
         </span><span class="p">],</span><span class="w">
-        </span><span class="nt">"responses"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"successful operation"</span><span class="w">
+        </span><span class="s2">"responses"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"default"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"successful operation"</span><span class="w">
           </span><span class="p">}</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"/user/login"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"get"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"operationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"loginUser"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"produces"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"/user/login"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"get"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"operationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"loginUser"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"produces"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="s2">"application/xml"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"application/json"</span><span class="w">
         </span><span class="p">],</span><span class="w">
-        </span><span class="nt">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"username"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"query"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The user name for login"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"username"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"query"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The user name for login"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
           </span><span class="p">},</span><span class="w">
           </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"password"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"query"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The password for login in clear text"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"password"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"query"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The password for login in clear text"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
           </span><span class="p">}</span><span class="w">
         </span><span class="p">],</span><span class="w">
-        </span><span class="nt">"responses"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"200"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"successful operation"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"schema"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-              </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+        </span><span class="s2">"responses"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"200"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"successful operation"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"schema"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-              </span><span class="nt">"X-Rate-Limit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"integer"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"int32"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calls per hour allowed by the user"</span><span class="w">
+            </span><span class="s2">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"X-Rate-Limit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"integer"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"int32"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calls per hour allowed by the user"</span><span class="w">
               </span><span class="p">},</span><span class="w">
-              </span><span class="nt">"X-Expires-After"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"date-time"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"date in UTC when token expires"</span><span class="w">
+              </span><span class="s2">"X-Expires-After"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"date-time"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"date in UTC when token expires"</span><span class="w">
               </span><span class="p">}</span><span class="w">
             </span><span class="p">}</span><span class="w">
           </span><span class="p">},</span><span class="w">
-          </span><span class="nt">"400"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid username/password supplied"</span><span class="w">
+          </span><span class="s2">"400"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid username/password supplied"</span><span class="w">
           </span><span class="p">}</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"/user/logout"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"get"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"operationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"logoutUser"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"produces"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"/user/logout"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"get"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"operationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"logoutUser"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"produces"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="s2">"application/xml"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"application/json"</span><span class="w">
         </span><span class="p">],</span><span class="w">
-        </span><span class="nt">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-        </span><span class="nt">"responses"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"successful operation"</span><span class="w">
+        </span><span class="s2">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"responses"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"default"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"successful operation"</span><span class="w">
           </span><span class="p">}</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"/user/{username}"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"get"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"operationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"getUserByName"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"produces"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"/user/{username}"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"get"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"operationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"getUserByName"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"produces"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="s2">"application/xml"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"application/json"</span><span class="w">
         </span><span class="p">],</span><span class="w">
-        </span><span class="nt">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"username"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"path"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The name that needs to be fetched. Use user1 for testing. "</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"username"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"path"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The name that needs to be fetched. Use user1 for testing. "</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
           </span><span class="p">}</span><span class="w">
         </span><span class="p">],</span><span class="w">
-        </span><span class="nt">"responses"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"200"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"successful operation"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"schema"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-              </span><span class="nt">"$ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#/definitions/User"</span><span class="w">
+        </span><span class="s2">"responses"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"200"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"successful operation"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"schema"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"$ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#/definitions/User"</span><span class="w">
             </span><span class="p">}</span><span class="w">
           </span><span class="p">},</span><span class="w">
-          </span><span class="nt">"400"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid username supplied"</span><span class="w">
+          </span><span class="s2">"400"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid username supplied"</span><span class="w">
           </span><span class="p">},</span><span class="w">
-          </span><span class="nt">"404"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User not found"</span><span class="w">
+          </span><span class="s2">"404"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User not found"</span><span class="w">
           </span><span class="p">}</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"definitions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"User"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"object"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"integer"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"int64"</span><span class="w">
+  </span><span class="s2">"definitions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"User"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"object"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"integer"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"int64"</span><span class="w">
         </span><span class="p">},</span><span class="w">
-        </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+        </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
         </span><span class="p">},</span><span class="w">
-        </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+        </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"xml"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User"</span><span class="w">
+      </span><span class="s2">"xml"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
 <p>There are 4 operations defined:</p>
 
@@ -505,8 +494,7 @@ Let’s add some scenarios representing the user login service.</p>
 
 <h3 id="user-login-scenarios">User login scenarios</h3>
 
-<div class="language-java highlighter-rouge">
-<pre class="highlight"><code><span class="nd">@Scenario</span><span class="o">(</span><span class="s">"CREATE_USER"</span><span class="o">)</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Scenario</span><span class="o">(</span><span class="s">"CREATE_USER"</span><span class="o">)</span>
 <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">"/services/rest/v1/user"</span><span class="o">,</span> <span class="n">method</span> <span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">POST</span><span class="o">)</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">CreateUserScenario</span> <span class="kd">extends</span> <span class="n">AbstractSimulatorScenario</span> <span class="o">{</span>
 
@@ -524,8 +512,7 @@ Let’s add some scenarios representing the user login service.</p>
             <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>The scenario for <code class="highlighter-rouge">Http POST</code> requests on request path <code class="highlighter-rouge">/v1/user</code> uses the Spring <code class="highlighter-rouge">@RequestMapping</code> annotation. The simulator scenario mapper will automatically
 route incoming requests to this scenario based on that information.</p>
@@ -533,14 +520,12 @@ route incoming requests to this scenario based on that information.</p>
 <p>The scenario itself receives the incoming request using the Citrus Java DSL. The receive operation validates the <code class="highlighter-rouge">Http POST</code> request method and gives an expected control Json message body as external file resource. The
 <code class="highlighter-rouge">user-control.json</code> defines the expected user object on this operation:</p>
 
-<div class="language-json highlighter-rouge">
-<pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@isNumber()@"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@notEmpty()@"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@notEmpty()@"</span><span class="w">
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@isNumber()@"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@notEmpty()@"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@notEmpty()@"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
 <p>The control user object verifies that the elements <code class="highlighter-rouge">id</code>, <code class="highlighter-rouge">username</code> and <code class="highlighter-rouge">password</code> are present. In addition to that we can use Citrus validation matchers in order to validate the element values. The scenario produces a proper response 
 only in case the incoming request matches the expected control Json object. The simulator scenario is able to use the full Citrus validation power for comparing message data in Json, XML and plaintext message format. JsonPath and XPath expression evaluation and validation
@@ -550,8 +535,7 @@ is also possible here.</p>
 
 <p>We continue with the remaining scenarios for all other operations defined in the REST API:</p>
 
-<div class="language-java highlighter-rouge">
-<pre class="highlight"><code><span class="nd">@Scenario</span><span class="o">(</span><span class="s">"GET_USER"</span><span class="o">)</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Scenario</span><span class="o">(</span><span class="s">"GET_USER"</span><span class="o">)</span>
 <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">"/services/rest/v1/user/{username}"</span><span class="o">,</span> <span class="n">method</span> <span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">GetUserScenario</span> <span class="kd">extends</span> <span class="n">AbstractSimulatorScenario</span> <span class="o">{</span>
 
@@ -569,24 +553,20 @@ is also possible here.</p>
             <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="k">new</span> <span class="n">ClassPathResource</span><span class="o">(</span><span class="s">"random-user.json"</span><span class="o">));</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>The get user operation needs to send back a proper user object in Json fomrat. We can load an external file resource as message payload for that.</p>
 
-<div class="language-json highlighter-rouge">
-<pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"citrus:randomNumber(10)"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"citrus:randomEnumValue('amy', 'penny', 'sheldon', 'leonard', 'rajesh', 'howard', 'bernadette')"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"citrus:randomString(10)"</span><span class="w">
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"citrus:randomNumber(10)"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"citrus:randomEnumValue('amy', 'penny', 'sheldon', 'leonard', 'rajesh', 'howard', 'bernadette')"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"citrus:randomString(10)"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
 <p>The usage of Citrus functions makes it easy to create a random user object that meets the REST API object definitions. Let’s add the remaining login and logout scenarios.</p>
 
-<div class="language-java highlighter-rouge">
-<pre class="highlight"><code><span class="nd">@Scenario</span><span class="o">(</span><span class="s">"USER_LOGIN"</span><span class="o">)</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Scenario</span><span class="o">(</span><span class="s">"USER_LOGIN"</span><span class="o">)</span>
 <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">"/services/rest/v1/user/login"</span><span class="o">,</span> <span class="n">method</span> <span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserLoginScenario</span> <span class="kd">extends</span> <span class="n">AbstractSimulatorScenario</span> <span class="o">{</span>
 
@@ -608,14 +588,12 @@ is also possible here.</p>
             <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"citrus:randomString(40)"</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>The login operation verifies the presence of Http query parameter <code class="highlighter-rouge">username</code> and <code class="highlighter-rouge">password</code>. As response the scenario defines some header information <code class="highlighter-rouge">X-Rate-Limit</code> and <code class="highlighter-rouge">X-Expires-After</code> where latter is the
 expire date time one hour from now calculated with the Citrus function <code class="highlighter-rouge">citrus:currentDate(YYYY-MM-DD'T'hh:mm:ss, +1h)</code>. As payload we send back a 40 character random token as plaintext string.</p>
 
-<div class="language-java highlighter-rouge">
-<pre class="highlight"><code><span class="nd">@Scenario</span><span class="o">(</span><span class="s">"USER_LOGOUT"</span><span class="o">)</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Scenario</span><span class="o">(</span><span class="s">"USER_LOGOUT"</span><span class="o">)</span>
 <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">"/services/rest/v1/user/logout"</span><span class="o">,</span> <span class="n">method</span> <span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserLogoutScenario</span> <span class="kd">extends</span> <span class="n">AbstractSimulatorScenario</span> <span class="o">{</span>
 
@@ -632,30 +610,25 @@ expire date time one hour from now calculated with the Citrus function <code cla
             <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Last not least the logout operation that completes the REST API for the user login service. Now the simulator is able to respond to all operations that are defined in the REST API. Clients are now able to call the 
 operations via Http REST. The simulator will verify the incoming request data and create proper response messages.</p>
 
 <p>You can test the simulator by pointing your browser to the following URLs:</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>http://localhost:8080/services/rest/v1/user/test
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://localhost:8080/services/rest/v1/user/test
 http://localhost:8080/services/rest/v1/user/login?username=christoph&amp;password=secr3t
 http://localhost:8080/services/rest/v1/user/logout
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>You should always get proper <code class="highlighter-rouge">Http 200 OK</code> response messages. The login request should get a new login token in the response every time. In case we send some invalid request we should get <code class="highlighter-rouge">Http 500</code> responses and for 
 unsupported request paths we should get a <code class="highlighter-rouge">Http 404</code> response. Try that with following test URLs.</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>http://localhost:8080/services/rest/v1/unsupported
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://localhost:8080/services/rest/v1/unsupported
 http://localhost:8080/services/rest/v1/user/login
 http://localhost:8080/services/rest/v1/user/login?username=pwd_missing
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>With the above test requests we triggered some activities on the simulator. Let’s review those activities in the web based user interface.</p>
 
@@ -676,8 +649,7 @@ http://localhost:8080/services/rest/v1/user/login?username=pwd_missing
 <p>Up to now we have added simulator scenarios manually. We could have also used auto generated scenarios based on the given Swagger Open API specification of the REST API. Just add a <code class="highlighter-rouge">HttpScenarioGenerator</code> bean
 to the application:</p>
 
-<div class="language-java highlighter-rouge">
-<pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">consol</span><span class="o">.</span><span class="na">citrus</span><span class="o">.</span><span class="na">simulator</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">consol</span><span class="o">.</span><span class="na">citrus</span><span class="o">.</span><span class="na">simulator</span><span class="o">;</span>
 
 <span class="nd">@SpringBootApplication</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Simulator</span> <span class="kd">extends</span> <span class="n">SimulatorRestAdapter</span><span class="o">{</span>
@@ -710,8 +682,7 @@ to the application:</p>
         <span class="k">return</span> <span class="n">generator</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>The <code class="highlighter-rouge">HttpScenarioGenerator</code> reads the Open API specification file at runtime and generates scenarios for each operation. The generated scenarios do also
 verify the request data according to the rules defined in the specification. The response messages hold dynamic data objects generated from the API schema definitions.</p>
@@ -771,17 +742,13 @@ However I would like to outline the main features of that web UI here in a short
 
 <p>Download the web archive to a local directory:</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>curl -o citrus-admin.war https://labs.consol.de/maven/repository/com/consol/citrus/citrus-admin-web/1.0.1/citrus-admin-web-1.0.1-executable.war
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -o citrus-admin.war https://labs.consol.de/maven/repository/com/consol/citrus/citrus-admin-web/1.0.1/citrus-admin-web-1.0.1-executable.war
+</code></pre></div></div>
 
 <p>Once loaded you can start the admin UI as Spring boot web application from command line like this:</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>java -jar citrus-admin.war
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java -jar citrus-admin.war
+</code></pre></div></div>
 
 <p>You will see the application starting up. The web server should start within seconds. Once the application is up and running you can open your browser and point to <a href="">http://localhost:8080</a>.</p>
 
@@ -841,10 +808,8 @@ executing integration tests. You can run the Citrus administrative UI as Docker 
 
 <p>The administration UI is available as <a href="https://www.docker.com/">Docker</a> image (<code class="highlighter-rouge">consol/citrus-admin:latest</code>). You can pull the image and link it to your local Citrus project:</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>docker run -d -p 8080:8080 -v $PWD:/maven -e CITRUS_ADMIN_PROJECT_HOME=/maven consol/citrus-admin:latest
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run -d -p 8080:8080 -v $PWD:/maven -e CITRUS_ADMIN_PROJECT_HOME=/maven consol/citrus-admin:latest
+</code></pre></div></div>
 
 <p>The command above loads the Docker image and runs a new Citrus web UI container. The container is provided with a volume mount that makes the current directory accessible from within the container.
 This current directory is then used as project home so the admin UI will automatically open the Citrus project from that directory. Once the container is running
@@ -856,32 +821,24 @@ in your mounted working directory when starting the web UI.</p>
 <p>In case you do not have a Citrus project ready yet, the admin UI can also create a new project for you. It is possible to run a Maven archetype on container startup that creates a complete new project for you.
 You can set the Maven archetype coordinates (<em>groupId</em>, <em>artifactId</em>, <em>version</em>) as environment variables when running the container.</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>docker run -d -p 8080:8080 -v $PWD:/maven -e CITRUS_ADMIN_MAVEN_ARCHETYPE_COORDINATES=com.consol.citrus.archetypes:citrus-quickstart:2.7.5 consol/citrus-admin:latest
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run -d -p 8080:8080 -v $PWD:/maven -e CITRUS_ADMIN_MAVEN_ARCHETYPE_COORDINATES=com.consol.citrus.archetypes:citrus-quickstart:2.7.5 consol/citrus-admin:latest
+</code></pre></div></div>
 
 <p>The UI will load the Maven archetype and create the project sources when the container is started. The new project gets its Maven coordinates from another environment setting:</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>-e CITRUS_ADMIN_MAVEN_PROJECT_COORDINATES=com.consol.citrus:citrus-sample:1.0.0
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-e CITRUS_ADMIN_MAVEN_PROJECT_COORDINATES=com.consol.citrus:citrus-sample:1.0.0
+</code></pre></div></div>
 
 <p>Another way to load a new project on container startup is to specify a git repository URL. The Citrus admin Docker container will then load the project sources from that git repository on startup:</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>docker run -d -p 8080:8080 -v $PWD:/maven -e CITRUS_ADMIN_PROJECT_REPOSITORY=https://github.com/account/citrus-project.git consol/citrus-admin:latest
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run -d -p 8080:8080 -v $PWD:/maven -e CITRUS_ADMIN_PROJECT_REPOSITORY=https://github.com/account/citrus-project.git consol/citrus-admin:latest
+</code></pre></div></div>
 
 <p>The command above will load the project sources from git with URL <code class="highlighter-rouge">https://github.com/account/citrus-project.git</code> and open that project afterwards. The git repository of course should hold the Citrus project sources. In case
 the Citrus project is located in a sub module in that git repository you can load that sub module by specifying additional environment properties:</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>-e CITRUS_ADMIN_PROJECT_REPOSITORY_MODULE=/integration/citrus-test -e CITRUS_ADMIN_PROJECT_REPOSITORY_BRANCH=bugfix
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-e CITRUS_ADMIN_PROJECT_REPOSITORY_MODULE=/integration/citrus-test -e CITRUS_ADMIN_PROJECT_REPOSITORY_BRANCH=bugfix
+</code></pre></div></div>
 
 <p>With these options we are able to start the Docker image as container with special customizations via environment settings.</p>
 
@@ -934,20 +891,16 @@ the Citrus project is located in a sub module in that git repository you can loa
 
 <p>With that configuration you can just call:</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>mvn docker:build
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn docker:build
 mvn docker:start
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>This loads and builds the Docker image and starts a new Docker container with running Citrus Admin UI pointing to that very same Maven project.</p>
 
 <p>Stopping the container is as easy as calling:</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>mvn docker:stop
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn docker:stop
+</code></pre></div></div>
 
 <p>This is a very comfortable way to build and ship a Citrus admin UI container with your project. You can deploy the tests to any Docker environment or even use
 the container in Kubernetes as pod.</p>
@@ -1060,7 +1013,7 @@ However for me the most important criteria is to find a test tool that combines 
 <p>From the command line type:</p>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">shell
-<span class="gp">$ </span>mvn clean install spring-boot:run</code></pre></figure>
+<span class="nv">$ </span>mvn clean <span class="nb">install </span>spring-boot:run</code></pre></figure>
 
 <p>This will start up one instance on port 8090.</p>
 
@@ -1113,7 +1066,7 @@ which will create a citrus project with a basic pom file and some sample integra
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">POST /users/&lt;USERNAME&gt; HTTP/1.1
 Accept: text/plain, application/json, application/<span class="k">*</span>+json, <span class="k">*</span>/<span class="k">*</span>
-Content-Type: application/json;charset<span class="o">=</span>UTF-8</code></pre></figure>
+Content-Type: application/json<span class="p">;</span><span class="nv">charset</span><span class="o">=</span>UTF-8</code></pre></figure>
 
 <p>and if all goes well I should get the response:</p>
 
@@ -1253,7 +1206,7 @@ heart-beat:0,0</code></pre></figure>
 </ol>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">SUBSCRIBE
-id:sub-0
+<span class="nb">id</span>:sub-0
 destination:/topic/users/joined</code></pre></figure>
 
 <ol>
@@ -1263,7 +1216,7 @@ destination:/topic/users/joined</code></pre></figure>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">MESSAGE
 destination:/topic/users/joined
-content-type:application/json;charset<span class="o">=</span>UTF-8
+content-type:application/json<span class="p">;</span><span class="nv">charset</span><span class="o">=</span>UTF-8
 subscription:sub-0
 message-id:1-18
 content-length:11
@@ -2190,8 +2143,8 @@ We need to add this library to our project as test scoped dependency if not alre
 <span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">"http://www.springframework.org/schema/beans"</span>
      <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
      <span class="na">xmlns:citrus-camel=</span><span class="s">"http://www.citrusframework.org/schema/camel/config"</span>
-     <span class="na">xsi:schemaLocation=</span><span class="s">"http://www.springframework.org/schema/beans</span> <span class="err">http://www.springframework.org/schema/beans/spring-beans.xsd</span>
-                     <span class="err">http://www.citrusframework.org/schema/camel/config</span> <span class="err">http://www.citrusframework.org/schema/camel/config/citrus-camel-config.xsd"</span><span class="nt">&gt;</span>
+     <span class="na">xsi:schemaLocation=</span><span class="s">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                     http://www.citrusframework.org/schema/camel/config http://www.citrusframework.org/schema/camel/config/citrus-camel-config.xsd"</span><span class="nt">&gt;</span>
 
   <span class="nt">&lt;camelContext</span> <span class="na">id=</span><span class="s">"camelContext"</span> <span class="na">xmlns=</span><span class="s">"http://camel.apache.org/schema/spring"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;route</span> <span class="na">id=</span><span class="s">"helloRoute"</span><span class="nt">&gt;</span>
@@ -2395,8 +2348,8 @@ add some error scenarios where the Seda endpoint component is forcing an excepti
 <span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">"http://www.springframework.org/schema/beans"</span>
      <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
      <span class="na">xmlns:amq=</span><span class="s">"http://activemq.apache.org/schema/core"</span>
-     <span class="na">xsi:schemaLocation=</span><span class="s">"http://www.springframework.org/schema/beans</span> <span class="err">http://www.springframework.org/schema/beans/spring-beans.xsd</span>
-                     <span class="err">http://activemq.apache.org/schema/core</span> <span class="err">http://activemq.apache.org/schema/core/activemq-core.xsd"</span><span class="nt">&gt;</span>
+     <span class="na">xsi:schemaLocation=</span><span class="s">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                     http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd"</span><span class="nt">&gt;</span>
 
   <span class="c">&lt;!-- Embedded ActiveMQ JMS broker --&gt;</span>
   <span class="nt">&lt;amq:broker</span> <span class="na">useJmx=</span><span class="s">"false"</span> <span class="na">persistent=</span><span class="s">"false"</span><span class="nt">&gt;</span>
@@ -2516,7 +2469,7 @@ So it might make pretty good sense to setup the Citrus project with Ant as well 
 Since version 1.4, Citrus provides a maven assembly goal which creates a directory with all dependency jar’s which can be thrown into the lib folder of your newly created Citrus project. You can trigger this assembly 
 by grabbing the Citrus sources and execute</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell">mvn assembly:assembly -Passembly-antlibs</code></pre></figure>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">mvn assembly:assembly <span class="nt">-Passembly-antlibs</span></code></pre></figure>
 
 <p>from the project root. Unfortunately I faced some issues on my Macbook with Maven version 3.0.5 so this way was blocked for me. Additionally, not everyone might have interest or possibilities to check out the sources 
 or have maven installed and setup on his machine. That’s basically why I want to provide a template project to speed up Ant project setup.</p>
@@ -2871,8 +2824,8 @@ As you probably already know, a SoapAttachment is referenced by a href property 
   <span class="nt">&lt;/extract&gt;</span>
   <span class="c">&lt;!-- Extract cid: (unfortunately the @ is masked by %40 and has to be replaced too) --&gt;</span>
   <span class="nt">&lt;ws:attachment</span> <span class="na">content-id=</span><span class="s">"citrus:concat(citrus:substringBefore(citrus:substringAfter('${contentId}', 'cid:'), '%40www.testdomain.com'), '@www.testdomain.com')"</span> 
-                 <span class="na">content-type=</span><span class="s">"TEXT/CALENDAR;</span> 
-                 <span class="na">charset=</span><span class="s">us-ascii"</span> 
+                 <span class="na">content-type=</span><span class="s">"TEXT/CALENDAR; 
+                 charset=us-ascii"</span> 
                  <span class="na">validator=</span><span class="s">"soapAttachmentValidator"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;ws:data&gt;</span>
       <span class="cp">&lt;![CDATA[...-the expected response-...]]&gt;</span>
@@ -3206,12 +3159,12 @@ mvn install -Plong-running (runs only long-running test group)</code></pre></fig
     <span class="na">xmlns:spring=</span><span class="s">"http://www.springframework.org/schema/beans"</span> 
     <span class="na">xmlns:custom=</span><span class="s">"http://www.citrusframework.org/samples/my-testcase-info"</span>
     <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
-    <span class="na">xsi:schemaLocation=</span><span class="s">"http://www.springframework.org/schema/beans</span> 
-<span class="err">http://www.springframework.org/schema/beans/spring-beans.xsd</span>
-<span class="err">http://www.citrusframework.org/schema/testcase</span> 
-<span class="err">http://www.citrusframework.org/schema/testcase/citrus-testcase.xsd</span> 
-<span class="err">http://www.citrusframework.org/samples/my-testcase-info</span> 
-<span class="err">http://www.citrusframework.org/samples/my-testcase-info/my-testcase-info.xsd"</span><span class="nt">&gt;</span>
+    <span class="na">xsi:schemaLocation=</span><span class="s">"http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.citrusframework.org/schema/testcase 
+http://www.citrusframework.org/schema/testcase/citrus-testcase.xsd 
+http://www.citrusframework.org/samples/my-testcase-info 
+http://www.citrusframework.org/samples/my-testcase-info/my-testcase-info.xsd"</span><span class="nt">&gt;</span>
 
     <span class="nt">&lt;testcase</span> <span class="na">name=</span><span class="s">"PwdChange_Ok_1_Test"</span><span class="nt">&gt;</span>
         <span class="nt">&lt;meta-info&gt;</span>
@@ -3281,7 +3234,7 @@ mvn install -Plong-running (runs only long-running test group)</code></pre></fig
         <a href="/docs/history/">History »</a>
       </li>
     </ul>
-    <h4>Other News</h4>
+    <h4>Blogs</h4>
     <ul>
         
         <li class="">

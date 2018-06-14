@@ -1,14 +1,13 @@
 <!DOCTYPE HTML>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="UTF-8">
   <title>Citrus Framework</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Citrus 2.7.6">
-  <meta name="description" content="Citrus Framework Website">
-  <meta name="author" content="ConSol Software GmbH">
-  <link type="application/atom+xml" rel="alternate" href="https://citrusframework.org/feed.xml" title="Citrus Integration Tests">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
   <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/citrusframework/citrus/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
@@ -251,7 +250,7 @@ However for me the most important criteria is to find a test tool that combines 
 <p>From the command line type:</p>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">shell
-<span class="gp">$ </span>mvn clean install spring-boot:run</code></pre></figure>
+<span class="nv">$ </span>mvn clean <span class="nb">install </span>spring-boot:run</code></pre></figure>
 
 <p>This will start up one instance on port 8090.</p>
 
@@ -304,7 +303,7 @@ which will create a citrus project with a basic pom file and some sample integra
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">POST /users/&lt;USERNAME&gt; HTTP/1.1
 Accept: text/plain, application/json, application/<span class="k">*</span>+json, <span class="k">*</span>/<span class="k">*</span>
-Content-Type: application/json;charset<span class="o">=</span>UTF-8</code></pre></figure>
+Content-Type: application/json<span class="p">;</span><span class="nv">charset</span><span class="o">=</span>UTF-8</code></pre></figure>
 
 <p>and if all goes well I should get the response:</p>
 
@@ -444,7 +443,7 @@ heart-beat:0,0</code></pre></figure>
 </ol>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">SUBSCRIBE
-id:sub-0
+<span class="nb">id</span>:sub-0
 destination:/topic/users/joined</code></pre></figure>
 
 <ol>
@@ -454,7 +453,7 @@ destination:/topic/users/joined</code></pre></figure>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">MESSAGE
 destination:/topic/users/joined
-content-type:application/json;charset<span class="o">=</span>UTF-8
+content-type:application/json<span class="p">;</span><span class="nv">charset</span><span class="o">=</span>UTF-8
 subscription:sub-0
 message-id:1-18
 content-length:11
@@ -810,7 +809,7 @@ content-length:11
         <a href="/docs/history/">History »</a>
       </li>
     </ul>
-    <h4>Other News</h4>
+    <h4>Blogs</h4>
     <ul>
         
         <li class="">

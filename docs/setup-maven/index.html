@@ -7,7 +7,7 @@
   <meta name="generator" content="Citrus 2.7.6">
   <meta name="description" content="Citrus Framework Website"/>
   <meta name="author" content="ConSol Software GmbH"/>
-  <link type="application/atom+xml" rel="alternate" href="https://citrusframework.org/feed.xml" title="Citrus Integration Tests" />
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
   <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/citrusframework/citrus/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
@@ -256,7 +256,7 @@ use the Maven command line tool in combination with Maven’s archetype plugin. 
 it is time for you to do so before continuing this tutorial. See the <a href="http://maven.apache.org">Maven</a> 
 site for detailed installation instructions. So let’s start with creating the Citrus Java project:</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell">mvn archetype:generate -Dfilter<span class="o">=</span>com.consol.citrus.archetypes:citrus
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">mvn archetype:generate <span class="nt">-Dfilter</span><span class="o">=</span>com.consol.citrus.archetypes:citrus
 
 <span class="o">[</span>...]
 
@@ -280,7 +280,7 @@ As the list of default archetypes available in Maven central is very long, it ha
 the package and the project version. After that we are done! Maven created a Citrus project structure for us which is 
 ready for testing. You should see the following basic project folder structure.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>citrus-sample
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>citrus-sample
   |   + src
   |   |   + main
   |   |    |   + java
@@ -289,8 +289,7 @@ ready for testing. You should see the following basic project folder structure.<
   |   |    |   + java
   |   |    |   + resources
   pom.xml
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>The Citrus project is absolutely ready for testing. With Maven we can build, package, install and test our project right 
 away without any adjustments. The project comes with a sample Citrus test <em>SampleIT</em>. You can find this test in <em>src/test/resources</em>; 
@@ -402,7 +401,7 @@ download the artifacts from that servers. Now if you want to use the latest snap
 <p>The sample application uses Maven as build tool. So you can use the Maven commands to compile, package and test the
 sample.</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell">mvn clean install</code></pre></figure>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">mvn clean <span class="nb">install</span></code></pre></figure>
 
 <p>Congratulations! You just have built the complete project and you also have executed the first Citrus tests in your 
 project.</p>
@@ -414,7 +413,7 @@ project.</p>
 <p>This executes all Citrus test cases during the build and you will see Citrus performing some integration test logging output. You can also execute
 single test cases by defining the test name as Maven system property.</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell">mvn clean verify -Dit.test<span class="o">=</span>SampleIT</code></pre></figure>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">mvn clean verify <span class="nt">-Dit</span>.test<span class="o">=</span>SampleIT</code></pre></figure>
 
 <p>Finally we are ready to proceed with creating new test cases. So let’s add a new Citrus test case to our project. We use 
 the Citrus Maven plugin here, just type the following command:</p>
