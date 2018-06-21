@@ -200,15 +200,15 @@
       <div class="unit four-fifths">
         <article>
   <h2>
-    Gradle build sample
-    <a href="/samples/gradle/" class="permalink" title="Permalink">∞</a>
+    Http form data sample
+    <a href="/samples/http-form-data/" class="permalink" title="Permalink">∞</a>
   </h2>
   <div class="right">
     
-    
-    <a href="https://github.com/citrusframework/citrus-samples/blob/master/sample-gradle" target="_blank">
+    <a href="https://github.com/citrusframework/citrus-samples/blob/master/samples-http/sample-http-form-data" target="_blank">
       <i class="fa fa-pencil"></i> View source code
     </a>
+    
     
   </div>
   <span class="post-category">
@@ -217,101 +217,120 @@
     </span>
   </span>
   <div class="post-content">
-    <p>This sample uses Gradle as build tool in order to execute the Citrus tests.</p>
+    <p>Browser clients are able to post form data as <code class="highlighter-rouge">application/x-www-form-urlencoded</code> key-value String to the Http server. The HTML forms use <code class="highlighter-rouge">POST</code> method and build a
+form urlencoded String of all form controls and their values as message payload. You can send and receive such form data in Citrus.</p>
+
+<p>Http form data features are also described in detail in <a href="https://citrusframework.org/reference/html#http">reference guide</a></p>
 
 <h2 id="objectives">Objectives</h2>
 
-<p>Citrus uses Maven internally for building software. But of course you can also integrate the Citrus tests in a Gradle
-project. As the Citrus tests are nothing but normal JUnit or TestNG tests the integration in the Gradle build is very easy.</p>
+<p>The test will simulate client and server for form data exchange via Http POST. First of all we need client and server components in the Spring bean configuration:</p>
 
-<p>The Gradle build configuration is done in the <strong>build.gradle</strong> and <strong>settings.gradle</strong> files. Here we define the project name 
-and the project version.</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="n">HttpClient</span> <span class="nf">todoClient</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">CitrusEndpoints</span><span class="o">.</span><span class="na">http</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">client</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">requestUrl</span><span class="o">(</span><span class="s">"http://localhost:8080"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+<span class="o">}</span>
 
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">rootProject</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="s1">'citrus-sample-gradle'</span>
-<span class="n">group</span> <span class="s1">'com.consol.citrus.samples'</span>
-<span class="n">version</span> <span class="s1">'2.7.1'</span>
-</code></pre></div></div>
-
-<p>Now as Citrus libraries are available on Maven central repository we add these repositories so Gradle knows how to download the required
-Citrus artifacts.</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">repositories</span> <span class="o">{</span>
-    <span class="n">mavenCentral</span><span class="o">()</span>
-    <span class="n">maven</span> <span class="o">{</span>
-        <span class="n">url</span> <span class="s1">'http://labs.consol.de/maven/snapshots-repository/'</span>
-    <span class="o">}</span>
+<span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="n">HttpServer</span> <span class="nf">todoListServer</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">CitrusEndpoints</span><span class="o">.</span><span class="na">http</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">server</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">port</span><span class="o">(</span><span class="mi">8080</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">timeout</span><span class="o">(</span><span class="mi">10000</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">autoStart</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">build</span><span class="o">();</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>Citrus stable release versions are available on Maven central. If you want to use the very latest next version as snapshot preview you need
-to add the ConSol Labs snapshot repository which is optional. Now lets move on with adding the Citrus libraries to the project.</p>
+<p>These components are normal Citrus Http client and server components. In this test we will use both client and server within the same test case in order to demonstrate both sides
+of the communication. In a real world scenario you may just have one side client <em>or</em> server in your test.</p>
 
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
-    <span class="n">testCompile</span> <span class="nl">group:</span> <span class="s1">'com.consol.citrus'</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">'citrus-core'</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">'2.7.7-SNAPSHOT'</span>
-    <span class="n">testCompile</span> <span class="nl">group:</span> <span class="s1">'com.consol.citrus'</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">'citrus-java-dsl'</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">'2.7.7-SNAPSHOT'</span>
-    <span class="n">testCompile</span> <span class="nl">group:</span> <span class="s1">'org.testng'</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">'testng'</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">'6.11'</span>
-    <span class="o">[...]</span>
+<p>So lets start writing a client request that uses form urlencoded message content:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">send</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/api/todo"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">fork</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_FORM_URLENCODED_VALUE</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"title=${todoName}&amp;description=${todoDescription}"</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>As you can see we are using a Http <code class="highlighter-rouge">POST</code> request with form urlencoded message body. The form data uses two fields <code class="highlighter-rouge">title</code> and <code class="highlighter-rouge">description</code> with respective values. On the server side we are able 
+to receive this form data for validation:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">server</span><span class="o">(</span><span class="n">todoListServer</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/api/todo"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_FORM_URLENCODED_VALUE</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">PLAINTEXT</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"{description=[${todoDescription}], title=[${todoName}]}"</span><span class="o">);</span>
+
+<span class="n">http</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">server</span><span class="o">(</span><span class="n">todoListServer</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">respond</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>The Citrus Http server is automatically handling the form data and converts the data to a list of fields with its values. We can use the plaintext message validation to check that the form data is
+as expected.</p>
+
+<p>In order to use the special <code class="highlighter-rouge">x-www-form-urlencoded</code> message validation features in Citrus we need to add a new message validator in the configuration.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="n">FormUrlEncodedMessageValidator</span> <span class="nf">formUrlEncodedMessageValidator</span><span class="o">(</span><span class="n">MessageValidatorRegistry</span> <span class="n">messageValidatorRegistry</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">FormUrlEncodedMessageValidator</span> <span class="n">messageValidator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FormUrlEncodedMessageValidator</span><span class="o">();</span>
+    <span class="n">messageValidatorRegistry</span><span class="o">.</span><span class="na">getMessageValidators</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="n">messageValidator</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">messageValidator</span><span class="o">;</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>This enables the Citrus support for the project so we can use the Citrus classes and APIs. We decided to use TestNG unit test library.</p>
+<p>The <code class="highlighter-rouge">com.consol.citrus.http.validation.FormUrlEncodedMessageValidator</code> validator implementation provides convenient form data marshalling that we can use in our test cases when expecting form urlencoded message content.</p>
 
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">test</span> <span class="o">{</span>
-    <span class="n">useTestNG</span><span class="o">()</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">server</span><span class="o">(</span><span class="n">todoListServer</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/api/todo"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_FORM_URLENCODED_VALUE</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">FormUrlEncodedMessageValidator</span><span class="o">.</span><span class="na">MESSAGE_TYPE</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="n">getFormData</span><span class="o">(),</span> <span class="k">new</span> <span class="n">FormMarshaller</span><span class="o">());</span>
+
+<span class="n">http</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">server</span><span class="o">(</span><span class="n">todoListServer</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">respond</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>As you can see we can now use the special message type <code class="highlighter-rouge">x-www-form-urlencoded</code> which enables the <code class="highlighter-rouge">FormUrlEncodedMessageValidator</code> mechanism. This allows us to specify the full form data as plain Java object.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="n">FormData</span> <span class="nf">getFormData</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">FormData</span> <span class="n">formData</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FormData</span><span class="o">();</span>
+
+    <span class="n">formData</span><span class="o">.</span><span class="na">setAction</span><span class="o">(</span><span class="s">"/api/todo"</span><span class="o">);</span>
+    <span class="n">formData</span><span class="o">.</span><span class="na">setContentType</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_FORM_URLENCODED_VALUE</span><span class="o">);</span>
+
+    <span class="n">Control</span> <span class="n">description</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Control</span><span class="o">();</span>
+    <span class="n">description</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">"description"</span><span class="o">);</span>
+    <span class="n">description</span><span class="o">.</span><span class="na">setValue</span><span class="o">(</span><span class="s">"@ignore@"</span><span class="o">);</span>
+    <span class="n">formData</span><span class="o">.</span><span class="na">addControl</span><span class="o">(</span><span class="n">description</span><span class="o">);</span>
+
+    <span class="n">Control</span> <span class="n">title</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Control</span><span class="o">();</span>
+    <span class="n">title</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">"title"</span><span class="o">);</span>
+    <span class="n">title</span><span class="o">.</span><span class="na">setValue</span><span class="o">(</span><span class="s">"${todoName}"</span><span class="o">);</span>
+    <span class="n">formData</span><span class="o">.</span><span class="na">addControl</span><span class="o">(</span><span class="n">title</span><span class="o">);</span>
+
+    <span class="k">return</span> <span class="n">formData</span><span class="o">;</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>Of course JUnit is also supported. This is all for build configuration settings. We can move on to writing some Citrus integration tests. You can
-find those tests in <strong>src/test/java</strong> directory.</p>
-
-<p>This sample uses pure Java code for both Citrus configuration and tests. The
-Citrus TestNG test uses a context configuration annotation.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ContextConfiguration</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="o">{</span> <span class="n">EndpointConfig</span><span class="o">.</span><span class="na">class</span> <span class="o">})</span>
-</code></pre></div></div>
-
-<p>This tells Spring to load the configuration from the Java class <strong><em>EndpointConfig</em></strong>.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">EndpointConfig</span> <span class="o">{</span>
-    <span class="nd">@Bean</span>
-    <span class="kd">public</span> <span class="n">ChannelEndpoint</span> <span class="nf">testChannelEndpoint</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">ChannelEndpointConfiguration</span> <span class="n">endpointConfiguration</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ChannelEndpointConfiguration</span><span class="o">();</span>
-        <span class="n">endpointConfiguration</span><span class="o">.</span><span class="na">setChannel</span><span class="o">(</span><span class="n">testChannel</span><span class="o">());</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">ChannelEndpoint</span><span class="o">(</span><span class="n">endpointConfiguration</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Bean</span>
-    <span class="kd">private</span> <span class="n">MessageChannel</span> <span class="nf">testChannel</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">MessageSelectingQueueChannel</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>In the configuration class we are able to define Citrus components for usage in tests. As usual
-we can autowire the endpoint components as Spring beans in the test cases.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Autowired</span>
-<span class="kd">private</span> <span class="n">ChannelEndpoint</span> <span class="n">testChannelEndpoint</span><span class="o">;</span>
-</code></pre></div></div>
+<p>This is how to send and receive Http form data in Citrus.</p>
 
 <h2 id="run">Run</h2>
 
-<p>The sample application uses Gradle as build tool. So you can use the Gradle wrapper for compile, package and test the
-sample with Gradle build.</p>
+<p>You can run the sample on your localhost in order to see Citrus in action. Read the instructions <a href="/samples/run/">how to run</a> the sample.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gradlew clean build
-</code></pre></div></div>
-
-<p>This executes all Citrus test cases during the build and you will see Citrus performing some integration test logging output.
-After the tests are finished build is successful and you are ready to go for writing some tests on your own.</p>
-
-<p>If you just want to execute all tests you can call</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gradlew clean check
-</code></pre></div></div>
-
-<p>Of course you can also start the Citrus tests from your favorite IDE.
-Just start the Citrus test using the Gradle integration in IntelliJ, Eclipse or Netbeans.</p>
 
   </div>
 </article>
@@ -359,7 +378,7 @@ Just start the Citrus test using the Gradle integration in IntelliJ, Eclipse or 
       </li>
       
       
-      <li class="current">
+      <li class="">
         <a href="/samples/gradle/">sample-gradle</a>
       </li>
       
@@ -492,7 +511,7 @@ Just start the Citrus test using the Gradle integration in IntelliJ, Eclipse or 
     <ul style="margin-top: 5px;">
       
       
-      <li class="">
+      <li class="current">
         <a href="/samples/http-form-data/">sample-http-form-data</a>
       </li>
       

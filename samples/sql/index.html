@@ -200,15 +200,15 @@
       <div class="unit four-fifths">
         <article>
   <h2>
-    Gradle build sample
-    <a href="/samples/gradle/" class="permalink" title="Permalink">∞</a>
+    SQL sample
+    <a href="/samples/sql/" class="permalink" title="Permalink">∞</a>
   </h2>
   <div class="right">
     
-    
-    <a href="https://github.com/citrusframework/citrus-samples/blob/master/sample-gradle" target="_blank">
+    <a href="https://github.com/citrusframework/citrus-samples/blob/master/samples-db/sample-sql" target="_blank">
       <i class="fa fa-pencil"></i> View source code
     </a>
+    
     
   </div>
   <span class="post-category">
@@ -217,101 +217,84 @@
     </span>
   </span>
   <div class="post-content">
-    <p>This sample uses Gradle as build tool in order to execute the Citrus tests.</p>
+    <p>This sample uses JDBC database connection to verify stored data in SQL query results sets.</p>
 
 <h2 id="objectives">Objectives</h2>
 
-<p>Citrus uses Maven internally for building software. But of course you can also integrate the Citrus tests in a Gradle
-project. As the Citrus tests are nothing but normal JUnit or TestNG tests the integration in the Gradle build is very easy.</p>
+<p>The <a href="../todo-app/README.md">todo-list</a> sample application stores data to a relational database. This sample shows 
+the usage of database JDBC validation actions in Citrus. We are able to execute SQL statements on a database target. 
+See the <a href="https://citrusframework.org/reference/html#actions-database">reference guide</a> database chapter for details.</p>
 
-<p>The Gradle build configuration is done in the <strong>build.gradle</strong> and <strong>settings.gradle</strong> files. Here we define the project name 
-and the project version.</p>
+<p>The database source is configured as Spring datasource in the application context <strong><em>citrus-context.xml</em></strong>.</p>
 
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">rootProject</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="s1">'citrus-sample-gradle'</span>
-<span class="n">group</span> <span class="s1">'com.consol.citrus.samples'</span>
-<span class="n">version</span> <span class="s1">'2.7.1'</span>
-</code></pre></div></div>
-
-<p>Now as Citrus libraries are available on Maven central repository we add these repositories so Gradle knows how to download the required
-Citrus artifacts.</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">repositories</span> <span class="o">{</span>
-    <span class="n">mavenCentral</span><span class="o">()</span>
-    <span class="n">maven</span> <span class="o">{</span>
-        <span class="n">url</span> <span class="s1">'http://labs.consol.de/maven/snapshots-repository/'</span>
-    <span class="o">}</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span><span class="o">(</span><span class="n">destroyMethod</span> <span class="o">=</span> <span class="s">"close"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="n">BasicDataSource</span> <span class="nf">todoListDataSource</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">BasicDataSource</span> <span class="n">dataSource</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BasicDataSource</span><span class="o">();</span>
+    <span class="n">dataSource</span><span class="o">.</span><span class="na">setDriverClassName</span><span class="o">(</span><span class="s">"org.hsqldb.jdbcDriver"</span><span class="o">);</span>
+    <span class="n">dataSource</span><span class="o">.</span><span class="na">setUrl</span><span class="o">(</span><span class="s">"jdbc:hsqldb:hsql://localhost/testdb"</span><span class="o">);</span>
+    <span class="n">dataSource</span><span class="o">.</span><span class="na">setUsername</span><span class="o">(</span><span class="s">"sa"</span><span class="o">);</span>
+    <span class="n">dataSource</span><span class="o">.</span><span class="na">setPassword</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
+    <span class="n">dataSource</span><span class="o">.</span><span class="na">setInitialSize</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+    <span class="n">dataSource</span><span class="o">.</span><span class="na">setMaxActive</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
+    <span class="n">dataSource</span><span class="o">.</span><span class="na">setMaxIdle</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">dataSource</span><span class="o">;</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>Citrus stable release versions are available on Maven central. If you want to use the very latest next version as snapshot preview you need
-to add the ConSol Labs snapshot repository which is optional. Now lets move on with adding the Citrus libraries to the project.</p>
+<p>As you can see we are using a H2 in memory database here.</p>
 
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
-    <span class="n">testCompile</span> <span class="nl">group:</span> <span class="s1">'com.consol.citrus'</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">'citrus-core'</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">'2.7.7-SNAPSHOT'</span>
-    <span class="n">testCompile</span> <span class="nl">group:</span> <span class="s1">'com.consol.citrus'</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">'citrus-java-dsl'</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">'2.7.7-SNAPSHOT'</span>
-    <span class="n">testCompile</span> <span class="nl">group:</span> <span class="s1">'org.testng'</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">'testng'</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">'6.11'</span>
-    <span class="o">[...]</span>
+<p>Before the test suite is started we create the relational database tables required.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="n">SequenceBeforeSuite</span> <span class="nf">beforeSuite</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nf">TestDesignerBeforeSuiteSupport</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">beforeSuite</span><span class="o">(</span><span class="n">TestDesigner</span> <span class="n">designer</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">designer</span><span class="o">.</span><span class="na">sql</span><span class="o">(</span><span class="n">todoListDataSource</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">statement</span><span class="o">(</span><span class="s">"CREATE TABLE IF NOT EXISTS todo_entries (id VARCHAR(50), title VARCHAR(255), description VARCHAR(255), done BOOLEAN)"</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">};</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>This enables the Citrus support for the project so we can use the Citrus classes and APIs. We decided to use TestNG unit test library.</p>
+<p>After the test we delete all test data again.</p>
 
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">test</span> <span class="o">{</span>
-    <span class="n">useTestNG</span><span class="o">()</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="n">SequenceAfterSuite</span> <span class="nf">afterSuite</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nf">TestDesignerAfterSuiteSupport</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterSuite</span><span class="o">(</span><span class="n">TestDesigner</span> <span class="n">designer</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">designer</span><span class="o">.</span><span class="na">sql</span><span class="o">(</span><span class="n">todoListDataSource</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">statement</span><span class="o">(</span><span class="s">"DELETE FROM todo_entries"</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">};</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>Of course JUnit is also supported. This is all for build configuration settings. We can move on to writing some Citrus integration tests. You can
-find those tests in <strong>src/test/java</strong> directory.</p>
+<p>In the test case we can reference the datasource in order to access the stored data and
+verify the result sets.</p>
 
-<p>This sample uses pure Java code for both Citrus configuration and tests. The
-Citrus TestNG test uses a context configuration annotation.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ContextConfiguration</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="o">{</span> <span class="n">EndpointConfig</span><span class="o">.</span><span class="na">class</span> <span class="o">})</span>
-</code></pre></div></div>
-
-<p>This tells Spring to load the configuration from the Java class <strong><em>EndpointConfig</em></strong>.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">EndpointConfig</span> <span class="o">{</span>
-    <span class="nd">@Bean</span>
-    <span class="kd">public</span> <span class="n">ChannelEndpoint</span> <span class="nf">testChannelEndpoint</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">ChannelEndpointConfiguration</span> <span class="n">endpointConfiguration</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ChannelEndpointConfiguration</span><span class="o">();</span>
-        <span class="n">endpointConfiguration</span><span class="o">.</span><span class="na">setChannel</span><span class="o">(</span><span class="n">testChannel</span><span class="o">());</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">ChannelEndpoint</span><span class="o">(</span><span class="n">endpointConfiguration</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Bean</span>
-    <span class="kd">private</span> <span class="n">MessageChannel</span> <span class="nf">testChannel</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">MessageSelectingQueueChannel</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>In the configuration class we are able to define Citrus components for usage in tests. As usual
-we can autowire the endpoint components as Spring beans in the test cases.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Autowired</span>
-<span class="kd">private</span> <span class="n">ChannelEndpoint</span> <span class="n">testChannelEndpoint</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">query</span><span class="o">(</span><span class="n">todoDataSource</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">statement</span><span class="o">(</span><span class="s">"select count(*) as cnt from todo_entries where title = '${todoName}'"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"cnt"</span><span class="o">,</span> <span class="s">"1"</span><span class="o">);</span>
 </code></pre></div></div>
 
 <h2 id="run">Run</h2>
 
-<p>The sample application uses Gradle as build tool. So you can use the Gradle wrapper for compile, package and test the
-sample with Gradle build.</p>
+<p>You can execute some sample Citrus test cases in this sample in order to write the reports.
+Open a separate command line terminal and navigate to the sample folder.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gradlew clean build
+<p>Execute all Citrus tests by calling</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> mvn integration-test
 </code></pre></div></div>
 
-<p>This executes all Citrus test cases during the build and you will see Citrus performing some integration test logging output.
-After the tests are finished build is successful and you are ready to go for writing some tests on your own.</p>
-
-<p>If you just want to execute all tests you can call</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gradlew clean check
-</code></pre></div></div>
+<p>You should see Citrus performing several tests with lots of debugging output. 
+And of course green tests at the very end of the build and some new reporting files in <code class="highlighter-rouge">target/citrus-reports</code> folder.</p>
 
 <p>Of course you can also start the Citrus tests from your favorite IDE.
-Just start the Citrus test using the Gradle integration in IntelliJ, Eclipse or Netbeans.</p>
+Just start the Citrus test using the TestNG IDE integration in IntelliJ, Eclipse or Netbeans.</p>
+
 
   </div>
 </article>
@@ -359,7 +342,7 @@ Just start the Citrus test using the Gradle integration in IntelliJ, Eclipse or 
       </li>
       
       
-      <li class="current">
+      <li class="">
         <a href="/samples/gradle/">sample-gradle</a>
       </li>
       
@@ -453,7 +436,7 @@ Just start the Citrus test using the Gradle integration in IntelliJ, Eclipse or 
     <ul style="margin-top: 5px;">
       
       
-      <li class="">
+      <li class="current">
         <a href="/samples/sql/">sample-sql</a>
       </li>
       

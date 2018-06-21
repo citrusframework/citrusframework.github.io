@@ -200,15 +200,15 @@
       <div class="unit four-fifths">
         <article>
   <h2>
-    Gradle build sample
-    <a href="/samples/gradle/" class="permalink" title="Permalink">∞</a>
+    SCP sample
+    <a href="/samples/scp/" class="permalink" title="Permalink">∞</a>
   </h2>
   <div class="right">
     
-    
-    <a href="https://github.com/citrusframework/citrus-samples/blob/master/sample-gradle" target="_blank">
+    <a href="https://github.com/citrusframework/citrus-samples/blob/master/samples-ftp/sample-scp" target="_blank">
       <i class="fa fa-pencil"></i> View source code
     </a>
+    
     
   </div>
   <span class="post-category">
@@ -217,101 +217,113 @@
     </span>
   </span>
   <div class="post-content">
-    <p>This sample uses Gradle as build tool in order to execute the Citrus tests.</p>
+    <p>This sample works with secure copy aka SCP in order to copy files as client to a server provided by Citrus. The scp-client uses the upload for storing a new file on the 
+server. After that the very same file is downloaded via SCP in a single test.</p>
+
+<p>Common FTP features are also described in detail in <a href="https://citrusframework.org/reference/html#ftp">reference guide</a></p>
 
 <h2 id="objectives">Objectives</h2>
 
-<p>Citrus uses Maven internally for building software. But of course you can also integrate the Citrus tests in a Gradle
-project. As the Citrus tests are nothing but normal JUnit or TestNG tests the integration in the Gradle build is very easy.</p>
+<p>We want to setup both SCP client and server components in our project in order to test a file transfer via secure copy. The client authenticates to the server
+using username password credentials. The secure ftp-server component will receive incoming requests for validation and provide the user account workspace to the client.</p>
 
-<p>The Gradle build configuration is done in the <strong>build.gradle</strong> and <strong>settings.gradle</strong> files. Here we define the project name 
-and the project version.</p>
+<p>First of all let us setup the necessary components in the Spring bean configuration:</p>
 
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">rootProject</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="s1">'citrus-sample-gradle'</span>
-<span class="n">group</span> <span class="s1">'com.consol.citrus.samples'</span>
-<span class="n">version</span> <span class="s1">'2.7.1'</span>
-</code></pre></div></div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="n">ScpClient</span> <span class="nf">scpClient</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">CitrusEndpoints</span><span class="o">.</span><span class="na">scp</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">client</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">port</span><span class="o">(</span><span class="mi">2222</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">username</span><span class="o">(</span><span class="s">"citrus"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">password</span><span class="o">(</span><span class="s">"admin"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">privateKeyPath</span><span class="o">(</span><span class="s">"classpath:ssh/citrus.priv"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+<span class="o">}</span>
 
-<p>Now as Citrus libraries are available on Maven central repository we add these repositories so Gradle knows how to download the required
-Citrus artifacts.</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">repositories</span> <span class="o">{</span>
-    <span class="n">mavenCentral</span><span class="o">()</span>
-    <span class="n">maven</span> <span class="o">{</span>
-        <span class="n">url</span> <span class="s1">'http://labs.consol.de/maven/snapshots-repository/'</span>
-    <span class="o">}</span>
+<span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="n">SftpServer</span> <span class="nf">sftpServer</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">CitrusEndpoints</span><span class="o">.</span><span class="na">sftp</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">server</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">port</span><span class="o">(</span><span class="mi">2222</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">autoStart</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">user</span><span class="o">(</span><span class="s">"citrus"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">password</span><span class="o">(</span><span class="s">"admin"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">allowedKeyPath</span><span class="o">(</span><span class="s">"classpath:ssh/citrus_pub.pem"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">build</span><span class="o">();</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>Citrus stable release versions are available on Maven central. If you want to use the very latest next version as snapshot preview you need
-to add the ConSol Labs snapshot repository which is optional. Now lets move on with adding the Citrus libraries to the project.</p>
+<p>The <em>sftpServer</em> is a small but fully qualified FTP server implementation that uses secure authentication in Citrus. The server receives an <code class="highlighter-rouge">allowedKeyPath</code> that defines allowed public keys. Also we define a user and password
+for the test user on the server component. The user <code class="highlighter-rouge">citrus</code> is now able to authenticate with the server via private key. Also the client may authenticate to the server using the given username password credentials.</p>
 
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
-    <span class="n">testCompile</span> <span class="nl">group:</span> <span class="s1">'com.consol.citrus'</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">'citrus-core'</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">'2.7.7-SNAPSHOT'</span>
-    <span class="n">testCompile</span> <span class="nl">group:</span> <span class="s1">'com.consol.citrus'</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">'citrus-java-dsl'</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">'2.7.7-SNAPSHOT'</span>
-    <span class="n">testCompile</span> <span class="nl">group:</span> <span class="s1">'org.testng'</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">'testng'</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">'6.11'</span>
-    <span class="o">[...]</span>
-<span class="o">}</span>
+<p>Based on the user account we can set a user workspace home directory. The server will save incoming stored files to this directory and the server will read retrieved files from that
+home directory.</p>
+
+<p>In case you want to setup some files in that directory in order to provide it to clients, please copy those files to that home directory prior to the test.</p>
+
+<p>The scp-client connects to the server using the user credentials and is then able to store and retrieve files in a test via SCP.</p>
+
+<p>In our test we can now start to upload a file using SCP.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">echo</span><span class="o">(</span><span class="s">"Store file via SCP"</span><span class="o">);</span>
+
+<span class="n">send</span><span class="o">(</span><span class="n">scpClient</span><span class="o">)</span>
+   <span class="o">.</span><span class="na">fork</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+   <span class="o">.</span><span class="na">message</span><span class="o">(</span><span class="n">FtpMessage</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"classpath:todo/entry.json"</span><span class="o">,</span> <span class="s">"todo.json"</span><span class="o">,</span> <span class="n">DataType</span><span class="o">.</span><span class="na">ASCII</span><span class="o">));</span>
+
+<span class="n">receive</span><span class="o">(</span><span class="n">sftpServer</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">message</span><span class="o">(</span><span class="n">FtpMessage</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"@ignore@"</span><span class="o">,</span> <span class="s">"todo.json"</span><span class="o">,</span> <span class="n">DataType</span><span class="o">.</span><span class="na">ASCII</span><span class="o">));</span>
+
+<span class="n">send</span><span class="o">(</span><span class="n">sftpServer</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">message</span><span class="o">(</span><span class="n">FtpMessage</span><span class="o">.</span><span class="na">success</span><span class="o">());</span>
+
+<span class="n">receive</span><span class="o">(</span><span class="n">scpClient</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">message</span><span class="o">(</span><span class="n">FtpMessage</span><span class="o">.</span><span class="na">success</span><span class="o">());</span>
 </code></pre></div></div>
 
-<p>This enables the Citrus support for the project so we can use the Citrus classes and APIs. We decided to use TestNG unit test library.</p>
+<p>Now we have both client and server interaction in the same test case. This requires us to use <code class="highlighter-rouge">fork</code> option enabled on all client
+requests as we need to continue with the test in order to handle the server interaction, too. We can store a new file <code class="highlighter-rouge">todo/entry.json</code> which is transmitted
+to the server via secure copy.</p>
 
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">test</span> <span class="o">{</span>
-    <span class="n">useTestNG</span><span class="o">()</span>
-<span class="o">}</span>
+<p>The SFTP server is receiving the file upload providing a success response in order to mark completion of the file transfer. After that the file should be created in
+the user home directory as file <code class="highlighter-rouge">todo.json</code>. You can validate the file content by reading it from that directory in another test action.</p>
+
+<p>Lets download that very same file in another SCP file transfer:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">echo</span><span class="o">(</span><span class="s">"Retrieve file from server"</span><span class="o">);</span>
+
+<span class="n">send</span><span class="o">(</span><span class="n">scpClient</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">fork</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">message</span><span class="o">(</span><span class="n">FtpMessage</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"todo.json"</span><span class="o">,</span> <span class="s">"file:target/scp/todo.json"</span><span class="o">,</span> <span class="n">DataType</span><span class="o">.</span><span class="na">ASCII</span><span class="o">));</span>
+
+<span class="n">receive</span><span class="o">(</span><span class="n">sftpServer</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">message</span><span class="o">(</span><span class="n">FtpMessage</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"/todo.json"</span><span class="o">,</span> <span class="s">"@ignore@"</span><span class="o">,</span> <span class="n">DataType</span><span class="o">.</span><span class="na">ASCII</span><span class="o">));</span>
+
+<span class="n">send</span><span class="o">(</span><span class="n">sftpServer</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">message</span><span class="o">(</span><span class="n">FtpMessage</span><span class="o">.</span><span class="na">success</span><span class="o">());</span>
+
+<span class="n">receive</span><span class="o">(</span><span class="n">scpClient</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">message</span><span class="o">(</span><span class="n">FtpMessage</span><span class="o">.</span><span class="na">success</span><span class="o">());</span>
 </code></pre></div></div>
 
-<p>Of course JUnit is also supported. This is all for build configuration settings. We can move on to writing some Citrus integration tests. You can
-find those tests in <strong>src/test/java</strong> directory.</p>
-
-<p>This sample uses pure Java code for both Citrus configuration and tests. The
-Citrus TestNG test uses a context configuration annotation.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ContextConfiguration</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="o">{</span> <span class="n">EndpointConfig</span><span class="o">.</span><span class="na">class</span> <span class="o">})</span>
-</code></pre></div></div>
-
-<p>This tells Spring to load the configuration from the Java class <strong><em>EndpointConfig</em></strong>.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">EndpointConfig</span> <span class="o">{</span>
-    <span class="nd">@Bean</span>
-    <span class="kd">public</span> <span class="n">ChannelEndpoint</span> <span class="nf">testChannelEndpoint</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">ChannelEndpointConfiguration</span> <span class="n">endpointConfiguration</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ChannelEndpointConfiguration</span><span class="o">();</span>
-        <span class="n">endpointConfiguration</span><span class="o">.</span><span class="na">setChannel</span><span class="o">(</span><span class="n">testChannel</span><span class="o">());</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">ChannelEndpoint</span><span class="o">(</span><span class="n">endpointConfiguration</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Bean</span>
-    <span class="kd">private</span> <span class="n">MessageChannel</span> <span class="nf">testChannel</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">MessageSelectingQueueChannel</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>In the configuration class we are able to define Citrus components for usage in tests. As usual
-we can autowire the endpoint components as Spring beans in the test cases.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Autowired</span>
-<span class="kd">private</span> <span class="n">ChannelEndpoint</span> <span class="n">testChannelEndpoint</span><span class="o">;</span>
-</code></pre></div></div>
+<p>This completes our test as we were able to interact with the SFTP server using the client secure copy operations.</p>
 
 <h2 id="run">Run</h2>
 
-<p>The sample application uses Gradle as build tool. So you can use the Gradle wrapper for compile, package and test the
-sample with Gradle build.</p>
+<p>You can execute some sample Citrus test cases in this sample in order to write the reports.
+Open a separate command line terminal and navigate to the sample folder.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gradlew clean build
+<p>Execute all Citrus tests by calling</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> mvn integration-test
 </code></pre></div></div>
 
-<p>This executes all Citrus test cases during the build and you will see Citrus performing some integration test logging output.
-After the tests are finished build is successful and you are ready to go for writing some tests on your own.</p>
-
-<p>If you just want to execute all tests you can call</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gradlew clean check
-</code></pre></div></div>
+<p>You should see Citrus performing several tests with lots of debugging output. 
+And of course green tests at the very end of the build and some new reporting files in <code class="highlighter-rouge">target/citrus-reports</code> folder.</p>
 
 <p>Of course you can also start the Citrus tests from your favorite IDE.
-Just start the Citrus test using the Gradle integration in IntelliJ, Eclipse or Netbeans.</p>
+Just start the Citrus test using the TestNG IDE integration in IntelliJ, Eclipse or Netbeans.</p>
+
 
   </div>
 </article>
@@ -359,7 +371,7 @@ Just start the Citrus test using the Gradle integration in IntelliJ, Eclipse or 
       </li>
       
       
-      <li class="current">
+      <li class="">
         <a href="/samples/gradle/">sample-gradle</a>
       </li>
       
@@ -475,7 +487,7 @@ Just start the Citrus test using the Gradle integration in IntelliJ, Eclipse or 
       </li>
       
       
-      <li class="">
+      <li class="current">
         <a href="/samples/scp/">sample-scp</a>
       </li>
       

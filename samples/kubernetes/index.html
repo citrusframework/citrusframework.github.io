@@ -1,0 +1,937 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 2.7.6">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/citrusframework/citrus/commits/master.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="samples">
+    <div class="grid">
+
+      <div class="samples-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the samples…</option>
+    <option value="/samples/">Overview</option>
+    <option value="/samples/todo-app/">Sample app</option>
+    <option value="/samples/run/">Running</option>
+    
+    
+    <option value="/samples/binary/">sample-binary</option>
+    
+    <option value="/samples/mail/">sample-mail</option>
+    
+    <option value="/samples/jms/">sample-jms</option>
+    
+    <option value="/samples/camel-context/">sample-camel-context</option>
+    
+    <option value="/samples/gradle/">sample-gradle</option>
+    
+    <option value="/samples/javaconfig/">sample-javaconfig</option>
+    
+    <option value="/samples/selenium/">sample-selenium</option>
+    
+    <option value="/samples/arquillian/">sample-javaee</option>
+    
+    <option value="/samples/kubernetes/">sample-kubernetes</option>
+    
+    <option value="/samples/dynamic-endpoints/">sample-dynamic-endpoints</option>
+    
+    <option value="/samples/rmi/">sample-rmi</option>
+    
+    <option value="/samples/docker/">sample-docker</option>
+    
+    <option value="/samples/reporting/">sample-reporting</option>
+    
+    <option value="/samples/message-store/">sample-message-store</option>
+    
+    <option value="/samples/annotation-config/">sample-annotation-config</option>
+    
+    <option value="/samples/behavior/">sample-behavior</option>
+    
+    <option value="/samples/hamcrest/">sample-hamcrest</option>
+    
+    <option value="/samples/dictionaries/">sample-dictionaries</option>
+    
+    <option value="/samples/cucumber-spring/">sample-cucumber-spring</option>
+    
+    <option value="/samples/cucumber/">sample-cucumber</option>
+    
+    <option value="/samples/sql/">sample-sql</option>
+    
+    <option value="/samples/jdbc/">sample-jdbc</option>
+    
+    <option value="/samples/ftp/">sample-ftp</option>
+    
+    <option value="/samples/scp/">sample-scp</option>
+    
+    <option value="/samples/sftp/">sample-sftp</option>
+    
+    <option value="/samples/http-form-data/">sample-http-form-data</option>
+    
+    <option value="/samples/http/">sample-http</option>
+    
+    <option value="/samples/http-basic-auth/">sample-http-basic-auth</option>
+    
+    <option value="/samples/http-loadtest/">sample-http-loadtest</option>
+    
+    <option value="/samples/swagger/">sample-swagger</option>
+    
+    <option value="/samples/https/">sample-https</option>
+    
+    <option value="/samples/databind/">sample-databind</option>
+    
+    <option value="/samples/json/">sample-json</option>
+    
+    <option value="/samples/junit5/">sample-junit5</option>
+    
+    <option value="/samples/junit/">sample-junit</option>
+    
+    <option value="/samples/soap-wsaddressing/">sample-soap-wsaddressing</option>
+    
+    <option value="/samples/soap/">sample-soap</option>
+    
+    <option value="/samples/soap-mtom/">sample-soap-mtom</option>
+    
+    <option value="/samples/soap-attachment/">sample-soap-attachment</option>
+    
+    <option value="/samples/soap-wssecurity/">sample-soap-wssecurity</option>
+    
+    <option value="/samples/http-static-response/">sample-http-static-response</option>
+    
+    <option value="/samples/soap-static-response/">sample-soap-static-response</option>
+    
+    <option value="/samples/soap-ssl/">sample-soap-ssl</option>
+    
+    <option value="/samples/wsdl/">sample-wsdl</option>
+    
+    <option value="/samples/dataprovider/">sample-dataprovider</option>
+    
+    <option value="/samples/testng/">sample-testng</option>
+    
+    <option value="/samples/xml/">sample-xml</option>
+    
+    <option value="/samples/xhtml/">sample-xhtml</option>
+    
+    <option value="/samples/oxm/">sample-oxm</option>
+    
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+  <h2>
+    Kubernetes sample
+    <a href="/samples/kubernetes/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <div class="right">
+    
+    
+    <a href="https://github.com/citrusframework/citrus-samples/blob/master/sample-kubernetes" target="_blank">
+      <i class="fa fa-pencil"></i> View source code
+    </a>
+    
+  </div>
+  <span class="post-category">
+    <span class="label">
+      samples
+    </span>
+  </span>
+  <div class="post-content">
+    <p>This sample uses <a href="https://kubernetes.io/">Kubernetes</a> as container platform and deploys both application under test and integration tests as pods in Kubernetes.
+The Citrus integration tests may then access the Kubernetes exposed services and APIs within the test.</p>
+
+<p>Read about the Citrus Kubernetes integration in the <a href="https://citrusframework.org/reference/html#kubernetes">reference guide</a></p>
+
+<h2 id="objectives">Objectives</h2>
+
+<p>The <a href="/samples/todo-app/">todo-list</a> sample application provides a REST API for managing todo entries. We want to deploy the
+whole application in Kubernetes in order to expose the REST API to other pods running on the Kubernetes platform. The Citrus tests
+will also get deployed to Kubernetes in order to access the exposed service API via Kubernetes service discovery. In addition to that we access the Kubernetes
+REST services within the Citrus tests in order to verify deployment states.</p>
+
+<h2 id="prepare-the-environment">Prepare the environment</h2>
+
+<p>First of all you need a running Kubernetes platform. <a href="https://github.com/kubernetes/minikube">Minikube</a> is a fantastic way to get started with a 
+local Kubernetes cluster for testing. Please refer to the <a href="https://kubernetes.io/docs/getting-started-guides/minikube/">installation</a> description on how to 
+set up the Minikube environment.</p>
+
+<p>Or you can simply call the <a href="https://maven.fabric8.io/">Fabric8 Maven plugin</a> to setup everything for you:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn fabric8:start-cluster
+</code></pre></div></div>
+
+<p>This command will download all needed tools and install Minikube on your local system. After that you should be able to access the Kubernetes dashboard
+with:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>minikube dashboard
+</code></pre></div></div>
+
+<h2 id="deploy-pods-to-kubernetes">Deploy pods to Kubernetes</h2>
+
+<p>This sample uses the <a href="https://maven.fabric8.io/">Fabric8 Maven plugins</a> for generating the Kubernetes resources with automatic deployment to the local cluster.</p>
+
+<p>First of all we build and deploy the todo-list application as pod in Kubernetes. We are going to build a Docker image the runs the todo-list application as web 
+application in Tomcat 8. In addition to that we define a service resource in Kubernetes that exposes the todo-list REST API to other pods.</p>
+
+<p>The complete configuration is placed in the todo-list project Maven POM (<a href="../todo-app/pom.xml">pom.xml</a>) as plugin configuration. The Fabric8 Maven plugin configuration looks like follows.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;plugin&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>io.fabric8<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>fabric8-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>${fabric8.plugin.version}<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;configuration&gt;</span>
+      <span class="nt">&lt;verbose&gt;</span>true<span class="nt">&lt;/verbose&gt;</span>
+      <span class="nt">&lt;mode&gt;</span>kubernetes<span class="nt">&lt;/mode&gt;</span>
+      <span class="nt">&lt;images&gt;</span>
+        <span class="nt">&lt;image&gt;</span>
+          <span class="nt">&lt;alias&gt;</span>todo-app<span class="nt">&lt;/alias&gt;</span>
+          <span class="nt">&lt;name&gt;</span>citrus/todo-app:1.0.6<span class="nt">&lt;/name&gt;</span>
+          <span class="nt">&lt;build&gt;</span>
+            <span class="nt">&lt;from&gt;</span>fabric8/tomcat-8:latest<span class="nt">&lt;/from&gt;</span>
+            <span class="nt">&lt;tags&gt;</span>
+              <span class="nt">&lt;tag&gt;</span>latest<span class="nt">&lt;/tag&gt;</span>
+            <span class="nt">&lt;/tags&gt;</span>
+            <span class="nt">&lt;assembly&gt;</span>
+              <span class="nt">&lt;inline&gt;</span>
+                <span class="nt">&lt;files&gt;</span>
+                  <span class="nt">&lt;file&gt;</span>
+                    <span class="nt">&lt;source&gt;</span>/Users/christoph/.m2/repository/com/consol/citrus/samples/citrus-sample-todo/1.0.6/citrus-sample-todo-1.0.6.war<span class="nt">&lt;/source&gt;</span>
+                    <span class="nt">&lt;destName&gt;</span>ROOT.war<span class="nt">&lt;/destName&gt;</span>
+                    <span class="nt">&lt;outputDirectory&gt;</span>.<span class="nt">&lt;/outputDirectory&gt;</span>
+                  <span class="nt">&lt;/file&gt;</span>
+                <span class="nt">&lt;/files&gt;</span>
+              <span class="nt">&lt;/inline&gt;</span>
+            <span class="nt">&lt;/assembly&gt;</span>
+          <span class="nt">&lt;/build&gt;</span>
+        <span class="nt">&lt;/image&gt;</span>
+      <span class="nt">&lt;/images&gt;</span>
+      <span class="nt">&lt;resources&gt;</span>
+        <span class="nt">&lt;services&gt;</span>
+          <span class="nt">&lt;service&gt;</span>
+            <span class="nt">&lt;name&gt;</span>citrus-sample-todo-service<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;ports&gt;</span>
+              <span class="nt">&lt;port&gt;</span>
+                <span class="nt">&lt;protocol&gt;</span>tcp<span class="nt">&lt;/protocol&gt;</span>
+                <span class="nt">&lt;port&gt;</span>8080<span class="nt">&lt;/port&gt;</span>
+                <span class="nt">&lt;targetPort&gt;</span>8080<span class="nt">&lt;/targetPort&gt;</span>
+              <span class="nt">&lt;/port&gt;</span>
+            <span class="nt">&lt;/ports&gt;</span>
+            <span class="nt">&lt;type&gt;</span>NodePort<span class="nt">&lt;/type&gt;</span>
+          <span class="nt">&lt;/service&gt;</span>
+        <span class="nt">&lt;/services&gt;</span>
+      <span class="nt">&lt;/resources&gt;</span>
+    <span class="nt">&lt;/configuration&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span>
+</code></pre></div></div>
+
+<p>The configuration is much more straight forward than it looks like at first sight. First of all the configuration defines a Docker image <em>citrus/todo-app</em> build section. 
+The todo-list Spring Boot web application should be deployed on a Tomcat web server. So the Docker image extends from <em>fabric8/tomcat-8</em> base image which is also provided by the Fabric8 team. 
+This Docker image is best suited for working with artifacts that are assembled within the Maven build.</p>
+
+<p>In the assembly section we define the target WAR that should be deployed to the Tomcat web server in the Docker image. This is very comfortable way of adding artifacts and other sources to the web
+server as the assembly can be done in various ways (also see <a href="https://dmp.fabric8.io/#build-assembly">Fabric8 Docker assembly</a>). In this sample above we just copy the todo-list WAR from our local 
+Maven repository.</p>
+
+<p>In addition to that the configuration also defines a service <em>citrus-sample-todo-service</em> that exposes the port <em>8080</em>. This means that other pods will be 
+able to access the todo-list service via <code class="highlighter-rouge">http://citrus-sample-todo-service:8080</code>. The type <em>NodePort</em> will also create a random port for external clients that are coming from outside of Kubernetes. 
+That completes the configuration on the Fabric8 plugin. The plugin reads this information and creates all Kubernetes resource configurations for us. Lets do that by calling</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn fabric8:resource
+mvn install fabric8:build
+</code></pre></div></div>
+
+<p>You can review the Kubernetes configurations for the complete deployment in Maven <em>target/classes/META-INF/fabric8/</em> folder now. We are now ready to deploy the todo-list application to Kubernetes.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn fabric8:deploy
+</code></pre></div></div>
+
+<p>After that you should see a new deployment on your local Minikube Kubernetes cluster. Also you should be able to see the exposed Kubernetes service <em>citrus-sample-todo-service</em> with a default
+replica set and of course the running pod with the the Tomcat 8 todo-list application.</p>
+
+<p>The node port service type generated an external port for us. So we can also access the todo-list application with the browser.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>minikube service citrus-sample-todo-service
+</code></pre></div></div>
+
+<p>This opens you local browser pointing to the external node port. You should be able to see the todo-list application now.</p>
+
+<h2 id="run-citrus-tests-as-pod">Run Citrus tests as pod</h2>
+
+<p>Now that we have a running Kubernetes deployment we also want to execute the Citrus integration tests as pod in Kubernetes. This has the great advantage that we can access the todo-list REST service
+as client in Kubernetes just like every other pod would do in production. The Citrus tests will be able to call operations via the exposed Kubernetes service.</p>
+
+<p>Lets review the Fabric8 Maven plugin configuration for the Citrus integration test POM:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;plugin&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>io.fabric8<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>docker-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>${fabric8.maven.plugin}<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;configuration&gt;</span>
+    <span class="nt">&lt;verbose&gt;</span>true<span class="nt">&lt;/verbose&gt;</span>
+    <span class="nt">&lt;images&gt;</span>
+      <span class="nt">&lt;image&gt;</span>
+        <span class="nt">&lt;alias&gt;</span>todo-app-tests<span class="nt">&lt;/alias&gt;</span>
+        <span class="nt">&lt;name&gt;</span>citrus/todo-app-tests:1.0.6<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;build&gt;</span>
+          <span class="nt">&lt;from&gt;</span>consol/citrus:2.7<span class="nt">&lt;/from&gt;</span>
+          <span class="nt">&lt;tags&gt;</span>
+            <span class="nt">&lt;tag&gt;</span>latest<span class="nt">&lt;/tag&gt;</span>
+          <span class="nt">&lt;/tags&gt;</span>
+          <span class="nt">&lt;assembly&gt;</span>
+            <span class="nt">&lt;descriptorRef&gt;</span>project<span class="nt">&lt;/descriptorRef&gt;</span>
+          <span class="nt">&lt;/assembly&gt;</span>
+        <span class="nt">&lt;/build&gt;</span>
+      <span class="nt">&lt;/image&gt;</span>
+    <span class="nt">&lt;/images&gt;</span>
+  <span class="nt">&lt;/configuration&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span>
+</code></pre></div></div>
+
+<p>Once again we define a Docker image that is supposed to run as part of a Kubernetes pod. This time we extend from <em>consol/citrus:2.7</em> Docker image which is ready to execute a Citrus Maven build at 
+container runtime. The image also works with the Docker Maven plugin assembly mechanism. This time the assembly adds the complete project sources by using the <em>descriptorRef=project</em> which is a 
+predefined assembly in the Fabric8 plugin.</p>
+
+<p>When we build the image with <code class="highlighter-rouge">mvn docker:build</code> we get a ready to use Citrus Docker image of the current Maven project. When the image is run as pod in Kubernetes all integration tests will be executed
+as Maven build.</p>
+
+<p>You might have noticed that we now use the Docker Fabric8 Maven plugin here (<code class="highlighter-rouge">&lt;artifactId&gt;docker-maven-plugin&lt;/artifactId&gt;</code>). This is simply because we do not want Fabric8 to create a Kubernetes deployment for the
+Citrus tests. Deployments in Kubernetes are designed for pods that are supposed to never end. The Citrus pod is supposed to run all tests. After that the pod will terminate with success or failure. This
+is not a classic deployment in Fabric8 and Kubernetes. Instead we use a customized pod YAML configuration. We simply tell Fabric8 to just create that specific resource in Kubernetes. All
+default deployment creation steps are then skipped. Here is the Citrus pod YAML config:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Pod</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">citrus-sample-todo-tests</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">restartPolicy</span><span class="pi">:</span> <span class="s">Never</span>
+  <span class="na">containers</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">citrus-sample-todo-tests</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">citrus/todo-app-tests:2.7.1</span>
+    <span class="na">imagePullPolicy</span><span class="pi">:</span> <span class="s">Never</span>
+    <span class="na">securityContext</span><span class="pi">:</span>
+      <span class="na">privileged</span><span class="pi">:</span> <span class="no">false</span>
+</code></pre></div></div>
+
+<p>The pod configuration tells Kubernetes to use the Docker image <em>citrus/todo-app-tests:2.7.1</em> that we have just built. Also the <em>restartPolicy</em> is set to <em>Never</em>. This makes sure
+that Kubernetes will not try to endlessly restart the pod in case a test fails with error.</p>
+
+<p>Now lets put that all together with:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn docker:build
+mvn fabric8:resource
+mvn fabric8:deploy -DskipTests
+</code></pre></div></div>
+
+<p>We have to skip the tests when calling <em>fabric8:deploy</em> because we do not want to execute the tests locally but inside the Kubernetes pod. After that you should see a new pod running 
+on your Kubernetes cluster. This pod automatically executes the Citrus tests and terminates. You will see the terminated pod and
+you will be able to review the logs. In case all Citrus tests pass the pod terminates with <em>Terminate: Complete</em>. In case the tests are broken the pod terminates in state <em>Terminate: Error</em>.</p>
+
+<h2 id="access-kubernetes-resources-in-test">Access Kubernetes resources in test</h2>
+
+<p>Have a look at the Citrus endpoint configuration that shows the service discovery via Kubernetes:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="n">HttpClient</span> <span class="nf">todoClient</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">CitrusEndpoints</span><span class="o">.</span><span class="na">http</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">client</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">requestUrl</span><span class="o">(</span><span class="s">"http://citrus-sample-todo-service:8080"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The client component in Citrus uses the Kubernetes service name <em>citrus-sample-todo-service</em> as host. The host and port are automatically resolved as the Citrus tests run as pod in Kubernetes. Also
+we can add a Citrus Kubernetes client to access the Kubernetes API within a test:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="n">KubernetesClient</span> <span class="nf">k8sClient</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">CitrusEndpoints</span><span class="o">.</span><span class="na">kubernetes</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">client</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">username</span><span class="o">(</span><span class="s">"minikube"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">namespace</span><span class="o">(</span><span class="s">"default"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"https://kubernetes:443"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The client also uses the Kubernetes internal host and port for Kubernetes exposed services. With this client we can access the running pods and services from within a Citrus test:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Autowired</span>
+<span class="kd">private</span> <span class="n">KubernetesClient</span> <span class="n">k8sClient</span><span class="o">;</span>
+
+<span class="nd">@Test</span>
+<span class="nd">@CitrusTest</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testDeploymentState</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">kubernetes</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">k8sClient</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">pods</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">list</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">label</span><span class="o">(</span><span class="s">"app=todo"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"$..status.phase"</span><span class="o">,</span> <span class="s">"Running"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">validate</span><span class="o">((</span><span class="n">pods</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">Assert</span><span class="o">.</span><span class="na">assertFalse</span><span class="o">(</span><span class="n">CollectionUtils</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">(</span><span class="n">pods</span><span class="o">.</span><span class="na">getResult</span><span class="o">().</span><span class="na">getItems</span><span class="o">()));</span>
+        <span class="o">});</span>
+
+    <span class="n">kubernetes</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">k8sClient</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">services</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"citrus-sample-todo-service"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">validate</span><span class="o">((</span><span class="n">service</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">Assert</span><span class="o">.</span><span class="na">assertNotNull</span><span class="o">(</span><span class="n">service</span><span class="o">.</span><span class="na">getResult</span><span class="o">());</span>
+        <span class="o">});</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>As you can see in the sample above we are able to test the deployment state of the todo-list applicaiton within Kubernetes. The test verifies that the pod is running and that
+the service is set up correctly. Now we can access the todo-list REST API in another test:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Autowired</span>
+<span class="kd">private</span> <span class="n">HttpClient</span> <span class="n">todoClient</span><span class="o">;</span>
+
+<span class="nd">@Test</span>
+<span class="nd">@CitrusTest</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testTodoService</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">variable</span><span class="o">(</span><span class="s">"todoId"</span><span class="o">,</span> <span class="s">"citrus:randomUUID()"</span><span class="o">);</span>
+    <span class="n">variable</span><span class="o">(</span><span class="s">"todoName"</span><span class="o">,</span> <span class="s">"citrus:concat('todo_', citrus:randomNumber(4))"</span><span class="o">);</span>
+    <span class="n">variable</span><span class="o">(</span><span class="s">"todoDescription"</span><span class="o">,</span> <span class="s">"Description: ${todoName}"</span><span class="o">);</span>
+    <span class="n">variable</span><span class="o">(</span><span class="s">"done"</span><span class="o">,</span> <span class="s">"false"</span><span class="o">);</span>
+
+    <span class="n">http</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">send</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/api/todolist"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">JSON</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="n">ContentType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">.</span><span class="na">getMimeType</span><span class="o">())</span>
+        <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"{ \"id\": \"${todoId}\", \"title\": \"${todoName}\", \"description\": \"${todoDescription}\", \"done\": ${done}}"</span><span class="o">);</span>
+
+    <span class="n">http</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">PLAINTEXT</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"${todoId}"</span><span class="o">);</span>
+
+    <span class="n">http</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">send</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"/api/todo/${todoId}"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">ContentType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">.</span><span class="na">getMimeType</span><span class="o">());</span>
+
+    <span class="n">http</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">JSON</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"{ \"id\": \"${todoId}\", \"title\": \"${todoName}\", \"description\": \"${todoDescription}\", \"done\": ${done}}"</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>With these integration tests we make sure to access the services and pods as every other pod running in Kubernetes would do. These are in-container tests
+that consume services just like other clients would do in production. On top of that we can use the Citrus features such as message validation and service simulation.</p>
+
+<p>The test is able to check the Kubernetes deployment state. We can even manipulate the Kubernetes resources at test runtime:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">kubernetes</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">pods</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="s">"${todoPod}"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">namespace</span><span class="o">(</span><span class="s">"default"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">validate</span><span class="o">((</span><span class="n">result</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">Assert</span><span class="o">.</span><span class="na">assertTrue</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">getResult</span><span class="o">().</span><span class="na">getSuccess</span><span class="o">()))</span>
+</code></pre></div></div>
+
+<p>The listing above deletes the todo-list pod. In that case the default Kubernetes replica set may just automatically start another pod so the todo-list application is kept running.
+The todo-list service should always be reachable for clients. We could verify that by constantly adding todo entries as client while deleting the pod.</p>
+
+<p>We can think of many possibilities and test scenarios with this integration test setup then.</p>
+
+
+  </div>
+</article>
+
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <h4>Common</h4>
+    <ul>
+      <li class="">
+        <a href="/samples/">Overview</a>
+      </li>
+      <li class="">
+        <a href="/samples/todo-app">Sample application</a>
+      </li>
+      <li class="">
+        <a href="/samples/run">Running</a>
+      </li>
+    </ul>
+    <h4>Samples</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+
+      
+      
+      <li class="">
+        <a href="/samples/binary/">sample-binary</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/mail/">sample-mail</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jms/">sample-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-context/">sample-camel-context</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/gradle/">sample-gradle</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/javaconfig/">sample-javaconfig</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/arquillian/">sample-javaee</a>
+      </li>
+      
+      
+      <li class="current">
+        <a href="/samples/kubernetes/">sample-kubernetes</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dynamic-endpoints/">sample-dynamic-endpoints</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/rmi/">sample-rmi</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/docker/">sample-docker</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/reporting/">sample-reporting</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/message-store/">sample-message-store</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/annotation-config/">sample-annotation-config</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/behavior/">sample-behavior</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/hamcrest/">sample-hamcrest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dictionaries/">sample-dictionaries</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Cucumber</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/cucumber-spring/">sample-cucumber-spring</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/cucumber/">sample-cucumber</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Db</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/sql/">sample-sql</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jdbc/">sample-jdbc</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Ftp</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/ftp/">sample-ftp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/scp/">sample-scp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/sftp/">sample-sftp</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Http</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/http-form-data/">sample-http-form-data</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http/">sample-http</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-basic-auth/">sample-http-basic-auth</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-loadtest/">sample-http-loadtest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/swagger/">sample-swagger</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/https/">sample-https</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Json</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/databind/">sample-databind</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/json/">sample-json</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Junit</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/junit5/">sample-junit5</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/junit/">sample-junit</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Soap</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/soap-wsaddressing/">sample-soap-wsaddressing</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap/">sample-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-mtom/">sample-soap-mtom</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-attachment/">sample-soap-attachment</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-wssecurity/">sample-soap-wssecurity</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-static-response/">sample-http-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-static-response/">sample-soap-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-ssl/">sample-soap-ssl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/wsdl/">sample-wsdl</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Testng</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/dataprovider/">sample-dataprovider</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/testng/">sample-testng</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Xml</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/xml/">sample-xml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xhtml/">sample-xhtml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/oxm/">sample-oxm</a>
+      </li>
+      
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/citrusframework/citrus/blob/master/LICENSE">MIT License</a>.</p>
+      <br>
+      <p>© 2018 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p> </p>
+      <br>
+      <br>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>
