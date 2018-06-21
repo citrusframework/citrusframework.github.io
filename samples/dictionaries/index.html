@@ -95,6 +95,8 @@
     <option value="/samples/run/">Running</option>
     
     
+    <option value="/samples/selenium/">sample-selenium</option>
+    
     <option value="/samples/binary/">sample-binary</option>
     
     <option value="/samples/message-store/">sample-message-store</option>
@@ -194,7 +196,7 @@
   </span>
   <div class="post-content">
     <p>This sample deals with data dictionaries that translate message content while exchanging data with the todo sample
-application. Read about the Citrus data dictionary feature in <a href="http://www.citrusframework.org/reference/html/index.html#data-dictionaries">reference guide</a>.</p>
+application. Read about the Citrus data dictionary feature in <a href="https://citrusframework.org/reference/html#data-dictionaries">reference guide</a></p>
 
 <h2 id="objectives">Objectives</h2>
 
@@ -202,7 +204,7 @@ application. Read about the Citrus data dictionary feature in <a href="http://ww
 We call this API and receive Json message structures for validation in our test cases. The Json message content is manipulated before
 exchanging with the system under test via data dictionaries. The dictionary is added as component to the Spring bean application context.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">JsonPathMappingDataDictionary</span> <span class="nf">inboundDictionary</span><span class="o">()</span> <span class="o">{</span>
     <span class="n">JsonPathMappingDataDictionary</span> <span class="n">dataDictionary</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JsonPathMappingDataDictionary</span><span class="o">();</span>
     <span class="n">dataDictionary</span><span class="o">.</span><span class="na">setGlobalScope</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
@@ -216,28 +218,31 @@ exchanging with the system under test via data dictionaries. The dictionary is a
     <span class="n">dataDictionary</span><span class="o">.</span><span class="na">setGlobalScope</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
     <span class="n">dataDictionary</span><span class="o">.</span><span class="na">setMappingFile</span><span class="o">(</span><span class="k">new</span> <span class="n">ClassPathResource</span><span class="o">(</span><span class="s">"dictionary/outbound.properties"</span><span class="o">));</span>
     <span class="k">return</span> <span class="n">dataDictionary</span><span class="o">;</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>We define two dictionaries, one for inbound messages and another for outbound messages. In the dictionary mapping files we can provide several JsonPath
 expressions that should be applied to the messages before exchange.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="err">$</span><span class="o">.</span><span class="na">title</span><span class="o">=</span><span class="nl">citrus:</span><span class="n">concat</span><span class="o">(</span><span class="err">'</span><span class="n">todo_</span><span class="err">'</span><span class="o">,</span> <span class="nl">citrus:</span><span class="n">randomNumber</span><span class="o">(</span><span class="mi">4</span><span class="o">))</span>
-<span class="err">$</span><span class="o">.</span><span class="na">description</span><span class="o">=</span><span class="nl">Description:</span> <span class="n">todo_</span><span class="err">$</span><span class="o">{</span><span class="n">todoId</span><span class="o">}</span>
-<span class="err">$</span><span class="o">.</span><span class="na">done</span><span class="o">=</span><span class="kc">false</span></code></pre></figure>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$.title=citrus:concat('todo_', citrus:randomNumber(4))
+$.description=Description: todo_${todoId}
+$.done=false
+</code></pre></div></div>
 
 <p>The outbound mappings above generate dynamic test data for message element on the todo Json payloads. The todo title is automatically set to a random string using the <code class="highlighter-rouge">citrus:randomNumber()</code> function.
 Also the <em>description</em> and <em>done</em> field is set to a proper value.</p>
 
 <p>The dictionary can be applied to each send operation in Citrus.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">http</span><span class="o">()</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">()</span>
     <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
     <span class="o">.</span><span class="na">send</span><span class="o">()</span>
-    <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/todolist"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/api/todolist"</span><span class="o">)</span>
     <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">JSON</span><span class="o">)</span>
     <span class="o">.</span><span class="na">dictionary</span><span class="o">(</span><span class="s">"outboundDictionary"</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="s">"application/json"</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"{ \"id\": \"${todoId}\", \"title\": null, \"description\": null, \"done\": null}"</span><span class="o">);</span> </code></pre></figure>
+    <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="n">ContentType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">.</span><span class="na">getMimeType</span><span class="o">())</span>
+    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"{ \"id\": \"${todoId}\", \"title\": null, \"description\": null, \"done\": null}"</span><span class="o">);</span> 
+</code></pre></div></div>
 
 <p>As you can see the outbound dictionary overwrites message content before the actual message is sent out. The message payload in the send operation
 does not need to set proper values for <em>title</em>, <em>description</em> and <em>done</em>. These values can be <em>null</em>. The dictionary makes sure that the message content is manipulated before
@@ -245,9 +250,10 @@ exchanging with the foreign service.</p>
 
 <p>Same mechanism applies for inbound dictionaries. Here we define assertions on message elements that are automatically applied to the receive operation.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="err">$</span><span class="o">.</span><span class="na">title</span><span class="o">=</span><span class="n">todo_</span><span class="err">$</span><span class="o">{</span><span class="n">todoId</span><span class="o">}</span>
-<span class="err">$</span><span class="o">.</span><span class="na">description</span><span class="o">=</span><span class="nd">@startsWith</span><span class="o">(</span><span class="err">'</span><span class="nl">Description:</span> <span class="err">'</span><span class="o">)</span><span class="err">@</span>
-<span class="err">$</span><span class="o">.</span><span class="na">done</span><span class="o">=</span><span class="kc">false</span></code></pre></figure>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$.title=todo_${todoId}
+$.description=@startsWith('Description: ')@
+$.done=false
+</code></pre></div></div>
 
 <p>The JsonPath expression mappings above make sure that the message validation is manipulated before taking action. This way we are able to set common validation and manipulation steps in
 multiple data dictionaries. Multiple send and receive operations can use the dictionary mappings and we are able to manage those mappings on a very central point of
@@ -268,6 +274,7 @@ And of course green tests at the very end of the build and some new reporting fi
 
 <p>Of course you can also start the Citrus tests from your favorite IDE.
 Just start the Citrus test using the TestNG IDE integration in IntelliJ, Eclipse or Netbeans.</p>
+
 
   </div>
 </article>
@@ -293,6 +300,11 @@ Just start the Citrus test using the TestNG IDE integration in IntelliJ, Eclipse
       
       
 
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
       
       
       <li class="">

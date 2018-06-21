@@ -95,6 +95,8 @@
     <option value="/samples/run/">Running</option>
     
     
+    <option value="/samples/selenium/">sample-selenium</option>
+    
     <option value="/samples/binary/">sample-binary</option>
     
     <option value="/samples/message-store/">sample-message-store</option>
@@ -203,18 +205,20 @@ In this sample we want to call the server API in parallel multiple times in orde
 
 <p>We need a Http client component in the configuration:</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">HttpClient</span> <span class="nf">todoClient</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">return</span> <span class="n">CitrusEndpoints</span><span class="o">.</span><span class="na">http</span><span class="o">()</span>
                         <span class="o">.</span><span class="na">client</span><span class="o">()</span>
                         <span class="o">.</span><span class="na">requestUrl</span><span class="o">(</span><span class="s">"http://localhost:8080"</span><span class="o">)</span>
                         <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>We want to call the REST API on the todolist server with that client using multiple threads in order to create 
 some load on that server. We can do so by adding a TestNG parameter to the annotation of the test.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Test</span><span class="o">(</span><span class="n">invocationCount</span> <span class="o">=</span> <span class="mi">250</span><span class="o">,</span> <span class="n">threadPoolSize</span> <span class="o">=</span> <span class="mi">25</span><span class="o">)</span></code></pre></figure>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span><span class="o">(</span><span class="n">invocationCount</span> <span class="o">=</span> <span class="mi">250</span><span class="o">,</span> <span class="n">threadPoolSize</span> <span class="o">=</span> <span class="mi">25</span><span class="o">)</span>
+</code></pre></div></div>
 
 <p>TestNG will start <em>25</em> threads in parallel that will send <strong>250</strong> requests in total per test to the todolist application. This creates load on that server. When you execute
 this test you will see lots of requests and responses exchanged during the test run. At the end you will have 250 test instances per test reporting success or failure.</p>
@@ -222,7 +226,7 @@ this test you will see lots of requests and responses exchanged during the test 
 <p>This creates very basic load testing scenarios. Of course the tests need to be stateless in order to perform in parallel. You may add message selectors on receive
 operations in the test and you may have to correlate response messages so the test instances will not steal messages from each other during the test run.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Test</span><span class="o">(</span><span class="n">invocationCount</span> <span class="o">=</span> <span class="mi">250</span><span class="o">,</span> <span class="n">threadPoolSize</span> <span class="o">=</span> <span class="mi">25</span><span class="o">)</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span><span class="o">(</span><span class="n">invocationCount</span> <span class="o">=</span> <span class="mi">250</span><span class="o">,</span> <span class="n">threadPoolSize</span> <span class="o">=</span> <span class="mi">25</span><span class="o">)</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">TodoListLoadTestIT</span> <span class="kd">extends</span> <span class="n">TestNGCitrusTest</span> <span class="o">{</span>
 
     <span class="nd">@Autowired</span>
@@ -259,7 +263,8 @@ operations in the test and you may have to correlate response messages so the te
             <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">);</span>
     <span class="o">}</span>
 
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>There are two test methods one adding a new todo entry with form url encoded Http POST request and one getting the whole list of todo entries with GET request.
 Both methods are executed in parallel creating load on the server. The server must respond to all requests with success otherwise the whole test will fail.</p>
@@ -270,6 +275,7 @@ to work with.</p>
 <h2 id="run">Run</h2>
 
 <p>You can run the sample on your localhost in order to see Citrus in action. Read the instructions <a href="/samples/run/">how to run</a> the sample.</p>
+
 
   </div>
 </article>
@@ -295,6 +301,11 @@ to work with.</p>
       
       
 
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
       
       
       <li class="">

@@ -95,6 +95,8 @@
     <option value="/samples/run/">Running</option>
     
     
+    <option value="/samples/selenium/">sample-selenium</option>
+    
     <option value="/samples/binary/">sample-binary</option>
     
     <option value="/samples/message-store/">sample-message-store</option>
@@ -194,7 +196,7 @@
   </span>
   <div class="post-content">
     <p>This sample demonstrates how Citrus handles binary message content. The sample send some binary content to a JMS queue destination and receives
-that same content in a next step from the JMS destination.</p>
+that same content in a next step from the JMS destination. Read more about this in <a href="https://citrusframework.org/reference/html#binary-message-validation">reference guide</a></p>
 
 <h2 id="objectives">Objectives</h2>
 
@@ -202,36 +204,38 @@ that same content in a next step from the JMS destination.</p>
 
 <p>The Citrus project needs a JMS connection factory that is defined in the Spring application context as bean:</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">ConnectionFactory</span> <span class="nf">connectionFactory</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">return</span> <span class="k">new</span> <span class="nf">ActiveMQConnectionFactory</span><span class="o">(</span><span class="s">"tcp://localhost:61616"</span><span class="o">);</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>We use ActiveMQ as message broker so we use the respective connection factory implementation here. The message broker is automatically
 started with the Maven build lifecycle.</p>
 
 <p>No we can send some content as binary message to the JMS queue destination.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">send</span><span class="o">(</span><span class="n">todoJmsEndpoint</span><span class="o">)</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">send</span><span class="o">(</span><span class="n">todoJmsEndpoint</span><span class="o">)</span>
     <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">BINARY</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">message</span><span class="o">(</span><span class="k">new</span> <span class="n">DefaultMessage</span><span class="o">(</span><span class="s">"{ \"title\": \"${todoName}\", \"description\": \"${todoDescription}\" }"</span><span class="o">.</span><span class="na">getBytes</span><span class="o">()));</span></code></pre></figure>
+    <span class="o">.</span><span class="na">message</span><span class="o">(</span><span class="k">new</span> <span class="n">DefaultMessage</span><span class="o">(</span><span class="s">"{ \"title\": \"${todoName}\", \"description\": \"${todoDescription}\", \"done\": ${done}}"</span><span class="o">.</span><span class="na">getBytes</span><span class="o">()));</span>
+</code></pre></div></div>
 
-<p>The sample uses the <strong>getBytes</strong> method of Java String class in order to get binary content as byte array. Citrus will automatically
+<p>The sample uses the <code class="highlighter-rouge">getBytes()</code> method of Java String class in order to get binary content as byte array. Citrus will automatically
 take care on this binary content by creating a binary JMS message.</p>
 
 <p>Now the next step is to receive the same binary message in Citrus in order to do some validation. We can receive the binary message content
-by marking the message type as <strong>BINARY</strong>. As binary content is not comparable we use a special message validator implementation that converts the
+by marking the message type as <code class="highlighter-rouge">BINARY</code>. As binary content is not comparable we use a special message validator implementation that converts the
 binary content to a String representation for comparison.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">receive</span><span class="o">(</span><span class="n">todoJmsEndpoint</span><span class="o">)</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">receive</span><span class="o">(</span><span class="n">todoJmsEndpoint</span><span class="o">)</span>
     <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">BINARY</span><span class="o">)</span>
     <span class="o">.</span><span class="na">validator</span><span class="o">(</span><span class="k">new</span> <span class="n">BinaryMessageValidator</span><span class="o">())</span>
-    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"{ \"title\": \"${todoName}\", \"description\": \"${todoDescription}\" }"</span><span class="o">);</span></code></pre></figure>
+    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"{ \"title\": \"${todoName}\", \"description\": \"${todoDescription}\", \"done\": ${done}}"</span><span class="o">);</span>
+</code></pre></div></div>
 
 <p>The binary message validator implementation is very simple and performs String equals for validation:</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java">    
-<span class="kd">private</span> <span class="kd">class</span> <span class="nc">BinaryMessageValidator</span> <span class="kd">extends</span> <span class="n">AbstractMessageValidator</span><span class="o">&lt;</span><span class="n">DefaultValidationContext</span><span class="o">&gt;</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">class</span> <span class="nc">BinaryMessageValidator</span> <span class="kd">extends</span> <span class="n">AbstractMessageValidator</span><span class="o">&lt;</span><span class="n">DefaultValidationContext</span><span class="o">&gt;</span> <span class="o">{</span>
     <span class="nd">@Override</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">validateMessage</span><span class="o">(</span><span class="n">Message</span> <span class="n">receivedMessage</span><span class="o">,</span> <span class="n">Message</span> <span class="n">controlMessage</span><span class="o">,</span>
                                 <span class="n">TestContext</span> <span class="n">context</span><span class="o">,</span> <span class="n">DefaultValidationContext</span> <span class="n">validationContext</span><span class="o">)</span> <span class="o">{</span>
@@ -248,16 +252,18 @@ binary content to a String representation for comparison.</p>
     <span class="kd">protected</span> <span class="n">Class</span> <span class="nf">getRequiredValidationContextType</span><span class="o">()</span> <span class="o">{</span>
         <span class="k">return</span> <span class="n">DefaultValidationContext</span><span class="o">.</span><span class="na">class</span><span class="o">;</span>
     <span class="o">}</span>
-<span class="o">}</span>    </code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>This way you can implement your own validation as you know best how to handle the binary content.</p>
 
 <p>We can also use base64 encoding for handling binary data in Citrus. The base64 encoding can be used to process the binary content
-with basic comparison in <strong>BINARY_BASE64</strong> message validator:</p>
+with basic comparison in <code class="highlighter-rouge">BINARY_BASE64</code> message validator:</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">receive</span><span class="o">(</span><span class="n">todoJmsEndpoint</span><span class="o">)</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">receive</span><span class="o">(</span><span class="n">todoJmsEndpoint</span><span class="o">)</span>
     <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">BINARY_BASE64</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"citrus:encodeBase64('{ \"title\": \"${todoName}\", \"description\": \"${todoDescription}\" }')"</span><span class="o">);</span></code></pre></figure>
+    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"citrus:encodeBase64('{ \"title\": \"${todoName}\", \"description\": \"${todoDescription}\" }')"</span><span class="o">);</span>
+</code></pre></div></div>
 
 <p>Just use the <code class="highlighter-rouge">encodeBase64</code> function in Citrus to provide the expected payload content. Citrus will automatically convert the received 
 binary content to base64 encoded Strings then for you.</p>
@@ -265,6 +271,7 @@ binary content to base64 encoded Strings then for you.</p>
 <h2 id="run">Run</h2>
 
 <p>You can run the sample on your localhost in order to see Citrus in action. Read the instructions <a href="/samples/run/">how to run</a> the sample.</p>
+
 
   </div>
 </article>
@@ -290,6 +297,11 @@ binary content to base64 encoded Strings then for you.</p>
       
       
 
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
       
       
       <li class="current">

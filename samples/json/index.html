@@ -95,6 +95,8 @@
     <option value="/samples/run/">Running</option>
     
     
+    <option value="/samples/selenium/">sample-selenium</option>
+    
     <option value="/samples/binary/">sample-binary</option>
     
     <option value="/samples/message-store/">sample-message-store</option>
@@ -194,7 +196,7 @@
   </span>
   <div class="post-content">
     <p>This sample deals with Json message payloads when sending and receiving messages to the todo sample
-application. Read about this feature in <a href="http://www.citrusframework.org/reference/html/#validation-json">reference guide</a></p>
+application. Read about this feature in <a href="https://citrusframework.org/reference/html#validation-json">reference guide</a></p>
 
 <h2 id="objectives">Objectives</h2>
 
@@ -203,45 +205,49 @@ We call this API and receive Json message structures for validation in our test 
 
 <p>We can use Json as message payloads directly in the test cases.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">http</span><span class="o">()</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">()</span>
     <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
     <span class="o">.</span><span class="na">send</span><span class="o">()</span>
-    <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/todolist"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/api/todolist"</span><span class="o">)</span>
     <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">JSON</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="s">"application/json"</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"{ \"id\": \"${todoId}\", \"title\": \"${todoName}\", \"description\": \"${todoDescription}\"}"</span><span class="o">);</span></code></pre></figure>
+    <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="n">ContentType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">.</span><span class="na">getMimeType</span><span class="o">())</span>
+    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"{ \"id\": \"${todoId}\", \"title\": \"${todoName}\", \"description\": \"${todoDescription}\", \"done\": ${done}}"</span><span class="o">);</span>
+</code></pre></div></div>
 
 <p>As you can see we are able to send the Json data as payload. You can add test variables in message payloads. In a receive 
 action we are able to use an expected Json message payload. Citrus performs a Json object comparison where each element is checked to meet
 the expected values.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">http</span><span class="o">()</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">()</span>
     <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
     <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
     <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">)</span>
     <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">JSON</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"{ \"id\": \"${todoId}\", \"title\": \"${todoName}\", \"description\": \"${todoDescription}\"}"</span><span class="o">);</span></code></pre></figure>
+    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"{ \"id\": \"${todoId}\", \"title\": \"${todoName}\", \"description\": \"${todoDescription}\", \"done\": ${done}}"</span><span class="o">);</span>
+</code></pre></div></div>
 
 <p>The Json message payload can be difficult to read when used as String concatenation. Fortunately we can also use file resources as message
 payloads.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">http</span><span class="o">()</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">()</span>
     <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
     <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
     <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">)</span>
     <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">JSON</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="k">new</span> <span class="n">ClassPathResource</span><span class="o">(</span><span class="s">"templates/todo.json"</span><span class="o">));</span>    </code></pre></figure>
+    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="k">new</span> <span class="n">ClassPathResource</span><span class="o">(</span><span class="s">"templates/todo.json"</span><span class="o">));</span>    
+</code></pre></div></div>
 
 <p>An alternative approach would be to use JsonPath expressions when validating incoming Json messages.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">http</span><span class="o">()</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">()</span>
     <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
     <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
     <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">)</span>
     <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">JSON</span><span class="o">)</span>
     <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"$.id"</span><span class="o">,</span> <span class="s">"${todoId}"</span><span class="o">)</span>
     <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"$.title"</span><span class="o">,</span> <span class="s">"${todoName}"</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"$.description"</span><span class="o">,</span> <span class="s">"${todoDescription}"</span><span class="o">);</span></code></pre></figure>
+    <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"$.description"</span><span class="o">,</span> <span class="s">"${todoDescription}"</span><span class="o">);</span>
+</code></pre></div></div>
 
 <p>Each expression is evaluated and checked for expected values. In case a JsonPath expression can not be evaluated or 
 does not meet the expected value the test ends with failure.</p>
@@ -249,6 +255,7 @@ does not meet the expected value the test ends with failure.</p>
 <h2 id="run">Run</h2>
 
 <p>You can run the sample on your localhost in order to see Citrus in action. Read the instructions <a href="/samples/run/">how to run</a> the sample.</p>
+
 
   </div>
 </article>
@@ -274,6 +281,11 @@ does not meet the expected value the test ends with failure.</p>
       
       
 
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
       
       
       <li class="">

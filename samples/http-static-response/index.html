@@ -95,6 +95,8 @@
     <option value="/samples/run/">Running</option>
     
     
+    <option value="/samples/selenium/">sample-selenium</option>
+    
     <option value="/samples/binary/">sample-binary</option>
     
     <option value="/samples/message-store/">sample-message-store</option>
@@ -204,7 +206,7 @@ need to define a static response message that should always be sent from a serve
 <p>We want to have a server component that provides a static response message to calling clients. Depending on the requested resource path the server
 should provide different response messages. we can do this in Citrus with a little bit of Spring bean configuration:</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">HttpServer</span> <span class="nf">todoListServer</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
     <span class="k">return</span> <span class="n">CitrusEndpoints</span><span class="o">.</span><span class="na">http</span><span class="o">()</span>
             <span class="o">.</span><span class="na">server</span><span class="o">()</span>
@@ -221,13 +223,14 @@ should provide different response messages. we can do this in Citrus with a litt
     <span class="n">dispatchingEndpointAdapter</span><span class="o">.</span><span class="na">setMappingKeyExtractor</span><span class="o">(</span><span class="n">mappingKeyExtractor</span><span class="o">());</span>
     <span class="n">dispatchingEndpointAdapter</span><span class="o">.</span><span class="na">setMappingStrategy</span><span class="o">(</span><span class="n">mappingStrategy</span><span class="o">());</span>
     <span class="k">return</span> <span class="n">dispatchingEndpointAdapter</span><span class="o">;</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>The <em>todoListServer</em> is a normal server component in Citrus. The endpoint-adapter is different though and defines the way how to automatically respond to calling clients.
 The server uses a <strong>dispatchingEndpointAdapter</strong>. This endpoint adapter implementation uses a mapping key extractor and a mapping strategy in order to map incoming requests to response generating
 adapters.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">HeaderMappingKeyExtractor</span> <span class="nf">mappingKeyExtractor</span><span class="o">()</span> <span class="o">{</span>
     <span class="n">HeaderMappingKeyExtractor</span> <span class="n">mappingKeyExtractor</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HeaderMappingKeyExtractor</span><span class="o">();</span>
     <span class="n">mappingKeyExtractor</span><span class="o">.</span><span class="na">setHeaderName</span><span class="o">(</span><span class="n">HttpMessageHeaders</span><span class="o">.</span><span class="na">HTTP_REQUEST_URI</span><span class="o">);</span>
@@ -240,18 +243,19 @@ adapters.</p>
 
     <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">EndpointAdapter</span><span class="o">&gt;</span> <span class="n">mappings</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
 
-    <span class="n">mappings</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"/todo"</span><span class="o">,</span> <span class="n">todoResponseAdapter</span><span class="o">());</span>
-    <span class="n">mappings</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"/todolist"</span><span class="o">,</span> <span class="n">todoListResponseAdapter</span><span class="o">());</span>
+    <span class="n">mappings</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"/api/todo"</span><span class="o">,</span> <span class="n">todoResponseAdapter</span><span class="o">());</span>
+    <span class="n">mappings</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"/api/todolist"</span><span class="o">,</span> <span class="n">todoListResponseAdapter</span><span class="o">());</span>
 
     <span class="n">mappingStrategy</span><span class="o">.</span><span class="na">setAdapterMappings</span><span class="o">(</span><span class="n">mappings</span><span class="o">);</span>
     <span class="k">return</span> <span class="n">mappingStrategy</span><span class="o">;</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>The mapping key extractor implementation evaluates the Http header <strong>citrus_http_request_uri</strong> which is an internal header representing the called request path. Depending on that request path value the
 mapping strategy maps incoming requests to different response generating adapter implementations. Here in this example we define <strong>/todo</strong> and <strong>/todolist</strong> request paths with response
 adapters.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">EndpointAdapter</span> <span class="nf">todoResponseAdapter</span><span class="o">()</span> <span class="o">{</span>
     <span class="n">StaticResponseEndpointAdapter</span> <span class="n">endpointAdapter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StaticResponseEndpointAdapter</span><span class="o">();</span>
     <span class="n">endpointAdapter</span><span class="o">.</span><span class="na">setMessagePayload</span><span class="o">(</span><span class="s">"{"</span> <span class="o">+</span>
@@ -275,7 +279,8 @@ adapters.</p>
                         <span class="s">"}"</span> <span class="o">+</span>
                     <span class="s">"]"</span><span class="o">);</span>
     <span class="k">return</span> <span class="n">endpointAdapter</span><span class="o">;</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>The response adapters provide static response messages. In summary we have a small Http server component that automatically responds to incoming request messages
 with static message payloads.</p>
@@ -330,6 +335,11 @@ Just start the Citrus test using the TestNG IDE integration in IntelliJ, Eclipse
       
       
 
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
       
       
       <li class="">

@@ -95,6 +95,8 @@
     <option value="/samples/run/">Running</option>
     
     
+    <option value="/samples/selenium/">sample-selenium</option>
+    
     <option value="/samples/binary/">sample-binary</option>
     
     <option value="/samples/message-store/">sample-message-store</option>
@@ -193,7 +195,7 @@
     </span>
   </span>
   <div class="post-content">
-    <p>This sample demonstrates how to use TestNG data providers in Citrus tests. You can also read about this in <a href="http://www.citrusframework.org/reference/html/#run-testng-data-providers">reference guide</a>.</p>
+    <p>This sample demonstrates how to use TestNG data providers in Citrus tests. You can also read about this in <a href="https://citrusframework.org/reference/html#run-testng-data-providers">reference guide</a>.</p>
 
 <h2 id="objectives">Objectives</h2>
 
@@ -203,47 +205,50 @@ the TestNG data provider feature in terms of adding multiple todo entries within
 
 <p>The data provider is defined in the test case.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@DataProvider</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"todoDataProvider"</span><span class="o">)</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@DataProvider</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"todoDataProvider"</span><span class="o">)</span>
 <span class="kd">public</span> <span class="n">Object</span><span class="o">[][]</span> <span class="nf">todoDataProvider</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">return</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[][]</span> <span class="o">{</span>
-        <span class="k">new</span> <span class="n">Object</span><span class="o">[]</span> <span class="o">{</span> <span class="s">"todo1"</span><span class="o">,</span> <span class="s">"Description: todo1"</span> <span class="o">},</span>
-        <span class="k">new</span> <span class="n">Object</span><span class="o">[]</span> <span class="o">{</span> <span class="s">"todo2"</span><span class="o">,</span> <span class="s">"Description: todo2"</span> <span class="o">},</span>
-        <span class="k">new</span> <span class="n">Object</span><span class="o">[]</span> <span class="o">{</span> <span class="s">"todo3"</span><span class="o">,</span> <span class="s">"Description: todo3"</span> <span class="o">}</span>
+        <span class="k">new</span> <span class="n">Object</span><span class="o">[]</span> <span class="o">{</span> <span class="s">"todo1"</span><span class="o">,</span> <span class="s">"Description: todo1"</span><span class="o">,</span> <span class="kc">false</span> <span class="o">},</span>
+        <span class="k">new</span> <span class="n">Object</span><span class="o">[]</span> <span class="o">{</span> <span class="s">"todo2"</span><span class="o">,</span> <span class="s">"Description: todo2"</span><span class="o">,</span> <span class="kc">true</span> <span class="o">},</span>
+        <span class="k">new</span> <span class="n">Object</span><span class="o">[]</span> <span class="o">{</span> <span class="s">"todo3"</span><span class="o">,</span> <span class="s">"Description: todo3"</span><span class="o">,</span> <span class="kc">false</span> <span class="o">}</span>
     <span class="o">};</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>The provider gives us two parameters <strong>todoName</strong> and <strong>todoDescription</strong>. The parameters can be bound to test variables
 in the Citrus test with some annotation magic.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Test</span><span class="o">(</span><span class="n">dataProvider</span> <span class="o">=</span> <span class="s">"todoDataProvider"</span><span class="o">)</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span><span class="o">(</span><span class="n">dataProvider</span> <span class="o">=</span> <span class="s">"todoDataProvider"</span><span class="o">)</span>
 <span class="nd">@CitrusTest</span>
-<span class="nd">@CitrusParameters</span><span class="o">(</span> <span class="o">{</span> <span class="s">"todoName"</span><span class="o">,</span> <span class="s">"todoDescription"</span> <span class="o">})</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testProvider</span><span class="o">(</span><span class="n">String</span> <span class="n">todoName</span><span class="o">,</span> <span class="n">String</span> <span class="n">todoDescription</span><span class="o">)</span> <span class="o">{</span>
+<span class="nd">@CitrusParameters</span><span class="o">(</span> <span class="o">{</span> <span class="s">"todoName"</span><span class="o">,</span> <span class="s">"todoDescription"</span><span class="o">,</span> <span class="s">"done"</span> <span class="o">})</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testProvider</span><span class="o">(</span><span class="n">String</span> <span class="n">todoName</span><span class="o">,</span> <span class="n">String</span> <span class="n">todoDescription</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">done</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">variable</span><span class="o">(</span><span class="s">"todoId"</span><span class="o">,</span> <span class="s">"citrus:randomUUID()"</span><span class="o">);</span>
 
     <span class="n">http</span><span class="o">()</span>
         <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
         <span class="o">.</span><span class="na">send</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/todolist"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/api/todolist"</span><span class="o">)</span>
         <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">JSON</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="s">"application/json"</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"{ \"id\": \"${todoId}\", \"title\": \"${todoName}\", \"description\": \"${todoDescription}\"}"</span><span class="o">);</span>
+        <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="n">ContentType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">.</span><span class="na">getMimeType</span><span class="o">())</span>
+        <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"{ \"id\": \"${todoId}\", \"title\": \"${todoName}\", \"description\": \"${todoDescription}\", \"done\": ${done}}"</span><span class="o">);</span>
     
     <span class="o">[...]</span>    
-<span class="o">}</span>            </code></pre></figure>
+<span class="o">}</span>            
+</code></pre></div></div>
 
 <p>As you can see we are able to use the name and description values provided by the data provider. When executed the test performs
 multiple times with respective values:</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CITRUS TEST RESULTS
-TodoListIT.testPost([todo1, Description: todo1]) ............... SUCCESS
-TodoListIT.testPost([todo2, Description: todo2]) ............... SUCCESS
-TodoListIT.testPost([todo3, Description: todo3]) ............... SUCCESS    
+TodoListIT.testPost([todo1, Description: todo1, false]) ............... SUCCESS
+TodoListIT.testPost([todo2, Description: todo2, true])  ............... SUCCESS
+TodoListIT.testPost([todo3, Description: todo3, false]) ............... SUCCESS    
 </code></pre></div></div>
 
 <h2 id="run">Run</h2>
 
 <p>You can run the sample on your localhost in order to see Citrus in action. Read the instructions <a href="/samples/run/">how to run</a> the sample.</p>
+
 
   </div>
 </article>
@@ -269,6 +274,11 @@ TodoListIT.testPost([todo3, Description: todo3]) ............... SUCCESS
       
       
 
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
       
       
       <li class="">

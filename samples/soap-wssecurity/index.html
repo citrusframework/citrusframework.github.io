@@ -95,6 +95,8 @@
     <option value="/samples/run/">Running</option>
     
     
+    <option value="/samples/selenium/">sample-selenium</option>
+    
     <option value="/samples/binary/">sample-binary</option>
     
     <option value="/samples/message-store/">sample-message-store</option>
@@ -194,7 +196,7 @@
   </span>
   <div class="post-content">
     <p>This sample uses SOAP web services with WSSecurity username token authentication. Clients must authenticate with proper wsse security elements and username
-password. You can read more about the Citrus SOAP features in <a href="http://www.citrusframework.org/reference/html/#soap">reference guide</a></p>
+password. You can read more about the Citrus SOAP features in <a href="https://citrusframework.org/reference/html#soap">reference guide</a></p>
 
 <h2 id="objectives">Objectives</h2>
 
@@ -203,16 +205,17 @@ server endpoint validates incoming requests using the Spring <strong>Wss4jSecuri
 
 <p>First of all we add the dependency <strong>spring-ws-security</strong> to the Maven POM.</p>
 
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>org.springframework.ws<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>spring-ws-security<span class="nt">&lt;/artifactId&gt;</span>
   <span class="nt">&lt;version&gt;</span>${spring.ws.version}<span class="nt">&lt;/version&gt;</span>
   <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span></code></pre></figure>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
 
 <p>After that we can configure the SOAP client to use WSS4J security username and password for all requests.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">WebServiceClient</span> <span class="nf">todoClient</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">return</span> <span class="n">CitrusEndpoints</span><span class="o">.</span><span class="na">soap</span><span class="o">()</span>
                         <span class="o">.</span><span class="na">client</span><span class="o">()</span>
@@ -235,14 +238,15 @@ server endpoint validates incoming requests using the Spring <strong>Wss4jSecuri
     <span class="n">interceptor</span><span class="o">.</span><span class="na">setSecurementPassword</span><span class="o">(</span><span class="s">"secret"</span><span class="o">);</span>
 
     <span class="k">return</span> <span class="n">interceptor</span><span class="o">;</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>The client interceptor list contains the <strong>Wss4jSecurityInterceptor</strong> security interceptor that automatically adds username and password
 tokens in the SOAP header.</p>
 
 <p>The server component has to verify incoming requests to have this token set as expected:</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">WebServiceServer</span> <span class="nf">todoListServer</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">return</span> <span class="n">CitrusEndpoints</span><span class="o">.</span><span class="na">soap</span><span class="o">()</span>
             <span class="o">.</span><span class="na">server</span><span class="o">()</span>
@@ -275,7 +279,8 @@ tokens in the SOAP header.</p>
     <span class="n">interceptor</span><span class="o">.</span><span class="na">setValidationCallbackHandler</span><span class="o">(</span><span class="n">validationCallbackHandler</span><span class="o">);</span>
 
     <span class="k">return</span> <span class="n">interceptor</span><span class="o">;</span>
-<span class="o">}</span>   </code></pre></figure>
+<span class="o">}</span>   
+</code></pre></div></div>
 
 <p>The server security interceptor validates with simple username password handler. As a result only granted users can access
 the web services.</p>
@@ -283,7 +288,7 @@ the web services.</p>
 <p>When you execute the test client and server operations will send and receive messages with WSSecurity enabled. You will see the security headers
 added to the SOAP message headers accordingly.</p>
 
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;SOAP-ENV:Header&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;SOAP-ENV:Header&gt;</span>
     <span class="nt">&lt;wsse:Security</span> <span class="na">xmlns:wsse=</span><span class="s">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"</span> <span class="na">SOAP-ENV:mustUnderstand=</span><span class="s">"1"</span> <span class="na">xmlns:wsu=</span><span class="s">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"</span><span class="nt">&gt;</span>
         <span class="nt">&lt;wsse:UsernameToken</span> <span class="na">wsu:Id=</span><span class="s">"UsernameToken-C3539350EAFCFDFD3D14792492533112"</span><span class="nt">&gt;</span>
             <span class="nt">&lt;wsse:Username&gt;</span>admin<span class="nt">&lt;/wsse:Username&gt;</span>
@@ -296,7 +301,8 @@ added to the SOAP message headers accordingly.</p>
             <span class="nt">&lt;wsu:Expires&gt;</span>2016-11-15T22:39:13.031Z<span class="nt">&lt;/wsu:Expires&gt;</span>
         <span class="nt">&lt;/wsu:Timestamp&gt;</span>
     <span class="nt">&lt;/wsse:Security&gt;</span>
-<span class="nt">&lt;/SOAP-ENV:Header&gt;</span></code></pre></figure>
+<span class="nt">&lt;/SOAP-ENV:Header&gt;</span>
+</code></pre></div></div>
 
 <h2 id="run">Run</h2>
 
@@ -324,6 +330,7 @@ And of course green tests at the very end of the build.</p>
 <p>Of course you can also start the Citrus tests from your favorite IDE.
 Just start the Citrus test using the TestNG IDE integration in IntelliJ, Eclipse or Netbeans.</p>
 
+
   </div>
 </article>
 
@@ -348,6 +355,11 @@ Just start the Citrus test using the TestNG IDE integration in IntelliJ, Eclipse
       
       
 
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
       
       
       <li class="">

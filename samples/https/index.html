@@ -95,6 +95,8 @@
     <option value="/samples/run/">Running</option>
     
     
+    <option value="/samples/selenium/">sample-selenium</option>
+    
     <option value="/samples/binary/">sample-binary</option>
     
     <option value="/samples/message-store/">sample-message-store</option>
@@ -193,7 +195,7 @@
     </span>
   </span>
   <div class="post-content">
-    <p>This sample demonstrates the usage of secure Http connections with client and server certificates. Http support is described in detail in <a href="http://www.citrusframework.org/reference/html/#http-rest">reference guide</a></p>
+    <p>This sample demonstrates the usage of secure Http connections with client and server certificates. Http support is described in detail in <a href="https://citrusframework.org/reference/html#http">reference guide</a></p>
 
 <h2 id="objectives">Objectives</h2>
 
@@ -202,19 +204,20 @@ supported certificates. The sample uses the keystore in <strong>src/test/resourc
 
 <p>We need a special Http client configuration:</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">HttpClient</span> <span class="nf">todoClient</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">return</span> <span class="n">CitrusEndpoints</span><span class="o">.</span><span class="na">http</span><span class="o">()</span>
                         <span class="o">.</span><span class="na">client</span><span class="o">()</span>
                         <span class="o">.</span><span class="na">requestUrl</span><span class="o">(</span><span class="s">"https://localhost:8443"</span><span class="o">)</span>
                         <span class="o">.</span><span class="na">requestFactory</span><span class="o">(</span><span class="n">sslRequestFactory</span><span class="o">())</span>
                         <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>The client component references a special request factory and uses the transport scheme <strong>https</strong> on port <strong>8443</strong>. The SSL request factory is defined in a
 Java Spring configuration class simply because it is way more comfortable to do this in Java than in XML.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">HttpClient</span> <span class="nf">httpClient</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">try</span> <span class="o">{</span>
         <span class="n">SSLContext</span> <span class="n">sslcontext</span> <span class="o">=</span> <span class="n">SSLContexts</span><span class="o">.</span><span class="na">custom</span><span class="o">()</span>
@@ -237,25 +240,27 @@ Java Spring configuration class simply because it is way more comfortable to do 
 <span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">HttpComponentsClientHttpRequestFactory</span> <span class="nf">sslRequestFactory</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">return</span> <span class="k">new</span> <span class="nf">HttpComponentsClientHttpRequestFactory</span><span class="o">(</span><span class="n">httpClient</span><span class="o">());</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>As you can see we load the keystore file <strong>keys/citrus.jks</strong> in order to setup the http client ssl context. In the Citrus test case you can use the client component as usual for 
 sending messages to the server.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">http</span><span class="o">()</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">()</span>
     <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
     <span class="o">.</span><span class="na">send</span><span class="o">()</span>
     <span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"/todo"</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="s">"application/xml"</span><span class="o">);</span>
+    <span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">ContentType</span><span class="o">.</span><span class="na">APPLICATION_XML</span><span class="o">.</span><span class="na">getMimeType</span><span class="o">());</span>
     
 <span class="n">http</span><span class="o">()</span>
     <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
     <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
-    <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">);</span>    </code></pre></figure>
+    <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">);</span>    
+</code></pre></div></div>
 
 <p>On the server side the configuration looks like follows:</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">HttpServer</span> <span class="nf">todoSslServer</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
     <span class="k">return</span> <span class="n">CitrusEndpoints</span><span class="o">.</span><span class="na">http</span><span class="o">()</span>
             <span class="o">.</span><span class="na">server</span><span class="o">()</span>
@@ -289,19 +294,20 @@ sending messages to the server.</p>
     <span class="n">contextFactory</span><span class="o">.</span><span class="na">setKeyStorePath</span><span class="o">(</span><span class="n">sslKeyStorePath</span><span class="o">);</span>
     <span class="n">contextFactory</span><span class="o">.</span><span class="na">setKeyStorePassword</span><span class="o">(</span><span class="s">"secret"</span><span class="o">);</span>
     <span class="k">return</span> <span class="n">contextFactory</span><span class="o">;</span>
-<span class="o">}</span>        </code></pre></figure>
+<span class="o">}</span>        
+</code></pre></div></div>
 
 <p>That is a lot of Spring bean configuration, but it works! The server component references a special <strong>sslConnector</strong> bean
 that defines the certificates and on the secure port <strong>8443</strong>. Client now have to use the certificate in order to connect.</p>
 
 <p>The server component has a static endpoint adapter always sending back a Http 200 Ok response when clients connect.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">StaticEndpointAdapter</span> <span class="nf">staticEndpointAdapter</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">return</span> <span class="k">new</span> <span class="nf">StaticEndpointAdapter</span><span class="o">()</span> <span class="o">{</span>
         <span class="nd">@Override</span>
         <span class="kd">protected</span> <span class="n">Message</span> <span class="nf">handleMessageInternal</span><span class="o">(</span><span class="n">Message</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nf">HttpMessage</span><span class="o">(</span><span class="s">"&lt;todo xmlns=\"https://citrusframework.org/samples/todolist\"&gt;"</span> <span class="o">+</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nf">HttpMessage</span><span class="o">(</span><span class="s">"&lt;todo xmlns=\"http://citrusframework.org/samples/todolist\"&gt;"</span> <span class="o">+</span>
                         <span class="s">"&lt;id&gt;100&lt;/id&gt;"</span> <span class="o">+</span>
                         <span class="s">"&lt;title&gt;todoName&lt;/title&gt;"</span> <span class="o">+</span>
                         <span class="s">"&lt;description&gt;todoDescription&lt;/description&gt;"</span> <span class="o">+</span>
@@ -309,7 +315,8 @@ that defines the certificates and on the secure port <strong>8443</strong>. Clie
                     <span class="o">.</span><span class="na">status</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">);</span>
         <span class="o">}</span>
     <span class="o">};</span>
-<span class="o">}</span>    </code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <h2 id="run">Run</h2>
 
@@ -341,6 +348,7 @@ And of course green tests at the very end of the build.</p>
 <p>Of course you can also start the Citrus tests from your favorite IDE.
 Just start the Citrus test using the TestNG IDE integration in IntelliJ, Eclipse or Netbeans.</p>
 
+
   </div>
 </article>
 
@@ -365,6 +373,11 @@ Just start the Citrus test using the TestNG IDE integration in IntelliJ, Eclipse
       
       
 
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
       
       
       <li class="">

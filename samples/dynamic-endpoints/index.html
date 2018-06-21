@@ -95,6 +95,8 @@
     <option value="/samples/run/">Running</option>
     
     
+    <option value="/samples/selenium/">sample-selenium</option>
+    
     <option value="/samples/binary/">sample-binary</option>
     
     <option value="/samples/message-store/">sample-message-store</option>
@@ -193,7 +195,7 @@
     </span>
   </span>
   <div class="post-content">
-    <p>This sample shows how to use dynamic endpoints in Citrus. Read about this feature in <a href="http://www.citrusframework.org/reference/html/#endpoint-components">reference guide</a></p>
+    <p>This sample shows how to use dynamic endpoints in Citrus. Read about this feature in <a href="https://citrusframework.org/reference/html#endpoint-components">reference guide</a></p>
 
 <h2 id="objectives">Objectives</h2>
 
@@ -203,44 +205,49 @@ server endpoint.</p>
 
 <p>In this sample we use dynamic endpoint uri instead.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">http</span><span class="o">()</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">()</span>
     <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="s">"http://localhost:8080"</span><span class="o">)</span>
     <span class="o">.</span><span class="na">send</span><span class="o">()</span>
-    <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/todolist"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/api/todolist"</span><span class="o">)</span>
     <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">JSON</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="s">"application/json"</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"{ \"id\": \"${todoId}\", \"title\": \"${todoName}\", \"description\": \"${todoDescription}\"}"</span><span class="o">);</span></code></pre></figure>
+    <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="n">ContentType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">.</span><span class="na">getMimeType</span><span class="o">())</span>
+    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"{ \"id\": \"${todoId}\", \"title\": \"${todoName}\", \"description\": \"${todoDescription}\", \"done\": ${done}}"</span><span class="o">);</span>
+</code></pre></div></div>
 
 <p>As you can see the send test action defines the Http request uri as endpoint. Citrus will automatically create a Http client
 component out of this endpoint uri. Also you can use this approach when receiving the response:</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">http</span><span class="o">()</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">()</span>
     <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="s">"http://localhost:8080"</span><span class="o">)</span>
     <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
     <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">)</span>
     <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">JSON</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"{ \"id\": \"${todoId}\", \"title\": \"${todoName}\", \"description\": \"${todoDescription}\"}"</span><span class="o">);</span></code></pre></figure>
+    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"{ \"id\": \"${todoId}\", \"title\": \"${todoName}\", \"description\": \"${todoDescription}\", \"done\": ${done}}"</span><span class="o">);</span>
+</code></pre></div></div>
 
 <p>The endpoint uri can hold any Citrus endpoint type and is also capable of handling endpoint properties. Let us use that in an
 JMS dynamic endpoint.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">send</span><span class="o">(</span><span class="s">"jms:queue:jms.todo.inbound?connectionFactory=activeMqConnectionFactory"</span><span class="o">)</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">send</span><span class="o">(</span><span class="s">"jms:queue:jms.todo.inbound?connectionFactory=activeMqConnectionFactory"</span><span class="o">)</span>
     <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"_type"</span><span class="o">,</span> <span class="s">"com.consol.citrus.samples.todolist.model.TodoEntry"</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"{ \"id\": \"${todoId}\", \"title\": \"${todoName}\", \"description\": \"${todoDescription}\"}"</span><span class="o">);</span>    </code></pre></figure>
+    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"{ \"id\": \"${todoId}\", \"title\": \"${todoName}\", \"description\": \"${todoDescription}\", \"done\": ${done}}"</span><span class="o">);</span>    
+</code></pre></div></div>
 
 <p>The JMS endpoint uri defines the queue name and a connection factory as uri parameter. This connection factory is defined 
 as Spring bean in the configuration.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">ConnectionFactory</span> <span class="nf">activeMqConnectionFactory</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">return</span> <span class="k">new</span> <span class="nf">ActiveMQConnectionFactory</span><span class="o">(</span><span class="s">"tcp://localhost:61616"</span><span class="o">);</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>This is how to use dynamic endpoint components in Citrus.</p>
 
 <h2 id="run">Run</h2>
 
 <p>You can run the sample on your localhost in order to see Citrus in action. Read the instructions <a href="/samples/run/">how to run</a> the sample.</p>
+
 
   </div>
 </article>
@@ -266,6 +273,11 @@ as Spring bean in the configuration.</p>
       
       
 
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
       
       
       <li class="">

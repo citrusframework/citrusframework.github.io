@@ -95,6 +95,8 @@
     <option value="/samples/run/">Running</option>
     
     
+    <option value="/samples/selenium/">sample-selenium</option>
+    
     <option value="/samples/binary/">sample-binary</option>
     
     <option value="/samples/message-store/">sample-message-store</option>
@@ -198,7 +200,7 @@ With Arquillian the tests are executed within application container boundaries. 
 as container and provides access to EJB resources, Mail services and JNDI JMS resources such as destinations and connection factories.</p>
 
 <p>The sample integrates with Citrus and Arquillian for automated integration testing of JavaEE applications. You can read more about the
-cooperation of Citrus and Arquillian in <a href="http://www.citrusframework.org/reference/html/#arquillian">reference guide</a>.</p>
+cooperation of Citrus and Arquillian in <a href="https://citrusframework.org/reference/html#arquillian">reference guide</a>.</p>
 
 <h2 id="objectives">Objectives</h2>
 
@@ -210,7 +212,7 @@ framework gives access to container managed resources such as JNDI resources and
 
 <p>The Maven project POM includes the Arquillian dependencies in combination with an managed Wildfly container.</p>
 
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependencyManagement&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependencyManagement&gt;</span>
     <span class="nt">&lt;dependencies&gt;</span>
       <span class="nt">&lt;dependency&gt;</span>
         <span class="nt">&lt;groupId&gt;</span>org.jboss.arquillian<span class="nt">&lt;/groupId&gt;</span>
@@ -244,21 +246,23 @@ framework gives access to container managed resources such as JNDI resources and
       <span class="nt">&lt;version&gt;</span>${arquillian.version}<span class="nt">&lt;/version&gt;</span>
       <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
     <span class="nt">&lt;/dependency&gt;</span>
-<span class="nt">&lt;/dependencies&gt;</span></code></pre></figure>
+<span class="nt">&lt;/dependencies&gt;</span>
+</code></pre></div></div>
 
 <p>The dependencies include the <strong>javaee-api</strong>, <strong>shrinkwrap</strong> and <strong>arquillian-junit-container</strong>. In addition to that we need 
 the managed Wildfly container configuration.</p>
 
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>org.wildfly<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>wildfly-arquillian-container-managed<span class="nt">&lt;/artifactId&gt;</span>
   <span class="nt">&lt;version&gt;</span>8.2.1.Final<span class="nt">&lt;/version&gt;</span>
   <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span></code></pre></figure>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
 
 <p>The arquillian tests are configured with a <strong>arquillian.xml</strong> configuration file:</p>
 
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;arquillian</span> <span class="na">xmlns=</span><span class="s">"http://jboss.org/schema/arquillian"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;arquillian</span> <span class="na">xmlns=</span><span class="s">"http://jboss.org/schema/arquillian"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
             <span class="na">xsi:schemaLocation=</span><span class="s">"http://jboss.org/schema/arquillian http://jboss.org/schema/arquillian/arquillian_1_0.xsd"</span><span class="nt">&gt;</span>
 
   <span class="nt">&lt;defaultProtocol</span> <span class="na">type=</span><span class="s">"Servlet 3.0"</span><span class="nt">/&gt;</span>
@@ -273,13 +277,14 @@ the managed Wildfly container configuration.</p>
 
   <span class="nt">&lt;extension</span> <span class="na">qualifier=</span><span class="s">"citrus"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"autoPackage"</span><span class="nt">&gt;</span>false<span class="nt">&lt;/property&gt;</span>
-    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"citrusVersion"</span><span class="nt">&gt;</span>2.7.6<span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"citrusVersion"</span><span class="nt">&gt;</span>2.7<span class="nt">&lt;/property&gt;</span>
   <span class="nt">&lt;/extension&gt;</span>
-<span class="nt">&lt;/arquillian&gt;</span></code></pre></figure>
+<span class="nt">&lt;/arquillian&gt;</span>
+</code></pre></div></div>
 
 <p>In <strong>citrus-context.xml</strong> we define the Citrus client and server components that are used during the tests.</p>
 
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="c">&lt;!-- Mail server mock --&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- Mail server mock --&gt;</span>
 <span class="nt">&lt;citrus-mail:server</span> <span class="na">id=</span><span class="s">"mailServer"</span>
                   <span class="na">auto-start=</span><span class="s">"true"</span>
                   <span class="na">port=</span><span class="s">"2222"</span><span class="nt">/&gt;</span>
@@ -288,12 +293,13 @@ the managed Wildfly container configuration.</p>
 <span class="nt">&lt;citrus-ws:server</span> <span class="na">id=</span><span class="s">"smsGatewayServer"</span>
                   <span class="na">auto-start=</span><span class="s">"true"</span>
                   <span class="na">port=</span><span class="s">"18008"</span>
-                  <span class="na">timeout=</span><span class="s">"5000"</span><span class="nt">/&gt;</span></code></pre></figure>
+                  <span class="na">timeout=</span><span class="s">"5000"</span><span class="nt">/&gt;</span>
+</code></pre></div></div>
 
 <p>These components are used during the tests. The EJB JavaEE application connects to those services as client during the test. 
 Now lets have a look at a first sample arquillian test with its Shrinkwrap JavaEE deployments.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Deployments</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Deployments</span> <span class="o">{</span>
 
     <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">CXF_VERSION</span> <span class="o">=</span> <span class="s">"3.1.4"</span><span class="o">;</span>
     <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">CXF_GROUP_ID</span> <span class="o">=</span> <span class="s">"org.apache.cxf"</span><span class="o">;</span>
@@ -331,12 +337,13 @@ Now lets have a look at a first sample arquillian test with its Shrinkwrap JavaE
                         <span class="o">.</span><span class="na">withTransitivity</span><span class="o">()</span>
                         <span class="o">.</span><span class="na">asFile</span><span class="o">());</span>
     <span class="o">}</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>The tests use the Arquillian and Citrus resources with annotation based injection. All resources are automatically injected to the
 test before it is executed.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@RunWith</span><span class="o">(</span><span class="n">Arquillian</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RunWith</span><span class="o">(</span><span class="n">Arquillian</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
 <span class="nd">@RunAsClient</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">EmployeeResourceTest</span> <span class="o">{</span>
 
@@ -408,7 +415,8 @@ test before it is executed.</p>
 
         <span class="n">citrusFramework</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">citrus</span><span class="o">.</span><span class="na">getTestCase</span><span class="o">());</span>
     <span class="o">}</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>This is how we can integrate Citrus with Arquillian. Both frameworks cooperate with each other in order to make JavaEE applications testable 
 with automated in-container deployments.</p>
@@ -422,6 +430,7 @@ with automated in-container deployments.</p>
 
 <p>You should see Citrus performing several tests with lots of debugging output in the terminal. And of course green tests 
 at the very end of the build.</p>
+
 
   </div>
 </article>
@@ -447,6 +456,11 @@ at the very end of the build.</p>
       
       
 
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
       
       
       <li class="">

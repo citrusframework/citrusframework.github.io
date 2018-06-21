@@ -95,6 +95,8 @@
     <option value="/samples/run/">Running</option>
     
     
+    <option value="/samples/selenium/">sample-selenium</option>
+    
     <option value="/samples/binary/">sample-binary</option>
     
     <option value="/samples/message-store/">sample-message-store</option>
@@ -194,7 +196,7 @@
   </span>
   <div class="post-content">
     <p>The sample uses Cucumber behavior driven development (BDD) library. The tests combine BDD feature stories with the famous 
-Gherkin syntax and Citrus integration test capabilities. Read about this feature in <a href="http://www.citrusframework.org/reference/html/#cucumber">reference guide</a></p>
+Gherkin syntax and Citrus integration test capabilities. Read about this feature in <a href="https://citrusframework.org/reference/html#cucumber">reference guide</a></p>
 
 <h2 id="objectives">Objectives</h2>
 
@@ -208,32 +210,33 @@ annotations for injecting a TestDesigner instance. The test designer is then use
 
 <p>We start with a feature test using JUnit and Cucumber runner.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@RunWith</span><span class="o">(</span><span class="n">Cucumber</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RunWith</span><span class="o">(</span><span class="n">Cucumber</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
 <span class="nd">@CucumberOptions</span><span class="o">(</span>
         <span class="n">plugin</span> <span class="o">=</span> <span class="o">{</span> <span class="s">"com.consol.citrus.cucumber.CitrusReporter"</span> <span class="o">}</span> <span class="o">)</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">TodoFeatureIT</span> <span class="o">{</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>The test feature is described in a story using Gherkin syntax.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Feature: Todo app
+<div class="language-gherkin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">Feature</span><span class="p">:</span> Todo app
 
-  Scenario: Add todo entry
-    Given Todo list is empty
-    When I add entry "Code something"
-    Then the number of todo entries should be 1
+  <span class="kn">Scenario</span><span class="p">:</span> Add todo entry
+    <span class="nf">Given </span>Todo list is empty
+    <span class="nf">When </span>I add entry <span class="s">"Code something"</span>
+    <span class="nf">Then </span>the number of todo entries should be 1
 
-  Scenario: Remove todo entry
-    Given Todo list is empty
-    When I add entry "Remove me"
-    Then the number of todo entries should be 1
-    When I remove entry "Remove me"
-    Then the todo list should be empty
+  <span class="kn">Scenario</span><span class="p">:</span> Remove todo entry
+    <span class="nf">Given </span>Todo list is empty
+    <span class="nf">When </span>I add entry <span class="s">"Remove me"</span>
+    <span class="nf">Then </span>the number of todo entries should be 1
+    <span class="nf">When </span>I remove entry <span class="s">"Remove me"</span>
+    <span class="nf">Then </span>the todo list should be empty
 </code></pre></div></div>
 
 <p>The steps executed are defined in a separate class where a Citrus test designer is used to build integration test logic.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TodoSteps</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TodoSteps</span> <span class="o">{</span>
 
     <span class="nd">@CitrusResource</span>
     <span class="kd">private</span> <span class="n">TestDesigner</span> <span class="n">designer</span><span class="o">;</span>
@@ -243,12 +246,12 @@ annotations for injecting a TestDesigner instance. The test designer is then use
         <span class="n">designer</span><span class="o">.</span><span class="na">http</span><span class="o">()</span>
             <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="s">"todoListClient"</span><span class="o">)</span>
             <span class="o">.</span><span class="na">send</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="s">"/todolist"</span><span class="o">);</span>
+            <span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="s">"/api/todolist"</span><span class="o">);</span>
 
         <span class="n">designer</span><span class="o">.</span><span class="na">http</span><span class="o">()</span>
             <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="s">"todoListClient"</span><span class="o">)</span>
             <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">FOUND</span><span class="o">);</span>
+            <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">);</span>
     <span class="o">}</span>
 
     <span class="nd">@When</span><span class="o">(</span><span class="s">"^I add entry \"([^\"]*)\"$"</span><span class="o">)</span>
@@ -267,13 +270,14 @@ annotations for injecting a TestDesigner instance. The test designer is then use
     <span class="o">}</span>
     
     <span class="o">[...]</span>
-<span class="o">}</span>    </code></pre></figure>
+<span class="o">}</span>    
+</code></pre></div></div>
 
 <h2 id="configuration">Configuration</h2>
 
 <p>In order to enable Citrus Cucumber support we need to specify a special object factory in <em>cucumber.properties</em>.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cucumber.api.java.ObjectFactory=cucumber.runtime.java.CitrusObjectFactory
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">cucumber.api.java.ObjectFactory</span><span class="p">=</span><span class="s">cucumber.runtime.java.CitrusObjectFactory</span>
 </code></pre></div></div>
 
 <p>The object factory takes care on creating all step definition instances. The object factory is able to inject <em><a href="https://github.com/CitrusResource" class="user-mention">@CitrusResource</a></em>
@@ -288,6 +292,7 @@ REST API on the <a href="/samples/todo-app/">todo-list</a> application.</p>
 <h2 id="run">Run</h2>
 
 <p>You can run the sample on your localhost in order to see Citrus in action. Read the instructions <a href="/samples/run/">how to run</a> the sample.</p>
+
 
   </div>
 </article>
@@ -313,6 +318,11 @@ REST API on the <a href="/samples/todo-app/">todo-list</a> application.</p>
       
       
 
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
       
       
       <li class="">

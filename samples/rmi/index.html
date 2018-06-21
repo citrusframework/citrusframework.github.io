@@ -95,6 +95,8 @@
     <option value="/samples/run/">Running</option>
     
     
+    <option value="/samples/selenium/">sample-selenium</option>
+    
     <option value="/samples/binary/">sample-binary</option>
     
     <option value="/samples/message-store/">sample-message-store</option>
@@ -193,22 +195,24 @@
     </span>
   </span>
   <div class="post-content">
-    <p>This sample demonstrates interaction with Remote Method Invocation (RMI) technology.  Citrus provides client and server components for connecting to services via RMI. 
-Read more about this in detail in <a href="http://www.citrusframework.org/reference/html/#rmi">reference guide</a></p>
+    <p>This sample demonstrates interaction with Remote Method Invocation (RMI) technology. 
+Citrus provides client and server components for connecting to services via RMI. 
+Read more about this in detail in <a href="https://citrusframework.org/reference/html#rmi">reference guide</a></p>
 
 <h2 id="objectives">Objectives</h2>
 
 <p>In this sample project a remote interface is exposed to clients via RMI. The remote interface follows the Java RMI specification.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">TodoListService</span> <span class="kd">extends</span> <span class="n">Remote</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">TodoListService</span> <span class="kd">extends</span> <span class="n">Remote</span> <span class="o">{</span>
     <span class="kt">void</span> <span class="nf">addTodo</span><span class="o">(</span><span class="n">String</span> <span class="n">id</span><span class="o">,</span> <span class="n">String</span> <span class="n">description</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">RemoteException</span><span class="o">;</span>
     <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="nf">getTodos</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">RemoteException</span><span class="o">;</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>There are two operations available. The <strong>addTodo</strong> operation and the <strong>getTodos</strong> operation. The remote interface has to be registered in
 a lookup registry. Citrus can do this with the server component:</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">RmiServer</span> <span class="nf">rmiServer</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">return</span> <span class="n">CitrusEndpoints</span><span class="o">.</span><span class="na">rmi</span><span class="o">()</span>
             <span class="o">.</span><span class="na">server</span><span class="o">()</span>
@@ -219,30 +223,33 @@ a lookup registry. Citrus can do this with the server component:</p>
             <span class="o">.</span><span class="na">binding</span><span class="o">(</span><span class="s">"todoService"</span><span class="o">)</span>
             <span class="o">.</span><span class="na">createRegistry</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
             <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>The server has its property <strong>create-registry</strong> set to true. So we create a new lookup registry on port <strong>1099</strong> on the <strong>localhost</strong>. The
 remote interface is automatically registered. In addition to that the server creates a service binding with the name <strong>todoService</strong>.</p>
 
 <p>After that clients can lookup and access the service with:</p>
 
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml">rmi://localhost:1099/todoService</code></pre></figure>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rmi://localhost:1099/todoService
+</code></pre></div></div>
 
 <p>Lets create a client component that uses this service url:</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">RmiClient</span> <span class="nf">rmiClient</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">return</span> <span class="n">CitrusEndpoints</span><span class="o">.</span><span class="na">rmi</span><span class="o">()</span>
             <span class="o">.</span><span class="na">client</span><span class="o">()</span>
             <span class="o">.</span><span class="na">serverUrl</span><span class="o">(</span><span class="s">"rmi://localhost:1099/todoService"</span><span class="o">)</span>
             <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>Now there is both client and server configured in the Citrus Spring application context. Of course in a real world scenario we would act as 
 client or server and the system under test is the respective partner on the other side. You can use the RMI client and server component in 
 tests as usual with the Citrus Java DSL.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
 <span class="nd">@CitrusTest</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testAddTodo</span><span class="o">()</span> <span class="o">{</span>
     <span class="n">send</span><span class="o">(</span><span class="n">todoRmiClient</span><span class="o">)</span>
@@ -261,7 +268,8 @@ tests as usual with the Citrus Java DSL.</p>
 
     <span class="n">receive</span><span class="o">(</span><span class="n">todoRmiClient</span><span class="o">)</span>
         <span class="o">.</span><span class="na">message</span><span class="o">(</span><span class="n">RmiMessage</span><span class="o">.</span><span class="na">result</span><span class="o">());</span>
-<span class="o">}</span>    </code></pre></figure>
+<span class="o">}</span>    
+</code></pre></div></div>
 
 <p>The test method above calls the <strong>addTodo</strong> operation on the remote service. The operation defines arguments that
 get set in the service invocation. The client automatically performs the service lookup using the service registry on port
@@ -273,7 +281,7 @@ Even the method arguments are validated with respective values as expected.</p>
 
 <p>Lets also test the second operation in this remote interface <strong>getTodos</strong>.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
 <span class="nd">@CitrusTest</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testGetTodos</span><span class="o">()</span> <span class="o">{</span>
     <span class="n">send</span><span class="o">(</span><span class="n">todoRmiClient</span><span class="o">)</span>
@@ -292,7 +300,8 @@ Even the method arguments are validated with respective values as expected.</p>
             <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"&lt;service-result xmlns=\"http://www.citrusframework.org/schema/rmi/message\"&gt;"</span> <span class="o">+</span>
                         <span class="s">"&lt;object type=\"java.util.LinkedHashMap\" value=\"{todo-follow=Follow us on github}\"/&gt;"</span> <span class="o">+</span>
                     <span class="s">"&lt;/service-result&gt;"</span><span class="o">);</span>
-<span class="o">}</span>    </code></pre></figure>
+<span class="o">}</span>    
+</code></pre></div></div>
 
 <p>In this sample test we see that Citrus is finding a way to generify the service invocation as well as the service result.
 Citrus is able to use any remote interface that you like. The operations are not implemented but do forward incoming calls to the
@@ -327,6 +336,7 @@ And of course green tests at the very end of the build.</p>
 <p>Of course you can also start the Citrus tests from your favorite IDE.
 Just start the Citrus test using the TestNG IDE integration in IntelliJ, Eclipse or Netbeans.</p>
 
+
   </div>
 </article>
 
@@ -351,6 +361,11 @@ Just start the Citrus test using the TestNG IDE integration in IntelliJ, Eclipse
       
       
 
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
       
       
       <li class="">

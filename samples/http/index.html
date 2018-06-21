@@ -95,6 +95,8 @@
     <option value="/samples/run/">Running</option>
     
     
+    <option value="/samples/selenium/">sample-selenium</option>
+    
     <option value="/samples/binary/">sample-binary</option>
     
     <option value="/samples/message-store/">sample-message-store</option>
@@ -194,7 +196,7 @@
   </span>
   <div class="post-content">
     <p>This sample demonstrates the Http REST capabilities in Citrus where Citrus calls REST API on a todo web application. REST features are
-also described in detail in <a href="http://www.citrusframework.org/reference/html/#http-rest">reference guide</a></p>
+also described in detail in <a href="https://citrusframework.org/reference/html#http">reference guide</a></p>
 
 <h2 id="objectives">Objectives</h2>
 
@@ -203,33 +205,37 @@ Citrus is able to call the API methods as a client in order to validate the Http
 
 <p>We need a Http client component in the configuration:</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">HttpClient</span> <span class="nf">todoClient</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">return</span> <span class="n">CitrusEndpoints</span><span class="o">.</span><span class="na">http</span><span class="o">()</span>
                         <span class="o">.</span><span class="na">client</span><span class="o">()</span>
                         <span class="o">.</span><span class="na">requestUrl</span><span class="o">(</span><span class="s">"http://localhost:8080"</span><span class="o">)</span>
                         <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>In test cases we can reference this client component in order to send REST calls to the server.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">http</span><span class="o">()</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">()</span>
     <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
     <span class="o">.</span><span class="na">send</span><span class="o">()</span>
     <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/todolist"</span><span class="o">)</span>
     <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="s">"application/x-www-form-urlencoded"</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"title=${todoName}&amp;description=${todoDescription}"</span><span class="o">);</span></code></pre></figure>
+    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"title=${todoName}&amp;description=${todoDescription}"</span><span class="o">);</span>
+</code></pre></div></div>
 
 <p>As you can see we are able to send <strong>x-www-form-urlencoded</strong> message content as <strong>POST</strong> request. The response is then validated as <strong>Http 200 OK</strong>.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">http</span><span class="o">()</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">()</span>
     <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
     <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
-    <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">);</span>    </code></pre></figure>
+    <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">);</span>
+</code></pre></div></div>
 
 <h2 id="run">Run</h2>
 
 <p>You can run the sample on your localhost in order to see Citrus in action. Read the instructions <a href="/samples/run/">how to run</a> the sample.</p>
+
 
   </div>
 </article>
@@ -255,6 +261,11 @@ Citrus is able to call the API methods as a client in order to validate the Http
       
       
 
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
       
       
       <li class="">

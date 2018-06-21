@@ -95,6 +95,8 @@
     <option value="/samples/run/">Running</option>
     
     
+    <option value="/samples/selenium/">sample-selenium</option>
+    
     <option value="/samples/binary/">sample-binary</option>
     
     <option value="/samples/message-store/">sample-message-store</option>
@@ -204,35 +206,42 @@ configuration files and you can also use Java POJOs.</p>
 <p>This sample uses pure Java code for both Citrus configuration and tests. The
 Citrus TestNG test uses a context configuration annotation.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@ContextConfiguration</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="o">{</span> <span class="n">EndpointConfig</span><span class="o">.</span><span class="na">class</span> <span class="o">})</span></code></pre></figure>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ContextConfiguration</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="o">{</span> <span class="n">EndpointConfig</span><span class="o">.</span><span class="na">class</span> <span class="o">})</span>
+</code></pre></div></div>
 
 <p>This tells Spring to load the configuration from the Java class <strong><em>EndpointConfig</em></strong>.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
-<span class="kd">public</span> <span class="n">HttpClient</span> <span class="nf">todoListClient</span><span class="o">()</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="n">HttpClient</span> <span class="nf">todoClient</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">return</span> <span class="n">CitrusEndpoints</span><span class="o">.</span><span class="na">http</span><span class="o">()</span>
                 <span class="o">.</span><span class="na">client</span><span class="o">()</span>
                 <span class="o">.</span><span class="na">requestUrl</span><span class="o">(</span><span class="s">"http://localhost:8080"</span><span class="o">)</span>
                 <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>In the configuration class we are able to define Citrus components for usage in tests. As usual
 we can autowire the Http client component as Spring bean in the test cases.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Autowired</span>
-<span class="kd">private</span> <span class="n">HttpClient</span> <span class="n">todoListCLient</span><span class="o">;</span></code></pre></figure>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Autowired</span>
+<span class="kd">private</span> <span class="n">HttpClient</span> <span class="n">todoClient</span><span class="o">;</span>
+</code></pre></div></div>
 
-<p>Secondly we can use the <strong><em>CitrusEndpoint</em></strong> annotation to automatically create a new endpoint component in a test.</p>
+<p>As usual we are able to reference this endpoint in any send and receive operation in Citrus Java fluent API.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@CitrusEndpoint</span>
-<span class="nd">@HttpClientConfig</span><span class="o">(</span><span class="n">requestUrl</span> <span class="o">=</span> <span class="s">"http://localhost:8080"</span><span class="o">)</span>
-<span class="kd">private</span> <span class="n">HttpClient</span> <span class="n">todoClient</span><span class="o">;</span></code></pre></figure>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">send</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"/todolist"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="s">"text/html"</span><span class="o">);</span>
+</code></pre></div></div>
 
-<p>In contrast to adding the bean to the Spring application context we define the endpoint using annotation configurations.</p>
+<p>Citrus and Spring framework automatically injects the endpoint with respective configuration for <code class="highlighter-rouge">requestUrl = http://localhost:8080</code>.</p>
 
 <h2 id="run">Run</h2>
 
 <p>You can run the sample on your localhost in order to see Citrus in action. Read the instructions <a href="/samples/run/">how to run</a> the sample.</p>
+
 
   </div>
 </article>
@@ -258,6 +267,11 @@ we can autowire the Http client component as Spring bean in the test cases.</p>
       
       
 
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
       
       
       <li class="">

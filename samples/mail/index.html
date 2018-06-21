@@ -95,6 +95,8 @@
     <option value="/samples/run/">Running</option>
     
     
+    <option value="/samples/selenium/">sample-selenium</option>
+    
     <option value="/samples/binary/">sample-binary</option>
     
     <option value="/samples/message-store/">sample-message-store</option>
@@ -193,7 +195,7 @@
     </span>
   </span>
   <div class="post-content">
-    <p>This sample demonstrates the usage of mail server activities in Citrus tests. You can also read about this in <a href="http://www.citrusframework.org/reference/html/#mail">reference guide</a>.</p>
+    <p>This sample demonstrates the usage of mail server activities in Citrus tests. You can also read about this in <a href="https://citrusframework.org/reference/html#mail">reference guide</a>.</p>
 
 <h2 id="objectives">Objectives</h2>
 
@@ -203,7 +205,7 @@ wait for the incoming mail in a single test.</p>
 
 <p>First we need the mail server component in Citrus. Lets add this to the configuration:</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">MailServer</span> <span class="nf">mailServer</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">return</span> <span class="n">CitrusEndpoints</span><span class="o">.</span><span class="na">mail</span><span class="o">()</span>
             <span class="o">.</span><span class="na">server</span><span class="o">()</span>
@@ -211,26 +213,28 @@ wait for the incoming mail in a single test.</p>
             <span class="o">.</span><span class="na">autoAccept</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
             <span class="o">.</span><span class="na">autoStart</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
             <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>Now we can receive the mail in the test case.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">receive</span><span class="o">(</span><span class="n">mailServer</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">message</span><span class="o">(</span><span class="n">MailMessage</span><span class="o">.</span><span class="na">request</span><span class="o">()</span>
-                    <span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="s">"todo-report@example.org"</span><span class="o">)</span>
-                    <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"users@example.org"</span><span class="o">)</span>
-                    <span class="o">.</span><span class="na">cc</span><span class="o">(</span><span class="s">""</span><span class="o">)</span>
-                    <span class="o">.</span><span class="na">bcc</span><span class="o">(</span><span class="s">""</span><span class="o">)</span>
-                    <span class="o">.</span><span class="na">subject</span><span class="o">(</span><span class="s">"ToDo report"</span><span class="o">)</span>
-                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"There are '1' todo entries!"</span><span class="o">,</span> <span class="s">"text/plain; charset=us-ascii"</span><span class="o">))</span>
-        <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">CitrusMailMessageHeaders</span><span class="o">.</span><span class="na">MAIL_SUBJECT</span><span class="o">,</span> <span class="s">"ToDo report"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">receive</span><span class="o">(</span><span class="n">mailServer</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">message</span><span class="o">(</span><span class="n">MailMessage</span><span class="o">.</span><span class="na">request</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="s">"todo-report@example.org"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"users@example.org"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">cc</span><span class="o">(</span><span class="s">""</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">bcc</span><span class="o">(</span><span class="s">""</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">subject</span><span class="o">(</span><span class="s">"ToDo report"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"There are '1' todo entries!"</span><span class="o">,</span> <span class="s">"text/plain; charset=us-ascii"</span><span class="o">))</span>
+    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">CitrusMailMessageHeaders</span><span class="o">.</span><span class="na">MAIL_SUBJECT</span><span class="o">,</span> <span class="s">"ToDo report"</span><span class="o">);</span>
 
-    <span class="n">send</span><span class="o">(</span><span class="n">mailServer</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">message</span><span class="o">(</span><span class="n">MailMessage</span><span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="mi">250</span><span class="o">,</span> <span class="s">"OK"</span><span class="o">));</span>            </code></pre></figure>
+<span class="n">send</span><span class="o">(</span><span class="n">mailServer</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">message</span><span class="o">(</span><span class="n">MailMessage</span><span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="mi">250</span><span class="o">,</span> <span class="s">"OK"</span><span class="o">));</span>            
+</code></pre></div></div>
 
-<p>The mail content is loaded from external file resource. Here is the mail content that we expect to arrive in the test.</p>
+<p>The mail content is marshalled to an expected XML representation that we expect to arrive in the test.</p>
 
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;mail-message</span> <span class="na">xmlns=</span><span class="s">"http://www.citrusframework.org/schema/mail/message"</span><span class="nt">&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mail-message</span> <span class="na">xmlns=</span><span class="s">"http://www.citrusframework.org/schema/mail/message"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;from&gt;</span>todo-report@example.org<span class="nt">&lt;/from&gt;</span>
   <span class="nt">&lt;to&gt;</span>users@example.org<span class="nt">&lt;/to&gt;</span>
   <span class="nt">&lt;cc&gt;&lt;/cc&gt;</span>
@@ -240,15 +244,17 @@ wait for the incoming mail in a single test.</p>
     <span class="nt">&lt;contentType&gt;</span>text/plain; charset=us-ascii<span class="nt">&lt;/contentType&gt;</span>
     <span class="nt">&lt;content&gt;</span>There are '${entryCount}' todo entries!<span class="nt">&lt;/content&gt;</span>
   <span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/mail-message&gt;</span></code></pre></figure>
+<span class="nt">&lt;/mail-message&gt;</span>
+</code></pre></div></div>
 
 <p>Citrus is able to convert mail messages to an internal XML representation. This way the content is more comfortable to
 compare in validation. The mail response looks like this.</p>
 
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;mail-response</span> <span class="na">xmlns=</span><span class="s">"http://www.citrusframework.org/schema/mail/message"</span><span class="nt">&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mail-response</span> <span class="na">xmlns=</span><span class="s">"http://www.citrusframework.org/schema/mail/message"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;code&gt;</span>250<span class="nt">&lt;/code&gt;</span>
   <span class="nt">&lt;message&gt;</span>OK<span class="nt">&lt;/message&gt;</span>
-<span class="nt">&lt;/mail-response&gt;</span></code></pre></figure>
+<span class="nt">&lt;/mail-response&gt;</span>
+</code></pre></div></div>
 
 <p>In the sample the success code <strong>250</strong> is returned to the mail client marking that everything is ok. Here we also could place
 some other code and message in order to simulate mail server problems.</p>
@@ -256,6 +262,7 @@ some other code and message in order to simulate mail server problems.</p>
 <h2 id="run">Run</h2>
 
 <p>You can run the sample on your localhost in order to see Citrus in action. Read the instructions <a href="/samples/run/">how to run</a> the sample.</p>
+
 
   </div>
 </article>
@@ -281,6 +288,11 @@ some other code and message in order to simulate mail server problems.</p>
       
       
 
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
       
       
       <li class="">

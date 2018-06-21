@@ -95,6 +95,8 @@
     <option value="/samples/run/">Running</option>
     
     
+    <option value="/samples/selenium/">sample-selenium</option>
+    
     <option value="/samples/binary/">sample-binary</option>
     
     <option value="/samples/message-store/">sample-message-store</option>
@@ -205,18 +207,20 @@ variable that is annotated with <code class="highlighter-rouge">@CitrusEndpoint<
 
 <p>This tells Citrus to create a new endpoint for this test class.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@CitrusEndpoint</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@CitrusEndpoint</span>
 <span class="nd">@HttpClientConfig</span><span class="o">(</span><span class="n">requestUrl</span> <span class="o">=</span> <span class="s">"http://localhost:8080"</span><span class="o">)</span>
-<span class="kd">private</span> <span class="n">HttpClient</span> <span class="n">todoClient</span><span class="o">;</span></code></pre></figure>
+<span class="kd">private</span> <span class="n">HttpClient</span> <span class="n">todoClient</span><span class="o">;</span>
+</code></pre></div></div>
 
 <p>In contrast to adding the bean to the Spring application context we define the endpoint using annotation configurations. As usual we are
 able to reference this endpoint in any send and receive operation in Citrus Java fluent API.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">http</span><span class="o">()</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">()</span>
     <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
     <span class="o">.</span><span class="na">send</span><span class="o">()</span>
     <span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"/todolist"</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="s">"text/html"</span><span class="o">);</span></code></pre></figure>
+    <span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="s">"text/html"</span><span class="o">);</span>
+</code></pre></div></div>
 
 <p>Citrus automatically injects the endpoint with respective configuration for <code class="highlighter-rouge">requestUrl = http://localhost:8080</code>. You can use this endpoint
 within all test methods in this class.</p>
@@ -261,6 +265,11 @@ Just start the Citrus test using the TestNG IDE integration in IntelliJ, Eclipse
       
       
 
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
       
       
       <li class="">

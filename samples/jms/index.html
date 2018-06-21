@@ -95,6 +95,8 @@
     <option value="/samples/run/">Running</option>
     
     
+    <option value="/samples/selenium/">sample-selenium</option>
+    
     <option value="/samples/binary/">sample-binary</option>
     
     <option value="/samples/message-store/">sample-message-store</option>
@@ -194,7 +196,7 @@
   </span>
   <div class="post-content">
     <p>This sample uses JMS queue destinations in order to place new todo entries in the system under test. The JMS capabilities are
-also described in <a href="http://www.citrusframework.org/reference/html/#jms">reference guide</a></p>
+also described in <a href="https://citrusframework.org/reference/html#jms">reference guide</a></p>
 
 <h2 id="objectives">Objectives</h2>
 
@@ -203,19 +205,21 @@ We can send JSON messages in order to create new todo entries that are stored to
 
 <p>The Citrus project needs a JMS connection factory that is defined in the Spring application context as bean:</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">ConnectionFactory</span> <span class="nf">connectionFactory</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">return</span> <span class="k">new</span> <span class="nf">ActiveMQConnectionFactory</span><span class="o">(</span><span class="s">"tcp://localhost:61616"</span><span class="o">);</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>We use ActiveMQ as message broker so we use the respective connection factory implementation here. The message broker is automatically
 started with the Maven build lifecycle.</p>
 
 <p>No we can add a new todo entry by sending a JSON message to the JMS queue destination.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">send</span><span class="o">(</span><span class="n">todoJmsEndpoint</span><span class="o">)</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">send</span><span class="o">(</span><span class="n">todoJmsEndpoint</span><span class="o">)</span>
     <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"_type"</span><span class="o">,</span> <span class="s">"com.consol.citrus.samples.todolist.model.TodoEntry"</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"{ \"title\": \"${todoName}\", \"description\": \"${todoDescription}\" }"</span><span class="o">);</span></code></pre></figure>
+    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"{ \"title\": \"${todoName}\", \"description\": \"${todoDescription}\", \"done\": ${done}}"</span><span class="o">);</span>
+</code></pre></div></div>
 
 <p>We have to add a special message header <strong>_type</strong> which is required by the system under test for message conversion. The message payload
 is the JSON representation of a todo entry model object.</p>
@@ -224,7 +228,7 @@ is the JSON representation of a todo entry model object.</p>
 entry has been added successfully. The XPath expression validation makes sure the the last todo entry displayed is the todo item that 
 we have added before in the test.</p>
 
-<p>You can read about http and XPath validation features in the sample <a href="/samples/xhtml/">xhtml</a></p>
+<p>You can read about http and XPath validation features in the sample <a href="../sample-xhtml/README.md">xhtml</a></p>
 
 <h2 id="run">Run</h2>
 
@@ -237,6 +241,7 @@ You can do this with Maven:</p>
 </code></pre></div></div>
 
 <p>Read further the instructions <a href="/samples/run/">how to run</a> the sample.</p>
+
 
   </div>
 </article>
@@ -262,6 +267,11 @@ You can do this with Maven:</p>
       
       
 
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
       
       
       <li class="">

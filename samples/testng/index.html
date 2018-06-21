@@ -95,6 +95,8 @@
     <option value="/samples/run/">Running</option>
     
     
+    <option value="/samples/selenium/">sample-selenium</option>
+    
     <option value="/samples/binary/">sample-binary</option>
     
     <option value="/samples/message-store/">sample-message-store</option>
@@ -194,7 +196,7 @@
   </span>
   <div class="post-content">
     <p>This sample demonstrates the TestNG support in Citrus. We write some TestNG Citrus test cases that test the REST API of the todo sample application. The TestNG support is
-also described in detail in <a href="http://www.citrusframework.org/reference/html/index.html#run-with-testng">reference guide</a></p>
+also described in detail in <a href="https://citrusframework.org/reference/html#run-with-testng">reference guide</a></p>
 
 <h2 id="objectives">Objectives</h2>
 
@@ -203,18 +205,19 @@ Citrus is able to call the API methods as a client in order to validate the Http
 
 <p>We need a Http client component in the configuration:</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">HttpClient</span> <span class="nf">todoClient</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">return</span> <span class="n">CitrusEndpoints</span><span class="o">.</span><span class="na">http</span><span class="o">()</span>
                         <span class="o">.</span><span class="na">client</span><span class="o">()</span>
                         <span class="o">.</span><span class="na">requestUrl</span><span class="o">(</span><span class="s">"http://localhost:8080"</span><span class="o">)</span>
                         <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>In test cases we can reference this client component in order to send REST calls to the server. Citrus is able to integrate with TestNG as test execution framework. You can use
 the <code class="highlighter-rouge">TestNGCitrusTestRunner</code> implementation as base for your test.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TodoListIT</span> <span class="kd">extends</span> <span class="n">TestNGCitrusTestRunner</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TodoListIT</span> <span class="kd">extends</span> <span class="n">TestNGCitrusTestRunner</span> <span class="o">{</span>
 
     <span class="nd">@Autowired</span>
     <span class="kd">private</span> <span class="n">HttpClient</span> <span class="n">todoClient</span><span class="o">;</span>
@@ -235,7 +238,8 @@ the <code class="highlighter-rouge">TestNGCitrusTestRunner</code> implementation
             <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
             <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">FOUND</span><span class="o">));</span>
     <span class="o">}</span>
-<span class="o">}</span>      </code></pre></figure>
+<span class="o">}</span>      
+</code></pre></div></div>
 
 <p>The <code class="highlighter-rouge">TestNGCitrusTestRunner</code> makes sure that Citrus framework is loaded at startup and all configuration is done properly. Also we need to set the annotation <code class="highlighter-rouge">@CitrusTest</code> on our test methods in
 addition to the normal TestNG <code class="highlighter-rouge">@Test</code> annotation. This way we can inject Citrus endpoints such as the <code class="highlighter-rouge">todoClient</code> and we can use the runner Java fluent API in Citrus to send and receive messages using that client component.</p>
@@ -244,7 +248,7 @@ addition to the normal TestNG <code class="highlighter-rouge">@Test</code> annot
 
 <p>Last not least we can also use resource injection to the test methods using <code class="highlighter-rouge">@CitrusResource</code> method parameter annotations.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TodoListInjectIT</span> <span class="kd">extends</span> <span class="n">TestNGCitrusTest</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TodoListInjectIT</span> <span class="kd">extends</span> <span class="n">TestNGCitrusTest</span> <span class="o">{</span>
 
     <span class="nd">@Autowired</span>
     <span class="kd">private</span> <span class="n">HttpClient</span> <span class="n">todoClient</span><span class="o">;</span>
@@ -267,7 +271,8 @@ addition to the normal TestNG <code class="highlighter-rouge">@Test</code> annot
             <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">FOUND</span><span class="o">));</span>
     <span class="o">}</span>
 
-<span class="o">}</span>  </code></pre></figure>
+<span class="o">}</span>  
+</code></pre></div></div>
 
 <p>We can inject method parameters such as <code class="highlighter-rouge">@CitrusResource</code> annotated <code class="highlighter-rouge">TestRunner</code> that is our entrance to the Citrus Java fluent API. In TestNG we need to add the <code class="highlighter-rouge">@Optional</code> annotation in order to tell
 TestNG that the method parameter is not injected with TestNG but with Citrus. Also we need to give a parameter name in the <code class="highlighter-rouge">@Parameters</code> annotation.</p>
@@ -276,12 +281,13 @@ TestNG that the method parameter is not injected with TestNG but with Citrus. Al
 
 <p>In order to setup Maven for TestNG we need to add the dependency to the project POM file.</p>
 
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>testng<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>testng<span class="nt">&lt;/artifactId&gt;</span>
   <span class="nt">&lt;version&gt;</span>${testng.version}<span class="nt">&lt;/version&gt;</span>
   <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>    </code></pre></figure>
+<span class="nt">&lt;/dependency&gt;</span>    
+</code></pre></div></div>
 
 <p>That completes the project setup. We are now ready to execute the tests.</p>
 
@@ -300,6 +306,7 @@ And of course green tests at the very end of the build and some new reporting fi
 
 <p>Of course you can also start the Citrus tests from your favorite IDE.
 Just start the Citrus test using the TestNG IDE integration in IntelliJ, Eclipse or Netbeans.</p>
+
 
   </div>
 </article>
@@ -325,6 +332,11 @@ Just start the Citrus test using the TestNG IDE integration in IntelliJ, Eclipse
       
       
 
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
       
       
       <li class="">

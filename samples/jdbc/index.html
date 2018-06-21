@@ -95,6 +95,8 @@
     <option value="/samples/run/">Running</option>
     
     
+    <option value="/samples/selenium/">sample-selenium</option>
+    
     <option value="/samples/binary/">sample-binary</option>
     
     <option value="/samples/message-store/">sample-message-store</option>
@@ -199,61 +201,43 @@
 
 <p>The <a href="/samples/todo-app/">todo-list</a> sample application stores data to a relational database. This sample shows 
 the usage of database JDBC validation actions in Citrus. We are able to execute SQL statements on a database target. 
-See the <a href="http://www.citrusframework.org/reference/html/#actions-sql">reference guide</a> database chapter for details.</p>
+See the <a href="https://citrusframework.org/reference/html#actions-database">reference guide</a> database chapter for details.</p>
 
 <p>The database source is configured as Spring datasource in the application context <strong><em>citrus-context.xml</em></strong>.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Bean</span><span class="o">(</span><span class="n">destroyMethod</span> <span class="o">=</span> <span class="s">"close"</span><span class="o">)</span>
-<span class="kd">public</span> <span class="n">BasicDataSource</span> <span class="nf">todoListDataSource</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">BasicDataSource</span> <span class="n">dataSource</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BasicDataSource</span><span class="o">();</span>
-    <span class="n">dataSource</span><span class="o">.</span><span class="na">setDriverClassName</span><span class="o">(</span><span class="s">"org.hsqldb.jdbcDriver"</span><span class="o">);</span>
-    <span class="n">dataSource</span><span class="o">.</span><span class="na">setUrl</span><span class="o">(</span><span class="s">"jdbc:hsqldb:hsql://localhost/testdb"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="n">SingleConnectionDataSource</span> <span class="nf">dataSource</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">SingleConnectionDataSource</span> <span class="n">dataSource</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SingleConnectionDataSource</span><span class="o">();</span>
+    <span class="n">dataSource</span><span class="o">.</span><span class="na">setDriverClassName</span><span class="o">(</span><span class="n">JdbcDriver</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+    <span class="n">dataSource</span><span class="o">.</span><span class="na">setUrl</span><span class="o">(</span><span class="s">"jdbc:citrus:http://localhost:3306/testdb"</span><span class="o">);</span>
     <span class="n">dataSource</span><span class="o">.</span><span class="na">setUsername</span><span class="o">(</span><span class="s">"sa"</span><span class="o">);</span>
     <span class="n">dataSource</span><span class="o">.</span><span class="na">setPassword</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
-    <span class="n">dataSource</span><span class="o">.</span><span class="na">setInitialSize</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
-    <span class="n">dataSource</span><span class="o">.</span><span class="na">setMaxActive</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
-    <span class="n">dataSource</span><span class="o">.</span><span class="na">setMaxIdle</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
     <span class="k">return</span> <span class="n">dataSource</span><span class="o">;</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
-<p>As you can see we are using a H2 in memory database here.</p>
+<p>As you can see we are using a special Citrus JDBC driver here. This driver connects to the Citrus JDBC server mock.</p>
 
-<p>Before the test suite is started we create the relational database tables required.</p>
+<p>In the test case we can verify any JDBC operation on the datasource without having to actually create the data in the database.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
-<span class="kd">public</span> <span class="n">SequenceBeforeSuite</span> <span class="nf">beforeSuite</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="nf">TestDesignerBeforeSuiteSupport</span><span class="o">()</span> <span class="o">{</span>
-        <span class="nd">@Override</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">beforeSuite</span><span class="o">(</span><span class="n">TestDesigner</span> <span class="n">designer</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">designer</span><span class="o">.</span><span class="na">sql</span><span class="o">(</span><span class="n">todoListDataSource</span><span class="o">())</span>
-                <span class="o">.</span><span class="na">statement</span><span class="o">(</span><span class="s">"CREATE TABLE todo_entries (id VARCHAR(50), title VARCHAR(255), description VARCHAR(255), done BOOLEAN)"</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">};</span>
-<span class="o">}</span></code></pre></figure>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">receive</span><span class="o">(</span><span class="n">jdbcServer</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">JSON</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">message</span><span class="o">(</span><span class="n">JdbcMessage</span><span class="o">.</span><span class="na">execute</span><span class="o">(</span><span class="s">"SELECT id, title, description FROM todo_entries"</span><span class="o">));</span>
 
-<p>After the test we delete all test data again.</p>
-
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
-<span class="kd">public</span> <span class="n">SequenceAfterSuite</span> <span class="nf">afterSuite</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="nf">TestDesignerAfterSuiteSupport</span><span class="o">()</span> <span class="o">{</span>
-        <span class="nd">@Override</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterSuite</span><span class="o">(</span><span class="n">TestDesigner</span> <span class="n">designer</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">designer</span><span class="o">.</span><span class="na">sql</span><span class="o">(</span><span class="n">todoListDataSource</span><span class="o">())</span>
-                <span class="o">.</span><span class="na">statement</span><span class="o">(</span><span class="s">"DELETE FROM todo_entries"</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">};</span>
-<span class="o">}</span></code></pre></figure>
-
-<p>In the test case we can reference the datasource in order to access the stored data and
-verify the result sets.</p>
-
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">query</span><span class="o">(</span><span class="n">todoDataSource</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">statement</span><span class="o">(</span><span class="s">"select count(*) as cnt from todo_entries where title = '${todoName}'"</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"cnt"</span><span class="o">,</span> <span class="s">"1"</span><span class="o">);</span>    </code></pre></figure>
+<span class="n">send</span><span class="o">(</span><span class="n">jdbcServer</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">JSON</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">message</span><span class="o">(</span><span class="n">JdbcMessage</span><span class="o">.</span><span class="na">success</span><span class="o">().</span><span class="na">dataSet</span><span class="o">(</span><span class="s">"[ {"</span> <span class="o">+</span>
+                    <span class="s">"\"id\": \""</span> <span class="o">+</span> <span class="n">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">().</span><span class="na">toString</span><span class="o">()</span> <span class="o">+</span> <span class="s">"\","</span> <span class="o">+</span>
+                    <span class="s">"\"title\": \"${todoName}\","</span> <span class="o">+</span>
+                    <span class="s">"\"description\": \"${todoDescription}\","</span> <span class="o">+</span>
+                    <span class="s">"\"done\": \"false\""</span> <span class="o">+</span>
+                <span class="s">"} ]"</span><span class="o">));</span>
+</code></pre></div></div>
 
 <h2 id="run">Run</h2>
 
 <p>You can run the sample on your localhost in order to see Citrus in action. Read the instructions <a href="/samples/run/">how to run</a> the sample.</p>
+
 
   </div>
 </article>
@@ -279,6 +263,11 @@ verify the result sets.</p>
       
       
 
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
       
       
       <li class="">

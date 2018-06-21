@@ -95,6 +95,8 @@
     <option value="/samples/run/">Running</option>
     
     
+    <option value="/samples/selenium/">sample-selenium</option>
+    
     <option value="/samples/binary/">sample-binary</option>
     
     <option value="/samples/message-store/">sample-message-store</option>
@@ -203,35 +205,39 @@ project. As the Citrus tests are nothing but normal JUnit or TestNG tests the in
 <p>The Gradle build configuration is done in the <strong>build.gradle</strong> and <strong>settings.gradle</strong> files. Here we define the project name 
 and the project version.</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell">rootProject.name <span class="o">=</span> <span class="s1">'citrus-sample-gradle'</span>
-group <span class="s1">'com.consol.citrus.samples'</span>
-version <span class="s1">'2.6.3-SNAPSHOT'</span></code></pre></figure>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">rootProject</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="s1">'citrus-sample-gradle'</span>
+<span class="n">group</span> <span class="s1">'com.consol.citrus.samples'</span>
+<span class="n">version</span> <span class="s1">'2.7.1'</span>
+</code></pre></div></div>
 
 <p>Now as Citrus libraries are available on Maven central repository we add these repositories so Gradle knows how to download the required
 Citrus artifacts.</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell">repositories <span class="o">{</span>
-    mavenCentral<span class="o">()</span>
-    maven <span class="o">{</span>
-        url <span class="s1">'http://labs.consol.de/maven/snapshots-repository/'</span>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">repositories</span> <span class="o">{</span>
+    <span class="n">mavenCentral</span><span class="o">()</span>
+    <span class="n">maven</span> <span class="o">{</span>
+        <span class="n">url</span> <span class="s1">'http://labs.consol.de/maven/snapshots-repository/'</span>
     <span class="o">}</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>Citrus stable release versions are available on Maven central. If you want to use the very latest next version as snapshot preview you need
 to add the ConSol Labs snapshot repository which is optional. Now lets move on with adding the Citrus libraries to the project.</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell">dependencies <span class="o">{</span>
-    testCompile group: <span class="s1">'com.consol.citrus'</span>, name: <span class="s1">'citrus-core'</span>, version: <span class="s1">'2.6.3-SNAPSHOT'</span>
-    testCompile group: <span class="s1">'com.consol.citrus'</span>, name: <span class="s1">'citrus-java-dsl'</span>, version: <span class="s1">'2.6.3-SNAPSHOT'</span>
-    testCompile group: <span class="s1">'org.testng'</span>, name: <span class="s1">'testng'</span>, version: <span class="s1">'6.9.10'</span>
-    <span class="o">[</span>...]
-<span class="o">}</span></code></pre></figure>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
+    <span class="n">testCompile</span> <span class="nl">group:</span> <span class="s1">'com.consol.citrus'</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">'citrus-core'</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">'2.7.7-SNAPSHOT'</span>
+    <span class="n">testCompile</span> <span class="nl">group:</span> <span class="s1">'com.consol.citrus'</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">'citrus-java-dsl'</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">'2.7.7-SNAPSHOT'</span>
+    <span class="n">testCompile</span> <span class="nl">group:</span> <span class="s1">'org.testng'</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">'testng'</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">'6.11'</span>
+    <span class="o">[...]</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>This enables the Citrus support for the project so we can use the Citrus classes and APIs. We decided to use TestNG unit test library.</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">test</span> <span class="o">{</span>
-    useTestNG<span class="o">()</span>
-<span class="o">}</span></code></pre></figure>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">test</span> <span class="o">{</span>
+    <span class="n">useTestNG</span><span class="o">()</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>Of course JUnit is also supported. This is all for build configuration settings. We can move on to writing some Citrus integration tests. You can
 find those tests in <strong>src/test/java</strong> directory.</p>
@@ -239,11 +245,12 @@ find those tests in <strong>src/test/java</strong> directory.</p>
 <p>This sample uses pure Java code for both Citrus configuration and tests. The
 Citrus TestNG test uses a context configuration annotation.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@ContextConfiguration</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="o">{</span> <span class="n">EndpointConfig</span><span class="o">.</span><span class="na">class</span> <span class="o">})</span></code></pre></figure>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ContextConfiguration</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="o">{</span> <span class="n">EndpointConfig</span><span class="o">.</span><span class="na">class</span> <span class="o">})</span>
+</code></pre></div></div>
 
 <p>This tells Spring to load the configuration from the Java class <strong><em>EndpointConfig</em></strong>.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">EndpointConfig</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">EndpointConfig</span> <span class="o">{</span>
     <span class="nd">@Bean</span>
     <span class="kd">public</span> <span class="n">ChannelEndpoint</span> <span class="nf">testChannelEndpoint</span><span class="o">()</span> <span class="o">{</span>
         <span class="n">ChannelEndpointConfiguration</span> <span class="n">endpointConfiguration</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ChannelEndpointConfiguration</span><span class="o">();</span>
@@ -255,13 +262,15 @@ Citrus TestNG test uses a context configuration annotation.</p>
     <span class="kd">private</span> <span class="n">MessageChannel</span> <span class="nf">testChannel</span><span class="o">()</span> <span class="o">{</span>
         <span class="k">return</span> <span class="k">new</span> <span class="nf">MessageSelectingQueueChannel</span><span class="o">();</span>
     <span class="o">}</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>In the configuration class we are able to define Citrus components for usage in tests. As usual
 we can autowire the endpoint components as Spring beans in the test cases.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Autowired</span>
-<span class="kd">private</span> <span class="n">ChannelEndpoint</span> <span class="n">testChannelEndpoint</span><span class="o">;</span></code></pre></figure>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Autowired</span>
+<span class="kd">private</span> <span class="n">ChannelEndpoint</span> <span class="n">testChannelEndpoint</span><span class="o">;</span>
+</code></pre></div></div>
 
 <h2 id="run">Run</h2>
 
@@ -306,6 +315,11 @@ Just start the Citrus test using the Gradle integration in IntelliJ, Eclipse or 
       
       
 
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
       
       
       <li class="">

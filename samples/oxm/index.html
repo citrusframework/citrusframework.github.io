@@ -95,6 +95,8 @@
     <option value="/samples/run/">Running</option>
     
     
+    <option value="/samples/selenium/">sample-selenium</option>
+    
     <option value="/samples/binary/">sample-binary</option>
     
     <option value="/samples/message-store/">sample-message-store</option>
@@ -194,7 +196,7 @@
   </span>
   <div class="post-content">
     <p>This sample demonstrates the usage of object mapping in Citrus. We are able to handle automatic object mapping
-when sending and receiving message payloads. Read about this feature in <a href="http://www.citrusframework.org/reference/html/#validation-callback">reference guide</a></p>
+when sending and receiving message payloads. Read about this feature in <a href="https://citrusframework.org/reference/html#validation-callback">reference guide</a></p>
 
 <h2 id="objectives">Objectives</h2>
 
@@ -204,40 +206,43 @@ structures but use the model objects directly in our test cases.</p>
 
 <p>We need to include the Spring oxm module in the dependencies:</p>
 
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>spring-oxm<span class="nt">&lt;/artifactId&gt;</span>
   <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
   <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span></code></pre></figure>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
 
 <p>Also we need to provide a marshaller component in our Spring configuration:</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">Marshaller</span> <span class="nf">marshaller</span><span class="o">()</span> <span class="o">{</span>
     <span class="n">Jaxb2Marshaller</span> <span class="n">marshaller</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Jaxb2Marshaller</span><span class="o">();</span>
     <span class="n">marshaller</span><span class="o">.</span><span class="na">setContextPath</span><span class="o">(</span><span class="s">"com.consol.citrus.samples.todolist.model"</span><span class="o">);</span>
     <span class="k">return</span> <span class="n">marshaller</span><span class="o">;</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>Please note that the marshaller supports model object classes in package <strong>com.consol.citrus.samples.todolist.model</strong>.</p>
 
 <p>That is all for configuration, now we can use model objects as message payload in the test cases.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Autowired</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Autowired</span>
 <span class="kd">private</span> <span class="n">Jaxb2Marshaller</span> <span class="n">marshaller</span><span class="o">;</span>
     
 <span class="n">http</span><span class="o">()</span>
     <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
     <span class="o">.</span><span class="na">send</span><span class="o">()</span>
-    <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/todolist"</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="s">"application/json"</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="k">new</span> <span class="n">TodoEntry</span><span class="o">(</span><span class="s">"${todoName}"</span><span class="o">,</span> <span class="s">"${todoDescription}"</span><span class="o">),</span> <span class="n">marshaller</span><span class="o">);</span></code></pre></figure>
+    <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/api/todolist"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="n">ContentType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">.</span><span class="na">getMimeType</span><span class="o">())</span>
+    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="k">new</span> <span class="n">TodoEntry</span><span class="o">(</span><span class="s">"${todoName}"</span><span class="o">,</span> <span class="s">"${todoDescription}"</span><span class="o">),</span> <span class="n">marshaller</span><span class="o">);</span>
+</code></pre></div></div>
 
 <p>As you can see we are able to send the model object as payload. The test variable support is also given. Citrus will automatically marshall the object to a <strong>application/json</strong> message content 
 as <strong>POST</strong> request. In a receive action we are able to use a mapping validation callback in order to get access to the model objects of an incoming message payload.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">http</span><span class="o">()</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">()</span>
     <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
     <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
     <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">)</span>
@@ -247,13 +252,15 @@ as <strong>POST</strong> request. In a receive action we are able to use a mappi
             <span class="n">Assert</span><span class="o">.</span><span class="na">assertNotNull</span><span class="o">(</span><span class="n">todoEntry</span><span class="o">);</span>
             <span class="n">Assert</span><span class="o">.</span><span class="na">assertEquals</span><span class="o">(</span><span class="n">todoEntry</span><span class="o">.</span><span class="na">getId</span><span class="o">(),</span> <span class="n">uuid</span><span class="o">);</span>
         <span class="o">}</span>
-    <span class="o">});</span></code></pre></figure>
+    <span class="o">});</span>
+</code></pre></div></div>
 
 <p>The validation callback gets the model object as first method parameter. You can now add some validation logic with assertions on the model object.</p>
 
 <h2 id="run">Run</h2>
 
 <p>You can run the sample on your localhost in order to see Citrus in action. Read the instructions <a href="/samples/run/">how to run</a> the sample.</p>
+
 
   </div>
 </article>
@@ -279,6 +286,11 @@ as <strong>POST</strong> request. In a receive action we are able to use a mappi
       
       
 
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
       
       
       <li class="">

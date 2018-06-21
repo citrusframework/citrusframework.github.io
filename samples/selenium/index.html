@@ -1,0 +1,752 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 2.7.6">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/citrusframework/citrus/commits/master.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="samples">
+    <div class="grid">
+
+      <div class="samples-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the samples…</option>
+    <option value="/samples/">Overview</option>
+    <option value="/samples/todo-app/">Sample app</option>
+    <option value="/samples/run/">Running</option>
+    
+    
+    <option value="/samples/selenium/">sample-selenium</option>
+    
+    <option value="/samples/binary/">sample-binary</option>
+    
+    <option value="/samples/message-store/">sample-message-store</option>
+    
+    <option value="/samples/camel-context/">sample-camel-context</option>
+    
+    <option value="/samples/dynamic-endpoints/">sample-dynamic-endpoints</option>
+    
+    <option value="/samples/hamcrest/">sample-hamcrest</option>
+    
+    <option value="/samples/dictionaries/">sample-dictionaries</option>
+    
+    <option value="/samples/behavior/">sample-behavior</option>
+    
+    <option value="/samples/annotation-config/">sample-annotation-config</option>
+    
+    <option value="/samples/reporting/">sample-reporting</option>
+    
+    <option value="/samples/docker/">sample-docker</option>
+    
+    <option value="/samples/javaconfig/">sample-javaconfig</option>
+    
+    <option value="/samples/rmi/">sample-rmi</option>
+    
+    <option value="/samples/jms/">sample-jms</option>
+    
+    <option value="/samples/mail/">sample-mail</option>
+    
+    <option value="/samples/arquillian/">sample-javaee</option>
+    
+    <option value="/samples/gradle/">sample-gradle</option>
+    
+    <option value="/samples/cucumber/">sample-cucumber</option>
+    
+    <option value="/samples/cucumber-spring/">sample-cucumber-spring</option>
+    
+    <option value="/samples/jdbc/">sample-jdbc</option>
+    
+    <option value="/samples/http-loadtest/">sample-http-loadtest</option>
+    
+    <option value="/samples/https/">sample-https</option>
+    
+    <option value="/samples/http/">sample-http</option>
+    
+    <option value="/samples/json/">sample-json</option>
+    
+    <option value="/samples/databind/">sample-databind</option>
+    
+    <option value="/samples/junit5/">sample-junit5</option>
+    
+    <option value="/samples/junit/">sample-junit</option>
+    
+    <option value="/samples/http-static-response/">sample-http-static-response</option>
+    
+    <option value="/samples/soap-ssl/">sample-soap-ssl</option>
+    
+    <option value="/samples/soap-static-response/">sample-soap-static-response</option>
+    
+    <option value="/samples/soap/">sample-soap</option>
+    
+    <option value="/samples/soap-wssecurity/">sample-soap-wssecurity</option>
+    
+    <option value="/samples/soap-wsaddressing/">sample-soap-wsaddressing</option>
+    
+    <option value="/samples/dataprovider/">sample-dataprovider</option>
+    
+    <option value="/samples/testng/">sample-testng</option>
+    
+    <option value="/samples/xml/">sample-xml</option>
+    
+    <option value="/samples/oxm/">sample-oxm</option>
+    
+    <option value="/samples/xhtml/">sample-xhtml</option>
+    
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+  <h2>
+    Selenium sample
+    <a href="/samples/selenium/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <div class="right">
+    
+    
+    <a href="https://github.com/citrusframework/citrus-samples/blob/master/sample-selenium" target="_blank">
+      <i class="fa fa-pencil"></i> View source code
+    </a>
+    
+  </div>
+  <span class="post-category">
+    <span class="label">
+      samples
+    </span>
+  </span>
+  <div class="post-content">
+    <p>This sample shows how to use Selenium in order to create UI testing with Citrus. Why would somebody combine Citrus with Selenium?
+On the one hand Citrus provides XML and Java fluent API integration for Selenium tasks so you do not need to write Selenium code yourself. 
+Secondly you might want to combine UI testing with Citrus messaging capabilities such as deleting all entries on a Http REST service first and then
+creating a new entry via UI interaction in a browser. Read about this feature in <a href="https://citrusframework.org/reference/html#selenium">reference guide</a></p>
+
+<h2 id="objectives">Objectives</h2>
+
+<p>The <a href="/samples/todo-app/">todo-list</a> sample application provides a REST API for managing todo entries.
+We open the browser and perform some user interaction with the todo app user interface. Besides that we call the Http REST API in order to clean up
+all todo entries up front. The Selenium integration is also used to validate HTML elements and page objects in our test cases.</p>
+
+<p>First of all we add a Selenium browser component as Spring bean.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="n">SeleniumBrowser</span> <span class="nf">browser</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">CitrusEndpoints</span><span class="o">.</span><span class="na">selenium</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">browser</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">type</span><span class="o">(</span><span class="n">BrowserType</span><span class="o">.</span><span class="na">CHROME</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>As you can see the browser component in Citrus is a normal Selenium WebDriver. You can pick the target browser implementation and 
+add web driver configuration as you like.</p>
+
+<p>In addition to that basic browser component we add a normal Http client component for calling the Http REST API on the todo server.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="n">HttpClient</span> <span class="nf">todoClient</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">CitrusEndpoints</span><span class="o">.</span><span class="na">http</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">client</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">requestUrl</span><span class="o">(</span><span class="s">"http://localhost:8080"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Also we can use a new after suite hook in order to close the browser when all tests are finished:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
+<span class="nd">@DependsOn</span><span class="o">(</span><span class="s">"browser"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="n">SequenceAfterSuite</span> <span class="nf">afterSuite</span><span class="o">(</span><span class="n">SeleniumBrowser</span> <span class="n">browser</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nf">TestRunnerAfterSuiteSupport</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterSuite</span><span class="o">(</span><span class="n">TestRunner</span> <span class="n">runner</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">runner</span><span class="o">.</span><span class="na">selenium</span><span class="o">(</span><span class="n">builder</span> <span class="o">-&gt;</span> <span class="n">builder</span><span class="o">.</span><span class="na">browser</span><span class="o">(</span><span class="n">browser</span><span class="o">).</span><span class="na">stop</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">};</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>For demonstration purpose we add a <code class="highlighter-rouge">sleep</code> action in a new after test hook so we see actually what the browser is doing.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="n">SequenceAfterTest</span> <span class="nf">afterTest</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nf">TestRunnerAfterTestSupport</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterTest</span><span class="o">(</span><span class="n">TestRunner</span> <span class="n">runner</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">runner</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">500</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">};</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>In a test case we can now use the Selenium browser component in the Citrus fluent API.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="nd">@CitrusTest</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testAddEntry</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">variable</span><span class="o">(</span><span class="s">"todoName"</span><span class="o">,</span> <span class="s">"todo_citrus:randomNumber(4)"</span><span class="o">);</span>
+    <span class="n">variable</span><span class="o">(</span><span class="s">"todoDescription"</span><span class="o">,</span> <span class="s">"Description: ${todoName}"</span><span class="o">);</span>
+
+    <span class="n">http</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">send</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="s">"/api/todolist"</span><span class="o">);</span>
+
+    <span class="n">http</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">);</span>
+
+    <span class="n">selenium</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">browser</span><span class="o">(</span><span class="n">browser</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">start</span><span class="o">();</span>
+
+    <span class="n">selenium</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">navigate</span><span class="o">(</span><span class="n">todoClient</span><span class="o">.</span><span class="na">getEndpointConfiguration</span><span class="o">().</span><span class="na">getRequestUrl</span><span class="o">()</span> <span class="o">+</span> <span class="s">"/todolist"</span><span class="o">);</span>
+
+    <span class="n">selenium</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">find</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">element</span><span class="o">(</span><span class="n">By</span><span class="o">.</span><span class="na">xpath</span><span class="o">(</span><span class="s">"(//li[@class='list-group-item'])[last()]"</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">"No todos found"</span><span class="o">);</span>
+
+    <span class="n">selenium</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">setInput</span><span class="o">(</span><span class="s">"${todoName}"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">element</span><span class="o">(</span><span class="n">By</span><span class="o">.</span><span class="na">name</span><span class="o">(</span><span class="s">"title"</span><span class="o">));</span>
+
+    <span class="n">selenium</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">setInput</span><span class="o">(</span><span class="s">"${todoDescription}"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">element</span><span class="o">(</span><span class="n">By</span><span class="o">.</span><span class="na">name</span><span class="o">(</span><span class="s">"description"</span><span class="o">));</span>
+
+    <span class="n">selenium</span><span class="o">().</span><span class="na">click</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">element</span><span class="o">(</span><span class="n">By</span><span class="o">.</span><span class="na">tagName</span><span class="o">(</span><span class="s">"button"</span><span class="o">));</span>
+
+    <span class="n">selenium</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">waitUntil</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">element</span><span class="o">(</span><span class="n">By</span><span class="o">.</span><span class="na">xpath</span><span class="o">(</span><span class="s">"(//li[@class='list-group-item']/span)[last()]"</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">timeout</span><span class="o">(</span><span class="mi">2000L</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">visible</span><span class="o">();</span>
+
+    <span class="n">selenium</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">find</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">element</span><span class="o">(</span><span class="n">By</span><span class="o">.</span><span class="na">xpath</span><span class="o">(</span><span class="s">"(//li[@class='list-group-item']/span)[last()]"</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">"${todoName}"</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>We call the <code class="highlighter-rouge">DELETE</code> option on the <code class="highlighter-rouge">/todolist</code> Http resource in order to have an empty todo list that we can operate on. The Selenium
+browser is started and the user navigates to the todo list application. The testcase validates the empty todo list display and fills out the todo HTML form
+with a sample entry. The form is submitted and a final validation checks that the todo entry is added and displayed in the list.</p>
+
+<h2 id="page-objects">Page objects</h2>
+
+<p>Using page objects that represent a application page with its elements and action capabilities is a good practice in UI testing with Selenium.
+Citrus also supports the usage Java POJOs as page objects.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TodoPage</span> <span class="kd">implements</span> <span class="n">WebPage</span><span class="o">,</span> <span class="n">PageValidator</span><span class="o">&lt;</span><span class="n">TodoPage</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="nd">@FindBy</span><span class="o">(</span><span class="n">tagName</span> <span class="o">=</span> <span class="s">"h1"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="n">WebElement</span> <span class="n">heading</span><span class="o">;</span>
+
+    <span class="nd">@FindBy</span><span class="o">(</span><span class="n">tagName</span> <span class="o">=</span> <span class="s">"form"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="n">WebElement</span> <span class="n">newTodoForm</span><span class="o">;</span>
+
+    <span class="nd">@FindBy</span><span class="o">(</span><span class="n">xpath</span> <span class="o">=</span> <span class="s">"(//li[@class='list-group-item'])[last()]"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="n">WebElement</span> <span class="n">lastEntry</span><span class="o">;</span>
+
+    <span class="cm">/**
+     * Submits new entry.
+     * @param title
+     * @param description
+     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">submit</span><span class="o">(</span><span class="n">String</span> <span class="n">title</span><span class="o">,</span> <span class="n">String</span> <span class="n">description</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">newTodoForm</span><span class="o">.</span><span class="na">findElement</span><span class="o">(</span><span class="n">By</span><span class="o">.</span><span class="na">id</span><span class="o">(</span><span class="s">"title"</span><span class="o">)).</span><span class="na">sendKeys</span><span class="o">(</span><span class="n">title</span><span class="o">);</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">StringUtils</span><span class="o">.</span><span class="na">hasText</span><span class="o">(</span><span class="n">description</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">newTodoForm</span><span class="o">.</span><span class="na">findElement</span><span class="o">(</span><span class="n">By</span><span class="o">.</span><span class="na">id</span><span class="o">(</span><span class="s">"description"</span><span class="o">)).</span><span class="na">sendKeys</span><span class="o">(</span><span class="n">description</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="n">newTodoForm</span><span class="o">.</span><span class="na">submit</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">validate</span><span class="o">(</span><span class="n">TodoPage</span> <span class="n">webPage</span><span class="o">,</span> <span class="n">SeleniumBrowser</span> <span class="n">browser</span><span class="o">,</span> <span class="n">TestContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Assert</span><span class="o">.</span><span class="na">assertEquals</span><span class="o">(</span><span class="n">heading</span><span class="o">.</span><span class="na">getText</span><span class="o">(),</span> <span class="s">"TODO list"</span><span class="o">);</span>
+        <span class="n">Assert</span><span class="o">.</span><span class="na">assertEquals</span><span class="o">(</span><span class="n">lastEntry</span><span class="o">.</span><span class="na">getText</span><span class="o">(),</span> <span class="s">"No todos found"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The page object listed above represents the todo list page with its elements and actions such as <code class="highlighter-rouge">submit</code>. The page also implements the
+<code class="highlighter-rouge">PageValidator</code> interface adding validation methods for checking that the rendered page is as expected.</p>
+
+<p>In a test case we can use this page objects for user interaction and validation:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="nd">@CitrusTest</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testAddEntry</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">variable</span><span class="o">(</span><span class="s">"todoName"</span><span class="o">,</span> <span class="s">"todo_citrus:randomNumber(4)"</span><span class="o">);</span>
+    <span class="n">variable</span><span class="o">(</span><span class="s">"todoDescription"</span><span class="o">,</span> <span class="s">"Description: ${todoName}"</span><span class="o">);</span>
+
+    <span class="o">[...]</span>
+
+    <span class="n">TodoPage</span> <span class="n">todoPage</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TodoPage</span><span class="o">();</span>
+
+    <span class="n">selenium</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">page</span><span class="o">(</span><span class="n">todoPage</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">validate</span><span class="o">();</span>
+
+    <span class="n">selenium</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">page</span><span class="o">(</span><span class="n">todoPage</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">argument</span><span class="o">(</span><span class="s">"${todoName}"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">argument</span><span class="o">(</span><span class="s">"${todoDescription}"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">execute</span><span class="o">(</span><span class="s">"submit"</span><span class="o">);</span>
+
+    <span class="o">[...]</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="run">Run</h2>
+
+<p>You can execute some sample Citrus test cases in this sample in order to write the reports.
+Open a separate command line terminal and navigate to the sample folder.</p>
+
+<p>Execute all Citrus tests by calling</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> mvn integration-test
+</code></pre></div></div>
+
+<p>You should see Citrus performing several tests with lots of debugging output. 
+And of course green tests at the very end of the build and some new reporting files in <code class="highlighter-rouge">target/citrus-reports</code> folder.</p>
+
+<p>Of course you can also start the Citrus tests from your favorite IDE.
+Just start the Citrus test using the TestNG IDE integration in IntelliJ, Eclipse or Netbeans.</p>
+
+
+  </div>
+</article>
+
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <h4>Common</h4>
+    <ul>
+      <li class="">
+        <a href="/samples/">Overview</a>
+      </li>
+      <li class="">
+        <a href="/samples/todo-app">Sample application</a>
+      </li>
+      <li class="">
+        <a href="/samples/run">Running</a>
+      </li>
+    </ul>
+    <h4>Samples</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+
+      
+      
+      <li class="current">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/binary/">sample-binary</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/message-store/">sample-message-store</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-context/">sample-camel-context</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dynamic-endpoints/">sample-dynamic-endpoints</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/hamcrest/">sample-hamcrest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dictionaries/">sample-dictionaries</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/behavior/">sample-behavior</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/annotation-config/">sample-annotation-config</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/reporting/">sample-reporting</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/docker/">sample-docker</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/javaconfig/">sample-javaconfig</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/rmi/">sample-rmi</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jms/">sample-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/mail/">sample-mail</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/arquillian/">sample-javaee</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/gradle/">sample-gradle</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Cucumber</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/cucumber/">sample-cucumber</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/cucumber-spring/">sample-cucumber-spring</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Db</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/jdbc/">sample-jdbc</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Http</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/http-loadtest/">sample-http-loadtest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/https/">sample-https</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http/">sample-http</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Json</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/json/">sample-json</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/databind/">sample-databind</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Junit</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/junit5/">sample-junit5</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/junit/">sample-junit</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Soap</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/http-static-response/">sample-http-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-ssl/">sample-soap-ssl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-static-response/">sample-soap-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap/">sample-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-wssecurity/">sample-soap-wssecurity</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-wsaddressing/">sample-soap-wsaddressing</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Testng</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/dataprovider/">sample-dataprovider</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/testng/">sample-testng</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Xml</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/xml/">sample-xml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/oxm/">sample-oxm</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xhtml/">sample-xhtml</a>
+      </li>
+      
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/citrusframework/citrus/blob/master/LICENSE">MIT License</a>.</p>
+      <br>
+      <p>© 2018 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p> </p>
+      <br>
+      <br>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>

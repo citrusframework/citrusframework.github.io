@@ -95,6 +95,8 @@
     <option value="/samples/run/">Running</option>
     
     
+    <option value="/samples/selenium/">sample-selenium</option>
+    
     <option value="/samples/binary/">sample-binary</option>
     
     <option value="/samples/message-store/">sample-message-store</option>
@@ -194,15 +196,14 @@
   </span>
   <div class="post-content">
     <p>This sample deals with customized reporting features in Citrus. The sample writes extent Html reports using custom test listeners that report
-test success and failure in that special way. Also the default Html reporting in Citrus is customized using application properties. 
-Read about this feature in <a href="http://www.citrusframework.org/reference/html/index.html#reporting-and-test-results">reference guide</a></p>
+test success and failure in that special way. Also the default Html reporting in Citrus is customized using application properties. Read about this feature in <a href="https://citrusframework.org/reference/html#reporting-and-test-results">reference guide</a></p>
 
 <h2 id="objectives">Objectives</h2>
 
 <p>Citrus as a framework gives us extension points to add customized test reporting. The framework provides listener and reporting interfaces for that.
 We want to write custom Html reports using the <a href="http://extentreports.com/">Extent</a> reporting framework. We simply implement a custom reporting class that generates the Extent reports.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExtentReporter</span> <span class="kd">extends</span> <span class="n">AbstractTestListener</span> <span class="kd">implements</span> <span class="n">TestReporter</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExtentReporter</span> <span class="kd">extends</span> <span class="n">AbstractTestListener</span> <span class="kd">implements</span> <span class="n">TestReporter</span> <span class="o">{</span>
 
     <span class="kd">private</span> <span class="n">ExtentHtmlReporter</span> <span class="n">extentHtmlReporter</span><span class="o">;</span>
     <span class="kd">private</span> <span class="n">ExtentReports</span> <span class="n">extentReports</span><span class="o">;</span>
@@ -229,29 +230,30 @@ We want to write custom Html reports using the <a href="http://extentreports.com
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">generateTestResults</span><span class="o">()</span> <span class="o">{</span>
         <span class="n">extentReports</span><span class="o">.</span><span class="na">flush</span><span class="o">();</span>
     <span class="o">}</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
-<p>You can review the complete custom reporter on this sample’s <a href="https://github.com/citrusframework/citrus-samples/tree/master/sample-reporting/src/test/java/com/consol/citrus/samples/todolist/reporting/ExtentReporter.java">github repository</a>.</p>
+<p>You can review the complete custom reporter on this sample’s <a href="src/test/java/com/consol/citrus/samples/todolist/reporting/ExtentReporter.java">github repository</a>.</p>
 
 <p>We add the new reporter implementation as Spring bean to the application context.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java">    
-<span class="nd">@Bean</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">ExtentReporter</span> <span class="nf">extentReporter</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">return</span> <span class="k">new</span> <span class="nf">ExtentReporter</span><span class="o">();</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>    
+</code></pre></div></div>
 
 <p>That completes the reporting extension. Citrus will automatically see the new bean and add it to the list of reporters. The reporter is called when tests pass and fail. 
 As a result the reporter writes Extent styled Html reports to the folder <code class="highlighter-rouge">target/citrus-reports/extent-reports.html</code> when Citrus tests are executed.</p>
 
 <p>In addition to that Citrus provides some default Html reporting that is also customizable. We can use application properties to customize the report. Lets add a new application
-property file to the sample sources in <a href="https://github.com/citrusframework/citrus-samples/tree/master/sample-reporting/src/test/resources/citrus-application.properties">resources/citrus-application.properties</a>.</p>
+property file to the sample sources in <a href="src/test/resources/citrus-application.properties">resources/citrus-application.properties</a>.</p>
 
 <p>The file contains some property settings that customize the default Citrus Html reporting.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>citrus.html.report.directory=target/citrus-reports
-citrus.html.report.file=citrus-reports.html
-citrus.html.report.logo:classpath:logo/reporting-logo.png
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">citrus.html.report.directory</span><span class="p">=</span><span class="s">target/citrus-reports</span>
+<span class="py">citrus.html.report.file</span><span class="p">=</span><span class="s">citrus-reports.html</span>
+<span class="py">citrus.html.report.logo</span><span class="p">:</span><span class="s">classpath:logo/reporting-logo.png</span>
 </code></pre></div></div>
 
 <p>The tests now write default Html reports to the file <code class="highlighter-rouge">target/citrus-reports/citrus-reports.html</code>. Also we use a custom reporting logo that is automatically added to the reporting page header. 
@@ -272,6 +274,7 @@ And of course green tests at the very end of the build and some new reporting fi
 
 <p>Of course you can also start the Citrus tests from your favorite IDE.
 Just start the Citrus test using the TestNG IDE integration in IntelliJ, Eclipse or Netbeans.</p>
+
 
   </div>
 </article>
@@ -297,6 +300,11 @@ Just start the Citrus test using the TestNG IDE integration in IntelliJ, Eclipse
       
       
 
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
       
       
       <li class="">

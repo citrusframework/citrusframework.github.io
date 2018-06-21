@@ -95,6 +95,8 @@
     <option value="/samples/run/">Running</option>
     
     
+    <option value="/samples/selenium/">sample-selenium</option>
+    
     <option value="/samples/binary/">sample-binary</option>
     
     <option value="/samples/message-store/">sample-message-store</option>
@@ -193,7 +195,7 @@
     </span>
   </span>
   <div class="post-content">
-    <p>This sample demonstrates how Citrus is able to interact with Apache Camel. Read more about this in <a href="http://www.citrusframework.org/reference/html/#camel">reference guide</a></p>
+    <p>This sample demonstrates how Citrus is able to interact with Apache Camel. Read more about this in <a href="https://citrusframework.org/reference/html#camel">reference guide</a></p>
 
 <h2 id="objectives">Objectives</h2>
 
@@ -203,21 +205,20 @@ You can also simulate the Camel route endpoint with receiving messages and provi
 
 <p>So we need a Camel route to test.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// Apache Camel context with route to test</span>
-<span class="nd">@Bean</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">CamelContext</span> <span class="nf">camelContext</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
     <span class="n">SpringCamelContext</span> <span class="n">context</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SpringCamelContext</span><span class="o">();</span>
     <span class="n">context</span><span class="o">.</span><span class="na">addRouteDefinition</span><span class="o">(</span><span class="k">new</span> <span class="n">RouteDefinition</span><span class="o">().</span><span class="na">from</span><span class="o">(</span><span class="s">"jms:queue:JMS.Queue.News"</span><span class="o">)</span>
                                                 <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"log:com.consol.citrus.camel?level=INFO"</span><span class="o">)</span>
                                                 <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"spring-ws:http://localhost:18009?soapAction=newsFeed"</span><span class="o">));</span>
     <span class="k">return</span> <span class="n">context</span><span class="o">;</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>The Camel route reads from a JMS queue and forwards the message to a SOAP web service endpoint. In a test scenario we need to send messages to the JMS destination and wait for messages on
 the SOAP server endpoint. Lets add configuration for this in Citrus:</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// JMS endpoint</span>
-<span class="nd">@Bean</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">JmsEndpoint</span> <span class="nf">newsJmsEndpoint</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">return</span> <span class="n">CitrusEndpoints</span><span class="o">.</span><span class="na">jms</span><span class="o">()</span>
             <span class="o">.</span><span class="na">asynchronous</span><span class="o">()</span>
@@ -227,7 +228,6 @@ the SOAP server endpoint. Lets add configuration for this in Citrus:</p>
             <span class="o">.</span><span class="na">build</span><span class="o">();</span>
 <span class="o">}</span>
 
-<span class="c1">// SOAP WebService server</span>
 <span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">WebServiceServer</span> <span class="nf">newsServer</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">return</span> <span class="n">CitrusEndpoints</span><span class="o">.</span><span class="na">soap</span><span class="o">()</span>
@@ -236,30 +236,32 @@ the SOAP server endpoint. Lets add configuration for this in Citrus:</p>
             <span class="o">.</span><span class="na">timeout</span><span class="o">(</span><span class="mi">10000</span><span class="o">)</span>
             <span class="o">.</span><span class="na">port</span><span class="o">(</span><span class="mi">18009</span><span class="o">)</span>
             <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>The components above are used in a Citrus test case.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">NewsFeedIT</span> <span class="kd">extends</span> <span class="n">TestNGCitrusTestDesigner</span> <span class="o">{</span>
 
     <span class="nd">@CitrusTest</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"NewsFeed_Ok_IT"</span><span class="o">)</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">newsFeed_Ok_Test</span><span class="o">()</span> <span class="o">{</span>
         <span class="n">send</span><span class="o">(</span><span class="s">"newsJmsEndpoint"</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"&lt;nf:News xmlns:nf=\"https://citrusframework.org/schemas/samples/news\"&gt;"</span> <span class="o">+</span>
+                <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"&lt;nf:News xmlns:nf=\"http://citrusframework.org/schemas/samples/news\"&gt;"</span> <span class="o">+</span>
                             <span class="s">"&lt;nf:Message&gt;Citrus rocks!&lt;/nf:Message&gt;"</span> <span class="o">+</span>
                         <span class="s">"&lt;/nf:News&gt;"</span><span class="o">);</span>
 
-        <span class="n">receive</span><span class="o">(</span><span class="s">"newsSoapServer"</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"&lt;nf:News xmlns:nf=\"https://citrusframework.org/schemas/samples/news\"&gt;"</span> <span class="o">+</span>
+        <span class="n">receive</span><span class="o">(</span><span class="s">"newsServer"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"&lt;nf:News xmlns:nf=\"http://citrusframework.org/schemas/samples/news\"&gt;"</span> <span class="o">+</span>
                             <span class="s">"&lt;nf:Message&gt;Citrus rocks!&lt;/nf:Message&gt;"</span> <span class="o">+</span>
                         <span class="s">"&lt;/nf:News&gt;"</span><span class="o">)</span>
                 <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">SoapMessageHeaders</span><span class="o">.</span><span class="na">SOAP_ACTION</span><span class="o">,</span> <span class="s">"newsFeed"</span><span class="o">);</span>
 
-        <span class="n">send</span><span class="o">(</span><span class="s">"newsSoapServer"</span><span class="o">)</span>
+        <span class="n">send</span><span class="o">(</span><span class="s">"newsServer"</span><span class="o">)</span>
                 <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">SoapMessageHeaders</span><span class="o">.</span><span class="na">HTTP_STATUS_CODE</span><span class="o">,</span> <span class="s">"200"</span><span class="o">);</span>
     <span class="o">}</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>As you can see Citrus is both JMS message producer and SOAP server at the same time in a single test. The Apache Camel route in the middle will read the JMS message and forward it to the SOAP
 server endpoint where Citrus receives the message for validation purpose. This way we make sure the Camel route is working as expected.</p>
@@ -294,6 +296,7 @@ And of course green tests at the very end of the build.</p>
 <p>Of course you can also start the Citrus tests from your favorite IDE.
 Just start the Citrus test using the TestNG IDE integration in IntelliJ, Eclipse or Netbeans.</p>
 
+
   </div>
 </article>
 
@@ -318,6 +321,11 @@ Just start the Citrus test using the TestNG IDE integration in IntelliJ, Eclipse
       
       
 
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
       
       
       <li class="">

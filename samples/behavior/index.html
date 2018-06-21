@@ -95,6 +95,8 @@
     <option value="/samples/run/">Running</option>
     
     
+    <option value="/samples/selenium/">sample-selenium</option>
+    
     <option value="/samples/binary/">sample-binary</option>
     
     <option value="/samples/message-store/">sample-message-store</option>
@@ -194,7 +196,7 @@
   </span>
   <div class="post-content">
     <p>This sample the usage of Citrus test behaviors when sending and receiving messages to the todo sample
-application. Read about test behaviors in <a href="http://www.citrusframework.org/reference/html/index.html#java-dsl-test-behaviors">reference guide</a></p>
+application. Read about test behaviors in <a href="https://citrusframework.org/reference/html#java-dsl-test-behaviors">reference guide</a></p>
 
 <h2 id="objectives">Objectives</h2>
 
@@ -204,7 +206,7 @@ We call this API and receive Json message structures for validation in our test 
 <p>This time we want to reuse specific message exchange logic by using test behaviors in our tests. The test behavior is a
 class that provides a set of test actions for reuse in other test cases. A typical test behavior looks like this:</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloBehavior</span> <span class="kd">extends</span> <span class="n">AbstractTestBehavior</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloBehavior</span> <span class="kd">extends</span> <span class="n">AbstractTestBehavior</span> <span class="o">{</span>
     <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
 
     <span class="kd">public</span> <span class="nf">HelloBehavior</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
@@ -215,23 +217,25 @@ class that provides a set of test actions for reuse in other test cases. A typic
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">apply</span><span class="o">()</span> <span class="o">{</span>
         <span class="n">echo</span><span class="o">(</span><span class="s">"Hello "</span> <span class="o">+</span> <span class="n">name</span><span class="o">);</span>
     <span class="o">}</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>The behavior extends <code class="highlighter-rouge">AbstractTestBehavior</code> and defines its logic in the apply method where you can use all Citrus Java fluent API methods as you would do in a normal test.
 The behavior is then applied in your test as follows:</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
 <span class="nd">@CitrusTest</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testHelloBehavior</span><span class="o">()</span> <span class="o">{</span>
     <span class="n">applyBehavior</span><span class="o">(</span><span class="k">new</span> <span class="n">HelloBehavior</span><span class="o">(</span><span class="s">"Howard"</span><span class="o">));</span>
     <span class="n">applyBehavior</span><span class="o">(</span><span class="k">new</span> <span class="n">HelloBehavior</span><span class="o">(</span><span class="s">"Leonard"</span><span class="o">));</span>
     <span class="n">applyBehavior</span><span class="o">(</span><span class="k">new</span> <span class="n">HelloBehavior</span><span class="o">(</span><span class="s">"Penny"</span><span class="o">));</span>
-<span class="o">}</span>   </code></pre></figure>
+<span class="o">}</span>   
+</code></pre></div></div>
 
 <p>The sample above applies the behavior in the test multiple times with different names. The result will be multiple echo test actions that print out the messages to the console logging.
 Now we can use behaviors in order to add new todo entries via Http POST request.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">AddTodoBehavior</span> <span class="kd">extends</span> <span class="n">AbstractTestBehavior</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">AddTodoBehavior</span> <span class="kd">extends</span> <span class="n">AbstractTestBehavior</span> <span class="o">{</span>
 
     <span class="kd">private</span> <span class="n">String</span> <span class="n">payloadData</span><span class="o">;</span>
     <span class="kd">private</span> <span class="n">Resource</span> <span class="n">resource</span><span class="o">;</span>
@@ -241,9 +245,9 @@ Now we can use behaviors in order to add new todo entries via Http POST request.
         <span class="n">HttpClientRequestActionBuilder</span> <span class="n">request</span> <span class="o">=</span> <span class="n">http</span><span class="o">()</span>
             <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
             <span class="o">.</span><span class="na">send</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/todolist"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/api/todolist"</span><span class="o">)</span>
             <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">JSON</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="s">"application/json"</span><span class="o">);</span>
+            <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="n">ContentType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">.</span><span class="na">getMimeType</span><span class="o">());</span>
 
         <span class="k">if</span> <span class="o">(</span><span class="n">StringUtils</span><span class="o">.</span><span class="na">hasText</span><span class="o">(</span><span class="n">payloadData</span><span class="o">))</span> <span class="o">{</span>
             <span class="n">request</span><span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="n">payloadData</span><span class="o">);</span>
@@ -268,11 +272,12 @@ Now we can use behaviors in order to add new todo entries via Http POST request.
         <span class="k">this</span><span class="o">.</span><span class="na">resource</span> <span class="o">=</span> <span class="n">resource</span><span class="o">;</span>
         <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
     <span class="o">}</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>As you can see the behavior provides support for Json payload inline data as well as file resource payloads. You can use the behavior in test then as follows:</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
 <span class="nd">@CitrusTest</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testJsonPayloadValidation</span><span class="o">()</span> <span class="o">{</span>
     <span class="n">variable</span><span class="o">(</span><span class="s">"todoId"</span><span class="o">,</span> <span class="s">"citrus:randomUUID()"</span><span class="o">);</span>
@@ -285,11 +290,12 @@ Now we can use behaviors in order to add new todo entries via Http POST request.
     
     <span class="n">applyBehavior</span><span class="o">(</span><span class="k">new</span> <span class="n">AddTodoBehavior</span><span class="o">()</span>
                         <span class="o">.</span><span class="na">withResource</span><span class="o">(</span><span class="k">new</span> <span class="n">ClassPathResource</span><span class="o">(</span><span class="s">"templates/todo.json"</span><span class="o">)));</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>The behavior is reused multiple times with different payload input. Now we can add more behaviors for getting todo entries via Http GET requests.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">GetTodoBehavior</span> <span class="kd">extends</span> <span class="n">AbstractTestBehavior</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">GetTodoBehavior</span> <span class="kd">extends</span> <span class="n">AbstractTestBehavior</span> <span class="o">{</span>
 
     <span class="kd">private</span> <span class="n">String</span> <span class="n">payloadData</span><span class="o">;</span>
     <span class="kd">private</span> <span class="n">Resource</span> <span class="n">resource</span><span class="o">;</span>
@@ -301,8 +307,8 @@ Now we can use behaviors in order to add new todo entries via Http POST request.
         <span class="n">http</span><span class="o">()</span>
             <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
             <span class="o">.</span><span class="na">send</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"/todo/${todoId}"</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="s">"application/json"</span><span class="o">);</span>
+            <span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"/api/todo/${todoId}"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">ContentType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">.</span><span class="na">getMimeType</span><span class="o">());</span>
 
         <span class="n">HttpClientResponseActionBuilder</span> <span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="o">()</span>
             <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
@@ -333,15 +339,17 @@ Now we can use behaviors in order to add new todo entries via Http POST request.
         <span class="n">validateExpressions</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">expression</span><span class="o">,</span> <span class="n">expected</span><span class="o">);</span>
         <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
     <span class="o">}</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>This time the behavior provides different approaches how to validate the todo entry that was sent as a Json response payload. We can use payload inline data, file resource and JsonPath expressions:</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">applyBehavior</span><span class="o">(</span><span class="k">new</span> <span class="n">GetTodoBehavior</span><span class="o">()</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">applyBehavior</span><span class="o">(</span><span class="k">new</span> <span class="n">GetTodoBehavior</span><span class="o">()</span>
                     <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"$.id"</span><span class="o">,</span> <span class="s">"${todoId}"</span><span class="o">)</span>
                     <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"$.title"</span><span class="o">,</span> <span class="s">"${todoName}"</span><span class="o">)</span>
                     <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"$.description"</span><span class="o">,</span> <span class="s">"${todoDescription}"</span><span class="o">)</span>
-                    <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"$.done"</span><span class="o">,</span> <span class="kc">false</span><span class="o">));</span>   </code></pre></figure>
+                    <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"$.done"</span><span class="o">,</span> <span class="kc">false</span><span class="o">));</span>   
+</code></pre></div></div>
 
 <p>This completes the usage of test behaviors in Citrus. This is a great way to centralize common tasks in your project to reusable pieces of Citrus Java DSL code.</p>
 
@@ -360,6 +368,7 @@ And of course green tests at the very end of the build and some new reporting fi
 
 <p>Of course you can also start the Citrus tests from your favorite IDE.
 Just start the Citrus test using the TestNG IDE integration in IntelliJ, Eclipse or Netbeans.</p>
+
 
   </div>
 </article>
@@ -385,6 +394,11 @@ Just start the Citrus test using the TestNG IDE integration in IntelliJ, Eclipse
       
       
 
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
       
       
       <li class="">

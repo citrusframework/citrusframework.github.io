@@ -95,6 +95,8 @@
     <option value="/samples/run/">Running</option>
     
     
+    <option value="/samples/selenium/">sample-selenium</option>
+    
     <option value="/samples/binary/">sample-binary</option>
     
     <option value="/samples/message-store/">sample-message-store</option>
@@ -194,7 +196,7 @@
   </span>
   <div class="post-content">
     <p>This sample uses XHTML validation features to verify HTML response from a web container. This feature is
-also described in detail in <a href="http://www.citrusframework.org/reference/html/#validation-xhtml">reference guide</a></p>
+also described in detail in <a href="https://citrusframework.org/reference/html#validation-xhtml">reference guide</a></p>
 
 <h2 id="objectives">Objectives</h2>
 
@@ -205,20 +207,22 @@ XHTML so XPath expressions can be evaluated accordingly.</p>
 <p>The sample tests show how to use this feature. First we define a global namespace for XHTML in
 configuration.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">NamespaceContextBuilder</span> <span class="nf">namespaceContextBuilder</span><span class="o">()</span> <span class="o">{</span>
     <span class="n">NamespaceContextBuilder</span> <span class="n">namespaceContextBuilder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NamespaceContextBuilder</span><span class="o">();</span>
     <span class="n">namespaceContextBuilder</span><span class="o">.</span><span class="na">setNamespaceMappings</span><span class="o">(</span><span class="n">Collections</span><span class="o">.</span><span class="na">singletonMap</span><span class="o">(</span><span class="s">"xh"</span><span class="o">,</span> <span class="s">"http://www.w3.org/1999/xhtml"</span><span class="o">));</span>
     <span class="k">return</span> <span class="n">namespaceContextBuilder</span><span class="o">;</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>Now we can use the XHTML validation feature in the Citrus test.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">http</span><span class="o">()</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">()</span>
     <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
     <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">)</span>
     <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">XHTML</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">xpath</span><span class="o">(</span><span class="s">"(//xh:li[@class='list-group-item'])[last()]"</span><span class="o">,</span> <span class="s">"${todoName}"</span><span class="o">);</span></code></pre></figure>
+    <span class="o">.</span><span class="na">xpath</span><span class="o">(</span><span class="s">"(//xh:li[@class='list-group-item']/xh:span)[last()]"</span><span class="o">,</span> <span class="s">"${todoName}"</span><span class="o">);</span>
+</code></pre></div></div>
 
 <p>In a Http client response we can set the message type to XHTML. Citrus automatically converts the HTML response to
 XHTML so we can use XPath to validation the HTML content.</p>
@@ -228,6 +232,7 @@ XHTML so we can use XPath to validation the HTML content.</p>
 <h2 id="run">Run</h2>
 
 <p>You can run the sample on your localhost in order to see Citrus in action. Read the instructions <a href="/samples/run/">how to run</a> the sample.</p>
+
 
   </div>
 </article>
@@ -253,6 +258,11 @@ XHTML so we can use XPath to validation the HTML content.</p>
       
       
 
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
       
       
       <li class="">

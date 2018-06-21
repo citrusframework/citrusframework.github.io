@@ -95,6 +95,8 @@
     <option value="/samples/run/">Running</option>
     
     
+    <option value="/samples/selenium/">sample-selenium</option>
+    
     <option value="/samples/binary/">sample-binary</option>
     
     <option value="/samples/message-store/">sample-message-store</option>
@@ -193,7 +195,7 @@
     </span>
   </span>
   <div class="post-content">
-    <p>This sample shows how to use Hamcrest matcher in validation steps. Read about this feature in <a href="http://www.citrusframework.org/reference/html/index.html#validate-with-jsonpath">reference guide</a></p>
+    <p>This sample shows how to use Hamcrest matcher in validation steps. Read about this feature in <a href="https://citrusframework.org/reference/html#validate-with-jsonpath">reference guide</a></p>
 
 <h2 id="objectives">Objectives</h2>
 
@@ -202,7 +204,7 @@ We call this API and receive Json message structures for validation in our test 
 
 <p>This time the validation is done using Hamcrest matcher implementations in combination with JsonPath expression evaluation.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">http</span><span class="o">()</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">()</span>
     <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
     <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
     <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">)</span>
@@ -211,14 +213,15 @@ We call this API and receive Json message structures for validation in our test 
     <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"$.id"</span><span class="o">,</span> <span class="n">equalTo</span><span class="o">(</span><span class="n">todoId</span><span class="o">))</span>
     <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"$.title"</span><span class="o">,</span> <span class="n">allOf</span><span class="o">(</span><span class="n">startsWith</span><span class="o">(</span><span class="s">"todo_"</span><span class="o">),</span> <span class="n">endsWith</span><span class="o">(</span><span class="n">todoId</span><span class="o">)))</span>
     <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"$.description"</span><span class="o">,</span> <span class="n">anyOf</span><span class="o">(</span><span class="n">startsWith</span><span class="o">(</span><span class="s">"Description:"</span><span class="o">),</span> <span class="n">nullValue</span><span class="o">()))</span>
-    <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"$.done"</span><span class="o">,</span> <span class="n">not</span><span class="o">(</span><span class="kc">true</span><span class="o">));</span></code></pre></figure>
+    <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"$.done"</span><span class="o">,</span> <span class="n">not</span><span class="o">(</span><span class="kc">true</span><span class="o">));</span>
+</code></pre></div></div>
 
 <p>As you can see we are able to provide Hamcrest matcher instances as expected JsonPath value. The hamcrest matcher is evaluated with the
 JsonPath expression result. This way we can construct more complex validations on JsonPath expressions.</p>
 
 <p>Also we can use Hamcrest matcher as condition evaluation when using iterable containers in Citrus:</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
 <span class="nd">@CitrusTest</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testHamcrestCondition</span><span class="o">()</span> <span class="o">{</span>
     <span class="n">iterate</span><span class="o">()</span>
@@ -230,9 +233,9 @@ JsonPath expression result. This way we can construct more complex validations o
             <span class="n">http</span><span class="o">()</span>
                 <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
                 <span class="o">.</span><span class="na">send</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/todolist"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/api/todolist"</span><span class="o">)</span>
                 <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">JSON</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="s">"application/json"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="n">ContentType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">.</span><span class="na">getMimeType</span><span class="o">())</span>
                 <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"{ \"id\": \"${todoId}\", \"title\": \"${todoName}\", \"description\": \"${todoDescription}\", \"done\": false}"</span><span class="o">),</span>
 
             <span class="n">http</span><span class="o">()</span>
@@ -242,7 +245,8 @@ JsonPath expression result. This way we can construct more complex validations o
                 <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">PLAINTEXT</span><span class="o">)</span>
                 <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"${todoId}"</span><span class="o">)</span>
     <span class="o">);</span>
-<span class="o">}</span></code></pre></figure>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>The iteration condition uses the <code class="highlighter-rouge">lessThanOrEqualTo</code> Hamcrest matcher in order to evaluate the end of the iteration loop. This time we choose to execute the nested test 
 action sequence five times.</p>
@@ -262,6 +266,7 @@ And of course green tests at the very end of the build and some new reporting fi
 
 <p>Of course you can also start the Citrus tests from your favorite IDE.
 Just start the Citrus test using the TestNG IDE integration in IntelliJ, Eclipse or Netbeans.</p>
+
 
   </div>
 </article>
@@ -287,6 +292,11 @@ Just start the Citrus test using the TestNG IDE integration in IntelliJ, Eclipse
       
       
 
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
       
       
       <li class="">
