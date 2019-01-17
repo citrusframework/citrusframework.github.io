@@ -247,14 +247,14 @@ with Citrus Docker client integration we can check and manipulate the todo-app D
     <span class="nt">&lt;images&gt;</span>
       <span class="nt">&lt;image&gt;</span>
         <span class="nt">&lt;alias&gt;</span>todo-app<span class="nt">&lt;/alias&gt;</span>
-        <span class="nt">&lt;name&gt;</span>citrus/todo-app:1.0.8<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;name&gt;</span>citrus/todo-app:1.0.9<span class="nt">&lt;/name&gt;</span>
         <span class="nt">&lt;build&gt;</span>
           <span class="nt">&lt;from&gt;</span>fabric8/tomcat-8:latest<span class="nt">&lt;/from&gt;</span>
           <span class="nt">&lt;assembly&gt;</span>
             <span class="nt">&lt;inline&gt;</span>
               <span class="nt">&lt;files&gt;</span>
                 <span class="nt">&lt;file&gt;</span>
-                  <span class="nt">&lt;source&gt;</span>/home/sven/.m2/repository/com/consol/citrus/samples/citrus-sample-todo/1.0.8/citrus-sample-todo-1.0.8.war<span class="nt">&lt;/source&gt;</span>
+                  <span class="nt">&lt;source&gt;</span>/home/sven/.m2/repository/com/consol/citrus/samples/citrus-sample-todo/1.0.9/citrus-sample-todo-1.0.9.war<span class="nt">&lt;/source&gt;</span>
                   <span class="nt">&lt;destName&gt;</span>ROOT.war<span class="nt">&lt;/destName&gt;</span>
                   <span class="nt">&lt;outputDirectory&gt;</span>.<span class="nt">&lt;/outputDirectory&gt;</span>
                 <span class="nt">&lt;/file&gt;</span>
@@ -287,7 +287,7 @@ with Citrus Docker client integration we can check and manipulate the todo-app D
       <span class="nt">&lt;/image&gt;</span>
       <span class="nt">&lt;image&gt;</span>
         <span class="nt">&lt;alias&gt;</span>todo-app-tests<span class="nt">&lt;/alias&gt;</span>
-        <span class="nt">&lt;name&gt;</span>citrus/todo-app-tests:1.0.8<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;name&gt;</span>citrus/todo-app-tests:1.0.9<span class="nt">&lt;/name&gt;</span>
         <span class="nt">&lt;build&gt;</span>
           <span class="nt">&lt;from&gt;</span>maven:3.5.0-jdk-8<span class="nt">&lt;/from&gt;</span>
           <span class="nt">&lt;assembly&gt;</span>
@@ -334,7 +334,7 @@ with Citrus Docker client integration we can check and manipulate the todo-app D
     <span class="nt">&lt;inline&gt;</span>
       <span class="nt">&lt;files&gt;</span>
         <span class="nt">&lt;file&gt;</span>
-          <span class="nt">&lt;source&gt;</span>/home/sven/.m2/repository/com/consol/citrus/samples/citrus-sample-todo/1.0.8/citrus-sample-todo-1.0.8.war<span class="nt">&lt;/source&gt;</span>
+          <span class="nt">&lt;source&gt;</span>/home/sven/.m2/repository/com/consol/citrus/samples/citrus-sample-todo/1.0.9/citrus-sample-todo-1.0.9.war<span class="nt">&lt;/source&gt;</span>
           <span class="nt">&lt;destName&gt;</span>ROOT.war<span class="nt">&lt;/destName&gt;</span>
           <span class="nt">&lt;outputDirectory&gt;</span>.<span class="nt">&lt;/outputDirectory&gt;</span>
         <span class="nt">&lt;/file&gt;</span>
@@ -382,7 +382,7 @@ citrus/todo-app         latest              b7f03a0e751b        5 seconds ago   
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;image&gt;</span>
     <span class="nt">&lt;alias&gt;</span>todo-app<span class="nt">&lt;/alias&gt;</span>
-    <span class="nt">&lt;name&gt;</span>citrus/todo-app:1.0.8<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;name&gt;</span>citrus/todo-app:1.0.9<span class="nt">&lt;/name&gt;</span>
     <span class="nt">&lt;run&gt;</span>
       <span class="nt">&lt;namingStrategy&gt;</span>alias<span class="nt">&lt;/namingStrategy&gt;</span>
       <span class="nt">&lt;env&gt;</span>
@@ -413,7 +413,7 @@ started and Tomcat is ready we can start the Citrus test container.</p>
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;image&gt;</span>
   <span class="nt">&lt;alias&gt;</span>todo-app-tests<span class="nt">&lt;/alias&gt;</span>
-  <span class="nt">&lt;name&gt;</span>citrus/todo-app-tests:1.0.8<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;name&gt;</span>citrus/todo-app-tests:1.0.9<span class="nt">&lt;/name&gt;</span>
   <span class="nt">&lt;run&gt;</span>
     <span class="nt">&lt;namingStrategy&gt;</span>alias<span class="nt">&lt;/namingStrategy&gt;</span>
     <span class="nt">&lt;volumes&gt;</span>
@@ -926,7 +926,7 @@ in case a Citrus test failed we get a failed build. This Maven build is perfectl
       <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
       <p>This website is licensed under <br><a href="https://github.com/citrusframework/citrus/blob/master/LICENSE">MIT License</a>.</p>
       <br>
-      <p>© 2018 ConSol Software GmbH</p>
+      <p>© 2019 ConSol Software GmbH</p>
     </div>
     <div class="unit one-third align-center center-on-mobiles">
       <p>
