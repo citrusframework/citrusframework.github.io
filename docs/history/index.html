@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Citrus Framework</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="generator" content="Citrus 2.7.8">
+  <meta name="generator" content="Citrus 2.7.9">
   <meta name="description" content="Citrus Framework Website"/>
   <meta name="author" content="ConSol Software GmbH"/>
   <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
@@ -233,6 +233,123 @@
           </div>
           <h1>History</h1>
           
+<h2 id="v2.7.9">Release 2.7.9 / 2019-01-27</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Id</th>
+      <th style="text-align: center">Changes</th>
+      <th style="text-align: center">By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/561">#561</a></td>
+      <td style="text-align: center">Lost cookie entries except the last one</td>
+      <td style="text-align: center">svettwer</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/551">#551</a></td>
+      <td style="text-align: center">Breaking change in selenium().browser().type() public API</td>
+      <td style="text-align: center">martinmaher</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/547">#547</a></td>
+      <td style="text-align: center">Breaking change in waitFor().http() public API</td>
+      <td style="text-align: center">svettwer</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/557">#557</a></td>
+      <td style="text-align: center">Breaking change in waitFor().file(String)</td>
+      <td style="text-align: center">martinmaher</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/558">#558</a></td>
+      <td style="text-align: center">Breaking change in waitFor().file(File)</td>
+      <td style="text-align: center">martinmaher</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/552">#552</a></td>
+      <td style="text-align: center">MessageContentBuilder interface broken for buildMessageContent</td>
+      <td style="text-align: center">martinmaher</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/569">#569</a></td>
+      <td style="text-align: center">duplicated cookie entries in http request</td>
+      <td style="text-align: center">svettwer</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/535">#535</a></td>
+      <td style="text-align: center">Citrus functions - Inconsistent values of global variables</td>
+      <td style="text-align: center">martinmaher</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/556">#556</a></td>
+      <td style="text-align: center">Breaking change in waitFor().message()</td>
+      <td style="text-align: center">martinmaher</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/584">#584</a></td>
+      <td style="text-align: center">Update com.fasterxml.jackson.core:jackson-databind to version 2.9.8 or later</td>
+      <td style="text-align: center">svettwer</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/559">#559</a></td>
+      <td style="text-align: center">Breaking change in MessageContentBuilder</td>
+      <td style="text-align: center">svettwer</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/555">#555</a></td>
+      <td style="text-align: center">WaitBuilder.condition() changed return type</td>
+      <td style="text-align: center">svettwer</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/554">#554</a></td>
+      <td style="text-align: center">Change of class signature and typing of WaitConditionBuilder</td>
+      <td style="text-align: center">svettwer</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/553">#553</a></td>
+      <td style="text-align: center">Scp client builder does not offer autoReadFiles anymore</td>
+      <td style="text-align: center">martinmaher</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/455">#455</a></td>
+      <td style="text-align: center">Cookies are not recognized by HTTP client</td>
+      <td style="text-align: center">svettwer</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/591">#591</a></td>
+      <td style="text-align: center">Improve documentation concerning parallel messages</td>
+      <td style="text-align: center">svettwer</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/562">#562</a></td>
+      <td style="text-align: center">maven plugin creates invalid testNG Citrus tests</td>
+      <td style="text-align: center">svettwer</td>
+    </tr>
+  </tbody>
+</table>
+
 <h2 id="v2.7.8">Release 2.7.8 / 2018-11-13</h2>
 
 <table>
