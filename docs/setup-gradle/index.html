@@ -253,11 +253,11 @@ Citrus tests will be executed with the <a href="https://gradle.org/">Gradle</a> 
 </ul>
 
 <p>Citrus uses Maven internally for building software. But of course you can also integrate the Citrus tests in a Gradle
-project. As the Citrus tests are nothing but normal JUnit or TestNG tests the integration in the Gradle build is very easy.</p>
+project. Since Citrus tests are nothing but normal JUnit or TestNG tests, integration into your Gradle build is very easy.</p>
 
 <h3 id="gradle-project">Gradle project</h3>
 
-<p>First of all we create a new Java project called <em>citrus-sample</em>. There are multiple ways to get started with a Gradle project. I personally
+<p>First, we create a new Java project called <em>citrus-sample</em>. There are multiple ways to get started with a Gradle project. I personally
 prefer to use my Java IDE (IntelliJ) for generating a basic Gradle project setup. Of course there are lots of Gradle project start samples out there.
 And summing up the Gradle project structure is pretts simple so you could also create this manually. Here is the basic project structure that we
 are going to use in this quickstart.</p>
@@ -270,8 +270,8 @@ are going to use in this quickstart.</p>
   |   |   + test
   |   |    |   + java
   |   |    |   + resources
-  build.gradle
-  settings.gradle
+build.gradle
+settings.gradle
 </code></pre></div></div>
 
 <p>The Gradle build configuration is done in the <strong>build.gradle</strong> and <strong>settings.gradle</strong> files. Here we define the project name and the project version.</p>
@@ -280,7 +280,7 @@ are going to use in this quickstart.</p>
 group <span class="s1">'com.consol.citrus.samples'</span>
 version <span class="s1">'2.8.0'</span></code></pre></figure>
 
-<p>Now as Citrus libraries are available on Maven central repository we add these repositories so Gradle knows how to download the required
+<p>Now, since Citrus libraries are available on Maven central repository, we add these repositories so Gradle knows how to download the required
 Citrus artifacts.</p>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">repositories <span class="o">{</span>
@@ -307,6 +307,10 @@ to also add the ConSol Labs snapshot repository as server. This is optional and 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">test</span> <span class="o">{</span>
     useTestNG<span class="o">()</span>
 <span class="o">}</span></code></pre></figure>
+
+<blockquote>
+  <p>Warning: This tutorial uses the TestNG unit test library. If you want to use JUnit, you will have to remove the above lines from your build.gradle file.</p>
+</blockquote>
 
 <p>Of course JUnit is also supported. This is all for build configuration settings. We can move on to writing some Citrus integration tests. The Java test classes
 usually go to the <strong>src/test/java</strong> directory.</p>
@@ -549,7 +553,7 @@ Just start the Citrus test using the Gradle integration in IntelliJ, Eclipse or 
       <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
       <p>This website is licensed under <br><a href="https://github.com/citrusframework/citrus/blob/master/LICENSE">MIT License</a>.</p>
       <br>
-      <p>© 2019 ConSol Software GmbH</p>
+      <p>© 2020 ConSol Software GmbH</p>
     </div>
     <div class="unit one-third align-center center-on-mobiles">
       <p>
