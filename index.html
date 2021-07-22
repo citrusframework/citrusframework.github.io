@@ -91,7 +91,7 @@
 
       <br>
       <p>Framework for automated integration tests supporting a wide range of message protocols and data formats!<br>
-        Kafka, Http REST, JMS, TCP/IP, SOAP, FTP/SFTP, SSH, XML, JSON and much more!</p>
+        Kafka, Http REST, JMS, TCP/IP, SOAP, FTP/SFTP, SSH, XML, Json and much more!</p>
 
       <a href="https://github.com/citrusframework/citrus/releases" class="btn btn-primary">Release v3.0.0</a>
     </div>
@@ -103,19 +103,38 @@
     <div class="unit whole align-center">
       <h1>Messaging integration challenge</h1>
       <h2><small>How Citrus helps with automated integration tests</small></h2>
+      <img src="/img/test-scenario.png" alt="Citrus solution">
 
-      <img src="/img/test-scenario.png" alt="Test Scenario">
+      <p>In a typical test scenario the system under test is running on a test infrastructure while interacting with
+        Citrus over various messaging transports. During the test Citrus is able to act on both sides as client and
+        consumer exchanging real request/response messages over the wire.</p>
 
-      <p>In a typical test scenario the system under test is running on some infrastructure and interacts with
-        Citrus over various message transports. During the test Citrus is able to act on both sides as client and
-        server exchanging real request/response messages.</p>
-
-      <p>With each test step you can validate the exchanged messages with expected control data including message headers, attachments and body content.
-        The test is fully automated and repeatable, so you can easily add the integration tests to CI/CD pipeline.</p>
+      <p>With each test step you can validate the exchanged messages with expected control data including message headers, attachments and body content (e.g. XML, Json, ...).
+        The test provides a Java fluent API to specify the test logic and is fully automated. The repeatable test is nothing but a normal JUnit or TestNG test and can easily run
+        as integration test in a CI/CD pipeline.</p>
     </div>
   </div>
   <hr>
 </section>
+
+<section class="intro">
+  <div class="grid">
+    <div class="unit whole align-center">
+      <h1>Testing Camel K integrations with Cloud Native BDD</h1>
+      <h2><small>Presentation from ApacheCon 2020</small></h2>
+
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/aYLLtj6TdjM" frameborder="0" allowfullscreen></iframe>
+
+      <p>Apache Camel K is a lightweight integration platform built from Apache Camel. Integrations built with Camel K run natively on Kubernetes and are specifically designed for serverless architectures.
+        With the declarative nature in Camel K users can instantly run integration code written in Camel DSL on their preferred cloud. The presentation outlines typical integration scenarios with Camel K
+        and shows how to write automated tests for these enterprise integrations. The session covers classical service provider/consumer scenarios with common messaging protocols (e.g. REST, JMS, Kafka) as
+        well as more complex integrations with data access and 3rd party Saas services included. The tests itself will also be Cloud Native citizens and make use of Behavior Driven Development concepts.</p>
+    </div>
+  </div>
+  <hr>
+</section>
+
+
 
 <section class="intro">
   <div class="grid">
@@ -127,7 +146,7 @@
 
       <p>Joe Colantonio talks to Christoph Deppisch about automate integration tests for pretty much any messaging protocol or data format.
         So if you’re looking to expand your automation efforts beyond lame, flaky, UI-based automated tests, this episode is for you.
-        Listen to this testtalks episode at <a href="https://testguild.com/podcast/automation/190-integration-automation-using-citrus-testing-framework-christoph-deppisch/" target="_blank">https://testguild.com/</a></p>
+        Listen to this "testtalks" episode at <a href="https://testguild.com/podcast/automation/190-integration-automation-using-citrus-testing-framework-christoph-deppisch/" target="_blank">https://testguild.com/</a></p>
     </div>
   </div>
   <hr>
