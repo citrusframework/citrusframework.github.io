@@ -96,8 +96,6 @@
       
       <option value="/news/2021/08/16/citrus-3.0/">YAY, Citrus 3.0 is here!</option>
       
-      <option value="/news/2019/01/17/citrus-roadmap-2019/">Roadmap for 2019</option>
-      
       <option value="/news/2018/09/19/upcoming-changes/">Upcoming changes - What the future holds for Citrus</option>
       
       <option value="/news/2017/09/21/introducing-citrus-simulator/">Simulating 3rd party services with Spring Boot and Citrus</option>
@@ -169,7 +167,7 @@ This is a huge step in the Citrus project! It has been over two years since the 
 
 <p>Citrus 3.0 is a major release, and we want to take that as an opportunity to follow up with some improvements and refactoring that we are eager to do for quite some time. 
 That being said we try to comply with everybody’s need to migrate from older versions. 
-People coming from Citrus 2.x should have a look at the <a href="https://github.com/citrusframework/citrus/wiki/Migration-from-Citrus-2.x">2.x migration guide</a>. 
+People coming from Citrus 2.x should have a look at the <a href="https://github.com/citrusframework/citrus/wiki/Citrus-2.x-migration-guide">2.x migration guide</a>. 
 In addition to that we take extra care to keep breaking changes on a low-level.</p>
 
 <p>Here are the main objectives we have in Citrus 3.0</p>
@@ -787,186 +785,6 @@ We continue to work on our goals to simplifying the ways of writing integration 
 
 <p>We love to get feedback so please give it a try and tell us what you think about Citrus 3.0. 
 Now is the time to raise your voice to improve the framework!</p>
-
-  </div>
-</article>
-
-
-  <article>
-  <h2>
-    Roadmap for 2019
-    <a href="/news/2019/01/17/citrus-roadmap-2019/" class="permalink" title="Permalink">∞</a>
-  </h2>
-  <span class="post-category">
-    <span class="label">
-      blog
-    </span>
-  </span>
-  <div class="post-meta">
-    <span class="post-date">
-      17 Jan 2019
-    </span>
-    <a href="https://github.com/svettwer" class="post-author">
-      
-      Sven Hettwer
-    </a>
-  </div>
-  <div class="post-content">
-    <p><strong>Happy new year everybody</strong></p>
-
-<p>The year has just started and I am happy that we are finally ready to share the roadmap for Citrus in 2019 with you. 
-As promised via <a href="https://twitter.com/citrus_test/status/1073162157259440128">twitter</a>, this year
-<em>[…] will be about community, enhancing documentation and improving the ease of use of Citrus with a focus on the 
-API, the tooling and the commonly used modules</em>. With more than ten years of history, Citrus has developed from a utility
-framework in a customer’s project into a fully fledged message based integration testing framework with the capability of
-testing complex software systems supporting a vast amount of communication protocols and messaging technologies.
-Every year, the feature set and the number of available modules has grown and due to this, Citrus has become the
-powerful, reliable and flexible testing tool it is today. And this year, we want to make Citrus even more awesome!
-In this post, I will go through all the points mentioned and provide some details.</p>
-
-<p>The roadmap only contains the major topics we want to approach. We will still continue to answer your questions, fix
-bugs, add enhancements as well as minor features. We will also create epics on GitHub for every major topic to make the
-progress transparent to the community. Please keep in mind that the dates marked in the timeline are a rough estimation
-to give you an idea of our schedule. And as always, if you have feedback for us, just let us know! 
-But before we go into the details of the roadmap, let us have a look at some other things that we are going to change.</p>
-
-<h2 id="release-schedule">Release schedule</h2>
-<p>We are planning to release a new Citrus version constantly every two months starting with the release of <em>v2.7.9</em> and
-<em>v2.8.0</em> this January. This will provide a constant stream of improvements and new features for you. In addition, we
-also release a major version of the framework once a year if required. This major version allows us to improve the API
-based on the feedback of the community and perform major version updates of our dependencies.</p>
-
-<h2 id="high-priority-and-low-priority-modules">High priority and low priority modules</h2>
-<p>During the last months, we have monitored the download statistics from the maven central repository and recognized that
-some modules are significantly more popular than others. From today on, we want to focus on the modules that are heavily
-used and provide the most benefit to the community. Therefore, we will divide the Citrus modules into high priority and
-low priority modules. We will invest the major part of our time into the high priority modules to improve the
-documentation, samples as well as the GitHub support. We will also focus on bug fixes and new features. Concerning these
-topics the low priority modules will take a back seat. If you are interested in helping us maintain any modules, feel
-free to contact us and propose pull requests. We appreciate any kind of contribution.</p>
-
-<h3 id="high-priority-modules">High priority modules</h3>
-<ul>
-  <li>Camel</li>
-  <li>Cucumber</li>
-  <li>FTP</li>
-  <li>HTTP</li>
-  <li>JDBC</li>
-  <li>JMS</li>
-  <li>Kafka</li>
-  <li>Mail</li>
-  <li>Selenium</li>
-  <li>SSH</li>
-  <li>Vert.x</li>
-  <li>Websockets</li>
-  <li>SOAP</li>
-</ul>
-
-<h3 id="low-priority-modules">Low priority modules</h3>
-<ul>
-  <li>Arquillian</li>
-  <li>Docker</li>
-  <li>JMX</li>
-  <li>Kubernetes</li>
-  <li>Restdocs</li>
-  <li>RMI</li>
-  <li>Zookeeper</li>
-</ul>
-
-<h2 id="roadmap-2019">Roadmap 2019</h2>
-
-<p><a href="/img/citrus/roadmap-2019.png" target="_blank"> <img src="/img/citrus/roadmap-2019.png" alt="roadmap-2019.png"></a></p>
-
-<h3 id="citrus-jdbc-improvements">Citrus-JDBC Improvements</h3>
-<p>Based on the feedback we received last year, we are going to improve the Citrus-JDBC functionality. This includes
-output parameters in callable statements, JDBC batch statements, various data types and much more.</p>
-
-<h3 id="reducereview-citrus-samples">Reduce/review Citrus samples</h3>
-<p>The <a href="https://github.com/citrusframework/citrus-samples">Citrus samples</a> repository contains a vast amount of sample
-projects using Citrus’s Java and XML DSLs. The goal of these sample projects is to demonstrate how the functionality
-should be used . Over time the number of samples has grown so large that it is now quite confusing for new users. That
-is why we want to review the Citrus samples completely and create a set that reflects the main functionality of the
-framework while making them easy to understand and a good point to start from. To achieve this, we will focus on samples
-for the high priority modules and reduce the number of samples for low priority modules.</p>
-
-<h3 id="deprecate-xml-dsl">Deprecate XML-DSL</h3>
-<p>In order to improve the maintainability of the framework and reduce the complexity from a user’s perspective, we are
-going to deprecate the XML-DSL. The use case for the XML-DSL was to provide a way to create integration tests without
-any knowledge of Java. As we are moving to a DevOps world and software developers become testers as well, the use case
-for the XML-DSL gets more and more obsolete. The deprecation should encourage users to start developing their tests in
-Java and migrate their current XML-DSL test suites. It will be some time before the XML-DSL is completely removed from
-the framework but going forward the focus is clearly on the Java DSL. We will announce the final removal with a lead
-time of at least one year to give users enough time for migration. Until then, the XML-DSL will still be usable as it
-is but it will not be extended or supported as part of the open source project.</p>
-
-<h3 id="improve-release-process-automation">Improve release process automation</h3>
-<p>To be able to release Citrus, in a dedicated release schedule, we want to invest in our release automation.
-In the long term we want to ship often and in small increments. In the future you will not have to wait as long for your 
-contribution, requested feature, enhancement or bug fix to be released.</p>
-
-<h3 id="deprecate-testdesigner">Deprecate TestDesigner</h3>
-<p>To clean up the Java DSL, improve the framework’s maintainability and reduce the complexity from a user´s perspective,
-we are going to deprecate the TestDesigner. We have been recommending the TestRunner for some time now and consider it
-to be more convincing than the TestDesigner. Therefore, we will migrate all Java samples to the TestRunner in the near
-future. This will help you to get started with a new project as well as with migration. Speaking of migration, we are
-planning to merge the DSL style of the TestDesigner to the TestRunner. Our goal is to get the TestRunner DSL as close
-as possible to the TestDesigner DSL so that the migration will not take much time. In addition, we think the
-TestDesigner DSL comes with some advantages and is much easier to read, write and understand. So, merging both DSL
-styles should make it easier for everybody to create test cases and also helps new users to understand how the framework
-works. In v3.0.0, the TestDesigner will finally be removed from the framework.</p>
-
-<h3 id="improve-logging">Improve Logging</h3>
-<p>To make it easier to detect the root cause of failing tests, we will review the current logging concept to provide you
-with the information you need when something goes wrong. This should help you to identify issues with your test case
-or your system under test as efficient as possible.</p>
-
-<h3 id="review-maven-archetypes">Review maven archetypes</h3>
-<p>Maven archetypes are a good point to start from. No matter if you want to start a new project or if you are new to the
-framework, archetypes help you to generate the required boilerplate code. With a review of the Citrus archetypes, we want
-to ensure it is as easy as possible for you to create the infrastructure required by the framework.</p>
-
-<h3 id="stop-spring-4-bugfix-support">Stop Spring 4 Bugfix Support</h3>
-<p>You may have noticed that Citrus switches to Spring 5 with the v2.8.0 release. Even if the public API of Citrus remains 
-untouched by this change, it might be the case that some users rely on Spring 4 in other components of their test
-suite. Therefore, we will provide a Spring 4 branch of the framework with bug fixes but without new features until mid 2019.
-The Spring 4 releases will continue within the v2.7.x release family.</p>
-
-<h3 id="improve-documentation">Improve documentation</h3>
-<p>Citrus already comes with a detailed and explanatory documentation, giving insights into the framework and also into the
-integrated communication technology. We will review the documentation’s structure and content to make it easier to navigate
-and focus on the features of the framework.</p>
-
-<h3 id="improve-citrus-project-structure">Improve Citrus project structure</h3>
-<p>To improve the maintainability of the framework, we are going to review some structures that have established over the last years.
-This mainly concerns the packages and module structure. In addition, we want to make it easier to get started with Citrus
-by reviewing the way we have setup our dependencies. The goal is to reduce the amount of required dependencies making the
-configuration clearer and easier to understand for new users. The changes to the package structure will be released
-in v3.0.0 by the end of the year.</p>
-
-<h3 id="improve-test-class-creation">Improve test class creation</h3>
-<p>As we are going to review and clean up our API in 2019, we will also review the way how test classes are created. Again,
-we aim to make the setup easier to understand and more comprehensive to the user. The changes to the test class creation
-will be released in v3.0.0 by the end of the year.</p>
-
-<h3 id="remove-ant-support">Remove ANT support</h3>
-<p>As maven and gradle are the most prevalent build systems on the market, we are going to remove the ANT support from the
-framework. This mainly concerns the ANT test actions. The support of ANT will be stopped with v3.0.0 by the end of the
-year.</p>
-
-<h3 id="create-citrus-development-guide">Create Citrus development guide</h3>
-<p>To encourage the community to contribute to the project and to provide recipes for extending the framework from a
-developer’s perspective, we want to create a development guide that helps you to start developing Citrus. The idea is
-to make this a living document with small incremental additions over time.</p>
-
-<h2 id="thank-you">Thank you!</h2>
-<p>At this point thanks a lot to all the contributors to the framework! We highly appreciate every contribution from the
-community! Whether it be bug reports, ideas for new features, pull requests, general feedback or anything else – 
-you help us to improve Citrus step by step and that is awesome!</p>
-
-<p>We are looking forward to 2019!</p>
-
-<p>Sven Hettwer (<a href="https://twitter.com/SvenHettwer">@SvenHettwer</a>)<br>
-Citrus Maintainer and Senior Software Engineer @ <a href="https://www.consol.com/">ConSol GmbH</a></p>
 
   </div>
 </article>
@@ -4069,10 +3887,6 @@ http://www.citrusframework.org/samples/my-testcase-info/my-testcase-info.xsd"</s
         
         <li class="">
           <a href="/news/2021/08/16/citrus-3.0/">» Citrus 3.0</a>
-        </li>
-        
-        <li class="">
-          <a href="/news/2019/01/17/citrus-roadmap-2019/">» Roadmap for 2019</a>
         </li>
         
         <li class="">
