@@ -94,6 +94,8 @@
     <option value="/docs/history/">Releases</option>
     <optgroup label="Posts">
       
+      <option value="/news/2021/08/16/citrus-3.0/">YAY, Citrus 3.0 is here!</option>
+      
       <option value="/news/2019/01/17/citrus-roadmap-2019/">Roadmap for 2019</option>
       
       <option value="/news/2018/09/19/upcoming-changes/">Upcoming changes - What the future holds for Citrus</option>
@@ -137,6 +139,659 @@
 
       <div class="unit four-fifths">
         
+  <article>
+  <h2>
+    YAY, Citrus 3.0 is here!
+    <a href="/news/2021/08/16/citrus-3.0/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      blog
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      16 Aug 2021
+    </span>
+    <a href="https://github.com/christophd" class="post-author">
+      
+      Christoph Deppisch
+    </a>
+  </div>
+  <div class="post-content">
+    <p>YAY, Citrus 3.0 is here! A few weeks ago we have released a new major release for the Citrus integration testing framework! 
+This is a huge step in the Citrus project! It has been over two years since the last release 2.8.0 and the journey towards 
+3.0 has been a tremendous challenge. Citrus is back and stronger than ever before!</p>
+
+<p>This summary is here to share our strategy, ideas and all major changes that are part of Citrus 3.0!</p>
+
+<h1 id="objectives">Objectives</h1>
+
+<p>Citrus 3.0 is a major release, and we want to take that as an opportunity to follow up with some improvements and refactoring that we are eager to do for quite some time. 
+That being said we try to comply with everybody’s need to migrate from older versions. 
+People coming from Citrus 2.x should have a look at the <a href="https://github.com/citrusframework/citrus/wiki/Migration-from-Citrus-2.x">2.x migration guide</a>. 
+In addition to that we take extra care to keep breaking changes on a low-level.</p>
+
+<p>Here are the main objectives we have in Citrus 3.0</p>
+
+<ul>
+  <li><a href="#modularize-citrus">Modularize Citrus</a></li>
+  <li><a href="#java-dsl">Improved Java DSL</a></li>
+  <li><a href="#make-spring-optional">Make Spring optional</a></li>
+  <li>
+<a href="#update-dependencies">Update dependencies</a> to new major versions (Cucumber, Apache Camel, Spring Framework, …)</li>
+</ul>
+
+<h2 id="modularize-citrus">Modularize Citrus</h2>
+
+<p>The <code class="highlighter-rouge">citrus-core</code> module is the heart of the framework and contains all capabilities that Citrus has to offer. 
+So if you include <code class="highlighter-rouge">citrus-core</code> as a dependency in your project you will load a lot of artifacts as transitive dependencies (e.g. from Maven central). 
+Loading that huge amount of libraries is not a good thing especially when you do not need all features provided by Citrus (e.g. Groovy script support, Xhtml, XML validation and so on).</p>
+
+<p>With <code class="highlighter-rouge">citrus-core</code> it is all or nothing. So we are keen to modularize the core module into several smaller pieces. 
+The user can then choose which of the Citrus modules and features to include into the project or even overwrite and substitute certain pieces with own implementations.</p>
+
+<h3 id="module-categories-and-structure">Module categories and structure</h3>
+
+<p>In Citrus 3.0 we end up with following module categories:</p>
+
+<ul>
+  <li>
+    <p><a href="https://github.com/citrusframework/citrus/tree/master/core">Core modules</a></p>
+
+    <p>API and base implementations of core Citrus features. There will be a separate <code class="highlighter-rouge">citrus-base</code> and <code class="highlighter-rouge">citrus-spring</code> module where latter encapsulates the Spring Framework support in Citrus (more about that in <a href="#make-spring-optional">make Spring optional</a>).</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Module</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>citrus-api</td>
+          <td>Interfaces, enums, constants</td>
+        </tr>
+        <tr>
+          <td>citrus-base</td>
+          <td>Default implementation of <code class="highlighter-rouge">citrus-api</code>
+</td>
+        </tr>
+        <tr>
+          <td>citrus-spring</td>
+          <td>Adds Spring Framework support to <code class="highlighter-rouge">citrus-base</code> (Bean definition parsers, Application context configuration, Autowiring in factory beans</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p><a href="https://github.com/citrusframework/citrus/tree/master/runtime">Runtime modules</a></p>
+
+    <p>Test execution modules such as JUnit, TestNG and Cucumber representing different ways to run Citrus tests.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Module</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>citrus-cucumber</td>
+          <td>Run Citrus tests as Cucumber BDD feature files</td>
+        </tr>
+        <tr>
+          <td>citrus-testng</td>
+          <td>Run tests via TestNG unit test framework</td>
+        </tr>
+        <tr>
+          <td>citrus-junit</td>
+          <td>Run tests via JUnit4 unit test framework</td>
+        </tr>
+        <tr>
+          <td>citrus-junit5</td>
+          <td>Run tests via JUnit5 unit test framework</td>
+        </tr>
+        <tr>
+          <td>citrus-main</td>
+          <td>Run tests via Java main CLI</td>
+        </tr>
+        <tr>
+          <td>citrus-groovy</td>
+          <td>Run Citrus tests as Groovy scripts (to be continued …)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p><a href="https://github.com/citrusframework/citrus/tree/master/endpoints">Endpoint modules</a></p>
+
+    <p>Endpoints connect Citrus to a message transport like Apache Kafka, JMS, Http REST, Ftp, Mail and many more. Each endpoint may provide producer/consumer or client/server components to exchange message content over the respective transport.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Module</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>citrus-camel</td>
+          <td>Interact with Apache Camel context, routes and control bus</td>
+        </tr>
+        <tr>
+          <td>citrus-ftp</td>
+          <td>Connect to and simulate FTP/SFTP servers</td>
+        </tr>
+        <tr>
+          <td>citrus-http</td>
+          <td>Http REST support</td>
+        </tr>
+        <tr>
+          <td>citrus-jdbc</td>
+          <td>Simulate JDBC drivers, connections and transactions</td>
+        </tr>
+        <tr>
+          <td>citrus-jms</td>
+          <td>Publish/consume messages on a JMS message broker</td>
+        </tr>
+        <tr>
+          <td>citrus-kafka</td>
+          <td>Exchange data via Kafka messaging</td>
+        </tr>
+        <tr>
+          <td>citrus-jmx</td>
+          <td>Call MBean operations and simulate MBeans</td>
+        </tr>
+        <tr>
+          <td>citrus-mail</td>
+          <td>Client and server side SMTP mail support</td>
+        </tr>
+        <tr>
+          <td>citrus-rmi</td>
+          <td>Call RMI via JNDI registry lookup and simulate RMI services</td>
+        </tr>
+        <tr>
+          <td>citrus-ssh</td>
+          <td>Connect to servers via SSH and simulate SSH servers</td>
+        </tr>
+        <tr>
+          <td>citrus-vertx</td>
+          <td>Exchange messages on the Vert.x event bus</td>
+        </tr>
+        <tr>
+          <td>citrus-websocket</td>
+          <td>Websocket support</td>
+        </tr>
+        <tr>
+          <td>citrus-ws</td>
+          <td>SOAP WebServices support including SOAP envelope handling, WSDL, WS-Security, …</td>
+        </tr>
+        <tr>
+          <td>citrus-zookeeper</td>
+          <td>Connect with Zookeeper servers</td>
+        </tr>
+        <tr>
+          <td>citrus-spring-integration</td>
+          <td>Exchange messages on Spring Integration message channels</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p><a href="https://github.com/citrusframework/citrus/tree/master/validation">Validation modules</a></p>
+
+    <p>When Citrus receives messages the test case is eager to verify the message content. Validation modules implement message validators and mechanisms to validate different data formats such as Json, XML, plaintext, binary content and so on. Some validation modules also add support for verification tools such as Groovy script validation, Hamcrest and AssertJ.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Module</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>citrus-validation-xml</td>
+          <td>XML, Xpath and Xhtml message validation</td>
+        </tr>
+        <tr>
+          <td>citrus-validation-json</td>
+          <td>Json and JsonPath message validation</td>
+        </tr>
+        <tr>
+          <td>citrus-validation-text</td>
+          <td>Plain text message validation</td>
+        </tr>
+        <tr>
+          <td>citrus-validation-binary</td>
+          <td>Validate binary message content using input streams or <code class="highlighter-rouge">base64</code> encoding</td>
+        </tr>
+        <tr>
+          <td>citrus-validation-groovy</td>
+          <td>Adds Groovy script validation for XML, Json, SQL result set</td>
+        </tr>
+        <tr>
+          <td>citrus-validation-hamcrest</td>
+          <td>Hamcrest matcher support like <code class="highlighter-rouge">assertThat(oneOf(is(foo), is(foobar)))</code>
+</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p><a href="https://github.com/citrusframework/citrus/tree/master/connectors">Connector modules</a></p>
+
+    <p>Connectors are similar to endpoints yet these components connect Citrus to a foreign technology or framework rather than implementing a message transport. Connectors typically provide a client side only implementation that enable Citrus to interact with a service or framework (e.g. Docker, Kubernetes, Selenium web driver).</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Module</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>citrus-sql</td>
+          <td>Connect with a relational database</td>
+        </tr>
+        <tr>
+          <td>citrus-docker</td>
+          <td>Connect with Docker deamon to manage images and containers</td>
+        </tr>
+        <tr>
+          <td>citrus-selenium</td>
+          <td>Connect with web driver to run web-based UI tests</td>
+        </tr>
+        <tr>
+          <td>citrus-kubernetes</td>
+          <td>Connect to Kubernetes cluster managing PODs services and other resources</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p><a href="https://github.com/citrusframework/citrus/tree/master/tools">Tools</a></p>
+
+    <p>Tooling is important and the modules in this category provide little helpers and plugins for different use cases where the usage of Citrus needs to be simplified (e.g. Maven plugins, test generators, etc.)</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Module</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>citrus-restdocs</td>
+          <td>Auto generate request/response documentation for Http REST and SOAP communication</td>
+        </tr>
+        <tr>
+          <td>citrus-maven-plugin</td>
+          <td>Maven plugins to create tests</td>
+        </tr>
+        <tr>
+          <td>citrus-archetypes</td>
+          <td>Maven archetypes for project code generation</td>
+        </tr>
+        <tr>
+          <td>citrus-test-generator</td>
+          <td>Create and auto generate test cases (e.g. from Swagger OpenAPI specifications)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p><a href="https://github.com/citrusframework/citrus/tree/master/catalog">Catalog modules</a></p>
+
+    <p>A catalog in Citrus combines several other modules into a set of modules that usually get used together. The <code class="highlighter-rouge">citrus-core</code> module for instance combines all available validation modules, runtimes and the Citrus Spring support into a single artifact. So the user just needs to add <code class="highlighter-rouge">citrus-core</code> to the project and can use everything Citrus has to offer (exactly like Citrus 2.x is doing).</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Module</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>citrus-bom</td>
+          <td>Bill of material holding all modules for imports</td>
+        </tr>
+        <tr>
+          <td>citrus-core</td>
+          <td>Default Citrus capabilities (validation, runtime, Spring support) combined into one single module (exactly the same what you have had with previous versions)</td>
+        </tr>
+        <tr>
+          <td>citrus-endpoint-catalog</td>
+          <td>Combine all endpoints to a single source for endpoint builders</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p><a href="https://github.com/citrusframework/citrus/tree/master/vintage">Vintage modules</a></p>
+
+    <p>We are about to take a major step in Citrus and this implies some backward incompatibilities that <em>“vintage”</em> modules try to solve for users that still need to stick with an older version of Citrus for some reason. With these <em>“vintage”</em> modules you can still run older test cases with the new Citrus 3.x code base.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Module</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>citrus-java-dsl</td>
+          <td>Old Java DSL implementation (designer vs. runner) to be used for Citrus 2.x Java DSL tests</td>
+        </tr>
+        <tr>
+          <td>citrus-arquillian</td>
+          <td>Arquillian runtime for Citrus</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p><a href="https://github.com/citrusframework/citrus/tree/master/utils">Utility modules</a></p>
+
+    <p>Module in the utility category provide tooling for internal usage only. For instance this is a shared test library that is used in unit testing by several other modules. The modules are only used when building the Citrus modules. Utility modules usually are not included in a release so they won’t be pushed to Maven central.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Module</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>citrus-test-support</td>
+          <td>Internal helper library added as test scoped dependency for unit testing in other modules. Holds shared unit testing helpers.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h3 id="how-to-use-the-new-module-structure">How to use the new module structure</h3>
+
+<p>Users that do not want to change much in their project regarding the dependency setup just continue to add <code class="highlighter-rouge">citrus-core</code> dependency.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-core<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.1.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>This will get you the same capabilities as in Citrus 2.x with all validation modules, runtime and Spring support enabled. The <code class="highlighter-rouge">citrus-core</code> is a catalog module combining several other modules that get automatically added to your project.</p>
+
+<p>The downside of this approach is that you get a lot of features and transitive dependencies that you might not need in your project. Fortunately you can exclude some features from <code class="highlighter-rouge">citrus-core</code> with the new module structure in 3.x.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-core<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.1.0<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;exclusions&gt;</span>
+    <span class="nt">&lt;exclusion&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>citrus-validation-groovy<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;/exclusion&gt;</span>
+    <span class="nt">&lt;exclusion&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>citrus-testng<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;/exclusion&gt;</span>
+  <span class="nt">&lt;/exclusions&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>The example above excludes the Groovy validation capabilities and the TestNG runtime from the project. 
+The features will not be added to your project and fewer artifacts get downloaded.</p>
+
+<p>Of course there is a lot more to exclude and you might end up having a more complicated configuration for all those exclusions. 
+For people trying to operate with just what they need in their project the pull approach might be the way to go. Here you add just <code class="highlighter-rouge">citrus-base</code> as dependency.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-base<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.1.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>If you want to use Spring Framework support you may also add:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-spring<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.1.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>With the new modular setup in Citrus not every feature is enabled by default. 
+As you write and execute tests in your project you might then run into errors because you are using a Citrus feature 
+that has not yet been added to your project. Something like:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FAILURE: Caused by: NoSuchValidationMatcherException: Can not find validation matcher "assertThat" in library citrusValidationMatcherLibrary ()
+	at com/consol/citrus/jms/integration/JmsTopicDurableSubscriberIT(iterate:26-48)
+</code></pre></div></div>
+
+<p>The error indicates that you need to add the Hamcrest validation matcher feature to the project. 
+You can do so by adding the respective module dependency in your project:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-validation-hamcrest<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.1.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>The awesomeness about it is that you can add your favorite matcher implementation as a dependency 
+(we still need to add AssertJ support in Citrus, so we would love a contribution doing that!).</p>
+
+<h3 id="what-happened-to-citrus--model-modules">What happened to citrus-*-model modules?</h3>
+
+<p>Each module in former Citrus versions has had a little brother that generated model classes from XSD schema files.
+The XSD schemas are used for custom Spring bean definition parsing and were located in the <code class="highlighter-rouge">citrus-*-model</code> modules (e.g. citrus-config.xsd).
+The initial idea behind that separate model module was to separate model classes from implementations in order to use that model in a user interface called <code class="highlighter-rouge">citrus-admin</code>.
+With Citrus 3.x we included the XSD schemas into the implementation modules so we do not have to maintain all the <code class="highlighter-rouge">citrus-*-model</code> modules separately (also one less artifact to load, <em>excellent</em>).</p>
+
+<h2 id="java-dsl">Java DSL</h2>
+
+<p>Citrus provides a Java domain specific language to write integration tests with a fluent API. 
+The API makes use of the fluent builder pattern to specify test actions.</p>
+
+<p>In Citrus 2.x all Java DSL related test action builders were located in a separate module called <code class="highlighter-rouge">citrus-java-dsl</code>. 
+For better maintainability and modularization reasons the test action builders have moved into the individual modules 
+where the test action implementation is located. 
+In fact the Java DSL builders are now inner classes of the respective test action.</p>
+
+<p>In former releases users had to choose between the two different approaches to write Java DSL tests with this fluent API:</p>
+
+<ul>
+  <li><a href="https://citrusframework.org/citrus/reference/2.8.0/html/index.html#java-dsl-test-designer">Test Designer</a></li>
+  <li>
+<a href="https://citrusframework.org/citrus/reference/2.8.0/html/index.html#java-dsl-test-runner">Test Runner</a>.</li>
+</ul>
+
+<p>Just like many things in life both approaches have had individual advantages and downsides. 
+We have accepted the challenge to combine both approaches designer and runner into a single approach that combines the 
+advantages and minimizes downsides.</p>
+
+<p>In Citrus 3.x we end up using a simplified Java DSL that uses the look and feel of the former designer API but executes 
+each step immediately to keep debugging options and the capability to add custom code between steps.</p>
+
+<p>The separation between designer and runner has been removed completely. So there is only one single source of truth the 
+<code class="highlighter-rouge">TestCaseRunner</code> and the fluent Java API for writing tests in Citrus. 
+This simplifies the implementation in other modules (Cucumber, TestNG, JUnit) a lot.</p>
+
+<p>This is how a new Java DSL test looks like in Citrus 3.x:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloServiceIT</span> <span class="kd">extends</span> <span class="n">TestNGCitrusSpringSupport</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">HttpClient</span> <span class="n">httpClient</span><span class="o">;</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">KafkaEndpoint</span> <span class="n">orderEvents</span><span class="o">;</span>
+
+    <span class="nd">@Test</span>
+    <span class="nd">@CitrusTest</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">given</span><span class="o">(</span><span class="n">variable</span><span class="o">(</span><span class="s">"orderId"</span><span class="o">,</span> <span class="mi">1000</span><span class="o">));</span>
+
+        <span class="n">when</span><span class="o">(</span><span class="n">http</span><span class="o">().</span><span class="na">client</span><span class="o">(</span><span class="n">httpClient</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">send</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/orders"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="n">APPLICATION_FORM_URLENCODED</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"order=${orderId}&amp;name=foo"</span><span class="o">));</span>
+
+        <span class="n">then</span><span class="o">(</span><span class="n">receive</span><span class="o">(</span><span class="n">orderEvents</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Order ${orderId} has been placed"</span><span class="o">));</span>
+
+        <span class="n">and</span><span class="o">(</span><span class="n">http</span><span class="o">().</span><span class="na">client</span><span class="o">(</span><span class="n">httpClient</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The test extends <code class="highlighter-rouge">TestNGCitrusSpringSupport</code>. 
+This gives you the annotation support for <code class="highlighter-rouge">@CitrusTest</code> so the test is added to the Citrus test reporting. 
+The base class also gives you the test action execution methods <code class="highlighter-rouge">given()</code>, <code class="highlighter-rouge">when()</code>, <code class="highlighter-rouge">then()</code> and <code class="highlighter-rouge">and()</code>. 
+This relates to the BDD Gherkin language and is widely known to a lot of people out there. 
+If you do not want to use this BDD approach in your test you can also use the basic <code class="highlighter-rouge">run()</code> method or its shortcut version <code class="highlighter-rouge">$()</code>instead.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span><span class="o">(</span><span class="n">http</span><span class="o">().</span><span class="na">client</span><span class="o">(</span><span class="n">httpClient</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">send</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/orders"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="n">APPLICATION_FORM_URLENCODED</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"order=${orderId}&amp;name=foo"</span><span class="o">));</span>
+</code></pre></div></div>
+
+<p>Former Citrus versions provided many base classes which confused users. 
+The classes <code class="highlighter-rouge">TestNGCitrusSupport</code>/<code class="highlighter-rouge">JUnit4CitrusSupport</code> are now the single base class for all tests including XML and Java DSL tests.</p>
+
+<p>The JUnit 5 support provides a <code class="highlighter-rouge">@CitrusSupport</code> extension annotation.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@CitrusSpringSupport</span>
+<span class="nd">@ContextConfiguration</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="o">{</span><span class="n">CitrusSpringConfig</span><span class="o">.</span><span class="na">class</span><span class="o">})</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloServiceIT</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">HttpClient</span> <span class="n">httpClient</span><span class="o">;</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">KafkaEndpoint</span> <span class="n">orderEvents</span><span class="o">;</span>
+
+    <span class="nd">@Test</span>
+    <span class="nd">@CitrusTest</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">(</span><span class="nd">@CitrusResource</span> <span class="n">GherkinTestActionRunner</span> <span class="err">$</span><span class="o">)</span> <span class="o">{</span>
+        <span class="err">$</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">variable</span><span class="o">(</span><span class="s">"orderId"</span><span class="o">,</span> <span class="mi">1000</span><span class="o">));</span>
+
+        <span class="err">$</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">http</span><span class="o">().</span><span class="na">client</span><span class="o">(</span><span class="n">httpClient</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">send</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/orders"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="n">APPLICATION_FORM_URLENCODED</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"order=${orderId}&amp;name=foo"</span><span class="o">));</span>
+
+        <span class="err">$</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">receive</span><span class="o">(</span><span class="n">orderEvents</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Order ${orderId} has been placed"</span><span class="o">));</span>
+
+        <span class="err">$</span><span class="o">.</span><span class="na">and</span><span class="o">(</span><span class="n">http</span><span class="o">().</span><span class="na">client</span><span class="o">(</span><span class="n">httpClient</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="make-spring-optional">Make Spring optional</h2>
+
+<p>The Spring framework is a wide spread and well appreciated framework for Java applications.
+The framework provides an awesome set of projects, libraries and tools.
+The dependency injection and IoC concepts introduced with Spring are groundbreaking.</p>
+
+<p>Some people prefer to choose other approaches though to work with dependency injection. 
+Others do struggle with mastering Citrus and Spring as new frameworks at the same time. 
+Both frameworks Spring and Citrus are very powerful and newbies sometimes feel overwhelmed with having to deal with so 
+much new stuff at the same time.</p>
+
+<p>In former releases Citrus has been very tied to Spring and in some cases this has been a showstopper to work with Citrus for mentioned reasons.</p>
+
+<p>In Citrus 3.x we make Spring optional in <code class="highlighter-rouge">core</code> modules so people can choose to enable/disable Spring support. 
+In particular this affects the way Citrus components are started and linked to each other via the Spring application context.</p>
+
+<h3 id="citrus-and-spring">Citrus and Spring</h3>
+
+<p>When Spring is enabled for Citrus all components are loaded with a Spring application context. 
+This enables autowiring and bean definition parsing. 
+Latter bean definition parsing for custom components is mandatory when using XML based configuration and XML test cases in Citrus.</p>
+
+<p>Users enable the Spring support in Citrus by adding the following module:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-spring<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.1.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>When using <code class="highlighter-rouge">citrus-core</code> dependency this Spring support is enabled by default in order to adjust with what has been configured in previous Citrus versions.</p>
+
+<h3 id="citrus-standalone">Citrus standalone</h3>
+
+<p>In case you exclude the <code class="highlighter-rouge">citrus-spring</code> module for Citrus you will load the same components and features but only without Spring framework support. 
+Keep in mind only the XML based configuration and XML test cases continue to require Spring.</p>
+
+<p>In non-Spring mode custom components can be directly configured in the Citrus context then.
+Also Citrus uses a resource common path lookup mechanism to identify common components that get loaded automatically. 
+So you simply add components such as <code class="highlighter-rouge">citrus-validation-json</code> to your project classpath and the Json validation capabilities are loaded automatically.</p>
+
+<p>The resource path lookup is a mechanism to identify components in Citrus that should be loaded automatically when the Citrus application is started. 
+You only need to add components to the classpath (e.g. by adding a Maven dependency) and the resource gets loaded automatically. 
+This mechanism is used to decouple modules and to provide a non-Spring mode for Citrus.</p>
+
+<p>Feel free to choose which approach fits best for your needs. Citrus running with or without Spring.</p>
+
+<h2 id="update-dependencies">Update dependencies</h2>
+
+<p>It has been quite some time since the last major Citrus release. 
+So this is a point where we catch up with all the other libraries and dependencies that evolved over time. 
+In particular this is Apache Camel, Spring and Cucumber that all evolved with major versions in the past.</p>
+
+<p>The following might be the most important updates:</p>
+
+<ul>
+  <li>Java 11</li>
+  <li>Spring framework 5.3</li>
+  <li>Apache Camel 3.9</li>
+  <li>TestNG 7.1</li>
+  <li>JUnit 5.7</li>
+  <li>Jetty 9.4</li>
+  <li>Kafka 2.8</li>
+  <li>Selenium 3.141</li>
+  <li>Log4J2 2.14</li>
+  <li>Cucumber 6.10</li>
+</ul>
+
+<h2 id="whats-next">What’s next!?</h2>
+
+<p>So 3.0 is the first version of the Citrus 3.x release train. And we are not done yet! 
+We continue to work on our goals to simplifying the ways of writing integration tests so Citrus is ready for the future challenges of software testing.</p>
+
+<p>We love to get feedback so please give it a try and tell us what you think about Citrus 3.0. 
+Now is the time to raise your voice to improve the framework!</p>
+
+  </div>
+</article>
+
+
   <article>
   <h2>
     Roadmap for 2019
@@ -3411,6 +4066,10 @@ http://www.citrusframework.org/samples/my-testcase-info/my-testcase-info.xsd"</s
     </ul>
     <h4>Posts</h4>
     <ul>
+        
+        <li class="">
+          <a href="/news/2021/08/16/citrus-3.0/">» Citrus 3.0</a>
+        </li>
         
         <li class="">
           <a href="/news/2019/01/17/citrus-roadmap-2019/">» Roadmap for 2019</a>
