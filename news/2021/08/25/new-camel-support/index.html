@@ -1,0 +1,621 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 3.0.0">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/citrusframework/citrus/commits/master.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="current">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="current">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="news">
+    <div class="grid">
+
+      <div class="docs-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the blog…</option>
+    <option value="/news/">News</option>
+    <option value="/docs/history/">Releases</option>
+    <optgroup label="Posts">
+      
+      <option value="/news/2021/08/25/new-camel-support/">Apache Camel support in Citrus 3</option>
+      
+      <option value="/news/2021/08/16/citrus-3.0/">YAY, Citrus 3.0 is here!</option>
+      
+      <option value="/news/2018/09/19/upcoming-changes/">Upcoming changes - What the future holds for Citrus</option>
+      
+      <option value="/news/2017/09/21/introducing-citrus-simulator/">Simulating 3rd party services with Spring Boot and Citrus</option>
+      
+      <option value="/news/2017/07/07/introducing-citrus-admin/">Introducing Citrus Admin Web UI</option>
+      
+      <option value="/news/2016/03/15/jcache-chat-citrus/">Testing WebSockets with a Citrus twist</option>
+      
+      <option value="/news/2015/08/19/arquillian-extension-part-2/">Arquillian &amp; Citrus in combination - Part 2</option>
+      
+      <option value="/news/2015/06/29/arquillian-extension-part-1/">Arquillian &amp; Citrus in combination - Part 1</option>
+      
+      <option value="/news/2015/06/03/camel-testing-part-3/">Apache Camel Integration Testing - Part 3</option>
+      
+      <option value="/news/2015/05/27/camel-testing-part-2/">Apache Camel Integration Testing - Part 2</option>
+      
+      <option value="/news/2014/11/21/camel-testing-part-1/">Apache Camel Integration Testing - Part 1</option>
+      
+      <option value="/news/2014/05/30/testing-webmethods-with-citrus-part-ii/">Testing webMethods with Citrus Part II</option>
+      
+      <option value="/news/2014/03/06/testing-webmethods-with-citrus-part-i/">Testing webMethods with Citrus Part I</option>
+      
+      <option value="/news/2011/06/22/excel-validation/">Validate Excel files in Citrus</option>
+      
+      <option value="/news/2011/06/17/testng-data-provider/">Use TestNG data providers in Citrus</option>
+      
+      <option value="/news/2010/12/14/integrate-your-own-validator/">Integrate your own validator into your Citrus project</option>
+      
+      <option value="/news/2010/08/13/testng-groups/">Citrus and TestNG groups</option>
+      
+      <option value="/news/2010/05/19/soap-mustunderstand/">Handle SOAP-ENV:mustUnderstand headers</option>
+      
+      <option value="/news/2010/01/18/custom-meta-info/">Customize meta information</option>
+      
+    </optgroup>
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+  <h2>
+    Apache Camel support in Citrus 3
+    <a href="/news/2021/08/25/new-camel-support/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      blog
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      25 Aug 2021
+    </span>
+    <a href="https://github.com/christophd" class="post-author">
+      Christoph Deppisch
+    </a>
+  </div>
+  <div class="post-content">
+    <p>Citrus 3 provides enhanced support for <a href="https://camel.apache.org">Apache Camel</a> with new features and improvements.
+This enables great opportunities and leverages the full enterprise integration power of Apache Camel in Citrus.</p>
+
+<p>Before this post explains the enhancements in Citrus 3 regarding Camel let us have a brief look at what has always been in the box.</p>
+
+<h1 id="recap-the-camel-support-in-citrus">Recap the Camel support in Citrus</h1>
+
+<p>Camel has been integrated with the Citrus framework for years. 
+You can read about it in the official Citrus <a href="https://citrusframework.org/citrus/reference/3.0.0/html/index.html#apache-camel">user guide</a>.</p>
+
+<p>With Camel included in the box Citrus users are able to use the 300+ Camel components in order to connect with various 
+message transports and technologies.</p>
+
+<p>Citrus is able to interact with Camel in following areas</p>
+
+<ul>
+  <li><a href="https://github.com/citrusframework/citrus/blob/main/src/manual/endpoint-camel.adoc#camel-route-actions">Create/start/stop Camel routes</a></li>
+  <li><a href="https://github.com/citrusframework/citrus/blob/main/src/manual/endpoint-camel.adoc#camel-endpoint">Send/receive data to/from Camel routes</a></li>
+  <li><a href="https://github.com/citrusframework/citrus/blob/main/src/manual/endpoint-component.adoc">Use Camel endpoint URI to produce messages via Camel endpoint components</a></li>
+  <li><a href="https://github.com/citrusframework/citrus/blob/main/src/manual/endpoint-camel.adoc#camel-controlbus-actions">Access the Camel control bus</a></li>
+  <li><a href="https://github.com/citrusframework/citrus/blob/main/src/manual/endpoint-camel.adoc#camel-exception-handling">Verify Camel exception handling</a></li>
+</ul>
+
+<p>Usually Camel routes live in a Camel context defined in the Citrus project.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="n">CamelContext</span> <span class="nf">camelContext</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">CamelContext</span> <span class="n">context</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DefaultCamelContext</span><span class="o">();</span>
+
+    <span class="n">context</span><span class="o">.</span><span class="na">addRoutes</span><span class="o">(</span><span class="k">new</span> <span class="n">RouteBuilder</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+            <span class="n">from</span><span class="o">(</span><span class="s">"direct:hello"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"helloRoute"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"log:com.consol.citrus.camel?level=INFO"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"seda:greetings"</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+
+    <span class="k">return</span> <span class="n">context</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The context defines a Camel route listening on the endpoint uri <code class="highlighter-rouge">direct:hello</code>.
+Incoming messages will be logged to the console using a <code class="highlighter-rouge">log</code> Camel component.
+After that the message is forwarded to a <code class="highlighter-rouge">seda</code> Camel component which is a simple queue in memory.</p>
+
+<p>The Citrus endpoint can interact with this sample route definition sending messages to the <code class="highlighter-rouge">direct:hello</code> endpoint.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">send</span><span class="o">(</span><span class="s">"camel:direct:hello"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Hello from Citrus!"</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>The Camel endpoint uri can refer to any Camel endpoint component.
+See the list of available <a href="https://camel.apache.org/components/latest/index.html">Camel components</a> in order to connect 
+your route with message transports and technologies.</p>
+
+<p>As an alternative to sending messages directly to a Camel endpoint uri you can create a Citrus endpoint that interacts with a Camel route. 
+The endpoint can be shared in multiple tests and defines several properties such as the endpoint uri that will be called.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="n">CamelEndpoint</span> <span class="nf">helloCamelEndpoint</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nf">CamelEndpoint</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpointUri</span><span class="o">(</span><span class="s">"direct:hello"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">send</span><span class="o">(</span><span class="n">helloCamelEndpoint</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Hello from Citrus!"</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>Of course, you can also consume messages from a Camel route using the endpoint pattern.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">receive</span><span class="o">(</span><span class="s">"camel:seda:greetings"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">type</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">PLAINTEXT</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Hello from Citrus!"</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>The Camel support in Citrus has been enhanced with Citrus 3. 
+Read the following sections to find out about awesome new features and improvements.</p>
+
+<h1 id="whats-new-in-citrus-3">What’s new in Citrus 3?</h1>
+
+<h2 id="endpoint-dsl-support">Endpoint DSL support</h2>
+
+<p>Since Camel 3 you can use a Java fluent API to deal with Camel endpoint URIs. 
+You can use the Camel endpoint DSL in the Citrus send/receive actions now, too.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">send</span><span class="o">(</span><span class="n">camel</span><span class="o">().</span><span class="na">endpoint</span><span class="o">(</span><span class="n">direct</span><span class="o">(</span><span class="s">"hello"</span><span class="o">)::</span><span class="n">getUri</span><span class="o">))</span>
+    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Hello from Citrus!"</span><span class="o">);</span>
+
+<span class="n">receive</span><span class="o">(</span><span class="n">camel</span><span class="o">().</span><span class="na">endpoint</span><span class="o">(</span><span class="n">seda</span><span class="o">(</span><span class="s">"greetings"</span><span class="o">)::</span><span class="n">getUri</span><span class="o">)</span><span class="s">")
+    .message()
+    .type(MessageType.PLAINTEXT)
+    .body("</span><span class="n">Hello</span> <span class="n">from</span> <span class="n">Citrus</span><span class="o">!</span><span class="err">"</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>The send and receive actions above use the Camel endpoint DSL to construct the proper endpoint URI.
+The <code class="highlighter-rouge">camel().endpoint(seda("test")::getUri)</code> builds the endpoint uri <code class="highlighter-rouge">seda:test</code>.
+The endpoint DSL provides all settings and properties that you can set for a Camel endpoint component.</p>
+
+<h2 id="camel-processor-support">Camel processor support</h2>
+
+<p>Camel implements the concept of processors as enterprise integration pattern.
+A processor is able to add custom logic to a Camel route.
+Each processor is able to access the Camel exchange that is being processed in the current route.
+The processor is able to change the message content (body, headers) as well as the exchange information.</p>
+
+<p>The send/receive operations in Citrus also implement the processor concept.
+With the Citrus Camel support you can now use the very same Camel processor also in a Citrus test action.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">com.consol.citrus.camel.message.CamelMessageProcessor</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CamelMessageProcessorIT</span> <span class="kd">extends</span> <span class="n">TestNGCitrusSpringSupport</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="nd">@Test</span>
+    <span class="nd">@CitrusTest</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldProcessMessages</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">CamelMessageProcessor</span><span class="o">.</span><span class="na">Builder</span> <span class="n">toUppercase</span> <span class="o">=</span> <span class="n">camel</span><span class="o">(</span><span class="n">camelContext</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">exchange</span> <span class="o">-&gt;</span> <span class="n">exchange</span>
+                        <span class="o">.</span><span class="na">getMessage</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">setBody</span><span class="o">(</span><span class="n">exchange</span><span class="o">.</span><span class="na">getMessage</span><span class="o">().</span><span class="na">getBody</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">toUpperCase</span><span class="o">()));</span>
+
+        <span class="err">$</span><span class="o">(</span><span class="n">send</span><span class="o">(</span><span class="n">camel</span><span class="o">().</span><span class="na">endpoint</span><span class="o">(</span><span class="n">seda</span><span class="o">(</span><span class="s">"test"</span><span class="o">)::</span><span class="n">getUri</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Citrus rocks!"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">toUppercase</span><span class="o">)</span>
+        <span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The example above uses a Camel processor to change the exchange and the message content before the message is sent to the endpoint.
+This way you can apply custom changes to the message as part of the test action.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CamelMessageProcessorIT</span> <span class="kd">extends</span> <span class="n">TestNGCitrusSpringSupport</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="nd">@Test</span>
+    <span class="nd">@CitrusTest</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldProcessMessages</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">CamelMessageProcessor</span><span class="o">.</span><span class="na">Builder</span> <span class="n">toUppercase</span> <span class="o">=</span> <span class="n">camel</span><span class="o">(</span><span class="n">camelContext</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">exchange</span> <span class="o">-&gt;</span> <span class="n">exchange</span>
+                        <span class="o">.</span><span class="na">getMessage</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">setBody</span><span class="o">(</span><span class="n">exchange</span><span class="o">.</span><span class="na">getMessage</span><span class="o">().</span><span class="na">getBody</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">toUpperCase</span><span class="o">()));</span>
+        
+        <span class="err">$</span><span class="o">(</span><span class="n">send</span><span class="o">(</span><span class="n">camel</span><span class="o">().</span><span class="na">endpoint</span><span class="o">(</span><span class="n">seda</span><span class="o">(</span><span class="s">"test"</span><span class="o">)::</span><span class="n">getUri</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Citrus rocks!"</span><span class="o">));</span>
+
+        <span class="err">$</span><span class="o">(</span><span class="n">receive</span><span class="o">(</span><span class="n">camel</span><span class="o">().</span><span class="na">endpoint</span><span class="o">(</span><span class="n">seda</span><span class="o">(</span><span class="s">"test"</span><span class="o">)::</span><span class="n">getUri</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">toUppercase</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">type</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">PLAINTEXT</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"CITRUS ROCKS!"</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The Camel processors are very powerful.
+In particular, you can apply transformations of multiple kind.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CamelTransformIT</span> <span class="kd">extends</span> <span class="n">TestNGCitrusSpringSupport</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="nd">@Test</span>
+    <span class="nd">@CitrusTest</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldTransformMessageReceived</span><span class="o">()</span> <span class="o">{</span>
+        <span class="err">$</span><span class="o">(</span><span class="n">send</span><span class="o">(</span><span class="n">camel</span><span class="o">().</span><span class="na">endpoint</span><span class="o">(</span><span class="n">seda</span><span class="o">(</span><span class="s">"hello"</span><span class="o">)::</span><span class="n">getUri</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"{\"message\": \"Citrus rocks!\"}"</span><span class="o">)</span>
+        <span class="o">);</span>
+
+        <span class="err">$</span><span class="o">(</span><span class="n">receive</span><span class="o">(</span><span class="n">camel</span><span class="o">().</span><span class="na">endpoint</span><span class="o">(</span><span class="n">seda</span><span class="o">(</span><span class="s">"hello"</span><span class="o">)::</span><span class="n">getUri</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">transform</span><span class="o">(</span>
+                    <span class="n">camel</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">camelContext</span><span class="o">(</span><span class="n">camelContext</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">transform</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">jsonpath</span><span class="o">(</span><span class="s">"$.message"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">type</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">PLAINTEXT</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Citrus rocks!"</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The transform pattern is able to change the message content before a message is received/sent in Citrus.
+The example above applies a JsonPath expression as part of the message processing.
+The JsonPath expression evaluates <code class="highlighter-rouge">$.message</code> on the Json payload and saves the result as new message body content.
+The following message validation expects the plaintext value <code class="highlighter-rouge">Citrus rocks!</code>.</p>
+
+<p>The message processor is also able to apply a complete route logic as part of the test action.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CamelRouteProcessorIT</span> <span class="kd">extends</span> <span class="n">TestNGCitrusSpringSupport</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="nd">@Test</span>
+    <span class="nd">@CitrusTest</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldProcessRoute</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">CamelRouteProcessor</span><span class="o">.</span><span class="na">Builder</span> <span class="n">beforeReceive</span> <span class="o">=</span> <span class="n">camel</span><span class="o">(</span><span class="n">camelContext</span><span class="o">).</span><span class="na">route</span><span class="o">(</span><span class="n">route</span> <span class="o">-&gt;</span>
+                <span class="n">route</span><span class="o">.</span><span class="na">choice</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">jsonpath</span><span class="o">(</span><span class="s">"$.greeting[?(@.language == 'EN')]"</span><span class="o">))</span>
+                        <span class="o">.</span><span class="na">setBody</span><span class="o">(</span><span class="n">constant</span><span class="o">(</span><span class="s">"Hello!"</span><span class="o">))</span>
+                    <span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">jsonpath</span><span class="o">(</span><span class="s">"$.greeting[?(@.language == 'DE')]"</span><span class="o">))</span>
+                        <span class="o">.</span><span class="na">setBody</span><span class="o">(</span><span class="n">constant</span><span class="o">(</span><span class="s">"Hallo!"</span><span class="o">))</span>
+                    <span class="o">.</span><span class="na">otherwise</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">setBody</span><span class="o">(</span><span class="n">constant</span><span class="o">(</span><span class="s">"Hi!"</span><span class="o">)));</span>
+
+        <span class="err">$</span><span class="o">(</span><span class="n">send</span><span class="o">(</span><span class="n">camel</span><span class="o">().</span><span class="na">endpoint</span><span class="o">(</span><span class="n">seda</span><span class="o">(</span><span class="s">"greetings"</span><span class="o">)::</span><span class="n">getUri</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"{"</span> <span class="o">+</span>
+                        <span class="s">"\"greeting\": {"</span> <span class="o">+</span>
+                            <span class="s">"\"language\": \"EN\""</span> <span class="o">+</span>
+                        <span class="s">"}"</span> <span class="o">+</span>
+                      <span class="s">"}"</span><span class="o">)</span>
+        <span class="o">);</span>
+
+        <span class="err">$</span><span class="o">(</span><span class="n">receive</span><span class="o">(</span><span class="s">"camel:"</span> <span class="o">+</span> <span class="n">camel</span><span class="o">().</span><span class="na">endpoints</span><span class="o">().</span><span class="na">seda</span><span class="o">(</span><span class="s">"greetings"</span><span class="o">).</span><span class="na">getUri</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">beforeReceive</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">type</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">PLAINTEXT</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Hello!"</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>With the complete route logic you have the full power of Camel ready to be used in your send/receive test action.
+This enables many capabilities as Camel implements the enterprise integration patterns such as split, choice, enrich and many more.</p>
+
+<h2 id="camel-data-format-support">Camel data format support</h2>
+
+<p>Camel uses the concept of data format to transform message content in form of marshal/unmarshal operations.
+You can use the data formats supported in Camel in Citrus, too.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CamelDataFormatIT</span> <span class="kd">extends</span> <span class="n">TestNGCitrusSpringSupport</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="nd">@Test</span>
+    <span class="nd">@CitrusTest</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldApplyDataFormat</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">when</span><span class="o">(</span><span class="n">send</span><span class="o">(</span><span class="n">camel</span><span class="o">().</span><span class="na">endpoint</span><span class="o">(</span><span class="n">seda</span><span class="o">(</span><span class="s">"data"</span><span class="o">)::</span><span class="n">getUri</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Citrus rocks!"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">transform</span><span class="o">(</span><span class="n">camel</span><span class="o">(</span><span class="n">camelContext</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">marshal</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">base64</span><span class="o">())</span>
+        <span class="o">);</span>
+
+        <span class="n">then</span><span class="o">(</span><span class="n">receive</span><span class="o">(</span><span class="s">"camel:"</span> <span class="o">+</span> <span class="n">camel</span><span class="o">().</span><span class="na">endpoints</span><span class="o">().</span><span class="na">seda</span><span class="o">(</span><span class="s">"data"</span><span class="o">).</span><span class="na">getUri</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">transform</span><span class="o">(</span><span class="n">camel</span><span class="o">(</span><span class="n">camelContext</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">unmarshal</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">base64</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">transform</span><span class="o">(</span><span class="n">camel</span><span class="o">(</span><span class="n">camelContext</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">convertBodyTo</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">type</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">PLAINTEXT</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Citrus rocks!"</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The example above uses the <code class="highlighter-rouge">base64</code> data format provided in Camel to marshal/unmarshal the message content to/from a base64 encoded String.
+Camel provides support for many data formats as you can see in the <a href="https://camel.apache.org/components/latest/dataformats/index.html">documentation on data formats</a>.</p>
+
+<h2 id="wrap-up">Wrap up!</h2>
+
+<p>That completes the new features in Citrus 3 regarding Apache Camel.</p>
+
+<p>Please give it a try, provide some feedback and tell us what you think about Camel and Citrus!</p>
+
+  </div>
+</article>
+
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <h4>Overview</h4>
+    <ul>
+      <li class="">
+        <a href="/news/">All News</a>
+      </li>
+      <li class="">
+        <a href="/docs/history/">All Releases</a>
+      </li>
+      <li>
+        <a href="http://citrus.895196.n3.nabble.com/" target="_blank">Forum</a>
+      </li>
+    </ul>
+    <h4>Posts</h4>
+    <ul>
+        
+        <li class="current">
+          <a href="/news/2021/08/25/new-camel-support/">» Citrus and Apache Camel</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2021/08/16/citrus-3.0/">» Citrus 3.0</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2018/09/19/upcoming-changes/">» Future of Citrus</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2017/09/21/introducing-citrus-simulator/">» Citrus Simulator</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2017/07/07/introducing-citrus-admin/">» Admin UI</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2016/03/15/jcache-chat-citrus/">» Testing WebSockets</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2015/08/19/arquillian-extension-part-2/">» Arquillian &amp; Citrus II</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2015/06/29/arquillian-extension-part-1/">» Arquillian &amp; Citrus I</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2015/06/03/camel-testing-part-3/">» Apache Camel III</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2015/05/27/camel-testing-part-2/">» Apache Camel II</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2014/11/21/camel-testing-part-1/">» Apache Camel I</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2014/05/30/testing-webmethods-with-citrus-part-ii/">» Testing webMethods II</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2014/03/06/testing-webmethods-with-citrus-part-i/">» Testing webMethods I</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2011/06/22/excel-validation/">» Validate Excel files</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2011/06/17/testng-data-provider/">» TestNG data providers</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2010/12/14/integrate-your-own-validator/">» Integrate your own validator</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2010/08/13/testng-groups/">» TestNG groups</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2010/05/19/soap-mustunderstand/">» SOAP-ENV:mustUnderstand</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2010/01/18/custom-meta-info/">» Custom meta info</a>
+        </li>
+        
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/citrusframework/citrus/blob/master/LICENSE">MIT License</a>.</p>
+      <br>
+      <p>© 2021 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p> </p>
+      <br>
+      <br>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>
