@@ -1,4 +1,244 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2021-08-25T20:57:12+02:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Citrus Integration Tests</title><subtitle>Automated integration tests for message protocols and data formats that you require</subtitle><entry><title type="html">Apache Camel support in Citrus 3</title><link href="http://0.0.0.0:4000/news/2021/08/25/new-camel-support/" rel="alternate" type="text/html" title="Apache Camel support in Citrus 3" /><published>2021-08-25T00:00:00+02:00</published><updated>2021-08-25T00:00:00+02:00</updated><id>http://0.0.0.0:4000/news/2021/08/25/new-camel-support</id><content type="html" xml:base="http://0.0.0.0:4000/news/2021/08/25/new-camel-support/">&lt;p&gt;Citrus 3 provides enhanced support for &lt;a href=&quot;https://camel.apache.org&quot;&gt;Apache Camel&lt;/a&gt; with new features and improvements.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2021-08-30T11:30:31+02:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Citrus Integration Tests</title><subtitle>Automated integration tests for message protocols and data formats that you require</subtitle><entry><title type="html">Cloud-native BDD testing with YAKS</title><link href="http://0.0.0.0:4000/news/2021/08/30/introducing-yaks/" rel="alternate" type="text/html" title="Cloud-native BDD testing with YAKS" /><published>2021-08-30T00:00:00+02:00</published><updated>2021-08-30T00:00:00+02:00</updated><id>http://0.0.0.0:4000/news/2021/08/30/introducing-yaks</id><content type="html" xml:base="http://0.0.0.0:4000/news/2021/08/30/introducing-yaks/">&lt;p&gt;YAKS is a testing platform that leverages Behavior Driven Development concepts for running tests on Cloud-native infrastructure.&lt;/p&gt;
+
+&lt;h1 id=&quot;what-is-yaks&quot;&gt;What is “YAKS”?&lt;/h1&gt;
+
+&lt;p&gt;YAKS is an Open Source test automation platform to run your tests as Cloud-native resources on &lt;a href=&quot;https://kubernetes.io/&quot;&gt;Kubernetes&lt;/a&gt; or &lt;a href=&quot;https://www.openshift.com/&quot;&gt;OpenShift&lt;/a&gt;. 
+This means the testing tool runs your tests natively on Kubernetes and is specifically designed to verify Serverless and Microservice applications. 
+A typical YAKS test uses the very same infrastructure as the System under test and exchanges data/events over different 
+messaging transports (e.g. Http REST, Knative eventing, Kafka, JMS and many more).&lt;/p&gt;
+
+&lt;p&gt;The tests in YAKS follow the BDD (Behavior Driven Development) concepts, so you declare &lt;a href=&quot;https://cucumber.io/docs/gherkin/reference/&quot;&gt;Gherkin&lt;/a&gt; (Given-When-Then syntax) 
+feature files and run those directly as Pod in your cluster.&lt;/p&gt;
+
+&lt;p&gt;YAKS leverages the Operator SDK and provides a specific operator to manage the test case resources on the cluster. 
+Each time you declare a test in the form of a &lt;a href=&quot;https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/&quot;&gt;custom resource&lt;/a&gt; the YAKS operator automatically takes care of preparing the 
+proper runtime in order to execute the test as a Kubernetes Pod. 
+The runtime uses a Java virtual machine runtime with Maven and leverages &lt;a href=&quot;https://cucumber.io/&quot;&gt;Cucumber&lt;/a&gt; and &lt;a href=&quot;https://citrusframework.org&quot;&gt;Citrus&lt;/a&gt; to run the tests.&lt;/p&gt;
+
+&lt;p&gt;YAKS as a framework brings a set of ready-to-use &lt;a href=&quot;https://cucumber.io/&quot;&gt;Cucumber steps&lt;/a&gt; so you can just start writing your feature files to verify your deployed services.&lt;/p&gt;
+
+&lt;h1 id=&quot;why-would-you-want-cloud-native-testing&quot;&gt;Why would you want Cloud-native testing?&lt;/h1&gt;
+
+&lt;p&gt;Why would you want to run tests as Cloud-native resources on the Kubernetes platform? 
+Kubernetes has become a standard target platform for Serverless and Microservices architectures. 
+Developing the services is different in many aspects compared to what we have done for decades.&lt;/p&gt;
+
+&lt;p&gt;Writing a Serverless or Microservices application for instance with &lt;a href=&quot;https://camel.apache.org/projects/camel-k/&quot;&gt;Camel K&lt;/a&gt; is very declarative. 
+As a developer you write a Camel route and run this route as an integration via the Camel K operator directly on the cluster.&lt;/p&gt;
+
+&lt;p&gt;The declarative approach as well as the nature of Serverless applications make us rely on a given runtime infrastructure, and it is quite hard to run tests outside that infrastructure. 
+So it is only natural to also move the verifying tests into this very same infrastructure. 
+This is why YAKS brings your tests to the cloud infrastructure for integration and end-to-end testing.&lt;/p&gt;
+
+&lt;p&gt;Let us have a look at a sample Camel K integration. 
+The integration provides a Http service and transforms incoming requests to messages sent to a Kafka topic.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Camel K sample: http-to-kafka.groovy&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// expose a rest endpoint that routes transformed messages to Kafka&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;rest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/greeting&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;route&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;transform&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()...&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// any kind of transformation&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;kafka:greetings&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Once you have written the Camel route you are ready to run the Camel K integration source within the Kubernetes infrastructure. 
+It is only natural to also move the verifying tests into this very same infrastructure because you can make use of the very same messaging transports, 
+databases and services (internal and external) provided in that infrastructure.&lt;/p&gt;
+
+&lt;p&gt;The tests are able to simulate 3rd party services or other microservices that are part of the message processing logic. 
+The BDD tests describe the given context, the events to occur and the expected outcome all in one single feature file. 
+This declarative testing approach is a perfect match to the concept of operators and custom resources on Kubernetes that 
+is being used in so many Cloud-native services these days.&lt;/p&gt;
+
+&lt;h1 id=&quot;how-does-it-work&quot;&gt;How does it work?&lt;/h1&gt;
+
+&lt;p&gt;YAKS provides a Kubernetes operator and a set of CRDs (custom resources) that we need to install in the cluster. 
+The best way to install YAKS is to use the &lt;a href=&quot;https://operatorhub.io/operator/yaks&quot;&gt;OperatorHub&lt;/a&gt; or the yaks CLI tools that you can download from the &lt;a href=&quot;https://github.com/citrusframework/yaks/releases&quot;&gt;GitHub release pages&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;With the yaks-client binary simply run this install command:&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;yaks &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This command prepares your Kubernetes cluster for running tests with YAKS. 
+It will take care of installing the YAKS custom resource definitions, setting up role permissions and creating the YAKS operator in a global operator namespace.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Important:&lt;/em&gt; You need to be a cluster admin to install custom resource definitions. 
+The operation needs to be done only once for the entire cluster.&lt;/p&gt;
+
+&lt;p&gt;Now that the YAKS operator is up and running you can just start writing a Gherkin BDD feature file and run the test. 
+YAKS brings a set of ready-to-use &lt;a href=&quot;https://cucumber.io/&quot;&gt;Cucumber steps&lt;/a&gt; that you can use in the feature files.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;File: http-to-kafka.feature&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-gherkin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;Feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; Http to Kafka
+
+  &lt;span class=&quot;kn&quot;&gt;Background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;Given URL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;//greeting-service-demo.svc&lt;/span&gt;
+    &lt;span class=&quot;nf&quot;&gt;Given &lt;/span&gt;Kafka connection
+    &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;url&lt;/span&gt;   &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;kafka-bootstrap.server.svc:9092&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;topic&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;greetings&lt;/span&gt;                               &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;
+    
+  &lt;span class=&quot;kn&quot;&gt;Scenario&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; Post greeting event
+    &lt;span class=&quot;err&quot;&gt;Given HTTP request body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;Hello&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;YAKS!&lt;/span&gt;
+    &lt;span class=&quot;nf&quot;&gt;When &lt;/span&gt;send POST /greeting
+    &lt;span class=&quot;nf&quot;&gt;Then &lt;/span&gt;receive HTTP 201 CREATED
+    &lt;span class=&quot;err&quot;&gt;And verify Kafka message with body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;Hello&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;YAKS!&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The feature above verifies the Camel K integration to send greeting events to a Kafka topic. 
+The test calls the Camel K integration with a Http POST request. 
+The request invokes the service and verifies the &lt;em&gt;Http 201 CREATED&lt;/em&gt; response code. 
+Also, the test verifies the Kafka message on the &lt;em&gt;greeting topic&lt;/em&gt; and compares the message content to an expected template.&lt;/p&gt;
+
+&lt;p&gt;The whole test uses the ready-to-use YAKS steps for handling Http and Kafka communication. 
+So the tester does not have to implement this messaging transport logic.&lt;/p&gt;
+
+&lt;p&gt;You can run the test with:&lt;/p&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;yaks run http-to-kafka.feature
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This creates a new test custom resource with the given BDD feature file. 
+The YAKS operator automatically executes the test as a Pod on the cluster. 
+You can review the test log output and see if the test passes.&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;yaks run greeting-http-to-kafka.feature
+    
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] 
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;INFO]
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;INFO] CITRUS TEST RESULTS
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;INFO]
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;INFO]  http-to-kafka.feature:6 .................. SUCCESS
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;INFO] 
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;INFO] TOTAL:	1
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;INFO] FAILED:	0 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.0%&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;INFO] SUCCESS:	1 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;100.0%&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;INFO] 
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;INFO] &lt;span class=&quot;nt&quot;&gt;------------------------------------------------------------------------&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;INFO] Generated &lt;span class=&quot;nb&quot;&gt;test &lt;/span&gt;report: target/citrus-reports/citrus-test-results.html
+
+1 Scenarios &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1 passed&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+2 Steps &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;2 passed&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+0m1.711s
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.274 s - &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;org.citrusframework.yaks.YaksTest
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;INFO] 
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;INFO] Results:
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;INFO] 
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;INFO] 
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;INFO] &lt;span class=&quot;nt&quot;&gt;------------------------------------------------------------------------&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;INFO] BUILD SUCCESS
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;INFO] &lt;span class=&quot;nt&quot;&gt;------------------------------------------------------------------------&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;INFO] Total &lt;span class=&quot;nb&quot;&gt;time&lt;/span&gt;: 6.453 s
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;INFO] Finished at: 2020-03-06T15:30:53Z
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;INFO] &lt;span class=&quot;nt&quot;&gt;------------------------------------------------------------------------&lt;/span&gt;
+Test result: Passed
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You can also review the Pod test outcome with:&lt;/p&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;kubectl get tests
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This is an example output you should get:&lt;/p&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;NAME             PHASE
+http-to-kafka    Passed
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;So, what happens behind the scenes when running this test on Kubernetes?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/assets/yaks-architecture.png&quot; alt=&quot;yaks-architecture.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;strong&gt;yaks&lt;/strong&gt; tool synchronizes your test code with a Kubernetes custom resource of Kind Test. 
+The resource is named &lt;code class=&quot;highlighter-rouge&quot;&gt;http-to-kafka&lt;/code&gt; (after the file name) in the current namespace. 
+So every time you run the test the custom resource is updated and executed.&lt;/p&gt;
+
+&lt;p&gt;The YAKS operator is the component that makes all this possible by configuring all Kubernetes resources needed for running your tests. 
+The test runtime uses Cucumber and Citrus to read the feature files and run the tests in a Java virtual machine.&lt;/p&gt;
+
+&lt;p&gt;Now let’s have a look at the predefined YAKS step implementations that you can use out of the box.&lt;/p&gt;
+
+&lt;h1 id=&quot;yaks-test-steps&quot;&gt;YAKS test steps&lt;/h1&gt;
+
+&lt;p&gt;YAKS provides several ready-to-use &lt;a href=&quot;https://cucumber.io/&quot;&gt;Cucumber steps&lt;/a&gt; that you can just use in your feature files. 
+These steps should help you to verify applications that exchange data over various messaging transports. 
+Have a look at the predefined steps we have so far:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Module&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Description&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;yaks-standard&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Basic steps (e.g. for logging messages to the console, test delays, settings)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;yaks-http&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Call Http REST endpoints as a client and verify the response content. Provide a Http service that receives/verifies requests and simulates response messages.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;yaks-openapi&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Import OpenAPI specifications and use defined operations and test data to call Http REST endpoints&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;yaks-jdbc&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Connect to a database for updating data or verifying SQL query result sets&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;yaks-camel&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Create, start and stop &lt;a href=&quot;https://camel.apache.org/&quot;&gt;Apache Camel&lt;/a&gt; routes as part of the test. This opens access to all &lt;strong&gt;300+&lt;/strong&gt; Camel components for testing!&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;yaks-camel-k&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Create and verify Camel K integrations as part of the test.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;yaks-kafka&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Publish/consume events on Kafka streams&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;yaks-knative&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Connect with Knative eventing and leverage triggers, channels, subscriptions to exchange cloud events.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;yaks-kubernetes&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Apply resources on the Kubernetes cluster and provide services with exposed ports service simulation.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;yaks-jms&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Publish/consume messages on a JMS broker.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;yaks-selenium&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Run UI tests with a Selenium remote browser simulating user interaction on a web frontend.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The list of ready-to-use steps is constantly growing, and you can also write your own steps and use them in a YAKS test! 
+Have a look at the &lt;a href=&quot;https://github.com/citrusframework/yaks/tree/master/examples&quot;&gt;examples&lt;/a&gt; to see all those steps in action.&lt;/p&gt;
+
+&lt;p&gt;The steps provided in YAKS are implemented using the integration test framework &lt;a href=&quot;https://citrusframework.org/&quot;&gt;Citrus&lt;/a&gt;. 
+This means that you can use features like functions, validation matchers and test variables in your test.&lt;/p&gt;
+
+&lt;h1 id=&quot;demo&quot;&gt;Demo&lt;/h1&gt;
+
+&lt;p&gt;The following demo video shows an example of what you can do with YAKS. 
+It has the YAKS operator already installed and invokes a system under test via Http verifying the response content. 
+It continues to more complex scenarios where the test uses a Swagger OpenAPI specification for generating requests and test data.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/embed/fR-UgzvZkuA&quot;&gt;https://www.youtube.com/embed/fR-UgzvZkuA&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;whats-next&quot;&gt;What’s next&lt;/h1&gt;
+
+&lt;p&gt;This is just the start of a new testing platform for BDD testing in Cloud-native environments! 
+We are happy to receive feedback, ideas and of course contributions. 
+Please add your thoughts on the GitHub repository by opening &lt;a href=&quot;https://github.com/citrusframework/yaks/issues&quot;&gt;new issues&lt;/a&gt; 
+or even share your appreciation with a &lt;a href=&quot;https://github.com/citrusframework/yaks&quot;&gt;star&lt;/a&gt; on GitHub.&lt;/p&gt;</content><author><name>Christoph Deppisch</name></author></entry><entry><title type="html">Apache Camel support in Citrus 3</title><link href="http://0.0.0.0:4000/news/2021/08/25/new-camel-support/" rel="alternate" type="text/html" title="Apache Camel support in Citrus 3" /><published>2021-08-25T00:00:00+02:00</published><updated>2021-08-25T00:00:00+02:00</updated><id>http://0.0.0.0:4000/news/2021/08/25/new-camel-support</id><content type="html" xml:base="http://0.0.0.0:4000/news/2021/08/25/new-camel-support/">&lt;p&gt;Citrus 3 provides enhanced support for &lt;a href=&quot;https://camel.apache.org&quot;&gt;Apache Camel&lt;/a&gt; with new features and improvements.
 This enables great opportunities and leverages the full enterprise integration power of Apache Camel in Citrus.&lt;/p&gt;
 
 &lt;p&gt;Before this post explains the enhancements in Citrus 3 regarding Camel let us have a brief look at what has always been in the box.&lt;/p&gt;
@@ -1709,175 +1949,4 @@ responsible for creating the SOAP envelope.&lt;/p&gt;
 
 &lt;h2 id=&quot;run&quot;&gt;Run&lt;/h2&gt;
 
-&lt;p&gt;You can run the sample on your localhost in order to see Citrus in action. Read the instructions &lt;a href=&quot;/samples/run/&quot;&gt;how to run&lt;/a&gt; the sample.&lt;/p&gt;</content><author><name></name></author></entry><entry><title type="html">SFTP sample</title><link href="http://0.0.0.0:4000/samples/sftp/" rel="alternate" type="text/html" title="SFTP sample" /><published>2018-06-21T00:00:00+02:00</published><updated>2018-06-21T00:00:00+02:00</updated><id>http://0.0.0.0:4000/samples/sample-sftp</id><content type="html" xml:base="http://0.0.0.0:4000/samples/sftp/">&lt;p&gt;This sample shows hot to setup proper SFTP communication as client and server in Citrus. The sftp-client component uses private key authentication and creates a new
-directory on the server, stores a file and retrieves the same file in a single test.&lt;/p&gt;
-
-&lt;p&gt;SFTP features are also described in detail in &lt;a href=&quot;https://citrusframework.org/reference/html#ftp&quot;&gt;reference guide&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;objectives&quot;&gt;Objectives&lt;/h2&gt;
-
-&lt;p&gt;We want to setup both FTP client and server components in our project in order to test a file transfer via FTP. The client authenticates to the server
-using username password credentials. The ftp-server component will receive incoming requests for validation and provide the FTP user account workspace to the client.&lt;/p&gt;
-
-&lt;p&gt;First of all let us setup the necessary components in the Spring bean configuration:&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Bean&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SftpClient&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sftpClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CitrusEndpoints&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sftp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;strictHostChecking&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2222&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;citrus&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;privateKeyPath&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;classpath:ssh/citrus.priv&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;nd&quot;&gt;@Bean&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SftpServer&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sftpServer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CitrusEndpoints&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sftp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2222&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;autoStart&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;citrus&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;admin&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;allowedKeyPath&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;classpath:ssh/citrus_pub.pem&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The &lt;em&gt;sftpServer&lt;/em&gt; is a small but fully qualified SFTP server implementation in Citrus. The server receives a &lt;code class=&quot;highlighter-rouge&quot;&gt;user&lt;/code&gt; that defines the user account and its home directory. All commands
-will be performed in this user home directory. You can set the user home directory using the &lt;code class=&quot;highlighter-rouge&quot;&gt;userHomePath&lt;/code&gt; attribute on the server. By default this is a directory located in &lt;code class=&quot;highlighter-rouge&quot;&gt;/Users/cdeppisc/Projects/Citrus/citrus-website/target/{serverName}/home/{user}&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;In case you want to setup some files in that directory in order to provide it to clients, please copy those files to that home directory prior to the test.&lt;/p&gt;
-
-&lt;p&gt;The sftp-client connects to the server using the user credentials and/or the private key authentication. The client uses the private key where the server adds the public key to the list of allowed keys.&lt;/p&gt;
-
-&lt;p&gt;In a sample test we first create a new subdirectory in that user home directory.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;echo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Create new directory on server&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sftpClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FtpMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FTPCmd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;MKD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;arguments&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;todo&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sftpClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FtpMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;success&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;257&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Pathname created&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;As you can see the client is passing a &lt;code class=&quot;highlighter-rouge&quot;&gt;MKD&lt;/code&gt; signal to the server. The user login procedure is done automatically and the directory creation is also
-dome automatically on the SFTP server. This is because the test case is not able to intercept those commands such as MKD and LIST on the server. The commands are directly
-executed in the user home directory.&lt;/p&gt;
-
-&lt;p&gt;Now lets store a new file in that user directory.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;echo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Store file to directory&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sftpClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;fork&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FtpMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;put&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;classpath:todo/entry.json&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;todo/todo.json&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DataType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ASCII&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sftpServer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FtpMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;put&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@ignore@&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/todo/todo.json&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DataType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ASCII&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sftpServer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FtpMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;success&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sftpClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-   &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FtpMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;putResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;226&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;@contains(Transfer complete)@&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Now we have both client and server interaction in the same test case. This requires us to use &lt;code class=&quot;highlighter-rouge&quot;&gt;fork=true&lt;/code&gt; option on all client
-requests as we need to continue with the test in order to handle the server interaction, too. We can store a new file &lt;code class=&quot;highlighter-rouge&quot;&gt;todo/entry.json&lt;/code&gt; which is transmitted
-to the server using &lt;code class=&quot;highlighter-rouge&quot;&gt;ASCII&lt;/code&gt; file mode.&lt;/p&gt;
-
-&lt;p&gt;The FTP server is receiving the &lt;code class=&quot;highlighter-rouge&quot;&gt;STOR&lt;/code&gt;signal providing a success response in order to mark completion of the file transfer. After that the file should be created in
-the user home directory in path &lt;code class=&quot;highlighter-rouge&quot;&gt;todo/todo.json&lt;/code&gt;. You can validate the file content by reading it from that directory in another test action.&lt;/p&gt;
-
-&lt;p&gt;Now we should be also able to list the files in that directory:&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;echo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;List files in directory&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sftpClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FtpMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;todo&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sftpClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FtpMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getListCommandResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;todo.json&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)));&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ListCommandResult&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getListCommandResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileNames&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;ListCommandResult&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ListCommandResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setSuccess&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setReplyCode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;valueOf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;150&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setReplyString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;List files complete&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;ListCommandResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Files&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expectedFiles&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ListCommandResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Files&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;ListCommandResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Files&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;File&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;currentDir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ListCommandResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Files&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;currentDir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setPath&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;.&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;expectedFiles&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getFiles&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;currentDir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;ListCommandResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Files&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;File&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parentDir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ListCommandResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Files&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;parentDir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setPath&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;..&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;expectedFiles&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getFiles&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parentDir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileNames&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;ListCommandResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Files&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;File&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;entry&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ListCommandResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Files&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;entry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setPath&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fileName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;expectedFiles&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getFiles&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;entry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setFiles&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;expectedFiles&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Now we can also retrieve the file from the server by calling the &lt;code class=&quot;highlighter-rouge&quot;&gt;RETR&lt;/code&gt; operation.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;echo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Retrieve file from server&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sftpClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;fork&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FtpMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;todo/todo.json&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;target/todo/todo.json&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DataType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ASCII&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sftpServer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FtpMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/todo/todo.json&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;@ignore@&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DataType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ASCII&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sftpServer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FtpMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;success&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sftpClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FtpMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getRetrieveFileCommandResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;target/todo/todo.json&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ClassPathResource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;todo/entry.json&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))));&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GetCommandResult&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getRetrieveFileCommandResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Resource&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IOException&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;GetCommandResult&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GetCommandResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setSuccess&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setReplyCode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;valueOf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;226&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setReplyString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Transfer complete&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;GetCommandResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;File&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;entryResult&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GetCommandResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;entryResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setPath&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;entryResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setData&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FileUtils&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;readToString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setFile&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;entryResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This completes our test as we were able to interact with the SFTP server using the client signals.&lt;/p&gt;
-
-&lt;h2 id=&quot;run&quot;&gt;Run&lt;/h2&gt;
-
-&lt;p&gt;You can execute some sample Citrus test cases in this sample in order to write the reports.
-Open a separate command line terminal and navigate to the sample folder.&lt;/p&gt;
-
-&lt;p&gt;Execute all Citrus tests by calling&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; mvn integration-test
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;You should see Citrus performing several tests with lots of debugging output. 
-And of course green tests at the very end of the build and some new reporting files in &lt;code class=&quot;highlighter-rouge&quot;&gt;target/citrus-reports&lt;/code&gt; folder.&lt;/p&gt;
-
-&lt;p&gt;Of course you can also start the Citrus tests from your favorite IDE.
-Just start the Citrus test using the TestNG IDE integration in IntelliJ, Eclipse or Netbeans.&lt;/p&gt;</content><author><name></name></author></entry></feed>
+&lt;p&gt;You can run the sample on your localhost in order to see Citrus in action. Read the instructions &lt;a href=&quot;/samples/run/&quot;&gt;how to run&lt;/a&gt; the sample.&lt;/p&gt;</content><author><name></name></author></entry></feed>
