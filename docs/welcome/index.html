@@ -225,129 +225,65 @@
       <div class="unit four-fifths">
         <article>
           <div class="improve right hide-on-mobiles">
-            <a href="https://github.com/citrusframework/citrus-website/edit/master/src/main/site/_docs/modules.md"><i class="fa fa-pencil"></i> &nbsp;Improve this page</a>
+            <a href="https://github.com/citrusframework/citrus-website/edit/master/src/main/site/_docs/welcome.md"><i class="fa fa-pencil"></i> &nbsp;Improve this page</a>
           </div>
-          <h1>Modules</h1>
-          <h3 id="citrus-pom">citrus (POM)</h3>
+          <h1>Welcome</h1>
+          <p>Enterprise Application Integration (EAI) software usually take part in various transactions with different interface partners. 
+The correct communication between the interface partners is essential for the success of the business use case. It is a very 
+important task to test these use case scenarios in order to ensure the integration into the software landscape on the customer 
+side.</p>
 
-<p>This is the main parent project containing general configurations, such as</p>
+<p>How can someone ensure that interface partners communicate with each other as designed? And how can somebody test positive 
+and negative use case scenarios in an automated way? Citrus aims to give answeres to these questions!</p>
 
-<ul>
-  <li>site generation</li>
-  <li>dependency management</li>
-  <li>plugin management</li>
-  <li>overall project information, such as mailing lists, team-members, scm, bug-tracking, …</li>
-  <li>sub modules</li>
-</ul>
+<h2 id="why-use-citrus">Why use Citrus?</h2>
 
-<h3 id="citrus-core-jar">citrus-core (JAR)</h3>
+<p>In EAI projects, several software applications are using different interfaces in order to exchange data. The communication 
+between interface partners becomes a very important test issue. In production the EAI system has to work as expected, especially 
+regarding the end-to-end perspective including several software applications that work together.</p>
 
-<p>The citrus-core module builds the core functionality such as</p>
+<p>Now, when performing fully integrated end-to-end use case tests, some participating applications have to be simulated in their 
+behaviour. This is not an easy task when dealing with different transport protocols and complex business logic. Different 
+protocols, technologies and legacy systems are therefore the beginning of many problems during the integration test.</p>
 
-<ul>
-  <li>domain model (TestCase, TestAction, CitrusApplication, …)</li>
-  <li>test actions (send, receive, sleep, sql, …)</li>
-  <li>validation implementation (XML tree validation, XPath element validation) utility</li>
-  <li>The module also includes basic JMS and Spring integration message channel support in these two sections:</li>
-  <li>citrus-channel (message channel sender and receiver implementations)</li>
-</ul>
+<p>The tester may only be able to use more or less intelligent dummy implementations of the different interface partners. These 
+dummies usually are very static in their behaviour and require a lot of configuration to provide proper responses for incoming 
+messages. In some cases the tester may have to interact manually during the test. An automatic verification of the message 
+contents and the semantically correctness in common is not possible. The tester has to validate the success or failure of the 
+test manually, which is very error prone and time consuming.</p>
 
-<h3 id="citrus-jms-jar">citrus-jms (JAR)</h3>
+<p>These problems pose seemingly unsolvable challenges for the automated integration test team. Regarding the limited project 
+schedule the tester may only be able to test one single use case manually using the available dummy implementations. In the 
+worst case a major part of the software features is initially tested in production environment with real customers suffering 
+from every software bug that is still inside the software application.</p>
 
-<p>Module contains classes for JMS support for connection to JMS message brokers.</p>
+<p>Citrus is a testing tool which enables the test team to define whole use case tests to be executed fully automated. Incoming 
+and outgoing messages are predefined in the test case. The tester defines a message flow as it is designed for a use case. 
+All surrounding interface partners are simulated regardless their transport protocols (Http, JMS, TCP/IP, SOAP, and many more). 
+The tests can be integrated into a continuous integration environment so Citrus gives credit to the software quality at all time.</p>
 
-<h3 id="citrus-jdbc-jar">citrus-jdbc (JAR)</h3>
+<h2 id="project-history">Project history</h2>
 
-<p>Module contains classes for JDBC database server mocking support so users can verify SQL statement calls on the database with proper result set return values.</p>
+<p>All software development projects at ConSol use extensive automated testing and continuous or nightly builds to ensure highest 
+possible quality of our deliveries. When we started focusing on EAI projects we searched for a tool that supports automated 
+integration tests of EAI systems, simulating several connected systems using different protocols (the IT world discovered a 
+surprisingly huge variety of technologies two applications may use to talk to each other). Although we evaluated several 
+non-commercial and commercial tools, we didn’t find one that even came close to our needs. Therefore we decided to write 
+something on our own.</p>
 
-<h3 id="citrus-http-jar">citrus-http (JAR)</h3>
+<p>Back in the year 2006, we implemented a first version for our customer needs. Since then, we continuously worked on improving 
+the tool (and will do so in the future), resulting in what you can find here today. Citrus is used for all 
+EAI projects at ConSol, running thousands of complex test cases every day.</p>
 
-<p>This module contains special HTTP client/server implementation. With this adapter Citrus is able to send and receive 
-messages over HTTP.</p>
+<p>Because of this, we are confident that Citrus will be robust and stable for every use case. Feel free to prove us wrong!</p>
 
-<h3 id="citrus-websocket-jar">citrus-websocket (JAR)</h3>
+<h2 id="why-is-citrus-open-source">Why is Citrus open source?</h2>
 
-<p>This module contains special WebSocket client/server implementation. With this adapter Citrus is able to send and receive 
-messages over bidirectional HTTP WebSocket connections.</p>
+<p>We want to become rich and famous! Ok, at least famous. :-)</p>
 
-<h3 id="citrus-ws-jar">citrus-ws (JAR)</h3>
-
-<p>Special adapter implementation for SOAP WebServices. Module contains classes for SOAP client and server connections over 
-SOAP/HTTP.</p>
-
-<h3 id="citrus-ssh-jar">citrus-ssh (JAR)</h3>
-
-<p>SSH adapter implementation for connecting to SSH servers. The module contains classes for SSH client and server connectivity.</p>
-
-<h3 id="citrus-vertx-jar">citrus-vertx (JAR)</h3>
-
-<p>Vert.x adapter implementation for connecting to the Vert.x event bus. The module contains classes for accessing the event 
-bus as producer or consumer.</p>
-
-<h3 id="citrus-camel-jar">citrus-camel (JAR)</h3>
-
-<p>Apache Camel adapter implementation for connecting to camel context and route definitions. The module contains classes 
-for sending and receiving messages both to and from Apache Camel routes.</p>
-
-<h3 id="citrus-ftp-jar">citrus-ftp (JAR)</h3>
-
-<p>Ftp module connects to a ftp server as a client and provides full qualified ftp server for simulation. Server accepts 
-incoming commands that can be validated in a test case. Server supports user management with different home directories 
-and permissions per user.</p>
-
-<h3 id="citrus-java-dsl-jar">citrus-java-dsl (JAR)</h3>
-
-<p>Module for writing Citrus test cases with Java only. This is an alternative to writing test cases in XML syntax.</p>
-
-<h3 id="citrus-arquillian-jar">citrus-arquillian (JAR)</h3>
-
-<p>Module providing utility classes and helper for Arquillian test framework integration with Citrus.</p>
-
-<h3 id="citrus-docker-jar">citrus-docker (JAR)</h3>
-
-<p>Module providing utility classes and helper for Docker integration with Citrus.</p>
-
-<h3 id="citrus-kubernetes-jar">citrus-kubernetes (JAR)</h3>
-
-<p>Module providing utility classes and helper for Kubernetes integration with Citrus.</p>
-
-<h3 id="citrus-selenium-jar">citrus-selenium (JAR)</h3>
-
-<p>Module providing utility classes and helper for Selenium integration with Citrus.</p>
-
-<h3 id="citrus-rmi-jar">citrus-rmi (JAR)</h3>
-
-<p>Module providing client and server implementations for Java RMI integration with Citrus.</p>
-
-<h3 id="citrus-jmx-jar">citrus-jmx (JAR)</h3>
-
-<p>Module providing client and server implementations for Java JMX mbean integration with Citrus.</p>
-
-<h3 id="citrus-integration-jar">citrus-integration (JAR)</h3>
-
-<p>Internal integration tests executed during the Citrus build lifecycle. The tests help to ensure the integration test 
-quality of Citrus.</p>
-
-<h3 id="citrus-samples-pom">citrus-samples (POM)</h3>
-
-<p>Samples module holding several self runnable sample applications that are tested with Citrus. Currently this module 
-knows following sample applications:</p>
-
-<ul>
-  <li>citrus-samples-flightbooking</li>
-  <li>citrus-samples-greeting</li>
-  <li>citrus-samples-bookstore</li>
-  <li>citrus-samples-incident</li>
-  <li>citrus-tools (POM)</li>
-</ul>
-
-<p>Tool collection with Maven plugin, archetypes and ANT tasks for executing Citrus tests:</p>
-
-<p>citrus-anttasks
-citrus-maven-plugin
-citrus-maven-remote-plugin
-citrus-quickstart
-citrus-quickstart-soap</p>
+<p>ConSol Software GmbH has a long tradition in using open source products and contributing to the open source world. As Citrus 
+is largely based on open source, especially the Spring framework, and would not have been possible without the precious work of
+the open source community, we simply want to return something which we think might be useful for others.</p>
 
         </article>
       </div>
@@ -360,7 +296,7 @@ citrus-quickstart-soap</p>
 
   
   
-  <li class=""><a href="/docs/welcome/">Welcome</a></li>
+  <li class="current"><a href="/docs/welcome/">Welcome</a></li>
 
   
   
@@ -478,7 +414,7 @@ citrus-quickstart-soap</p>
 
   
   
-  <li class="current"><a href="/docs/modules/">Modules</a></li>
+  <li class=""><a href="/docs/modules/">Modules</a></li>
 
   
   

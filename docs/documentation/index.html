@@ -225,129 +225,96 @@
       <div class="unit four-fifths">
         <article>
           <div class="improve right hide-on-mobiles">
-            <a href="https://github.com/citrusframework/citrus-website/edit/master/src/main/site/_docs/modules.md"><i class="fa fa-pencil"></i> &nbsp;Improve this page</a>
+            <a href="https://github.com/citrusframework/citrus-website/edit/master/src/main/site/_docs/index.md"><i class="fa fa-pencil"></i> &nbsp;Improve this page</a>
           </div>
-          <h1>Modules</h1>
-          <h3 id="citrus-pom">citrus (POM)</h3>
+          <h1>Documentation</h1>
+          <p>We have online and offline documentation as HTML and PDF format. The user guide offers comprehensive descriptions and 
+code examples to all Citrus features on board. In case you miss something in our documentation please tell us. Also 
+in case you discover something wrong or unclear please do not hesitate to tell us. Find below the reference documentation 
+for the latest Citrus release version.</p>
 
-<p>This is the main parent project containing general configurations, such as</p>
+<h2 id="release-documentation">Release documentation</h2>
 
-<ul>
-  <li>site generation</li>
-  <li>dependency management</li>
-  <li>plugin management</li>
-  <li>overall project information, such as mailing lists, team-members, scm, bug-tracking, …</li>
-  <li>sub modules</li>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Version</th>
+      <th style="text-align: left">Documentation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">3.1.0</td>
+      <td style="text-align: left"><a href="/citrus/reference/3.1.0/html/index.html">HTML</a> | <a href="/citrus/reference/3.1.0/pdf/citrus-reference-3.1.0.pdf">PDF</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">3.0.0</td>
+      <td style="text-align: left"><a href="/citrus/reference/3.0.0/html/index.html">HTML</a> | <a href="/citrus/reference/3.0.0/pdf/citrus-reference-3.0.0.pdf">PDF</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">2.8.0</td>
+      <td style="text-align: left"><a href="/citrus/reference/2.8.0/html/index.html">HTML</a> | <a href="/citrus/reference/2.8.0/pdf/citrus-reference-2.8.0.pdf">PDF</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">2.7.9</td>
+      <td style="text-align: left"><a href="/citrus/reference/2.7.9/html/index.html">HTML</a> | <a href="/citrus/reference/2.7.9/pdf/citrus-reference-2.7.9.pdf">PDF</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">2.7.8</td>
+      <td style="text-align: left"><a href="/citrus/reference/2.7.8/html/index.html">HTML</a> | <a href="/citrus/reference/2.7.8/pdf/citrus-reference-2.7.8.pdf">PDF</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">2.7.7</td>
+      <td style="text-align: left"><a href="/citrus/reference/2.7.7/html/index.html">HTML</a> | <a href="/citrus/reference/2.7.7/pdf/citrus-reference-2.7.7.pdf">PDF</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">2.7.6</td>
+      <td style="text-align: left"><a href="/citrus/reference/2.7.6/html/index.html">HTML</a> | <a href="/citrus/reference/2.7.6/pdf/citrus-reference-2.7.6.pdf">PDF</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">2.7.5</td>
+      <td style="text-align: left"><a href="/citrus/reference/2.7.5/html/index.html">HTML</a> | <a href="/citrus/reference/2.7.5/pdf/citrus-reference-2.7.5.pdf">PDF</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">2.7.4</td>
+      <td style="text-align: left"><a href="/citrus/reference/2.7.4/html/index.html">HTML</a> | <a href="/citrus/reference/2.7.4/pdf/citrus-reference-2.7.4.pdf">PDF</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">2.7.3</td>
+      <td style="text-align: left"><a href="/citrus/reference/2.7.3/html/index.html">HTML</a> | <a href="/citrus/reference/2.7.3/pdf/citrus-reference-2.7.3.pdf">PDF</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">2.7.2</td>
+      <td style="text-align: left"><a href="/citrus/reference/2.7.2/html/index.html">HTML</a> | <a href="/citrus/reference/2.7.2/pdf/citrus-reference-2.7.2.pdf">PDF</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">2.7.1</td>
+      <td style="text-align: left"><a href="/citrus/reference/2.7.1/html/index.html">HTML</a> | <a href="/citrus/reference/2.7.1/pdf/citrus-reference-2.7.1.pdf">PDF</a></td>
+    </tr>
+  </tbody>
+</table>
 
-<h3 id="citrus-core-jar">citrus-core (JAR)</h3>
-
-<p>The citrus-core module builds the core functionality such as</p>
-
-<ul>
-  <li>domain model (TestCase, TestAction, CitrusApplication, …)</li>
-  <li>test actions (send, receive, sleep, sql, …)</li>
-  <li>validation implementation (XML tree validation, XPath element validation) utility</li>
-  <li>The module also includes basic JMS and Spring integration message channel support in these two sections:</li>
-  <li>citrus-channel (message channel sender and receiver implementations)</li>
-</ul>
-
-<h3 id="citrus-jms-jar">citrus-jms (JAR)</h3>
-
-<p>Module contains classes for JMS support for connection to JMS message brokers.</p>
-
-<h3 id="citrus-jdbc-jar">citrus-jdbc (JAR)</h3>
-
-<p>Module contains classes for JDBC database server mocking support so users can verify SQL statement calls on the database with proper result set return values.</p>
-
-<h3 id="citrus-http-jar">citrus-http (JAR)</h3>
-
-<p>This module contains special HTTP client/server implementation. With this adapter Citrus is able to send and receive 
-messages over HTTP.</p>
-
-<h3 id="citrus-websocket-jar">citrus-websocket (JAR)</h3>
-
-<p>This module contains special WebSocket client/server implementation. With this adapter Citrus is able to send and receive 
-messages over bidirectional HTTP WebSocket connections.</p>
-
-<h3 id="citrus-ws-jar">citrus-ws (JAR)</h3>
-
-<p>Special adapter implementation for SOAP WebServices. Module contains classes for SOAP client and server connections over 
-SOAP/HTTP.</p>
-
-<h3 id="citrus-ssh-jar">citrus-ssh (JAR)</h3>
-
-<p>SSH adapter implementation for connecting to SSH servers. The module contains classes for SSH client and server connectivity.</p>
-
-<h3 id="citrus-vertx-jar">citrus-vertx (JAR)</h3>
-
-<p>Vert.x adapter implementation for connecting to the Vert.x event bus. The module contains classes for accessing the event 
-bus as producer or consumer.</p>
-
-<h3 id="citrus-camel-jar">citrus-camel (JAR)</h3>
-
-<p>Apache Camel adapter implementation for connecting to camel context and route definitions. The module contains classes 
-for sending and receiving messages both to and from Apache Camel routes.</p>
-
-<h3 id="citrus-ftp-jar">citrus-ftp (JAR)</h3>
-
-<p>Ftp module connects to a ftp server as a client and provides full qualified ftp server for simulation. Server accepts 
-incoming commands that can be validated in a test case. Server supports user management with different home directories 
-and permissions per user.</p>
-
-<h3 id="citrus-java-dsl-jar">citrus-java-dsl (JAR)</h3>
-
-<p>Module for writing Citrus test cases with Java only. This is an alternative to writing test cases in XML syntax.</p>
-
-<h3 id="citrus-arquillian-jar">citrus-arquillian (JAR)</h3>
-
-<p>Module providing utility classes and helper for Arquillian test framework integration with Citrus.</p>
-
-<h3 id="citrus-docker-jar">citrus-docker (JAR)</h3>
-
-<p>Module providing utility classes and helper for Docker integration with Citrus.</p>
-
-<h3 id="citrus-kubernetes-jar">citrus-kubernetes (JAR)</h3>
-
-<p>Module providing utility classes and helper for Kubernetes integration with Citrus.</p>
-
-<h3 id="citrus-selenium-jar">citrus-selenium (JAR)</h3>
-
-<p>Module providing utility classes and helper for Selenium integration with Citrus.</p>
-
-<h3 id="citrus-rmi-jar">citrus-rmi (JAR)</h3>
-
-<p>Module providing client and server implementations for Java RMI integration with Citrus.</p>
-
-<h3 id="citrus-jmx-jar">citrus-jmx (JAR)</h3>
-
-<p>Module providing client and server implementations for Java JMX mbean integration with Citrus.</p>
-
-<h3 id="citrus-integration-jar">citrus-integration (JAR)</h3>
-
-<p>Internal integration tests executed during the Citrus build lifecycle. The tests help to ensure the integration test 
-quality of Citrus.</p>
-
-<h3 id="citrus-samples-pom">citrus-samples (POM)</h3>
-
-<p>Samples module holding several self runnable sample applications that are tested with Citrus. Currently this module 
-knows following sample applications:</p>
+<h2 id="additional-documentation-material">Additional documentation material</h2>
 
 <ul>
-  <li>citrus-samples-flightbooking</li>
-  <li>citrus-samples-greeting</li>
-  <li>citrus-samples-bookstore</li>
-  <li>citrus-samples-incident</li>
-  <li>citrus-tools (POM)</li>
+  <li><a href="/news">News</a></li>
+  <li><a href="http://www.github.com/citrusframework/citrus">Java Sources</a></li>
+  <li><a href="/docs/setup-maven">Quickstart Maven</a></li>
+  <li><a href="/docs/setup-gradle">Quickstart Gradle</a></li>
+  <li><a href="/docs/setup-ant">Quickstart Ant</a></li>
+  <li><a href="https://labs.consol.de/tags/citrus">Blog</a></li>
+  <li><a href="/docs/history/">Release History</a></li>
 </ul>
 
-<p>Tool collection with Maven plugin, archetypes and ANT tasks for executing Citrus tests:</p>
+<h2 id="contribute-changes">Contribute changes</h2>
 
-<p>citrus-anttasks
-citrus-maven-plugin
-citrus-maven-remote-plugin
-citrus-quickstart
-citrus-quickstart-soap</p>
+<p>In case you would like to checkout the Citrus code base and build Citrus yourself follow these instructions:</p>
+
+<ul>
+  <li><a href="/docs/development">Development quickstart</a></li>
+  <li><a href="/docs/conventions">Coding conventions</a></li>
+  <li><a href="/docs/contribute">How to contribute</a></li>
+</ul>
 
         </article>
       </div>
@@ -364,7 +331,7 @@ citrus-quickstart-soap</p>
 
   
   
-  <li class=""><a href="/docs/documentation/">Documentation</a></li>
+  <li class="current"><a href="/docs/documentation/">Documentation</a></li>
 
   
   
@@ -478,7 +445,7 @@ citrus-quickstart-soap</p>
 
   
   
-  <li class="current"><a href="/docs/modules/">Modules</a></li>
+  <li class=""><a href="/docs/modules/">Modules</a></li>
 
   
   

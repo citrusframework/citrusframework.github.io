@@ -33,7 +33,7 @@
     <a href="/projects/">Projects</a>
   </li>
   <li class="current">
-    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
   </li>
   <li class="">
     <a href="/samples/">Samples</a>
@@ -63,7 +63,7 @@
     <a href="/projects/">Projects</a>
   </li>
   <li class="current">
-    <a href="/docs/home/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
   </li>
   <li class="">
     <a href="/samples/">Samples</a>
@@ -90,17 +90,17 @@
       <div class="docs-nav-mobile unit whole show-on-mobiles">
   <select onchange="if (this.value) window.location.href=this.value">
     <option value="">Navigate the docs…</option>
-    <option value="/docs/home">Home</option>
+    <option value="/docs/documentation">Docs</option>
     
     <optgroup label="Getting Started">
       
   
   
-  <option value="/docs/home/">Welcome</option>
+  <option value="/docs/welcome/">Welcome</option>
 
   
   
-  <option value="/docs/user-guide/">User Guide</option>
+  <option value="/docs/documentation/">Documentation</option>
 
   
   
@@ -109,10 +109,6 @@
   
   
   <option value="/docs/setup-gradle/">Setup with Gradle</option>
-
-  
-  
-  <option value="/docs/setup-ant/">Setup with ANT</option>
 
   
   
@@ -217,7 +213,7 @@
 
   
   
-  <option value="/docs/history/">History</option>
+  <option value="/docs/history/">Release history</option>
 
 
     </optgroup>
@@ -231,9 +227,10 @@
           <div class="improve right hide-on-mobiles">
             <a href="https://github.com/citrusframework/citrus-website/edit/master/src/main/site/_docs/history.md"><i class="fa fa-pencil"></i>  Improve this page</a>
           </div>
-          <h1>History</h1>
+          <h1>Release history</h1>
           
-<h2 id="v3.0.0">Release 3.0.0 / 2021-07-21</h2>
+<h2 id="v3.1.0">v3.1.0</h2>
+<h7>2021-08-27</h7>
 
 <table>
   <thead>
@@ -247,14 +244,127 @@
   <tbody>
     <tr>
       <td style="text-align: center">Update</td>
-      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/0">#0</a></td>
-      <td style="text-align: center">Refactor Citrus 3.x</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Improved Apache Camel support</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fix</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Fix Hamcrest dependency in validation module</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Bump jetty from 9.4.41.v20210516 to 9.4.43.v20210629</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Bump sshd-core from 2.5.1 to 2.7.0</td>
       <td style="text-align: center">christophd</td>
     </tr>
   </tbody>
 </table>
 
-<h2 id="v2.8.0">Release 2.8.0 / 2019-01-28</h2>
+<h2 id="v3.0.0">v3.0.0</h2>
+<h7>2021-07-21</h7>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Id</th>
+      <th style="text-align: center">Changes</th>
+      <th style="text-align: center">By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Refactor Citrus 3.x</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Update Cucumber to 6.10</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Update Kafka to 2.8</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Update Jetty to 9.4</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Update JUnit to 5.7</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Update TestNG to 7.1</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Update Selenium to 3.141</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Update Apache Camel to 3.9</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Update Spring to 5.3</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Update to Java 11</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Improve Java DSL fluent API</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Make Spring optional</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Modularize Citrus</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="v2.8.0">v2.8.0</h2>
+<h7>2019-01-28</h7>
 
 <table>
   <thead>
@@ -299,7 +409,8 @@
   </tbody>
 </table>
 
-<h2 id="v2.7.9">Release 2.7.9 / 2019-01-27</h2>
+<h2 id="v2.7.9">v2.7.9</h2>
+<h7>2019-01-27</h7>
 
 <table>
   <thead>
@@ -416,7 +527,8 @@
   </tbody>
 </table>
 
-<h2 id="v2.7.8">Release 2.7.8 / 2018-11-13</h2>
+<h2 id="v2.7.8">v2.7.8</h2>
+<h7>2018-11-13</h7>
 
 <table>
   <thead>
@@ -485,7 +597,8 @@
   </tbody>
 </table>
 
-<h2 id="v2.7.7">Release 2.7.7 / 2018-09-14</h2>
+<h2 id="v2.7.7">v2.7.7</h2>
+<h7>2018-09-14</h7>
 
 <table>
   <thead>
@@ -572,7 +685,8 @@
   </tbody>
 </table>
 
-<h2 id="v2.7.6">Release 2.7.6 / 2018-06-12</h2>
+<h2 id="v2.7.6">v2.7.6</h2>
+<h7>2018-06-12</h7>
 
 <table>
   <thead>
@@ -671,7 +785,8 @@
   </tbody>
 </table>
 
-<h2 id="v2.7.5">Release 2.7.5 / 2018-05-06</h2>
+<h2 id="v2.7.5">v2.7.5</h2>
+<h7>2018-05-06</h7>
 
 <table>
   <thead>
@@ -782,7 +897,8 @@
   </tbody>
 </table>
 
-<h2 id="v2-7-4">Release 2.7.4 / 2018-03-12</h2>
+<h2 id="v2-7-4">v2.7.4</h2>
+<h7>2018-03-12</h7>
 
 <table>
   <thead>
@@ -857,7 +973,8 @@
   </tbody>
 </table>
 
-<h2 id="v2-7-3">Release 2.7.3 / 2018-01-15</h2>
+<h2 id="v2-7-3">v2.7.3</h2>
+<h7>2018-01-15</h7>
 
 <table>
   <thead>
@@ -1072,7 +1189,8 @@
   </tbody>
 </table>
 
-<h2 id="v2-7-2">Release 2.7.2 / 2017-07-07</h2>
+<h2 id="v2-7-2">v2.7.2</h2>
+<h7>2017-07-07</h7>
 
 <table>
   <thead>
@@ -1255,7 +1373,8 @@
   </tbody>
 </table>
 
-<h2 id="v2-7-1">Release 2.7.1 / 2017-03-15</h2>
+<h2 id="v2-7-1">v2.7.1</h2>
+<h7>2017-03-15</h7>
 
 <table>
   <thead>
@@ -1372,7 +1491,8 @@
   </tbody>
 </table>
 
-<h2 id="v2-7">Release 2.7 / 2017-02-01</h2>
+<h2 id="v2-7">v2.7</h2>
+<h7>2017-02-01</h7>
 
 <table>
   <thead>
@@ -1507,7 +1627,8 @@
   </tbody>
 </table>
 
-<h2 id="v2-6-2">Release 2.6.2 / 2016-11-14</h2>
+<h2 id="v2-6-2">v2.6.2</h2>
+<h7>2016-11-14</h7>
 
 <table>
   <thead>
@@ -1630,7 +1751,8 @@
   </tbody>
 </table>
 
-<h2 id="v2-6-1">Release 2.6.1 / 2016-10-07</h2>
+<h2 id="v2-6-1">v2.6.1</h2>
+<h7>2016-10-07</h7>
 
 <table>
   <thead>
@@ -1729,7 +1851,8 @@
   </tbody>
 </table>
 
-<h2 id="v2-6">Release 2.6 / 2016-06-27</h2>
+<h2 id="v2-6">v2.6</h2>
+<h7>2016-06-27</h7>
 
 <table>
   <thead>
@@ -1816,7 +1939,8 @@
   </tbody>
 </table>
 
-<h2 id="v2-5-2">Release 2.5.2 / 2016-04-01</h2>
+<h2 id="v2-5-2">v2.5.2</h2>
+<h7>2016-04-01</h7>
 
 <table>
   <thead>
@@ -1915,7 +2039,8 @@
   </tbody>
 </table>
 
-<h2 id="v2-5-1">Release 2.5.1 / 2016-03-03</h2>
+<h2 id="v2-5-1">v2.5.1</h2>
+<h7>2016-03-03</h7>
 
 <table>
   <thead>
@@ -1996,7 +2121,8 @@
   </tbody>
 </table>
 
-<h2 id="v2-5">Release 2.5 / 2016-01-28</h2>
+<h2 id="v2-5">v2.5</h2>
+<h7>2016-01-28</h7>
 
 <table>
   <thead>
@@ -2113,7 +2239,8 @@
   </tbody>
 </table>
 
-<h2 id="v2-4">Release 2.4 / 2015-11-03</h2>
+<h2 id="v2-4">v2.4</h2>
+<h7>2015-11-03</h7>
 
 <table>
   <thead>
@@ -2200,7 +2327,8 @@
   </tbody>
 </table>
 
-<h2 id="v2-3">Release 2.3 / 2015-08-18</h2>
+<h2 id="v2-3">v2.3</h2>
+<h7>2015-08-18</h7>
 
 <table>
   <thead>
@@ -2263,7 +2391,8 @@
   </tbody>
 </table>
 
-<h2 id="v2-2">Release 2.2 / 2015-06-26</h2>
+<h2 id="v2-2">v2.2</h2>
+<h7>2015-06-26</h7>
 
 <table>
   <thead>
@@ -2326,7 +2455,8 @@
   </tbody>
 </table>
 
-<h2 id="v2-1">Release 2.1 / 2015-02-20</h2>
+<h2 id="v2-1">v2.1</h2>
+<h7>2015-02-20</h7>
 
 <table>
   <thead>
@@ -2419,7 +2549,8 @@
   </tbody>
 </table>
 
-<h2 id="v2-0">Release 2.0 / 2014-11-01</h2>
+<h2 id="v2-0">v2.0</h2>
+<h7>2014-11-01</h7>
 
 <table>
   <thead>
@@ -2614,7 +2745,8 @@
   </tbody>
 </table>
 
-<h2 id="v1-4-1">Release 1.4.1 / 2014-07-11</h2>
+<h2 id="v1-4-1">v1.4.1</h2>
+<h7>2014-07-11</h7>
 
 <table>
   <thead>
@@ -2659,7 +2791,8 @@
   </tbody>
 </table>
 
-<h2 id="v1-4">Release 1.4 / 2014-05-02</h2>
+<h2 id="v1-4">v1.4</h2>
+<h7>2014-05-02</h7>
 
 <table>
   <thead>
@@ -2758,7 +2891,8 @@
   </tbody>
 </table>
 
-<h2 id="v1-3-1">Release 1.3.1 / 2013-09-06</h2>
+<h2 id="v1-3-1">v1.3.1</h2>
+<h7>2013-09-06</h7>
 
 <table>
   <thead>
@@ -2857,7 +2991,8 @@
   </tbody>
 </table>
 
-<h2 id="v1-3">Release 1.3 / 2013-04-01</h2>
+<h2 id="v1-3">v1.3</h2>
+<h7>2013-04-01</h7>
 
 <table>
   <thead>
@@ -3034,7 +3169,8 @@
   </tbody>
 </table>
 
-<h2 id="v1-2">Release 1.2 / 2012-07-05</h2>
+<h2 id="v1-2">v1.2</h2>
+<h7>2012-07-05</h7>
 
 <table>
   <thead>
@@ -3469,7 +3605,8 @@
   </tbody>
 </table>
 
-<h2 id="v1-1">Release 1.1 / 2010-08-12</h2>
+<h2 id="v1-1">v1.1</h2>
+<h7>2010-08-12</h7>
 
 <table>
   <thead>
@@ -3868,7 +4005,8 @@
   </tbody>
 </table>
 
-<h2 id="v1-0">Release 1.0 / 2009-09-25</h2>
+<h2 id="v1-0">v1.0</h2>
+<h7>2009-09-25</h7>
 
 <table>
   <thead>
@@ -3944,11 +4082,11 @@
 
   
   
-  <li class=""><a href="/docs/home/">Welcome</a></li>
+  <li class=""><a href="/docs/welcome/">Welcome</a></li>
 
   
   
-  <li class=""><a href="/docs/user-guide/">User Guide</a></li>
+  <li class=""><a href="/docs/documentation/">Documentation</a></li>
 
   
   
@@ -3957,10 +4095,6 @@
   
   
   <li class=""><a href="/docs/setup-gradle/">Setup with Gradle</a></li>
-
-  
-  
-  <li class=""><a href="/docs/setup-ant/">Setup with ANT</a></li>
 
   
   
@@ -4070,7 +4204,7 @@
 
   
   
-  <li class="current"><a href="/docs/history/">History</a></li>
+  <li class="current"><a href="/docs/history/">Release history</a></li>
 
 </ul>
 
