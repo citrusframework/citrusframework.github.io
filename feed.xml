@@ -1,4 +1,340 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2023-01-28T19:39:44+01:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Citrus Integration Tests</title><subtitle>Automated integration tests for message protocols and data formats that you require</subtitle><entry><title type="html">Cloud-native BDD testing with YAKS</title><link href="http://0.0.0.0:4000/news/2021/08/30/introducing-yaks/" rel="alternate" type="text/html" title="Cloud-native BDD testing with YAKS" /><published>2021-08-30T00:00:00+02:00</published><updated>2021-08-30T00:00:00+02:00</updated><id>http://0.0.0.0:4000/news/2021/08/30/introducing-yaks</id><content type="html" xml:base="http://0.0.0.0:4000/news/2021/08/30/introducing-yaks/">&lt;p&gt;YAKS is a testing platform that leverages Behavior Driven Development concepts for running tests on Cloud-native infrastructure.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2023-02-02T12:34:12+01:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Citrus Integration Tests</title><subtitle>Automated integration tests for message protocols and data formats that you require</subtitle><entry><title type="html">Testing Camel K with YAKS</title><link href="http://0.0.0.0:4000/news/2023/01/30/camel-k-yaks/" rel="alternate" type="text/html" title="Testing Camel K with YAKS" /><published>2023-01-30T00:00:00+01:00</published><updated>2023-01-30T00:00:00+01:00</updated><id>http://0.0.0.0:4000/news/2023/01/30/camel-k-yaks</id><content type="html" xml:base="http://0.0.0.0:4000/news/2023/01/30/camel-k-yaks/">&lt;p&gt;This post describes the steps to test a Camel K integration with YAKS both locally and on the Kubernetes platform.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/assets/camel-k-yaks/featured.png&quot; alt=&quot;featured.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;what-is-yaks&quot;&gt;What is YAKS?&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/citrusframework/yaks&quot;&gt;YAKS&lt;/a&gt; is an Open Source test automation platform that leverages Behavior Driven
+Development concepts for running tests locally and on Cloud infrastructure (e.g. &lt;a href=&quot;https://kubernetes.io/&quot;&gt;Kubernetes&lt;/a&gt; or
+&lt;a href=&quot;https://www.openshift.com/&quot;&gt;OpenShift&lt;/a&gt;).
+This means that the testing tool is able to run your tests both as local tests and natively on Kubernetes.
+The framework is specifically designed to verify Serverless and Microservice applications and aims for integration testing
+with the application under test up and running in a production-like environment.
+A typical YAKS test uses the very same infrastructure as the application under test and exchanges data/events over different
+messaging transports (e.g. Http REST, Knative eventing, Kafka, JMS and many more).&lt;/p&gt;
+
+&lt;p&gt;As YAKS itself is written in Java the runtime uses a Java virtual machine with build tools such as Maven and integrates with
+well known Java testing frameworks such as &lt;a href=&quot;https://junit.org/junit5/&quot;&gt;JUnit&lt;/a&gt;, &lt;a href=&quot;https://cucumber.io/&quot;&gt;Cucumber&lt;/a&gt; and
+&lt;a href=&quot;https://citrusframework.org&quot;&gt;Citrus&lt;/a&gt; to run the tests.&lt;/p&gt;
+
+&lt;h1 id=&quot;understanding-the-camel-k-example&quot;&gt;Understanding the Camel K example&lt;/h1&gt;
+
+&lt;p&gt;First of all here is a small sample Camel K integration that we would like to test in the following.
+The integration exposes a Http service to the user.
+The service accepts client Http POST requests that add fruit model objects.
+The Camel K route applies content based routing to store the fruits in different AWS S3 buckets.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/assets/camel-k-yaks/test-scenario.png&quot; alt=&quot;test-scenario.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the test scenario YAKS is going to invoke the Camel K service and verify that the message content has been sent to the right AWS S3 bucket.&lt;/p&gt;
+
+&lt;p&gt;Here is a sample fruit model object that is subject to be stored in AWS S3:&lt;/p&gt;
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Pineapple&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;category&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;tropical&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;nutrition&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;calories&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;sugar&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;status&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;AVAILABLE&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;price&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.59&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;tags&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;sweet&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Here is the Camel K integration route:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'platform-http:/fruits'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'received fruit ${body}'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;unmarshal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;removeHeaders&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;*&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setHeader&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;CamelAwsS3Key&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;constant&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;fruit.json&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;choice&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;simple&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'${body[nutrition][sugar]} &amp;lt;= 5'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setHeader&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;CamelAwsS3BucketName&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;constant&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;low-sugar&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;simple&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'${body[nutrition][sugar]} &amp;gt; 5 &amp;amp;&amp;amp; ${body[nutrition][sugar]} &amp;lt;= 10'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setHeader&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;CamelAwsS3BucketName&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;constant&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;medium-sugar&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;otherwise&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setHeader&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;CamelAwsS3BucketName&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;constant&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;high-sugar&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;marshal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'sending ${body}'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;aws2-s3://noop?$parameters&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The route uses content based routing EAP based on the nutrition sugar rating of a given fruit in order to send the fruits
+to different AWS S3 buckets (low-sugar, medium-sugar, high-sugar).&lt;/p&gt;
+
+&lt;p&gt;In the following the test case for this integration needs to invoke the exposed service with different fruits and verify its outcome on AWS S3.&lt;/p&gt;
+
+&lt;h1 id=&quot;how-to-test-locally-with-yaks&quot;&gt;How to test locally with YAKS&lt;/h1&gt;
+
+&lt;p&gt;In the beginning let’s just write the test and run it locally.
+For now, we do not care how to deploy the application under test in the Cloud infrastructure as everything is running on
+the local machine using &lt;a href=&quot;https://www.jbang.dev/&quot;&gt;JBang&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;JBang is a fantastic way to just start coding and running Java code and also Camel K integrations.&lt;/p&gt;
+
+&lt;p&gt;YAKS as a framework brings a set of ready-to-use domain specific languages (XML, YAML, Groovy, BDD Cucumber steps) for writing
+tests in order to verify your deployed services.&lt;/p&gt;
+
+&lt;p&gt;This post uses the Behavior Driven Development integration via Cucumber.
+So the YAKS test is a single feature file that uses BDD Gherkin syntax like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-gherkin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;Feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; Camel K Fruit Store
+
+  &lt;span class=&quot;kn&quot;&gt;Background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;Given URL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;//localhost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;8080&lt;/span&gt;
+
+  &lt;span class=&quot;kn&quot;&gt;Scenario&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; Create infrastructure
+    &lt;span class=&quot;c&quot;&gt;# Start AWS S3 container&lt;/span&gt;
+    &lt;span class=&quot;nf&quot;&gt;Given &lt;/span&gt;Enable service S3
+    &lt;span class=&quot;nf&quot;&gt;Given &lt;/span&gt;start LocalStack container
+
+    &lt;span class=&quot;c&quot;&gt;# Create Camel K integration&lt;/span&gt;
+    &lt;span class=&quot;nf&quot;&gt;Given &lt;/span&gt;Camel K integration property file aws-s3-credentials.properties
+    &lt;span class=&quot;nf&quot;&gt;When &lt;/span&gt;load Camel K integration fruit-service.groovy
+    &lt;span class=&quot;err&quot;&gt;Then Camel K integration fruit-service should print Started route1 (platform-http&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;///fruits)&lt;/span&gt;
+
+  &lt;span class=&quot;kn&quot;&gt;Scenario&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; Verify fruit service
+    &lt;span class=&quot;c&quot;&gt;# Invoke Camel K service&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;Given HTTP request body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;yaks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;readFile('pineapple.json')&lt;/span&gt;
+    &lt;span class=&quot;nf&quot;&gt;And &lt;/span&gt;HTTP request header Content-Type=&quot;application/json&quot;
+    &lt;span class=&quot;nf&quot;&gt;When &lt;/span&gt;send POST /fruits
+    &lt;span class=&quot;nf&quot;&gt;Then &lt;/span&gt;receive HTTP 200 OK
+
+    &lt;span class=&quot;c&quot;&gt;# Verify uploaded S3 file&lt;/span&gt;
+    &lt;span class=&quot;nf&quot;&gt;Given &lt;/span&gt;New global Camel context
+    &lt;span class=&quot;nf&quot;&gt;Given &lt;/span&gt;load to Camel registry amazonS3Client.groovy
+    &lt;span class=&quot;nf&quot;&gt;Given &lt;/span&gt;Camel exchange message header CamelAwsS3Key=&quot;fruit.json&quot;
+    &lt;span class=&quot;err&quot;&gt;Given receive Camel exchange from(&quot;aws2-s3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;//medium-sugar?amazonS3Client=#amazonS3Client&amp;amp;deleteAfterRead=true&quot;) with body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;yaks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;readFile('pineapple.json')&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Let’s walk through the test step by step.
+First of all the feature file uses the usual Given-When-Then BDD syntax to give context, describe the actions and verify the outcome.
+Each step calls a specific YAKS action that is provided out of the box by the framework.
+The user is able to choose from a &lt;a href=&quot;https://github.com/citrusframework/yaks/tree/main/java/steps&quot;&gt;huge set of steps&lt;/a&gt; that
+automatically perform actions like sending/receiving Http requests/responses, starting &lt;a href=&quot;https://www.testcontainers.org/&quot;&gt;Testcontainers&lt;/a&gt;,
+running Camel routes, connecting to a database, publishing events on Kafka or Knative brokers and many more.&lt;/p&gt;
+
+&lt;p&gt;In the first scenario the test automatically prepares some required infrastructure.
+The YAKS test starts a Localstack &lt;a href=&quot;https://www.testcontainers.org/&quot;&gt;Testcontainer&lt;/a&gt; to have an AWS S3 test instance running (&lt;code class=&quot;highlighter-rouge&quot;&gt;Given start LocalStack container&lt;/code&gt;).
+Then the test loads and starts the Camel K integration under test (&lt;code class=&quot;highlighter-rouge&quot;&gt;When load Camel K integration fruit-service.groovy&lt;/code&gt;) and waits for it to properly start.
+In local testing this step starts the Camel K integration using JBang.
+Later the post will also run the test in a Kubernetes environment.&lt;/p&gt;
+
+&lt;p&gt;Now the infrastructure is up and running and the test is able to load the fruit model object as Http request body
+(&lt;code class=&quot;highlighter-rouge&quot;&gt;Given HTTP request body: yaks:readFile('pineapple.json')&lt;/code&gt;) and invoke the Camel K service (&lt;code class=&quot;highlighter-rouge&quot;&gt;When send POST /fruits&lt;/code&gt;).
+The test waits for the Http response and verifies its 200 OK status.&lt;/p&gt;
+
+&lt;p&gt;In the last step the test verifies that the fruit object has been added to the right AWS S3 bucket (medium-sugar).
+As YAKS itself is not able to connect to AWS S3 the test uses Apache Camel for this step.
+The test creates a Camel context, loads a AWS client and connects to AWS S3 with a temporary Camel route
+(&lt;code class=&quot;highlighter-rouge&quot;&gt;Given receive Camel exchange from(&quot;aws2-s3://medium-sugar?amazonS3Client=#amazonS3Client&amp;amp;deleteAfterRead=true&quot;)&lt;/code&gt;).
+With this Apache Camel integration YAKS is able to use the complete 300+ Camel components for sending and receiving messages
+to various messaging transports. The Camel exchange body should be the same fruit model object (&lt;code class=&quot;highlighter-rouge&quot;&gt;yaks:readFile('pineapple.json'&lt;/code&gt;)
+as posted in the initial Http request.&lt;/p&gt;
+
+&lt;p&gt;YAKS uses the powerful message payload validation capabilities provided by Citrus for this message content verification.
+The validation is able to compare message contents of type XML, Json, plaintext and many more.&lt;/p&gt;
+
+&lt;p&gt;This completes the test case. You can now run this test with Cucumber and JUnit for instance.
+The easiest way though to directly run tests with YAKS is to use the &lt;a href=&quot;https://github.com/citrusframework/yaks/releases&quot;&gt;YAKS command line client&lt;/a&gt;.
+You do not need to set up a whole project with Maven dependencies and so on.
+Just write the test file and run with:&lt;/p&gt;
+
+&lt;p&gt;```shell script
+$ yaks run fruit-service.feature –local&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+You should see some log output like this:
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;INFO |
+INFO | ————————————————————————
+INFO |        .__  __
+INFO |   &lt;strong&gt;__ |&lt;/strong&gt;|/  |&lt;strong&gt;__&lt;/strong&gt;__ __ __  &lt;strong&gt;__&lt;/strong&gt;
+INFO | _/ &lt;strong&gt;&lt;em&gt;|  \   ___  __ \  |  \/  __&lt;/em&gt;/
+INFO | \  _&lt;/strong&gt;|  ||  |  |  | \/  |  /___ \
+INFO |  ___  &amp;gt;&lt;strong&gt;||&lt;/strong&gt;|  |&lt;strong&gt;|  |&lt;/strong&gt;&lt;strong&gt;//&lt;/strong&gt;__  &amp;gt;
+INFO |      \/                           \/
+INFO |
+INFO | C I T R U S  T E S T S  3.4.0
+INFO |
+INFO | ————————————————————————
+INFO |&lt;/p&gt;
+
+&lt;p&gt;Scenario: Create infrastructure # fruit-service.feature:6
+  Given URL: http://localhost:8080
+  Given Enable service S3
+  […]&lt;/p&gt;
+
+&lt;p&gt;Scenario: Verify fruit service # fruit-service.feature:20
+  Given URL: http://localhost:8080
+  Given HTTP request body: yaks:readFile(‘pineapple.json’)
+  […]&lt;/p&gt;
+
+&lt;p&gt;Scenario: Remove infrastructure  # fruit-service.feature:31
+  Given URL: http://localhost:8080
+  Given delete Camel K integration fruit-service
+  Given stop LocalStack container&lt;/p&gt;
+
+&lt;p&gt;3 Scenarios (3 passed)
+18 Steps (18 passed)
+0m18,051s&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;INFO&lt;/td&gt;
+      &lt;td&gt;————————————————————————&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;INFO&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;INFO&lt;/td&gt;
+      &lt;td&gt;CITRUS TEST RESULTS&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;INFO&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;INFO&lt;/td&gt;
+      &lt;td&gt;Create infrastructure …………………………………… SUCCESS&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;INFO&lt;/td&gt;
+      &lt;td&gt;Verify fruit service ……………………………………. SUCCESS&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;INFO&lt;/td&gt;
+      &lt;td&gt;Remove infrastructure …………………………………… SUCCESS&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;INFO&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;INFO&lt;/td&gt;
+      &lt;td&gt;TOTAL:	3&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;INFO&lt;/td&gt;
+      &lt;td&gt;FAILED:	0 (0.0%)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;INFO&lt;/td&gt;
+      &lt;td&gt;SUCCESS:	3 (100.0%)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;INFO&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;INFO&lt;/td&gt;
+      &lt;td&gt;————————————————————————&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;3 Scenarios (3 passed)
+18 Steps (18 passed)
+0m18,051s&lt;/p&gt;
+
+&lt;p&gt;Test results: Total: 0, Passed: 1, Failed: 0, Errors: 0, Skipped: 0
+    fruit-service (fruit-service.feature): Passed&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+# Running YAKS in the Cloud
+
+YAKS is able to run tests both locally and as part of a Kubernetes cluster.
+When running tests on Cloud infrastructure YAKS leverages the Operator SDK and provides a specific operator to manage the
+test case resources on the cluster.
+Each time you declare a test in the form of a [custom resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
+the YAKS operator automatically takes care of preparing the proper runtime in order to execute the test as a Kubernetes Pod.
+
+Why would you want to run tests as Cloud-native resources on the Kubernetes platform? Kubernetes has become a standard target
+platform for Serverless and Microservices architectures.
+Developing the services is different in many aspects compared to what we have done for decades.
+
+Writing a Serverless or Microservices application for instance with Camel K is very declarative.
+As a developer you just write the Camel route and run it as an integration via the Camel K operator directly on the cluster.
+The declarative approach as well as the nature of Serverless applications make us rely on a given runtime infrastructure,
+and it is essential to verify the applications also on that infrastructure. So it is only natural to also move the verifying
+tests into this very same Cloud infrastructure.
+This is why YAKS also brings your tests to the Cloud infrastructure for integration and end-to-end testing.
+
+So here is how it works. You are able to run the very same YAKS test that has been run locally also as a Pod in Kubernetes.
+
+YAKS provides a Kubernetes operator and a set of CRDs (custom resources) that we need to install on the cluster.
+The best way to install YAKS is to use the [OperatorHub](https://operatorhub.io/operator/yaks) or the yaks CLI tools that
+you can download from the [YAKS GitHub release pages](https://github.com/citrusframework/yaks/releases).
+
+With the yaks-client binary simply run this install command:
+
+```shell script
+$ yaks install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This command prepares your Kubernetes cluster for running tests with YAKS.
+It will take care of installing the YAKS custom resource definitions, setting up role permissions and creating the YAKS operator
+in a global operator namespace.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Important:&lt;/strong&gt; You need to be a cluster admin to install custom resource definitions.
+The operation needs to be done only once for the entire cluster.&lt;/p&gt;
+
+&lt;p&gt;Now that the YAKS operator is up and running you can run the very same test from local testing also on the Cloud infrastructure.
+The only thing that needs to be done is to adjust the Http endpoint URL of the Camel K integration from &lt;code class=&quot;highlighter-rouge&quot;&gt;http://localhost:8080&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;http://fruit-service.${YAKS_NAMESPACE&lt;/code&gt;}&lt;/p&gt;
+
+&lt;p&gt;```shell script
+$ yaks run fruit-service.feature&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+Please notice that we have just skipped the `--local` CLI option.
+Instead of using local JBang tooling to run the test locally now the YAKS CLI connects to the Kubernetes cluster in order
+to create the test as a custom resource.
+From there the YAKS operator takes over preparing the test runtime and running the test as a Pod.
+
+But wait! The test did prepare some infrastructure, in particular the Camel K integration and the AWS S3 Localstack Testcontainer instance.
+How does that work inside Kubernetes? YAKS completely takes care of it.
+The Camel K integration is run with the Camel K operator running on the same Kubernetes cluster.
+And the Testcontainer AWS S3 instance is automatically run as a Pod in Kubernetes.
+Even connection settings are handled automatically. It just works!
+
+You will see some similar test log output when running the test remotely and the test performs its actions and its validation
+exactly the same as locally.
+
+You can also review the test Pod outcome with:
+
+```shell script
+$ yaks ls
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This is an example output you should get:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;NAME           PHASE   TOTAL  PASSED  FAILED  SKIPPED  ERRORS
+fruit-service  Passed  3      3       0       0        0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;demo&quot;&gt;Demo&lt;/h1&gt;
+
+&lt;p&gt;The whole demo code is available on this &lt;a href=&quot;https://github.com/christophd/yaks-demo-camel-k&quot;&gt;GitHub repository&lt;/a&gt;.
+It also shows how to integrate the tests in a &lt;a href=&quot;https://github.com/christophd/yaks-demo-camel-k/actions&quot;&gt;GitHub CI actions workflow&lt;/a&gt;,
+so you can run the tests automatically with every code change.&lt;/p&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;This blog post showed how you can test Camel K integrations locally and in a Cloud infrastructure with YAKS.
+YAKS as a framework has many more features to offer (Kafka, Knative, OpenAPI, etc.) so this is just the start of a new testing
+platform for BDD testing in Cloud-native environments!&lt;/p&gt;
+
+&lt;p&gt;Please give feedback, ideas and of course contributions to this.
+Feel free to add your thoughts on the YAKS repository by opening &lt;a href=&quot;https://github.com/citrusframework/yaks/issues&quot;&gt;new issues&lt;/a&gt; or
+even share your appreciation with a &lt;a href=&quot;https://github.com/citrusframework/yaks&quot;&gt;star on GitHub&lt;/a&gt;.&lt;/p&gt;</content><author><name>Christoph Deppisch</name></author></entry><entry><title type="html">Cloud-native BDD testing with YAKS</title><link href="http://0.0.0.0:4000/news/2021/08/30/introducing-yaks/" rel="alternate" type="text/html" title="Cloud-native BDD testing with YAKS" /><published>2021-08-30T00:00:00+02:00</published><updated>2021-08-30T00:00:00+02:00</updated><id>http://0.0.0.0:4000/news/2021/08/30/introducing-yaks</id><content type="html" xml:base="http://0.0.0.0:4000/news/2021/08/30/introducing-yaks/">&lt;p&gt;YAKS is a testing platform that leverages Behavior Driven Development concepts for running tests on Cloud-native infrastructure.&lt;/p&gt;
 
 &lt;h1 id=&quot;what-is-yaks&quot;&gt;What is “YAKS”?&lt;/h1&gt;
 
@@ -147,7 +483,7 @@ http-to-kafka    Passed
 
 &lt;p&gt;So, what happens behind the scenes when running this test on Kubernetes?&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/img/assets/yaks-architecture.png&quot; alt=&quot;yaks-architecture.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/assets/introducing-yaks/yaks-architecture.png&quot; alt=&quot;yaks-architecture.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The &lt;strong&gt;yaks&lt;/strong&gt; tool synchronizes your test code with a Kubernetes custom resource of Kind Test. 
 The resource is named &lt;code class=&quot;highlighter-rouge&quot;&gt;http-to-kafka&lt;/code&gt; (after the file name) in the current namespace. 
@@ -1876,76 +2212,6 @@ We can enable MTOM inline on the Citrus SOAP attachment object as follows:&lt;/p
 
 &lt;p&gt;Now with MTOM inline the request is not using &lt;code class=&quot;highlighter-rouge&quot;&gt;xop:Inlcude&lt;/code&gt; but a base64 encoded data stream in the payload. We can validate this stream with a combination of
 &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus:encodeBase64()&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus:readFile()&lt;/code&gt; functions.&lt;/p&gt;
-
-&lt;h2 id=&quot;run&quot;&gt;Run&lt;/h2&gt;
-
-&lt;p&gt;You can run the sample on your localhost in order to see Citrus in action. Read the instructions &lt;a href=&quot;/samples/run/&quot;&gt;how to run&lt;/a&gt; the sample.&lt;/p&gt;</content><author><name></name></author></entry><entry><title type="html">SOAP attachment sample</title><link href="http://0.0.0.0:4000/samples/soap-attachment/" rel="alternate" type="text/html" title="SOAP attachment sample" /><published>2018-06-21T00:00:00+02:00</published><updated>2018-06-21T00:00:00+02:00</updated><id>http://0.0.0.0:4000/samples/sample-soap-attachment</id><content type="html" xml:base="http://0.0.0.0:4000/samples/soap-attachment/">&lt;p&gt;This sample uses SOAP web services with attachments for adding new todo entries on the todo app system under test. You can read more about the 
-Citrus SOAP features in &lt;a href=&quot;https://citrusframework.org/reference/html#soap&quot;&gt;reference guide&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;objectives&quot;&gt;Objectives&lt;/h2&gt;
-
-&lt;p&gt;The &lt;a href=&quot;../todo-app/README.md&quot;&gt;todo-list&lt;/a&gt; sample application manages todo entries. The application provides a SOAP web service
-endpoint for adding new entries and listing all entries. In this sample we send SOAP attachments to the server adding additional information
-to the todo entries.&lt;/p&gt;
-
-&lt;p&gt;The sample tests show how to use this SOAP endpoint as a client. First we define the schema and a global namespace for the SOAP
-messages.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Bean&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SimpleXsdSchema&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;todoListSchema&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SimpleXsdSchema&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ClassPathResource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;schema/TodoList.xsd&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;nd&quot;&gt;@Bean&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;XsdSchemaRepository&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;schemaRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;XsdSchemaRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;schemaRepository&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;XsdSchemaRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;schemaRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getSchemas&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;todoListSchema&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;schemaRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;nd&quot;&gt;@Bean&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NamespaceContextBuilder&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;namespaceContextBuilder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;NamespaceContextBuilder&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;namespaceContextBuilder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NamespaceContextBuilder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;namespaceContextBuilder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setNamespaceMappings&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Collections&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;singletonMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;todo&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;http://citrusframework.org/samples/todolist&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;namespaceContextBuilder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The schema repository holds all known schemas in this project. Citrus will automatically check the syntax rules for incoming messages
-then. Next we need a SOAP web service client component:&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Bean&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SoapMessageFactory&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;messageFactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SaajSoapMessageFactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;nd&quot;&gt;@Bean&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WebServiceClient&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;todoClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CitrusEndpoints&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;soap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;defaultUri&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://localhost:8080/services/ws/todolist&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The client connects to the web service endpoint on the system under test. In addition to that we define a SOAP message factory that is
-responsible for creating the SOAP envelope.&lt;/p&gt;
-
-&lt;p&gt;Now we can use the web service client in the Citrus test.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;soap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;todoClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;soapAction&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;addTodoEntry&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ClassPathResource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;templates/addTodoEntryRequest.xml&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-    
-&lt;span class=&quot;n&quot;&gt;soap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;todoClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ClassPathResource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;templates/addTodoEntryResponse.xml&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The Citrus test sends a request and validates the SOAP response message. The message payload is loaded from external file resources.&lt;/p&gt;
 
 &lt;h2 id=&quot;run&quot;&gt;Run&lt;/h2&gt;
 
