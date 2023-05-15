@@ -163,13 +163,12 @@
     </a>
   </div>
   <div class="post-content">
-    <p>The community is proud to announce the availability of the 1st milestone towards Citrus 4 (4.0.0-M1).
+    <p>The community is proud to announce the availability of the 1st release milestone towards Citrus 4 (4.0.0-M1).
 The need for a new major release of Citrus is mainly driven by the industry migrating from <code class="highlighter-rouge">javax</code> to <code class="highlighter-rouge">jakarta</code> APIs. 
 Citrus is keen to keep up with popular runtimes such as Spring Boot and Quarkus.
 The proper alignment with those runtimes and the evolving of Java’s ecosystem in general is a key driver for Citrus 4.0.</p>
 
-<p>The next major release of Citrus uses Java 17 and aligns with some major dependency version updates 
-such as Spring 6.0, Jakarta EE and Apache Camel 4.0.</p>
+<p>The next major release of Citrus uses Java 17 and aligns with major dependency version updates such as Spring 6.0, Jakarta EE and Apache Camel 4.0.</p>
 
 <h2 id="java-17">Java 17</h2>
 
@@ -179,16 +178,26 @@ Of course this also means that you are able to use the full greatness of evolvin
 
 <h2 id="new-groupid-orgcitrusframework">New groupId org.citrusframework</h2>
 
-<p>Citrus is an Open Source project and tries to complement with the idea of open code and community contributions. 
+<p>Citrus is an Open Source project and promotes the idea of open code and community contributions. 
 The company <a href="https://www.consol.com/">ConSol Software GmbH</a> and its employees have been a driving force in creating and maintaining Citrus since the very beginning of the project.
-And still ConSol plays a significant role in the success of Citrus by adapting and promoting the project in so many ways.
+Still ConSol plays a significant role in the success of Citrus by adapting and promoting the project in so many ways.
 However, the list of new contributors emerges and Citrus benefits from many community contributions these days.</p>
 
 <p>For the sake of strengthening the Open Source idea we decided to move the Citrus groupId from <code class="highlighter-rouge">com.consol.citrus</code> to a more generic <code class="highlighter-rouge">org.citrusframework</code> from Citrus 4.0 onwards.</p>
 
-<p>In case you update from earlier Citrus versions to Citrus 4.0 this means you need to adjust this groupId when referencing Citrus modules in Maven or Gradle.
-As the groupId also represents the basic Java package used in Citrus you will likely also have to adjust your tests written on top of Citrus when updating. 
-Please do not be afraid as it should be nothing more than a search and replace in your project codebase on this Java base package wherever it may be referenced.</p>
+<p>In case you update from earlier Citrus versions to Citrus 4.0 this means you need to adjust this groupId when referencing Citrus modules in Maven or Gradle.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-bom<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>4.0.0-M1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;type&gt;</span>pom<span class="nt">&lt;/type&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>import<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>As the groupId also represents the basic Java package used in Citrus you will likely also have to adjust your tests written on top of Citrus when doing an update. 
+Please do not worry as it should be nothing more than a search-and-replace operation in your project codebase on this Java base package wherever it may be referenced.</p>
 
 <h2 id="major-version-updates-and-jakarta-ee">Major version updates and Jakarta EE</h2>
 
@@ -256,7 +265,8 @@ Please have a look at the Citrus API JavaDocs and documentation in order to find
 
 <h2 id="provide-feedback">Provide feedback</h2>
 
-<p>Please adapt to using Citrus 4.0.0-M1 as soon as possible and give feedback to the maintainers of the project.</p>
+<p>Please adapt to using Citrus 4.0.0-M1 as soon as possible and give us feedback what is working and what may need more attention.
+We would love to hear from you how you like Citrus 4!</p>
 
   </div>
 </article>
