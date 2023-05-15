@@ -1,4 +1,97 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2023-02-02T14:09:12+01:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Citrus Integration Tests</title><subtitle>Automated integration tests for message protocols and data formats that you require</subtitle><entry><title type="html">Testing Camel K with YAKS</title><link href="http://0.0.0.0:4000/news/2023/01/30/camel-k-yaks/" rel="alternate" type="text/html" title="Testing Camel K with YAKS" /><published>2023-01-30T00:00:00+01:00</published><updated>2023-01-30T00:00:00+01:00</updated><id>http://0.0.0.0:4000/news/2023/01/30/camel-k-yaks</id><content type="html" xml:base="http://0.0.0.0:4000/news/2023/01/30/camel-k-yaks/">&lt;p&gt;This post describes the steps to test a Camel K integration with YAKS both locally and on the Kubernetes platform.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2023-05-15T11:39:07+02:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Citrus Integration Tests</title><subtitle>Automated integration tests for message protocols and data formats that you require</subtitle><entry><title type="html">Release 4.0.0-M1</title><link href="http://0.0.0.0:4000/news/2023/05/15/release-4.0.0-M1/" rel="alternate" type="text/html" title="Release 4.0.0-M1" /><published>2023-05-15T00:00:00+02:00</published><updated>2023-05-15T00:00:00+02:00</updated><id>http://0.0.0.0:4000/news/2023/05/15/release-4.0.0-M1</id><content type="html" xml:base="http://0.0.0.0:4000/news/2023/05/15/release-4.0.0-M1/">&lt;p&gt;The community is proud to announce the availability of the 1st milestone towards Citrus 4.0.
+The need for a new major release of Citrus is mainly driven by the industry migrating from &lt;code class=&quot;highlighter-rouge&quot;&gt;javax&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;jakarta&lt;/code&gt; APIs. 
+Citrus is keen to keep up with popular runtimes such as Spring Boot and Quarkus.
+The proper alignment with those runtimes and the evolving of Java’s ecosystem in general is a key driver for Citrus 4.0.&lt;/p&gt;
+
+&lt;p&gt;The next major release of Citrus uses Java 17 and aligns with some major dependency version updates 
+such as Spring 6.0, Jakarta EE and Apache Camel 4.0.&lt;/p&gt;
+
+&lt;h2 id=&quot;java-17&quot;&gt;Java 17&lt;/h2&gt;
+
+&lt;p&gt;Citrus 4.0 is compiled with Java 17 (was Java 11 for Citrus 3.x). 
+This means the minimum version to run Citrus 4.0 is also Java 17. 
+Of course this also means that you are able to use the full greatness of evolving Java features such as records, multiline text blocks and so many more.&lt;/p&gt;
+
+&lt;h2 id=&quot;new-groupid-orgcitrusframework&quot;&gt;New groupId org.citrusframework&lt;/h2&gt;
+
+&lt;p&gt;Citrus is an Open Source project and tries to complement with the idea of open code and community contributions. 
+The company &lt;a href=&quot;https://www.consol.com/&quot;&gt;ConSol Software GmbH&lt;/a&gt; and its employees have been a driving force in creating and maintaining Citrus since the very beginning of the project.
+And still ConSol plays a significant role in the success of Citrus by adapting and promoting the project in so many ways.
+However, the list of new contributors emerges and Citrus benefits from many community contributions these days.&lt;/p&gt;
+
+&lt;p&gt;For the sake of strengthening the Open Source idea we decided to move the Citrus groupId from &lt;code class=&quot;highlighter-rouge&quot;&gt;com.consol.citrus&lt;/code&gt; to a more generic &lt;code class=&quot;highlighter-rouge&quot;&gt;org.citrusframework&lt;/code&gt; from Citrus 4.0 onwards.&lt;/p&gt;
+
+&lt;p&gt;In case you update from earlier Citrus versions to Citrus 4.0 this means you need to adjust this groupId when referencing Citrus modules in Maven or Gradle.
+As the groupId also represents the basic Java package used in Citrus you will likely also have to adjust your tests written on top of Citrus when updating. 
+Please do not be afraid as it should be nothing more than a search and replace in your project codebase on this Java base package wherever it may be referenced.&lt;/p&gt;
+
+&lt;h2 id=&quot;major-version-updates-and-jakarta-ee&quot;&gt;Major version updates and Jakarta EE&lt;/h2&gt;
+
+&lt;p&gt;Essential dependencies have been updated to the latest major versions. 
+This includes the updates to Spring 6.0, Jakarta EE and Apache Camel 4.0&lt;/p&gt;
+
+&lt;p&gt;The list of major dependency updates:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Spring 6.0.6&lt;/li&gt;
+  &lt;li&gt;Spring WS 4.0.2&lt;/li&gt;
+  &lt;li&gt;Spring Integration 6.0.3&lt;/li&gt;
+  &lt;li&gt;Spring Restdocs 3.0.0&lt;/li&gt;
+  &lt;li&gt;Jetty 11.0.14&lt;/li&gt;
+  &lt;li&gt;HttpClient 5.2.1&lt;/li&gt;
+  &lt;li&gt;Apache Camel 4.0.0-M2&lt;/li&gt;
+  &lt;li&gt;Use Active MQ Artemis 2.28.0&lt;/li&gt;
+  &lt;li&gt;Use GreenMail 2.0.0 instead of SubethaSmtp&lt;/li&gt;
+  &lt;li&gt;Switch to Jakarta EE (&lt;code class=&quot;highlighter-rouge&quot;&gt;jakarta.*&lt;/code&gt; instead of &lt;code class=&quot;highlighter-rouge&quot;&gt;javax.*&lt;/code&gt;)&lt;/li&gt;
+  &lt;li&gt;Jakarta JMS API 3.1.0&lt;/li&gt;
+  &lt;li&gt;Jakarta Validation 3.0.2&lt;/li&gt;
+  &lt;li&gt;Jakarta Websocket API 2.1.0&lt;/li&gt;
+  &lt;li&gt;Jakarta Servlet API 6.0.0&lt;/li&gt;
+  &lt;li&gt;Saaj 3.0.0&lt;/li&gt;
+  &lt;li&gt;JaxB 4.0.2&lt;/li&gt;
+  &lt;li&gt;Kafka 3.4.0&lt;/li&gt;
+  &lt;li&gt;SLF4J 2.0.6&lt;/li&gt;
+  &lt;li&gt;Mockito 5.2.0&lt;/li&gt;
+  &lt;li&gt;Snakeyaml 2.0&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;removed-old-vintage-modules&quot;&gt;Removed old vintage modules&lt;/h2&gt;
+
+&lt;p&gt;Since the last major Citrus 3.x release some modules have been marked as deprecated. 
+These modules are end of life and will not be released as part of Citrus 4.0 and onwards.&lt;/p&gt;
+
+&lt;p&gt;This includes the modules:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;citrus-java-dsl&lt;/li&gt;
+  &lt;li&gt;citrus-arquillian&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;moved-experimental-modules&quot;&gt;Moved experimental modules&lt;/h2&gt;
+
+&lt;p&gt;Some modules have been moved out of the Citrus project into new separate code repositories.
+This is mainly because these modules do have experimental status and updating to Jakarta EE and Java 17 has not been possible at the moment.&lt;/p&gt;
+
+&lt;p&gt;The modules are:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;citrus-remote has been moved to separate repository &lt;a href=&quot;https://github.com/citrusframework/citrus-remote&quot;&gt;https://github.com/citrusframework/citrus-remote&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;citrus-jdbc endpoint module has been moved to &lt;a href=&quot;https://github.com/citrusframework/citrus-db&quot;&gt;https://github.com/citrusframework/citrus-db&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The code and functionality of those modules stays the same. Also, the code has already received updates on the major releases such as Spring 6.0.&lt;/p&gt;
+
+&lt;p&gt;It is up to the community though to decide about the future maintenance and release cadence of these modules as those will not be released automatically with
+Citrus anymore.&lt;/p&gt;
+
+&lt;h2 id=&quot;refactoring&quot;&gt;Refactoring&lt;/h2&gt;
+
+&lt;p&gt;Deprecated APIs and classes that coexisted a long time are now removed. If your project is using on of these deprecated classes you may run into compile time errors.
+Please have a look at the Citrus API JavaDocs and documentation in order to find out how to use the new APIs and classes that replaced the old deprecated stuff.&lt;/p&gt;
+
+&lt;h2 id=&quot;provide-feedback&quot;&gt;Provide feedback&lt;/h2&gt;
+
+&lt;p&gt;Please adapt to using Citrus 4.0.0-M1 as soon as possible and give feedback to the maintainers of the project.&lt;/p&gt;</content><author><name>Christoph Deppisch</name></author></entry><entry><title type="html">Testing Camel K with YAKS</title><link href="http://0.0.0.0:4000/news/2023/01/30/camel-k-yaks/" rel="alternate" type="text/html" title="Testing Camel K with YAKS" /><published>2023-01-30T00:00:00+01:00</published><updated>2023-01-30T00:00:00+01:00</updated><id>http://0.0.0.0:4000/news/2023/01/30/camel-k-yaks</id><content type="html" xml:base="http://0.0.0.0:4000/news/2023/01/30/camel-k-yaks/">&lt;p&gt;This post describes the steps to test a Camel K integration with YAKS both locally and on the Kubernetes platform.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/img/assets/camel-k-yaks/featured.png&quot; alt=&quot;featured.png&quot; /&gt;&lt;/p&gt;
 
@@ -1689,7 +1782,7 @@ specification to generate a proper send/receive request/response communication w
 &lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;plugin&amp;gt;&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;com.consol.citrus.mvn&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-maven-plugin&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;3.4.0&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;4.0.0-M1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;executions&amp;gt;&lt;/span&gt;
       &lt;span class=&quot;nt&quot;&gt;&amp;lt;execution&amp;gt;&lt;/span&gt;
         &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;generate-tests&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
@@ -1909,7 +2002,7 @@ specification to generate a proper send/receive request/response communication w
 &lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;plugin&amp;gt;&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;com.consol.citrus.mvn&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-maven-plugin&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;3.4.0&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;4.0.0-M1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;executions&amp;gt;&lt;/span&gt;
       &lt;span class=&quot;nt&quot;&gt;&amp;lt;execution&amp;gt;&lt;/span&gt;
         &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;generate-tests&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
@@ -2072,147 +2165,4 @@ Open a separate command line terminal and navigate to the sample folder.&lt;/p&g
 And of course green tests at the very end of the build and some new reporting files in &lt;code class=&quot;highlighter-rouge&quot;&gt;target/citrus-reports&lt;/code&gt; folder.&lt;/p&gt;
 
 &lt;p&gt;Of course you can also start the Citrus tests from your favorite IDE.
-Just start the Citrus test using the TestNG IDE integration in IntelliJ, Eclipse or Netbeans.&lt;/p&gt;</content><author><name></name></author></entry><entry><title type="html">SOAP MTOM sample</title><link href="http://0.0.0.0:4000/samples/soap-mtom/" rel="alternate" type="text/html" title="SOAP MTOM sample" /><published>2018-06-21T00:00:00+02:00</published><updated>2018-06-21T00:00:00+02:00</updated><id>http://0.0.0.0:4000/samples/sample-soap-mtom</id><content type="html" xml:base="http://0.0.0.0:4000/samples/soap-mtom/">&lt;p&gt;This sample uses SOAP web services with MTOM enabled attachments. You can read more about the 
-Citrus SOAP features in &lt;a href=&quot;https://citrusframework.org/reference/html#soap&quot;&gt;reference guide&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;objectives&quot;&gt;Objectives&lt;/h2&gt;
-
-&lt;p&gt;The Citrus tests in this project send and receive SOAP attachments via MTOM enabled. Both client and server are provided by Citrus so
-each test receives its own requests as a demo showcase.&lt;/p&gt;
-
-&lt;p&gt;The sample shows how to use MTOM enabled SOAP messages as a client and server. First we define the schema and a global namespace for the SOAP
-messages.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Bean&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SimpleXsdSchema&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;todoListSchema&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SimpleXsdSchema&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ClassPathResource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;schema/ImageService.xsd&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;nd&quot;&gt;@Bean&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;XsdSchemaRepository&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;schemaRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;XsdSchemaRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;schemaRepository&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;XsdSchemaRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;schemaRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getSchemas&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;todoListSchema&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;schemaRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;nd&quot;&gt;@Bean&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NamespaceContextBuilder&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;namespaceContextBuilder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;NamespaceContextBuilder&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;namespaceContextBuilder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NamespaceContextBuilder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;namespaceContextBuilder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setNamespaceMappings&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Collections&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;singletonMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;image&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;http://www.citrusframework.org/imageService&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;namespaceContextBuilder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The schema repository holds all known schemas in this project. Citrus will automatically check the syntax rules for incoming messages
-then. Next we need a SOAP web service client and server component:&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Bean&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SoapMessageFactory&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;messageFactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SaajSoapMessageFactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;nd&quot;&gt;@Bean&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WebServiceClient&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;imageClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CitrusEndpoints&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;soap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;defaultUri&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://localhost:8080/services/image&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;nd&quot;&gt;@Bean&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WebServiceServer&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;imageServer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CitrusEndpoints&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;soap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8080&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;autoStart&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;As you can see client and server are using the same port &lt;code class=&quot;highlighter-rouge&quot;&gt;8080&lt;/code&gt;. This means that requests are send to the web service endpoint in Citrus. In addition to that we define a SOAP message factory that is
-responsible for creating the SOAP envelope.&lt;/p&gt;
-
-&lt;p&gt;Now we can use the web service client and server in the Citrus test.&lt;/p&gt;
-
-&lt;h2 id=&quot;mtom-enabled&quot;&gt;MTOM enabled&lt;/h2&gt;
-
-&lt;p&gt;First of all we want to send and receive a SOAP message with MTOM enabled attachment. The request defines the &lt;code class=&quot;highlighter-rouge&quot;&gt;cid:IMAGE&lt;/code&gt; reference in the payload and enabled MTOM usage on the client request.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;soap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imageClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;fork&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;soapAction&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;addImage&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&amp;lt;image:addImage xmlns:image=\&quot;http://www.citrusframework.org/imageService\&quot;&amp;gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
-                &lt;span class=&quot;s&quot;&gt;&quot;&amp;lt;image:id&amp;gt;logo&amp;lt;/image:id&amp;gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
-                &lt;span class=&quot;s&quot;&gt;&quot;&amp;lt;image:image&amp;gt;cid:IMAGE&amp;lt;/image:image&amp;gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
-            &lt;span class=&quot;s&quot;&gt;&quot;&amp;lt;/image:addImage&amp;gt;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;attachment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;IMAGE&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;application/octet-stream&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ClassPathResource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;image/logo.png&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;mtomEnabled&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;soap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imageServer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;soapAction&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;addImage&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;schemaValidation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&amp;lt;image:addImage xmlns:image=\&quot;http://www.citrusframework.org/imageService\&quot;&amp;gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
-                &lt;span class=&quot;s&quot;&gt;&quot;&amp;lt;image:id&amp;gt;logo&amp;lt;/image:id&amp;gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
-                &lt;span class=&quot;s&quot;&gt;&quot;&amp;lt;image:image&amp;gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
-                    &lt;span class=&quot;s&quot;&gt;&quot;&amp;lt;xop:Include xmlns:xop=\&quot;http://www.w3.org/2004/08/xop/include\&quot; href=\&quot;cid:IMAGE\&quot;/&amp;gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
-                &lt;span class=&quot;s&quot;&gt;&quot;&amp;lt;/image:image&amp;gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
-            &lt;span class=&quot;s&quot;&gt;&quot;&amp;lt;/image:addImage&amp;gt;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;attachmentValidator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BinarySoapAttachmentValidator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;attachment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;IMAGE&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;application/octet-stream&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ClassPathResource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;image/logo.png&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The server is able to receive the MTOM enabled message. The image data is streamed as a SOAP attachment using MTOM. This means that the image element in the payload
-uses a &lt;code class=&quot;highlighter-rouge&quot;&gt;xop:Inlclude&lt;/code&gt; placeholder element with reference to the &lt;code class=&quot;highlighter-rouge&quot;&gt;cid:IMAGE&lt;/code&gt; attachment. The receiving action in Citrus is able to validate the attachment with &lt;code class=&quot;highlighter-rouge&quot;&gt;BinarySoapAttachmentValidator&lt;/code&gt; as we have a
-PNG image content that should be compared as binary stream.&lt;/p&gt;
-
-&lt;p&gt;Please note that the schema validation on the receive action is disabled. This is because the &lt;code class=&quot;highlighter-rouge&quot;&gt;xop:Include&lt;/code&gt; placeholder element would break the schema validation with following error:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;XML schema validation failed: cvc-type.3.1.2: Element 'image:image' is a simple type, so it must have no element information item [children]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;So we have to skip the schema validation when receiving MTOM enabled SOAP messages. In case schema validation is a critical need for you you should be using
-MTOM inline messages.&lt;/p&gt;
-
-&lt;h2 id=&quot;mtom-inline&quot;&gt;MTOM inline&lt;/h2&gt;
-
-&lt;p&gt;MTOM also supports inline attachment handling with &lt;code class=&quot;highlighter-rouge&quot;&gt;mtom-inline&lt;/code&gt; feature enabled. This means that the image data is automatically added in the payload as base64 encoded data stream.
-We can enable MTOM inline on the Citrus SOAP attachment object as follows:&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;SoapAttachment&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;attachment&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SoapAttachment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;attachment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setContentType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;application/octet-stream&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;attachment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setContentResourcePath&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;image/logo.png&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;attachment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setMtomInline&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;attachment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setContentId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;IMAGE&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;soap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imageClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;fork&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;soapAction&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;addImage&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&amp;lt;image:addImage xmlns:image=\&quot;http://www.citrusframework.org/imageService\&quot;&amp;gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
-                &lt;span class=&quot;s&quot;&gt;&quot;&amp;lt;image:id&amp;gt;logo&amp;lt;/image:id&amp;gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
-                &lt;span class=&quot;s&quot;&gt;&quot;&amp;lt;image:image&amp;gt;cid:IMAGE&amp;lt;/image:image&amp;gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
-            &lt;span class=&quot;s&quot;&gt;&quot;&amp;lt;/image:addImage&amp;gt;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;attachment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;attachment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;mtomEnabled&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;soap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imageServer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;soapAction&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;addImage&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&amp;lt;image:addImage xmlns:image=\&quot;http://www.citrusframework.org/imageService\&quot;&amp;gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
-                &lt;span class=&quot;s&quot;&gt;&quot;&amp;lt;image:id&amp;gt;logo&amp;lt;/image:id&amp;gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
-                &lt;span class=&quot;s&quot;&gt;&quot;&amp;lt;image:image&amp;gt;citrus:readFile(image/logo.base64)&amp;lt;/image:image&amp;gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
-            &lt;span class=&quot;s&quot;&gt;&quot;&amp;lt;/image:addImage&amp;gt;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Now with MTOM inline the request is not using &lt;code class=&quot;highlighter-rouge&quot;&gt;xop:Inlcude&lt;/code&gt; but a base64 encoded data stream in the payload. We can validate this stream with a combination of
-&lt;code class=&quot;highlighter-rouge&quot;&gt;citrus:encodeBase64()&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus:readFile()&lt;/code&gt; functions.&lt;/p&gt;
-
-&lt;h2 id=&quot;run&quot;&gt;Run&lt;/h2&gt;
-
-&lt;p&gt;You can run the sample on your localhost in order to see Citrus in action. Read the instructions &lt;a href=&quot;/samples/run/&quot;&gt;how to run&lt;/a&gt; the sample.&lt;/p&gt;</content><author><name></name></author></entry></feed>
+Just start the Citrus test using the TestNG IDE integration in IntelliJ, Eclipse or Netbeans.&lt;/p&gt;</content><author><name></name></author></entry></feed>

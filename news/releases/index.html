@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Citrus Framework</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="generator" content="Citrus 3.4.0">
+  <meta name="generator" content="Citrus 4.0.0-M1">
   <meta name="description" content="Citrus Framework Website"/>
   <meta name="author" content="ConSol Software GmbH"/>
   <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
@@ -143,6 +143,127 @@
 
       <div class="unit four-fifths">
         
+  <article>
+  <h2>
+    Release 4.0.0-M1
+    <a href="/news/2023/05/15/release-4.0.0-M1/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      release
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      15 May 2023
+    </span>
+    <a href="https://github.com/" class="post-author">
+      
+      Christoph Deppisch
+    </a>
+  </div>
+  <div class="post-content">
+    <p>The community is proud to announce the availability of the 1st milestone towards Citrus 4.0.
+The need for a new major release of Citrus is mainly driven by the industry migrating from <code class="highlighter-rouge">javax</code> to <code class="highlighter-rouge">jakarta</code> APIs. 
+Citrus is keen to keep up with popular runtimes such as Spring Boot and Quarkus.
+The proper alignment with those runtimes and the evolving of Java’s ecosystem in general is a key driver for Citrus 4.0.</p>
+
+<p>The next major release of Citrus uses Java 17 and aligns with some major dependency version updates 
+such as Spring 6.0, Jakarta EE and Apache Camel 4.0.</p>
+
+<h2 id="java-17">Java 17</h2>
+
+<p>Citrus 4.0 is compiled with Java 17 (was Java 11 for Citrus 3.x). 
+This means the minimum version to run Citrus 4.0 is also Java 17. 
+Of course this also means that you are able to use the full greatness of evolving Java features such as records, multiline text blocks and so many more.</p>
+
+<h2 id="new-groupid-orgcitrusframework">New groupId org.citrusframework</h2>
+
+<p>Citrus is an Open Source project and tries to complement with the idea of open code and community contributions. 
+The company <a href="https://www.consol.com/">ConSol Software GmbH</a> and its employees have been a driving force in creating and maintaining Citrus since the very beginning of the project.
+And still ConSol plays a significant role in the success of Citrus by adapting and promoting the project in so many ways.
+However, the list of new contributors emerges and Citrus benefits from many community contributions these days.</p>
+
+<p>For the sake of strengthening the Open Source idea we decided to move the Citrus groupId from <code class="highlighter-rouge">com.consol.citrus</code> to a more generic <code class="highlighter-rouge">org.citrusframework</code> from Citrus 4.0 onwards.</p>
+
+<p>In case you update from earlier Citrus versions to Citrus 4.0 this means you need to adjust this groupId when referencing Citrus modules in Maven or Gradle.
+As the groupId also represents the basic Java package used in Citrus you will likely also have to adjust your tests written on top of Citrus when updating. 
+Please do not be afraid as it should be nothing more than a search and replace in your project codebase on this Java base package wherever it may be referenced.</p>
+
+<h2 id="major-version-updates-and-jakarta-ee">Major version updates and Jakarta EE</h2>
+
+<p>Essential dependencies have been updated to the latest major versions. 
+This includes the updates to Spring 6.0, Jakarta EE and Apache Camel 4.0</p>
+
+<p>The list of major dependency updates:</p>
+
+<ul>
+  <li>Spring 6.0.6</li>
+  <li>Spring WS 4.0.2</li>
+  <li>Spring Integration 6.0.3</li>
+  <li>Spring Restdocs 3.0.0</li>
+  <li>Jetty 11.0.14</li>
+  <li>HttpClient 5.2.1</li>
+  <li>Apache Camel 4.0.0-M2</li>
+  <li>Use Active MQ Artemis 2.28.0</li>
+  <li>Use GreenMail 2.0.0 instead of SubethaSmtp</li>
+  <li>Switch to Jakarta EE (<code class="highlighter-rouge">jakarta.*</code> instead of <code class="highlighter-rouge">javax.*</code>)</li>
+  <li>Jakarta JMS API 3.1.0</li>
+  <li>Jakarta Validation 3.0.2</li>
+  <li>Jakarta Websocket API 2.1.0</li>
+  <li>Jakarta Servlet API 6.0.0</li>
+  <li>Saaj 3.0.0</li>
+  <li>JaxB 4.0.2</li>
+  <li>Kafka 3.4.0</li>
+  <li>SLF4J 2.0.6</li>
+  <li>Mockito 5.2.0</li>
+  <li>Snakeyaml 2.0</li>
+</ul>
+
+<h2 id="removed-old-vintage-modules">Removed old vintage modules</h2>
+
+<p>Since the last major Citrus 3.x release some modules have been marked as deprecated. 
+These modules are end of life and will not be released as part of Citrus 4.0 and onwards.</p>
+
+<p>This includes the modules:</p>
+
+<ul>
+  <li>citrus-java-dsl</li>
+  <li>citrus-arquillian</li>
+</ul>
+
+<h2 id="moved-experimental-modules">Moved experimental modules</h2>
+
+<p>Some modules have been moved out of the Citrus project into new separate code repositories.
+This is mainly because these modules do have experimental status and updating to Jakarta EE and Java 17 has not been possible at the moment.</p>
+
+<p>The modules are:</p>
+
+<ul>
+  <li>citrus-remote has been moved to separate repository <a href="https://github.com/citrusframework/citrus-remote">https://github.com/citrusframework/citrus-remote</a>
+</li>
+  <li>citrus-jdbc endpoint module has been moved to <a href="https://github.com/citrusframework/citrus-db">https://github.com/citrusframework/citrus-db</a>
+</li>
+</ul>
+
+<p>The code and functionality of those modules stays the same. Also, the code has already received updates on the major releases such as Spring 6.0.</p>
+
+<p>It is up to the community though to decide about the future maintenance and release cadence of these modules as those will not be released automatically with
+Citrus anymore.</p>
+
+<h2 id="refactoring">Refactoring</h2>
+
+<p>Deprecated APIs and classes that coexisted a long time are now removed. If your project is using on of these deprecated classes you may run into compile time errors.
+Please have a look at the Citrus API JavaDocs and documentation in order to find out how to use the new APIs and classes that replaced the old deprecated stuff.</p>
+
+<h2 id="provide-feedback">Provide feedback</h2>
+
+<p>Please adapt to using Citrus 4.0.0-M1 as soon as possible and give feedback to the maintainers of the project.</p>
+
+  </div>
+</article>
+
+
   <article>
   <h2>
     Release 2.7.2
