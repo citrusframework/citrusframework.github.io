@@ -179,6 +179,7 @@
   <li>Update dependencies to latest major versions</li>
   <li>Move from <code class="highlighter-rouge">javax.*</code> to <code class="highlighter-rouge">jakarta.*</code></li>
   <li>Polyglot test runner support (XML, Groovy and YAML)</li>
+  <li>QuarkusTest runtime support</li>
   <li>Remove deprecated modules and code</li>
 </ul>
 
@@ -204,7 +205,7 @@
 
 <p>Of course this also means that you are able to use the full greatness of evolving Java features such as records, multiline text blocks and so many more.</p>
 
-<h2 id="new-maven-groupid-orgcitrusframework">New Maven groupId “org.citrusframework”</h2>
+<h2 id="maven-groupid-orgcitrusframework">Maven groupId “org.citrusframework”</h2>
 
 <p>Citrus is an Open Source project and promotes the idea of open code and community contributions. For over a decade Citrus has been using the groupId <code class="highlighter-rouge">com.consol.citrus</code> because the company <a href="https://www.consol.com/">ConSol Software GmbH</a> and its employees have been a driving force in creating and maintaining the project since the very beginning.</p>
 
@@ -348,6 +349,14 @@ However, the list of new contributors emerges and Citrus benefits from many comm
 <h2 id="polyglot-test-runner-support">Polyglot test runner support</h2>
 
 <p>Citrus provides many ways to write test cases. The most popular ones are using the Java DSL and the Spring bean XML syntax. In addition to that you can now choose to write Citrus tests in pure XML, YAML or Groovy. All of them share the same feature set, so you can adapt the test language to your individual requirements (not everybody is a Java expert and this is fine).</p>
+
+<h2 id="quarkustest-runtime">QuarkusTest runtime</h2>
+
+<p>Quarkus is an emerging enterprise Java stack that is keen to bring Java as a leading platform into the cloud-native application future. With Citrus 4 you can directly combine the test framework with the test capabilities of Quarkus. The Quarkus test framework provides awesome features such as dev services, auto configuration and first class integration with Testcontainers.</p>
+
+<p>Citrus now provides a Quarkus extension that is able to hook into the QuarkusTest runtime so you can inject Citrus capabilities into your Quarkus test.</p>
+
+<p>Read more about it in <a href="https://citrusframework.org/citrus/reference/html/index.html#runtime-quarkus">docs/reference/index.html#runtime-quarkus</a>.</p>
 
 <h2 id="removed-modules">Removed modules</h2>
 

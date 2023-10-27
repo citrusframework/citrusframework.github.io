@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2023-10-27T19:56:51+02:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Citrus Integration Tests</title><subtitle>Automated integration tests for message protocols and data formats that you require</subtitle><entry><title type="html">Citrus 4.0.0</title><link href="http://0.0.0.0:4000/news/2023/10/25/release-4.0.0/" rel="alternate" type="text/html" title="Citrus 4.0.0" /><published>2023-10-25T00:00:00+02:00</published><updated>2023-10-25T00:00:00+02:00</updated><id>http://0.0.0.0:4000/news/2023/10/25/release-4.0.0</id><content type="html" xml:base="http://0.0.0.0:4000/news/2023/10/25/release-4.0.0/">&lt;p&gt;The community is proud to announce the availability of Citrus 4.0.0!&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2023-10-27T20:12:59+02:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Citrus Integration Tests</title><subtitle>Automated integration tests for message protocols and data formats that you require</subtitle><entry><title type="html">Citrus 4.0.0</title><link href="http://0.0.0.0:4000/news/2023/10/25/release-4.0.0/" rel="alternate" type="text/html" title="Citrus 4.0.0" /><published>2023-10-25T00:00:00+02:00</published><updated>2023-10-25T00:00:00+02:00</updated><id>http://0.0.0.0:4000/news/2023/10/25/release-4.0.0</id><content type="html" xml:base="http://0.0.0.0:4000/news/2023/10/25/release-4.0.0/">&lt;p&gt;The community is proud to announce the availability of Citrus 4.0.0!&lt;/p&gt;
 
 &lt;h2 id=&quot;objectives&quot;&gt;Objectives&lt;/h2&gt;
 
@@ -14,6 +14,7 @@
   &lt;li&gt;Update dependencies to latest major versions&lt;/li&gt;
   &lt;li&gt;Move from &lt;code class=&quot;highlighter-rouge&quot;&gt;javax.*&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;jakarta.*&lt;/code&gt;&lt;/li&gt;
   &lt;li&gt;Polyglot test runner support (XML, Groovy and YAML)&lt;/li&gt;
+  &lt;li&gt;QuarkusTest runtime support&lt;/li&gt;
   &lt;li&gt;Remove deprecated modules and code&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -39,7 +40,7 @@
 
 &lt;p&gt;Of course this also means that you are able to use the full greatness of evolving Java features such as records, multiline text blocks and so many more.&lt;/p&gt;
 
-&lt;h2 id=&quot;new-maven-groupid-orgcitrusframework&quot;&gt;New Maven groupId “org.citrusframework”&lt;/h2&gt;
+&lt;h2 id=&quot;maven-groupid-orgcitrusframework&quot;&gt;Maven groupId “org.citrusframework”&lt;/h2&gt;
 
 &lt;p&gt;Citrus is an Open Source project and promotes the idea of open code and community contributions. For over a decade Citrus has been using the groupId &lt;code class=&quot;highlighter-rouge&quot;&gt;com.consol.citrus&lt;/code&gt; because the company &lt;a href=&quot;https://www.consol.com/&quot;&gt;ConSol Software GmbH&lt;/a&gt; and its employees have been a driving force in creating and maintaining the project since the very beginning.&lt;/p&gt;
 
@@ -183,6 +184,14 @@ However, the list of new contributors emerges and Citrus benefits from many comm
 &lt;h2 id=&quot;polyglot-test-runner-support&quot;&gt;Polyglot test runner support&lt;/h2&gt;
 
 &lt;p&gt;Citrus provides many ways to write test cases. The most popular ones are using the Java DSL and the Spring bean XML syntax. In addition to that you can now choose to write Citrus tests in pure XML, YAML or Groovy. All of them share the same feature set, so you can adapt the test language to your individual requirements (not everybody is a Java expert and this is fine).&lt;/p&gt;
+
+&lt;h2 id=&quot;quarkustest-runtime&quot;&gt;QuarkusTest runtime&lt;/h2&gt;
+
+&lt;p&gt;Quarkus is an emerging enterprise Java stack that is keen to bring Java as a leading platform into the cloud-native application future. With Citrus 4 you can directly combine the test framework with the test capabilities of Quarkus. The Quarkus test framework provides awesome features such as dev services, auto configuration and first class integration with Testcontainers.&lt;/p&gt;
+
+&lt;p&gt;Citrus now provides a Quarkus extension that is able to hook into the QuarkusTest runtime so you can inject Citrus capabilities into your Quarkus test.&lt;/p&gt;
+
+&lt;p&gt;Read more about it in &lt;a href=&quot;https://citrusframework.org/citrus/reference/html/index.html#runtime-quarkus&quot;&gt;docs/reference/index.html#runtime-quarkus&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;removed-modules&quot;&gt;Removed modules&lt;/h2&gt;
 
