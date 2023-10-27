@@ -195,7 +195,7 @@
 <ul>
   <li>Java 17+</li>
   <li>Maven 3.9+</li>
-  <li>Runtime, one of
+  <li>As runtime one of
     <ul>
       <li>JUnit Jupiter 5.10+</li>
       <li>TestNG 7.8+</li>
@@ -236,64 +236,138 @@ However, the list of new contributors emerges and Citrus benefits from many comm
 
 <h2 id="dependency-update">Dependency update</h2>
 
-<p>Citrus depends on many fantastic libraries and projects. With the move to the Jakarta API many of them did have major version updates in 2023. Citrus now aligns with the latest and greatest versions these libraries.</p>
+<p>Citrus depends on many fantastic libraries and projects. With the move to the Jakarta API many of them hava had major version releases in 2023. Citrus now aligns with the latest and greatest versions of these libraries.</p>
 
 <p>The new library versions used in Citrus 4.0 are:</p>
 
-<ul>
-  <li>JUnit Jupiter 5.10.0</li>
-  <li>TestNG 7.8.0</li>
-  <li>Cucumber 7.14.0</li>
-  <li>Quarkus Test 3.4.2</li>
-  <li>Apache Camel 4.1.0</li>
-  <li>ActiveMQ Artemis 2.31.0</li>
-  <li>ActiveMQ 5.18.2</li>
-  <li>Jetty 11.0.17</li>
-  <li>HttpClient 5.2.1</li>
-  <li>Cucumber 7.14.0</li>
-  <li>Knative Client 6.9.0</li>
-  <li>Kubernetes Client 6.9.0</li>
-  <li>Netty 4.1.100.Final</li>
-  <li>SLF4J 2.0.9</li>
-  <li>SnakeYAML 2.2</li>
-  <li>Spring Framework 6.0.13</li>
-  <li>Spring WS 4.0.7</li>
-  <li>Spring Integration 6.1.4</li>
-  <li>Testcontainers 1.19.1</li>
-  <li>PostrgeSQL 42.6.0</li>
-  <li>GreenMail 2.0.0</li>
-  <li>Jakarta JMS API 3.1.0</li>
-  <li>Jakarta Validation 3.0.2</li>
-  <li>Jakarta Websocket API 2.1.1</li>
-  <li>Jakarta Servlet API 6.0.0</li>
-  <li>Saaj 3.0.3</li>
-  <li>JaxB 4.0.3</li>
-  <li>Kafka 3.6.0</li>
-  <li>SLF4J 2.0.9</li>
-  <li>Snakeyaml 2.2</li>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Library</th>
+      <th style="text-align: left">Version</th>
+      <th style="text-align: left">Library</th>
+      <th style="text-align: left">Version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">JUnit Jupiter</td>
+      <td style="text-align: left">5.10.0</td>
+      <td style="text-align: left">TestNG</td>
+      <td style="text-align: left">7.8.0</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Cucumber</td>
+      <td style="text-align: left">7.14.0</td>
+      <td style="text-align: left">Quarkus Test</td>
+      <td style="text-align: left">3.4.2</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Apache Camel</td>
+      <td style="text-align: left">4.1.0</td>
+      <td style="text-align: left">ActiveMQ Artemis</td>
+      <td style="text-align: left">2.31.0</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">ActiveMQ</td>
+      <td style="text-align: left">5.18.2</td>
+      <td style="text-align: left">Jetty</td>
+      <td style="text-align: left">11.0.17</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">HttpClient</td>
+      <td style="text-align: left">5.2.1</td>
+      <td style="text-align: left">Cucumber</td>
+      <td style="text-align: left">7.14.0</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Knative Client</td>
+      <td style="text-align: left">6.9.0</td>
+      <td style="text-align: left">Kubernetes Client</td>
+      <td style="text-align: left">6.9.0</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Netty</td>
+      <td style="text-align: left">4.1.100.Final</td>
+      <td style="text-align: left">SLF4J</td>
+      <td style="text-align: left">2.0.9</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">SnakeYAML</td>
+      <td style="text-align: left">2.2</td>
+      <td style="text-align: left">Spring Framework</td>
+      <td style="text-align: left">6.0.13</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Spring WS</td>
+      <td style="text-align: left">4.0.7</td>
+      <td style="text-align: left">Spring Integration</td>
+      <td style="text-align: left">6.1.4</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Testcontainers</td>
+      <td style="text-align: left">1.19.1</td>
+      <td style="text-align: left">PostrgeSQL</td>
+      <td style="text-align: left">42.6.0</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">GreenMail</td>
+      <td style="text-align: left">2.0.0</td>
+      <td style="text-align: left">Jakarta JMS API</td>
+      <td style="text-align: left">3.1.0</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Jakarta Validation</td>
+      <td style="text-align: left">3.0.2</td>
+      <td style="text-align: left">Jakarta Websocket API</td>
+      <td style="text-align: left">2.1.1</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Jakarta Servlet API</td>
+      <td style="text-align: left">6.0.0</td>
+      <td style="text-align: left">Saaj</td>
+      <td style="text-align: left">3.0.3</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">JaxB</td>
+      <td style="text-align: left">4.0.3</td>
+      <td style="text-align: left">Kafka</td>
+      <td style="text-align: left">3.6.0</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">SLF4J</td>
+      <td style="text-align: left">2.0.9</td>
+      <td style="text-align: left">Snakeyaml</td>
+      <td style="text-align: left">2.2</td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="move-to-jakarta-api">Move to Jakarta API</h2>
 
-<p>The whole industry faced a quite important switch from <code class="highlighter-rouge">javax.*</code> to <code class="highlighter-rouge">jakarta.*</code> APIs. The migration often is not very easy and the Citrus team is happy to have tackled this move with the new major version update.</p>
+<p>Many libraries accomplish the switch from <code class="highlighter-rouge">javax.*</code> to <code class="highlighter-rouge">jakarta.*</code> APIs. The migration itself can be a tough task and the Citrus team is happy to have tackled this move with the new major version update.</p>
 
-<p>For you as a user this move may not cause any trouble because the Citrus dependencies are all using the new Jakarta APIs already. In case you are using Citrus in combination with an older servlet container or with a library that still uses the <code class="highlighter-rouge">javax</code> APIs it may be time to also update these dependencies in your project.</p>
+<p>For you as a user this move may not cause much trouble because the Citrus dependencies are all using the new Jakarta APIs already. In case you are using Citrus in combination with an older servlet container or with a library that still uses the <code class="highlighter-rouge">javax</code> APIs it may be time to also update these dependencies in your project.</p>
 
 <h2 id="polyglot-test-runner-support">Polyglot test runner support</h2>
 
-<p>Citrus provides many ways to write test cases. The most popular ones are using the Java DSL and the Spring bean XML syntax. In addition to that you can now choose to write Citrus tests in pure XML, YAML or Groovy. All of them are equally in its feature set and you can adapt the test language to your individual requirements (not everybody is a Java expert and this is fine).</p>
+<p>Citrus provides many ways to write test cases. The most popular ones are using the Java DSL and the Spring bean XML syntax. In addition to that you can now choose to write Citrus tests in pure XML, YAML or Groovy. All of them share the same feature set, so you can adapt the test language to your individual requirements (not everybody is a Java expert and this is fine).</p>
 
 <h2 id="removed-modules">Removed modules</h2>
 
-<p>Sometimes it is the time to say goodbye. A new major version is always a good point to get rid of obsolete and outdated things. Some Citrus modules are end of life and are discontinued some modules will be just moved to a separate code repository.</p>
+<p>Sometimes it is the time to say goodbye and a new major version is always a good point to get rid of obsolete and outdated things. Some Citrus modules are declared “end of life” and are being discontinued, some modules will just be moved to a separate code repository.</p>
 
 <p>These modules have been removed from the main Citrus project.</p>
 
 <ul>
-  <li>citrus-java-dsl (deprecated Java domain specific language that was based on the TestDesigner interface)</li>
-  <li>citrus-arquillian (Arquillian integration to run Citrus as part of the Arquillian framework)</li>
-  <li>citrus-jdbc (JDBC server implementation that is able to simulate any JDBC driver and database)</li>
-  <li>citrus-remote (Run Citrus via remote Http tunnel on a foreign server)</li>
+  <li>
+<strong>citrus-java-dsl</strong> deprecated Java domain specific language that was based on the TestDesigner interface</li>
+  <li>
+<strong>citrus-arquillian</strong> Arquillian integration to run Citrus as part of the Arquillian framework</li>
+  <li>
+<strong>citrus-jdbc</strong> JDBC server implementation that is able to simulate any JDBC driver and database</li>
+  <li>
+<strong>citrus-remote</strong> Run Citrus via remote Http tunnel on a foreign server</li>
 </ul>
 
 <p>Removing the modules does not mean that these bits are completely gone forever though. Some modules have just been moved out of the Citrus project into new separate code repositories. This is mainly because these modules do have experimental status and updating to Jakarta EE and Java 17 has not been possible at the moment.</p>
@@ -301,24 +375,26 @@ However, the list of new contributors emerges and Citrus benefits from many comm
 <p>The experimental modules moved to separate repositories are:</p>
 
 <ul>
-  <li>citrus-remote lives on in <a href="https://github.com/citrusframework/citrus-remote">https://github.com/citrusframework/citrus-remote</a>
+  <li>
+<em>citrus-remote</em> lives on in <a href="https://github.com/citrusframework/citrus-remote">https://github.com/citrusframework/citrus-remote</a>
 </li>
-  <li>citrus-jdbc endpoint module has been moved to <a href="https://github.com/citrusframework/citrus-db">https://github.com/citrusframework/citrus-db</a>
+  <li>
+<em>citrus-jdbc</em> endpoint module has been moved to <a href="https://github.com/citrusframework/citrus-db">https://github.com/citrusframework/citrus-db</a>
 </li>
 </ul>
 
-<p>The code and functionality of those modules stays the same. Also, the code has already received updates on the major releases such as Spring 6.0.</p>
+<p>The code and functionality of those modules stays the same. Also, the code has already received updates on the major releases such as Spring 6.</p>
 
-<p>It is up to the community though to decide about the future maintenance and release cadence of these modules as those will not be released automatically with Citrus main project anymore.</p>
+<p>It is up to the community though to decide about the future maintenance and release cadence as these modules will not be released automatically with Citrus main project anymore.</p>
 
 <h2 id="provide-feedback-and-help">Provide feedback and help</h2>
 
-<p>Please adapt to using Citrus 4.0.0 as soon as possible and give us feedback what is working and what may need more attention.
+<p>Please adapt to using Citrus 4 as soon as possible and give us feedback what is working and what may need more attention.
 We would love to hear from you how you like Citrus 4! Also the documentation has not been fully updated yet. Any help is much appreciated! So in case you have something to improve of fix just open a PR we are more than happy to receive your contributions!</p>
 
 <h2 id="thank-you">Thank you!</h2>
 
-<p>Let’s use this opportunity to thank everybody involved in making this Citrus 4 release happen. The Citrus community did a tremendous job to brings this all together! The Citrus team is very proud to have a new version of Citrus available that after 16+ years of development still works and is up-to-date with the latest and greatest Software libraries out there! THANK YOU!</p>
+<p>Let’s use this opportunity to thank everybody involved in making this Citrus 4 release happen. The Citrus community did a tremendous job to brings this all together! The Citrus team is very proud to have a new version of Citrus available that after 16+ years of development still is up-to-date with the latest and greatest software libraries out there! THANK YOU!</p>
 
   </div>
 </article>
