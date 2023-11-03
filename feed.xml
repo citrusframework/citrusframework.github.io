@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2023-11-03T10:44:54+01:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Citrus Integration Tests</title><subtitle>Automated integration tests for message protocols and data formats that you require</subtitle><entry><title type="html">Quarkus sample</title><link href="http://0.0.0.0:4000/samples/quarkus/" rel="alternate" type="text/html" title="Quarkus sample" /><published>2023-11-03T00:00:00+01:00</published><updated>2023-11-03T00:00:00+01:00</updated><id>http://0.0.0.0:4000/samples/sample-quarkus</id><content type="html" xml:base="http://0.0.0.0:4000/samples/quarkus/">&lt;p&gt;This project uses Quarkus to implement a sample event-driven application and shows how to verify the event processing with an automated integration test written in Citrus. 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2023-11-03T10:59:55+01:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Citrus Integration Tests</title><subtitle>Automated integration tests for message protocols and data formats that you require</subtitle><entry><title type="html">Quarkus sample</title><link href="http://0.0.0.0:4000/samples/quarkus/" rel="alternate" type="text/html" title="Quarkus sample" /><published>2023-11-03T00:00:00+01:00</published><updated>2023-11-03T00:00:00+01:00</updated><id>http://0.0.0.0:4000/samples/sample-quarkus</id><content type="html" xml:base="http://0.0.0.0:4000/samples/quarkus/">&lt;p&gt;This project uses Quarkus to implement a sample event-driven application and shows how to verify the event processing with an automated integration test written in Citrus. 
 The Quarkus support in Citrus is described in more detail in &lt;a href=&quot;https://citrusframework.org/citrus/reference/html#runtime-quarkus&quot;&gt;reference guide&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;objectives&quot;&gt;Objectives&lt;/h2&gt;
@@ -161,31 +161,30 @@ The generated &lt;code class=&quot;highlighter-rouge&quot;&gt;address&lt;/code&g
 &lt;p&gt;The Quarkus test framework uses JUnit Jupiter as a test driver.
 This means you can run the tests just like any other JUnit test (e.g. from your Java IDE, with Maven).&lt;/p&gt;
 
-&lt;p&gt;```shell script
-./mvnw test&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-The Citrus test capabilities are added on top of `@QuarkusTest` with the `@CitrusSupport` annotation.
-So you will not need any other configuration to empower the tests with Citrus.
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./mvnw &lt;span class=&quot;nb&quot;&gt;test&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-## Advanced Citrus testing
+&lt;p&gt;The Citrus test capabilities are added on top of &lt;code class=&quot;highlighter-rouge&quot;&gt;@QuarkusTest&lt;/code&gt; with the &lt;code class=&quot;highlighter-rouge&quot;&gt;@CitrusSupport&lt;/code&gt; annotation.
+So you will not need any other configuration to empower the tests with Citrus.&lt;/p&gt;
 
-If you have a look into the code samples and the Citrus test in this repository you will see some more advanced testing capabilities in action.
-One of them is the ability of Citrus to run test actions in parallel.
+&lt;h2 id=&quot;advanced-citrus-testing&quot;&gt;Advanced Citrus testing&lt;/h2&gt;
 
-```java
-BookingCompletedEvent completedEvent = BookingCompletedEvent.from(booking);
-completedEvent.setStatus(Booking.Status.COMPLETED.name());
+&lt;p&gt;If you have a look into the code samples and the Citrus test in this repository you will see some more advanced testing capabilities in action.
+One of them is the ability of Citrus to run test actions in parallel.&lt;/p&gt;
 
-ShippingEvent shippingEvent = new ShippingEvent(booking.getClient(), product.getName(), supply.getAmount(), &quot;@ignore@&quot;);
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;BookingCompletedEvent&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;completedEvent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BookingCompletedEvent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;booking&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;completedEvent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setStatus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Booking&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Status&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;COMPLETED&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
 
-t.then(parallel().actions(
-    receive()
-        .endpoint(completed)
-        .message().body(marshal(completedEvent, mapper)),
-    receive()
-        .endpoint(shipping)
-        .message().body(marshal(shippingEvent, mapper))
-);
+&lt;span class=&quot;n&quot;&gt;ShippingEvent&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shippingEvent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ShippingEvent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;booking&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;product&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;supply&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getAmount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;@ignore@&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parallel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;actions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;completed&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;marshal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;completedEvent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mapper&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)),&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shipping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;marshal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shippingEvent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mapper&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;The parallel execution is a good idea because the events are also produced independent of each other.
