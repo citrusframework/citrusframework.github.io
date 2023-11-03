@@ -1,0 +1,885 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 4.0.0">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/citrusframework/citrus/commits/master.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li>
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand hide-on-mobiles">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="samples">
+    <div class="grid">
+
+      <div class="samples-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the samples…</option>
+    <option value="/samples/">Overview</option>
+    <option value="/samples/todo-app/">Sample app</option>
+    <option value="/samples/run/">Running</option>
+    
+    
+    <option value="/samples/quarkus/">sample-quarkus</option>
+    
+    <option value="/samples/rmi/">sample-rmi</option>
+    
+    <option value="/samples/binary/">sample-binary</option>
+    
+    <option value="/samples/mail/">sample-mail</option>
+    
+    <option value="/samples/jms/">sample-jms</option>
+    
+    <option value="/samples/camel-context/">sample-camel-context</option>
+    
+    <option value="/samples/gradle/">sample-gradle</option>
+    
+    <option value="/samples/javaconfig/">sample-javaconfig</option>
+    
+    <option value="/samples/selenium/">sample-selenium</option>
+    
+    <option value="/samples/arquillian/">sample-javaee</option>
+    
+    <option value="/samples/kubernetes/">sample-kubernetes</option>
+    
+    <option value="/samples/dynamic-endpoints/">sample-dynamic-endpoints</option>
+    
+    <option value="/samples/kafka/">sample-kafka</option>
+    
+    <option value="/samples/docker/">sample-docker</option>
+    
+    <option value="/samples/reporting/">sample-reporting</option>
+    
+    <option value="/samples/message-store/">sample-message-store</option>
+    
+    <option value="/samples/annotation-config/">sample-annotation-config</option>
+    
+    <option value="/samples/behavior/">sample-behavior</option>
+    
+    <option value="/samples/hamcrest/">sample-hamcrest</option>
+    
+    <option value="/samples/dictionaries/">sample-dictionaries</option>
+    
+    <option value="/samples/cucumber-spring/">sample-cucumber-spring</option>
+    
+    <option value="/samples/cucumber/">sample-cucumber</option>
+    
+    <option value="/samples/sql/">sample-sql</option>
+    
+    <option value="/samples/jdbc/">sample-jdbc</option>
+    
+    <option value="/samples/ftp/">sample-ftp</option>
+    
+    <option value="/samples/scp/">sample-scp</option>
+    
+    <option value="/samples/sftp/">sample-sftp</option>
+    
+    <option value="/samples/http-form-data/">sample-http-form-data</option>
+    
+    <option value="/samples/http/">sample-http</option>
+    
+    <option value="/samples/http-basic-auth/">sample-http-basic-auth</option>
+    
+    <option value="/samples/http-loadtest/">sample-http-loadtest</option>
+    
+    <option value="/samples/swagger/">sample-swagger</option>
+    
+    <option value="/samples/https/">sample-https</option>
+    
+    <option value="/samples/databind/">sample-databind</option>
+    
+    <option value="/samples/json/">sample-json</option>
+    
+    <option value="/samples/junit5/">sample-junit5</option>
+    
+    <option value="/samples/junit/">sample-junit</option>
+    
+    <option value="/samples/soap-wsaddressing/">sample-soap-wsaddressing</option>
+    
+    <option value="/samples/soap/">sample-soap</option>
+    
+    <option value="/samples/soap-mtom/">sample-soap-mtom</option>
+    
+    <option value="/samples/soap-attachment/">sample-soap-attachment</option>
+    
+    <option value="/samples/soap-wssecurity/">sample-soap-wssecurity</option>
+    
+    <option value="/samples/http-static-response/">sample-http-static-response</option>
+    
+    <option value="/samples/soap-static-response/">sample-soap-static-response</option>
+    
+    <option value="/samples/soap-ssl/">sample-soap-ssl</option>
+    
+    <option value="/samples/wsdl/">sample-wsdl</option>
+    
+    <option value="/samples/dataprovider/">sample-dataprovider</option>
+    
+    <option value="/samples/testng/">sample-testng</option>
+    
+    <option value="/samples/xml/">sample-xml</option>
+    
+    <option value="/samples/xhtml/">sample-xhtml</option>
+    
+    <option value="/samples/oxm/">sample-oxm</option>
+    
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+  <h2>
+    Quarkus sample
+    <a href="/samples/quarkus/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <div class="right">
+    
+    <a href="https://github.com/citrusframework/citrus-samples/blob/master/demo/sample-quarkus" target="_blank">
+      <i class="fa fa-pencil"></i> View source code
+    </a>
+    
+    
+  </div>
+  <span class="post-category">
+    <span class="label">
+      samples
+    </span>
+  </span>
+  <div class="post-content">
+    <p>This project uses Quarkus to implement a sample event-driven application and shows how to verify the event processing with an automated integration test written in Citrus. 
+The Quarkus support in Citrus is described in more detail in <a href="https://citrusframework.org/citrus/reference/html#runtime-quarkus">reference guide</a></p>
+
+<h2 id="objectives">Objectives</h2>
+
+<p>The project uses the Quarkus test framework to set up a dev services environment with JUnit Jupiter where the application is running on the localhost.
+The Quarkus dev services capabilities will automatically start Testcontainers during the test in order to simulate the surrounding infrastructure
+(PostgreSQL database and the Kafka message broker).</p>
+
+<p>If you want to learn more about Quarkus, please visit its website: <a href="https://quarkus.io/">https://quarkus.io/</a>.</p>
+
+<h2 id="quarkus-sample-application">Quarkus sample application</h2>
+
+<p>The Quarkus sample demo application is a food market event-driven application that listens for incoming events of type <code class="highlighter-rouge">booking</code> and <code class="highlighter-rouge">supply</code>.</p>
+
+<p><img src="/img/assets/sample-quarkus/food-market-app-demo.png" alt="Food Market App"></p>
+
+<p>Users are able to add booking events. Each of them references a product and gives an amount as well as an accepted price in a simple Json object structure.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w"> </span><span class="s2">"client"</span><span class="p">:</span><span class="w"> </span><span class="s2">"citrus-test"</span><span class="p">,</span><span class="w"> </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pineapple"</span><span class="p">,</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w">  </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="s2">"price"</span><span class="p">:</span><span class="w">  </span><span class="mf">0.99</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>At the same time suppliers may add their individual supply events that again reference a product with an amount and a selling price.</p>
+
+<p>The Quarkus application consumes both event types and as soon as bookings and supplies do match in all criteria the food market application will produce booking-completed and shipping events as a result.</p>
+
+<p>All events are produced and consumed with Kafka event streams.
+The domain model objects with their individual status are stored in a PostgreSQL database.</p>
+
+<h2 id="adding-citrus-to-the-project">Adding Citrus to the project</h2>
+
+<p>Looking at the Maven <code class="highlighter-rouge">pom.xml</code> you will see that Citrus is added as a test scoped dependency.
+The most convenient way to add Citrus to your project is to import the <code class="highlighter-rouge">citrus-bom</code>.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependencyManagement&gt;</span>
+    <span class="nt">&lt;dependencies&gt;</span>
+      <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>citrus-bom<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>4.0.0<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;type&gt;</span>pom<span class="nt">&lt;/type&gt;</span>
+        <span class="nt">&lt;scope&gt;</span>import<span class="nt">&lt;/scope&gt;</span>
+      <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;/dependencies&gt;</span>
+  <span class="nt">&lt;/dependencyManagement&gt;</span>
+</code></pre></div></div>
+
+<p>Citrus is very modular. This means you can choose from a wide range of modules that add specific testing capabilities to the project (e.g. citrus-kafka).
+In this sample project we include the following modules as test scoped dependencies:</p>
+
+<ul>
+  <li>citrus-quarkus</li>
+  <li>citrus-kafka</li>
+  <li>citrus-validation-json</li>
+</ul>
+
+<p>The <code class="highlighter-rouge">citrus-quarkus</code> module provides the QuarkusTest resource implementation that enables Citrus on a Quarkus test.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-quarkus<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>The other modules add very specific Citrus capabilities such as validation a Json message payload.</p>
+
+<p>This completes the dependency setup.
+Now we can move on to writing an automated integration test that verifies the Quarkus application.</p>
+
+<h2 id="verify-the-quarkus-application-with-citrus">Verify the Quarkus application with Citrus</h2>
+
+<p>In an automated integration test we need to make sure that all events are processed properly and that the resulting booking-completed and shipping events are produced as expected. This is why the Citrus test will produce booking and supply events and listen for booking-completed and shipping events accordingly.</p>
+
+<p>The Citrus test is an arbitrary JUnit Jupiter unit test that uses the <code class="highlighter-rouge">@QuarkusTest</code> annotation in order to enable the Quarkus dev services test capabilities.
+Quarkus will automatically start Testcontainers for the test that represent the PostgreSQL database and the Kakfa message broker.</p>
+
+<p>You can enable the Citrus capabilities on the test by adding the <code class="highlighter-rouge">@CitrusSupport</code> annotation to the test class.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@QuarkusTest</span>
+<span class="nd">@CitrusSupport</span>
+<span class="kd">class</span> <span class="nc">FoodMarketApplicationTest</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">KafkaEndpoint</span> <span class="n">bookings</span> <span class="o">=</span> <span class="n">kafka</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">asynchronous</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">topic</span><span class="o">(</span><span class="s">"bookings"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+
+    <span class="nd">@CitrusResource</span>
+    <span class="kd">private</span> <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
+
+    <span class="nd">@Inject</span>
+    <span class="n">ObjectMapper</span> <span class="n">mapper</span><span class="o">;</span>
+
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">shouldProcessEvents</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">Product</span> <span class="n">product</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Product</span><span class="o">(</span><span class="s">"Pineapple"</span><span class="o">);</span>
+        
+        <span class="n">Booking</span> <span class="n">booking</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Booking</span><span class="o">(</span><span class="s">"citrus-test"</span><span class="o">,</span> <span class="n">product</span><span class="o">,</span> <span class="mi">100</span><span class="o">,</span> <span class="mf">0.99</span><span class="n">D</span><span class="o">);</span>
+        <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">send</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="n">bookings</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">message</span><span class="o">().</span><span class="na">body</span><span class="o">(</span><span class="n">marshal</span><span class="o">(</span><span class="n">booking</span><span class="o">,</span> <span class="n">mapper</span><span class="o">)));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The Citrus enabled test is able to inject additional resources that we need to interact with Citrus capabilities such as sending a message to a Kafka topic stream.
+The <code class="highlighter-rouge">KafkaEndpoint</code> comes with the <code class="highlighter-rouge">citrus-kafka</code> module and allows us to send and receive messages with Kafka.
+The Citrus <code class="highlighter-rouge">TestCaseRunner</code> represents the entrance to the Citrus Java domain specific language that allows us to run any Citrus test action (e.g. send/receive messages, verify data in an SQL database).</p>
+
+<p>The test method is an arbitrary JUnit Jupiter annotated test that uses the Citrus capabilities to send a booking event to the Kafka topic.
+The test is able to use the domain model objects <code class="highlighter-rouge">Product</code> and <code class="highlighter-rouge">Booking</code> as Citrus uses the injected <code class="highlighter-rouge">ObjectMapper</code> for the Json serialization.</p>
+
+<p>The injected Citrus <code class="highlighter-rouge">TestCaseRunner</code> is able to use Gherkin Given-When-Then syntax and references the KafkaEndpoint <code class="highlighter-rouge">bookings</code> in the send operation.
+This is how you can combine Citrus capabilities with Quarkus test dev services in an automated integration test.</p>
+
+<p>The rest of the story is quite easy. In the same way we have sent the <code class="highlighter-rouge">booking</code> event we can now also send a <code class="highlighter-rouge">supply</code> event and receive <code class="highlighter-rouge">booking-completed</code> and <code class="highlighter-rouge">shipping</code> events in the test via Kafka endpoints.</p>
+
+<p>When receiving the <code class="highlighter-rouge">booking-completed</code> and <code class="highlighter-rouge">shipping</code> events the test is able to use the Citrus Json validation power coming with the <code class="highlighter-rouge">citrus-validation-json</code> module. Citrus will compare the received Json object with an expected template and make sure that all fields and properties do match as expected.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">FoodMarketApplicationTest</span> <span class="o">{</span>
+
+    <span class="c1">// ... Kafka endpoints defined here</span>
+    
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">shouldProcessEvents</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">Product</span> <span class="n">product</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Product</span><span class="o">(</span><span class="s">"Pineapple"</span><span class="o">);</span>
+        
+        <span class="n">Booking</span> <span class="n">booking</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Booking</span><span class="o">(</span><span class="s">"citrus-test"</span><span class="o">,</span> <span class="n">product</span><span class="o">,</span> <span class="mi">100</span><span class="o">,</span> <span class="mf">0.99</span><span class="n">D</span><span class="o">);</span>
+        <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">send</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="n">bookings</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">().</span><span class="na">body</span><span class="o">(</span><span class="n">marshal</span><span class="o">(</span><span class="n">booking</span><span class="o">,</span> <span class="n">mapper</span><span class="o">)));</span>
+    
+        <span class="c1">// ... also send supply events</span>
+        
+        <span class="n">ShippingEvent</span> <span class="n">shippingEvent</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ShippingEvent</span><span class="o">(</span><span class="n">booking</span><span class="o">.</span><span class="na">getClient</span><span class="o">(),</span> <span class="n">product</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span> <span class="n">booking</span><span class="o">.</span><span class="na">getAmount</span><span class="o">(),</span> <span class="s">"@ignore@"</span><span class="o">);</span>
+        <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">receive</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="n">shipping</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">().</span><span class="na">body</span><span class="o">(</span><span class="n">marshal</span><span class="o">(</span><span class="n">shippingEvent</span><span class="o">,</span> <span class="n">mapper</span><span class="o">))</span>
+        <span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">expectedShipping</code> Json object uses the expected properties like the <code class="highlighter-rouge">client</code>, <code class="highlighter-rouge">product</code> and the <code class="highlighter-rouge">amount</code>.
+The generated <code class="highlighter-rouge">address</code> property gets ignored during the validation by using the <code class="highlighter-rouge">@ignored@</code> Citrus validation expression.</p>
+
+<p>The Citrus Json validation will now compare the received shipping event with the expected Json object and fail the test when there is a mismatch.</p>
+
+<p><em>Citrus Json validation</em></p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w"> </span><span class="s2">"client"</span><span class="p">:</span><span class="w">  </span><span class="s2">"citrus-test"</span><span class="p">,</span><span class="w"> </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pineapple"</span><span class="p">,</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10556 Citrus Blvd."</span><span class="w"> </span><span class="p">}</span><span class="w">
+
+</span><span class="err">compared</span><span class="w"> </span><span class="err">to</span><span class="w">
+
+</span><span class="p">{</span><span class="w"> </span><span class="s2">"client"</span><span class="p">:</span><span class="w">  </span><span class="s2">"citrus-test"</span><span class="p">,</span><span class="w"> </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pineapple"</span><span class="p">,</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@ignore@"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The Citrus Json validation is very powerful. You can ignore properties, use validation matchers and functions, test variables and a mismatch in the order of elements is not failing the test.</p>
+
+<h2 id="running-the-citrus-tests">Running the Citrus tests</h2>
+
+<p>The Quarkus test framework uses JUnit Jupiter as a test driver.
+This means you can run the tests just like any other JUnit test (e.g. from your Java IDE, with Maven).</p>
+
+<p>```shell script
+./mvnw test</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+The Citrus test capabilities are added on top of `@QuarkusTest` with the `@CitrusSupport` annotation.
+So you will not need any other configuration to empower the tests with Citrus.
+
+## Advanced Citrus testing
+
+If you have a look into the code samples and the Citrus test in this repository you will see some more advanced testing capabilities in action.
+One of them is the ability of Citrus to run test actions in parallel.
+
+```java
+BookingCompletedEvent completedEvent = BookingCompletedEvent.from(booking);
+completedEvent.setStatus(Booking.Status.COMPLETED.name());
+
+ShippingEvent shippingEvent = new ShippingEvent(booking.getClient(), product.getName(), supply.getAmount(), "@ignore@");
+
+t.then(parallel().actions(
+    receive()
+        .endpoint(completed)
+        .message().body(marshal(completedEvent, mapper)),
+    receive()
+        .endpoint(shipping)
+        .message().body(marshal(shippingEvent, mapper))
+);
+</code></pre></div></div>
+
+<p>The parallel execution is a good idea because the events are also produced independent of each other.
+The ordering of events and as they arrive is not deterministic, so we run the validation in parallel.</p>
+
+<p>Also, you can iteratively send/receive messages in Citrus.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Booking</span> <span class="n">booking</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Booking</span><span class="o">(</span><span class="s">"citrus-test"</span><span class="o">,</span> <span class="n">product</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mf">1.99</span><span class="n">D</span><span class="o">);</span>
+<span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">iterate</span><span class="o">().</span><span class="na">condition</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+        <span class="n">send</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="n">bookings</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">().</span><span class="na">body</span><span class="o">(</span><span class="n">marshal</span><span class="o">(</span><span class="n">booking</span><span class="o">,</span> <span class="n">mapper</span><span class="o">)))</span>
+    <span class="o">);</span>
+</code></pre></div></div>
+
+<p>This will send 10 booking events to the Kafka stream.</p>
+
+<p>The next advanced testing capability is the use of dynamic endpoints in Citrus.
+As an alternative to creating the <code class="highlighter-rouge">KafkaEndpoint</code> on a test class level you can also use a dynamic endpoint URL.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">send</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:bookings"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">message</span><span class="o">().</span><span class="na">body</span><span class="o">(</span><span class="n">marshal</span><span class="o">(</span><span class="n">booking</span><span class="o">,</span> <span class="n">mapper</span><span class="o">)));</span>
+
+<span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">receive</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:completed?timeout=10000"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">message</span><span class="o">().</span><span class="na">body</span><span class="o">(</span><span class="n">marshal</span><span class="o">(</span><span class="n">completedEvent</span><span class="o">,</span> <span class="n">mapper</span><span class="o">)));</span>
+</code></pre></div></div>
+
+<p>The endpoint URL <code class="highlighter-rouge">kafka:bookings</code> creates a dynamic Kafka endpoint instance to send messages to the <code class="highlighter-rouge">bookings</code> topic.
+The endpoint URL may also hold parameters like the receive-timeout <code class="highlighter-rouge">kafka:completed?timeout=10000</code>.</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>The sample application has shown how you can integrate Citrus within a Quarkus test. 
+The Quarkus test is able to use the Citrus capabilities because of the Citrus extension that is provided since Citrus 4.0.</p>
+
+
+  </div>
+</article>
+
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <h4>Common</h4>
+    <ul>
+      <li class="">
+        <a href="/samples/">Overview</a>
+      </li>
+      <li class="">
+        <a href="/samples/todo-app">Sample application</a>
+      </li>
+      <li class="">
+        <a href="/samples/run">Running</a>
+      </li>
+    </ul>
+    <h4>Samples</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+
+      
+      
+    </ul>
+
+    
+    <h4>Demo  </h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="current">
+        <a href="/samples/quarkus/">sample-quarkus</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>None  </h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/rmi/">sample-rmi</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/binary/">sample-binary</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/mail/">sample-mail</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jms/">sample-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-context/">sample-camel-context</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/gradle/">sample-gradle</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/javaconfig/">sample-javaconfig</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/arquillian/">sample-javaee</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/kubernetes/">sample-kubernetes</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dynamic-endpoints/">sample-dynamic-endpoints</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/kafka/">sample-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/docker/">sample-docker</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/reporting/">sample-reporting</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/message-store/">sample-message-store</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/annotation-config/">sample-annotation-config</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/behavior/">sample-behavior</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/hamcrest/">sample-hamcrest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dictionaries/">sample-dictionaries</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Cucumber</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/cucumber-spring/">sample-cucumber-spring</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/cucumber/">sample-cucumber</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Db</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/sql/">sample-sql</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jdbc/">sample-jdbc</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Ftp</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/ftp/">sample-ftp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/scp/">sample-scp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/sftp/">sample-sftp</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Http</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/http-form-data/">sample-http-form-data</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http/">sample-http</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-basic-auth/">sample-http-basic-auth</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-loadtest/">sample-http-loadtest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/swagger/">sample-swagger</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/https/">sample-https</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Json</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/databind/">sample-databind</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/json/">sample-json</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Junit</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/junit5/">sample-junit5</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/junit/">sample-junit</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Soap</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/soap-wsaddressing/">sample-soap-wsaddressing</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap/">sample-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-mtom/">sample-soap-mtom</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-attachment/">sample-soap-attachment</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-wssecurity/">sample-soap-wssecurity</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-static-response/">sample-http-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-static-response/">sample-soap-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-ssl/">sample-soap-ssl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/wsdl/">sample-wsdl</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Testng</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/dataprovider/">sample-dataprovider</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/testng/">sample-testng</a>
+      </li>
+      
+      
+    </ul>
+
+    
+    <h4>Samples  Xml</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/xml/">sample-xml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xhtml/">sample-xhtml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/oxm/">sample-oxm</a>
+      </li>
+      
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/citrusframework/citrus/blob/master/LICENSE">MIT License</a>.</p>
+      <br>
+      <p>© 2023 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p> </p>
+      <br>
+      <br>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>
