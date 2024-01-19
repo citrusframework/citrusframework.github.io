@@ -267,20 +267,20 @@ use the Maven command line tool in combination with Maven’s archetype plugin. 
 it is time for you to do so before continuing this tutorial. See the <a href="http://maven.apache.org">Maven</a> 
 site for detailed installation instructions. So let’s start with creating the Citrus Java project:</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell">mvn archetype:generate <span class="nt">-Dfilter</span><span class="o">=</span>com.consol.citrus.archetypes:citrus
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">mvn archetype:generate <span class="nt">-Dfilter</span><span class="o">=</span>org.citrusframework.archetypes:citrus
 
 <span class="o">[</span>...]
 
 Choose archetype:
-1: remote -&gt; com.consol.citrus.archetypes:citrus-quickstart <span class="o">(</span>Citrus quickstart project<span class="o">)</span>
-2: remote -&gt; com.consol.citrus.archetypes:citrus-quickstart-jms <span class="o">(</span>Citrus quickstart project with JMS consumer and producer<span class="o">)</span>
-3: remote -&gt; com.consol.citrus.archetypes:citrus-quickstart-soap <span class="o">(</span>Citrus quickstart project with SOAP client and producer<span class="o">)</span>
+1: remote -&gt; org.citrusframework.archetypes:citrus-quickstart <span class="o">(</span>Citrus quickstart project<span class="o">)</span>
+2: remote -&gt; org.citrusframework.archetypes:citrus-quickstart-jms <span class="o">(</span>Citrus quickstart project with JMS consumer and producer<span class="o">)</span>
+3: remote -&gt; org.citrusframework.archetypes:citrus-quickstart-soap <span class="o">(</span>Citrus quickstart project with SOAP client and producer<span class="o">)</span>
 Choose a number: 1 
 
-Define value <span class="k">for </span>groupId: com.consol.citrus.samples
+Define value <span class="k">for </span>groupId: org.citrusframework.samples
 Define value <span class="k">for </span>artifactId: citrus-sample
 Define value <span class="k">for </span>version: 1.0-SNAPSHOT
-Define value <span class="k">for </span>package: com.consol.citrus.samples
+Define value <span class="k">for </span>package: org.citrusframework.samples
 
 <span class="o">[</span>...]</code></pre></figure>
 
@@ -318,19 +318,19 @@ look at them:</p>
 <p>The Citrus project libraries are loaded as dependencies in our Maven POM.</p>
 
 <figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>citrus-base<span class="nt">&lt;/artifactId&gt;</span>
   <span class="nt">&lt;version&gt;</span>4.1.0<span class="nt">&lt;/version&gt;</span>
   <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 <span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>citrus-jms<span class="nt">&lt;/artifactId&gt;</span>
   <span class="nt">&lt;version&gt;</span>4.1.0<span class="nt">&lt;/version&gt;</span>
   <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 <span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>citrus-http<span class="nt">&lt;/artifactId&gt;</span>
   <span class="nt">&lt;version&gt;</span>4.1.0<span class="nt">&lt;/version&gt;</span>
   <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
@@ -339,12 +339,12 @@ look at them:</p>
 <p>The Citrus Maven plugin capable of test creation and report generation.</p>
 
 <figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;plugin&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus.mvn<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.citrusframework.mvn<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>citrus-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
   <span class="nt">&lt;version&gt;</span>4.1.0<span class="nt">&lt;/version&gt;</span>
   <span class="nt">&lt;configuration&gt;</span>
     <span class="nt">&lt;author&gt;</span>Mickey Mouse<span class="nt">&lt;/author&gt;</span>
-    <span class="nt">&lt;targetPackage&gt;</span>com.consol.citrus<span class="nt">&lt;/targetPackage&gt;</span>
+    <span class="nt">&lt;targetPackage&gt;</span>org.citrusframework<span class="nt">&lt;/targetPackage&gt;</span>
   <span class="nt">&lt;/configuration&gt;</span>
 <span class="nt">&lt;/plugin&gt;</span></code></pre></figure>
 
@@ -408,7 +408,7 @@ the Citrus Maven plugin here, just type the following command:</p>
 Enter <span class="nb">test </span>name: MyTest
 Enter <span class="nb">test </span>author: Unknown: : Christoph
 Enter <span class="nb">test </span>description: TODO: Description: : 
-Enter <span class="nb">test </span>package: com.consol.citrus.samples: : 
+Enter <span class="nb">test </span>package: org.citrusframework.samples: : 
 Choose unit <span class="nb">test </span>framework testng: :</code></pre></figure>
 
 <p>You have to specify the test name, author, description, package and the test framework. The plugin successfully generates 

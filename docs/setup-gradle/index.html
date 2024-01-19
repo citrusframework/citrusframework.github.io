@@ -281,7 +281,7 @@ settings.gradle
 <p>The Gradle build configuration is done in the <strong>build.gradle</strong> and <strong>settings.gradle</strong> files. Here we define the project name and the project version.</p>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">rootProject.name <span class="o">=</span> <span class="s1">'citrus-sample-gradle'</span>
-group <span class="s1">'com.consol.citrus.samples'</span>
+group <span class="s1">'org.citrusframework.samples'</span>
 version <span class="s1">'4.1.0'</span></code></pre></figure>
 
 <p>Now, since Citrus libraries are available on Maven central repository, we add these repositories so Gradle knows how to download the required
@@ -294,9 +294,9 @@ Citrus artifacts.</p>
 <p>Now lets move on with adding the Citrus libraries to the project.</p>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">dependencies <span class="o">{</span>
-    testCompile group: <span class="s1">'com.consol.citrus'</span>, name: <span class="s1">'citrus-base'</span>, version: <span class="s1">'4.1.0'</span>
-    testCompile group: <span class="s1">'com.consol.citrus'</span>, name: <span class="s1">'citrus-jms'</span>, version: <span class="s1">'4.1.0'</span>
-    testCompile group: <span class="s1">'com.consol.citrus'</span>, name: <span class="s1">'citrus-http'</span>, version: <span class="s1">'4.1.0'</span>
+    testCompile group: <span class="s1">'org.citrusframework'</span>, name: <span class="s1">'citrus-base'</span>, version: <span class="s1">'4.1.0'</span>
+    testCompile group: <span class="s1">'org.citrusframework'</span>, name: <span class="s1">'citrus-jms'</span>, version: <span class="s1">'4.1.0'</span>
+    testCompile group: <span class="s1">'org.citrusframework'</span>, name: <span class="s1">'citrus-http'</span>, version: <span class="s1">'4.1.0'</span>
     testCompile group: <span class="s1">'org.testng'</span>, name: <span class="s1">'testng'</span>, version: <span class="s1">'${testng.version}'</span>
     <span class="o">[</span>...]
 <span class="o">}</span></code></pre></figure>
@@ -314,12 +314,12 @@ Citrus artifacts.</p>
 <p>Of course JUnit is also supported. This is all for build configuration settings. We can move on to writing some Citrus integration tests. The Java test classes
 usually go to the <strong>src/test/java</strong> directory.</p>
 
-<p>Lets write a simple Citrus test case in Java and save it to the <strong>src/test/java</strong> folder in package <strong>com.consol.citrus.samples</strong>.</p>
+<p>Lets write a simple Citrus test case in Java and save it to the <strong>src/test/java</strong> folder in package <strong>org.citrusframework.samples</strong>.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">com.consol.citrus.annotations.CitrusTest</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">com.consol.citrus.channel.ChannelEndpoint</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">com.consol.citrus.dsl.testng.TestNGCitrusTestDesigner</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">com.consol.citrus.message.MessageType</span><span class="o">;</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">org.citrusframework.annotations.CitrusTest</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.citrusframework.channel.ChannelEndpoint</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.citrusframework.dsl.testng.TestNGCitrusTestDesigner</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.citrusframework.message.MessageType</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Qualifier</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">org.springframework.test.context.ContextConfiguration</span><span class="o">;</span>

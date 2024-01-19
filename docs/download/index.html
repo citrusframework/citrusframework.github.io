@@ -233,7 +233,7 @@
           </div>
           <h1>Download</h1>
           <p>Citrus 4.1.0 is the latest stable release . You may also go for the <a href="#use-latest-snapshots">latest snapshot versions</a> 
-of Citrus always being up to date with development changes. Citrus is available on <a href="http://search.maven.org/#search%7Cga%7C1%7Ccom.consol.citrus">Maven central repository</a> 
+of Citrus always being up-to-date with development changes. Citrus is available on <a href="http://search.maven.org/#search%7Cga%7C1%7Corg.citrusframework">Maven central repository</a> 
 so you can add Citrus as <a href="#maven">Maven dependency</a> to your project. All available versions and production releases for 
 manual download are listed below:</p>
 
@@ -311,7 +311,7 @@ manual download are listed below:</p>
   </tbody>
 </table>
 
-<p>The Citrus project requires Java 11 (or newer version) to run.</p>
+<p>Since Citrus 4.0 the project requires Java 17 (or newer version) to run.</p>
 
 <h2 id="maven">Maven</h2>
 
@@ -321,7 +321,7 @@ and the following dependencies to your POM (pom.xml). See also our Maven tutoria
 <p>The Citrus core module dependency.</p>
 
 <figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>citrus-core<span class="nt">&lt;/artifactId&gt;</span>
   <span class="nt">&lt;version&gt;</span>4.1.0<span class="nt">&lt;/version&gt;</span>
   <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
@@ -330,67 +330,58 @@ and the following dependencies to your POM (pom.xml). See also our Maven tutoria
 <p>In case you need Citrus modules add following dependencies. See also our modules section for more information on Citrus modules:</p>
 
 <figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>citrus-jms<span class="nt">&lt;/artifactId&gt;</span>
   <span class="nt">&lt;version&gt;</span>4.1.0<span class="nt">&lt;/version&gt;</span>
   <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 
 <span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>citrus-http<span class="nt">&lt;/artifactId&gt;</span>
   <span class="nt">&lt;version&gt;</span>4.1.0<span class="nt">&lt;/version&gt;</span>
   <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 
 <span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>citrus-ws<span class="nt">&lt;/artifactId&gt;</span>
   <span class="nt">&lt;version&gt;</span>4.1.0<span class="nt">&lt;/version&gt;</span>
   <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 
 <span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>citrus-websocket<span class="nt">&lt;/artifactId&gt;</span>
   <span class="nt">&lt;version&gt;</span>4.1.0<span class="nt">&lt;/version&gt;</span>
   <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 
 <span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>citrus-camel<span class="nt">&lt;/artifactId&gt;</span>
   <span class="nt">&lt;version&gt;</span>4.1.0<span class="nt">&lt;/version&gt;</span>
   <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 
 <span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>citrus-ssh<span class="nt">&lt;/artifactId&gt;</span>
   <span class="nt">&lt;version&gt;</span>4.1.0<span class="nt">&lt;/version&gt;</span>
   <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 
 <span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>citrus-vertx<span class="nt">&lt;/artifactId&gt;</span>
   <span class="nt">&lt;version&gt;</span>4.1.0<span class="nt">&lt;/version&gt;</span>
   <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span></code></pre></figure>
 
-<p>If you would like to use the new Java DSL test writing language you have to add this dependency to your project accordingly.</p>
-
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
-  <span class="nt">&lt;artifactId&gt;</span>citrus-java-dsl<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>4.1.0<span class="nt">&lt;/version&gt;</span>
-  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span></code></pre></figure>
-
-<h2 id="use-latest-snapshots">Use latest snapshots</h2>
+<h2 id="use-the-latest-snapshots">Use the latest snapshots</h2>
 
 <p>Stable releases are available on Maven central repository. We also provide nightly snapshot releases that are available on
-ConSol Labs repository. So if you want to use latest snapshot releases of Citrus please add the following repository to 
+ConSol Labs repository. So if you want to use the latest snapshot releases of Citrus please add the following repository to 
 your Maven POM.</p>
 
 <figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;repository&gt;</span>
@@ -411,8 +402,8 @@ your Maven POM.</p>
 implementation. SLF4J is similar to commons-logging, so you may use whatever logging framework you want to. All you have
 to do is add an SLF4J logging implementation to your classpath.</p>
 
-<p>In case you are currently using <a href="http://logging.apache.org/log4j">log4j</a> as logging framework just include slf4j-log4j12.jar on your classpath and Citrus 
-will use log4j too. If you want to use some other framework than please see the <a href="http://www.slf4j.org/">SLF4J</a> documentation for help.</p>
+<p>In case you are currently using <a href="http://logging.apache.org/log4j">log4j2</a> as logging framework just include <code class="highlighter-rouge">slf4j-log4j12.jar</code> on your classpath and Citrus 
+will use <code class="highlighter-rouge">log4j2</code> too. If you want to use some other framework than please see the <a href="http://www.slf4j.org/">SLF4J</a> documentation for help.</p>
 
         </article>
       </div>

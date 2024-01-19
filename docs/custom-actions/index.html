@@ -275,7 +275,7 @@ scenario: your SUT outputs a lot of file traffic during the tests, so that we ne
 a specific directory right after a test run. We also put away the fact that this could be as well realized by using groovy 
 or Java actions and decide to use a custom action instead.</p>
 
-<p>The first step is to create our own action class which extends com.consol.citrus.actions.AbstractTestAction:</p>
+<p>The first step is to create our own action class which extends org.citrusframework.actions.AbstractTestAction:</p>
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java">  
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleCleanupDirAction</span> <span class="kd">extends</span> <span class="n">AbstractTestAction</span> <span class="o">{</span>
@@ -291,7 +291,7 @@ or Java actions and decide to use a custom action instead.</p>
     <span class="c1">//ommitted directory getter/setter and deleteDirectory() method</span>
 <span class="o">}</span></code></pre></figure>
 
-<p>If you want to avoid inheritance here you could as well implement the interface com.consol.citrus.TestAction instead. 
+<p>If you want to avoid inheritance here you could as well implement the interface org.citrusframework.TestAction instead. 
 The property directory is declared as field with appropriate getters and setters so that a value can be injected by the 
 container.</p>
 
