@@ -221,14 +221,14 @@
     </span>
   </span>
   <div class="post-content">
-    <p>This project uses Quarkus to implement a sample event-driven application and shows how to verify the event processing with an automated integration test written in Citrus. 
+    <p>This project uses Quarkus to implement a sample event-driven application and shows how to verify the event processing with an automated integration test written in <a href="https://citrusframework.org">Citrus</a>.
 The Quarkus support in Citrus is described in more detail in <a href="https://citrusframework.org/citrus/reference/html#runtime-quarkus">reference guide</a></p>
 
 <h2 id="objectives">Objectives</h2>
 
-<p>The project uses the Quarkus test framework to set up a dev services environment with JUnit Jupiter where the application is running on the localhost.
+<p>The project uses the Quarkus test framework to set up a dev services environment with JUnit Jupiter where the application is running on the local machine.
 The Quarkus dev services capabilities will automatically start Testcontainers during the test in order to simulate the surrounding infrastructure
-(PostgreSQL database and the Kafka message broker).</p>
+(e.g. PostgreSQL database and the Kafka message broker).</p>
 
 <p>If you want to learn more about Quarkus, please visit its website: <a href="https://quarkus.io/">https://quarkus.io/</a>.</p>
 
@@ -268,13 +268,17 @@ The most convenient way to add Citrus to your project is to import the <code cla
   <span class="nt">&lt;/dependencyManagement&gt;</span>
 </code></pre></div></div>
 
-<p>Citrus is very modular. This means you can choose from a wide range of modules that add specific testing capabilities to the project (e.g. citrus-kafka).
+<p>Citrus is very modular. This means you can choose from a wide range of modules that add specific testing capabilities to the project (e.g. citrus-kafka, citrus-http, citrus-mail, …).
 In this sample project we include the following modules as test scoped dependencies:</p>
 
 <ul>
   <li>citrus-quarkus</li>
   <li>citrus-kafka</li>
+  <li>citrus-http</li>
+  <li>citrus-sql</li>
+  <li>citrus-selenium</li>
   <li>citrus-validation-json</li>
+  <li>citrus-validation-text</li>
 </ul>
 
 <p>The <code class="highlighter-rouge">citrus-quarkus</code> module provides the QuarkusTest resource implementation that enables Citrus on a Quarkus test.</p>
@@ -285,17 +289,17 @@ In this sample project we include the following modules as test scoped dependenc
 <span class="nt">&lt;/dependency&gt;</span>
 </code></pre></div></div>
 
-<p>The other modules add very specific Citrus capabilities such as validation a Json message payload.</p>
+<p>The other modules add very specific Citrus capabilities such as validation of a Json message payload.</p>
 
 <p>This completes the dependency setup.
 Now we can move on to writing an automated integration test that verifies the Quarkus application.</p>
 
-<h2 id="verify-the-quarkus-application-with-citrus">Verify the Quarkus application with Citrus</h2>
+<h2 id="enable-citrus-with-quarkustest">Enable Citrus with <a href="https://github.com/QuarkusTest" class="user-mention">@QuarkusTest</a>
+</h2>
 
-<p>In an automated integration test we need to make sure that all events are processed properly and that the resulting booking-completed and shipping events are produced as expected. This is why the Citrus test will produce booking and supply events and listen for booking-completed and shipping events accordingly.</p>
-
-<p>The Citrus test is an arbitrary JUnit Jupiter unit test that uses the <code class="highlighter-rouge">@QuarkusTest</code> annotation in order to enable the Quarkus dev services test capabilities.
-Quarkus will automatically start Testcontainers for the test that represent the PostgreSQL database and the Kakfa message broker.</p>
+<p>The test uses an arbitrary <code class="highlighter-rouge">@QuarkusTest</code> annotation with JUnit Jupiter.
+This means that Quarkus takes care of starting the application under test.
+It also starts some Testcontainers for the PostgreSQL database and the Kafka message broker.</p>
 
 <p>You can enable the Citrus capabilities on the test by adding the <code class="highlighter-rouge">@CitrusSupport</code> annotation to the test class.</p>
 
@@ -303,81 +307,129 @@ Quarkus will automatically start Testcontainers for the test that represent the 
 <span class="nd">@CitrusSupport</span>
 <span class="kd">class</span> <span class="nc">FoodMarketApplicationTest</span> <span class="o">{</span>
 
-    <span class="kd">private</span> <span class="kd">final</span> <span class="n">KafkaEndpoint</span> <span class="n">bookings</span> <span class="o">=</span> <span class="n">kafka</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">asynchronous</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">topic</span><span class="o">(</span><span class="s">"bookings"</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-
     <span class="nd">@CitrusResource</span>
-    <span class="kd">private</span> <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
+    <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
 
     <span class="nd">@Inject</span>
     <span class="n">ObjectMapper</span> <span class="n">mapper</span><span class="o">;</span>
 
     <span class="nd">@Test</span>
     <span class="kt">void</span> <span class="nf">shouldProcessEvents</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">Product</span> <span class="n">product</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Product</span><span class="o">(</span><span class="s">"Pineapple"</span><span class="o">);</span>
+        <span class="n">createBooking</span><span class="o">();</span>
         
-        <span class="n">Booking</span> <span class="n">booking</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Booking</span><span class="o">(</span><span class="s">"citrus-test"</span><span class="o">,</span> <span class="n">product</span><span class="o">,</span> <span class="mi">100</span><span class="o">,</span> <span class="mf">0.99</span><span class="n">D</span><span class="o">);</span>
-        <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">send</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="n">bookings</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">message</span><span class="o">().</span><span class="na">body</span><span class="o">(</span><span class="n">marshal</span><span class="o">(</span><span class="n">booking</span><span class="o">,</span> <span class="n">mapper</span><span class="o">)));</span>
+        <span class="n">createSupply</span><span class="o">();</span>
+        
+        <span class="n">verifyBookingCompletedEvent</span><span class="o">();</span>
+        
+        <span class="n">verifyShippingEvent</span><span class="o">();</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The Citrus enabled test is able to inject additional resources that we need to interact with Citrus capabilities such as sending a message to a Kafka topic stream.
-The <code class="highlighter-rouge">KafkaEndpoint</code> comes with the <code class="highlighter-rouge">citrus-kafka</code> module and allows us to send and receive messages with Kafka.
-The Citrus <code class="highlighter-rouge">TestCaseRunner</code> represents the entrance to the Citrus Java domain specific language that allows us to run any Citrus test action (e.g. send/receive messages, verify data in an SQL database).</p>
+<p>The Citrus enabled test is able to inject additional resources such as the <code class="highlighter-rouge">TestCaseRunner</code>.
+This runner is the entrance to all Citrus related test actions like send/receive messages or querying and verifying entities in the database.</p>
 
-<p>The test method is an arbitrary JUnit Jupiter annotated test that uses the Citrus capabilities to send a booking event to the Kafka topic.
-The test is able to use the domain model objects <code class="highlighter-rouge">Product</code> and <code class="highlighter-rouge">Booking</code> as Citrus uses the injected <code class="highlighter-rouge">ObjectMapper</code> for the Json serialization.</p>
+<p>The test will perform four main actions:</p>
+<ul>
+  <li>Create a booking event</li>
+  <li>Create a matching supply event</li>
+  <li>Verify the booking completed event</li>
+  <li>Verify the shipping event</li>
+</ul>
 
-<p>The injected Citrus <code class="highlighter-rouge">TestCaseRunner</code> is able to use Gherkin Given-When-Then syntax and references the KafkaEndpoint <code class="highlighter-rouge">bookings</code> in the send operation.
-This is how you can combine Citrus capabilities with Quarkus test dev services in an automated integration test.</p>
+<p>In first version of the test all events will be sent/received via the Kafka message broker.</p>
 
-<p>The rest of the story is quite easy. In the same way we have sent the <code class="highlighter-rouge">booking</code> event we can now also send a <code class="highlighter-rouge">supply</code> event and receive <code class="highlighter-rouge">booking-completed</code> and <code class="highlighter-rouge">shipping</code> events in the test via Kafka endpoints.</p>
+<h2 id="stage-1-prototyping-the-test">Stage #1: Prototyping the test</h2>
 
-<p>When receiving the <code class="highlighter-rouge">booking-completed</code> and <code class="highlighter-rouge">shipping</code> events the test is able to use the Citrus Json validation power coming with the <code class="highlighter-rouge">citrus-validation-json</code> module. Citrus will compare the received Json object with an expected template and make sure that all fields and properties do match as expected.</p>
+<p>Citrus is able to send and receive messages via Kafka quite easily.
+You can use a dynamic endpoint URL (e.g. <code class="highlighter-rouge">kafka:my-topic-name</code>) to exchange data.
+The message content (header and body) is given with simple inline Json Strings in this first prototype.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@QuarkusTest</span>
+<span class="nd">@CitrusSupport</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">FoodMarketDemoTest</span> <span class="o">{</span>
+
+    <span class="nd">@CitrusResource</span>
+    <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
+
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">shouldMatchBookingAndSupply</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">createBooking</span><span class="o">();</span>
+
+        <span class="n">createSupply</span><span class="o">();</span>
+
+        <span class="n">verifyBookingCompletedEvent</span><span class="o">();</span>
+
+        <span class="n">verifyShippingEvent</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">createBooking</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">send</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:bookings"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"""
+                    {
+                        "</span><span class="n">client</span><span class="s">": "</span><span class="n">citrus</span><span class="s">",
+                        "</span><span class="n">product</span><span class="s">": {
+                            "</span><span class="n">name</span><span class="s">": "</span><span class="n">Kiwi</span><span class="s">"
+                        },
+                        "</span><span class="n">amount</span><span class="s">": 10,
+                        "</span><span class="n">price</span><span class="s">": 0.99,
+                        "</span><span class="n">shippingAddress</span><span class="s">": "</span><span class="mo">001</span><span class="o">,</span> <span class="n">Foo</span> <span class="n">Blvd</span><span class="o">.</span><span class="s">"
+                    }
+                """</span><span class="o">)</span>
+        <span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">//...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The injected Citrus <code class="highlighter-rouge">TestCaseRunner</code> <code class="highlighter-rouge">t</code> is able to use Gherkin Given-When-Then syntax and references the KafkaEndpoint <code class="highlighter-rouge">kafka:bookings</code> in the send operation.
+The message body is a simple Json String that represents the booking.</p>
+
+<p>The rest of the story is quite easy.
+In the same way we can also send a <code class="highlighter-rouge">supply</code> event and then receive <code class="highlighter-rouge">completed</code> and <code class="highlighter-rouge">shipping</code> events in the test.</p>
+
+<p>When receiving the <code class="highlighter-rouge">completed</code> and <code class="highlighter-rouge">shipping</code> events the test is able to use the Citrus Json validation power coming with the <code class="highlighter-rouge">citrus-validation-json</code> module.
+Citrus will compare the received Json object with an expected template and make sure that all fields and properties do match as expected.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">FoodMarketApplicationTest</span> <span class="o">{</span>
 
-    <span class="c1">// ... Kafka endpoints defined here</span>
-    
-    <span class="nd">@Test</span>
-    <span class="kt">void</span> <span class="nf">shouldProcessEvents</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">Product</span> <span class="n">product</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Product</span><span class="o">(</span><span class="s">"Pineapple"</span><span class="o">);</span>
-        
-        <span class="n">Booking</span> <span class="n">booking</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Booking</span><span class="o">(</span><span class="s">"citrus-test"</span><span class="o">,</span> <span class="n">product</span><span class="o">,</span> <span class="mi">100</span><span class="o">,</span> <span class="mf">0.99</span><span class="n">D</span><span class="o">);</span>
-        <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">send</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="n">bookings</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">message</span><span class="o">().</span><span class="na">body</span><span class="o">(</span><span class="n">marshal</span><span class="o">(</span><span class="n">booking</span><span class="o">,</span> <span class="n">mapper</span><span class="o">)));</span>
-    
-        <span class="c1">// ... also send supply events</span>
-        
-        <span class="n">ShippingEvent</span> <span class="n">shippingEvent</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ShippingEvent</span><span class="o">(</span><span class="n">booking</span><span class="o">.</span><span class="na">getClient</span><span class="o">(),</span> <span class="n">product</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span> <span class="n">booking</span><span class="o">.</span><span class="na">getAmount</span><span class="o">(),</span> <span class="s">"@ignore@"</span><span class="o">);</span>
+    <span class="c1">// ...</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">verifyBookingCompletedEvent</span><span class="o">()</span> <span class="o">{</span>
         <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">receive</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="n">shipping</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">message</span><span class="o">().</span><span class="na">body</span><span class="o">(</span><span class="n">marshal</span><span class="o">(</span><span class="n">shippingEvent</span><span class="o">,</span> <span class="n">mapper</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:completed?timeout=10000&amp;consumerGroup=citrus-booking"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"""
+                    {
+                        "</span><span class="n">client</span><span class="s">": "</span><span class="n">citrus</span><span class="s">",
+                        "</span><span class="n">product</span><span class="s">": "</span><span class="n">Kiwi</span><span class="s">",
+                        "</span><span class="n">amount</span><span class="s">": 10,
+                        "</span><span class="n">status</span><span class="s">": "</span><span class="n">COMPLETED</span><span class="s">"
+                    }
+                """</span><span class="o">)</span>
         <span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="highlighter-rouge">expectedShipping</code> Json object uses the expected properties like the <code class="highlighter-rouge">client</code>, <code class="highlighter-rouge">product</code> and the <code class="highlighter-rouge">amount</code>.
-The generated <code class="highlighter-rouge">address</code> property gets ignored during the validation by using the <code class="highlighter-rouge">@ignored@</code> Citrus validation expression.</p>
-
-<p>The Citrus Json validation will now compare the received shipping event with the expected Json object and fail the test when there is a mismatch.</p>
+<p>The Citrus Json validation will now compare the received event with the expected Json object and fail the test when there is a mismatch.</p>
 
 <p><em>Citrus Json validation</em></p>
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w"> </span><span class="s2">"client"</span><span class="p">:</span><span class="w">  </span><span class="s2">"citrus-test"</span><span class="p">,</span><span class="w"> </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pineapple"</span><span class="p">,</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10556 Citrus Blvd."</span><span class="w"> </span><span class="p">}</span><span class="w">
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w"> </span><span class="s2">"client"</span><span class="p">:</span><span class="w">  </span><span class="s2">"citrus"</span><span class="p">,</span><span class="w"> </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kiwi"</span><span class="p">,</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COMPLETED"</span><span class="w"> </span><span class="p">}</span><span class="w">
 
-</span><span class="err">compared</span><span class="w"> </span><span class="err">to</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">compared</span><span class="w"> </span><span class="err">to</span><span class="w">
 
-</span><span class="p">{</span><span class="w"> </span><span class="s2">"client"</span><span class="p">:</span><span class="w">  </span><span class="s2">"citrus-test"</span><span class="p">,</span><span class="w"> </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pineapple"</span><span class="p">,</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@ignore@"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span><span class="p">{</span><span class="w"> </span><span class="s2">"client"</span><span class="p">:</span><span class="w">  </span><span class="s2">"citrus"</span><span class="p">,</span><span class="w"> </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kiwi"</span><span class="p">,</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COMPLETED"</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
-<p>The Citrus Json validation is very powerful. You can ignore properties, use validation matchers and functions, test variables and a mismatch in the order of elements is not failing the test.</p>
+<p>The Json validation is very powerful.
+You can ignore properties (expected value set to <code class="highlighter-rouge">@ignore@</code>), use validation matchers, functions and test variables.
+A mismatch in the order of elements or some difference in the formatting of the Json document is not failing the test.</p>
+
+<p>In case there is a mismatch you will be provided with an error and the test fails accordingly.</p>
 
 <h2 id="running-the-citrus-tests">Running the Citrus tests</h2>
 
@@ -390,61 +442,346 @@ This means you can run the tests just like any other JUnit test (e.g. from your 
 <p>The Citrus test capabilities are added on top of <code class="highlighter-rouge">@QuarkusTest</code> with the <code class="highlighter-rouge">@CitrusSupport</code> annotation.
 So you will not need any other configuration to empower the tests with Citrus.</p>
 
-<h2 id="advanced-citrus-testing">Advanced Citrus testing</h2>
+<h2 id="stage-2-use-endpoint-builders-and-domain-model-objects">Stage #2: Use endpoint builders and domain model objects</h2>
 
-<p>If you have a look into the code samples and the Citrus test in this repository you will see some more advanced testing capabilities in action.
-One of them is the ability of Citrus to run test actions in parallel.</p>
+<p>Using the dynamic endpoint <code class="highlighter-rouge">kafka:my-topic-name</code> may be a good and easy start for prototyping.
+When it comes to writing more tests in your project you may want to leverage a central Kafka endpoint configuration and reuse it in multiple tests.</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">BookingCompletedEvent</span> <span class="n">completedEvent</span> <span class="o">=</span> <span class="n">BookingCompletedEvent</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="n">booking</span><span class="o">);</span>
-<span class="n">completedEvent</span><span class="o">.</span><span class="na">setStatus</span><span class="o">(</span><span class="n">Booking</span><span class="o">.</span><span class="na">Status</span><span class="o">.</span><span class="na">COMPLETED</span><span class="o">.</span><span class="na">name</span><span class="o">());</span>
+<p>You can add a <code class="highlighter-rouge">@CitrusConfiguration</code> annotation that loads endpoints from one to many configuration classes.</p>
 
-<span class="n">ShippingEvent</span> <span class="n">shippingEvent</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ShippingEvent</span><span class="o">(</span><span class="n">booking</span><span class="o">.</span><span class="na">getClient</span><span class="o">(),</span> <span class="n">product</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span> <span class="n">supply</span><span class="o">.</span><span class="na">getAmount</span><span class="o">(),</span> <span class="s">"@ignore@"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@QuarkusTest</span>
+<span class="nd">@CitrusSupport</span>
+<span class="nd">@CitrusConfiguration</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="o">{</span> <span class="n">CitrusEndpointConfig</span><span class="o">.</span><span class="na">class</span> <span class="o">})</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">FoodMarketDemoTest</span> <span class="o">{</span>
 
-<span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">parallel</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
-    <span class="n">receive</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="n">completed</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">message</span><span class="o">().</span><span class="na">body</span><span class="o">(</span><span class="n">marshal</span><span class="o">(</span><span class="n">completedEvent</span><span class="o">,</span> <span class="n">mapper</span><span class="o">)),</span>
-    <span class="n">receive</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="n">shipping</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">message</span><span class="o">().</span><span class="na">body</span><span class="o">(</span><span class="n">marshal</span><span class="o">(</span><span class="n">shippingEvent</span><span class="o">,</span> <span class="n">mapper</span><span class="o">))</span>
-<span class="o">);</span>
+    <span class="nd">@CitrusResource</span>
+    <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
+
+    <span class="nd">@CitrusEndpoint</span>
+    <span class="n">KafkaEndpoint</span> <span class="n">supplies</span><span class="o">;</span>
+
+    <span class="nd">@CitrusEndpoint</span>
+    <span class="n">KafkaEndpoint</span> <span class="n">bookings</span><span class="o">;</span>
+
+    <span class="nd">@CitrusEndpoint</span>
+    <span class="n">KafkaEndpoint</span> <span class="n">completed</span><span class="o">;</span>
+
+    <span class="nd">@CitrusEndpoint</span>
+    <span class="n">KafkaEndpoint</span> <span class="n">shipping</span><span class="o">;</span>
+
+    <span class="c1">// code the tests</span>
+<span class="o">}</span>
 </code></pre></div></div>
 
-<p>The parallel execution is a good idea because the events are also produced independent of each other.
-The ordering of events and as they arrive is not deterministic, so we run the validation in parallel.</p>
+<p>In the loaded <code class="highlighter-rouge">CitrusEndpointConfig</code> class the Kafka endpoint instances get configured for all tests that load the configuration.</p>
 
-<p>Also, you can iteratively send/receive messages in Citrus.</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CitrusEndpointConfig</span> <span class="o">{</span>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Booking</span> <span class="n">booking</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Booking</span><span class="o">(</span><span class="s">"citrus-test"</span><span class="o">,</span> <span class="n">product</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mf">1.99</span><span class="n">D</span><span class="o">);</span>
-<span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">iterate</span><span class="o">().</span><span class="na">condition</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
-        <span class="n">send</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="n">bookings</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">message</span><span class="o">().</span><span class="na">body</span><span class="o">(</span><span class="n">marshal</span><span class="o">(</span><span class="n">booking</span><span class="o">,</span> <span class="n">mapper</span><span class="o">)))</span>
+    <span class="nd">@BindToRegistry</span>
+    <span class="kd">public</span> <span class="n">KafkaEndpoint</span> <span class="nf">bookings</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">kafka</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">asynchronous</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">topic</span><span class="o">(</span><span class="s">"bookings"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@BindToRegistry</span>
+    <span class="kd">public</span> <span class="n">KafkaEndpoint</span> <span class="nf">supplies</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">kafka</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">asynchronous</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">topic</span><span class="o">(</span><span class="s">"supplies"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@BindToRegistry</span>
+    <span class="kd">public</span> <span class="n">KafkaEndpoint</span> <span class="nf">shipping</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">kafka</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">asynchronous</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">topic</span><span class="o">(</span><span class="s">"shipping"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">consumerGroup</span><span class="o">(</span><span class="s">"citrus-shipping"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">timeout</span><span class="o">(</span><span class="mi">10000L</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@BindToRegistry</span>
+    <span class="kd">public</span> <span class="n">KafkaEndpoint</span> <span class="nf">completed</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">kafka</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">asynchronous</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">topic</span><span class="o">(</span><span class="s">"completed"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">consumerGroup</span><span class="o">(</span><span class="s">"citrus-completed"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">timeout</span><span class="o">(</span><span class="mi">10000L</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="c1">// more endpoints</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The configuration class uses the KafkaEndpoint builder and binds the components to the Citrus registry.
+With that configuration you can inject the endpoint instances in your test with the <code class="highlighter-rouge">@CitrusEndpoint</code> annotation.</p>
+
+<p>Now you can reference the endpoint in Citrus send/receive test actions.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Product</span> <span class="n">product</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Product</span><span class="o">(</span><span class="s">"Kiwi"</span><span class="o">);</span>
+<span class="n">Booking</span> <span class="n">booking</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Booking</span><span class="o">(</span><span class="s">"citrus"</span><span class="o">,</span> <span class="n">product</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mf">0.99</span><span class="n">D</span><span class="o">,</span> <span class="n">TestHelper</span><span class="o">.</span><span class="na">createShippingAddress</span><span class="o">().</span><span class="na">getFullAddress</span><span class="o">());</span>
+
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">createBooking</span><span class="o">(</span><span class="n">Booking</span> <span class="n">booking</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">send</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="n">bookings</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">marshal</span><span class="o">(</span><span class="n">booking</span><span class="o">))</span>
     <span class="o">);</span>
+<span class="o">}</span>
 </code></pre></div></div>
 
-<p>This will send 10 booking events to the Kafka stream.</p>
+<p>Another improvement for the test is to use the domain model object <code class="highlighter-rouge">Booking</code> as a message payload instead of using the inline Json String.</p>
 
-<p>The next advanced testing capability is the use of dynamic endpoints in Citrus.
-As an alternative to creating the <code class="highlighter-rouge">KafkaEndpoint</code> on a test class level you can also use a dynamic endpoint URL.</p>
+<h2 id="stage-3-add-mail-verification">Stage #3: Add mail verification</h2>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">send</span><span class="o">()</span>
-    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:bookings"</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">message</span><span class="o">().</span><span class="na">body</span><span class="o">(</span><span class="n">marshal</span><span class="o">(</span><span class="n">booking</span><span class="o">,</span> <span class="n">mapper</span><span class="o">)));</span>
+<p>So far the test has been using Kafka endpoints exclusively.
+Citrus provides a huge set of components to connect to different messaging transports and technologies.</p>
 
-<span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">receive</span><span class="o">()</span>
-    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:completed?timeout=10000"</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">message</span><span class="o">().</span><span class="na">body</span><span class="o">(</span><span class="n">marshal</span><span class="o">(</span><span class="n">completedEvent</span><span class="o">,</span> <span class="n">mapper</span><span class="o">)));</span>
+<p>As a next step the test verifies a mail message that is sent by the Quarkus application when a booking has been completed.</p>
+
+<p>First of all the configuration adds a Citrus mail server.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@BindToRegistry</span>
+<span class="kd">public</span> <span class="n">MailServer</span> <span class="nf">mailServer</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="nf">mail</span><span class="o">().</span><span class="na">server</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">port</span><span class="o">(</span><span class="mi">2222</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">knownUsers</span><span class="o">(</span><span class="n">Collections</span><span class="o">.</span><span class="na">singletonList</span><span class="o">(</span><span class="s">"foodmarket@quarkus.io:foodmarket:secr3t"</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">autoAccept</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">autoStart</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+<span class="o">}</span>
 </code></pre></div></div>
 
-<p>The endpoint URL <code class="highlighter-rouge">kafka:bookings</code> creates a dynamic Kafka endpoint instance to send messages to the <code class="highlighter-rouge">bookings</code> topic.
-The endpoint URL may also hold parameters like the receive-timeout <code class="highlighter-rouge">kafka:completed?timeout=10000</code>.</p>
+<p>The mail server accepts incoming mail requests on port <code class="highlighter-rouge">2222</code> and adds some known users.
+The Quarkus application then uses the connection credentials in the <code class="highlighter-rouge">application.properties</code>.</p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">quarkus.mailer.mock</span><span class="p">=</span><span class="s">false</span>
+<span class="py">quarkus.mailer.own-host-name</span><span class="p">=</span><span class="s">localhost</span>
+<span class="py">quarkus.mailer.from</span><span class="p">=</span><span class="s">foodmarket@quarkus.io</span>
+<span class="py">quarkus.mailer.host</span><span class="p">=</span><span class="s">localhost</span>
+<span class="py">quarkus.mailer.port</span><span class="p">=</span><span class="s">2222</span>
+
+<span class="py">quarkus.mailer.username</span><span class="p">=</span><span class="s">foodmarket</span>
+<span class="py">quarkus.mailer.password</span><span class="p">=</span><span class="s">secr3t</span>
+<span class="py">quarkus.mailer.start-tls</span><span class="p">=</span><span class="s">OPTIONAL</span>
+</code></pre></div></div>
+
+<p>The test is able to reference this mail server to verify the mail sent by Quarkus.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">verifyBookingCompletedMail</span><span class="o">(</span><span class="n">Booking</span> <span class="n">booking</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">receive</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="n">mailServer</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">(</span><span class="n">MailMessage</span><span class="o">.</span><span class="na">request</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="s">"foodmarket@quarkus.io"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"%s@quarkus.io"</span><span class="o">.</span><span class="na">formatted</span><span class="o">(</span><span class="n">booking</span><span class="o">.</span><span class="na">getClient</span><span class="o">()))</span>
+                    <span class="o">.</span><span class="na">subject</span><span class="o">(</span><span class="s">"Booking completed!"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Hey %s, your booking %s has been completed."</span>
+                            <span class="o">.</span><span class="na">formatted</span><span class="o">(</span><span class="n">booking</span><span class="o">.</span><span class="na">getClient</span><span class="o">(),</span> <span class="n">booking</span><span class="o">.</span><span class="na">getProduct</span><span class="o">().</span><span class="na">getName</span><span class="o">()),</span> <span class="s">"text/plain"</span><span class="o">)));</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">send</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="n">mailServer</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">(</span><span class="n">MailMessage</span><span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="mi">250</span><span class="o">)));</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The mail verification includes the validation of all mail related properties (e.g. from, to, subject, body) and the simulation of the mail server response (250 OK).
+This is a good point to simulate a mail server error in order to verify the resilience and the error handling on the Quarkus application.</p>
+
+<h2 id="stage-4-use-testbehaviors">Stage #4: Use TestBehaviors</h2>
+
+<p>Citrus has the concept of TestBehaviors to reuse a set of test actions in multiple tests.
+The mail verification steps may be added into a behavior so many tests can make use of it.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">VerifyBookingCompletedMail</span> <span class="kd">implements</span> <span class="n">TestBehavior</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Booking</span> <span class="n">booking</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">MailServer</span> <span class="n">mailServer</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">VerifyBookingCompletedMail</span><span class="o">(</span><span class="n">Booking</span> <span class="n">booking</span><span class="o">,</span> <span class="n">MailServer</span> <span class="n">mailServer</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">booking</span> <span class="o">=</span> <span class="n">booking</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">mailServer</span> <span class="o">=</span> <span class="n">mailServer</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">apply</span><span class="o">(</span><span class="n">TestActionRunner</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">t</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">receive</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="n">mailServer</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">(</span><span class="n">MailMessage</span><span class="o">.</span><span class="na">request</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="s">"foodmarket@quarkus.io"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"%s@quarkus.io"</span><span class="o">.</span><span class="na">formatted</span><span class="o">(</span><span class="n">booking</span><span class="o">.</span><span class="na">getClient</span><span class="o">()))</span>
+                    <span class="o">.</span><span class="na">subject</span><span class="o">(</span><span class="s">"Booking completed!"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Hey %s, your booking %s has been completed."</span>
+                            <span class="o">.</span><span class="na">formatted</span><span class="o">(</span><span class="n">booking</span><span class="o">.</span><span class="na">getClient</span><span class="o">(),</span> <span class="n">booking</span><span class="o">.</span><span class="na">getProduct</span><span class="o">().</span><span class="na">getName</span><span class="o">()),</span> <span class="s">"text/plain"</span><span class="o">))</span>
+        <span class="o">);</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">send</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="n">mailServer</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">(</span><span class="n">MailMessage</span><span class="o">.</span><span class="na">response</span><span class="o">())</span>
+        <span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The test is able to apply the behavior quite easily.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">verifyBookingCompletedMail</span><span class="o">(</span><span class="n">Booking</span> <span class="n">booking</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">t</span><span class="o">.</span><span class="na">applyBehavior</span><span class="o">(</span><span class="k">new</span> <span class="n">VerifyBookingCompletedMail</span><span class="o">(</span><span class="n">booking</span><span class="o">,</span> <span class="n">mailServer</span><span class="o">)));</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="stage-5-use-the-http-rest-api">Stage #5: Use the Http REST API</h2>
+
+<p>The Quarkus application under test also provides a Http REST API to manage bookings and supplies.</p>
+
+<p>The Citrus test is able to call the REST API with a Http client.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@BindToRegistry</span>
+<span class="kd">public</span> <span class="n">HttpClient</span> <span class="nf">foodMarketApiClient</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="nf">http</span><span class="o">().</span><span class="na">client</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">requestUrl</span><span class="o">(</span><span class="s">"http://localhost:8081"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">createBooking</span><span class="o">(</span><span class="n">Booking</span> <span class="n">booking</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">http</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">foodMarketApiClient</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">send</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/api/bookings"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON_VALUE</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">marshal</span><span class="o">(</span><span class="n">booking</span><span class="o">))</span>
+    <span class="o">);</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">http</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">foodMarketApiClient</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">CREATED</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">extract</span><span class="o">(</span><span class="n">json</span><span class="o">().</span><span class="na">expression</span><span class="o">(</span><span class="s">"$.id"</span><span class="o">,</span> <span class="s">"bookingId"</span><span class="o">))</span>
+    <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The test now sends a Http POST request to create the booking.
+The client is able to verify the Http response <code class="highlighter-rouge">201 CREATED</code> and also save the generated booking id for later reference in the test.</p>
+
+<h1 id="stage-6-verify-entities-in-the-database">Stage #6: Verify entities in the database</h1>
+
+<p>The test may also verify the entities saved to the PostgreSQL database.
+The <code class="highlighter-rouge">@QuarkusTest</code> dev services is able to inject the dataSource that connects to the PostgreSQL database Testcontainers that is startes as part of the test.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Inject</span>
+<span class="n">DataSource</span> <span class="n">dataSource</span><span class="o">;</span>
+
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">verifyBookingStatus</span><span class="o">(</span><span class="n">Booking</span><span class="o">.</span><span class="na">Status</span> <span class="n">status</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">sql</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">dataSource</span><span class="o">(</span><span class="n">dataSource</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">query</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">statement</span><span class="o">(</span><span class="s">"select status from booking where booking.id=${bookingId}"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"status"</span><span class="o">,</span> <span class="n">status</span><span class="o">.</span><span class="na">name</span><span class="o">())</span>
+    <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The SQL verification uses the extracted <code class="highlighter-rouge">bookingId</code> test variable to identify the entity in the database.
+The returned result set gets verified with the expected column values (e.g. <code class="highlighter-rouge">status=COMPLETED</code>)</p>
+
+<h2 id="stage-7-use-openapi-specification">Stage #7: Use OpenAPI specification</h2>
+
+<p>The Quarkus application also exposes its OpenAPI specification for the REST API.
+The Citrus test is able to leverage this specification when sending/receiving Http messages.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">final</span> <span class="n">OpenApiSpecification</span> <span class="n">foodMarketSpec</span> <span class="o">=</span>
+            <span class="n">OpenApiSpecification</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="s">"http://localhost:8081/q/openapi"</span><span class="o">);</span>
+
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">createBooking</span><span class="o">(</span><span class="n">Booking</span> <span class="n">booking</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">openapi</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">specification</span><span class="o">(</span><span class="n">foodMarketSpec</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">foodMarketApiClient</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="s">"addBooking"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">marshal</span><span class="o">(</span><span class="n">booking</span><span class="o">))</span>
+    <span class="o">);</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">openapi</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">specification</span><span class="o">(</span><span class="n">foodMarketSpec</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">foodMarketApiClient</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">receive</span><span class="o">(</span><span class="s">"addBooking"</span><span class="o">,</span> <span class="n">HttpStatus</span><span class="o">.</span><span class="na">CREATED</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">extract</span><span class="o">(</span><span class="n">json</span><span class="o">().</span><span class="na">expression</span><span class="o">(</span><span class="s">"$.id"</span><span class="o">,</span> <span class="s">"bookingId"</span><span class="o">))</span>
+    <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The test loads the OpenAPI specification from the Quarkus application with the URL <code class="highlighter-rouge">http://localhost:8081/q/openapi</code>.
+The specification then is used with the Http send test action.</p>
+
+<p>The action references an operation with the id <code class="highlighter-rouge">addBooking</code>.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">openapi</span><span class="pi">:</span> <span class="s">3.0.3</span>
+<span class="na">info</span><span class="pi">:</span>
+  <span class="na">title</span><span class="pi">:</span> <span class="s">citrus-demo-quarkus API</span>
+  <span class="na">version</span><span class="pi">:</span> <span class="s">1.0.0</span>
+<span class="na">servers</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">url</span><span class="pi">:</span> <span class="s">http://localhost:8080</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s">Auto generated value</span>
+  <span class="pi">-</span> <span class="na">url</span><span class="pi">:</span> <span class="s">http://0.0.0.0:8080</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s">Auto generated value</span>
+<span class="na">paths</span><span class="pi">:</span>
+  <span class="s">/api/bookings</span><span class="pi">:</span>
+    <span class="na">post</span><span class="pi">:</span>
+      <span class="na">operationId</span><span class="pi">:</span> <span class="s">addBooking</span>
+      <span class="na">requestBody</span><span class="pi">:</span>
+        <span class="na">content</span><span class="pi">:</span>
+          <span class="s">application/json</span><span class="pi">:</span>
+            <span class="na">schema</span><span class="pi">:</span>
+              <span class="s">$ref</span><span class="pi">:</span> <span class="s1">'</span><span class="s">#/components/schemas/Booking'</span>
+      <span class="na">responses</span><span class="pi">:</span>
+        <span class="s2">"</span><span class="s">200"</span><span class="pi">:</span>
+          <span class="na">description</span><span class="pi">:</span> <span class="s">OK</span>
+</code></pre></div></div>
+
+<p>The Citrus test action now leverages information given in the specification such as resource path <code class="highlighter-rouge">/api/bookings</code> and the content type <code class="highlighter-rouge">application/json</code>.</p>
+
+<h1 id="stage-8-ui-testing-with-selenium">Stage #8: UI testing with Selenium</h1>
+
+<p>Citrus also integrates with Selenium UI testing.
+This means that the test is able to open the browser and navigate to the Quarkus application home URL.
+Then the test may simulate user interactions such as clicking on links and buttons on the page.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">approveBooking</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">selenium</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">browser</span><span class="o">(</span><span class="n">browser</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">start</span><span class="o">());</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">doFinally</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+            <span class="n">selenium</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">browser</span><span class="o">(</span><span class="n">browser</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">stop</span><span class="o">()));</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">selenium</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">browser</span><span class="o">(</span><span class="n">browser</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">navigate</span><span class="o">(</span><span class="s">"http://localhost:8081"</span><span class="o">));</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">delay</span><span class="o">().</span><span class="na">seconds</span><span class="o">(</span><span class="mi">3</span><span class="o">));</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">selenium</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">browser</span><span class="o">(</span><span class="n">browser</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">click</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">element</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"${bookingId}"</span><span class="o">));</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <h2 id="summary">Summary</h2>
 
-<p>The sample application has shown how you can integrate Citrus within a Quarkus test. 
-The Quarkus test is able to use the Citrus capabilities because of the Citrus extension that is provided since Citrus 4.0.</p>
+<p>The sample application has shown how you can integrate Citrus within a Quarkus test.
+The Quarkus test is able to use the Citrus capabilities because of the Citrus Quarkus extension that is provided since Citrus 4.0.</p>
 
 
   </div>
