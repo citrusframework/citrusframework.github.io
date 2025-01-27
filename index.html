@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Citrus Framework</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="generator" content="Citrus 4.5.1">
+  <meta name="generator" content="Citrus 4.5.2">
   <meta name="description" content="Citrus Framework Website"/>
   <meta name="author" content="ConSol Software GmbH"/>
   <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
@@ -33,6 +33,12 @@
     <a href="/projects/">Projects</a>
   </li>
   <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
     <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
   </li>
   <li class="">
@@ -45,7 +51,7 @@
     <a href="/help/">Help</a>
   </li>
   <li>
-    <a href="https://github.com/citrusframework/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
   </li>
 </ul>
 
@@ -63,6 +69,12 @@
     <a href="/projects/">Projects</a>
   </li>
   <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
     <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
   </li>
   <li class="">
@@ -75,7 +87,7 @@
     <a href="/help/">Help</a>
   </li>
   <li>
-    <a href="https://github.com/citrusframework/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
   </li>
 </ul>
 
@@ -87,13 +99,14 @@
   <section class="intro">
   <div class="grid jumbo">
     <div class="unit whole align-center">
-      <p class="first">Citrus Integration<br>Testing</p>
+      <p class="first">Citrus <img src="/img/citrus.png" alt="Citrus" width="80/"></p>
+      <h1>Fresh Integration Testing</h1>
 
       <br>
-      <p>Framework for automated integration tests supporting a wide range of message protocols and data formats!<br>
-        Kafka, Http REST, JMS, TCP/IP, SOAP, FTP/SFTP, SSH, XML, Json and much more!</p>
+      <p>Test framework with focus on messaging applications and Microservices.<br>
+      Automated integration tests with a wide range of messaging protocols and data formats!</p>
 
-      <a href="/docs/download" class="btn btn-primary">Release v4.5.1</a>
+      <a href="/docs/download" class="btn btn-release"><i class="fa fa-download"></i> Download  v4.5.2</a>
     </div>
   </div>
 </section>
@@ -101,18 +114,109 @@
 <section class="intro">
   <div class="grid">
     <div class="unit whole align-center">
+      <h1>Features</h1>
+      <h2><small>Many benefits to discover. What is in the box?</small></h2>
+    </div>
+    <div class="unit one-third">
+      <h2>
+<i class="fa fa-endpoints"></i> Endpoints</h2>
+      <p>Many ready-to-use client and server components and endpoints that you can use in a test to simulate service interfaces and 3rd party applications.<br>
+        <a class="prominent" href="/endpoints/">→ Endpoints</a></p>
+    </div>
+    <div class="unit one-third">
+      <h2>
+<i class="fa fa-connect"></i> Connect</h2>
+      <p>Choose and combine many different message protocols HTTP REST, Kafka, JMS, TCP/IP, SOAP, FTP and many more.<br>
+        <a class="prominent" href="/endpoints/">→ Examples</a></p>
+    </div>
+    <div class="unit one-third">
+      <h2>
+<i class="fa fa-verify"></i> Verify</h2>
+      <p>Powerful message validators that verify message header and body content for different data formats such as XML, Json, YAML, plaintext.<br>
+        <a class="prominent" href="/validators/">→ Validators</a></p>
+    </div>
+    <div class="unit one-third">
+      <h2>
+<i class="fa fa-run"></i> Runtimes</h2>
+      <p>Run Citrus with JUnit Jupiter, Quarkus, SpringBoot or Cucumber in a Maven or Gradle project.<br>
+        <a class="prominent" href="/runtimes/">→ Runtimes</a></p>
+    </div>
+    <div class="unit one-third">
+      <h2>
+<i class="fa fa-code"></i> Polyglot</h2>
+      <p>You can choose from a set of domain specific languages to write a Citrus test in Java, XML, YAML or as a Cucumber BDD feature.</p>
+    </div>
+    <div class="unit one-third">
+      <h2>
+<img src="/img/icons/jbang.png"> Try with JBang!</h2>
+      <p>Get started with Citrus JBang and run your 1st integration test in minutes without any project setup.<br>
+        <a class="prominent" href="/samples/jbang/">→ JBang example</a></p>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <hr>
+</section>
+
+<section class="intro">
+  <div class="grid">
+    <div class="unit whole align-center">
       <h1>Messaging integration challenge</h1>
       <h2><small>How Citrus helps with automated integration tests</small></h2>
+      <p>In a typical test scenario the system under test, for instance a Quarkus Microservices application, runs on a test infrastructure.
+        Citrus interacts with the exposed services over various messaging transports in an automated test.
+        Citrus is able to act both as producer and consumer during the test in order to exchange real request/response messages with the application.</p>
+
       <img src="/img/test-scenario.png" alt="Citrus solution">
 
-      <p>In a typical test scenario the system under test is running on a test infrastructure while interacting with
-        Citrus over various messaging transports. During the test Citrus is able to act on both sides as client and
-        consumer exchanging real request/response messages over the wire.</p>
-
-      <p>With each test step you can validate the exchanged messages with expected control data including message headers, attachments and body content (e.g. XML, Json, ...).
-        The test provides a Java fluent API to specify the test logic and is fully automated. The repeatable test is nothing but a normal JUnit or TestNG test and can easily run
-        as integration test in a CI/CD pipeline.</p>
+      <p>With each test step you can validate the exchanged messages with expected control data including message headers, attachments and body content (e.g. XML, Json, YAML, ...).
+        The test provides a Java fluent API to specify the test logic and is fully automated. The repeatable test is nothing but a normal JUnit Jupiter test that can easily run
+        as part of a Maven build or in a CI/CD pipeline.</p>
     </div>
+  </div>
+  <hr>
+</section>
+
+<section class="intro">
+  <div class="grid">
+    <div class="unit whole align-center">
+      <h1>Runtimes</h1>
+      <h2><small>Combine Citrus with many frameworks and libraries</small></h2>
+    </div>
+    <div class="unit one-third">
+      <h2>
+<img src="/img/icons/quarkus.png"> Quarkus</h2>
+      <p>You can easily use Citrus as part of your QuarkusTest annotated test.<br>
+        <a class="prominent" href="/samples/quarkus/">→ Quarkus example</a></p>
+    </div>
+    <div class="unit one-third">
+      <h2>
+<img src="/img/icons/spring.png"> Spring Boot</h2>
+      <p>Use Citrus with Spring bean autowiring and combine Citrus with Spring Boot tests.</p>
+    </div>
+    <div class="unit one-third">
+      <h2>
+<img src="/img/icons/cucumber.png"> Cucumber</h2>
+      <p>Citrus provides ready-to-use Cucumber steps that you can directly use in your Gherkin <i>Given-When-Then</i> feature files.<br>
+        <a class="prominent" href="/samples/cucumber/">→ Cucumber BDD example</a></p>
+    </div>
+    <div class="unit one-third">
+      <h2>
+<img src="/img/icons/camel.png"> Apache Camel</h2>
+      <p>Manage Apache Camel routes and use one of the 300+ Camel components to exchange messages and transform data.<br>
+        <a class="prominent" href="/samples/camel-context/">→ Apache Camel example</a></p>
+    </div>
+    <div class="unit one-third">
+      <h2>
+<img src="/img/icons/testcontainers.png"> Testcontainers</h2>
+      <p>Prepare test infrastructure as part of the test using Testcontainers modules.</p>
+    </div>
+    <div class="unit one-third">
+      <h2>
+<img src="/img/icons/selenium.png"> Selenium</h2>
+      <p>Easily use Selenium in Citrus to simulate user interactions in a browser.<br>
+        <a class="prominent" href="/samples/selenium/">→ Selenium example</a></p>
+    </div>
+    <div class="clear"></div>
   </div>
   <hr>
 </section>
@@ -148,23 +252,6 @@
         With the declarative nature in Camel K users can instantly run integration code written in Camel DSL on their preferred cloud. The presentation outlines typical integration scenarios with Camel K
         and shows how to write automated tests for these enterprise integrations. The session covers classical service provider/consumer scenarios with common messaging protocols (e.g. REST, JMS, Kafka) as
         well as more complex integrations with data access and 3rd party Saas services included. The tests itself will also be Cloud Native citizens and make use of Behavior Driven Development concepts.</p>
-    </div>
-  </div>
-  <hr>
-</section>
-
-<section class="intro">
-  <div class="grid">
-    <div class="unit whole align-center">
-      <h1>Citrus TestTalks Interview</h1>
-      <h2><small>Integration Automation Using Citrus Testing Framework with Christoph Deppisch</small></h2>
-
-      <a href="https://testguild.com/podcast/automation/190-integration-automation-using-citrus-testing-framework-christoph-deppisch/" target="_blank"><img src="/img/assets/testtalks-interview/thumbnail.png" alt="TestTalks Interview"></a>
-      <p>Copyright by Joe Colantonio | Test Guild LLC</p>
-
-      <p>Joe Colantonio talks to Christoph Deppisch about automate integration tests for pretty much any messaging protocol or data format.
-        So if you’re looking to expand your automation efforts beyond lame, flaky, UI-based automated tests, this episode is for you.
-        Listen to this "testtalks" episode at <a href="https://testguild.com/podcast/automation/190-integration-automation-using-citrus-testing-framework-christoph-deppisch/" target="_blank">https://testguild.com/podcast</a></p>
     </div>
   </div>
   <hr>
@@ -217,66 +304,52 @@
         to the Citrus framework and shows code samples for a complete integration test scenario in a Microservices environment.</p>
     </div>
   </div>
-  <hr>
 </section>
 
 <section class="features">
   <div class="grid">
     <div class="unit one-third">
-      <h2>Features</h2>
-      <p>Your enterprise applications requires detailed integration testing. Citrus provides a
-        tooling for complex integration test with great validation capabilities for XML, JSON and plain text.</p>
-      <ul>
-        <li>
-<strong>Interface mocks and simulators:</strong> client and server side</li>
-        <li>
-<strong>Test automation:</strong> repeatable integration tests within your continuous build</li>
-        <li>
-<strong>Message transport connectivity:</strong> HTTP, JMS, TCP/IP, REST, SOAP, XML, JSON, and more</li>
-        <li>
-<strong>Validation:</strong> message header and body assertions</li>
-      </ul>
-      <p>See the complete <a href="/docs/features">feature list →</a> for details.</p>
+      <h2>Community</h2>
+      <p>Citrus is Open Source!<br>Please get involved and help!</p>
+      <p>Add comments, open new issues or pull requests with your changes on the <br> <i class="fa fa-github"></i> <a href="http://github.com/citrusframework/citrus">Citrus code repository</a></p>
     </div>
     <div class="unit one-third">
       <h2>Documentation</h2>
-      <p>See the following reading material and information on Citrus testing.</p>
       <ul>
-        <li><a href="/docs/documentation/">Documentation</a></li>
-        <li><a href="http://labs.consol.de/tags/citrus" target="_blank">Blog</a></li>
-        <li><a href="http://javadoc.io/doc/org.citrusframework/citrus-core" target="_blank">Java API</a></li>
-        <li><a href="https://github.com/citrusframework/citrus" target="_blank">Java Sources</a></li>
+        <li><a href="/docs/documentation/">Reference guide</a></li>
+        <li><a href="/news">Blog</a></li>
+        <li><a href="https://github.com/citrusframework/citrus-samples" target="_blank">Examples</a></li>
+        <li><a href="https://github.com/citrusframework/citrus" target="_blank">Demos</a></li>
+        <li><a href="/docs/media/">Media</a></li>
       </ul>
-      <p>The reference documentation material for the latest Citrus release is available as online HTML
-        or offline PDF version.</p>
       <p><strong>Latest stable release:</strong><br>
-        Version 4.5.1: <a href="/reference/html/index.html" target="_blank">HTML</a> | <a href="/citrus/reference/4.5.1/pdf/citrus-reference-4.5.1.pdf" target="_blank">PDF</a>
+        Version 4.5.2: <a href="/reference/html/index.html" target="_blank">HTML</a> | <a href="/citrus/reference/4.5.2/pdf/citrus-reference-4.5.2.pdf" target="_blank">PDF</a>
       </p>
     </div>
     <div class="unit one-third">
-      <h2>News &amp; Blog</h2>
+      <h2>Blog</h2>
       <ul>
-      
-      <li class="">
-        <a href="/news/2023/10/25/release-4.0.0/">Citrus 4.0.0</a>
-      </li>
-      
-      <li class="">
-        <a href="/news/2023/01/30/camel-k-yaks/">Testing Camel K with YAKS</a>
-      </li>
-      
-      <li class="">
-        <a href="/news/2021/08/30/introducing-yaks/">Cloud-native BDD testing with YAKS</a>
-      </li>
-      
-      <li class="">
-        <a href="/news/2021/08/25/new-camel-support/">Apache Camel support in Citrus 3</a>
-      </li>
-      
-      <li class="">
-        <a href="/news/2021/08/16/citrus-3.0/">YAY, Citrus 3.0 is here!</a>
-      </li>
-      
+        
+        <li class="">
+          <a href="/news/2023/10/25/release-4.0.0/">Citrus 4.0.0</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2023/01/30/camel-k-yaks/">Testing Camel K with YAKS</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2021/08/30/introducing-yaks/">Cloud-native BDD testing with YAKS</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2021/08/25/new-camel-support/">Apache Camel support in Citrus 3</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2021/08/16/citrus-3.0/">YAY, Citrus 3.0 is here!</a>
+        </li>
+        
       </ul>
     </div>
     <div class="clear"></div>

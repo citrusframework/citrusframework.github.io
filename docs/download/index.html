@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Citrus Framework</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="generator" content="Citrus 4.5.1">
+  <meta name="generator" content="Citrus 4.5.2">
   <meta name="description" content="Citrus Framework Website"/>
   <meta name="author" content="ConSol Software GmbH"/>
   <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
@@ -32,6 +32,12 @@
   <li class="">
     <a href="/projects/">Projects</a>
   </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
   <li class="current">
     <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
   </li>
@@ -45,7 +51,7 @@
     <a href="/help/">Help</a>
   </li>
   <li>
-    <a href="https://github.com/citrusframework/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>&nbsp; GitHub</a>
   </li>
 </ul>
 
@@ -62,6 +68,12 @@
   <li class="">
     <a href="/projects/">Projects</a>
   </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
   <li class="current">
     <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
   </li>
@@ -75,7 +87,7 @@
     <a href="/help/">Help</a>
   </li>
   <li>
-    <a href="https://github.com/citrusframework/citrus" target="_blank"><span class="hide-on-mobiles">View on </span>GitHub</a>
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>&nbsp; GitHub</a>
   </li>
 </ul>
 
@@ -232,12 +244,88 @@
             <a href="https://github.com/citrusframework/citrus-website/edit/master/src/main/site/_docs/download.md"><i class="fa fa-pencil"></i> &nbsp;Improve this page</a>
           </div>
           <h1>Download</h1>
-          <p>Citrus 4.5.1 is the latest stable release . You may also go for the <a href="#use-latest-snapshots">latest snapshot versions</a> 
-of Citrus always being up-to-date with development changes. Citrus is available on <a href="http://search.maven.org/#search%7Cga%7C1%7Corg.citrusframework">Maven central repository</a> 
-so you can add Citrus as <a href="#maven">Maven dependency</a> to your project. All available versions and production releases for 
-manual download are listed below:</p>
+          <p>Citrus 4.5.2 is the latest stable release . Citrus is available on <a href="http://search.maven.org/#search%7Cga%7C1%7Corg.citrusframework">Maven central repository</a> 
+so you can add Citrus as a <a href="#maven">Maven dependency</a> to your project.</p>
+
+<h2 id="maven">Maven</h2>
+
+<p>You can easily use Citrus in a Maven project by adding the Citrus modules as test-scoped dependencies in your <code class="highlighter-rouge">pom.xml</code>.</p>
+
+<p>Citrus provides a Maven BOM or “Bill Of Materials” that controls the versions and available modules that you can add to your project.</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-bom<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>4.5.2<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>import<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span></code></pre></figure>
+
+<p>Now you can add individual Citrus modules to your project. Each module represents a specific features and capability in Citrus.</p>
+
+<p>As an example the following modules enable you to send and receive messages via Http REST, Kafka and JMS.</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-http<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-kafka<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-jms<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span></code></pre></figure>
+
+<p>In case you want to use the Apache Camel or Testcontainers functionality provided in Citrus you may add these modules.</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-camel<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-testcontainers<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span></code></pre></figure>
+
+<p>You can write Citrus test as YAML files using a domain specific language. To use this feature in Citrus add the following module:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-yaml<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span></code></pre></figure>
+
+<p>Validation of received messages is an essential part of the test. Citrus provides a powerful set of different message validators for different message data formats.</p>
+
+<p>As an example the following modules add validation capabilities for Json, Xml and plaintext.</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-validation-json<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-validation-xml<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>citrus-validation-text<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span></code></pre></figure>
+
+<p>You can choose from a huge list of modules that all add individual Citrus capabilities to your test.</p>
 
 <h2 id="release-artifacts">Release artifacts</h2>
+
+<p>All available versions and production releases for manual download are listed below:</p>
 
 <table>
   <thead>
@@ -248,6 +336,11 @@ manual download are listed below:</p>
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td style="text-align: left">4.5.2</td>
+      <td style="text-align: left">2025-01-25</td>
+      <td style="text-align: left"><a href="https://github.com/citrusframework/citrus/archive/refs/tags/v4.5.2.zip">zip</a>/<a href="https://github.com/citrusframework/citrus/archive/refs/tags/v4.5.2.tar.gz">tar.gz</a></td>
+    </tr>
     <tr>
       <td style="text-align: left">4.5.1</td>
       <td style="text-align: left">2025-01-20</td>
@@ -303,98 +396,10 @@ manual download are listed below:</p>
       <td style="text-align: left">2024-01-17</td>
       <td style="text-align: left"><a href="https://github.com/citrusframework/citrus/archive/refs/tags/v4.1.0.zip">zip</a>/<a href="https://github.com/citrusframework/citrus/archive/refs/tags/v4.1.0.tar.gz">tar.gz</a></td>
     </tr>
-    <tr>
-      <td style="text-align: left">4.0.2</td>
-      <td style="text-align: left">2023-11-22</td>
-      <td style="text-align: left"><a href="https://github.com/citrusframework/citrus/archive/refs/tags/v4.0.2.zip">zip</a>/<a href="https://github.com/citrusframework/citrus/archive/refs/tags/v4.0.2.tar.gz">tar.gz</a></td>
-    </tr>
   </tbody>
 </table>
 
 <p>Since Citrus 4.0 the project requires Java 17 (or newer version) to run.</p>
-
-<h2 id="maven">Maven</h2>
-
-<p>You can easily use Citrus in a Maven project by defining test-scoped dependencies. Simply add the ConSol Labs repository 
-and the following dependencies to your POM (pom.xml). See also our Maven tutorial for a detailed description.</p>
-
-<p>The Citrus core module dependency.</p>
-
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
-  <span class="nt">&lt;artifactId&gt;</span>citrus-core<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>4.5.1<span class="nt">&lt;/version&gt;</span>
-  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span></code></pre></figure>
-
-<p>In case you need Citrus modules add following dependencies. See also our modules section for more information on Citrus modules:</p>
-
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
-  <span class="nt">&lt;artifactId&gt;</span>citrus-jms<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>4.5.1<span class="nt">&lt;/version&gt;</span>
-  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-
-<span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
-  <span class="nt">&lt;artifactId&gt;</span>citrus-http<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>4.5.1<span class="nt">&lt;/version&gt;</span>
-  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-
-<span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
-  <span class="nt">&lt;artifactId&gt;</span>citrus-ws<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>4.5.1<span class="nt">&lt;/version&gt;</span>
-  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-
-<span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
-  <span class="nt">&lt;artifactId&gt;</span>citrus-websocket<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>4.5.1<span class="nt">&lt;/version&gt;</span>
-  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-
-<span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
-  <span class="nt">&lt;artifactId&gt;</span>citrus-camel<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>4.5.1<span class="nt">&lt;/version&gt;</span>
-  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-
-<span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
-  <span class="nt">&lt;artifactId&gt;</span>citrus-ssh<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>4.5.1<span class="nt">&lt;/version&gt;</span>
-  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-
-<span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
-  <span class="nt">&lt;artifactId&gt;</span>citrus-vertx<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>4.5.1<span class="nt">&lt;/version&gt;</span>
-  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span></code></pre></figure>
-
-<h2 id="use-the-latest-snapshots">Use the latest snapshots</h2>
-
-<p>Stable releases are available on Maven central repository. We also provide nightly snapshot releases that are available on
-ConSol Labs repository. So if you want to use the latest snapshot releases of Citrus please add the following repository to 
-your Maven POM.</p>
-
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;repository&gt;</span>
-  <span class="nt">&lt;id&gt;</span>consol-labs-snapshots<span class="nt">&lt;/id&gt;</span>
-  <span class="nt">&lt;url&gt;</span>http://labs.consol.de/maven/snapshots-repository/<span class="nt">&lt;/url&gt;</span>
-  <span class="nt">&lt;snapshots&gt;</span>
-    <span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
-    <span class="nt">&lt;updatePolicy&gt;</span>10080<span class="nt">&lt;/updatePolicy&gt;</span>
-  <span class="nt">&lt;/snapshots&gt;</span>
-  <span class="nt">&lt;releases&gt;</span>
-    <span class="nt">&lt;enabled&gt;</span>false<span class="nt">&lt;/enabled&gt;</span>
-  <span class="nt">&lt;/releases&gt;</span>
-<span class="nt">&lt;/repository&gt;</span></code></pre></figure>
 
 <h2 id="logging-framework-notice">Logging framework notice</h2>
 

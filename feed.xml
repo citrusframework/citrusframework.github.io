@@ -1,4 +1,289 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2025-01-21T08:08:32+01:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Citrus Integration Tests</title><subtitle>Automated integration tests for message protocols and data formats that you require</subtitle><entry><title type="html">Quarkus sample</title><link href="http://0.0.0.0:4000/samples/quarkus/" rel="alternate" type="text/html" title="Quarkus sample" /><published>2023-11-03T00:00:00+01:00</published><updated>2023-11-03T00:00:00+01:00</updated><id>http://0.0.0.0:4000/samples/sample-quarkus</id><content type="html" xml:base="http://0.0.0.0:4000/samples/quarkus/">&lt;p&gt;This project uses Quarkus to implement a sample event-driven application and shows how to verify the event processing with an automated integration test written in &lt;a href=&quot;https://citrusframework.org&quot;&gt;Citrus&lt;/a&gt;.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2025-01-27T09:07:22+01:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Citrus Integration Tests</title><subtitle>Automated integration tests for message protocols and data formats that you require</subtitle><entry><title type="html">XML samples</title><link href="http://0.0.0.0:4000/samples/overview/xml/" rel="alternate" type="text/html" title="XML samples" /><published>2024-01-23T00:00:00+01:00</published><updated>2024-01-23T00:00:00+01:00</updated><id>http://0.0.0.0:4000/samples/overview/samples-xml</id><content type="html" xml:base="http://0.0.0.0:4000/samples/overview/xml/">&lt;p&gt;Read about the XML validation support in the &lt;a href=&quot;https://citrusframework.org/citrus/reference/html/#xml-message-validation&quot;&gt;reference guide&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author></entry><entry><title type="html">Soap WS samples</title><link href="http://0.0.0.0:4000/samples/overview/soap/" rel="alternate" type="text/html" title="Soap WS samples" /><published>2024-01-23T00:00:00+01:00</published><updated>2024-01-23T00:00:00+01:00</updated><id>http://0.0.0.0:4000/samples/overview/samples-soap</id><content type="html" xml:base="http://0.0.0.0:4000/samples/overview/soap/">&lt;p&gt;Read about the SOAP WebServices support in the &lt;a href=&quot;https://citrusframework.org/citrus/reference/html/#soap-webservices&quot;&gt;reference guide&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author></entry><entry><title type="html">Http samples</title><link href="http://0.0.0.0:4000/samples/overview/http/" rel="alternate" type="text/html" title="Http samples" /><published>2024-01-23T00:00:00+01:00</published><updated>2024-01-23T00:00:00+01:00</updated><id>http://0.0.0.0:4000/samples/overview/samples-http</id><content type="html" xml:base="http://0.0.0.0:4000/samples/overview/http/">&lt;p&gt;Read about the Http support in the &lt;a href=&quot;https://citrusframework.org/citrus/reference/html/#http-rest&quot;&gt;reference guide&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author></entry><entry><title type="html">Ftp samples</title><link href="http://0.0.0.0:4000/samples/overview/ftp/" rel="alternate" type="text/html" title="Ftp samples" /><published>2024-01-23T00:00:00+01:00</published><updated>2024-01-23T00:00:00+01:00</updated><id>http://0.0.0.0:4000/samples/overview/samples-ftp</id><content type="html" xml:base="http://0.0.0.0:4000/samples/overview/ftp/">&lt;p&gt;Read about the Ftp/Sftp support in the &lt;a href=&quot;https://citrusframework.org/citrus/reference/html/#ftp&quot;&gt;reference guide&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author></entry><entry><title type="html">JBang sample</title><link href="http://0.0.0.0:4000/samples/jbang/" rel="alternate" type="text/html" title="JBang sample" /><published>2024-01-23T00:00:00+01:00</published><updated>2024-01-23T00:00:00+01:00</updated><id>http://0.0.0.0:4000/samples/sample-jbang</id><content type="html" xml:base="http://0.0.0.0:4000/samples/jbang/">&lt;p&gt;You can easily create and run Citrus tests with &lt;a href=&quot;https://www.jbang.dev/&quot;&gt;JBang&lt;/a&gt;.
+The JBang tool support in Citrus is described in more detail in &lt;a href=&quot;https://citrusframework.org/citrus/reference/html#runtime-jbang&quot;&gt;reference guide&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Running Citrus via JBang does not require any project setup which is a fantastic match for fast prototyping of integration tests.
+The JBang command will automatically set up everything you need to run the Citrus test.
+This means you can run your test case sources directly from your command line.&lt;/p&gt;
+
+&lt;p&gt;To initialize a test you can run the script &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus@citrusframework/citrus&lt;/code&gt; with the &lt;code class=&quot;highlighter-rouge&quot;&gt;init&lt;/code&gt; command as follows:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Initialize my-test.yaml&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jbang citrus@citrusframework/citrus init my-test.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The command above uses the JBang catalog &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus@citrusframework/citrus&lt;/code&gt; located on the &lt;a href=&quot;https://github.com/citrusframework/citrus&quot;&gt;Citrus GitHub repository&lt;/a&gt;.
+JBang will automatically resolve all dependencies and execute the command line script tool.
+This initializes the Citrus test file.
+You will find the created test source file in the current directory.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;my-test.yaml&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;my-test&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;author&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Citrus&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;FINAL&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Sample test in YAML&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;variables&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;message&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Citrus rocks!&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;actions&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;echo&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;${message}&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The JBang script is able to initialize any supported Citrus test domain specific language &lt;code class=&quot;highlighter-rouge&quot;&gt;.java&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;.xml&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;.yaml&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;.groovy&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;.feature&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;You can now run this test source file without any prior project setup using Citrus JBang:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Run my-test.yaml&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jbang citrus@citrusframework/citrus run my-test.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The command output will be like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Output&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;INFO 53887 &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;           main] citrusframework.testng.TestNGEngine : Running &lt;span class=&quot;nb&quot;&gt;test source &lt;/span&gt;my-test.yaml
+INFO 53887 &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;           main] org.testng.internal.Utils           : &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;TestNG] Running:
+INFO 53887 &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;           main] rusframework.report.LoggingReporter :        .__  __                       
+INFO 53887 &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;           main] rusframework.report.LoggingReporter :   ____ |__|/  |________ __ __  ______
+INFO 53887 &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;           main] rusframework.report.LoggingReporter : _/ ___&lt;span class=&quot;se&quot;&gt;\|&lt;/span&gt;  &lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;  __&lt;span class=&quot;se&quot;&gt;\_&lt;/span&gt;  __ &lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt; |  &lt;span class=&quot;se&quot;&gt;\/&lt;/span&gt;  ___/
+INFO 53887 &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;           main] rusframework.report.LoggingReporter : &lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\_&lt;/span&gt;__|  &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt;  |  |  | &lt;span class=&quot;se&quot;&gt;\/&lt;/span&gt;  |  /&lt;span class=&quot;se&quot;&gt;\_&lt;/span&gt;__ &lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;
+INFO 53887 &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;           main] rusframework.report.LoggingReporter :  &lt;span class=&quot;se&quot;&gt;\_&lt;/span&gt;__  &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;__||__|  |__|  |____//____  &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+INFO 53887 &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;           main] rusframework.report.LoggingReporter :      &lt;span class=&quot;se&quot;&gt;\/&lt;/span&gt;                           &lt;span class=&quot;se&quot;&gt;\/&lt;/span&gt;
+INFO 53887 &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;           main] rusframework.report.LoggingReporter : 
+INFO 53887 &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;           main] rusframework.report.LoggingReporter : C I T R U S  T E S T S  4.5.2
+INFO 53887 &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;           main] rusframework.report.LoggingReporter : 
+INFO 53887 &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;           main] rusframework.report.LoggingReporter : &lt;span class=&quot;nt&quot;&gt;------------------------------------------------------------------------&lt;/span&gt;
+INFO 53887 &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;           main] .citrusframework.actions.EchoAction : Citrus rocks!
+INFO 53887 &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;           main] rusframework.report.LoggingReporter : 
+INFO 53887 &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;           main] rusframework.report.LoggingReporter : TEST SUCCESS my-test &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;org.citrusframework&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+INFO 53887 &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;           main] rusframework.report.LoggingReporter : &lt;span class=&quot;nt&quot;&gt;------------------------------------------------------------------------&lt;/span&gt;
+INFO 53887 &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;           main] rusframework.report.LoggingReporter : 
+INFO 53887 &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;           main] rusframework.report.LoggingReporter : 
+INFO 53887 &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;           main] rusframework.report.LoggingReporter : CITRUS TEST RESULTS
+INFO 53887 &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;           main] rusframework.report.LoggingReporter : 
+INFO 53887 &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;           main] rusframework.report.LoggingReporter : SUCCESS &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;     3 ms&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; my-test
+INFO 53887 &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;           main] rusframework.report.LoggingReporter : 
+INFO 53887 &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;           main] rusframework.report.LoggingReporter : TOTAL:		1
+INFO 53887 &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;           main] rusframework.report.LoggingReporter : SUCCESS:	1 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;100.0%&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+INFO 53887 &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;           main] rusframework.report.LoggingReporter : FAILED:		0 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.0%&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+INFO 53887 &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;           main] rusframework.report.LoggingReporter : PERFORMANCE:	0 ms
+INFO 53887 &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;           main] rusframework.report.LoggingReporter : 
+INFO 53887 &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;           main] rusframework.report.LoggingReporter : &lt;span class=&quot;nt&quot;&gt;------------------------------------------------------------------------&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;===============================================&lt;/span&gt;
+Default Suite
+Total tests run: 1, Passes: 1, Failures: 0, Skips: 0
+&lt;span class=&quot;o&quot;&gt;===============================================&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;install-citrus-jbang-app&quot;&gt;Install Citrus JBang app&lt;/h2&gt;
+
+&lt;p&gt;For a more convenient command line usage you can install Citrus as a JBang app.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Install Citrus as JBang app&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jbang trust add https://github.com/citrusframework/citrus/
+jbang app &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;citrus@citrusframework/citrus
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now you can just call &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus&lt;/code&gt; and create and run tests with Citrus JBang.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Run my-test.yaml&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;citrus run my-test.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;run-tests&quot;&gt;Run tests&lt;/h2&gt;
+
+&lt;p&gt;You can directly run test sources with Citrus JBang.
+This includes test sources written in Java (&lt;code class=&quot;highlighter-rouge&quot;&gt;.java&lt;/code&gt;), XML (&lt;code class=&quot;highlighter-rouge&quot;&gt;.xml&lt;/code&gt;), YAML (&lt;code class=&quot;highlighter-rouge&quot;&gt;.yaml&lt;/code&gt;), Groovy (&lt;code class=&quot;highlighter-rouge&quot;&gt;.groovy&lt;/code&gt;) or as a Cucumber Gherkin feature file (&lt;code class=&quot;highlighter-rouge&quot;&gt;.feature&lt;/code&gt;).&lt;/p&gt;
+
+&lt;h3 id=&quot;java-test-sources&quot;&gt;Java test sources&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Initialize MyTest.java&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;citrus init MyTest.java
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;MyTest.java&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.citrusframework.TestCaseRunner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.citrusframework.annotations.CitrusResource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;org&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;citrusframework&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;actions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;CreateVariablesAction&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Builder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createVariables&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;org&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;citrusframework&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;actions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;EchoAction&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Builder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;echo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyTest&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Runnable&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@CitrusResource&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;TestCaseRunner&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;given&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;createVariables&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;variable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;message&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Citrus rocks!&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;echo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;${message}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;Run MyTest.java&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;citrus run MyTest.java
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;xml-test-sources&quot;&gt;XML test sources&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Initialize my-test.xml&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;citrus init my-test.xml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;my-test.xml&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;test&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;EchoTest&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;author=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Christoph&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;status=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;FINAL&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://citrusframework.org/schema/xml/testcase&quot;&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;xmlns:xsi=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;xsi:schemaLocation=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://citrusframework.org/schema/xml/testcase http://citrusframework.org/schema/xml/testcase/citrus-testcase.xsd&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;description&amp;gt;&lt;/span&gt;Sample test in XML&lt;span class=&quot;nt&quot;&gt;&amp;lt;/description&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;variables&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;variable&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;message&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Citrus rocks!&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/variables&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;actions&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;echo&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;message=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;${message}&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/actions&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/test&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;Run my-test.xml&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;citrus run my-test.xml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;yaml-test-sources&quot;&gt;YAML test sources&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Initialize my-test.yaml&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;citrus init my-test.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;my-test.yaml&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;EchoTest&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Sample&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;YAML&quot;&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;variables&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;message&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Citrus&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;rocks!&quot;&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;actions&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;echo&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;${message}&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;Run my-test.yaml&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;citrus run my-test.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;groovy-test-sources&quot;&gt;Groovy test sources&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Initialize my-test.groovy&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;citrus init my-test.groovy
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;my-test.groovy&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;org&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;citrusframework&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;actions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;EchoAction&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Builder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;echo&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;EchoTest&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;description&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Sample test in Groovy&quot;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;variables&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Citrus rocks!&quot;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;actions&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;echo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'${message}'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;Run my-test.groovy&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;citrus run my-test.groovy
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;cucumber-feature-sources&quot;&gt;Cucumber feature sources&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Initialize my-test.feature&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;citrus init my-test.feature
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;my-test.feature&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-gherkin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;Feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; EchoTest
+
+  &lt;span class=&quot;kn&quot;&gt;Background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;nf&quot;&gt;Given &lt;/span&gt;variables
+    &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;Citrus&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;rocks!&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;
+
+  &lt;span class=&quot;kn&quot;&gt;Scenario&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; Print message
+    &lt;span class=&quot;nf&quot;&gt;Then &lt;/span&gt;print '${message}'
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;Run my-test.feature&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jbang &lt;span class=&quot;nt&quot;&gt;--deps&lt;/span&gt; org.citrusframework.yaks:yaks-standard:0.20.0 citrus run my-test.feature
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;NOTE:&lt;/em&gt; Many of the predefined Cucumber steps (e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;Then print '&amp;lt;message&amp;gt;'&lt;/code&gt;) in Citrus are provided in a separate Citrus child project called &lt;a href=&quot;https://github.com/citrusframework/yaks&quot;&gt;YAKS&lt;/a&gt;.
+You need to add additional project dependencies for that steps to be loaded as part of the JBang script.
+The &lt;code class=&quot;highlighter-rouge&quot;&gt;--deps&lt;/code&gt; option adds dependencies using Maven artifact coordinates.
+You may add the additional modules to the &lt;code class=&quot;highlighter-rouge&quot;&gt;jbang.properties&lt;/code&gt; as described in the next section.&lt;/p&gt;
+
+&lt;h2 id=&quot;additional-jbang-dependencies&quot;&gt;Additional JBang dependencies&lt;/h2&gt;
+
+&lt;p&gt;Citrus JBang comes with a set of default dependencies that makes the scripts run as tests.&lt;/p&gt;
+
+&lt;p&gt;The default modules that you can use in Citrus JBang are:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;org.citrusframework:citrus-base&lt;/li&gt;
+  &lt;li&gt;org.citrusframework:citrus-jbang-connector&lt;/li&gt;
+  &lt;li&gt;org.citrusframework:citrus-groovy&lt;/li&gt;
+  &lt;li&gt;org.citrusframework:citrus-xml&lt;/li&gt;
+  &lt;li&gt;org.citrusframework:citrus-yaml&lt;/li&gt;
+  &lt;li&gt;org.citrusframework:citrus-http&lt;/li&gt;
+  &lt;li&gt;org.citrusframework:citrus-validation-json&lt;/li&gt;
+  &lt;li&gt;org.citrusframework:citrus-validation-xml&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This enables you to run Java, YAML, XML, Groovy tests out of the box.
+In case your tests uses an additional feature from the Citrus project you may need to add the module so JBang can load the dependency at startup.&lt;/p&gt;
+
+&lt;p&gt;The easiest way to do this is to create a &lt;code class=&quot;highlighter-rouge&quot;&gt;jbang.properties&lt;/code&gt; file that defines the additional dependencies:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;jbang.properties&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-properties highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Declare required additional dependencies
+&lt;/span&gt;&lt;span class=&quot;py&quot;&gt;run.deps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;org.citrusframework:citrus-camel:4.5.2,&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\
+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;org.citrusframework:citrus-testcontainers:4.5.2,&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\
+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;org.citrusframework:citrus-kafka:4.5.2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The file above adds the modules &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-camel&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-testcontainers&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-kafka&lt;/code&gt; so you can use them in your JBang Citrus test source.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;jbang.properties&lt;/code&gt; file may be located right next to the test source file or in your user home directory for global settings.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;IMPORTANT:&lt;/em&gt; In case you want to run Cucumber BDD Gherkin feature files and use the predefined steps included in the &lt;a href=&quot;https://github.com/citrusframework/yaks&quot;&gt;YAKS&lt;/a&gt; project,
+you need to add this YAKS runtime dependency accordingly: &lt;code class=&quot;highlighter-rouge&quot;&gt;org.citrusframework.yaks:yaks-standard:0.20.0&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;run-from-clipboard&quot;&gt;Run from clipboard&lt;/h2&gt;
+
+&lt;p&gt;You can run tests from your current clipboard.
+Just use the file name &lt;code class=&quot;highlighter-rouge&quot;&gt;clipboard.xxx&lt;/code&gt; where the file extension defines the type of the test source (&lt;code class=&quot;highlighter-rouge&quot;&gt;.java&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;.yaml&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;.xml&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;.groovy&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;.feature&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Run YAML test from Clipboard&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;citrus run clipboard.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;list-tests&quot;&gt;List tests&lt;/h2&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;ls&lt;/code&gt; command lists all running Citrus tests.
+These tests may be started&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;List running tests&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;citrus &lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;Command output&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PID   NAME         STATUS  AGE 
+19201 my-test.yaml Running 20s
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://0.0.0.0:4000/img/icons/jbang.png" /></entry><entry><title type="html">Quarkus sample</title><link href="http://0.0.0.0:4000/samples/quarkus/" rel="alternate" type="text/html" title="Quarkus sample" /><published>2023-11-03T00:00:00+01:00</published><updated>2023-11-03T00:00:00+01:00</updated><id>http://0.0.0.0:4000/samples/sample-quarkus</id><content type="html" xml:base="http://0.0.0.0:4000/samples/quarkus/">&lt;p&gt;This project uses Quarkus to implement a sample event-driven application and shows how to verify the event processing with an automated integration test written in &lt;a href=&quot;https://citrusframework.org&quot;&gt;Citrus&lt;/a&gt;.
 The Quarkus support in Citrus is described in more detail in &lt;a href=&quot;https://citrusframework.org/citrus/reference/html#runtime-quarkus&quot;&gt;reference guide&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;objectives&quot;&gt;Objectives&lt;/h2&gt;
@@ -37,7 +322,7 @@ The most convenient way to add Citrus to your project is to import the &lt;code 
       &lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
         &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.citrusframework&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
         &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-bom&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;4.5.1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;4.5.2&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
         &lt;span class=&quot;nt&quot;&gt;&amp;lt;type&amp;gt;&lt;/span&gt;pom&lt;span class=&quot;nt&quot;&gt;&amp;lt;/type&amp;gt;&lt;/span&gt;
         &lt;span class=&quot;nt&quot;&gt;&amp;lt;scope&amp;gt;&lt;/span&gt;import&lt;span class=&quot;nt&quot;&gt;&amp;lt;/scope&amp;gt;&lt;/span&gt;
       &lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
@@ -557,7 +842,7 @@ Then the test may simulate user interactions such as clicking on links and butto
 &lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
 
 &lt;p&gt;The sample application has shown how you can integrate Citrus within a Quarkus test.
-The Quarkus test is able to use the Citrus capabilities because of the Citrus Quarkus extension that is provided since Citrus 4.0.&lt;/p&gt;</content><author><name></name></author></entry><entry><title type="html">Citrus 4.0.0</title><link href="http://0.0.0.0:4000/news/2023/10/25/release-4.0.0/" rel="alternate" type="text/html" title="Citrus 4.0.0" /><published>2023-10-25T00:00:00+02:00</published><updated>2023-10-25T00:00:00+02:00</updated><id>http://0.0.0.0:4000/news/2023/10/25/release-4.0.0</id><content type="html" xml:base="http://0.0.0.0:4000/news/2023/10/25/release-4.0.0/">&lt;p&gt;The community is proud to announce the availability of Citrus 4.0.0!&lt;/p&gt;
+The Quarkus test is able to use the Citrus capabilities because of the Citrus Quarkus extension that is provided since Citrus 4.0.&lt;/p&gt;</content><author><name></name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://0.0.0.0:4000/img/icons/quarkus.png" /></entry><entry><title type="html">Citrus 4.0.0</title><link href="http://0.0.0.0:4000/news/2023/10/25/release-4.0.0/" rel="alternate" type="text/html" title="Citrus 4.0.0" /><published>2023-10-25T00:00:00+02:00</published><updated>2023-10-25T00:00:00+02:00</updated><id>http://0.0.0.0:4000/news/2023/10/25/release-4.0.0</id><content type="html" xml:base="http://0.0.0.0:4000/news/2023/10/25/release-4.0.0/">&lt;p&gt;The community is proud to announce the availability of Citrus 4.0.0!&lt;/p&gt;
 
 &lt;h2 id=&quot;objectives&quot;&gt;Objectives&lt;/h2&gt;
 
@@ -615,7 +900,7 @@ However, the list of new contributors emerges and Citrus benefits from many comm
 &lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.citrusframework&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-bom&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;4.5.1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;4.5.2&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;type&amp;gt;&lt;/span&gt;pom&lt;span class=&quot;nt&quot;&gt;&amp;lt;/type&amp;gt;&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;scope&amp;gt;&lt;/span&gt;import&lt;span class=&quot;nt&quot;&gt;&amp;lt;/scope&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
@@ -1645,1142 +1930,4 @@ Camel provides support for many data formats as you can see in the &lt;a href=&q
 
 &lt;p&gt;That completes the new features in Citrus 3 regarding Apache Camel.&lt;/p&gt;
 
-&lt;p&gt;Please give it a try, provide some feedback and tell us what you think about Camel and Citrus!&lt;/p&gt;</content><author><name>Christoph Deppisch</name></author></entry><entry><title type="html">YAY, Citrus 3.0 is here!</title><link href="http://0.0.0.0:4000/news/2021/08/16/citrus-3.0/" rel="alternate" type="text/html" title="YAY, Citrus 3.0 is here!" /><published>2021-08-16T00:00:00+02:00</published><updated>2021-08-16T00:00:00+02:00</updated><id>http://0.0.0.0:4000/news/2021/08/16/citrus-3.0</id><content type="html" xml:base="http://0.0.0.0:4000/news/2021/08/16/citrus-3.0/">&lt;p&gt;YAY, Citrus 3.0 is here! A few weeks ago we have released a new major release for the Citrus integration testing framework! 
-This is a huge step in the Citrus project! It has been over two years since the last release 2.8.0 and the journey towards 
-3.0 has been a tremendous challenge. Citrus is back and stronger than ever before!&lt;/p&gt;
-
-&lt;p&gt;This summary is here to share our strategy, ideas and all major changes that are part of Citrus 3.0!&lt;/p&gt;
-
-&lt;h1 id=&quot;objectives&quot;&gt;Objectives&lt;/h1&gt;
-
-&lt;p&gt;Citrus 3.0 is a major release, and we want to take that as an opportunity to follow up with some improvements and refactoring that we are eager to do for quite some time. 
-That being said we try to comply with everybody’s need to migrate from older versions. 
-People coming from Citrus 2.x should have a look at the &lt;a href=&quot;https://github.com/citrusframework/citrus/wiki/Citrus-2.x-migration-guide&quot;&gt;2.x migration guide&lt;/a&gt;. 
-In addition to that we take extra care to keep breaking changes on a low-level.&lt;/p&gt;
-
-&lt;p&gt;Here are the main objectives we have in Citrus 3.0&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;#modularize-citrus&quot;&gt;Modularize Citrus&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#java-dsl&quot;&gt;Improved Java DSL&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#make-spring-optional&quot;&gt;Make Spring optional&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#update-dependencies&quot;&gt;Update dependencies&lt;/a&gt; to new major versions (Cucumber, Apache Camel, Spring Framework, …)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;modularize-citrus&quot;&gt;Modularize Citrus&lt;/h2&gt;
-
-&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-core&lt;/code&gt; module is the heart of the framework and contains all capabilities that Citrus has to offer. 
-So if you include &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-core&lt;/code&gt; as a dependency in your project you will load a lot of artifacts as transitive dependencies (e.g. from Maven central). 
-Loading that huge amount of libraries is not a good thing especially when you do not need all features provided by Citrus (e.g. Groovy script support, Xhtml, XML validation and so on).&lt;/p&gt;
-
-&lt;p&gt;With &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-core&lt;/code&gt; it is all or nothing. So we are keen to modularize the core module into several smaller pieces. 
-The user can then choose which of the Citrus modules and features to include into the project or even overwrite and substitute certain pieces with own implementations.&lt;/p&gt;
-
-&lt;h3 id=&quot;module-categories-and-structure&quot;&gt;Module categories and structure&lt;/h3&gt;
-
-&lt;p&gt;In Citrus 3.0 we end up with following module categories:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://github.com/citrusframework/citrus/tree/master/core&quot;&gt;Core modules&lt;/a&gt;&lt;/p&gt;
-
-    &lt;p&gt;API and base implementations of core Citrus features. There will be a separate &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-base&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-spring&lt;/code&gt; module where latter encapsulates the Spring Framework support in Citrus (more about that in &lt;a href=&quot;#make-spring-optional&quot;&gt;make Spring optional&lt;/a&gt;).&lt;/p&gt;
-
-    &lt;table&gt;
-      &lt;thead&gt;
-        &lt;tr&gt;
-          &lt;th&gt;Module&lt;/th&gt;
-          &lt;th&gt;Description&lt;/th&gt;
-        &lt;/tr&gt;
-      &lt;/thead&gt;
-      &lt;tbody&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-api&lt;/td&gt;
-          &lt;td&gt;Interfaces, enums, constants&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-base&lt;/td&gt;
-          &lt;td&gt;Default implementation of &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-api&lt;/code&gt;&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-spring&lt;/td&gt;
-          &lt;td&gt;Adds Spring Framework support to &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-base&lt;/code&gt; (Bean definition parsers, Application context configuration, Autowiring in factory beans&lt;/td&gt;
-        &lt;/tr&gt;
-      &lt;/tbody&gt;
-    &lt;/table&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://github.com/citrusframework/citrus/tree/master/runtime&quot;&gt;Runtime modules&lt;/a&gt;&lt;/p&gt;
-
-    &lt;p&gt;Test execution modules such as JUnit, TestNG and Cucumber representing different ways to run Citrus tests.&lt;/p&gt;
-
-    &lt;table&gt;
-      &lt;thead&gt;
-        &lt;tr&gt;
-          &lt;th&gt;Module&lt;/th&gt;
-          &lt;th&gt;Description&lt;/th&gt;
-        &lt;/tr&gt;
-      &lt;/thead&gt;
-      &lt;tbody&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-cucumber&lt;/td&gt;
-          &lt;td&gt;Run Citrus tests as Cucumber BDD feature files&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-testng&lt;/td&gt;
-          &lt;td&gt;Run tests via TestNG unit test framework&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-junit&lt;/td&gt;
-          &lt;td&gt;Run tests via JUnit4 unit test framework&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-junit5&lt;/td&gt;
-          &lt;td&gt;Run tests via JUnit5 unit test framework&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-main&lt;/td&gt;
-          &lt;td&gt;Run tests via Java main CLI&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-groovy&lt;/td&gt;
-          &lt;td&gt;Run Citrus tests as Groovy scripts (to be continued …)&lt;/td&gt;
-        &lt;/tr&gt;
-      &lt;/tbody&gt;
-    &lt;/table&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://github.com/citrusframework/citrus/tree/master/endpoints&quot;&gt;Endpoint modules&lt;/a&gt;&lt;/p&gt;
-
-    &lt;p&gt;Endpoints connect Citrus to a message transport like Apache Kafka, JMS, Http REST, Ftp, Mail and many more. Each endpoint may provide producer/consumer or client/server components to exchange message content over the respective transport.&lt;/p&gt;
-
-    &lt;table&gt;
-      &lt;thead&gt;
-        &lt;tr&gt;
-          &lt;th&gt;Module&lt;/th&gt;
-          &lt;th&gt;Description&lt;/th&gt;
-        &lt;/tr&gt;
-      &lt;/thead&gt;
-      &lt;tbody&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-camel&lt;/td&gt;
-          &lt;td&gt;Interact with Apache Camel context, routes and control bus&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-ftp&lt;/td&gt;
-          &lt;td&gt;Connect to and simulate FTP/SFTP servers&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-http&lt;/td&gt;
-          &lt;td&gt;Http REST support&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-jdbc&lt;/td&gt;
-          &lt;td&gt;Simulate JDBC drivers, connections and transactions&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-jms&lt;/td&gt;
-          &lt;td&gt;Publish/consume messages on a JMS message broker&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-kafka&lt;/td&gt;
-          &lt;td&gt;Exchange data via Kafka messaging&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-jmx&lt;/td&gt;
-          &lt;td&gt;Call MBean operations and simulate MBeans&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-mail&lt;/td&gt;
-          &lt;td&gt;Client and server side SMTP mail support&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-rmi&lt;/td&gt;
-          &lt;td&gt;Call RMI via JNDI registry lookup and simulate RMI services&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-ssh&lt;/td&gt;
-          &lt;td&gt;Connect to servers via SSH and simulate SSH servers&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-vertx&lt;/td&gt;
-          &lt;td&gt;Exchange messages on the Vert.x event bus&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-websocket&lt;/td&gt;
-          &lt;td&gt;Websocket support&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-ws&lt;/td&gt;
-          &lt;td&gt;SOAP WebServices support including SOAP envelope handling, WSDL, WS-Security, …&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-zookeeper&lt;/td&gt;
-          &lt;td&gt;Connect with Zookeeper servers&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-spring-integration&lt;/td&gt;
-          &lt;td&gt;Exchange messages on Spring Integration message channels&lt;/td&gt;
-        &lt;/tr&gt;
-      &lt;/tbody&gt;
-    &lt;/table&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://github.com/citrusframework/citrus/tree/master/validation&quot;&gt;Validation modules&lt;/a&gt;&lt;/p&gt;
-
-    &lt;p&gt;When Citrus receives messages the test case is eager to verify the message content. Validation modules implement message validators and mechanisms to validate different data formats such as Json, XML, plaintext, binary content and so on. Some validation modules also add support for verification tools such as Groovy script validation, Hamcrest and AssertJ.&lt;/p&gt;
-
-    &lt;table&gt;
-      &lt;thead&gt;
-        &lt;tr&gt;
-          &lt;th&gt;Module&lt;/th&gt;
-          &lt;th&gt;Description&lt;/th&gt;
-        &lt;/tr&gt;
-      &lt;/thead&gt;
-      &lt;tbody&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-validation-xml&lt;/td&gt;
-          &lt;td&gt;XML, Xpath and Xhtml message validation&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-validation-json&lt;/td&gt;
-          &lt;td&gt;Json and JsonPath message validation&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-validation-text&lt;/td&gt;
-          &lt;td&gt;Plain text message validation&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-validation-binary&lt;/td&gt;
-          &lt;td&gt;Validate binary message content using input streams or &lt;code class=&quot;highlighter-rouge&quot;&gt;base64&lt;/code&gt; encoding&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-validation-groovy&lt;/td&gt;
-          &lt;td&gt;Adds Groovy script validation for XML, Json, SQL result set&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-validation-hamcrest&lt;/td&gt;
-          &lt;td&gt;Hamcrest matcher support like &lt;code class=&quot;highlighter-rouge&quot;&gt;assertThat(oneOf(is(foo), is(foobar)))&lt;/code&gt;&lt;/td&gt;
-        &lt;/tr&gt;
-      &lt;/tbody&gt;
-    &lt;/table&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://github.com/citrusframework/citrus/tree/master/connectors&quot;&gt;Connector modules&lt;/a&gt;&lt;/p&gt;
-
-    &lt;p&gt;Connectors are similar to endpoints yet these components connect Citrus to a foreign technology or framework rather than implementing a message transport. Connectors typically provide a client side only implementation that enable Citrus to interact with a service or framework (e.g. Docker, Kubernetes, Selenium web driver).&lt;/p&gt;
-
-    &lt;table&gt;
-      &lt;thead&gt;
-        &lt;tr&gt;
-          &lt;th&gt;Module&lt;/th&gt;
-          &lt;th&gt;Description&lt;/th&gt;
-        &lt;/tr&gt;
-      &lt;/thead&gt;
-      &lt;tbody&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-sql&lt;/td&gt;
-          &lt;td&gt;Connect with a relational database&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-docker&lt;/td&gt;
-          &lt;td&gt;Connect with Docker deamon to manage images and containers&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-selenium&lt;/td&gt;
-          &lt;td&gt;Connect with web driver to run web-based UI tests&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-kubernetes&lt;/td&gt;
-          &lt;td&gt;Connect to Kubernetes cluster managing PODs services and other resources&lt;/td&gt;
-        &lt;/tr&gt;
-      &lt;/tbody&gt;
-    &lt;/table&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://github.com/citrusframework/citrus/tree/master/tools&quot;&gt;Tools&lt;/a&gt;&lt;/p&gt;
-
-    &lt;p&gt;Tooling is important and the modules in this category provide little helpers and plugins for different use cases where the usage of Citrus needs to be simplified (e.g. Maven plugins, test generators, etc.)&lt;/p&gt;
-
-    &lt;table&gt;
-      &lt;thead&gt;
-        &lt;tr&gt;
-          &lt;th&gt;Module&lt;/th&gt;
-          &lt;th&gt;Description&lt;/th&gt;
-        &lt;/tr&gt;
-      &lt;/thead&gt;
-      &lt;tbody&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-restdocs&lt;/td&gt;
-          &lt;td&gt;Auto generate request/response documentation for Http REST and SOAP communication&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-maven-plugin&lt;/td&gt;
-          &lt;td&gt;Maven plugins to create tests&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-archetypes&lt;/td&gt;
-          &lt;td&gt;Maven archetypes for project code generation&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-test-generator&lt;/td&gt;
-          &lt;td&gt;Create and auto generate test cases (e.g. from Swagger OpenAPI specifications)&lt;/td&gt;
-        &lt;/tr&gt;
-      &lt;/tbody&gt;
-    &lt;/table&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://github.com/citrusframework/citrus/tree/master/catalog&quot;&gt;Catalog modules&lt;/a&gt;&lt;/p&gt;
-
-    &lt;p&gt;A catalog in Citrus combines several other modules into a set of modules that usually get used together. The &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-core&lt;/code&gt; module for instance combines all available validation modules, runtimes and the Citrus Spring support into a single artifact. So the user just needs to add &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-core&lt;/code&gt; to the project and can use everything Citrus has to offer (exactly like Citrus 2.x is doing).&lt;/p&gt;
-
-    &lt;table&gt;
-      &lt;thead&gt;
-        &lt;tr&gt;
-          &lt;th&gt;Module&lt;/th&gt;
-          &lt;th&gt;Description&lt;/th&gt;
-        &lt;/tr&gt;
-      &lt;/thead&gt;
-      &lt;tbody&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-bom&lt;/td&gt;
-          &lt;td&gt;Bill of material holding all modules for imports&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-core&lt;/td&gt;
-          &lt;td&gt;Default Citrus capabilities (validation, runtime, Spring support) combined into one single module (exactly the same what you have had with previous versions)&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-endpoint-catalog&lt;/td&gt;
-          &lt;td&gt;Combine all endpoints to a single source for endpoint builders&lt;/td&gt;
-        &lt;/tr&gt;
-      &lt;/tbody&gt;
-    &lt;/table&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://github.com/citrusframework/citrus/tree/master/vintage&quot;&gt;Vintage modules&lt;/a&gt;&lt;/p&gt;
-
-    &lt;p&gt;We are about to take a major step in Citrus and this implies some backward incompatibilities that &lt;em&gt;“vintage”&lt;/em&gt; modules try to solve for users that still need to stick with an older version of Citrus for some reason. With these &lt;em&gt;“vintage”&lt;/em&gt; modules you can still run older test cases with the new Citrus 3.x code base.&lt;/p&gt;
-
-    &lt;table&gt;
-      &lt;thead&gt;
-        &lt;tr&gt;
-          &lt;th&gt;Module&lt;/th&gt;
-          &lt;th&gt;Description&lt;/th&gt;
-        &lt;/tr&gt;
-      &lt;/thead&gt;
-      &lt;tbody&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-java-dsl&lt;/td&gt;
-          &lt;td&gt;Old Java DSL implementation (designer vs. runner) to be used for Citrus 2.x Java DSL tests&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-arquillian&lt;/td&gt;
-          &lt;td&gt;Arquillian runtime for Citrus&lt;/td&gt;
-        &lt;/tr&gt;
-      &lt;/tbody&gt;
-    &lt;/table&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://github.com/citrusframework/citrus/tree/master/utils&quot;&gt;Utility modules&lt;/a&gt;&lt;/p&gt;
-
-    &lt;p&gt;Module in the utility category provide tooling for internal usage only. For instance this is a shared test library that is used in unit testing by several other modules. The modules are only used when building the Citrus modules. Utility modules usually are not included in a release so they won’t be pushed to Maven central.&lt;/p&gt;
-
-    &lt;table&gt;
-      &lt;thead&gt;
-        &lt;tr&gt;
-          &lt;th&gt;Module&lt;/th&gt;
-          &lt;th&gt;Description&lt;/th&gt;
-        &lt;/tr&gt;
-      &lt;/thead&gt;
-      &lt;tbody&gt;
-        &lt;tr&gt;
-          &lt;td&gt;citrus-test-support&lt;/td&gt;
-          &lt;td&gt;Internal helper library added as test scoped dependency for unit testing in other modules. Holds shared unit testing helpers.&lt;/td&gt;
-        &lt;/tr&gt;
-      &lt;/tbody&gt;
-    &lt;/table&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;how-to-use-the-new-module-structure&quot;&gt;How to use the new module structure&lt;/h3&gt;
-
-&lt;p&gt;Users that do not want to change much in their project regarding the dependency setup just continue to add &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-core&lt;/code&gt; dependency.&lt;/p&gt;
-
-&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;com.consol.citrus&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-core&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;1.1.0&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This will get you the same capabilities as in Citrus 2.x with all validation modules, runtime and Spring support enabled. The &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-core&lt;/code&gt; is a catalog module combining several other modules that get automatically added to your project.&lt;/p&gt;
-
-&lt;p&gt;The downside of this approach is that you get a lot of features and transitive dependencies that you might not need in your project. Fortunately you can exclude some features from &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-core&lt;/code&gt; with the new module structure in 3.x.&lt;/p&gt;
-
-&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;com.consol.citrus&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-core&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;1.1.0&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;exclusions&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;exclusion&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;com.consol.citrus&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-validation-groovy&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/exclusion&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;exclusion&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;com.consol.citrus&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-testng&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/exclusion&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/exclusions&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The example above excludes the Groovy validation capabilities and the TestNG runtime from the project. 
-The features will not be added to your project and fewer artifacts get downloaded.&lt;/p&gt;
-
-&lt;p&gt;Of course there is a lot more to exclude and you might end up having a more complicated configuration for all those exclusions. 
-For people trying to operate with just what they need in their project the pull approach might be the way to go. Here you add just &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-base&lt;/code&gt; as dependency.&lt;/p&gt;
-
-&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;com.consol.citrus&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-base&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;1.1.0&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;If you want to use Spring Framework support you may also add:&lt;/p&gt;
-
-&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;com.consol.citrus&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-spring&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;1.1.0&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;With the new modular setup in Citrus not every feature is enabled by default. 
-As you write and execute tests in your project you might then run into errors because you are using a Citrus feature 
-that has not yet been added to your project. Something like:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;FAILURE: Caused by: NoSuchValidationMatcherException: Can not find validation matcher &quot;assertThat&quot; in library citrusValidationMatcherLibrary ()
-	at com/consol/citrus/jms/integration/JmsTopicDurableSubscriberIT(iterate:26-48)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The error indicates that you need to add the Hamcrest validation matcher feature to the project. 
-You can do so by adding the respective module dependency in your project:&lt;/p&gt;
-
-&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;com.consol.citrus&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-validation-hamcrest&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;1.1.0&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The awesomeness about it is that you can add your favorite matcher implementation as a dependency 
-(we still need to add AssertJ support in Citrus, so we would love a contribution doing that!).&lt;/p&gt;
-
-&lt;h3 id=&quot;what-happened-to-citrus--model-modules&quot;&gt;What happened to citrus-*-model modules?&lt;/h3&gt;
-
-&lt;p&gt;Each module in former Citrus versions has had a little brother that generated model classes from XSD schema files.
-The XSD schemas are used for custom Spring bean definition parsing and were located in the &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-*-model&lt;/code&gt; modules (e.g. citrus-config.xsd).
-The initial idea behind that separate model module was to separate model classes from implementations in order to use that model in a user interface called &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-admin&lt;/code&gt;.
-With Citrus 3.x we included the XSD schemas into the implementation modules so we do not have to maintain all the &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-*-model&lt;/code&gt; modules separately (also one less artifact to load, &lt;em&gt;excellent&lt;/em&gt;).&lt;/p&gt;
-
-&lt;h2 id=&quot;java-dsl&quot;&gt;Java DSL&lt;/h2&gt;
-
-&lt;p&gt;Citrus provides a Java domain specific language to write integration tests with a fluent API. 
-The API makes use of the fluent builder pattern to specify test actions.&lt;/p&gt;
-
-&lt;p&gt;In Citrus 2.x all Java DSL related test action builders were located in a separate module called &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-java-dsl&lt;/code&gt;. 
-For better maintainability and modularization reasons the test action builders have moved into the individual modules 
-where the test action implementation is located. 
-In fact the Java DSL builders are now inner classes of the respective test action.&lt;/p&gt;
-
-&lt;p&gt;In former releases users had to choose between the two different approaches to write Java DSL tests with this fluent API:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://citrusframework.org/citrus/reference/2.8.0/html/index.html#java-dsl-test-designer&quot;&gt;Test Designer&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://citrusframework.org/citrus/reference/2.8.0/html/index.html#java-dsl-test-runner&quot;&gt;Test Runner&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Just like many things in life both approaches have had individual advantages and downsides. 
-We have accepted the challenge to combine both approaches designer and runner into a single approach that combines the 
-advantages and minimizes downsides.&lt;/p&gt;
-
-&lt;p&gt;In Citrus 3.x we end up using a simplified Java DSL that uses the look and feel of the former designer API but executes 
-each step immediately to keep debugging options and the capability to add custom code between steps.&lt;/p&gt;
-
-&lt;p&gt;The separation between designer and runner has been removed completely. So there is only one single source of truth the 
-&lt;code class=&quot;highlighter-rouge&quot;&gt;TestCaseRunner&lt;/code&gt; and the fluent Java API for writing tests in Citrus. 
-This simplifies the implementation in other modules (Cucumber, TestNG, JUnit) a lot.&lt;/p&gt;
-
-&lt;p&gt;This is how a new Java DSL test looks like in Citrus 3.x:&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HelloServiceIT&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TestNGCitrusSpringSupport&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HttpClient&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;httpClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;KafkaEndpoint&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;orderEvents&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@CitrusTest&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;given&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;variable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;orderId&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-
-        &lt;span class=&quot;n&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;httpClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/orders&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;contentType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;APPLICATION_FORM_URLENCODED&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;order=${orderId}&amp;amp;name=foo&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-
-        &lt;span class=&quot;n&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;orderEvents&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Order ${orderId} has been placed&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-
-        &lt;span class=&quot;n&quot;&gt;and&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;httpClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HttpStatus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;OK&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The test extends &lt;code class=&quot;highlighter-rouge&quot;&gt;TestNGCitrusSpringSupport&lt;/code&gt;. 
-This gives you the annotation support for &lt;code class=&quot;highlighter-rouge&quot;&gt;@CitrusTest&lt;/code&gt; so the test is added to the Citrus test reporting. 
-The base class also gives you the test action execution methods &lt;code class=&quot;highlighter-rouge&quot;&gt;given()&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;when()&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;then()&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;and()&lt;/code&gt;. 
-This relates to the BDD Gherkin language and is widely known to a lot of people out there. 
-If you do not want to use this BDD approach in your test you can also use the basic &lt;code class=&quot;highlighter-rouge&quot;&gt;run()&lt;/code&gt; method or its shortcut version &lt;code class=&quot;highlighter-rouge&quot;&gt;$()&lt;/code&gt;instead.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;httpClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/orders&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;contentType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;APPLICATION_FORM_URLENCODED&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;order=${orderId}&amp;amp;name=foo&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Former Citrus versions provided many base classes which confused users. 
-The classes &lt;code class=&quot;highlighter-rouge&quot;&gt;TestNGCitrusSupport&lt;/code&gt;/&lt;code class=&quot;highlighter-rouge&quot;&gt;JUnit4CitrusSupport&lt;/code&gt; are now the single base class for all tests including XML and Java DSL tests.&lt;/p&gt;
-
-&lt;p&gt;The JUnit 5 support provides a &lt;code class=&quot;highlighter-rouge&quot;&gt;@CitrusSupport&lt;/code&gt; extension annotation.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@CitrusSpringSupport&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@ContextConfiguration&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;classes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CitrusSpringConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HelloServiceIT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HttpClient&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;httpClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;KafkaEndpoint&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;orderEvents&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@CitrusTest&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@CitrusResource&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GherkinTestActionRunner&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;given&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;variable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;orderId&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-
-        &lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;httpClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/orders&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;contentType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;APPLICATION_FORM_URLENCODED&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;order=${orderId}&amp;amp;name=foo&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-
-        &lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;orderEvents&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Order ${orderId} has been placed&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-
-        &lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;and&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;httpClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HttpStatus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;OK&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;make-spring-optional&quot;&gt;Make Spring optional&lt;/h2&gt;
-
-&lt;p&gt;The Spring framework is a wide spread and well appreciated framework for Java applications.
-The framework provides an awesome set of projects, libraries and tools.
-The dependency injection and IoC concepts introduced with Spring are groundbreaking.&lt;/p&gt;
-
-&lt;p&gt;Some people prefer to choose other approaches though to work with dependency injection. 
-Others do struggle with mastering Citrus and Spring as new frameworks at the same time. 
-Both frameworks Spring and Citrus are very powerful and newbies sometimes feel overwhelmed with having to deal with so 
-much new stuff at the same time.&lt;/p&gt;
-
-&lt;p&gt;In former releases Citrus has been very tied to Spring and in some cases this has been a showstopper to work with Citrus for mentioned reasons.&lt;/p&gt;
-
-&lt;p&gt;In Citrus 3.x we make Spring optional in &lt;code class=&quot;highlighter-rouge&quot;&gt;core&lt;/code&gt; modules so people can choose to enable/disable Spring support. 
-In particular this affects the way Citrus components are started and linked to each other via the Spring application context.&lt;/p&gt;
-
-&lt;h3 id=&quot;citrus-and-spring&quot;&gt;Citrus and Spring&lt;/h3&gt;
-
-&lt;p&gt;When Spring is enabled for Citrus all components are loaded with a Spring application context. 
-This enables autowiring and bean definition parsing. 
-Latter bean definition parsing for custom components is mandatory when using XML based configuration and XML test cases in Citrus.&lt;/p&gt;
-
-&lt;p&gt;Users enable the Spring support in Citrus by adding the following module:&lt;/p&gt;
-
-&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;com.consol.citrus&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-spring&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;1.1.0&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;When using &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-core&lt;/code&gt; dependency this Spring support is enabled by default in order to adjust with what has been configured in previous Citrus versions.&lt;/p&gt;
-
-&lt;h3 id=&quot;citrus-standalone&quot;&gt;Citrus standalone&lt;/h3&gt;
-
-&lt;p&gt;In case you exclude the &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-spring&lt;/code&gt; module for Citrus you will load the same components and features but only without Spring framework support. 
-Keep in mind only the XML based configuration and XML test cases continue to require Spring.&lt;/p&gt;
-
-&lt;p&gt;In non-Spring mode custom components can be directly configured in the Citrus context then.
-Also Citrus uses a resource common path lookup mechanism to identify common components that get loaded automatically. 
-So you simply add components such as &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-validation-json&lt;/code&gt; to your project classpath and the Json validation capabilities are loaded automatically.&lt;/p&gt;
-
-&lt;p&gt;The resource path lookup is a mechanism to identify components in Citrus that should be loaded automatically when the Citrus application is started. 
-You only need to add components to the classpath (e.g. by adding a Maven dependency) and the resource gets loaded automatically. 
-This mechanism is used to decouple modules and to provide a non-Spring mode for Citrus.&lt;/p&gt;
-
-&lt;p&gt;Feel free to choose which approach fits best for your needs. Citrus running with or without Spring.&lt;/p&gt;
-
-&lt;h2 id=&quot;update-dependencies&quot;&gt;Update dependencies&lt;/h2&gt;
-
-&lt;p&gt;It has been quite some time since the last major Citrus release. 
-So this is a point where we catch up with all the other libraries and dependencies that evolved over time. 
-In particular this is Apache Camel, Spring and Cucumber that all evolved with major versions in the past.&lt;/p&gt;
-
-&lt;p&gt;The following might be the most important updates:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Java 11&lt;/li&gt;
-  &lt;li&gt;Spring framework 5.3&lt;/li&gt;
-  &lt;li&gt;Apache Camel 3.9&lt;/li&gt;
-  &lt;li&gt;TestNG 7.1&lt;/li&gt;
-  &lt;li&gt;JUnit 5.7&lt;/li&gt;
-  &lt;li&gt;Jetty 9.4&lt;/li&gt;
-  &lt;li&gt;Kafka 2.8&lt;/li&gt;
-  &lt;li&gt;Selenium 3.141&lt;/li&gt;
-  &lt;li&gt;Log4J2 2.14&lt;/li&gt;
-  &lt;li&gt;Cucumber 6.10&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;whats-next&quot;&gt;What’s next!?&lt;/h2&gt;
-
-&lt;p&gt;So 3.0 is the first version of the Citrus 3.x release train. And we are not done yet! 
-We continue to work on our goals to simplifying the ways of writing integration tests so Citrus is ready for the future challenges of software testing.&lt;/p&gt;
-
-&lt;p&gt;We love to get feedback so please give it a try and tell us what you think about Citrus 3.0. 
-Now is the time to raise your voice to improve the framework!&lt;/p&gt;</content><author><name>Christoph Deppisch</name></author></entry><entry><title type="html">Kafka sample</title><link href="http://0.0.0.0:4000/samples/kafka/" rel="alternate" type="text/html" title="Kafka sample" /><published>2018-09-27T00:00:00+02:00</published><updated>2018-09-27T00:00:00+02:00</updated><id>http://0.0.0.0:4000/samples/sample-kafka</id><content type="html" xml:base="http://0.0.0.0:4000/samples/kafka/">&lt;p&gt;This sample uses Kafka topics in order to place new todo entries in the system under test. The Kafka capabilities are
-also described in &lt;a href=&quot;https://citrusframework.org/citrus/reference/html#kafka&quot;&gt;reference guide&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;objectives&quot;&gt;Objectives&lt;/h2&gt;
-
-&lt;p&gt;The &lt;a href=&quot;/samples/todo-app/&quot;&gt;todo-list&lt;/a&gt; sample application provides a Kafka inbound topic listener for adding new todo entries.
-We can send JSON messages in order to create new todo entries that are stored to the in memory storage.&lt;/p&gt;
-
-&lt;p&gt;The Citrus project needs a Kafka server that is provided as embedded server cluster. The embedded server is a singleton embedded Zookeeper
-server and a single Kafka server with some test topics provided. The Kafka infrastructure is automatically started
-with the tests. So the Citrus Kafka producer endpoint just needs to connect to the Kafka server broker.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Bean&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;EmbeddedKafkaServer&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;embeddedKafkaServer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;EmbeddedKafkaServerBuilder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;kafkaServerPort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;9092&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;topics&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;todo.inbound&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    
-&lt;span class=&quot;nd&quot;&gt;@Bean&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;KafkaEndpoint&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;todoKafkaEndpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CitrusEndpoints&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;kafka&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;asynchronous&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;localhost:9092&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;topic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;todo.inbound&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The endpoint connects to the server cluster and uses the topic &lt;code class=&quot;highlighter-rouge&quot;&gt;todo.inbound&lt;/code&gt;. We can now place new todo entries to that topic in our test.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;todoKafkaEndpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;KafkaMessageHeaders&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;MESSAGE_KEY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;${todoName}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;{ \&quot;title\&quot;: \&quot;${todoName}\&quot;, \&quot;description\&quot;: \&quot;${todoDescription}\&quot; }&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;We can add a special message header &lt;strong&gt;KafkaMessageHeaders.MESSAGE_KEY&lt;/strong&gt; which is the Kafka producer record message key. The message key is automatically serialized/deserialized as String value. 
-The Kafka record value is also defined to be a String in JSON format. The todo app will consume the Kafka record and create a proper todo entry from that record.&lt;/p&gt;
-
-&lt;p&gt;The Kafka operation is asynchronous so we do not get any response back. Next action in our test deals with validating that the new todo 
-entry has been added successfully. Please review the next steps in the sample test that perform proper validation.&lt;/p&gt;
-
-&lt;h2 id=&quot;run&quot;&gt;Run&lt;/h2&gt;
-
-&lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt; This test depends on the &lt;a href=&quot;/samples/todo-app/&quot;&gt;todo-app&lt;/a&gt; WAR which must have been installed into your local maven repository using &lt;code class=&quot;highlighter-rouge&quot;&gt;mvn clean install&lt;/code&gt; beforehand.&lt;/p&gt;
-
-&lt;p&gt;The sample application uses Maven as build tool. So you can compile, package and test the
-sample with Maven.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; mvn clean verify -Dembedded
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This executes the complete Maven build lifecycle. The embedded option automatically starts a Jetty web
-container before the integration test phase. The todo-list system under test is automatically 
-deployed in this phase. After that the Citrus test cases are able to interact with the todo-list application in the integration test phase.&lt;/p&gt;
-
-&lt;p&gt;During the build you will see Citrus performing some integration tests.
-After the tests are finished the embedded Jetty web container and the todo-list application are automatically stopped.&lt;/p&gt;
-
-&lt;p&gt;Read further the instructions &lt;a href=&quot;/samples/run/&quot;&gt;how to run&lt;/a&gt; the sample.&lt;/p&gt;</content><author><name></name></author></entry><entry><title type="html">Upcoming changes - What the future holds for Citrus</title><link href="http://0.0.0.0:4000/news/2018/09/19/upcoming-changes/" rel="alternate" type="text/html" title="Upcoming changes - What the future holds for Citrus" /><published>2018-09-19T00:00:00+02:00</published><updated>2018-09-19T00:00:00+02:00</updated><id>http://0.0.0.0:4000/news/2018/09/19/upcoming-changes</id><content type="html" xml:base="http://0.0.0.0:4000/news/2018/09/19/upcoming-changes/">&lt;p&gt;More than ten years ago I started out on a journey to implement a Java testing framework that provides automated integration tests for message-based enterprise applications with support for multiple messaging transports and data formats.&lt;/p&gt;
-
-&lt;p&gt;The result is called &lt;em&gt;&lt;a href=&quot;https://github.com/citrusframework/citrus&quot;&gt;Citrus&lt;/a&gt;&lt;/em&gt; which is an Open Source project used by many development and testing teams all over the world. Ever since then I have spent lots of energy to further developing the Citrus framework and spreading the word for fully automated integration tests. 
-It has been a very enjoyable and adventurous journey that will change somewhat in the near future. I am about to leave the company &lt;a href=&quot;https://www.consol.de/&quot;&gt;ConSol&lt;/a&gt; and move to distant shores along the Java Open Source community. ConSol has always been and continues to be a great sponsor and supporter of the Citrus framework.&lt;/p&gt;
-
-&lt;p&gt;As part of this move I will handover the lead developer role of Citrus to my colleague &lt;a href=&quot;https://twitter.com/SvenHettwer&quot;&gt;@SvenHettwer&lt;/a&gt;. Sven is a perfect match for this position as I have spent the past twelve months working very closely with him, providing lots of insights and in-depth knowledge, on the Citrus framework. 
-Project maintenance and professional consulting will be continued as before by ConSol and its test automation specialists.&lt;/p&gt;
-
-&lt;p&gt;As for me, I will be taking on a new opportunity (to be announced soon). Having said that I will try to continue to be part of the Citrus Open Source community. As my passion for automated integration testing is still very strong I will be thrilled to be joining forces along the path.&lt;/p&gt;
-
-&lt;p&gt;I am very proud of what Citrus and the community behind it have accomplished over the past decade and I am very excited to see what the future holds. I am absolutely positive that Citrus will continue to master the challenges in test automation for the software development community.
-I can not wait to see that the framework continues to evolve with the goal to helping people write well tested software.&lt;/p&gt;
-
-&lt;p&gt;Christoph Deppisch (&lt;a href=&quot;https://twitter.com/freaky_styley&quot;&gt;@freaky_styley&lt;/a&gt;)&lt;/p&gt;
-
-&lt;p&gt;Developer &amp;amp; Founder, Citrus&lt;/p&gt;</content><author><name>Christoph Deppisch</name></author></entry><entry><title type="html">WSDL auto generated sample</title><link href="http://0.0.0.0:4000/samples/wsdl/" rel="alternate" type="text/html" title="WSDL auto generated sample" /><published>2018-06-21T00:00:00+02:00</published><updated>2018-06-21T00:00:00+02:00</updated><id>http://0.0.0.0:4000/samples/sample-wsdl</id><content type="html" xml:base="http://0.0.0.0:4000/samples/wsdl/">&lt;p&gt;This sample uses a WSDL (Web Service Description Language) specification to generate tests for the todo app system under test. You can read more about the 
-Citrus test generation features in [reference guide][4]&lt;/p&gt;
-
-&lt;h2 id=&quot;objectives&quot;&gt;Objectives&lt;/h2&gt;
-
-&lt;p&gt;The &lt;a href=&quot;../todo-app/README.md&quot;&gt;todo-list&lt;/a&gt; sample application manages todo entries. The application provides a SOAP Web Service API 
-for adding new entries and listing all entries. This API is specified using a WSDL file.&lt;/p&gt;
-
-&lt;p&gt;The sample API specification looks like this.&lt;/p&gt;
-
-&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;wsdl:definitions&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.xmlsoap.org/wsdl/soap/&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:soap=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.xmlsoap.org/wsdl/soap/&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:tns=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://citrusframework.org/samples/todolist&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:wsdl=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.xmlsoap.org/wsdl/&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;TodoList&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;targetNamespace=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://citrusframework.org/samples/todolist&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;wsdl:types&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;xs:schema&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:xs=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:tns=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://citrusframework.org/samples/todolist&quot;&lt;/span&gt;
-               &lt;span class=&quot;na&quot;&gt;targetNamespace=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://citrusframework.org/samples/todolist&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;elementFormDefault=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;qualified&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;xs:element&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;addTodoEntryRequest&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;xs:complexType&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;xs:sequence&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;xs:element&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;title&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;xs:string&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;xs:element&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;description&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;xs:string&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;minOccurs=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;/xs:sequence&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/xs:complexType&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/xs:element&amp;gt;&lt;/span&gt;
-
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;xs:element&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;addTodoEntryResponse&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;xs:complexType&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;xs:sequence&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;xs:element&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;success&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;xs:boolean&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;/xs:sequence&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/xs:complexType&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/xs:element&amp;gt;&lt;/span&gt;
-
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;xs:element&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;getTodoListRequest&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;xs:element&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;getTodoListResponse&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;xs:complexType&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;xs:sequence&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;xs:element&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;list&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-              &lt;span class=&quot;nt&quot;&gt;&amp;lt;xs:complexType&amp;gt;&lt;/span&gt;
-                &lt;span class=&quot;nt&quot;&gt;&amp;lt;xs:sequence&amp;gt;&lt;/span&gt;
-                  &lt;span class=&quot;nt&quot;&gt;&amp;lt;xs:element&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;todoEntry&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;minOccurs=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;maxOccurs=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;unbounded&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-                    &lt;span class=&quot;nt&quot;&gt;&amp;lt;xs:complexType&amp;gt;&lt;/span&gt;
-                      &lt;span class=&quot;nt&quot;&gt;&amp;lt;xs:sequence&amp;gt;&lt;/span&gt;
-                        &lt;span class=&quot;nt&quot;&gt;&amp;lt;xs:element&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;id&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;xs:string&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-                        &lt;span class=&quot;nt&quot;&gt;&amp;lt;xs:element&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;title&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;xs:string&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-                        &lt;span class=&quot;nt&quot;&gt;&amp;lt;xs:element&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;description&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;xs:string&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;minOccurs=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-                        &lt;span class=&quot;nt&quot;&gt;&amp;lt;xs:element&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;attachment&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;minOccurs=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-                          &lt;span class=&quot;nt&quot;&gt;&amp;lt;xs:complexType&amp;gt;&lt;/span&gt;
-                            &lt;span class=&quot;nt&quot;&gt;&amp;lt;xs:sequence&amp;gt;&lt;/span&gt;
-                              &lt;span class=&quot;nt&quot;&gt;&amp;lt;xs:element&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;cid&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;xs:string&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-                              &lt;span class=&quot;nt&quot;&gt;&amp;lt;xs:element&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;contentType&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;xs:string&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-                              &lt;span class=&quot;nt&quot;&gt;&amp;lt;xs:element&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;data&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;xs:string&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-                            &lt;span class=&quot;nt&quot;&gt;&amp;lt;/xs:sequence&amp;gt;&lt;/span&gt;
-                          &lt;span class=&quot;nt&quot;&gt;&amp;lt;/xs:complexType&amp;gt;&lt;/span&gt;
-                        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/xs:element&amp;gt;&lt;/span&gt;
-                        &lt;span class=&quot;nt&quot;&gt;&amp;lt;xs:element&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;done&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;xs:boolean&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;minOccurs=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-                      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/xs:sequence&amp;gt;&lt;/span&gt;
-                    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/xs:complexType&amp;gt;&lt;/span&gt;
-                  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/xs:element&amp;gt;&lt;/span&gt;
-                &lt;span class=&quot;nt&quot;&gt;&amp;lt;/xs:sequence&amp;gt;&lt;/span&gt;
-              &lt;span class=&quot;nt&quot;&gt;&amp;lt;/xs:complexType&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;/xs:element&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;/xs:sequence&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/xs:complexType&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/xs:element&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/xs:schema&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/wsdl:types&amp;gt;&lt;/span&gt;
-
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;wsdl:message&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;addTodoEntryRequest&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;wsdl:part&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;element=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;tns:addTodoEntryRequest&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;parameters&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/wsdl:message&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;wsdl:message&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;addTodoEntryResponse&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;wsdl:part&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;element=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;tns:addTodoEntryResponse&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;parameters&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/wsdl:message&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;wsdl:message&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;getTodoListRequest&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;wsdl:part&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;element=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;tns:getTodoListRequest&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;parameters&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/wsdl:message&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;wsdl:message&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;getTodoListResponse&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;wsdl:part&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;element=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;tns:getTodoListResponse&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;parameters&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/wsdl:message&amp;gt;&lt;/span&gt;
-
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;wsdl:portType&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;TodoList&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;wsdl:operation&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;addTodo&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;wsdl:input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;message=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;tns:addTodoEntryRequest&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;wsdl:output&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;message=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;tns:addTodoEntryResponse&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/wsdl:operation&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;wsdl:operation&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;listTodos&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;wsdl:input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;message=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;tns:getTodoListRequest&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;wsdl:output&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;message=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;tns:getTodoListResponse&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/wsdl:operation&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/wsdl:portType&amp;gt;&lt;/span&gt;
-
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;wsdl:binding&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;TodoListSOAP&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;tns:TodoList&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;soap:binding&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;style=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;document&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;transport=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.xmlsoap.org/soap/http&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;wsdl:operation&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;addTodo&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;soap:operation&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;soapAction=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;addTodo&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;wsdl:input&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;soap:body&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;use=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;literal&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/wsdl:input&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;wsdl:output&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;soap:body&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;use=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;literal&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/wsdl:output&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/wsdl:operation&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;wsdl:operation&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;listTodos&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;soap:operation&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;soapAction=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;listTodos&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;wsdl:input&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;soap:body&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;use=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;literal&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/wsdl:input&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;wsdl:output&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;soap:body&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;use=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;literal&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/wsdl:output&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/wsdl:operation&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/wsdl:binding&amp;gt;&lt;/span&gt;
-
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;wsdl:service&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;TodoList&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;wsdl:port&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;binding=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;tns:TodoListSOAP&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;TodoListSOAP&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;soap:address&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;location=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://localhost:8080/services/ws/todolist&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/wsdl:port&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/wsdl:service&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/wsdl:definitions&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The WSDL specification defines model objects as well as operations that a client can call.&lt;/p&gt;
-
-&lt;p&gt;Citrus is able to generate client and server side test cases from that specification. Each operation in the WSDL is the basis for a new test case. The test will use the information given in the
-specification to generate a proper send/receive request/response communication with the server using the SOAP operations.&lt;/p&gt;
-
-&lt;p&gt;The test code generation takes place in the Maven build lifecycle and uses the Citrus Maven plugin. You need to add the following plugin configuration to the Maven POM file:&lt;/p&gt;
-
-&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;plugin&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;com.consol.citrus.mvn&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-maven-plugin&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;4.5.1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;executions&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;execution&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;generate-tests&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;phase&amp;gt;&lt;/span&gt;generate-test-sources&lt;span class=&quot;nt&quot;&gt;&amp;lt;/phase&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;goals&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;goal&amp;gt;&lt;/span&gt;generate-tests&lt;span class=&quot;nt&quot;&gt;&amp;lt;/goal&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/goals&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/execution&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/executions&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;configuration&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;type&amp;gt;&lt;/span&gt;java&lt;span class=&quot;nt&quot;&gt;&amp;lt;/type&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;framework&amp;gt;&lt;/span&gt;testng&lt;span class=&quot;nt&quot;&gt;&amp;lt;/framework&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;tests&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;test&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;endpoint&amp;gt;&lt;/span&gt;todoClient&lt;span class=&quot;nt&quot;&gt;&amp;lt;/endpoint&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;disabled&amp;gt;&lt;/span&gt;true&lt;span class=&quot;nt&quot;&gt;&amp;lt;/disabled&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;wsdl&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;file&amp;gt;&lt;/span&gt;/Users/cdeppisc/Projects/Citrus/citrus-website/src/test/resources/schema/TodoList.wsdl&lt;span class=&quot;nt&quot;&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;/swagger&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/test&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/tests&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/configuration&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/plugin&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The plugin test generation binds to the &lt;code class=&quot;highlighter-rouge&quot;&gt;generate-test-sources&lt;/code&gt; Maven lifecycle phase and generates the tests in a default output directory &lt;code class=&quot;highlighter-rouge&quot;&gt;target/generated/citrus&lt;/code&gt;. The plugin needs the path to the WSDL specification file
-which is usually a &lt;code class=&quot;highlighter-rouge&quot;&gt;.wsdl&lt;/code&gt; file in your project.&lt;/p&gt;
-
-&lt;p&gt;When executed the plugin generates the Citrus tests to the target output directory. You can add those generated files to the Maven sources/resources with another plugin called &lt;code class=&quot;highlighter-rouge&quot;&gt;build-helper-maven-plugin&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;plugin&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.codehaus.mojo&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;build-helper-maven-plugin&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;3.0.0&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;executions&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;execution&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;add-test-sources&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;phase&amp;gt;&lt;/span&gt;generate-test-sources&lt;span class=&quot;nt&quot;&gt;&amp;lt;/phase&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;goals&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;goal&amp;gt;&lt;/span&gt;add-test-source&lt;span class=&quot;nt&quot;&gt;&amp;lt;/goal&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/goals&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;configuration&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;sources&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;source&amp;gt;&lt;/span&gt;/Users/cdeppisc/Projects/Citrus/citrus-website/target/generated/citrus/java&lt;span class=&quot;nt&quot;&gt;&amp;lt;/source&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;/sources&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/configuration&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/execution&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;execution&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;add-test-resources&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;phase&amp;gt;&lt;/span&gt;generate-test-resources&lt;span class=&quot;nt&quot;&gt;&amp;lt;/phase&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;goals&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;goal&amp;gt;&lt;/span&gt;add-test-resource&lt;span class=&quot;nt&quot;&gt;&amp;lt;/goal&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/goals&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;configuration&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;resources&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;resource&amp;gt;&lt;/span&gt;
-              &lt;span class=&quot;nt&quot;&gt;&amp;lt;directory&amp;gt;&lt;/span&gt;/Users/cdeppisc/Projects/Citrus/citrus-website/target/generated/citrus/resources&lt;span class=&quot;nt&quot;&gt;&amp;lt;/directory&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;/resource&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;/resources&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/configuration&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/execution&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/executions&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/plugin&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The build helper plugin adds the generated tests to the Maven project source/resource compilation. This automatically enables the generated tests for execution with the Maven build lifecycle in test/integration-test phase.&lt;/p&gt;
-
-&lt;h2 id=&quot;run&quot;&gt;Run&lt;/h2&gt;
-
-&lt;p&gt;You can run the sample on your localhost in order to see Citrus in action. Read the instructions &lt;a href=&quot;/samples/run/&quot;&gt;how to run&lt;/a&gt; the sample.&lt;/p&gt;</content><author><name></name></author></entry><entry><title type="html">Swagger auto generated sample</title><link href="http://0.0.0.0:4000/samples/swagger/" rel="alternate" type="text/html" title="Swagger auto generated sample" /><published>2018-06-21T00:00:00+02:00</published><updated>2018-06-21T00:00:00+02:00</updated><id>http://0.0.0.0:4000/samples/sample-swagger</id><content type="html" xml:base="http://0.0.0.0:4000/samples/swagger/">&lt;p&gt;This sample uses Swagger Open API specification to generate tests for the todo app system under test. You can read more about the 
-Citrus test generation features in &lt;a href=&quot;https://citrusframework.org/citrus/reference/html#generate&quot;&gt;reference guide&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;objectives&quot;&gt;Objectives&lt;/h2&gt;
-
-&lt;p&gt;The &lt;a href=&quot;../todo-app/README.md&quot;&gt;todo-list&lt;/a&gt; sample application manages todo entries. The application provides a REST web API 
-for adding new entries and listing all entries. This API is specified using Swagger ()&lt;/p&gt;
-
-&lt;p&gt;The sample API specification looks like this.&lt;/p&gt;
-
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;swagger&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;info&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;REST API for todo application&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;version&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;TodoList API&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;license&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Apache License Version 2.0&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;host&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;localhost:8080&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;basePath&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;paths&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/api/todolist&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;get&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;summary&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;List todo entries&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Returns all available todo entries.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;operationId&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;listTodoEntries&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;consumes&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;application/json&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;produces&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;*/*&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;responses&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;200&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-            &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;OK&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-            &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;schema&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-              &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;array&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-              &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;items&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;$ref&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;#/definitions/TodoEntry&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-              &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-            &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;post&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;tags&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;todo-list-controller&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;summary&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Add todo entry&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Adds new todo entry.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;operationId&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;addTodoEntry&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;consumes&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;application/json&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;produces&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;*/*&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;parameters&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-            &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;in&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;body&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-            &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;entry&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-            &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Todo entry to be added&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-            &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;required&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-            &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;schema&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-              &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;$ref&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;#/definitions/TodoEntry&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-            &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;responses&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;200&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-            &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;OK&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-            &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;schema&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-              &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;string&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-            &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;delete&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;tags&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;todo-list-controller&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;summary&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Delete all todo entries&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Delete all todo entries.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;operationId&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;deleteTodoEntries&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;consumes&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;application/json&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;produces&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;*/*&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;responses&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;200&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-            &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;OK&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;definitions&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Attachment&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;object&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;properties&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;cid&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;string&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;contentType&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;string&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;data&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;string&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;TodoEntry&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;object&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;properties&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;attachment&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;$ref&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;#/definitions/Attachment&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;string&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;done&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;boolean&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;string&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;format&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;uuid&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;string&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The Swagger API specification defines model objects as well as path resources that a client can call with Http GET, POST, PUT, DELETE and so on.&lt;/p&gt;
-
-&lt;p&gt;Citrus is able to generate client and server side test cases from that specification. Each path resource is the basis for a new test case. The test will use the information given in the
-specification to generate a proper send/receive request/response communication with the REST API.&lt;/p&gt;
-
-&lt;p&gt;The test code generation takes place in the Maven build lifecycle and uses the Citrus Maven plugin. You need to add the following plugin configuration to the Maven POM file:&lt;/p&gt;
-
-&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;plugin&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;com.consol.citrus.mvn&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-maven-plugin&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;4.5.1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;executions&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;execution&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;generate-tests&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;phase&amp;gt;&lt;/span&gt;generate-test-sources&lt;span class=&quot;nt&quot;&gt;&amp;lt;/phase&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;goals&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;goal&amp;gt;&lt;/span&gt;generate-tests&lt;span class=&quot;nt&quot;&gt;&amp;lt;/goal&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/goals&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/execution&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/executions&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;configuration&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;type&amp;gt;&lt;/span&gt;java&lt;span class=&quot;nt&quot;&gt;&amp;lt;/type&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;framework&amp;gt;&lt;/span&gt;testng&lt;span class=&quot;nt&quot;&gt;&amp;lt;/framework&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;tests&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;test&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;endpoint&amp;gt;&lt;/span&gt;todoClient&lt;span class=&quot;nt&quot;&gt;&amp;lt;/endpoint&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;disabled&amp;gt;&lt;/span&gt;true&lt;span class=&quot;nt&quot;&gt;&amp;lt;/disabled&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;swagger&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;file&amp;gt;&lt;/span&gt;file:///Users/cdeppisc/Projects/Citrus/citrus-website/src/test/resources/swagger/TodoList.json&lt;span class=&quot;nt&quot;&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;/swagger&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/test&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/tests&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/configuration&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/plugin&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The plugin test generation binds to the &lt;code class=&quot;highlighter-rouge&quot;&gt;generate-test-sources&lt;/code&gt; Maven lifecycle phase and generates the tests in a default output directory &lt;code class=&quot;highlighter-rouge&quot;&gt;target/generated/citrus&lt;/code&gt;. The plugin needs the path to the Swagger Open PI specification file
-which is usually a &lt;code class=&quot;highlighter-rouge&quot;&gt;.json&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;.yaml&lt;/code&gt; file in your project.&lt;/p&gt;
-
-&lt;p&gt;When executed the plugin generates the Citrus tests to the target output directory. You can add those generated files to the Maven sources/resources with another plugin called &lt;code class=&quot;highlighter-rouge&quot;&gt;build-helper-maven-plugin&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;plugin&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.codehaus.mojo&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;build-helper-maven-plugin&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;3.0.0&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;executions&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;execution&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;add-test-sources&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;phase&amp;gt;&lt;/span&gt;generate-test-sources&lt;span class=&quot;nt&quot;&gt;&amp;lt;/phase&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;goals&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;goal&amp;gt;&lt;/span&gt;add-test-source&lt;span class=&quot;nt&quot;&gt;&amp;lt;/goal&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/goals&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;configuration&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;sources&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;source&amp;gt;&lt;/span&gt;/Users/cdeppisc/Projects/Citrus/citrus-website/target/generated/citrus/java&lt;span class=&quot;nt&quot;&gt;&amp;lt;/source&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;/sources&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/configuration&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/execution&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;execution&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;add-test-resources&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;phase&amp;gt;&lt;/span&gt;generate-test-resources&lt;span class=&quot;nt&quot;&gt;&amp;lt;/phase&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;goals&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;goal&amp;gt;&lt;/span&gt;add-test-resource&lt;span class=&quot;nt&quot;&gt;&amp;lt;/goal&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/goals&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;configuration&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;resources&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;resource&amp;gt;&lt;/span&gt;
-              &lt;span class=&quot;nt&quot;&gt;&amp;lt;directory&amp;gt;&lt;/span&gt;/Users/cdeppisc/Projects/Citrus/citrus-website/target/generated/citrus/resources&lt;span class=&quot;nt&quot;&gt;&amp;lt;/directory&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;/resource&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;/resources&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/configuration&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/execution&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/executions&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/plugin&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The build helper plugin adds the generated tests to the Maven project source/resource compilation. This automatically enables the generated tests for execution with the Maven build lifecycle in test/integration-test phase.&lt;/p&gt;
-
-&lt;h2 id=&quot;run&quot;&gt;Run&lt;/h2&gt;
-
-&lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt; This test depends on the &lt;a href=&quot;../todo-app/&quot;&gt;todo-app&lt;/a&gt; WAR which must have been installed into your local maven repository using &lt;code class=&quot;highlighter-rouge&quot;&gt;mvn clean install&lt;/code&gt; beforehand.&lt;/p&gt;
-
-&lt;p&gt;The sample application uses Maven as build tool. So you can compile, package and test the
-sample with Maven.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; mvn clean verify -Dembedded
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This executes the complete Maven build lifecycle. The embedded option automatically starts a Jetty web
-container before the integration test phase. The todo-list system under test is automatically deployed in this phase.
-After that the Citrus test cases are able to interact with the todo-list application in the integration test phase.&lt;/p&gt;
-
-&lt;p&gt;During the build you will see Citrus performing some integration tests.
-After the tests are finished the embedded Jetty web container and the todo-list application are automatically stopped.&lt;/p&gt;
-
-&lt;h2 id=&quot;run-1&quot;&gt;Run&lt;/h2&gt;
-
-&lt;p&gt;You can run the sample on your localhost in order to see Citrus in action. Read the instructions &lt;a href=&quot;/samples/run/&quot;&gt;how to run&lt;/a&gt; the sample.&lt;/p&gt;</content><author><name></name></author></entry></feed>
+&lt;p&gt;Please give it a try, provide some feedback and tell us what you think about Camel and Citrus!&lt;/p&gt;</content><author><name>Christoph Deppisch</name></author></entry></feed>
