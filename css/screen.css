@@ -446,6 +446,12 @@ textarea {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
+.fa-home:before {
+  content: "\f015"; }
+
+.fa-help:before {
+  content: "\f059"; }
+
 .fa-link:before {
   content: "\f0c1"; }
 
@@ -764,7 +770,10 @@ h6:hover .header-link {
     text-align: right; }
 
   nav img {
-    margin-right: 15px; } }
+    margin-right: 15px; }
+
+  .unit.one-third {
+    min-height: 180px; } }
 /* Footer */
 footer {
   background-color: #212121;
@@ -781,12 +790,17 @@ footer {
     top: 8px;
     margin-left: 5px;
     padding: 1px; }
+  footer .unit.one-third:hover {
+    background-color: #212121; }
 
 @media (max-width: 700px) {
   footer .one-third p {
     margin-bottom: 0; }
   footer .two-thirds p {
-    margin-top: -20px; } }
+    margin-top: -20px; }
+
+  .unit .grid .unit {
+    min-height: 180px; } }
 /* Intro */
 .intro .unit {
   padding: 10px 0 40px; }
