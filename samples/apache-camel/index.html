@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Citrus Framework</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="generator" content="Citrus 4.5.2">
+  <meta name="generator" content="Citrus 4.6.0">
   <meta name="description" content="Citrus Framework Website"/>
   <meta name="author" content="ConSol Software GmbH"/>
   <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
@@ -256,7 +256,7 @@ You can also simulate the Camel route endpoint with receiving messages and provi
 </code></pre></div></div>
 
 <p>The Camel route reads from a JMS queue and forwards the message to a SOAP web service endpoint. In a test scenario we need to send messages to the JMS destination and wait for messages on
-the SOAP server endpoint. Lets add configuration for this in Citrus:</p>
+the SOAP server endpoint. Let’s add configuration for this in Citrus:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">JmsEndpoint</span> <span class="nf">newsJmsEndpoint</span><span class="o">()</span> <span class="o">{</span>
@@ -311,7 +311,7 @@ server endpoint where Citrus receives the message for validation purpose. This w
 <p>The sample application uses Maven as build tool. So you can compile, package and test the
 sample with Maven.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn clean install -Dembedded=true
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn <span class="nb">install</span> <span class="nt">-Dembedded</span><span class="o">=</span><span class="nb">true</span>
 </code></pre></div></div>
 
 <p>This executes the complete Maven build lifecycle.</p>
@@ -322,18 +322,18 @@ sample with Maven.</p>
 
 <p>Execute all Citrus tests by calling</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn integration-test
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn integration-test
 </code></pre></div></div>
 
 <p>You can also pick a single test by calling</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn integration-test -Ptest=TodoListIT
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn integration-test <span class="nt">-Ptest</span><span class="o">=</span>TodoListIT
 </code></pre></div></div>
 
 <p>You should see Citrus performing several tests with lots of debugging output in your terminal. 
 And of course green tests at the very end of the build.</p>
 
-<p>Of course you can also start the Citrus tests from your favorite IDE.
+<p>Of course, you can also start the Citrus tests from your favorite IDE.
 Just start the Citrus test using the TestNG IDE integration in IntelliJ, Eclipse or Netbeans.</p>
 
 
