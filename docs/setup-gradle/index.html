@@ -8,14 +8,18 @@
   <meta name="description" content="Citrus Framework Website"/>
   <meta name="author" content="ConSol Software GmbH"/>
   <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
-  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/citrusframework/citrus/commits/master.atom">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus main branch" href="https://github.com/citrusframework/citrus/commits/main.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
+  <link rel="stylesheet" href="/css/tabbed.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/atom-one-light.min.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <!--[if lt IE 9]>
   <script src="/js/html5shiv.min.js"></script>
   <script src="/js/respond.min.js"></script>
   <![endif]-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+  <script src="/js/tabbed.js"></script>
 </head>
 
 
@@ -33,6 +37,9 @@
     <a href="/projects/">Projects</a>
   </li>
   <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
     <a href="/endpoints/">Endpoints</a>
   </li>
   <li class="">
@@ -47,11 +54,11 @@
   <li class="">
     <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
   </li>
-  <li class="">
-    <a href="/help/"><span class="show-on-mobiles"><i class="fa fa-help"></i></span><span class="hide-on-mobiles">Help</span></a>
-  </li>
   <li class="hide-on-mobiles">
     <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
   </li>
 </ul>
 
@@ -69,6 +76,9 @@
     <a href="/projects/">Projects</a>
   </li>
   <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
     <a href="/endpoints/">Endpoints</a>
   </li>
   <li class="">
@@ -83,11 +93,11 @@
   <li class="">
     <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
   </li>
-  <li class="">
-    <a href="/help/"><span class="show-on-mobiles"><i class="fa fa-help"></i></span><span class="hide-on-mobiles">Help</span></a>
-  </li>
   <li class="hide-on-mobiles">
     <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
   </li>
 </ul>
 
@@ -326,7 +336,7 @@ Citrus artifacts.</p>
 <p>Of course JUnit is also supported. This is all for build configuration settings. We can move on to writing some Citrus integration tests. The Java test classes
 usually go to the <strong>src/test/java</strong> directory.</p>
 
-<p>Lets write a simple Citrus test case in Java and save it to the <strong>src/test/java</strong> folder in package <strong>org.citrusframework.samples</strong>.</p>
+<p>Let’s write a simple Citrus test case in Java and save it to the <strong>src/test/java</strong> folder in package <strong>org.citrusframework.samples</strong>.</p>
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">org.citrusframework.annotations.CitrusTest</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">org.citrusframework.channel.ChannelEndpoint</span><span class="o">;</span>

@@ -1,0 +1,584 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 4.8.1">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus main branch" href="https://github.com/citrusframework/citrus/commits/main.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="stylesheet" href="/css/tabbed.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/atom-one-light.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+  <script src="/js/tabbed.js"></script>
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="current">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="current">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+  <section class="standalone">
+  <div class="grid">
+
+    <div class="unit whole">
+      <article>
+        <h1>Quickstart</h1>
+        <section class="intro">
+    <div class="post-content">
+        <p>Learn how to create and run Citrus integration tests in just a few minutes.
+            You can choose from a set of supported runtimes (JUnit, TestNG, Quarkus, SpringBoot, JBang) and
+            domain specific languages (Java, XML, YAML, Groovy, Cucumber).</p>
+    </div>
+
+    <div class="grid">
+        <div class="unit whole">
+            <span class="post-category">
+              <span class="label">Step 1 /  Language  <i class="fa fa-code" style="color: #ffffff;"></i></span>
+            </span>
+
+            <div class="right">
+                <a href="/dsl/">
+                    <i class="fa fa-code"></i> Supported languages
+                </a>
+            </div>
+
+            <p>When writing a Citrus test you can choose from a set of supported programming languages and domain specific languages (DSL).</p>
+
+            <p>The Citrus Java DSL represents the most powerful way to write tests.
+                Citrus provides a set of classes and methods to leverage the test code in form of a fluent API.
+                Users can simply configure a test action with the different options using a fluent builder pattern style DSL.</p>
+
+            <p>In addition to that you can also write Citrus tests with <strong>XML</strong>, <strong>Groovy</strong>, <strong>YAML</strong>,
+                <strong>Cucumber (Gherkin)</strong>, <strong>Spring XML</strong> declaration files that get loaded as part of the test runtime.
+                These test sources represent a more declarative approach of writing tests in Citrus.
+                You do not necessarily need to know how to code Java when using one of these languages, but you may be limited in terms of customization opportunities.</p>
+
+            <p>See the following example to explore the different test source languages in Citrus.</p>
+
+            <div class="listingblock primary">
+                <div class="title">Java</div>
+                <div class="content">
+                <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"><span class="hljs-meta">@CitrusTest</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">helloWorldTest</span><span class="hljs-params">()</span> </span>{
+    variable(<span class="hljs-string">"user"</span>, <span class="hljs-string">"Citrus"</span>);
+
+    $(echo().message(<span class="hljs-string">"Hello from ${user}!"</span>));
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="listingblock secondary">
+                <div class="title">XML</div>
+                <div class="content">
+                <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml"><span class="hljs-tag">&lt;<span class="hljs-name">test</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"HelloWorldTest"</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://citrusframework.org/schema/xml/testcase"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">variables</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">variable</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"user"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"Citrus"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">variables</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">actions</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">echo</span> <span class="hljs-attr">message</span>=<span class="hljs-string">"Hello from ${user}!"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">actions</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">test</span>&gt;</span></code></pre>
+                </div>
+            </div>
+
+            <div class="listingblock secondary">
+                <div class="title">YAML</div>
+                <div class="content">
+                <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"><span class="hljs-attr">name:</span> <span class="hljs-string">HelloWorldTest</span>
+<span class="hljs-attr">variables:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">user</span>
+    <span class="hljs-attr">value:</span> <span class="hljs-string">Citrus</span>
+<span class="hljs-attr">actions:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">echo:</span>
+      <span class="hljs-attr">message:</span> <span class="hljs-string">"Hello from ${user}!"</span></code></pre>
+                </div>
+            </div>
+
+            <div class="listingblock secondary">
+                <div class="title">Groovy</div>
+                <div class="content">
+                <pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">name <span class="hljs-string">"HelloWorldTest"</span>
+
+variables {
+   user=<span class="hljs-string">"Citrus"</span>
+}
+
+actions {
+    $(echo().message(<span class="hljs-string">'Hello from ${user}!'</span>))
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="listingblock secondary">
+                <div class="title">Cucumber</div>
+                <div class="content">
+                <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin"><span class="hljs-keyword">Feature</span>: HelloWorldTest
+
+  <span class="hljs-keyword">Background</span>:
+    <span class="hljs-keyword">Given</span> variables
+      |<span class="hljs-string"> user </span>|<span class="hljs-string"> Citrus </span>|
+
+  <span class="hljs-keyword">Scenario</span>: Should Say Hello
+    <span class="hljs-keyword">Then</span> print <span class="hljs-string">"Hello from ${user}!"</span></code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid">
+        <span class="post-category">
+              <span class="label">Step 2 /  JBang  <img src="/img/icons/jbang.png" style="width: 1em;height: 1em;" alt=""></span>
+            </span>
+
+        <div class="right">
+            <a href="/samples/jbang/">
+                <img src="/img/icons/jbang.png" style="width: 1em;height: 1em;" alt=""> JBang support
+            </a>
+        </div>
+
+        <p>The easiest way to run a Citrus test is to use the Citrus JBang CLI tooling.
+            This requires no project setup and no dependency management because everything is handled by JBang out of the box.</p>
+
+        <div class="listingblock">
+            <div class="title">Run with JBang</div>
+            <div class="content">
+                <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">jbang citrus@citrusframework/citrus run helloWorld.yaml</code></pre>
+            </div>
+        </div>
+
+        <p><strong>TIP:</strong> You can install Citrus as a JBang app on your machine. This makes using the Citrus CLI even more comfortable because you can just call <code>citrus run</code> for instance.</p>
+
+        <div class="listingblock">
+            <div class="title">Install Citrus JBang app</div>
+            <div class="content">
+                <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">jbang trust add https://github.com/citrusframework/citrus/
+jbang app install citrus@citrusframework/citrus</code></pre>
+            </div>
+        </div>
+
+        <p><strong>TIP:</strong> The <code>init</code>&gt; command creates a sample test in the chosen language for you.</p>
+
+        <div class="listingblock">
+            <div class="title">Init and run test</div>
+            <div class="content">
+                <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">citrus init helloWorld.yaml</code></pre>
+            </div>
+        </div>
+        <br>
+        <div class="listingblock">
+            <div class="content">
+                <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">citrus run helloWorld.yaml</code></pre>
+            </div>
+        </div>
+
+        <p>The Citrus JBang support is fantastic to do fast prototyping.
+            You just focus on writing the Citrus test code with fast and easy test execution via JBang.
+            Once you are happy with the test you may want to move on to use one of the supported runtimes in Citrus
+            in order to integrate the test into your project build lifecycle (e.g. via Maven and JUnit).</p>
+    </div>
+
+    <div class="grid">
+        <div class="unit whole">
+            <span class="post-category">
+              <span class="label">Step 3 /  Runtime  <i class="fa fa-run" style="color: #ffffff;"></i></span>
+            </span>
+
+            <div class="right">
+                <a href="/runtimes/">
+                    <i class="fa fa-run"></i> More about runtimes
+                </a>
+            </div>
+
+            <p>The Citrus test case is nothing but a normal Java unit test.
+                Citrus integrates with standard unit test frameworks such as JUnit, TestNG or Cucumber as a runtime.</p>
+
+            <p>In addition to that Citrus also works with <code>@QuarkusTest</code> and <code>@SpringBootTest</code> annotated classes.
+
+            </p>
+<p>Most Java developers are familiar with at least one of the standard tools.
+                Everything you can do with JUnit or TestNG you can do with Citrus tests, too.
+                For instance, you can integrate the Citrus tests in a Maven build, run and debug Citrus from your favorite Java IDE or include Citrus tests into a continuous build pipeline.</p>
+
+            <p>Citrus supports multiple runtimes. The most prominent nowadays probably is JUnit Jupiter.</p>
+
+            <div class="listingblock primary">
+                <div class="title">JUnit</div>
+                <div class="content">
+                <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"><span class="hljs-keyword">import</span> org.citrusframework.TestCaseRunner;
+<span class="hljs-keyword">import</span> org.citrusframework.TestActionSupport;
+<span class="hljs-keyword">import</span> org.citrusframework.annotations.CitrusResource;
+<span class="hljs-keyword">import</span> org.citrusframework.annotations.CitrusTest;
+<span class="hljs-keyword">import</span> org.citrusframework.junit.jupiter.CitrusSupport;
+<span class="hljs-keyword">import</span> org.junit.jupiter.api.Test;
+
+<span class="hljs-meta">@CitrusSupport</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloServiceIT</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">TestActionSupport</span> </span>{
+
+    <span class="hljs-meta">@CitrusResource</span>
+    <span class="hljs-keyword">private</span> TestCaseRunner t;
+
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-meta">@CitrusTest</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">shouldSayHello</span><span class="hljs-params">()</span> </span>{
+        t.createVariable(<span class="hljs-string">"user"</span>, <span class="hljs-string">"Citrus"</span>);
+
+        t.run(echo(<span class="hljs-string">"Hello from ${user}!"</span>));
+    }
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="listingblock secondary">
+                <div class="title">QuarkusTest</div>
+                <div class="content">
+                <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"><span class="hljs-keyword">import</span> org.citrusframework.TestCaseRunner;
+<span class="hljs-keyword">import</span> org.citrusframework.TestActionSupport;
+<span class="hljs-keyword">import</span> org.citrusframework.annotations.CitrusResource;
+<span class="hljs-keyword">import</span> org.citrusframework.quarkus.CitrusSupport;
+<span class="hljs-keyword">import</span> org.junit.jupiter.api.Test;
+<span class="hljs-keyword">import</span> io.quarkus.test.junit.QuarkusTest;
+
+<span class="hljs-meta">@QuarkusTest</span>
+<span class="hljs-meta">@CitrusSupport</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloServiceIT</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">TestActionSupport</span> </span>{
+
+    <span class="hljs-meta">@CitrusResource</span>
+    <span class="hljs-keyword">private</span> TestCaseRunner t;
+
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">shouldSayHello</span><span class="hljs-params">()</span> </span>{
+        t.createVariable(<span class="hljs-string">"user"</span>, <span class="hljs-string">"Citrus"</span>);
+
+        t.run(echo(<span class="hljs-string">"Hello from ${user}!"</span>));
+    }
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="listingblock secondary">
+                <div class="title">SpringBoot</div>
+                <div class="content">
+                <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"><span class="hljs-keyword">import</span> org.citrusframework.TestCaseRunner;
+<span class="hljs-keyword">import</span> org.citrusframework.TestActionSupport;
+<span class="hljs-keyword">import</span> org.citrusframework.annotations.CitrusResource;
+<span class="hljs-keyword">import</span> org.citrusframework.config.CitrusSpringConfig;
+<span class="hljs-keyword">import</span> org.citrusframework.junit.jupiter.spring.CitrusSpringSupport;
+<span class="hljs-keyword">import</span> org.springframework.boot.test.context.SpringBootTest;
+<span class="hljs-keyword">import</span> org.springframework.test.context.ContextConfiguration;
+<span class="hljs-keyword">import</span> org.junit.jupiter.api.Test;
+
+<span class="hljs-meta">@SpringBootTest</span>
+<span class="hljs-meta">@CitrusSpringSupport</span>
+<span class="hljs-meta">@ContextConfiguration</span>(classes = {<span class="hljs-title">CitrusSpringConfig.class</span>})
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloServiceIT</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">TestActionSupport</span> </span>{
+
+    <span class="hljs-meta">@CitrusResource</span>
+    <span class="hljs-keyword">private</span> TestCaseRunner t;
+
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">shouldSayHello</span><span class="hljs-params">()</span> </span>{
+        t.createVariable(<span class="hljs-string">"user"</span>, <span class="hljs-string">"Citrus"</span>);
+
+        t.run(echo(<span class="hljs-string">"Hello from ${user}!"</span>));
+    }
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="listingblock secondary">
+                <div class="title">TestNG</div>
+                <div class="content">
+                <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"><span class="hljs-keyword">import</span> org.testng.annotations.Test;
+<span class="hljs-keyword">import</span> org.citrusframework.TestActionSupport;
+<span class="hljs-keyword">import</span> org.citrusframework.annotations.CitrusTest;
+<span class="hljs-keyword">import</span> org.citrusframework.testng.TestNGCitrusSupport;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloServiceIT</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">TestNGCitrusSupport</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">TestActionSupport</span> </span>{
+
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-meta">@CitrusTest</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">shouldSayHello</span><span class="hljs-params">()</span> </span>{
+        variable(<span class="hljs-string">"user"</span>, <span class="hljs-string">"Citrus"</span>);
+
+        $(echo(<span class="hljs-string">"Hello from ${user}!"</span>));
+    }
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="listingblock secondary">
+                <div class="title">JUnit4</div>
+                <div class="content">
+                <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"><span class="hljs-keyword">import</span> org.citrusframework.TestActionSupport;
+<span class="hljs-keyword">import</span> org.citrusframework.annotations.CitrusTest;
+<span class="hljs-keyword">import</span> org.citrusframework.junit.spring.JUnit4CitrusSupport;
+<span class="hljs-keyword">import</span> org.junit.Test;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloServiceIT</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">JUnit4CitrusSupport</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">TestActionSupport</span> </span>{
+
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-meta">@CitrusTest</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">shouldSayHello</span><span class="hljs-params">()</span> </span>{
+        variable(<span class="hljs-string">"user"</span>, <span class="hljs-string">"Citrus"</span>);
+
+        $(echo(<span class="hljs-string">"Hello from ${user}!"</span>));
+    }
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="listingblock secondary">
+                <div class="title">Cucumber</div>
+                <div class="content">
+                <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"><span class="hljs-meta">@RunWith</span>(Cucumber<span class="hljs-class">.<span class="hljs-keyword">class</span>)
+@<span class="hljs-title">CucumberOptions</span>(
+    <span class="hljs-title">extraGlue</span> </span>= { <span class="hljs-string">"org.citrusframework.cucumber"</span> },
+    plugin = { <span class="hljs-string">"pretty"</span>, <span class="hljs-string">"org.citrusframework.cucumber.CitrusReporter"</span> } )
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloServiceIT</span> </span>{
+
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="unit whole">
+            <span class="post-category">
+              <span class="label">Step 4 /  Endpoints  <i class="fa fa-endpoints" style="color: #ffffff;"></i></span>
+            </span>
+
+            <div class="right">
+                <a href="/endpoints/">
+                    <i class="fa fa-endpoints"></i> More about endpoints
+                </a>
+            </div>
+
+            <p>Now that you know how to run the Citrus tests it is time to explore the framework capabilities.
+                In a typical use case scenario Citrus connects to different messaging transports and technologies such as Kafka, Http REST, JMS, Spring, Apache Camel, Testcontainers, Kubernetes, Knative, Selenium and many more.</p>
+
+            <p>Citrus combines with many frameworks and libraries and provides ready-to-use components and test actions to leverage the full power of integration testing.
+                It is very easy to create an integration test case for messaging where the test sends a message to Kafka for instance to verify its outcome via response message validation.</p>
+
+            <div class="listingblock">
+                <div class="title">MyTest.java</div>
+                <div class="content">
+                <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"><span class="hljs-keyword">import</span> org.citrusframework.TestActionSupport;
+<span class="hljs-keyword">import</span> org.citrusframework.TestCaseRunner;
+<span class="hljs-keyword">import</span> org.citrusframework.annotations.CitrusResource;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyTest</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span>, <span class="hljs-title">TestActionSupport</span> </span>{
+
+    <span class="hljs-meta">@CitrusResource</span>
+    TestCaseRunner t;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{
+        t.when(
+            http().client(<span class="hljs-string">"http://localhost:8080/test"</span>)
+                    .send()
+                    .POST()
+                    .contentType(<span class="hljs-string">"text/plain"</span>)
+                    .body(<span class="hljs-string">"Hello from Citrus!"</span>)
+        );
+
+        t.then(
+            receive().endpoint(<span class="hljs-string">"kafka:my-topic"</span>)
+                    .message()
+                    .body(<span class="hljs-string">"Hello from Citrus!"</span>)
+        );
+
+        t.and(
+            http().client(<span class="hljs-string">"http://localhost:8080/test"</span>)
+                .receive()
+                .response(HttpStatus.<span class="hljs-title">OK</span>));
+    }
+}</code></pre>
+                </div>
+            </div>
+
+            <p>As you can see the test leverages several Citrus features like sending/receiving messages with different message transports.
+                Receiving a message always comes with an expected message content, so Citrus performs a powerful message validation on body and header content.
+                Citrus is able to handle different message types such as XML, Json, Plaintext, YAML, CSV and more.</p>
+
+            <p>You can easily integrate the test into your project with one of the supported runtimes, or you can just run the test without any project setup with JBang.</p>
+
+            <div class="listingblock">
+                <div class="title">Run MyTest.java</div>
+                <div class="content">
+                    <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">citrus run MyTest.java</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="post-content">
+  <p>Still having trouble to use Citrus? Please reach out to get some help!</p>
+</div>
+
+      </article>
+    </div>
+
+    <div class="clear"></div>
+
+  </div>
+</section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/citrusframework/citrus/blob/master/LICENSE">MIT License</a>.</p>
+      <br>
+      <p>© 2025 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p> </p>
+      <br>
+      <br>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>

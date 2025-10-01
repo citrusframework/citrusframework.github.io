@@ -8,14 +8,18 @@
   <meta name="description" content="Citrus Framework Website"/>
   <meta name="author" content="ConSol Software GmbH"/>
   <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
-  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus master branch" href="https://github.com/citrusframework/citrus/commits/master.atom">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus main branch" href="https://github.com/citrusframework/citrus/commits/main.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
+  <link rel="stylesheet" href="/css/tabbed.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/atom-one-light.min.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <!--[if lt IE 9]>
   <script src="/js/html5shiv.min.js"></script>
   <script src="/js/respond.min.js"></script>
   <![endif]-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+  <script src="/js/tabbed.js"></script>
 </head>
 
 
@@ -33,6 +37,9 @@
     <a href="/projects/">Projects</a>
   </li>
   <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
     <a href="/endpoints/">Endpoints</a>
   </li>
   <li class="">
@@ -47,11 +54,11 @@
   <li class="">
     <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
   </li>
-  <li class="">
-    <a href="/help/"><span class="show-on-mobiles"><i class="fa fa-help"></i></span><span class="hide-on-mobiles">Help</span></a>
-  </li>
   <li class="hide-on-mobiles">
-    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>&nbsp;&nbsp;GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
   </li>
 </ul>
 
@@ -69,6 +76,9 @@
     <a href="/projects/">Projects</a>
   </li>
   <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
     <a href="/endpoints/">Endpoints</a>
   </li>
   <li class="">
@@ -83,11 +93,11 @@
   <li class="">
     <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
   </li>
-  <li class="">
-    <a href="/help/"><span class="show-on-mobiles"><i class="fa fa-help"></i></span><span class="hide-on-mobiles">Help</span></a>
-  </li>
   <li class="hide-on-mobiles">
-    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>&nbsp;&nbsp;GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
   </li>
 </ul>
 
@@ -106,7 +116,7 @@
       <p>Test framework with focus on messaging applications and Microservices.<br>
       Automated integration tests with a wide range of messaging protocols and data formats!</p>
 
-      <a href="/docs/download" class="btn btn-release"><i class="fa fa-download"></i> Download  v4.8.1</a>
+      <a href="/docs/download" class="btn btn-release"><i class="fa fa-download"></i> Download &nbsp;v4.8.1</a>
     </div>
   </div>
 </section>
@@ -118,40 +128,34 @@
       <h2><small>Many benefits to discover. What is in the box?</small></h2>
     </div>
     <div class="unit one-third">
-      <h2>
-<i class="fa fa-endpoints"></i> Endpoints</h2>
+      <h2><i class="fa fa-endpoints"></i>&nbsp;Endpoints</h2>
       <p>Many ready-to-use client and server components and endpoints that you can use in a test to simulate service interfaces and 3rd party applications.<br>
-        <a class="prominent" href="/endpoints/">→ Endpoints</a></p>
+        <a class="prominent" href="/endpoints/">&rarr; Endpoints</a></p>
     </div>
     <div class="unit one-third">
-      <h2>
-<i class="fa fa-connect"></i> Connect</h2>
+      <h2><i class="fa fa-connect"></i>&nbsp;Connect</h2>
       <p>Choose and combine many different message protocols HTTP REST, Kafka, JMS, TCP/IP, SOAP, FTP and many more.<br>
-        <a class="prominent" href="/endpoints/">→ Examples</a></p>
+        <a class="prominent" href="/endpoints/">&rarr; Examples</a></p>
     </div>
     <div class="unit one-third">
-      <h2>
-<i class="fa fa-verify"></i> Verify</h2>
+      <h2><i class="fa fa-verify"></i>&nbsp;Verify</h2>
       <p>Powerful message validators that verify message header and body content for different data formats such as XML, Json, YAML, plaintext.<br>
-        <a class="prominent" href="/validators/">→ Validators</a></p>
+        <a class="prominent" href="/validators/">&rarr; Validators</a></p>
     </div>
     <div class="unit one-third">
-      <h2>
-<i class="fa fa-run"></i> Runtimes</h2>
+      <h2><i class="fa fa-run"></i>&nbsp;Runtimes</h2>
       <p>Run Citrus with JUnit Jupiter, Quarkus, SpringBoot or Cucumber in a Maven or Gradle project.<br>
-        <a class="prominent" href="/runtimes/">→ Runtimes</a></p>
+        <a class="prominent" href="/runtimes/">&rarr; Runtimes</a></p>
     </div>
     <div class="unit one-third">
-      <h2>
-<i class="fa fa-code"></i> Polyglot</h2>
+      <h2><i class="fa fa-code"></i>&nbsp;Polyglot</h2>
       <p>You can choose from a set of domain specific languages to write a Citrus test in Java, XML, YAML or as a Cucumber BDD feature.<br>
-        <a class="prominent" href="/dsl/">→ Domain Specific Languages</a></p>
+        <a class="prominent" href="/dsl/">&rarr; Domain Specific Languages</a></p>
     </div>
     <div class="unit one-third">
-      <h2>
-<img src="/img/icons/jbang.png"> Try with JBang!</h2>
+      <h2><img src="/img/icons/jbang.png"/>&nbsp;Try with JBang!</h2>
       <p>Get started with Citrus JBang and run your 1st integration test in minutes without any project setup.<br>
-        <a class="prominent" href="/samples/jbang/">→ JBang example</a></p>
+        <a class="prominent" href="/samples/jbang/">&rarr; JBang example</a></p>
     </div>
     <div class="clear"></div>
   </div>
@@ -184,38 +188,32 @@
       <h2><small>Combine Citrus with many frameworks and libraries</small></h2>
     </div>
     <div class="unit one-third">
-      <h2>
-<img src="/img/icons/quarkus.png"> Quarkus</h2>
+      <h2><img src="/img/icons/quarkus.png"/>&nbsp;Quarkus</h2>
       <p>You can easily use Citrus as part of your QuarkusTest annotated test.<br>
-        <a class="prominent" href="/samples/quarkus/">→ Quarkus example</a></p>
+        <a class="prominent" href="/samples/quarkus/">&rarr; Quarkus example</a></p>
     </div>
     <div class="unit one-third">
-      <h2>
-<img src="/img/icons/spring.png"> Spring Boot</h2>
+      <h2><img src="/img/icons/spring.png"/>&nbsp;Spring Boot</h2>
       <p>Use Citrus with Spring bean autowiring and combine Citrus with Spring Boot tests.</p>
     </div>
     <div class="unit one-third">
-      <h2>
-<img src="/img/icons/cucumber.png"> Cucumber</h2>
+      <h2><img src="/img/icons/cucumber.png"/>&nbsp;Cucumber</h2>
       <p>Citrus provides ready-to-use Cucumber steps that you can directly use in your Gherkin <i>Given-When-Then</i> feature files.<br>
-        <a class="prominent" href="/samples/cucumber/">→ Cucumber BDD example</a></p>
+        <a class="prominent" href="/samples/cucumber/">&rarr; Cucumber BDD example</a></p>
     </div>
     <div class="unit one-third">
-      <h2>
-<img src="/img/icons/camel.png"> Apache Camel</h2>
+      <h2><img src="/img/icons/camel.png"/>&nbsp;Apache Camel</h2>
       <p>Manage Apache Camel routes and use one of the 300+ Camel components to exchange messages and transform data.<br>
-        <a class="prominent" href="/samples/camel-context/">→ Apache Camel example</a></p>
+        <a class="prominent" href="/samples/camel-context/">&rarr; Apache Camel example</a></p>
     </div>
     <div class="unit one-third">
-      <h2>
-<img src="/img/icons/testcontainers.png"> Testcontainers</h2>
+      <h2><img src="/img/icons/testcontainers.png"/>&nbsp;Testcontainers</h2>
       <p>Prepare test infrastructure as part of the test using Testcontainers modules.</p>
     </div>
     <div class="unit one-third">
-      <h2>
-<img src="/img/icons/selenium.png"> Selenium</h2>
+      <h2><img src="/img/icons/selenium.png"/>&nbsp;Selenium</h2>
       <p>Easily use Selenium in Citrus to simulate user interactions in a browser.<br>
-        <a class="prominent" href="/samples/selenium/">→ Selenium example</a></p>
+        <a class="prominent" href="/samples/selenium/">&rarr; Selenium example</a></p>
     </div>
     <div class="clear"></div>
   </div>
@@ -275,8 +273,8 @@
 <section class="intro">
   <div class="grid">
     <div class="unit whole align-center">
-      <h1>BDD Integration with Citrus &amp; Cucumber</h1>
-      <h2><small>Citrus "Tools in action" session <a href="https://github.com/DevoxxBE" class="user-mention">@DevoxxBE</a> 2017</small></h2>
+      <h1>BDD Integration with Citrus & Cucumber</h1>
+      <h2><small>Citrus "Tools in action" session &#64;DevoxxBE 2017</small></h2>
 
       <iframe width="560" height="315" src="https://www.youtube.com/embed/X76Wz0MNdrc" frameborder="0" allowfullscreen></iframe>
 
@@ -292,8 +290,8 @@
 <section class="intro">
   <div class="grid">
     <div class="unit whole align-center">
-      <h1>Citrus &amp; Cucumber BDD</h1>
-      <h2><small>Citrus "Tools in action" session <a href="https://github.com/DevoxxUS" class="user-mention">@DevoxxUS</a> 2017</small></h2>
+      <h1>Citrus & Cucumber BDD</h1>
+      <h2><small>Citrus "Tools in action" session &#64;DevoxxUS 2017</small></h2>
 
       <iframe width="560" height="315" src="https://www.youtube.com/embed/jNgROZjI98Y" frameborder="0" allowfullscreen></iframe>
 
@@ -310,7 +308,7 @@
   <div class="grid">
     <div class="unit whole align-center">
       <h1>Testing Microservices</h1>
-      <h2><small>Citrus "Tools in action" session <a href="https://github.com/DevoxxBE" class="user-mention">@DevoxxBE</a> 2015</small></h2>
+      <h2><small>Citrus "Tools in action" session &#64;DevoxxBE 2015</small></h2>
 
       <iframe width="560" height="315" src="https://www.youtube.com/embed/FPgXJveaLTo" frameborder="0" allowfullscreen></iframe>
 
@@ -375,10 +373,10 @@
   <footer role="contentinfo">
   <div class="grid">
     <div class="unit one-third center-on-mobiles">
-      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
-      <p>This website is licensed under <br><a href="https://github.com/citrusframework/citrus/blob/master/LICENSE">MIT License</a>.</p>
-      <br>
-      <p>© 2025 ConSol Software GmbH</p>
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache&nbsp;License&nbsp;2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/citrusframework/citrus/blob/master/LICENSE">MIT&nbsp;License</a>.</p>
+      <br/>
+      <p>&copy;&nbsp;2025 ConSol Software GmbH</p>
     </div>
     <div class="unit one-third align-center center-on-mobiles">
       <p>
@@ -392,9 +390,9 @@
           <img src="/img/sponsor-logo.png" alt="ConSol">
         </a>
       </p>
-      <p> </p>
-      <br>
-      <br>
+      <p>&nbsp;</p>
+      <br/>
+      <br/>
       <p>
         <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
       </p>
