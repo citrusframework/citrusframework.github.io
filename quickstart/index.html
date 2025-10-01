@@ -466,7 +466,7 @@ jbang app install citrus@citrusframework/citrus</code></pre>
         t.when(
             http().client(<span class="hljs-string">"http://localhost:8080/test"</span>)
                     .send()
-                    .POST()
+                    .post()
                     .contentType(<span class="hljs-string">"text/plain"</span>)
                     .body(<span class="hljs-string">"Hello from Citrus!"</span>)
         );
