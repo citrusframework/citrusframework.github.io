@@ -116,6 +116,10 @@
     <option value="/docs/history/">Releases</option>
     <optgroup label="Posts">
       
+      <option value="/news/2026/06/19/kaoto-meets-citrus/">Design Citrus Tests Visually — Kaoto Meets Citrus</option>
+      
+      <option value="/news/2026/06/18/approaching-release-5.0/">Get ready for Citrus 5.0.0</option>
+      
       <option value="/news/2023/10/25/release-4.0.0/">Citrus 4.0.0</option>
       
       <option value="/news/2023/01/30/camel-k-yaks/">Testing Camel K with YAKS</option>
@@ -167,6 +171,264 @@
 
       <div class="unit four-fifths">
         
+  <article>
+  <h2>
+    Design Citrus Tests Visually — Kaoto Meets Citrus
+    <a href="/news/2026/06/19/kaoto-meets-citrus/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      blog
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      19 Jun 2026
+    </span>
+    <a href="https://github.com/christophd" class="post-author">
+      
+      Christoph Deppisch
+    </a>
+  </div>
+  <div class="post-content">
+    <p>What if you could design Citrus integration tests by dragging and dropping components on a visual canvas — no boilerplate, no guesswork, no steep learning curve?
+With <a href="https://kaoto.io/blog/2026/kaoto-2.11-release/">Kaoto 2.11</a> this is now a reality for Citrus.</p>
+
+<p><img src="/img/assets/kaoto-citrus-integration/kaoto-logo.png" alt="Kaoto Logo"></p>
+
+<p><img src="/img/assets/kaoto-citrus-integration/kaoto-teaser.png" alt="Kaoto meets Citrus"></p>
+
+<p>Kaoto is an open source visual designer for <a href="https://camel.apache.org/">Apache Camel</a> integrations, and starting with version 2.11 it ships with comprehensive Citrus framework support.
+This means you can write and execute Citrus tests in a fully visual, low-code environment — right inside VS Code.</p>
+
+<h2 id="why-this-matters">Why this matters</h2>
+
+<p>Citrus is powerful, but getting started has always required some familiarity with the framework’s Java or YAML DSL, its endpoint model, and its rich library of test actions.
+That learning curve is exactly what Kaoto eliminates.</p>
+
+<p>Kaoto is aware of the complete Citrus component catalog: every test action, every endpoint type, every function and validation matcher.
+It uses the individual property schemas of each component to provide guided forms, auto-completion, and contextual help.
+You pick what you need, fill in the blanks, and Kaoto takes care of the rest.</p>
+
+<h2 id="visual-test-design-in-action">Visual test design in action</h2>
+
+<p>Once you open a Citrus test file in Kaoto, each test action appears as a visual step on the canvas with dedicated icons that make it easy to distinguish between different actions at a glance.</p>
+
+<p><img src="/img/assets/kaoto-citrus-integration/test-icons.png" alt="Visual test flow with dedicated Citrus icons"></p>
+
+<p>You build your test scenario step by step — start infrastructure (e.g. <code class="highlighter-rouge">kafka</code> container), add a <code class="highlighter-rouge">send</code> action, configure a <code class="highlighter-rouge">receive</code> with expected message content, throw in an <code class="highlighter-rouge">echo</code> or <code class="highlighter-rouge">sleep</code> — all by selecting from the component catalog and filling in property forms.</p>
+
+<h3 id="full-endpoint-catalog">Full endpoint catalog</h3>
+
+<p>Kaoto knows about all 35+ Citrus test endpoints out of the box: HTTP clients and servers, Kafka, JMS, FTP, SOAP, Mail, SSH, Kubernetes and many more.
+Each endpoint type comes with its own structured configuration form, so you always know exactly which properties are available.</p>
+
+<p><img src="/img/assets/kaoto-citrus-integration/test-endpoints.png" alt="Citrus test endpoints in the Kaoto catalog"></p>
+
+<h3 id="guided-property-forms">Guided property forms</h3>
+
+<p>No more scanning through documentation to find the right property name or value format.
+Kaoto renders a tailored form for each component, with proper input types, dropdowns, and contextual help.</p>
+
+<p><img src="/img/assets/kaoto-citrus-integration/test-forms.png" alt="Guided property forms for Citrus endpoints"></p>
+
+<h2 id="works-in-vs-code">Works in VS Code</h2>
+
+<p>Kaoto is available as a <a href="https://marketplace.visualstudio.com/items?itemName=redhat.vscode-kaoto">VS Code extension</a>, which means you can design and execute Citrus tests without ever leaving your IDE.
+Create a new Citrus test file, open it with Kaoto, and start building your test scenario visually.</p>
+
+<p><img src="/img/assets/kaoto-citrus-integration/kaoto-extension.png" alt="Kaoto VS Code extension with Citrus testing support"></p>
+
+<p>You can run your tests directly from the Kaoto interface to validate your integration behavior during development — keeping the feedback loop as short as possible.</p>
+
+<h2 id="yaml-dsl--and-more-to-come">YAML DSL — and more to come</h2>
+
+<p>The Citrus tests created through Kaoto use the YAML DSL exclusively at the moment.
+Kaoto serializes everything to the standard Citrus YAML format, so the tests you build visually are fully portable and compatible with the broader Citrus ecosystem.
+Support for additional DSLs such as XML is planned for future releases.</p>
+
+<h2 id="give-it-a-try">Give it a try</h2>
+
+<p>Want to see it in action right now? You can try Citrus and Kaoto directly in your browser — no installation required — at the <a href="https://kaotoio.github.io/kaoto/">Kaoto online playground</a>.</p>
+
+<p>For a full local setup:</p>
+
+<ol>
+  <li>Install the <a href="https://marketplace.visualstudio.com/items?itemName=redhat.vscode-kaoto">Kaoto VS Code extension</a>
+</li>
+  <li>Create a new Citrus test file (<code class="highlighter-rouge">.citrus.yaml</code>)</li>
+  <li>Open it with the Kaoto editor and start designing your test</li>
+</ol>
+
+<p>Whether you are new to Citrus and looking for a gentle introduction, or an experienced user who wants to prototype tests faster — Kaoto’s visual approach is a great addition to your toolbox.</p>
+
+<p>We are excited about the collaboration between the Citrus and Kaoto communities and look forward to expanding this integration further.
+Give it a spin and let us know what you think!</p>
+
+  </div>
+</article>
+
+
+  <article>
+  <h2>
+    Get ready for Citrus 5.0.0
+    <a href="/news/2026/06/18/approaching-release-5.0/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      blog
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      18 Jun 2026
+    </span>
+    <a href="https://github.com/christophd" class="post-author">
+      
+      Christoph Deppisch
+    </a>
+  </div>
+  <div class="post-content">
+    <p>Citrus 5.0.0 is on the horizon! The next major release of the Citrus integration testing framework is planned for <strong>GA in Q3 2026</strong> and brings a sweeping update of the core technology stack that Citrus builds on. Two milestone releases (M1 and M2) are already available for early adopters who want to get a head start on migration.</p>
+
+<h2 id="why-a-new-major-version">Why a new major version?</h2>
+
+<p>The Java ecosystem has taken significant leaps forward in recent time. Spring Framework 7, Spring Boot 4, Kafka 4, JUnit 6 and Jackson 3 all represent new major versions that come with their own set of breaking changes and modern API improvements. Citrus 5 aligns with these releases so you can use the latest and greatest enterprise Java libraries alongside your integration tests.</p>
+
+<p>Here are the main objectives for Citrus 5.0:</p>
+
+<ul>
+  <li>While still supporting Java 17 Citrus aligns with <strong>Java 21</strong> (LTS baseline) and <strong>Java 25</strong> support</li>
+  <li>Update to <strong>Spring Framework 7</strong> and <strong>Spring Boot 4</strong>
+</li>
+  <li>Update to <strong>JUnit 6</strong>
+</li>
+  <li>Update to <strong>Jackson 3</strong>, <strong>Apache Camel 4.21</strong>, <strong>Kafka 4.2</strong>, <strong>Jetty 12</strong>
+</li>
+  <li>Introduce a <strong>Citrus MCP server</strong> for AI-assisted test development</li>
+  <li>Expand <strong>Quarkus</strong> support with easy to use integration into the Quarkus test lifecycle</li>
+  <li>Streamline YAML DSL schema and improve the UX with visual designers such as Kaoto</li>
+</ul>
+
+<h2 id="java-17-and-java-21">Java 17 and Java 21</h2>
+
+<p>Citrus 5.0 still supports Java 17 as a minimum Java version but all cursors are pointing towards <strong>Java 21</strong>. This lets the framework and its users take full advantage of modern Java features such as virtual threads, pattern matching, sequenced collections and record patterns.</p>
+
+<h2 id="dependency-updates">Dependency updates</h2>
+
+<p>Citrus depends on many outstanding open source libraries and the 5.0 release aligns with their latest major versions. Here is an overview of the most important updates:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Library</th>
+      <th style="text-align: left">Version</th>
+      <th style="text-align: left">Library</th>
+      <th style="text-align: left">Version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Spring Framework</td>
+      <td style="text-align: left">7.0.7</td>
+      <td style="text-align: left">Spring Boot</td>
+      <td style="text-align: left">4.0.6</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Spring Integration</td>
+      <td style="text-align: left">7.0.4</td>
+      <td style="text-align: left">Spring WS</td>
+      <td style="text-align: left">5.0.1</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Apache Camel</td>
+      <td style="text-align: left">4.21.0</td>
+      <td style="text-align: left">Apache Kafka</td>
+      <td style="text-align: left">4.2.0</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Jackson</td>
+      <td style="text-align: left">3.1.0</td>
+      <td style="text-align: left">Jetty</td>
+      <td style="text-align: left">12.1.8</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">JUnit</td>
+      <td style="text-align: left">6</td>
+      <td style="text-align: left">Quarkus</td>
+      <td style="text-align: left">3.36.2</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="spring-framework-7-and-spring-boot-4">Spring Framework 7 and Spring Boot 4</h3>
+
+<p>Spring 7 brings a refined programming model, improved observability and continued evolution of the Spring module system. Spring Boot 4 builds on top of this foundation with updated auto-configuration and new starter patterns. Citrus 5 is fully aligned with these releases, so you can use Spring Boot 4 in your test projects without dependency conflicts.</p>
+
+<h3 id="junit-6">JUnit 6</h3>
+
+<p>JUnit 6 is the next generation of the most popular Java testing framework. Citrus 5 ships with a dedicated runtime module for JUnit 6, so you can write your Citrus test cases using the new JUnit 6 APIs and extensions right away.</p>
+
+<h3 id="jackson-3">Jackson 3</h3>
+
+<p>Jackson 3.1.0 represents a major step in the Jackson JSON library with a reworked module system and updated API. Citrus uses Jackson extensively for JSON message validation and data binding, and version 5.0 ensures full compatibility with the new Jackson 3 APIs.</p>
+
+<h3 id="apache-kafka-42">Apache Kafka 4.2</h3>
+
+<p>Kafka 4.2 introduces the new KRaft-based architecture as the default, removing the ZooKeeper dependency entirely. Citrus 5 aligns with this release and also brings new Testcontainers support for Kafka into Citrus.</p>
+
+<h3 id="quarkus-336">Quarkus 3.36</h3>
+
+<p>Citrus is fully integrated into the Quarkus test ecosystem with special Quarkus test resource implementations that are able to take part of the Quarkus test lifecycle.</p>
+
+<p>Citrus 5 brings continued enhancements to streamline the Citrus integration into Quarkus for instance by populating <strong>Quarkus dev services properties as test variables</strong> for seamless integration with Quarkus dev services. As an example your Citrus tests might share the Kafka broker configuration from dev services out of the box.</p>
+
+<h2 id="citrus-mcp-server">Citrus MCP server</h2>
+
+<p>One of the most exciting additions in Citrus 5 is the new <strong>Model Context Protocol (MCP) server</strong>. MCP is an emerging standard that allows AI coding assistants to interact with development tools in a structured way.</p>
+
+<p>The Citrus MCP server exposes the framework’s test vocabulary, endpoint configurations and test action catalog to AI assistants. This enables intelligent code completion, test generation and guided test authoring directly from your IDE or command line.</p>
+
+<p>With M2 the MCP server is also published as a <strong>Claude Code plugin</strong> via JBang, making it easy to integrate Citrus-aware AI assistance into your development workflow.</p>
+
+<h2 id="expanded-testcontainers-support">Expanded Testcontainers support</h2>
+
+<p>Citrus has long embraced Testcontainers for managing external service dependencies in integration tests. Version 5.0 significantly expands this support with new container implementations:</p>
+
+<ul>
+  <li>
+<strong>Native Apache Kafka container</strong> - a dedicated container implementation as an alternative to the existing Testcontainers Kafka module</li>
+  <li>
+<strong>Strimzi Kafka container</strong> - run Kafka via the Strimzi container image, ideal for teams already using Strimzi in their Kubernetes environments</li>
+  <li>
+<strong>Floci container support</strong> - adds Floci containers to the Citrus Testcontainers module as an alternative AWS test service provider.</li>
+</ul>
+
+<h2 id="try-it-now">Try it now</h2>
+
+<p>The two milestone releases M1 and M2 are available on Maven Central. Add Citrus 5.0.0-M2 to your project to try it out:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-bom<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.0.0-M2<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;type&gt;</span>pom<span class="nt">&lt;/type&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>import<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>Milestone releases are intended for early adopters to validate their existing test suites against the new dependency stack and to provide feedback before the GA release. We encourage you to try upgrading now so you have plenty of time to adapt your tests before the final release in Q3 2026.</p>
+
+<h2 id="provide-feedback">Provide feedback</h2>
+
+<p>We would love to hear from you! If you run into issues during migration or have ideas for improvements, please open an issue on <a href="https://github.com/citrusframework/citrus/issues">GitHub</a> or start a discussion. Your feedback is invaluable in shaping the GA release.</p>
+
+<p>The Citrus community has once again shown its strength in bringing this major update together. After 18+ years of development Citrus continues to evolve with the Java ecosystem, and we are excited to deliver a framework that stays current with the technologies you use every day. Thank you to everyone who contributed!</p>
+
+  </div>
+</article>
+
+
   <article>
   <h2>
     Citrus 4.0.0
@@ -5114,6 +5376,14 @@ http://www.citrusframework.org/samples/my-testcase-info/my-testcase-info.xsd"</s
     </ul>
     <h4>Posts</h4>
     <ul>
+        
+        <li class="">
+          <a href="/news/2026/06/19/kaoto-meets-citrus/">» Kaoto meets Citrus</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/06/18/approaching-release-5.0/">» Citrus 5.0.0 approaching</a>
+        </li>
         
         <li class="">
           <a href="/news/2023/10/25/release-4.0.0/">» Citrus 4.0.0</a>
