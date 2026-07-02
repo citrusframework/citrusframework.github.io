@@ -232,17 +232,17 @@
   <h2>
     
     
-    <img src="/img/icons/quarkus.png" style="width: 1em;height: 1em;" alt="">
+    <img src="/img/icons/camel.png" style="width: 1em;height: 1em;" alt="">
     
-    Quarkus - Event-Driven JMS
-    <a href="/samples/quarkus-event-driven-jms/" class="permalink" title="Permalink">∞</a>
+    Apache Camel - Quarkus Kafka Eventing
+    <a href="/samples/camel-quarkus-kafka/" class="permalink" title="Permalink">∞</a>
   </h2>
   <div class="right">
     
-    
-    <a href="https://github.com/citrusframework/citrus-quarkus-examples/blob/master/event-driven-jms" target="_blank">
+    <a href="https://github.com/citrusframework/citrus-quarkus-examples/blob/master/apache-camel/camel-kafka" target="_blank">
       <i class="fa fa-pencil"></i> View source code
     </a>
+    
     
   </div>
   <span class="post-category">
@@ -251,88 +251,46 @@
     </span>
   </span>
   <div class="post-content">
-    <p>JMS is still one of the most widely used messaging standards in enterprise applications. ActiveMQ Artemis brings a modern, high-performance JMS broker to the table, and Quarkus makes it easy to build reactive services on top of it.</p>
+    <p>Apache Camel is one of the most popular integration frameworks in the Java ecosystem, and when combined with Quarkus and Kafka it offers a powerful foundation for building event-driven microservices.</p>
 
-<p>But testing the asynchronous message flows in these applications is often where things get tricky. How do you send a message to a JMS queue, wait for the application to process it, and then verify the output on another queue — all in a deterministic, repeatable test?</p>
+<p>But testing these integrations end to end remains a challenge. Camel routes consume and produce Kafka messages asynchronously, and verifying that the entire pipeline works correctly requires a real broker, proper topic setup, and a testing framework that understands messaging.</p>
 
-<p>This post walks you through testing an event-driven Quarkus application with the <a href="https://citrusframework.org">Citrus</a> integration testing framework and JMS. You will see how Citrus connects to JMS queues, shares the broker connection with Quarkus, and validates messages with just a few lines of code. By the end you will have a clear recipe for adding JMS integration tests to your own Quarkus project.</p>
+<p>This post walks you through testing an Apache Camel Kafka route in a Quarkus application using the <a href="https://citrusframework.org">Citrus</a> integration testing framework. You will see how Citrus provisions a Kafka broker with a single annotation, sends messages into a Camel route, and validates the output — all with clean, readable test code. By the end you will have a clear recipe for testing your own Camel Kafka routes in Quarkus.</p>
 
 <h1 id="the-application-under-test">The application under test</h1>
 
-<p>The example application is intentionally simple so we can focus on the testing side. It is a Quarkus service that consumes text messages from a JMS queue, transforms them to uppercase, and publishes the result to an output queue.</p>
+<p>The example application is intentionally simple so we can focus on the testing side. It is a Quarkus service that uses an Apache Camel route to consume text messages from a Kafka topic, transform them to uppercase, and publish the result to an output topic.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>JMS Queue (words-in) --&gt; Transform to Uppercase --&gt; JMS Queue (words-out)
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Kafka Topic (words-in) --&gt; Apache Camel Route (Transform) --&gt; Kafka Topic (words-out)
 </code></pre></div></div>
 
-<p>The implementation uses three components that work together to bridge JMS with SmallRye Reactive Messaging channels.</p>
+<p>The entire integration logic lives in a single Camel route defined using the type-safe Endpoint DSL:</p>
 
-<p>The <code class="highlighter-rouge">WordConsumer</code> listens on the <code class="highlighter-rouge">words-in</code> JMS queue using the standard JMS API and emits each message into a reactive channel:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ApplicationScoped</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">WordConsumer</span> <span class="kd">implements</span> <span class="n">Runnable</span> <span class="o">{</span>
-
-    <span class="nd">@Channel</span><span class="o">(</span><span class="s">"words-in"</span><span class="o">)</span>
-    <span class="n">Emitter</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">emitter</span><span class="o">;</span>
-
-    <span class="nd">@Inject</span>
-    <span class="n">ConnectionFactory</span> <span class="n">connectionFactory</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Routes</span> <span class="kd">extends</span> <span class="n">EndpointRouteBuilder</span> <span class="o">{</span>
 
     <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">try</span> <span class="o">(</span><span class="n">JMSContext</span> <span class="n">context</span> <span class="o">=</span> <span class="n">connectionFactory</span><span class="o">.</span><span class="na">createContext</span><span class="o">(</span><span class="n">JMSContext</span><span class="o">.</span><span class="na">AUTO_ACKNOWLEDGE</span><span class="o">))</span> <span class="o">{</span>
-            <span class="n">JMSConsumer</span> <span class="n">consumer</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">createConsumer</span><span class="o">(</span><span class="n">context</span><span class="o">.</span><span class="na">createQueue</span><span class="o">(</span><span class="s">"words-in"</span><span class="o">));</span>
-            <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">Message</span> <span class="n">message</span> <span class="o">=</span> <span class="n">consumer</span><span class="o">.</span><span class="na">receive</span><span class="o">();</span>
-                <span class="k">if</span> <span class="o">(</span><span class="n">message</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
-                <span class="n">emitter</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">message</span><span class="o">.</span><span class="na">getBody</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">));</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">from</span><span class="o">(</span><span class="n">kafka</span><span class="o">(</span><span class="s">"words-in"</span><span class="o">).</span><span class="na">autoOffsetReset</span><span class="o">(</span><span class="s">"earliest"</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">setBody</span><span class="o">(</span><span class="n">exchange</span> <span class="o">-&gt;</span> <span class="s">"&gt;&gt; "</span> <span class="o">+</span> <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">getBody</span><span class="o">().</span><span class="na">toString</span><span class="o">().</span><span class="na">toUpperCase</span><span class="o">())</span>
+            <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="n">kafka</span><span class="o">(</span><span class="s">"words-out"</span><span class="o">));</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="highlighter-rouge">EventDrivenApplication</code> picks up messages from the reactive channel, transforms them, and hands the result to a producer:</p>
+<p>The route reads messages from the <code class="highlighter-rouge">words-in</code> Kafka topic, transforms the body to uppercase with a <code class="highlighter-rouge">"&gt;&gt; "</code> prefix, and sends the result to the <code class="highlighter-rouge">words-out</code> topic. The <code class="highlighter-rouge">autoOffsetReset("earliest")</code> setting ensures the consumer starts reading from the beginning of the topic, which is important for test reliability.</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ApplicationScoped</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EventDrivenApplication</span> <span class="o">{</span>
+<p>By extending <code class="highlighter-rouge">EndpointRouteBuilder</code> instead of the plain <code class="highlighter-rouge">RouteBuilder</code>, the route gains access to Camel’s Endpoint DSL. This means <code class="highlighter-rouge">kafka("words-in")</code> is a type-safe method call with IDE auto-completion, not a string URI that could contain typos. Quarkus discovers this class automatically and starts the route when the application boots.</p>
 
-    <span class="nd">@Inject</span>
-    <span class="n">WordProducer</span> <span class="n">producer</span><span class="o">;</span>
+<p>The production configuration is minimal — just the broker address in <code class="highlighter-rouge">application.properties</code>:</p>
 
-    <span class="nd">@Incoming</span><span class="o">(</span><span class="s">"words-in"</span><span class="o">)</span>
-    <span class="nd">@Outgoing</span><span class="o">(</span><span class="s">"uppercase"</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">toUpperCase</span><span class="o">(</span><span class="n">String</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">message</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">();</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Incoming</span><span class="o">(</span><span class="s">"uppercase"</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sink</span><span class="o">(</span><span class="n">String</span> <span class="n">word</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">producer</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="s">"&gt;&gt; "</span> <span class="o">+</span> <span class="n">word</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">kafka.bootstrap.servers</span><span class="p">=</span><span class="s">localhost:9092</span>
 </code></pre></div></div>
 
-<p>Finally, the <code class="highlighter-rouge">WordProducer</code> sends the processed message to the <code class="highlighter-rouge">words-out</code> JMS queue:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ApplicationScoped</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">WordProducer</span> <span class="o">{</span>
-
-    <span class="nd">@Inject</span>
-    <span class="n">ConnectionFactory</span> <span class="n">connectionFactory</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">send</span><span class="o">(</span><span class="n">String</span> <span class="n">word</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">try</span> <span class="o">(</span><span class="n">JMSContext</span> <span class="n">context</span> <span class="o">=</span> <span class="n">connectionFactory</span><span class="o">.</span><span class="na">createContext</span><span class="o">(</span><span class="n">JMSContext</span><span class="o">.</span><span class="na">AUTO_ACKNOWLEDGE</span><span class="o">))</span> <span class="o">{</span>
-            <span class="n">context</span><span class="o">.</span><span class="na">createProducer</span><span class="o">().</span><span class="na">send</span><span class="o">(</span><span class="n">context</span><span class="o">.</span><span class="na">createQueue</span><span class="o">(</span><span class="s">"words-out"</span><span class="o">),</span> <span class="n">word</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>The flow starts and ends with JMS queues, but uses reactive messaging channels internally. This is a common pattern in Quarkus applications that integrate with legacy or enterprise messaging systems. Now let’s verify it.</p>
+<p>That is the entire application. Now let’s verify it.</p>
 
 <h1 id="adding-citrus-to-the-project">Adding Citrus to the project</h1>
 
-<p>Citrus is highly modular, so you only pull in the capabilities you actually need. For this JMS scenario you add three test-scoped dependencies to the Maven POM:</p>
+<p>Citrus is highly modular, so you only pull in the capabilities you actually need. For this Camel Kafka scenario you add four test-scoped dependencies to the Maven POM:</p>
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
@@ -342,7 +300,13 @@
 <span class="nt">&lt;/dependency&gt;</span>
 <span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>citrus-jms<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-kafka<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>4.10.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-testcontainers<span class="nt">&lt;/artifactId&gt;</span>
     <span class="nt">&lt;version&gt;</span>4.10.1<span class="nt">&lt;/version&gt;</span>
     <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
@@ -360,83 +324,88 @@
   <li>
 <strong>citrus-quarkus</strong> integrates Citrus with the Quarkus test lifecycle. It hooks into <code class="highlighter-rouge">@QuarkusTest</code> so that Citrus endpoints and test runners are available without any extra configuration.</li>
   <li>
-<strong>citrus-jms</strong> provides JMS endpoint implementations with built-in producer and consumer capabilities and message validation.</li>
+<strong>citrus-kafka</strong> provides Kafka endpoint implementations with built-in producer and consumer capabilities, message serialization, and topic configuration.</li>
+  <li>
+<strong>citrus-testcontainers</strong> adds the <code class="highlighter-rouge">@KafkaContainerSupport</code> annotation that provisions a real Kafka broker for your tests. This is the key dependency for this example.</li>
   <li>
 <strong>citrus-junit-jupiter</strong> connects Citrus to JUnit 5, the test engine that Quarkus uses under the hood.</li>
 </ul>
 
-<p>You also need the Quarkus Artemis test resource to provision a real broker automatically:</p>
+<h1 id="why-not-quarkus-dev-services">Why not Quarkus dev services?</h1>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>io.quarkiverse.artemis<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>quarkus-test-artemis<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-</code></pre></div></div>
+<p>If you have read the <a href="/samples/quarkus-event-driven-kafka/">event-driven Kafka sample</a> on this site, you might wonder why we are not relying on Quarkus Kafka dev services to start the broker. Dev services are great when your application uses SmallRye Reactive Messaging, because Quarkus knows exactly how to wire the broker connection to the messaging channels.</p>
 
-<p>This dependency starts an ActiveMQ Artemis container via Testcontainers when the tests run. No manual broker setup, no Docker Compose files, no cleanup scripts.</p>
+<p>But when your application uses Apache Camel’s native Kafka component, the situation is different. Camel manages its own Kafka consumer and producer configuration through the Camel Kafka component, and Quarkus dev services may not automatically configure that connection. You need a way to start a Kafka broker and share its address between the Quarkus application, the Camel component, and the Citrus test endpoints.</p>
 
-<h1 id="enabling-citrus-in-a-quarkus-test">Enabling Citrus in a Quarkus test</h1>
+<p>Citrus solves this with a single annotation: <code class="highlighter-rouge">@KafkaContainerSupport</code>. It starts a real Kafka broker via Testcontainers and automatically publishes the bootstrap server address so that all three frameworks — Quarkus, Camel, and Citrus — connect to the same broker instance. No manual property overrides, no test-specific configuration files.</p>
 
-<p>The bridge between Quarkus and Citrus is a single annotation. Add <code class="highlighter-rouge">@CitrusSupport</code> next to <code class="highlighter-rouge">@QuarkusTest</code> and the framework takes care of the rest:</p>
+<h1 id="provisioning-the-kafka-broker">Provisioning the Kafka broker</h1>
+
+<p>The test class starts with three annotations that set up the complete test infrastructure:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@QuarkusTest</span>
 <span class="nd">@CitrusSupport</span>
-<span class="nd">@WithTestResource</span><span class="o">(</span><span class="n">ArtemisTestResource</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-<span class="kd">class</span> <span class="nc">EventDrivenApplicationTest</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
-
-    <span class="nd">@CitrusResource</span>
-    <span class="n">GherkinTestActionRunner</span> <span class="n">runner</span><span class="o">;</span>
-
-    <span class="c1">// endpoint configurations and test methods</span>
+<span class="nd">@KafkaContainerSupport</span><span class="o">(</span><span class="n">port</span> <span class="o">=</span> <span class="mi">9092</span><span class="o">,</span> <span class="n">version</span> <span class="o">=</span> <span class="s">"4.2.0"</span><span class="o">,</span>
+        <span class="n">containerLifecycleListener</span> <span class="o">=</span> <span class="n">QuarkusApplicationTest</span><span class="o">.</span><span class="na">KafkaConfigurer</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="kd">class</span> <span class="nc">QuarkusApplicationTest</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
+    <span class="c1">// ...</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>A few things are worth noting here.</p>
+<p><code class="highlighter-rouge">@QuarkusTest</code> starts the Quarkus application in test mode and activates the Camel routes. <code class="highlighter-rouge">@CitrusSupport</code> layers the Citrus framework on top of the Quarkus lifecycle. And <code class="highlighter-rouge">@KafkaContainerSupport</code> is where the magic happens — it launches a Kafka 4.2.0 container on port 9092 and wires everything together.</p>
 
-<p><code class="highlighter-rouge">@QuarkusTest</code> starts the application in test mode. <code class="highlighter-rouge">@WithTestResource(ArtemisTestResource.class)</code> provisions the Artemis broker and configures the Quarkus connection factory to point to it. <code class="highlighter-rouge">@CitrusSupport</code> layers Citrus on top of that lifecycle so you can inject Citrus-specific resources into the test class.</p>
+<p>The <code class="highlighter-rouge">containerLifecycleListener</code> parameter points to a custom listener that runs after the Kafka container starts. This is where you perform any broker-level setup your tests need, such as creating topics:</p>
 
-<p>The <code class="highlighter-rouge">GherkinTestActionRunner</code> is the entry point for all Citrus test actions. It provides a fluent API with Given-When-Then semantics that makes tests read almost like specifications. You inject it with the <code class="highlighter-rouge">@CitrusResource</code> annotation.</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">KafkaConfigurer</span> <span class="kd">implements</span> <span class="n">ContainerLifecycleListener</span><span class="o">&lt;</span><span class="n">KafkaContainer</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="nf">started</span><span class="o">(</span><span class="n">KafkaContainer</span> <span class="n">container</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">(</span><span class="n">Admin</span> <span class="n">adminClient</span> <span class="o">=</span> <span class="n">Admin</span><span class="o">.</span><span class="na">create</span><span class="o">(</span>
+                <span class="n">Collections</span><span class="o">.</span><span class="na">singletonMap</span><span class="o">(</span>
+                    <span class="n">AdminClientConfig</span><span class="o">.</span><span class="na">BOOTSTRAP_SERVERS_CONFIG</span><span class="o">,</span>
+                    <span class="n">container</span><span class="o">.</span><span class="na">getBootstrapServers</span><span class="o">())))</span> <span class="o">{</span>
 
-<p>The <code class="highlighter-rouge">TestActionSupport</code> interface is a convenience that gives you static access to test actions like <code class="highlighter-rouge">send()</code> and <code class="highlighter-rouge">receive()</code> without extra imports. It keeps the test code clean and focused on the intent.</p>
+            <span class="n">CreateTopicsResult</span> <span class="n">result</span> <span class="o">=</span> <span class="n">adminClient</span><span class="o">.</span><span class="na">createTopics</span><span class="o">(</span><span class="n">Set</span><span class="o">.</span><span class="na">of</span><span class="o">(</span>
+                <span class="k">new</span> <span class="nf">NewTopic</span><span class="o">(</span><span class="s">"words-in"</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="o">(</span><span class="kt">short</span><span class="o">)</span> <span class="mi">1</span><span class="o">),</span>
+                <span class="k">new</span> <span class="nf">NewTopic</span><span class="o">(</span><span class="s">"words-out"</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="o">(</span><span class="kt">short</span><span class="o">)</span> <span class="mi">1</span><span class="o">)</span>
+            <span class="o">));</span>
 
-<h1 id="sharing-the-connection-factory">Sharing the connection factory</h1>
+            <span class="n">result</span><span class="o">.</span><span class="na">all</span><span class="o">().</span><span class="na">get</span><span class="o">();</span>
+        <span class="o">}</span>
 
-<p>With Kafka, Citrus and Quarkus connect to the same broker by sharing a property like <code class="highlighter-rouge">kafka.bootstrap.servers</code>. JMS works differently — it uses a <code class="highlighter-rouge">ConnectionFactory</code> object. The challenge is to make both the application and the test use the exact same factory instance pointing to the same Artemis broker.</p>
-
-<p>Citrus solves this with a single pair of annotations:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Inject</span>
-<span class="nd">@BindToRegistry</span>
-<span class="n">ConnectionFactory</span> <span class="n">connectionFactory</span><span class="o">;</span>
+        <span class="k">return</span> <span class="n">Collections</span><span class="o">.</span><span class="na">emptyMap</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">@Inject</code> tells Quarkus to provide the connection factory it configured for the Artemis test resource. <code class="highlighter-rouge">@BindToRegistry</code> is a Citrus annotation that registers this same instance in the Citrus component registry. From that point on, every Citrus JMS endpoint automatically picks up this connection factory.</p>
+<p>The listener receives the running <code class="highlighter-rouge">KafkaContainer</code> instance, creates an admin client pointing to the container’s bootstrap servers, and creates the two topics the Camel route needs. The topics are ready before the Quarkus application and the Citrus endpoints start connecting.</p>
 
-<p>This two-annotation pattern is the key to seamless JMS testing with Quarkus. Both sides share the same broker connection, and there is nothing else to configure.</p>
+<p>The <code class="highlighter-rouge">ContainerLifecycleListener</code> is flexible. Beyond topic creation you could use it to configure ACLs, set up consumer groups, or seed test data. The <code class="highlighter-rouge">started()</code> method can also return a map of additional system properties that get injected into the test context.</p>
 
-<h1 id="configuring-jms-endpoints">Configuring JMS endpoints</h1>
+<h1 id="configuring-kafka-endpoints">Configuring Kafka endpoints</h1>
 
-<p>Before you can send and receive messages in a test, you need to tell Citrus which JMS queues to use. Citrus offers a declarative annotation-based approach:</p>
+<p>With the broker running and topics created, you need to tell Citrus where to send and receive messages. Citrus uses a declarative annotation-based approach:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@CitrusEndpoint</span>
-<span class="nd">@JmsEndpointConfig</span><span class="o">(</span><span class="n">destinationName</span> <span class="o">=</span> <span class="s">"words-in"</span><span class="o">)</span>
-<span class="n">JmsEndpoint</span> <span class="n">wordsIn</span><span class="o">;</span>
+<span class="nd">@KafkaEndpointConfig</span><span class="o">(</span><span class="n">topic</span> <span class="o">=</span> <span class="s">"words-in"</span><span class="o">)</span>
+<span class="n">KafkaEndpoint</span> <span class="n">wordsIn</span><span class="o">;</span>
 
 <span class="nd">@CitrusEndpoint</span>
-<span class="nd">@JmsEndpointConfig</span><span class="o">(</span><span class="n">destinationName</span> <span class="o">=</span> <span class="s">"words-out"</span><span class="o">)</span>
-<span class="n">JmsEndpoint</span> <span class="n">wordsOut</span><span class="o">;</span>
+<span class="nd">@KafkaEndpointConfig</span><span class="o">(</span><span class="n">topic</span> <span class="o">=</span> <span class="s">"words-out"</span><span class="o">)</span>
+<span class="n">KafkaEndpoint</span> <span class="n">wordsOut</span><span class="o">;</span>
 </code></pre></div></div>
 
-<p>Each field annotated with <code class="highlighter-rouge">@CitrusEndpoint</code> becomes a fully configured JMS endpoint. The <code class="highlighter-rouge">@JmsEndpointConfig</code> annotation specifies the JMS destination (queue) name.</p>
+<p>Each field annotated with <code class="highlighter-rouge">@CitrusEndpoint</code> becomes a fully configured Kafka endpoint. The <code class="highlighter-rouge">@KafkaEndpointConfig</code> annotation specifies the topic name. The bootstrap server address is automatically resolved from the <code class="highlighter-rouge">@KafkaContainerSupport</code> configuration — you do not need to specify it explicitly.</p>
 
-<p>The connection factory is automatically resolved from the Citrus registry — the one you registered with <code class="highlighter-rouge">@BindToRegistry</code> in the previous step. No explicit wiring needed. Two endpoints are defined: one for sending messages to the application’s input queue (<code class="highlighter-rouge">wordsIn</code>) and one for receiving from the output queue (<code class="highlighter-rouge">wordsOut</code>).</p>
+<p>Two endpoints are defined: <code class="highlighter-rouge">wordsIn</code> for sending messages into the Camel route’s input topic, and <code class="highlighter-rouge">wordsOut</code> for receiving and validating the transformed output. Citrus handles Kafka producer and consumer creation, serialization, and connection management behind the scenes.</p>
 
 <h1 id="writing-the-test">Writing the test</h1>
 
-<p>With the endpoints in place, the actual test is remarkably concise:</p>
+<p>With the infrastructure and endpoints in place, the actual test is remarkably concise:</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@CitrusResource</span>
+<span class="n">GherkinTestActionRunner</span> <span class="n">runner</span><span class="o">;</span>
+
+<span class="nd">@Test</span>
 <span class="kt">void</span> <span class="nf">shouldHandleEvents</span><span class="o">()</span> <span class="o">{</span>
     <span class="n">runner</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
         <span class="n">send</span><span class="o">()</span>
@@ -454,11 +423,11 @@
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The test sends the string <code class="highlighter-rouge">"Howdy"</code> to the <code class="highlighter-rouge">words-in</code> queue and then verifies that the <code class="highlighter-rouge">words-out</code> queue receives <code class="highlighter-rouge">"&gt;&gt; HOWDY"</code>. That single assertion covers the entire processing pipeline: JMS consumption, the reactive channel handoff, the uppercase transformation, the prefix formatting, and the JMS production on the output side.</p>
+<p>The <code class="highlighter-rouge">GherkinTestActionRunner</code> provides a fluent API with Given-When-Then semantics. The <strong>when</strong> block sends the string <code class="highlighter-rouge">"Howdy"</code> to the <code class="highlighter-rouge">words-in</code> topic. The Camel route picks it up, transforms it, and publishes the result to <code class="highlighter-rouge">words-out</code>. The <strong>then</strong> block verifies that a message with body <code class="highlighter-rouge">"&gt;&gt; HOWDY"</code> arrives on the output topic.</p>
 
-<p>The Gherkin-style <code class="highlighter-rouge">when</code> and <code class="highlighter-rouge">then</code> methods clearly communicate intent. The <strong>when</strong> block describes the stimulus, the action that triggers the application behavior. The <strong>then</strong> block describes the expected outcome. If the received message does not match the expected body, Citrus fails the test with a clear diff showing exactly what went wrong.</p>
+<p>That single assertion covers the entire processing pipeline: Kafka consumption by Camel, the uppercase transformation, the prefix formatting, and the Kafka production on the output side. If the received message does not match the expected body, Citrus fails the test with a clear diff showing exactly what went wrong.</p>
 
-<p>While the application processes messages asynchronously across multiple components, the Citrus test runs synchronously. The <code class="highlighter-rouge">send()</code> action publishes a message to the JMS queue, the application asynchronously consumes, transforms, and produces the message, and the <code class="highlighter-rouge">receive()</code> action blocks until a message arrives on the output queue or a timeout occurs. This approach ensures deterministic test execution without flaky sleeps or polling loops.</p>
+<p>While the Camel route processes messages asynchronously, the Citrus test runs synchronously. The <code class="highlighter-rouge">receive()</code> action blocks until a message arrives on the output topic or a timeout occurs. This approach ensures deterministic test execution without flaky sleeps or polling loops.</p>
 
 <h1 id="how-it-all-fits-together">How it all fits together</h1>
 
@@ -466,20 +435,26 @@
 
 <ol>
   <li>
-<strong>Quarkus starts</strong> the application in test mode.</li>
+<strong><code class="highlighter-rouge">@KafkaContainerSupport</code> launches</strong> a Kafka 4.2.0 container on port 9092 via Testcontainers.</li>
   <li>
-<strong>The Artemis test resource</strong> launches an ActiveMQ Artemis container via Testcontainers and configures the connection factory.</li>
+<strong>The lifecycle listener</strong> creates the <code class="highlighter-rouge">words-in</code> and <code class="highlighter-rouge">words-out</code> topics using the Kafka Admin API.</li>
   <li>
-<strong>Citrus registers</strong> the connection factory and initializes the <code class="highlighter-rouge">wordsIn</code> and <code class="highlighter-rouge">wordsOut</code> JMS endpoints.</li>
+<strong>Quarkus starts</strong> the application in test mode with the bootstrap servers pointing to the test Kafka broker.</li>
   <li>
-<strong>The test sends</strong> <code class="highlighter-rouge">"Howdy"</code> to the <code class="highlighter-rouge">words-in</code> queue through the <code class="highlighter-rouge">wordsIn</code> endpoint.</li>
+<strong>Apache Camel discovers</strong> the <code class="highlighter-rouge">Routes</code> class and starts the Kafka consumer on <code class="highlighter-rouge">words-in</code>.</li>
   <li>
-<strong>The application consumes</strong> the message, transforms it to <code class="highlighter-rouge">"HOWDY"</code>, prefixes it with <code class="highlighter-rouge">"&gt;&gt; "</code>, and publishes <code class="highlighter-rouge">"&gt;&gt; HOWDY"</code> to the <code class="highlighter-rouge">words-out</code> queue.</li>
+<strong>Citrus initializes</strong> the <code class="highlighter-rouge">wordsIn</code> and <code class="highlighter-rouge">wordsOut</code> endpoints connected to the same broker.</li>
   <li>
-<strong>Citrus receives</strong> the message from the <code class="highlighter-rouge">words-out</code> queue through the <code class="highlighter-rouge">wordsOut</code> endpoint and validates it against the expected body.</li>
+<strong>The test sends</strong> <code class="highlighter-rouge">"Howdy"</code> to the <code class="highlighter-rouge">words-in</code> topic through the <code class="highlighter-rouge">wordsIn</code> endpoint.</li>
   <li>
-<strong>The test completes</strong> and the Artemis container is stopped automatically.</li>
+<strong>The Camel route consumes</strong> the message, transforms it to <code class="highlighter-rouge">"&gt;&gt; HOWDY"</code>, and produces it to <code class="highlighter-rouge">words-out</code>.</li>
+  <li>
+<strong>Citrus receives</strong> the message from the <code class="highlighter-rouge">words-out</code> topic and validates it against the expected body.</li>
+  <li>
+<strong>The test completes</strong> and the Kafka container is stopped and cleaned up automatically.</li>
 </ol>
+
+<p>The critical point is step 5: all three frameworks — Quarkus, Apache Camel, and Citrus — share the same Kafka broker instance. The <code class="highlighter-rouge">@KafkaContainerSupport</code> annotation takes care of distributing the bootstrap server configuration so you do not have to wire it manually.</p>
 
 <p>There is one small piece of test configuration worth mentioning. Because Citrus and Quarkus share the same classpath, you need to tell Quarkus CDI to allow split packages from the Citrus framework. This is done in <code class="highlighter-rouge">src/test/resources/application.properties</code>:</p>
 
@@ -494,20 +469,17 @@
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@QuarkusTest</span>
 <span class="nd">@CitrusSupport</span>
-<span class="nd">@WithTestResource</span><span class="o">(</span><span class="n">ArtemisTestResource</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-<span class="kd">class</span> <span class="nc">EventDrivenApplicationTest</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
-
-    <span class="nd">@Inject</span>
-    <span class="nd">@BindToRegistry</span>
-    <span class="n">ConnectionFactory</span> <span class="n">connectionFactory</span><span class="o">;</span>
+<span class="nd">@KafkaContainerSupport</span><span class="o">(</span><span class="n">port</span> <span class="o">=</span> <span class="mi">9092</span><span class="o">,</span> <span class="n">version</span> <span class="o">=</span> <span class="s">"4.2.0"</span><span class="o">,</span>
+        <span class="n">containerLifecycleListener</span> <span class="o">=</span> <span class="n">QuarkusApplicationTest</span><span class="o">.</span><span class="na">KafkaConfigurer</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="kd">class</span> <span class="nc">QuarkusApplicationTest</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
 
     <span class="nd">@CitrusEndpoint</span>
-    <span class="nd">@JmsEndpointConfig</span><span class="o">(</span><span class="n">destinationName</span> <span class="o">=</span> <span class="s">"words-in"</span><span class="o">)</span>
-    <span class="n">JmsEndpoint</span> <span class="n">wordsIn</span><span class="o">;</span>
+    <span class="nd">@KafkaEndpointConfig</span><span class="o">(</span><span class="n">topic</span> <span class="o">=</span> <span class="s">"words-in"</span><span class="o">)</span>
+    <span class="n">KafkaEndpoint</span> <span class="n">wordsIn</span><span class="o">;</span>
 
     <span class="nd">@CitrusEndpoint</span>
-    <span class="nd">@JmsEndpointConfig</span><span class="o">(</span><span class="n">destinationName</span> <span class="o">=</span> <span class="s">"words-out"</span><span class="o">)</span>
-    <span class="n">JmsEndpoint</span> <span class="n">wordsOut</span><span class="o">;</span>
+    <span class="nd">@KafkaEndpointConfig</span><span class="o">(</span><span class="n">topic</span> <span class="o">=</span> <span class="s">"words-out"</span><span class="o">)</span>
+    <span class="n">KafkaEndpoint</span> <span class="n">wordsOut</span><span class="o">;</span>
 
     <span class="nd">@CitrusResource</span>
     <span class="n">GherkinTestActionRunner</span> <span class="n">runner</span><span class="o">;</span>
@@ -528,39 +500,50 @@
                 <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"&gt;&gt; HOWDY"</span><span class="o">)</span>
         <span class="o">);</span>
     <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">KafkaConfigurer</span>
+            <span class="kd">implements</span> <span class="n">ContainerLifecycleListener</span><span class="o">&lt;</span><span class="n">KafkaContainer</span><span class="o">&gt;</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="nf">started</span><span class="o">(</span><span class="n">KafkaContainer</span> <span class="n">container</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">(</span><span class="n">Admin</span> <span class="n">adminClient</span> <span class="o">=</span> <span class="n">Admin</span><span class="o">.</span><span class="na">create</span><span class="o">(</span>
+                    <span class="n">Collections</span><span class="o">.</span><span class="na">singletonMap</span><span class="o">(</span>
+                        <span class="n">AdminClientConfig</span><span class="o">.</span><span class="na">BOOTSTRAP_SERVERS_CONFIG</span><span class="o">,</span>
+                        <span class="n">container</span><span class="o">.</span><span class="na">getBootstrapServers</span><span class="o">())))</span> <span class="o">{</span>
+
+                <span class="n">adminClient</span><span class="o">.</span><span class="na">createTopics</span><span class="o">(</span><span class="n">Set</span><span class="o">.</span><span class="na">of</span><span class="o">(</span>
+                    <span class="k">new</span> <span class="nf">NewTopic</span><span class="o">(</span><span class="s">"words-in"</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="o">(</span><span class="kt">short</span><span class="o">)</span> <span class="mi">1</span><span class="o">),</span>
+                    <span class="k">new</span> <span class="nf">NewTopic</span><span class="o">(</span><span class="s">"words-out"</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="o">(</span><span class="kt">short</span><span class="o">)</span> <span class="mi">1</span><span class="o">)</span>
+                <span class="o">)).</span><span class="na">all</span><span class="o">().</span><span class="na">get</span><span class="o">();</span>
+            <span class="o">}</span>
+
+            <span class="k">return</span> <span class="n">Collections</span><span class="o">.</span><span class="na">emptyMap</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>Under 50 lines of code for a complete integration test that sends a message to a JMS queue, waits for the application to process it, receives the result from a different queue, and validates the output. That is the power of Citrus combined with Quarkus test resources.</p>
-
-<h1 id="jms-vs-kafka--same-pattern-different-transport">JMS vs Kafka — same pattern, different transport</h1>
-
-<p>If you have read the <a href="/samples/quarkus-event-driven-kafka/">Kafka event-driven sample</a> on this site, the structure of this test will look very familiar. And that is by design. Citrus abstracts the messaging transport behind its endpoint model, so switching from Kafka to JMS is mostly a matter of swapping endpoint types and adjusting how the broker connection is shared.</p>
-
-<p>With Kafka, Citrus picks up the <code class="highlighter-rouge">kafka.bootstrap.servers</code> property that Quarkus dev services publishes. With JMS, you share the <code class="highlighter-rouge">ConnectionFactory</code> object through <code class="highlighter-rouge">@BindToRegistry</code>. The test actions — <code class="highlighter-rouge">send()</code>, <code class="highlighter-rouge">receive()</code>, the Gherkin-style runner — stay exactly the same regardless of which transport you use.</p>
-
-<p>This consistency means your team can apply the same testing patterns across different messaging technologies without learning a new API for each one.</p>
+<p>The complete test weighs in at around 50 lines of code. It provisions a real Kafka broker, creates topics, starts the Quarkus application with Apache Camel, sends a message through the entire pipeline, and validates the output. That is the power of Citrus combined with Camel and Quarkus.</p>
 
 <h1 id="where-to-go-from-here">Where to go from here</h1>
 
-<p>This example covers the fundamentals, but Citrus has much more to offer for JMS testing scenarios:</p>
+<p>This example covers the fundamentals, but Citrus has much more to offer for Apache Camel and Kafka testing scenarios:</p>
 
 <ul>
   <li>
-<strong>Message headers and properties</strong>: JMS messages carry headers and custom properties alongside the payload. Citrus lets you set and verify both in your send and receive actions.</li>
+<strong>Message headers and keys</strong>: Kafka records carry headers and message keys alongside the payload. Citrus lets you set and verify both in your send and receive actions, which is essential for testing content-based routing in Camel.</li>
   <li>
 <strong>JSON validation</strong>: Add the <code class="highlighter-rouge">citrus-validation-json</code> module and Citrus will compare received JSON payloads field by field, supporting ignore patterns, validation matchers, and flexible element ordering.</li>
   <li>
-<strong>Multiple queues and complex flows</strong>: Real applications often consume from several queues and produce to several others. You can define as many endpoints as you need and orchestrate multi-step test scenarios.</li>
+<strong>Complex Camel patterns</strong>: Test content-based routing, message filters, aggregation, and error handling. Citrus can simulate multiple input and output topics to cover multi-step integration scenarios.</li>
   <li>
 <strong>Error scenarios</strong>: Test what happens when the application receives malformed input or when downstream services are unavailable. Citrus gives you full control over the messages you send, making negative testing straightforward.</li>
   <li>
-<strong>Endpoint configuration classes</strong>: When your test suite grows, you can extract endpoint definitions into shared <code class="highlighter-rouge">@CitrusConfiguration</code> classes and reuse them across multiple tests. The <a href="/samples/quarkus/">Quarkus sample</a> on this site demonstrates this pattern in detail.</li>
+<strong>Dev services comparison</strong>: If your Quarkus application uses SmallRye Reactive Messaging instead of Camel’s native Kafka component, Quarkus dev services can handle broker provisioning automatically. The <a href="/samples/quarkus-event-driven-kafka/">event-driven Kafka sample</a> on this site demonstrates that approach. Choose <code class="highlighter-rouge">@KafkaContainerSupport</code> when you need explicit control over the broker or when dev services do not apply.</li>
 </ul>
 
 <p>To explore the full example project including the source code, head over to the <a href="https://github.com/citrusframework/citrus-quarkus-examples">citrus-quarkus-examples</a> repository on GitHub.</p>
 
-<p>For deeper dives into Citrus capabilities, the <a href="https://citrusframework.org/citrus/reference/html/">reference guide</a> covers JMS endpoints, Quarkus integration, and the many other messaging transports that Citrus supports.</p>
+<p>For deeper dives into Citrus capabilities, the <a href="https://citrusframework.org/citrus/reference/html/">reference guide</a> covers Kafka endpoints, Quarkus integration, Apache Camel support, and the many other messaging transports that Citrus supports.</p>
 
   </div>
 </article>
@@ -803,12 +786,12 @@
     <ul style="margin-top: 5px;">
       
       
-      <li class="current">
+      <li class="">
         <a href="/samples/quarkus-event-driven-jms/">event-driven-jms</a>
       </li>
       
       
-      <li class="">
+      <li class="current">
         <a href="/samples/camel-quarkus-kafka/">camel-kafka</a>
       </li>
       
