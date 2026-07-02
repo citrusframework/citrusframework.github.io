@@ -1,4 +1,298 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2026-06-19T15:12:38+02:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Citrus Integration Tests</title><subtitle>Automated integration tests for message protocols and data formats that you require</subtitle><entry><title type="html">Design Citrus Tests Visually — Kaoto Meets Citrus</title><link href="http://0.0.0.0:4000/news/2026/06/19/kaoto-meets-citrus/" rel="alternate" type="text/html" title="Design Citrus Tests Visually — Kaoto Meets Citrus" /><published>2026-06-19T00:00:00+02:00</published><updated>2026-06-19T00:00:00+02:00</updated><id>http://0.0.0.0:4000/news/2026/06/19/kaoto-meets-citrus</id><content type="html" xml:base="http://0.0.0.0:4000/news/2026/06/19/kaoto-meets-citrus/">&lt;p&gt;What if you could design Citrus integration tests by dragging and dropping components on a visual canvas — no boilerplate, no guesswork, no steep learning curve?
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2026-07-02T21:55:38+02:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Citrus Integration Tests</title><subtitle>Automated integration tests for message protocols and data formats that you require</subtitle><entry><title type="html">Quarkus - Event-Driven JMS</title><link href="http://0.0.0.0:4000/samples/quarkus-event-driven-jms/" rel="alternate" type="text/html" title="Quarkus - Event-Driven JMS" /><published>2026-07-02T00:00:00+02:00</published><updated>2026-07-02T00:00:00+02:00</updated><id>http://0.0.0.0:4000/samples/sample-quarkus-event-driven-jms</id><content type="html" xml:base="http://0.0.0.0:4000/samples/quarkus-event-driven-jms/">&lt;p&gt;JMS is still one of the most widely used messaging standards in enterprise applications. ActiveMQ Artemis brings a modern, high-performance JMS broker to the table, and Quarkus makes it easy to build reactive services on top of it.&lt;/p&gt;
+
+&lt;p&gt;But testing the asynchronous message flows in these applications is often where things get tricky. How do you send a message to a JMS queue, wait for the application to process it, and then verify the output on another queue — all in a deterministic, repeatable test?&lt;/p&gt;
+
+&lt;p&gt;This post walks you through testing an event-driven Quarkus application with the &lt;a href=&quot;https://citrusframework.org&quot;&gt;Citrus&lt;/a&gt; integration testing framework and JMS. You will see how Citrus connects to JMS queues, shares the broker connection with Quarkus, and validates messages with just a few lines of code. By the end you will have a clear recipe for adding JMS integration tests to your own Quarkus project.&lt;/p&gt;
+
+&lt;h1 id=&quot;the-application-under-test&quot;&gt;The application under test&lt;/h1&gt;
+
+&lt;p&gt;The example application is intentionally simple so we can focus on the testing side. It is a Quarkus service that consumes text messages from a JMS queue, transforms them to uppercase, and publishes the result to an output queue.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;JMS Queue (words-in) --&amp;gt; Transform to Uppercase --&amp;gt; JMS Queue (words-out)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The implementation uses three components that work together to bridge JMS with SmallRye Reactive Messaging channels.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;WordConsumer&lt;/code&gt; listens on the &lt;code class=&quot;highlighter-rouge&quot;&gt;words-in&lt;/code&gt; JMS queue using the standard JMS API and emits each message into a reactive channel:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@ApplicationScoped&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;WordConsumer&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Runnable&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Channel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;words-in&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Emitter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;emitter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Inject&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ConnectionFactory&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;connectionFactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;JMSContext&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;connectionFactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;JMSContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;AUTO_ACKNOWLEDGE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;JMSConsumer&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;consumer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createConsumer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createQueue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;words-in&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;Message&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;consumer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;emitter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBody&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;EventDrivenApplication&lt;/code&gt; picks up messages from the reactive channel, transforms them, and hands the result to a producer:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@ApplicationScoped&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;EventDrivenApplication&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Inject&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;WordProducer&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;producer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Incoming&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;words-in&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Outgoing&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;uppercase&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;toUpperCase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toUpperCase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Incoming&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;uppercase&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sink&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;producer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&amp;gt;&amp;gt; &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Finally, the &lt;code class=&quot;highlighter-rouge&quot;&gt;WordProducer&lt;/code&gt; sends the processed message to the &lt;code class=&quot;highlighter-rouge&quot;&gt;words-out&lt;/code&gt; JMS queue:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@ApplicationScoped&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;WordProducer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Inject&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ConnectionFactory&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;connectionFactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;JMSContext&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;connectionFactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;JMSContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;AUTO_ACKNOWLEDGE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createProducer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createQueue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;words-out&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The flow starts and ends with JMS queues, but uses reactive messaging channels internally. This is a common pattern in Quarkus applications that integrate with legacy or enterprise messaging systems. Now let’s verify it.&lt;/p&gt;
+
+&lt;h1 id=&quot;adding-citrus-to-the-project&quot;&gt;Adding Citrus to the project&lt;/h1&gt;
+
+&lt;p&gt;Citrus is highly modular, so you only pull in the capabilities you actually need. For this JMS scenario you add three test-scoped dependencies to the Maven POM:&lt;/p&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.citrusframework&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-quarkus&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;4.10.1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;scope&amp;gt;&lt;/span&gt;test&lt;span class=&quot;nt&quot;&gt;&amp;lt;/scope&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.citrusframework&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-jms&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;4.10.1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;scope&amp;gt;&lt;/span&gt;test&lt;span class=&quot;nt&quot;&gt;&amp;lt;/scope&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.citrusframework&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-junit-jupiter&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;4.10.1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;scope&amp;gt;&lt;/span&gt;test&lt;span class=&quot;nt&quot;&gt;&amp;lt;/scope&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Here is what each module brings to the table:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;citrus-quarkus&lt;/strong&gt; integrates Citrus with the Quarkus test lifecycle. It hooks into &lt;code class=&quot;highlighter-rouge&quot;&gt;@QuarkusTest&lt;/code&gt; so that Citrus endpoints and test runners are available without any extra configuration.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;citrus-jms&lt;/strong&gt; provides JMS endpoint implementations with built-in producer and consumer capabilities and message validation.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;citrus-junit-jupiter&lt;/strong&gt; connects Citrus to JUnit 5, the test engine that Quarkus uses under the hood.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You also need the Quarkus Artemis test resource to provision a real broker automatically:&lt;/p&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;io.quarkiverse.artemis&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;quarkus-test-artemis&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;scope&amp;gt;&lt;/span&gt;test&lt;span class=&quot;nt&quot;&gt;&amp;lt;/scope&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This dependency starts an ActiveMQ Artemis container via Testcontainers when the tests run. No manual broker setup, no Docker Compose files, no cleanup scripts.&lt;/p&gt;
+
+&lt;h1 id=&quot;enabling-citrus-in-a-quarkus-test&quot;&gt;Enabling Citrus in a Quarkus test&lt;/h1&gt;
+
+&lt;p&gt;The bridge between Quarkus and Citrus is a single annotation. Add &lt;code class=&quot;highlighter-rouge&quot;&gt;@CitrusSupport&lt;/code&gt; next to &lt;code class=&quot;highlighter-rouge&quot;&gt;@QuarkusTest&lt;/code&gt; and the framework takes care of the rest:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@QuarkusTest&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@CitrusSupport&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@WithTestResource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ArtemisTestResource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;EventDrivenApplicationTest&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TestActionSupport&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@CitrusResource&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;GherkinTestActionRunner&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// endpoint configurations and test methods&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;A few things are worth noting here.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;@QuarkusTest&lt;/code&gt; starts the application in test mode. &lt;code class=&quot;highlighter-rouge&quot;&gt;@WithTestResource(ArtemisTestResource.class)&lt;/code&gt; provisions the Artemis broker and configures the Quarkus connection factory to point to it. &lt;code class=&quot;highlighter-rouge&quot;&gt;@CitrusSupport&lt;/code&gt; layers Citrus on top of that lifecycle so you can inject Citrus-specific resources into the test class.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;GherkinTestActionRunner&lt;/code&gt; is the entry point for all Citrus test actions. It provides a fluent API with Given-When-Then semantics that makes tests read almost like specifications. You inject it with the &lt;code class=&quot;highlighter-rouge&quot;&gt;@CitrusResource&lt;/code&gt; annotation.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;TestActionSupport&lt;/code&gt; interface is a convenience that gives you static access to test actions like &lt;code class=&quot;highlighter-rouge&quot;&gt;send()&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;receive()&lt;/code&gt; without extra imports. It keeps the test code clean and focused on the intent.&lt;/p&gt;
+
+&lt;h1 id=&quot;sharing-the-connection-factory&quot;&gt;Sharing the connection factory&lt;/h1&gt;
+
+&lt;p&gt;With Kafka, Citrus and Quarkus connect to the same broker by sharing a property like &lt;code class=&quot;highlighter-rouge&quot;&gt;kafka.bootstrap.servers&lt;/code&gt;. JMS works differently — it uses a &lt;code class=&quot;highlighter-rouge&quot;&gt;ConnectionFactory&lt;/code&gt; object. The challenge is to make both the application and the test use the exact same factory instance pointing to the same Artemis broker.&lt;/p&gt;
+
+&lt;p&gt;Citrus solves this with a single pair of annotations:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Inject&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@BindToRegistry&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ConnectionFactory&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;connectionFactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;@Inject&lt;/code&gt; tells Quarkus to provide the connection factory it configured for the Artemis test resource. &lt;code class=&quot;highlighter-rouge&quot;&gt;@BindToRegistry&lt;/code&gt; is a Citrus annotation that registers this same instance in the Citrus component registry. From that point on, every Citrus JMS endpoint automatically picks up this connection factory.&lt;/p&gt;
+
+&lt;p&gt;This two-annotation pattern is the key to seamless JMS testing with Quarkus. Both sides share the same broker connection, and there is nothing else to configure.&lt;/p&gt;
+
+&lt;h1 id=&quot;configuring-jms-endpoints&quot;&gt;Configuring JMS endpoints&lt;/h1&gt;
+
+&lt;p&gt;Before you can send and receive messages in a test, you need to tell Citrus which JMS queues to use. Citrus offers a declarative annotation-based approach:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@CitrusEndpoint&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@JmsEndpointConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;destinationName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;words-in&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;JmsEndpoint&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wordsIn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@CitrusEndpoint&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@JmsEndpointConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;destinationName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;words-out&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;JmsEndpoint&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wordsOut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Each field annotated with &lt;code class=&quot;highlighter-rouge&quot;&gt;@CitrusEndpoint&lt;/code&gt; becomes a fully configured JMS endpoint. The &lt;code class=&quot;highlighter-rouge&quot;&gt;@JmsEndpointConfig&lt;/code&gt; annotation specifies the JMS destination (queue) name.&lt;/p&gt;
+
+&lt;p&gt;The connection factory is automatically resolved from the Citrus registry — the one you registered with &lt;code class=&quot;highlighter-rouge&quot;&gt;@BindToRegistry&lt;/code&gt; in the previous step. No explicit wiring needed. Two endpoints are defined: one for sending messages to the application’s input queue (&lt;code class=&quot;highlighter-rouge&quot;&gt;wordsIn&lt;/code&gt;) and one for receiving from the output queue (&lt;code class=&quot;highlighter-rouge&quot;&gt;wordsOut&lt;/code&gt;).&lt;/p&gt;
+
+&lt;h1 id=&quot;writing-the-test&quot;&gt;Writing the test&lt;/h1&gt;
+
+&lt;p&gt;With the endpoints in place, the actual test is remarkably concise:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;shouldHandleEvents&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wordsIn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Howdy&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wordsOut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&amp;gt;&amp;gt; HOWDY&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The test sends the string &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Howdy&quot;&lt;/code&gt; to the &lt;code class=&quot;highlighter-rouge&quot;&gt;words-in&lt;/code&gt; queue and then verifies that the &lt;code class=&quot;highlighter-rouge&quot;&gt;words-out&lt;/code&gt; queue receives &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;&amp;gt;&amp;gt; HOWDY&quot;&lt;/code&gt;. That single assertion covers the entire processing pipeline: JMS consumption, the reactive channel handoff, the uppercase transformation, the prefix formatting, and the JMS production on the output side.&lt;/p&gt;
+
+&lt;p&gt;The Gherkin-style &lt;code class=&quot;highlighter-rouge&quot;&gt;when&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;then&lt;/code&gt; methods clearly communicate intent. The &lt;strong&gt;when&lt;/strong&gt; block describes the stimulus, the action that triggers the application behavior. The &lt;strong&gt;then&lt;/strong&gt; block describes the expected outcome. If the received message does not match the expected body, Citrus fails the test with a clear diff showing exactly what went wrong.&lt;/p&gt;
+
+&lt;p&gt;While the application processes messages asynchronously across multiple components, the Citrus test runs synchronously. The &lt;code class=&quot;highlighter-rouge&quot;&gt;send()&lt;/code&gt; action publishes a message to the JMS queue, the application asynchronously consumes, transforms, and produces the message, and the &lt;code class=&quot;highlighter-rouge&quot;&gt;receive()&lt;/code&gt; action blocks until a message arrives on the output queue or a timeout occurs. This approach ensures deterministic test execution without flaky sleeps or polling loops.&lt;/p&gt;
+
+&lt;h1 id=&quot;how-it-all-fits-together&quot;&gt;How it all fits together&lt;/h1&gt;
+
+&lt;p&gt;When you run the test with &lt;code class=&quot;highlighter-rouge&quot;&gt;./mvnw clean test&lt;/code&gt;, here is the sequence of events that unfolds behind the scenes:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Quarkus starts&lt;/strong&gt; the application in test mode.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;The Artemis test resource&lt;/strong&gt; launches an ActiveMQ Artemis container via Testcontainers and configures the connection factory.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Citrus registers&lt;/strong&gt; the connection factory and initializes the &lt;code class=&quot;highlighter-rouge&quot;&gt;wordsIn&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;wordsOut&lt;/code&gt; JMS endpoints.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;The test sends&lt;/strong&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Howdy&quot;&lt;/code&gt; to the &lt;code class=&quot;highlighter-rouge&quot;&gt;words-in&lt;/code&gt; queue through the &lt;code class=&quot;highlighter-rouge&quot;&gt;wordsIn&lt;/code&gt; endpoint.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;The application consumes&lt;/strong&gt; the message, transforms it to &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;HOWDY&quot;&lt;/code&gt;, prefixes it with &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;&amp;gt;&amp;gt; &quot;&lt;/code&gt;, and publishes &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;&amp;gt;&amp;gt; HOWDY&quot;&lt;/code&gt; to the &lt;code class=&quot;highlighter-rouge&quot;&gt;words-out&lt;/code&gt; queue.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Citrus receives&lt;/strong&gt; the message from the &lt;code class=&quot;highlighter-rouge&quot;&gt;words-out&lt;/code&gt; queue through the &lt;code class=&quot;highlighter-rouge&quot;&gt;wordsOut&lt;/code&gt; endpoint and validates it against the expected body.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;The test completes&lt;/strong&gt; and the Artemis container is stopped automatically.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;There is one small piece of test configuration worth mentioning. Because Citrus and Quarkus share the same classpath, you need to tell Quarkus CDI to allow split packages from the Citrus framework. This is done in &lt;code class=&quot;highlighter-rouge&quot;&gt;src/test/resources/application.properties&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-properties highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;py&quot;&gt;quarkus.arc.ignored-split-packages&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;org.citrusframework.*&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This avoids CDI bean discovery conflicts and is a one-line addition that you set once and forget.&lt;/p&gt;
+
+&lt;h1 id=&quot;the-complete-test-class&quot;&gt;The complete test class&lt;/h1&gt;
+
+&lt;p&gt;Here is the full test in one place for easy reference:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@QuarkusTest&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@CitrusSupport&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@WithTestResource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ArtemisTestResource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;EventDrivenApplicationTest&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TestActionSupport&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Inject&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@BindToRegistry&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ConnectionFactory&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;connectionFactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@CitrusEndpoint&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@JmsEndpointConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;destinationName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;words-in&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;JmsEndpoint&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wordsIn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@CitrusEndpoint&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@JmsEndpointConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;destinationName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;words-out&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;JmsEndpoint&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wordsOut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@CitrusResource&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;GherkinTestActionRunner&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;shouldHandleEvents&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wordsIn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Howdy&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wordsOut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&amp;gt;&amp;gt; HOWDY&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Under 50 lines of code for a complete integration test that sends a message to a JMS queue, waits for the application to process it, receives the result from a different queue, and validates the output. That is the power of Citrus combined with Quarkus test resources.&lt;/p&gt;
+
+&lt;h1 id=&quot;jms-vs-kafka--same-pattern-different-transport&quot;&gt;JMS vs Kafka — same pattern, different transport&lt;/h1&gt;
+
+&lt;p&gt;If you have read the &lt;a href=&quot;/samples/quarkus-event-driven-kafka/&quot;&gt;Kafka event-driven sample&lt;/a&gt; on this site, the structure of this test will look very familiar. And that is by design. Citrus abstracts the messaging transport behind its endpoint model, so switching from Kafka to JMS is mostly a matter of swapping endpoint types and adjusting how the broker connection is shared.&lt;/p&gt;
+
+&lt;p&gt;With Kafka, Citrus picks up the &lt;code class=&quot;highlighter-rouge&quot;&gt;kafka.bootstrap.servers&lt;/code&gt; property that Quarkus dev services publishes. With JMS, you share the &lt;code class=&quot;highlighter-rouge&quot;&gt;ConnectionFactory&lt;/code&gt; object through &lt;code class=&quot;highlighter-rouge&quot;&gt;@BindToRegistry&lt;/code&gt;. The test actions — &lt;code class=&quot;highlighter-rouge&quot;&gt;send()&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;receive()&lt;/code&gt;, the Gherkin-style runner — stay exactly the same regardless of which transport you use.&lt;/p&gt;
+
+&lt;p&gt;This consistency means your team can apply the same testing patterns across different messaging technologies without learning a new API for each one.&lt;/p&gt;
+
+&lt;h1 id=&quot;where-to-go-from-here&quot;&gt;Where to go from here&lt;/h1&gt;
+
+&lt;p&gt;This example covers the fundamentals, but Citrus has much more to offer for JMS testing scenarios:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Message headers and properties&lt;/strong&gt;: JMS messages carry headers and custom properties alongside the payload. Citrus lets you set and verify both in your send and receive actions.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;JSON validation&lt;/strong&gt;: Add the &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-validation-json&lt;/code&gt; module and Citrus will compare received JSON payloads field by field, supporting ignore patterns, validation matchers, and flexible element ordering.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Multiple queues and complex flows&lt;/strong&gt;: Real applications often consume from several queues and produce to several others. You can define as many endpoints as you need and orchestrate multi-step test scenarios.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Error scenarios&lt;/strong&gt;: Test what happens when the application receives malformed input or when downstream services are unavailable. Citrus gives you full control over the messages you send, making negative testing straightforward.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Endpoint configuration classes&lt;/strong&gt;: When your test suite grows, you can extract endpoint definitions into shared &lt;code class=&quot;highlighter-rouge&quot;&gt;@CitrusConfiguration&lt;/code&gt; classes and reuse them across multiple tests. The &lt;a href=&quot;/samples/quarkus/&quot;&gt;Quarkus sample&lt;/a&gt; on this site demonstrates this pattern in detail.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To explore the full example project including the source code, head over to the &lt;a href=&quot;https://github.com/citrusframework/citrus-quarkus-examples&quot;&gt;citrus-quarkus-examples&lt;/a&gt; repository on GitHub.&lt;/p&gt;
+
+&lt;p&gt;For deeper dives into Citrus capabilities, the &lt;a href=&quot;https://citrusframework.org/citrus/reference/html/&quot;&gt;reference guide&lt;/a&gt; covers JMS endpoints, Quarkus integration, and the many other messaging transports that Citrus supports.&lt;/p&gt;</content><author><name></name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://0.0.0.0:4000/img/icons/quarkus.png" /></entry><entry><title type="html">Design Citrus Tests Visually — Kaoto Meets Citrus</title><link href="http://0.0.0.0:4000/news/2026/06/19/kaoto-meets-citrus/" rel="alternate" type="text/html" title="Design Citrus Tests Visually — Kaoto Meets Citrus" /><published>2026-06-19T00:00:00+02:00</published><updated>2026-06-19T00:00:00+02:00</updated><id>http://0.0.0.0:4000/news/2026/06/19/kaoto-meets-citrus</id><content type="html" xml:base="http://0.0.0.0:4000/news/2026/06/19/kaoto-meets-citrus/">&lt;p&gt;What if you could design Citrus integration tests by dragging and dropping components on a visual canvas — no boilerplate, no guesswork, no steep learning curve?
 With &lt;a href=&quot;https://kaoto.io/blog/2026/kaoto-2.11-release/&quot;&gt;Kaoto 2.11&lt;/a&gt; this is now a reality for Citrus.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/img/assets/kaoto-citrus-integration/kaoto-logo.png&quot; alt=&quot;Kaoto Logo&quot; /&gt;&lt;/p&gt;
@@ -1263,232 +1557,4 @@ Then the test may simulate user interactions such as clicking on links and butto
 &lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
 
 &lt;p&gt;The sample application has shown how you can integrate Citrus within a Quarkus test.
-The Quarkus test is able to use the Citrus capabilities because of the Citrus Quarkus extension that is provided since Citrus 4.0.&lt;/p&gt;</content><author><name></name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://0.0.0.0:4000/img/icons/quarkus.png" /></entry><entry><title type="html">Citrus 4.0.0</title><link href="http://0.0.0.0:4000/news/2023/10/25/release-4.0.0/" rel="alternate" type="text/html" title="Citrus 4.0.0" /><published>2023-10-25T00:00:00+02:00</published><updated>2023-10-25T00:00:00+02:00</updated><id>http://0.0.0.0:4000/news/2023/10/25/release-4.0.0</id><content type="html" xml:base="http://0.0.0.0:4000/news/2023/10/25/release-4.0.0/">&lt;p&gt;The community is proud to announce the availability of Citrus 4.0.0!&lt;/p&gt;
-
-&lt;h2 id=&quot;objectives&quot;&gt;Objectives&lt;/h2&gt;
-
-&lt;p&gt;Citrus 4.0 is a major release mainly driven by the industry migrating from &lt;code class=&quot;highlighter-rouge&quot;&gt;javax.*&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;jakarta.*&lt;/code&gt; APIs. The new version uses Java 17 and aligns with popular Java enterprise libraries such as Spring Boot and Quarkus. Citrus 4 uses updated versions of many dependency libraries (e.g. Spring 6, Apache Camel 4, Cucumber 7, Selenium 4, Jakarta EE and many more). The proper alignment with those libraries and the evolving of Java’s ecosystem in general is a key driver for Citrus 4.&lt;/p&gt;
-
-&lt;p&gt;Of course the new major version also addresses many improvements and fixes. That being said we try to keep breaking changes on a low-level in order to provide a smooth migration from former versions. Due to the breaking changes in the many &lt;code class=&quot;highlighter-rouge&quot;&gt;javax&lt;/code&gt; APIs this might not always be possible though. People coming from Citrus 3.x should have a look at the &lt;a href=&quot;https://github.com/citrusframework/citrus/wiki/migration-guide:-citrus-3.x-to-4.x&quot;&gt;3.x migration guide&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Here are the main objectives we have with Citrus 4.0&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Java 17&lt;/li&gt;
-  &lt;li&gt;Move to groupId &lt;code class=&quot;highlighter-rouge&quot;&gt;org.citrusframework&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Update dependencies to latest major versions&lt;/li&gt;
-  &lt;li&gt;Move from &lt;code class=&quot;highlighter-rouge&quot;&gt;javax.*&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;jakarta.*&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Polyglot test runner support (XML, Groovy and YAML)&lt;/li&gt;
-  &lt;li&gt;QuarkusTest runtime support&lt;/li&gt;
-  &lt;li&gt;Remove deprecated modules and code&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;java-17&quot;&gt;Java 17&lt;/h2&gt;
-
-&lt;p&gt;The Citrus 4.0 bits are compiled with Java 17 (was Java 11 for Citrus 3.x). This means you need to use Java 17 as a minimum to run Citrus.&lt;/p&gt;
-
-&lt;p&gt;We recommend to use the following setup:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Java 17+&lt;/li&gt;
-  &lt;li&gt;Maven 3.9+&lt;/li&gt;
-  &lt;li&gt;As runtime one of
-    &lt;ul&gt;
-      &lt;li&gt;JUnit Jupiter 5.10+&lt;/li&gt;
-      &lt;li&gt;TestNG 7.8+&lt;/li&gt;
-      &lt;li&gt;Cucumber 7.14+&lt;/li&gt;
-      &lt;li&gt;JUnit 4.13+&lt;/li&gt;
-      &lt;li&gt;Quarkus Test 3.4+&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Of course this also means that you are able to use the full greatness of evolving Java features such as records, multiline text blocks and so many more.&lt;/p&gt;
-
-&lt;h2 id=&quot;maven-groupid-orgcitrusframework&quot;&gt;Maven groupId “org.citrusframework”&lt;/h2&gt;
-
-&lt;p&gt;Citrus is an Open Source project and promotes the idea of open code and community contributions. For over a decade Citrus has been using the groupId &lt;code class=&quot;highlighter-rouge&quot;&gt;com.consol.citrus&lt;/code&gt; because the company &lt;a href=&quot;https://www.consol.com/&quot;&gt;ConSol Software GmbH&lt;/a&gt; and its employees have been a driving force in creating and maintaining the project since the very beginning.&lt;/p&gt;
-
-&lt;p&gt;Still ConSol plays a significant role in the success of Citrus by adapting and promoting the project in so many ways.
-However, the list of new contributors emerges and Citrus benefits from many community contributions these days.&lt;/p&gt;
-
-&lt;p&gt;For the sake of strengthening the Open Source idea we decided to move the Citrus groupId from &lt;code class=&quot;highlighter-rouge&quot;&gt;com.consol.citrus&lt;/code&gt; to a more generic &lt;code class=&quot;highlighter-rouge&quot;&gt;org.citrusframework&lt;/code&gt; from Citrus 4.0 onwards.&lt;/p&gt;
-
-&lt;p&gt;With the move to &lt;code class=&quot;highlighter-rouge&quot;&gt;org.citrusframework&lt;/code&gt; we decided to happily comply with the Open Source nature of the project because nowadays, the project receives valuable contributions from many companies.&lt;/p&gt;
-
-&lt;p&gt;Please update the groupId in your Maven &lt;code class=&quot;highlighter-rouge&quot;&gt;pom.xml&lt;/code&gt; accordingly when updating to Citrus 4.0.&lt;/p&gt;
-
-&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.citrusframework&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-bom&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;4.10.1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;type&amp;gt;&lt;/span&gt;pom&lt;span class=&quot;nt&quot;&gt;&amp;lt;/type&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;scope&amp;gt;&lt;/span&gt;import&lt;span class=&quot;nt&quot;&gt;&amp;lt;/scope&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Since the groupId also represents the basic Java package used in Citrus the packages of all Citrus Java classes have also changed from &lt;code class=&quot;highlighter-rouge&quot;&gt;com.consol.citrus&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;org.citrusframework&lt;/code&gt; so please replace all occurrences and imports accordingly as you update.&lt;/p&gt;
-
-&lt;p&gt;Please do not worry as it should be nothing more than a search-and-replace operation in your project codebase in order to use the new base package wherever it may be referenced.&lt;/p&gt;
-
-&lt;h2 id=&quot;dependency-update&quot;&gt;Dependency update&lt;/h2&gt;
-
-&lt;p&gt;Citrus depends on many fantastic libraries and projects. With the move to the Jakarta API many of them hava had major version releases in 2023. Citrus now aligns with the latest and greatest versions of these libraries.&lt;/p&gt;
-
-&lt;p&gt;The new library versions used in Citrus 4.0 are:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Library&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Version&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Library&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Version&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;JUnit Jupiter&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;5.10.0&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;TestNG&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;7.8.0&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Cucumber&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;7.14.0&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Quarkus Test&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;3.4.2&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Apache Camel&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;4.1.0&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ActiveMQ Artemis&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;2.31.0&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ActiveMQ&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;5.18.2&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Jetty&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;11.0.17&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;HttpClient&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;5.2.1&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Cucumber&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;7.14.0&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Knative Client&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;6.9.0&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Kubernetes Client&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;6.9.0&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Netty&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;4.1.100.Final&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;SLF4J&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;2.0.9&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;SnakeYAML&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;2.2&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Spring Framework&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;6.0.13&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Spring WS&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;4.0.7&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Spring Integration&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;6.1.4&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Testcontainers&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;1.19.1&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;PostrgeSQL&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;42.6.0&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;GreenMail&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;2.0.0&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Jakarta JMS API&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;3.1.0&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Jakarta Validation&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;3.0.2&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Jakarta Websocket API&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;2.1.1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Jakarta Servlet API&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;6.0.0&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Saaj&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;3.0.3&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;JaxB&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;4.0.3&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Kafka&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;3.6.0&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;SLF4J&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;2.0.9&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Snakeyaml&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;2.2&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&quot;move-to-jakarta-api&quot;&gt;Move to Jakarta API&lt;/h2&gt;
-
-&lt;p&gt;Many libraries accomplish the switch from &lt;code class=&quot;highlighter-rouge&quot;&gt;javax.*&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;jakarta.*&lt;/code&gt; APIs. The migration itself can be a tough task and the Citrus team is happy to have tackled this move with the new major version update.&lt;/p&gt;
-
-&lt;p&gt;For you as a user this move may not cause much trouble because the Citrus dependencies are all using the new Jakarta APIs already. In case you are using Citrus in combination with an older servlet container or with a library that still uses the &lt;code class=&quot;highlighter-rouge&quot;&gt;javax&lt;/code&gt; APIs it may be time to also update these dependencies in your project.&lt;/p&gt;
-
-&lt;h2 id=&quot;polyglot-test-runner-support&quot;&gt;Polyglot test runner support&lt;/h2&gt;
-
-&lt;p&gt;Citrus provides many ways to write test cases. The most popular ones are using the Java DSL and the Spring bean XML syntax. In addition to that you can now choose to write Citrus tests in pure XML, YAML or Groovy. All of them share the same feature set, so you can adapt the test language to your individual requirements (not everybody is a Java expert and this is fine).&lt;/p&gt;
-
-&lt;h2 id=&quot;quarkustest-runtime&quot;&gt;QuarkusTest runtime&lt;/h2&gt;
-
-&lt;p&gt;Quarkus is an emerging enterprise Java stack that is keen to bring Java as a leading platform into the cloud-native application future. With Citrus 4 you can directly combine the test framework with the test capabilities of Quarkus. The Quarkus test framework provides awesome features such as dev services, auto configuration and first class integration with Testcontainers.&lt;/p&gt;
-
-&lt;p&gt;Citrus now provides a Quarkus extension that is able to hook into the QuarkusTest runtime so you can inject Citrus capabilities into your Quarkus test.&lt;/p&gt;
-
-&lt;p&gt;Read more about it in &lt;a href=&quot;https://citrusframework.org/citrus/reference/html/index.html#runtime-quarkus&quot;&gt;docs/reference/index.html#runtime-quarkus&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;removed-modules&quot;&gt;Removed modules&lt;/h2&gt;
-
-&lt;p&gt;Sometimes it is the time to say goodbye and a new major version is always a good point to get rid of obsolete and outdated things. Some Citrus modules are declared “end of life” and are being discontinued, some modules will just be moved to a separate code repository.&lt;/p&gt;
-
-&lt;p&gt;These modules have been removed from the main Citrus project.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;citrus-java-dsl&lt;/strong&gt; deprecated Java domain specific language that was based on the TestDesigner interface&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;citrus-arquillian&lt;/strong&gt; Arquillian integration to run Citrus as part of the Arquillian framework&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;citrus-jdbc&lt;/strong&gt; JDBC server implementation that is able to simulate any JDBC driver and database&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;citrus-remote&lt;/strong&gt; Run Citrus via remote Http tunnel on a foreign server&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Removing the modules does not mean that these bits are completely gone forever though. Some modules have just been moved out of the Citrus project into new separate code repositories. This is mainly because these modules do have experimental status and updating to Jakarta EE and Java 17 has not been possible at the moment.&lt;/p&gt;
-
-&lt;p&gt;The experimental modules moved to separate repositories are:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;em&gt;citrus-remote&lt;/em&gt; lives on in &lt;a href=&quot;https://github.com/citrusframework/citrus-remote&quot;&gt;https://github.com/citrusframework/citrus-remote&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;citrus-jdbc&lt;/em&gt; endpoint module has been moved to &lt;a href=&quot;https://github.com/citrusframework/citrus-db&quot;&gt;https://github.com/citrusframework/citrus-db&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The code and functionality of those modules stays the same. Also, the code has already received updates on the major releases such as Spring 6.&lt;/p&gt;
-
-&lt;p&gt;It is up to the community though to decide about the future maintenance and release cadence as these modules will not be released automatically with Citrus main project anymore.&lt;/p&gt;
-
-&lt;h2 id=&quot;provide-feedback-and-help&quot;&gt;Provide feedback and help&lt;/h2&gt;
-
-&lt;p&gt;Please adapt to using Citrus 4 as soon as possible and give us feedback what is working and what may need more attention.
-We would love to hear from you how you like Citrus 4! Also the documentation has not been fully updated yet. Any help is much appreciated! So in case you have something to improve of fix just open a PR we are more than happy to receive your contributions!&lt;/p&gt;
-
-&lt;h2 id=&quot;thank-you&quot;&gt;Thank you!&lt;/h2&gt;
-
-&lt;p&gt;Let’s use this opportunity to thank everybody involved in making this Citrus 4 release happen. The Citrus community did a tremendous job to brings this all together! The Citrus team is very proud to have a new version of Citrus available that after 16+ years of development still is up-to-date with the latest and greatest software libraries out there! THANK YOU!&lt;/p&gt;</content><author><name>Christoph Deppisch</name></author></entry></feed>
+The Quarkus test is able to use the Citrus capabilities because of the Citrus Quarkus extension that is provided since Citrus 4.0.&lt;/p&gt;</content><author><name></name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://0.0.0.0:4000/img/icons/quarkus.png" /></entry></feed>
