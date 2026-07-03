@@ -167,8 +167,8 @@
       <div class="unit four-fifths">
         <article>
   <h2>
-    Testing webMethods with Citrus Part I
-    <a href="/news/2014/03/06/testing-webmethods-with-citrus-part-i/" class="permalink" title="Permalink">∞</a>
+    Get ready for Citrus 5.0.0
+    <a href="/news/2026/06/18/release-5.0.0-approaching/" class="permalink" title="Permalink">∞</a>
   </h2>
   <span class="post-category">
     <span class="label">
@@ -177,39 +177,142 @@
   </span>
   <div class="post-meta">
     <span class="post-date">
-      06 Mar 2014
+      18 Jun 2026
     </span>
-    <a href="https://github.com/jaza089" class="post-author">
-      Jan Zahalka
+    <a href="https://github.com/christophd" class="post-author">
+      Christoph Deppisch
     </a>
   </div>
   <div class="post-content">
-    <p>Continuous integration is almost mainstream nowadays. Probably no one wants to argue against the value of having an all-embracing integration test suite in place, 
-which is lightweight enough to be executed on each code change. In this blog series I want to show the interplay between <a href="http://www.citrusframework.org">Citrus</a>, 
-the integration test framework written and maintained by <a href="http://www.consol.com">ConSol</a> and a commonly used Enterprise Service Bus, the <a href="http://www.softwareag.com/corporate/products/wm/integration/overview/default.asp">webMethods Integration Server</a>.</p>
+    <p>Citrus 5.0.0 is on the horizon! The next major release of the Citrus integration testing framework is planned for <strong>GA in Q3 2026</strong> and brings a sweeping update of the core technology stack that Citrus builds on. Two milestone releases (M1 and M2) are already available for early adopters who want to get a head start on migration.</p>
 
-<h3 id="meet-the-participants">Meet the participants</h3>
+<h2 id="why-a-new-major-version">Why a new major version?</h2>
 
-<p>Citrus is a lightweight integration test framework specially suited for enterprise integration challenges. It supports a broad set of communication protocols and is able to 
-simulate partner applications of any type to provide proper end-to-end testing in a sandbox environment.</p>
+<p>The Java ecosystem has taken significant leaps forward in recent time. Spring Framework 7, Spring Boot 4, Kafka 4, JUnit 6 and Jackson 3 all represent new major versions that come with their own set of breaking changes and modern API improvements. Citrus 5 aligns with these releases so you can use the latest and greatest enterprise Java libraries alongside your integration tests.</p>
 
-<p>Our system-under-test is Software AG’s webMethods Integration Server, which is an industry-proof ESB solving complex integration and B2B challenges in large-scale deployments around the globe.</p>
+<p>Here are the main objectives for Citrus 5.0:</p>
 
-<h3 id="why-citrus">Why Citrus?</h3>
+<ul>
+  <li>While still supporting Java 17 Citrus aligns with <strong>Java 21</strong> (LTS baseline) and <strong>Java 25</strong> support</li>
+  <li>Update to <strong>Spring Framework 7</strong> and <strong>Spring Boot 4</strong></li>
+  <li>Update to <strong>JUnit 6</strong></li>
+  <li>Update to <strong>Jackson 3</strong>, <strong>Apache Camel 4.21</strong>, <strong>Kafka 4.2</strong>, <strong>Jetty 12</strong></li>
+  <li>Introduce a <strong>Citrus MCP server</strong> for AI-assisted test development</li>
+  <li>Expand <strong>Quarkus</strong> support with easy to use integration into the Quarkus test lifecycle</li>
+  <li>Streamline YAML DSL schema and improve the UX with visual designers such as Kaoto</li>
+</ul>
 
-<p>On a closer look at the built-in support for automated testing, webMethods provides integrated tooling (namely the wMTestSuite), directly incorporated into the Software AG Designer to support 
-developers with tests operating on the basic building blocks inside webMethods – the Flow service.</p>
+<h2 id="java-17-and-java-21">Java 17 and Java 21</h2>
 
-<p>Comparing this tooling to traditional software development, this means there is a good framework for Unit/white box testing in place, but: wmTestSuite is not suited for automated tests from an 
-integration/black box perspective. For such tasks, several commercial tools are available, but this is where Citrus with its support for automated tests on interface level comes into play as a 
-smart and fully open source alternative.</p>
+<p>Citrus 5.0 still supports Java 17 as a minimum Java version but all cursors are pointing towards <strong>Java 21</strong>. This lets the framework and its users take full advantage of modern Java features such as virtual threads, pattern matching, sequenced collections and record patterns.</p>
 
-<h2 id="whats-coming-up">What’s coming up?</h2>
+<h2 id="dependency-updates">Dependency updates</h2>
 
-<p>Over the next parts of this series I want to share the basic steps in order to setup a Citrus project and develop automated tests for several webMethods integration scenarios, including SOAP 
-request/reply, SOAP and JMS mocking as well as flat file integration. In the end I might also cover the topic BPMN processes on top of webMethods which can be tested with Citrus as well.</p>
+<p>Citrus depends on many outstanding open source libraries and the 5.0 release aligns with their latest major versions. Here is an overview of the most important updates:</p>
 
-<p>Stay tuned for the next upcoming part II: basic project setup</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Library</th>
+      <th style="text-align: left">Version</th>
+      <th style="text-align: left">Library</th>
+      <th style="text-align: left">Version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Spring Framework</td>
+      <td style="text-align: left">7.0.7</td>
+      <td style="text-align: left">Spring Boot</td>
+      <td style="text-align: left">4.0.6</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Spring Integration</td>
+      <td style="text-align: left">7.0.4</td>
+      <td style="text-align: left">Spring WS</td>
+      <td style="text-align: left">5.0.1</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Apache Camel</td>
+      <td style="text-align: left">4.21.0</td>
+      <td style="text-align: left">Apache Kafka</td>
+      <td style="text-align: left">4.2.0</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Jackson</td>
+      <td style="text-align: left">3.1.0</td>
+      <td style="text-align: left">Jetty</td>
+      <td style="text-align: left">12.1.8</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">JUnit</td>
+      <td style="text-align: left">6</td>
+      <td style="text-align: left">Quarkus</td>
+      <td style="text-align: left">3.36.2</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="spring-framework-7-and-spring-boot-4">Spring Framework 7 and Spring Boot 4</h3>
+
+<p>Spring 7 brings a refined programming model, improved observability and continued evolution of the Spring module system. Spring Boot 4 builds on top of this foundation with updated auto-configuration and new starter patterns. Citrus 5 is fully aligned with these releases, so you can use Spring Boot 4 in your test projects without dependency conflicts.</p>
+
+<h3 id="junit-6">JUnit 6</h3>
+
+<p>JUnit 6 is the next generation of the most popular Java testing framework. Citrus 5 ships with a dedicated runtime module for JUnit 6, so you can write your Citrus test cases using the new JUnit 6 APIs and extensions right away.</p>
+
+<h3 id="jackson-3">Jackson 3</h3>
+
+<p>Jackson 3.1.0 represents a major step in the Jackson JSON library with a reworked module system and updated API. Citrus uses Jackson extensively for JSON message validation and data binding, and version 5.0 ensures full compatibility with the new Jackson 3 APIs.</p>
+
+<h3 id="apache-kafka-42">Apache Kafka 4.2</h3>
+
+<p>Kafka 4.2 introduces the new KRaft-based architecture as the default, removing the ZooKeeper dependency entirely. Citrus 5 aligns with this release and also brings new Testcontainers support for Kafka into Citrus.</p>
+
+<h3 id="quarkus-336">Quarkus 3.36</h3>
+
+<p>Citrus is fully integrated into the Quarkus test ecosystem with special Quarkus test resource implementations that are able to take part of the Quarkus test lifecycle.</p>
+
+<p>Citrus 5 brings continued enhancements to streamline the Citrus integration into Quarkus for instance by populating <strong>Quarkus dev services properties as test variables</strong> for seamless integration with Quarkus dev services. As an example your Citrus tests might share the Kafka broker configuration from dev services out of the box.</p>
+
+<h2 id="citrus-mcp-server">Citrus MCP server</h2>
+
+<p>One of the most exciting additions in Citrus 5 is the new <strong>Model Context Protocol (MCP) server</strong>. MCP is an emerging standard that allows AI coding assistants to interact with development tools in a structured way.</p>
+
+<p>The Citrus MCP server exposes the framework’s test vocabulary, endpoint configurations and test action catalog to AI assistants. This enables intelligent code completion, test generation and guided test authoring directly from your IDE or command line.</p>
+
+<p>With M2 the MCP server is also published as a <strong>Claude Code plugin</strong> via JBang, making it easy to integrate Citrus-aware AI assistance into your development workflow.</p>
+
+<h2 id="expanded-testcontainers-support">Expanded Testcontainers support</h2>
+
+<p>Citrus has long embraced Testcontainers for managing external service dependencies in integration tests. Version 5.0 significantly expands this support with new container implementations:</p>
+
+<ul>
+  <li><strong>Native Apache Kafka container</strong> - a dedicated container implementation as an alternative to the existing Testcontainers Kafka module</li>
+  <li><strong>Strimzi Kafka container</strong> - run Kafka via the Strimzi container image, ideal for teams already using Strimzi in their Kubernetes environments</li>
+  <li><strong>Floci container support</strong> - adds Floci containers to the Citrus Testcontainers module as an alternative AWS test service provider.</li>
+</ul>
+
+<h2 id="try-it-now">Try it now</h2>
+
+<p>The two milestone releases M1 and M2 are available on Maven Central. Add Citrus 5.0.0-M2 to your project to try it out:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-bom<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.0.0-M2<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;type&gt;</span>pom<span class="nt">&lt;/type&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>import<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>Milestone releases are intended for early adopters to validate their existing test suites against the new dependency stack and to provide feedback before the GA release. We encourage you to try upgrading now so you have plenty of time to adapt your tests before the final release in Q3 2026.</p>
+
+<h2 id="provide-feedback">Provide feedback</h2>
+
+<p>We would love to hear from you! If you run into issues during migration or have ideas for improvements, please open an issue on <a href="https://github.com/citrusframework/citrus/issues">GitHub</a> or start a discussion. Your feedback is invaluable in shaping the GA release.</p>
+
+<p>The Citrus community has once again shown its strength in bringing this major update together. After 18+ years of development Citrus continues to evolve with the Java ecosystem, and we are excited to deliver a framework that stays current with the technologies you use every day. Thank you to everyone who contributed!</p>
 
   </div>
 </article>
@@ -235,7 +338,7 @@ request/reply, SOAP and JMS mocking as well as flat file integration. In the end
           <a href="/news/2026/06/19/kaoto-meets-citrus/">» Kaoto meets Citrus</a>
         </li>
         
-        <li class="">
+        <li class="current">
           <a href="/news/2026/06/18/release-5.0.0-approaching/">» Citrus 5.0.0 approaching</a>
         </li>
         
@@ -287,7 +390,7 @@ request/reply, SOAP and JMS mocking as well as flat file integration. In the end
           <a href="/news/2014/05/30/testing-webmethods-with-citrus-part-ii/">» Testing webMethods II</a>
         </li>
         
-        <li class="current">
+        <li class="">
           <a href="/news/2014/03/06/testing-webmethods-with-citrus-part-i/">» Testing webMethods I</a>
         </li>
         

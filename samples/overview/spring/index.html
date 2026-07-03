@@ -232,87 +232,470 @@
   <h2>
     
     
-    <img src="/img/icons/json.png" style="width: 1em;height: 1em;" alt=""/>
+    <img src="/img/icons/spring.png" style="width: 1em;height: 1em;" alt=""/>
     
-    Json sample
-    <a href="/samples/json/" class="permalink" title="Permalink">∞</a>
+    Spring examples
+    <a href="/samples/overview/spring/" class="permalink" title="Permalink">∞</a>
   </h2>
   <div class="right">
     
-    <a href="https://github.com/citrusframework/citrus-samples/blob/master/samples-json/sample-json" target="_blank">
-      <i class="fa fa-pencil"></i>&nbsp;View source code
-    </a>
     
+    <a href="https://github.com/citrusframework/citrus-samples/blob/master/" target="_blank">
+      <i class="fa fa-pencil"></i>&nbsp;View sources
+    </a>
     
   </div>
   <span class="post-category">
     <span class="label">
-      samples
+      overview
     </span>
   </span>
   <div class="post-content">
-    <p>This sample deals with Json message payloads when sending and receiving messages to the todo sample
-application. Read about this feature in <a href="https://citrusframework.org/citrus/reference/html#validation-json">reference guide</a></p>
-
-<h2 id="objectives">Objectives</h2>
-
-<p>The <a href="/samples/todo-app/">todo-list</a> sample application provides a REST API for managing todo entries.
-We call this API and receive Json message structures for validation in our test cases.</p>
-
-<p>We can use Json as message payloads directly in the test cases.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">()</span>
-    <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">send</span><span class="o">()</span>
-    <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/api/todolist"</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">JSON</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="n">ContentType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">.</span><span class="na">getMimeType</span><span class="o">())</span>
-    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"{ \"id\": \"${todoId}\", \"title\": \"${todoName}\", \"description\": \"${todoDescription}\", \"done\": ${done}}"</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p>As you can see we are able to send the Json data as payload. You can add test variables in message payloads. In a receive 
-action we are able to use an expected Json message payload. Citrus performs a Json object comparison where each element is checked to meet
-the expected values.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">()</span>
-    <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
-    <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">JSON</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="s">"{ \"id\": \"${todoId}\", \"title\": \"${todoName}\", \"description\": \"${todoDescription}\", \"done\": ${done}}"</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p>The Json message payload can be difficult to read when used as String concatenation. Fortunately we can also use file resources as message
-payloads.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">()</span>
-    <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
-    <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">JSON</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="k">new</span> <span class="n">ClassPathResource</span><span class="o">(</span><span class="s">"templates/todo.json"</span><span class="o">));</span>    
-</code></pre></div></div>
-
-<p>An alternative approach would be to use JsonPath expressions when validating incoming Json messages.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">()</span>
-    <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">todoClient</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
-    <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">messageType</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">JSON</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"$.id"</span><span class="o">,</span> <span class="s">"${todoId}"</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"$.title"</span><span class="o">,</span> <span class="s">"${todoName}"</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"$.description"</span><span class="o">,</span> <span class="s">"${todoDescription}"</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p>Each expression is evaluated and checked for expected values. In case a JsonPath expression can not be evaluated or 
-does not meet the expected value the test ends with failure.</p>
-
-<h2 id="run">Run</h2>
-
-<p>You can run the sample on your localhost in order to see Citrus in action. Read the instructions <a href="/samples/run/">how to run</a> the sample.</p>
+    <p>Find the list of all available Citrus sample projects in this <a href="https://github.com/citrusframework/citrus-samples">repository</a></p>
 
 
+
+    <p>See the list of available samples:</p>
+
+    
+
+    <table>
+      <thead>
+      <tr>
+        <th style="width: 15em;">Sample</th>
+        <th style="text-align:center;">Description</th>
+        <th style="text-align:center;">Sources</th>
+      </tr>
+      </thead>
+      <tbody>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <tr>
+        <td><a href="/samples/jbang/">sample-jbang</a></td>
+        <td style="text-align:center;">Prototype Citrus tests in minutes with JBang</td>
+        
+        
+        <td style="text-align:center;"><a href="https://github.com/citrusframework/citrus-samples/blob/master/sample-jbang" target="_blank"><i class="fa fa-pencil"></i></a></td>
+        
+      </tr>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <tr>
+        <td><a href="/samples/kafka/">sample-kafka</a></td>
+        <td style="text-align:center;">Shows Kafka integration</td>
+        
+        
+        <td style="text-align:center;"><a href="https://github.com/citrusframework/citrus-samples/blob/master/sample-kafka" target="_blank"><i class="fa fa-pencil"></i></a></td>
+        
+      </tr>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <tr>
+        <td><a href="/samples/selenium/">sample-selenium</a></td>
+        <td style="text-align:center;">Use Selenium for UI testing</td>
+        
+        
+        <td style="text-align:center;"><a href="https://github.com/citrusframework/citrus-samples/blob/master/sample-selenium" target="_blank"><i class="fa fa-pencil"></i></a></td>
+        
+      </tr>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <tr>
+        <td><a href="/samples/kubernetes/">sample-kubernetes</a></td>
+        <td style="text-align:center;">Run tests in Kubernetes</td>
+        
+        
+        <td style="text-align:center;"><a href="https://github.com/citrusframework/citrus-samples/blob/master/sample-kubernetes" target="_blank"><i class="fa fa-pencil"></i></a></td>
+        
+      </tr>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <tr>
+        <td><a href="/samples/message-store/">sample-message-store</a></td>
+        <td style="text-align:center;">Use the local message store</td>
+        
+        
+        <td style="text-align:center;"><a href="https://github.com/citrusframework/citrus-samples/blob/master/sample-message-store" target="_blank"><i class="fa fa-pencil"></i></a></td>
+        
+      </tr>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <tr>
+        <td><a href="/samples/hamcrest/">sample-hamcrest</a></td>
+        <td style="text-align:center;">Use Hamcrest matchers</td>
+        
+        
+        <td style="text-align:center;"><a href="https://github.com/citrusframework/citrus-samples/blob/master/sample-hamcrest" target="_blank"><i class="fa fa-pencil"></i></a></td>
+        
+      </tr>
+    
+    
+    
+    
+    
+    
+    
+      <tr>
+        <td><a href="/samples/dictionaries/">sample-dictionaries</a></td>
+        <td style="text-align:center;">Add data dictionaries</td>
+        
+        
+        <td style="text-align:center;"><a href="https://github.com/citrusframework/citrus-samples/blob/master/sample-dictionaries" target="_blank"><i class="fa fa-pencil"></i></a></td>
+        
+      </tr>
+    
+    
+    
+    
+    
+    
+    
+      <tr>
+        <td><a href="/samples/behavior/">sample-behavior</a></td>
+        <td style="text-align:center;">Add custom test behavior</td>
+        
+        
+        <td style="text-align:center;"><a href="https://github.com/citrusframework/citrus-samples/blob/master/sample-behavior" target="_blank"><i class="fa fa-pencil"></i></a></td>
+        
+      </tr>
+    
+    
+    
+    
+    
+    
+    
+      <tr>
+        <td><a href="/samples/annotation-config/">sample-annotation-config</a></td>
+        <td style="text-align:center;">Use Java annotation configuration</td>
+        
+        
+        <td style="text-align:center;"><a href="https://github.com/citrusframework/citrus-samples/blob/master/sample-annotation-config" target="_blank"><i class="fa fa-pencil"></i></a></td>
+        
+      </tr>
+    
+    
+    
+    
+    
+    
+    
+      <tr>
+        <td><a href="/samples/reporting/">sample-reporting</a></td>
+        <td style="text-align:center;">Add custom test reporting</td>
+        
+        
+        <td style="text-align:center;"><a href="https://github.com/citrusframework/citrus-samples/blob/master/sample-reporting" target="_blank"><i class="fa fa-pencil"></i></a></td>
+        
+      </tr>
+    
+    
+    
+    
+    
+    
+    
+      <tr>
+        <td><a href="/samples/docker/">sample-docker</a></td>
+        <td style="text-align:center;">Shows how to use Citrus within Docker</td>
+        
+        
+        <td style="text-align:center;"><a href="https://github.com/citrusframework/citrus-samples/blob/master/sample-docker" target="_blank"><i class="fa fa-pencil"></i></a></td>
+        
+      </tr>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <tr>
+        <td><a href="/samples/rmi/">sample-rmi</a></td>
+        <td style="text-align:center;">Shows Remote Method Invocation support</td>
+        
+        
+        <td style="text-align:center;"><a href="https://github.com/citrusframework/citrus-samples/blob/master/sample-rmi" target="_blank"><i class="fa fa-pencil"></i></a></td>
+        
+      </tr>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <tr>
+        <td><a href="/samples/gradle/">sample-gradle</a></td>
+        <td style="text-align:center;">Uses Gradle build to execute tests</td>
+        
+        
+        <td style="text-align:center;"><a href="https://github.com/citrusframework/citrus-samples/blob/master/sample-gradle" target="_blank"><i class="fa fa-pencil"></i></a></td>
+        
+      </tr>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <tr>
+        <td><a href="/samples/mail/">sample-mail</a></td>
+        <td style="text-align:center;">Shows mail server activities in Citrus</td>
+        
+        
+        <td style="text-align:center;"><a href="https://github.com/citrusframework/citrus-samples/blob/master/sample-mail" target="_blank"><i class="fa fa-pencil"></i></a></td>
+        
+      </tr>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <tr>
+        <td><a href="/samples/jms/">sample-jms</a></td>
+        <td style="text-align:center;">Shows JMS message broker connectivity</td>
+        
+        
+        <td style="text-align:center;"><a href="https://github.com/citrusframework/citrus-samples/blob/master/sample-jms" target="_blank"><i class="fa fa-pencil"></i></a></td>
+        
+      </tr>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <tr>
+        <td><a href="/samples/javaconfig/">sample-javaconfig</a></td>
+        <td style="text-align:center;">Uses pure Java POJOs for configuration</td>
+        
+        
+        <td style="text-align:center;"><a href="https://github.com/citrusframework/citrus-samples/blob/master/sample-javaconfig" target="_blank"><i class="fa fa-pencil"></i></a></td>
+        
+      </tr>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <tr>
+        <td><a href="/samples/dynamic-endpoints/">sample-dynamic-endpoints</a></td>
+        <td style="text-align:center;">Shows dynamic endpoint component usage</td>
+        
+        
+        <td style="text-align:center;"><a href="https://github.com/citrusframework/citrus-samples/blob/master/sample-dynamic-endpoints" target="_blank"><i class="fa fa-pencil"></i></a></td>
+        
+      </tr>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <tr>
+        <td><a href="/samples/apache-camel/">sample-camel-context</a></td>
+        <td style="text-align:center;">Interact with Apache Camel</td>
+        
+        
+        <td style="text-align:center;"><a href="https://github.com/citrusframework/citrus-samples/blob/master/sample-camel-context" target="_blank"><i class="fa fa-pencil"></i></a></td>
+        
+      </tr>
+    
+    
+    
+    
+    
+    
+    
+      <tr>
+        <td><a href="/samples/binary/">sample-binary</a></td>
+        <td style="text-align:center;">Shows binary message content handling in Citrus</td>
+        
+        
+        <td style="text-align:center;"><a href="https://github.com/citrusframework/citrus-samples/blob/master/sample-binary" target="_blank"><i class="fa fa-pencil"></i></a></td>
+        
+      </tr>
+    
+    
+    
+    
+      </tbody>
+    </table>
   </div>
 </article>
 
@@ -621,7 +1004,7 @@ does not meet the expected value the test ends with failure.</p>
       </li>
       
       
-      <li class="current">
+      <li class="">
         <a href="/samples/json/">sample-json</a>
       </li>
       

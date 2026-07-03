@@ -1,4 +1,280 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2026-07-02T22:35:14+02:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Citrus Integration Tests</title><subtitle>Automated integration tests for message protocols and data formats that you require</subtitle><entry><title type="html">Quarkus - Event-Driven JMS</title><link href="http://0.0.0.0:4000/samples/quarkus-event-driven-jms/" rel="alternate" type="text/html" title="Quarkus - Event-Driven JMS" /><published>2026-07-02T00:00:00+02:00</published><updated>2026-07-02T00:00:00+02:00</updated><id>http://0.0.0.0:4000/samples/sample-quarkus-event-driven-jms</id><content type="html" xml:base="http://0.0.0.0:4000/samples/quarkus-event-driven-jms/">&lt;p&gt;JMS is still one of the most widely used messaging standards in enterprise applications. ActiveMQ Artemis brings a modern, high-performance JMS broker to the table, and Quarkus makes it easy to build reactive services on top of it.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2026-07-03T11:22:01+02:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Citrus Integration Tests</title><subtitle>Automated integration tests for message protocols and data formats that you require</subtitle><entry><title type="html">Spring examples</title><link href="http://0.0.0.0:4000/samples/overview/spring/" rel="alternate" type="text/html" title="Spring examples" /><published>2026-07-03T00:00:00+02:00</published><updated>2026-07-03T00:00:00+02:00</updated><id>http://0.0.0.0:4000/samples/overview/samples-spring</id><content type="html" xml:base="http://0.0.0.0:4000/samples/overview/spring/">&lt;p&gt;Find the list of all available Citrus sample projects in this &lt;a href=&quot;https://github.com/citrusframework/citrus-samples&quot;&gt;repository&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://0.0.0.0:4000/img/icons/spring.png" /></entry><entry><title type="html">Quarkus examples</title><link href="http://0.0.0.0:4000/samples/overview/quarkus/" rel="alternate" type="text/html" title="Quarkus examples" /><published>2026-07-03T00:00:00+02:00</published><updated>2026-07-03T00:00:00+02:00</updated><id>http://0.0.0.0:4000/samples/overview/samples-quarkus</id><content type="html" xml:base="http://0.0.0.0:4000/samples/overview/quarkus/">&lt;p&gt;Read about the Citrus Quarkus testing support in the &lt;a href=&quot;https://citrusframework.org/citrus/reference/html/#runtime-quarkus&quot;&gt;reference guide&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;For examples using Apache Camel Quarkus see this list of &lt;a href=&quot;/samples/overview/camel-quarkus/&quot;&gt;camel-quarkus sample projects&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://0.0.0.0:4000/img/icons/quarkus.png" /></entry><entry><title type="html">Apache Camel Quarkus examples</title><link href="http://0.0.0.0:4000/samples/overview/camel-quarkus/" rel="alternate" type="text/html" title="Apache Camel Quarkus examples" /><published>2026-07-03T00:00:00+02:00</published><updated>2026-07-03T00:00:00+02:00</updated><id>http://0.0.0.0:4000/samples/overview/samples-camel-quarkus</id><content type="html" xml:base="http://0.0.0.0:4000/samples/overview/camel-quarkus/">&lt;p&gt;Read about the Citrus Quarkus testing support in the &lt;a href=&quot;https://citrusframework.org/citrus/reference/html/#runtime-quarkus&quot;&gt;reference guide&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://0.0.0.0:4000/img/icons/camel.png" /></entry><entry><title type="html">Apache Camel - Quarkus Kafka Eventing</title><link href="http://0.0.0.0:4000/samples/camel-quarkus-kafka/" rel="alternate" type="text/html" title="Apache Camel - Quarkus Kafka Eventing" /><published>2026-07-03T00:00:00+02:00</published><updated>2026-07-03T00:00:00+02:00</updated><id>http://0.0.0.0:4000/samples/sample-camel-quarkus-kafka</id><content type="html" xml:base="http://0.0.0.0:4000/samples/camel-quarkus-kafka/">&lt;p&gt;Apache Camel is one of the most popular integration frameworks in the Java ecosystem, and when combined with Quarkus and Kafka it offers a powerful foundation for building event-driven microservices.&lt;/p&gt;
+
+&lt;p&gt;But testing these integrations end to end remains a challenge. Camel routes consume and produce Kafka messages asynchronously, and verifying that the entire pipeline works correctly requires a real broker, proper topic setup, and a testing framework that understands messaging.&lt;/p&gt;
+
+&lt;p&gt;This post walks you through testing an Apache Camel Kafka route in a Quarkus application using the &lt;a href=&quot;https://citrusframework.org&quot;&gt;Citrus&lt;/a&gt; integration testing framework. You will see how Citrus provisions a Kafka broker with a single annotation, sends messages into a Camel route, and validates the output — all with clean, readable test code. By the end you will have a clear recipe for testing your own Camel Kafka routes in Quarkus.&lt;/p&gt;
+
+&lt;h1 id=&quot;the-application-under-test&quot;&gt;The application under test&lt;/h1&gt;
+
+&lt;p&gt;The example application is intentionally simple so we can focus on the testing side. It is a Quarkus service that uses an Apache Camel route to consume text messages from a Kafka topic, transform them to uppercase, and publish the result to an output topic.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Kafka Topic (words-in) --&amp;gt; Apache Camel Route (Transform) --&amp;gt; Kafka Topic (words-out)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The entire integration logic lives in a single Camel route defined using the type-safe Endpoint DSL:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Routes&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;EndpointRouteBuilder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;configure&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kafka&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;words-in&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;autoOffsetReset&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;earliest&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setBody&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exchange&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&amp;gt;&amp;gt; &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exchange&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getIn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBody&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toUpperCase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kafka&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;words-out&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The route reads messages from the &lt;code class=&quot;highlighter-rouge&quot;&gt;words-in&lt;/code&gt; Kafka topic, transforms the body to uppercase with a &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;&amp;gt;&amp;gt; &quot;&lt;/code&gt; prefix, and sends the result to the &lt;code class=&quot;highlighter-rouge&quot;&gt;words-out&lt;/code&gt; topic. The &lt;code class=&quot;highlighter-rouge&quot;&gt;autoOffsetReset(&quot;earliest&quot;)&lt;/code&gt; setting ensures the consumer starts reading from the beginning of the topic, which is important for test reliability.&lt;/p&gt;
+
+&lt;p&gt;By extending &lt;code class=&quot;highlighter-rouge&quot;&gt;EndpointRouteBuilder&lt;/code&gt; instead of the plain &lt;code class=&quot;highlighter-rouge&quot;&gt;RouteBuilder&lt;/code&gt;, the route gains access to Camel’s Endpoint DSL. This means &lt;code class=&quot;highlighter-rouge&quot;&gt;kafka(&quot;words-in&quot;)&lt;/code&gt; is a type-safe method call with IDE auto-completion, not a string URI that could contain typos. Quarkus discovers this class automatically and starts the route when the application boots.&lt;/p&gt;
+
+&lt;p&gt;The production configuration is minimal — just the broker address in &lt;code class=&quot;highlighter-rouge&quot;&gt;application.properties&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-properties highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;py&quot;&gt;kafka.bootstrap.servers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;localhost:9092&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;That is the entire application. Now let’s verify it.&lt;/p&gt;
+
+&lt;h1 id=&quot;adding-citrus-to-the-project&quot;&gt;Adding Citrus to the project&lt;/h1&gt;
+
+&lt;p&gt;Citrus is highly modular, so you only pull in the capabilities you actually need. For this Camel Kafka scenario you add four test-scoped dependencies to the Maven POM:&lt;/p&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.citrusframework&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-quarkus&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;4.10.1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;scope&amp;gt;&lt;/span&gt;test&lt;span class=&quot;nt&quot;&gt;&amp;lt;/scope&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.citrusframework&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-kafka&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;4.10.1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;scope&amp;gt;&lt;/span&gt;test&lt;span class=&quot;nt&quot;&gt;&amp;lt;/scope&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.citrusframework&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-testcontainers&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;4.10.1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;scope&amp;gt;&lt;/span&gt;test&lt;span class=&quot;nt&quot;&gt;&amp;lt;/scope&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.citrusframework&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-junit-jupiter&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;4.10.1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;scope&amp;gt;&lt;/span&gt;test&lt;span class=&quot;nt&quot;&gt;&amp;lt;/scope&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Here is what each module brings to the table:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;citrus-quarkus&lt;/strong&gt; integrates Citrus with the Quarkus test lifecycle. It hooks into &lt;code class=&quot;highlighter-rouge&quot;&gt;@QuarkusTest&lt;/code&gt; so that Citrus endpoints and test runners are available without any extra configuration.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;citrus-kafka&lt;/strong&gt; provides Kafka endpoint implementations with built-in producer and consumer capabilities, message serialization, and topic configuration.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;citrus-testcontainers&lt;/strong&gt; adds the &lt;code class=&quot;highlighter-rouge&quot;&gt;@KafkaContainerSupport&lt;/code&gt; annotation that provisions a real Kafka broker for your tests. This is the key dependency for this example.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;citrus-junit-jupiter&lt;/strong&gt; connects Citrus to JUnit 5, the test engine that Quarkus uses under the hood.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;why-not-quarkus-dev-services&quot;&gt;Why not Quarkus dev services?&lt;/h1&gt;
+
+&lt;p&gt;If you have read the &lt;a href=&quot;/samples/quarkus-event-driven-kafka/&quot;&gt;event-driven Kafka sample&lt;/a&gt; on this site, you might wonder why we are not relying on Quarkus Kafka dev services to start the broker. Dev services are great when your application uses SmallRye Reactive Messaging, because Quarkus knows exactly how to wire the broker connection to the messaging channels.&lt;/p&gt;
+
+&lt;p&gt;But when your application uses Apache Camel’s native Kafka component, the situation is different. Camel manages its own Kafka consumer and producer configuration through the Camel Kafka component, and Quarkus dev services may not automatically configure that connection. You need a way to start a Kafka broker and share its address between the Quarkus application, the Camel component, and the Citrus test endpoints.&lt;/p&gt;
+
+&lt;p&gt;Citrus solves this with a single annotation: &lt;code class=&quot;highlighter-rouge&quot;&gt;@KafkaContainerSupport&lt;/code&gt;. It starts a real Kafka broker via Testcontainers and automatically publishes the bootstrap server address so that all three frameworks — Quarkus, Camel, and Citrus — connect to the same broker instance. No manual property overrides, no test-specific configuration files.&lt;/p&gt;
+
+&lt;h1 id=&quot;provisioning-the-kafka-broker&quot;&gt;Provisioning the Kafka broker&lt;/h1&gt;
+
+&lt;p&gt;The test class starts with three annotations that set up the complete test infrastructure:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@QuarkusTest&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@CitrusSupport&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@KafkaContainerSupport&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;port&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;9092&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;4.2.0&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;containerLifecycleListener&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;QuarkusApplicationTest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;KafkaConfigurer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;QuarkusApplicationTest&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TestActionSupport&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;@QuarkusTest&lt;/code&gt; starts the Quarkus application in test mode and activates the Camel routes. &lt;code class=&quot;highlighter-rouge&quot;&gt;@CitrusSupport&lt;/code&gt; layers the Citrus framework on top of the Quarkus lifecycle. And &lt;code class=&quot;highlighter-rouge&quot;&gt;@KafkaContainerSupport&lt;/code&gt; is where the magic happens — it launches a Kafka 4.2.0 container on port 9092 and wires everything together.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;containerLifecycleListener&lt;/code&gt; parameter points to a custom listener that runs after the Kafka container starts. This is where you perform any broker-level setup your tests need, such as creating topics:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;KafkaConfigurer&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ContainerLifecycleListener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;KafkaContainer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;started&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;KafkaContainer&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Admin&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;adminClient&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Admin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;Collections&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;singletonMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;AdminClientConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;BOOTSTRAP_SERVERS_CONFIG&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBootstrapServers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+            &lt;span class=&quot;n&quot;&gt;CreateTopicsResult&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;adminClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createTopics&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Set&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;NewTopic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;words-in&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;short&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;NewTopic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;words-out&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;short&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+
+            &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Collections&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;emptyMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The listener receives the running &lt;code class=&quot;highlighter-rouge&quot;&gt;KafkaContainer&lt;/code&gt; instance, creates an admin client pointing to the container’s bootstrap servers, and creates the two topics the Camel route needs. The topics are ready before the Quarkus application and the Citrus endpoints start connecting.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;ContainerLifecycleListener&lt;/code&gt; is flexible. Beyond topic creation you could use it to configure ACLs, set up consumer groups, or seed test data. The &lt;code class=&quot;highlighter-rouge&quot;&gt;started()&lt;/code&gt; method can also return a map of additional system properties that get injected into the test context.&lt;/p&gt;
+
+&lt;h1 id=&quot;configuring-kafka-endpoints&quot;&gt;Configuring Kafka endpoints&lt;/h1&gt;
+
+&lt;p&gt;With the broker running and topics created, you need to tell Citrus where to send and receive messages. Citrus uses a declarative annotation-based approach:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@CitrusEndpoint&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@KafkaEndpointConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;topic&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;words-in&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;KafkaEndpoint&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wordsIn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@CitrusEndpoint&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@KafkaEndpointConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;topic&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;words-out&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;KafkaEndpoint&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wordsOut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Each field annotated with &lt;code class=&quot;highlighter-rouge&quot;&gt;@CitrusEndpoint&lt;/code&gt; becomes a fully configured Kafka endpoint. The &lt;code class=&quot;highlighter-rouge&quot;&gt;@KafkaEndpointConfig&lt;/code&gt; annotation specifies the topic name. The bootstrap server address is automatically resolved from the &lt;code class=&quot;highlighter-rouge&quot;&gt;@KafkaContainerSupport&lt;/code&gt; configuration — you do not need to specify it explicitly.&lt;/p&gt;
+
+&lt;p&gt;Two endpoints are defined: &lt;code class=&quot;highlighter-rouge&quot;&gt;wordsIn&lt;/code&gt; for sending messages into the Camel route’s input topic, and &lt;code class=&quot;highlighter-rouge&quot;&gt;wordsOut&lt;/code&gt; for receiving and validating the transformed output. Citrus handles Kafka producer and consumer creation, serialization, and connection management behind the scenes.&lt;/p&gt;
+
+&lt;h1 id=&quot;writing-the-test&quot;&gt;Writing the test&lt;/h1&gt;
+
+&lt;p&gt;With the infrastructure and endpoints in place, the actual test is remarkably concise:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@CitrusResource&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;GherkinTestActionRunner&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;shouldHandleEvents&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wordsIn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Howdy&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wordsOut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&amp;gt;&amp;gt; HOWDY&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;GherkinTestActionRunner&lt;/code&gt; provides a fluent API with Given-When-Then semantics. The &lt;strong&gt;when&lt;/strong&gt; block sends the string &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Howdy&quot;&lt;/code&gt; to the &lt;code class=&quot;highlighter-rouge&quot;&gt;words-in&lt;/code&gt; topic. The Camel route picks it up, transforms it, and publishes the result to &lt;code class=&quot;highlighter-rouge&quot;&gt;words-out&lt;/code&gt;. The &lt;strong&gt;then&lt;/strong&gt; block verifies that a message with body &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;&amp;gt;&amp;gt; HOWDY&quot;&lt;/code&gt; arrives on the output topic.&lt;/p&gt;
+
+&lt;p&gt;That single assertion covers the entire processing pipeline: Kafka consumption by Camel, the uppercase transformation, the prefix formatting, and the Kafka production on the output side. If the received message does not match the expected body, Citrus fails the test with a clear diff showing exactly what went wrong.&lt;/p&gt;
+
+&lt;p&gt;While the Camel route processes messages asynchronously, the Citrus test runs synchronously. The &lt;code class=&quot;highlighter-rouge&quot;&gt;receive()&lt;/code&gt; action blocks until a message arrives on the output topic or a timeout occurs. This approach ensures deterministic test execution without flaky sleeps or polling loops.&lt;/p&gt;
+
+&lt;h1 id=&quot;how-it-all-fits-together&quot;&gt;How it all fits together&lt;/h1&gt;
+
+&lt;p&gt;When you run the test with &lt;code class=&quot;highlighter-rouge&quot;&gt;./mvnw clean test&lt;/code&gt;, here is the sequence of events that unfolds behind the scenes:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;@KafkaContainerSupport&lt;/code&gt; launches&lt;/strong&gt; a Kafka 4.2.0 container on port 9092 via Testcontainers.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;The lifecycle listener&lt;/strong&gt; creates the &lt;code class=&quot;highlighter-rouge&quot;&gt;words-in&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;words-out&lt;/code&gt; topics using the Kafka Admin API.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Quarkus starts&lt;/strong&gt; the application in test mode with the bootstrap servers pointing to the test Kafka broker.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Apache Camel discovers&lt;/strong&gt; the &lt;code class=&quot;highlighter-rouge&quot;&gt;Routes&lt;/code&gt; class and starts the Kafka consumer on &lt;code class=&quot;highlighter-rouge&quot;&gt;words-in&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Citrus initializes&lt;/strong&gt; the &lt;code class=&quot;highlighter-rouge&quot;&gt;wordsIn&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;wordsOut&lt;/code&gt; endpoints connected to the same broker.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;The test sends&lt;/strong&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Howdy&quot;&lt;/code&gt; to the &lt;code class=&quot;highlighter-rouge&quot;&gt;words-in&lt;/code&gt; topic through the &lt;code class=&quot;highlighter-rouge&quot;&gt;wordsIn&lt;/code&gt; endpoint.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;The Camel route consumes&lt;/strong&gt; the message, transforms it to &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;&amp;gt;&amp;gt; HOWDY&quot;&lt;/code&gt;, and produces it to &lt;code class=&quot;highlighter-rouge&quot;&gt;words-out&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Citrus receives&lt;/strong&gt; the message from the &lt;code class=&quot;highlighter-rouge&quot;&gt;words-out&lt;/code&gt; topic and validates it against the expected body.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;The test completes&lt;/strong&gt; and the Kafka container is stopped and cleaned up automatically.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The critical point is step 5: all three frameworks — Quarkus, Apache Camel, and Citrus — share the same Kafka broker instance. The &lt;code class=&quot;highlighter-rouge&quot;&gt;@KafkaContainerSupport&lt;/code&gt; annotation takes care of distributing the bootstrap server configuration so you do not have to wire it manually.&lt;/p&gt;
+
+&lt;p&gt;There is one small piece of test configuration worth mentioning. Because Citrus and Quarkus share the same classpath, you need to tell Quarkus CDI to allow split packages from the Citrus framework. This is done in &lt;code class=&quot;highlighter-rouge&quot;&gt;src/test/resources/application.properties&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-properties highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;py&quot;&gt;quarkus.arc.ignored-split-packages&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;org.citrusframework.*&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This avoids CDI bean discovery conflicts and is a one-line addition that you set once and forget.&lt;/p&gt;
+
+&lt;h1 id=&quot;the-complete-test-class&quot;&gt;The complete test class&lt;/h1&gt;
+
+&lt;p&gt;Here is the full test in one place for easy reference:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@QuarkusTest&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@CitrusSupport&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@KafkaContainerSupport&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;port&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;9092&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;4.2.0&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;containerLifecycleListener&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;QuarkusApplicationTest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;KafkaConfigurer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;QuarkusApplicationTest&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TestActionSupport&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@CitrusEndpoint&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@KafkaEndpointConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;topic&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;words-in&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;KafkaEndpoint&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wordsIn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@CitrusEndpoint&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@KafkaEndpointConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;topic&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;words-out&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;KafkaEndpoint&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wordsOut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@CitrusResource&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;GherkinTestActionRunner&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;shouldHandleEvents&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wordsIn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Howdy&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wordsOut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&amp;gt;&amp;gt; HOWDY&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;KafkaConfigurer&lt;/span&gt;
+            &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ContainerLifecycleListener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;KafkaContainer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;started&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;KafkaContainer&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Admin&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;adminClient&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Admin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;Collections&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;singletonMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+                        &lt;span class=&quot;n&quot;&gt;AdminClientConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;BOOTSTRAP_SERVERS_CONFIG&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+                        &lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBootstrapServers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+                &lt;span class=&quot;n&quot;&gt;adminClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createTopics&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Set&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+                    &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;NewTopic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;words-in&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;short&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt;
+                    &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;NewTopic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;words-out&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;short&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;)).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Collections&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;emptyMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The complete test weighs in at around 50 lines of code. It provisions a real Kafka broker, creates topics, starts the Quarkus application with Apache Camel, sends a message through the entire pipeline, and validates the output. That is the power of Citrus combined with Camel and Quarkus.&lt;/p&gt;
+
+&lt;h1 id=&quot;where-to-go-from-here&quot;&gt;Where to go from here&lt;/h1&gt;
+
+&lt;p&gt;This example covers the fundamentals, but Citrus has much more to offer for Apache Camel and Kafka testing scenarios:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Message headers and keys&lt;/strong&gt;: Kafka records carry headers and message keys alongside the payload. Citrus lets you set and verify both in your send and receive actions, which is essential for testing content-based routing in Camel.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;JSON validation&lt;/strong&gt;: Add the &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-validation-json&lt;/code&gt; module and Citrus will compare received JSON payloads field by field, supporting ignore patterns, validation matchers, and flexible element ordering.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Complex Camel patterns&lt;/strong&gt;: Test content-based routing, message filters, aggregation, and error handling. Citrus can simulate multiple input and output topics to cover multi-step integration scenarios.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Error scenarios&lt;/strong&gt;: Test what happens when the application receives malformed input or when downstream services are unavailable. Citrus gives you full control over the messages you send, making negative testing straightforward.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Dev services comparison&lt;/strong&gt;: If your Quarkus application uses SmallRye Reactive Messaging instead of Camel’s native Kafka component, Quarkus dev services can handle broker provisioning automatically. The &lt;a href=&quot;/samples/quarkus-event-driven-kafka/&quot;&gt;event-driven Kafka sample&lt;/a&gt; on this site demonstrates that approach. Choose &lt;code class=&quot;highlighter-rouge&quot;&gt;@KafkaContainerSupport&lt;/code&gt; when you need explicit control over the broker or when dev services do not apply.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To explore the full example project including the source code, head over to the &lt;a href=&quot;https://github.com/citrusframework/citrus-quarkus-examples&quot;&gt;citrus-quarkus-examples&lt;/a&gt; repository on GitHub.&lt;/p&gt;
+
+&lt;p&gt;For deeper dives into Citrus capabilities, the &lt;a href=&quot;https://citrusframework.org/citrus/reference/html/&quot;&gt;reference guide&lt;/a&gt; covers Kafka endpoints, Quarkus integration, Apache Camel support, and the many other messaging transports that Citrus supports.&lt;/p&gt;</content><author><name></name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://0.0.0.0:4000/img/icons/camel.png" /></entry><entry><title type="html">Quarkus - Event-Driven JMS</title><link href="http://0.0.0.0:4000/samples/quarkus-event-driven-jms/" rel="alternate" type="text/html" title="Quarkus - Event-Driven JMS" /><published>2026-07-02T00:00:00+02:00</published><updated>2026-07-02T00:00:00+02:00</updated><id>http://0.0.0.0:4000/samples/sample-quarkus-event-driven-jms</id><content type="html" xml:base="http://0.0.0.0:4000/samples/quarkus-event-driven-jms/">&lt;p&gt;JMS is still one of the most widely used messaging standards in enterprise applications. ActiveMQ Artemis brings a modern, high-performance JMS broker to the table, and Quarkus makes it easy to build reactive services on top of it.&lt;/p&gt;
 
 &lt;p&gt;But testing the asynchronous message flows in these applications is often where things get tricky. How do you send a message to a JMS queue, wait for the application to process it, and then verify the output on another queue — all in a deterministic, repeatable test?&lt;/p&gt;
 
@@ -292,281 +568,7 @@
 
 &lt;p&gt;To explore the full example project including the source code, head over to the &lt;a href=&quot;https://github.com/citrusframework/citrus-quarkus-examples&quot;&gt;citrus-quarkus-examples&lt;/a&gt; repository on GitHub.&lt;/p&gt;
 
-&lt;p&gt;For deeper dives into Citrus capabilities, the &lt;a href=&quot;https://citrusframework.org/citrus/reference/html/&quot;&gt;reference guide&lt;/a&gt; covers JMS endpoints, Quarkus integration, and the many other messaging transports that Citrus supports.&lt;/p&gt;</content><author><name></name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://0.0.0.0:4000/img/icons/quarkus.png" /></entry><entry><title type="html">Apache Camel - Quarkus Kafka Eventing</title><link href="http://0.0.0.0:4000/samples/camel-quarkus-kafka/" rel="alternate" type="text/html" title="Apache Camel - Quarkus Kafka Eventing" /><published>2026-07-02T00:00:00+02:00</published><updated>2026-07-02T00:00:00+02:00</updated><id>http://0.0.0.0:4000/samples/sample-camel-quarkus-kafka</id><content type="html" xml:base="http://0.0.0.0:4000/samples/camel-quarkus-kafka/">&lt;p&gt;Apache Camel is one of the most popular integration frameworks in the Java ecosystem, and when combined with Quarkus and Kafka it offers a powerful foundation for building event-driven microservices.&lt;/p&gt;
-
-&lt;p&gt;But testing these integrations end to end remains a challenge. Camel routes consume and produce Kafka messages asynchronously, and verifying that the entire pipeline works correctly requires a real broker, proper topic setup, and a testing framework that understands messaging.&lt;/p&gt;
-
-&lt;p&gt;This post walks you through testing an Apache Camel Kafka route in a Quarkus application using the &lt;a href=&quot;https://citrusframework.org&quot;&gt;Citrus&lt;/a&gt; integration testing framework. You will see how Citrus provisions a Kafka broker with a single annotation, sends messages into a Camel route, and validates the output — all with clean, readable test code. By the end you will have a clear recipe for testing your own Camel Kafka routes in Quarkus.&lt;/p&gt;
-
-&lt;h1 id=&quot;the-application-under-test&quot;&gt;The application under test&lt;/h1&gt;
-
-&lt;p&gt;The example application is intentionally simple so we can focus on the testing side. It is a Quarkus service that uses an Apache Camel route to consume text messages from a Kafka topic, transform them to uppercase, and publish the result to an output topic.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Kafka Topic (words-in) --&amp;gt; Apache Camel Route (Transform) --&amp;gt; Kafka Topic (words-out)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The entire integration logic lives in a single Camel route defined using the type-safe Endpoint DSL:&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Routes&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;EndpointRouteBuilder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;configure&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kafka&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;words-in&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;autoOffsetReset&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;earliest&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setBody&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exchange&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&amp;gt;&amp;gt; &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exchange&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getIn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBody&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toUpperCase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kafka&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;words-out&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The route reads messages from the &lt;code class=&quot;highlighter-rouge&quot;&gt;words-in&lt;/code&gt; Kafka topic, transforms the body to uppercase with a &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;&amp;gt;&amp;gt; &quot;&lt;/code&gt; prefix, and sends the result to the &lt;code class=&quot;highlighter-rouge&quot;&gt;words-out&lt;/code&gt; topic. The &lt;code class=&quot;highlighter-rouge&quot;&gt;autoOffsetReset(&quot;earliest&quot;)&lt;/code&gt; setting ensures the consumer starts reading from the beginning of the topic, which is important for test reliability.&lt;/p&gt;
-
-&lt;p&gt;By extending &lt;code class=&quot;highlighter-rouge&quot;&gt;EndpointRouteBuilder&lt;/code&gt; instead of the plain &lt;code class=&quot;highlighter-rouge&quot;&gt;RouteBuilder&lt;/code&gt;, the route gains access to Camel’s Endpoint DSL. This means &lt;code class=&quot;highlighter-rouge&quot;&gt;kafka(&quot;words-in&quot;)&lt;/code&gt; is a type-safe method call with IDE auto-completion, not a string URI that could contain typos. Quarkus discovers this class automatically and starts the route when the application boots.&lt;/p&gt;
-
-&lt;p&gt;The production configuration is minimal — just the broker address in &lt;code class=&quot;highlighter-rouge&quot;&gt;application.properties&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-properties highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;py&quot;&gt;kafka.bootstrap.servers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;localhost:9092&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;That is the entire application. Now let’s verify it.&lt;/p&gt;
-
-&lt;h1 id=&quot;adding-citrus-to-the-project&quot;&gt;Adding Citrus to the project&lt;/h1&gt;
-
-&lt;p&gt;Citrus is highly modular, so you only pull in the capabilities you actually need. For this Camel Kafka scenario you add four test-scoped dependencies to the Maven POM:&lt;/p&gt;
-
-&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.citrusframework&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-quarkus&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;4.10.1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;scope&amp;gt;&lt;/span&gt;test&lt;span class=&quot;nt&quot;&gt;&amp;lt;/scope&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.citrusframework&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-kafka&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;4.10.1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;scope&amp;gt;&lt;/span&gt;test&lt;span class=&quot;nt&quot;&gt;&amp;lt;/scope&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.citrusframework&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-testcontainers&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;4.10.1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;scope&amp;gt;&lt;/span&gt;test&lt;span class=&quot;nt&quot;&gt;&amp;lt;/scope&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.citrusframework&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-junit-jupiter&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;4.10.1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;scope&amp;gt;&lt;/span&gt;test&lt;span class=&quot;nt&quot;&gt;&amp;lt;/scope&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Here is what each module brings to the table:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;citrus-quarkus&lt;/strong&gt; integrates Citrus with the Quarkus test lifecycle. It hooks into &lt;code class=&quot;highlighter-rouge&quot;&gt;@QuarkusTest&lt;/code&gt; so that Citrus endpoints and test runners are available without any extra configuration.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;citrus-kafka&lt;/strong&gt; provides Kafka endpoint implementations with built-in producer and consumer capabilities, message serialization, and topic configuration.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;citrus-testcontainers&lt;/strong&gt; adds the &lt;code class=&quot;highlighter-rouge&quot;&gt;@KafkaContainerSupport&lt;/code&gt; annotation that provisions a real Kafka broker for your tests. This is the key dependency for this example.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;citrus-junit-jupiter&lt;/strong&gt; connects Citrus to JUnit 5, the test engine that Quarkus uses under the hood.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;why-not-quarkus-dev-services&quot;&gt;Why not Quarkus dev services?&lt;/h1&gt;
-
-&lt;p&gt;If you have read the &lt;a href=&quot;/samples/quarkus-event-driven-kafka/&quot;&gt;event-driven Kafka sample&lt;/a&gt; on this site, you might wonder why we are not relying on Quarkus Kafka dev services to start the broker. Dev services are great when your application uses SmallRye Reactive Messaging, because Quarkus knows exactly how to wire the broker connection to the messaging channels.&lt;/p&gt;
-
-&lt;p&gt;But when your application uses Apache Camel’s native Kafka component, the situation is different. Camel manages its own Kafka consumer and producer configuration through the Camel Kafka component, and Quarkus dev services may not automatically configure that connection. You need a way to start a Kafka broker and share its address between the Quarkus application, the Camel component, and the Citrus test endpoints.&lt;/p&gt;
-
-&lt;p&gt;Citrus solves this with a single annotation: &lt;code class=&quot;highlighter-rouge&quot;&gt;@KafkaContainerSupport&lt;/code&gt;. It starts a real Kafka broker via Testcontainers and automatically publishes the bootstrap server address so that all three frameworks — Quarkus, Camel, and Citrus — connect to the same broker instance. No manual property overrides, no test-specific configuration files.&lt;/p&gt;
-
-&lt;h1 id=&quot;provisioning-the-kafka-broker&quot;&gt;Provisioning the Kafka broker&lt;/h1&gt;
-
-&lt;p&gt;The test class starts with three annotations that set up the complete test infrastructure:&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@QuarkusTest&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@CitrusSupport&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@KafkaContainerSupport&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;port&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;9092&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;4.2.0&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;containerLifecycleListener&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;QuarkusApplicationTest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;KafkaConfigurer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;QuarkusApplicationTest&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TestActionSupport&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;@QuarkusTest&lt;/code&gt; starts the Quarkus application in test mode and activates the Camel routes. &lt;code class=&quot;highlighter-rouge&quot;&gt;@CitrusSupport&lt;/code&gt; layers the Citrus framework on top of the Quarkus lifecycle. And &lt;code class=&quot;highlighter-rouge&quot;&gt;@KafkaContainerSupport&lt;/code&gt; is where the magic happens — it launches a Kafka 4.2.0 container on port 9092 and wires everything together.&lt;/p&gt;
-
-&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;containerLifecycleListener&lt;/code&gt; parameter points to a custom listener that runs after the Kafka container starts. This is where you perform any broker-level setup your tests need, such as creating topics:&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;KafkaConfigurer&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ContainerLifecycleListener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;KafkaContainer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;started&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;KafkaContainer&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Admin&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;adminClient&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Admin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;Collections&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;singletonMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;AdminClientConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;BOOTSTRAP_SERVERS_CONFIG&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBootstrapServers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-            &lt;span class=&quot;n&quot;&gt;CreateTopicsResult&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;adminClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createTopics&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Set&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;NewTopic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;words-in&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;short&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;NewTopic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;words-out&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;short&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-
-            &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Collections&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;emptyMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The listener receives the running &lt;code class=&quot;highlighter-rouge&quot;&gt;KafkaContainer&lt;/code&gt; instance, creates an admin client pointing to the container’s bootstrap servers, and creates the two topics the Camel route needs. The topics are ready before the Quarkus application and the Citrus endpoints start connecting.&lt;/p&gt;
-
-&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;ContainerLifecycleListener&lt;/code&gt; is flexible. Beyond topic creation you could use it to configure ACLs, set up consumer groups, or seed test data. The &lt;code class=&quot;highlighter-rouge&quot;&gt;started()&lt;/code&gt; method can also return a map of additional system properties that get injected into the test context.&lt;/p&gt;
-
-&lt;h1 id=&quot;configuring-kafka-endpoints&quot;&gt;Configuring Kafka endpoints&lt;/h1&gt;
-
-&lt;p&gt;With the broker running and topics created, you need to tell Citrus where to send and receive messages. Citrus uses a declarative annotation-based approach:&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@CitrusEndpoint&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@KafkaEndpointConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;topic&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;words-in&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;KafkaEndpoint&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wordsIn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;nd&quot;&gt;@CitrusEndpoint&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@KafkaEndpointConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;topic&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;words-out&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;KafkaEndpoint&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wordsOut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Each field annotated with &lt;code class=&quot;highlighter-rouge&quot;&gt;@CitrusEndpoint&lt;/code&gt; becomes a fully configured Kafka endpoint. The &lt;code class=&quot;highlighter-rouge&quot;&gt;@KafkaEndpointConfig&lt;/code&gt; annotation specifies the topic name. The bootstrap server address is automatically resolved from the &lt;code class=&quot;highlighter-rouge&quot;&gt;@KafkaContainerSupport&lt;/code&gt; configuration — you do not need to specify it explicitly.&lt;/p&gt;
-
-&lt;p&gt;Two endpoints are defined: &lt;code class=&quot;highlighter-rouge&quot;&gt;wordsIn&lt;/code&gt; for sending messages into the Camel route’s input topic, and &lt;code class=&quot;highlighter-rouge&quot;&gt;wordsOut&lt;/code&gt; for receiving and validating the transformed output. Citrus handles Kafka producer and consumer creation, serialization, and connection management behind the scenes.&lt;/p&gt;
-
-&lt;h1 id=&quot;writing-the-test&quot;&gt;Writing the test&lt;/h1&gt;
-
-&lt;p&gt;With the infrastructure and endpoints in place, the actual test is remarkably concise:&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@CitrusResource&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;GherkinTestActionRunner&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;shouldHandleEvents&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wordsIn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Howdy&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wordsOut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&amp;gt;&amp;gt; HOWDY&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;GherkinTestActionRunner&lt;/code&gt; provides a fluent API with Given-When-Then semantics. The &lt;strong&gt;when&lt;/strong&gt; block sends the string &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Howdy&quot;&lt;/code&gt; to the &lt;code class=&quot;highlighter-rouge&quot;&gt;words-in&lt;/code&gt; topic. The Camel route picks it up, transforms it, and publishes the result to &lt;code class=&quot;highlighter-rouge&quot;&gt;words-out&lt;/code&gt;. The &lt;strong&gt;then&lt;/strong&gt; block verifies that a message with body &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;&amp;gt;&amp;gt; HOWDY&quot;&lt;/code&gt; arrives on the output topic.&lt;/p&gt;
-
-&lt;p&gt;That single assertion covers the entire processing pipeline: Kafka consumption by Camel, the uppercase transformation, the prefix formatting, and the Kafka production on the output side. If the received message does not match the expected body, Citrus fails the test with a clear diff showing exactly what went wrong.&lt;/p&gt;
-
-&lt;p&gt;While the Camel route processes messages asynchronously, the Citrus test runs synchronously. The &lt;code class=&quot;highlighter-rouge&quot;&gt;receive()&lt;/code&gt; action blocks until a message arrives on the output topic or a timeout occurs. This approach ensures deterministic test execution without flaky sleeps or polling loops.&lt;/p&gt;
-
-&lt;h1 id=&quot;how-it-all-fits-together&quot;&gt;How it all fits together&lt;/h1&gt;
-
-&lt;p&gt;When you run the test with &lt;code class=&quot;highlighter-rouge&quot;&gt;./mvnw clean test&lt;/code&gt;, here is the sequence of events that unfolds behind the scenes:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;@KafkaContainerSupport&lt;/code&gt; launches&lt;/strong&gt; a Kafka 4.2.0 container on port 9092 via Testcontainers.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;The lifecycle listener&lt;/strong&gt; creates the &lt;code class=&quot;highlighter-rouge&quot;&gt;words-in&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;words-out&lt;/code&gt; topics using the Kafka Admin API.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Quarkus starts&lt;/strong&gt; the application in test mode with the bootstrap servers pointing to the test Kafka broker.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Apache Camel discovers&lt;/strong&gt; the &lt;code class=&quot;highlighter-rouge&quot;&gt;Routes&lt;/code&gt; class and starts the Kafka consumer on &lt;code class=&quot;highlighter-rouge&quot;&gt;words-in&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Citrus initializes&lt;/strong&gt; the &lt;code class=&quot;highlighter-rouge&quot;&gt;wordsIn&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;wordsOut&lt;/code&gt; endpoints connected to the same broker.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;The test sends&lt;/strong&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Howdy&quot;&lt;/code&gt; to the &lt;code class=&quot;highlighter-rouge&quot;&gt;words-in&lt;/code&gt; topic through the &lt;code class=&quot;highlighter-rouge&quot;&gt;wordsIn&lt;/code&gt; endpoint.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;The Camel route consumes&lt;/strong&gt; the message, transforms it to &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;&amp;gt;&amp;gt; HOWDY&quot;&lt;/code&gt;, and produces it to &lt;code class=&quot;highlighter-rouge&quot;&gt;words-out&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Citrus receives&lt;/strong&gt; the message from the &lt;code class=&quot;highlighter-rouge&quot;&gt;words-out&lt;/code&gt; topic and validates it against the expected body.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;The test completes&lt;/strong&gt; and the Kafka container is stopped and cleaned up automatically.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;The critical point is step 5: all three frameworks — Quarkus, Apache Camel, and Citrus — share the same Kafka broker instance. The &lt;code class=&quot;highlighter-rouge&quot;&gt;@KafkaContainerSupport&lt;/code&gt; annotation takes care of distributing the bootstrap server configuration so you do not have to wire it manually.&lt;/p&gt;
-
-&lt;p&gt;There is one small piece of test configuration worth mentioning. Because Citrus and Quarkus share the same classpath, you need to tell Quarkus CDI to allow split packages from the Citrus framework. This is done in &lt;code class=&quot;highlighter-rouge&quot;&gt;src/test/resources/application.properties&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-properties highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;py&quot;&gt;quarkus.arc.ignored-split-packages&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;org.citrusframework.*&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This avoids CDI bean discovery conflicts and is a one-line addition that you set once and forget.&lt;/p&gt;
-
-&lt;h1 id=&quot;the-complete-test-class&quot;&gt;The complete test class&lt;/h1&gt;
-
-&lt;p&gt;Here is the full test in one place for easy reference:&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@QuarkusTest&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@CitrusSupport&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@KafkaContainerSupport&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;port&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;9092&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;4.2.0&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;containerLifecycleListener&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;QuarkusApplicationTest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;KafkaConfigurer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;QuarkusApplicationTest&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TestActionSupport&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@CitrusEndpoint&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@KafkaEndpointConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;topic&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;words-in&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;KafkaEndpoint&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wordsIn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@CitrusEndpoint&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@KafkaEndpointConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;topic&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;words-out&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;KafkaEndpoint&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wordsOut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@CitrusResource&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;GherkinTestActionRunner&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;shouldHandleEvents&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wordsIn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Howdy&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-        &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wordsOut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&amp;gt;&amp;gt; HOWDY&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;KafkaConfigurer&lt;/span&gt;
-            &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ContainerLifecycleListener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;KafkaContainer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;started&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;KafkaContainer&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Admin&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;adminClient&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Admin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;Collections&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;singletonMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-                        &lt;span class=&quot;n&quot;&gt;AdminClientConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;BOOTSTRAP_SERVERS_CONFIG&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-                        &lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBootstrapServers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-                &lt;span class=&quot;n&quot;&gt;adminClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createTopics&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Set&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-                    &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;NewTopic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;words-in&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;short&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt;
-                    &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;NewTopic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;words-out&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;short&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;)).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Collections&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;emptyMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The complete test weighs in at around 50 lines of code. It provisions a real Kafka broker, creates topics, starts the Quarkus application with Apache Camel, sends a message through the entire pipeline, and validates the output. That is the power of Citrus combined with Camel and Quarkus.&lt;/p&gt;
-
-&lt;h1 id=&quot;where-to-go-from-here&quot;&gt;Where to go from here&lt;/h1&gt;
-
-&lt;p&gt;This example covers the fundamentals, but Citrus has much more to offer for Apache Camel and Kafka testing scenarios:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Message headers and keys&lt;/strong&gt;: Kafka records carry headers and message keys alongside the payload. Citrus lets you set and verify both in your send and receive actions, which is essential for testing content-based routing in Camel.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;JSON validation&lt;/strong&gt;: Add the &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-validation-json&lt;/code&gt; module and Citrus will compare received JSON payloads field by field, supporting ignore patterns, validation matchers, and flexible element ordering.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Complex Camel patterns&lt;/strong&gt;: Test content-based routing, message filters, aggregation, and error handling. Citrus can simulate multiple input and output topics to cover multi-step integration scenarios.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Error scenarios&lt;/strong&gt;: Test what happens when the application receives malformed input or when downstream services are unavailable. Citrus gives you full control over the messages you send, making negative testing straightforward.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Dev services comparison&lt;/strong&gt;: If your Quarkus application uses SmallRye Reactive Messaging instead of Camel’s native Kafka component, Quarkus dev services can handle broker provisioning automatically. The &lt;a href=&quot;/samples/quarkus-event-driven-kafka/&quot;&gt;event-driven Kafka sample&lt;/a&gt; on this site demonstrates that approach. Choose &lt;code class=&quot;highlighter-rouge&quot;&gt;@KafkaContainerSupport&lt;/code&gt; when you need explicit control over the broker or when dev services do not apply.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;To explore the full example project including the source code, head over to the &lt;a href=&quot;https://github.com/citrusframework/citrus-quarkus-examples&quot;&gt;citrus-quarkus-examples&lt;/a&gt; repository on GitHub.&lt;/p&gt;
-
-&lt;p&gt;For deeper dives into Citrus capabilities, the &lt;a href=&quot;https://citrusframework.org/citrus/reference/html/&quot;&gt;reference guide&lt;/a&gt; covers Kafka endpoints, Quarkus integration, Apache Camel support, and the many other messaging transports that Citrus supports.&lt;/p&gt;</content><author><name></name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://0.0.0.0:4000/img/icons/camel.png" /></entry><entry><title type="html">Design Citrus Tests Visually — Kaoto Meets Citrus</title><link href="http://0.0.0.0:4000/news/2026/06/19/kaoto-meets-citrus/" rel="alternate" type="text/html" title="Design Citrus Tests Visually — Kaoto Meets Citrus" /><published>2026-06-19T00:00:00+02:00</published><updated>2026-06-19T00:00:00+02:00</updated><id>http://0.0.0.0:4000/news/2026/06/19/kaoto-meets-citrus</id><content type="html" xml:base="http://0.0.0.0:4000/news/2026/06/19/kaoto-meets-citrus/">&lt;p&gt;What if you could design Citrus integration tests by dragging and dropping components on a visual canvas — no boilerplate, no guesswork, no steep learning curve?
+&lt;p&gt;For deeper dives into Citrus capabilities, the &lt;a href=&quot;https://citrusframework.org/citrus/reference/html/&quot;&gt;reference guide&lt;/a&gt; covers JMS endpoints, Quarkus integration, and the many other messaging transports that Citrus supports.&lt;/p&gt;</content><author><name></name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://0.0.0.0:4000/img/icons/quarkus.png" /></entry><entry><title type="html">Design Citrus Tests Visually — Kaoto Meets Citrus</title><link href="http://0.0.0.0:4000/news/2026/06/19/kaoto-meets-citrus/" rel="alternate" type="text/html" title="Design Citrus Tests Visually — Kaoto Meets Citrus" /><published>2026-06-19T00:00:00+02:00</published><updated>2026-06-19T00:00:00+02:00</updated><id>http://0.0.0.0:4000/news/2026/06/19/kaoto-meets-citrus</id><content type="html" xml:base="http://0.0.0.0:4000/news/2026/06/19/kaoto-meets-citrus/">&lt;p&gt;What if you could design Citrus integration tests by dragging and dropping components on a visual canvas — no boilerplate, no guesswork, no steep learning curve?
 With &lt;a href=&quot;https://kaoto.io/blog/2026/kaoto-2.11-release/&quot;&gt;Kaoto 2.11&lt;/a&gt; this is now a reality for Citrus.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/img/assets/kaoto-citrus-integration/kaoto-logo.png&quot; alt=&quot;Kaoto Logo&quot; /&gt;&lt;/p&gt;
@@ -859,7 +861,7 @@ Give it a spin and let us know what you think!&lt;/p&gt;</content><author><name>
 
 &lt;p&gt;To explore the full example project including the source code, head over to the &lt;a href=&quot;https://github.com/citrusframework/citrus-quarkus-examples&quot;&gt;citrus-quarkus-examples&lt;/a&gt; repository on GitHub.&lt;/p&gt;
 
-&lt;p&gt;For deeper dives into Citrus capabilities, the &lt;a href=&quot;https://citrusframework.org/citrus/reference/html/&quot;&gt;reference guide&lt;/a&gt; covers Kafka endpoints, Quarkus integration, and the many other messaging transports that Citrus supports.&lt;/p&gt;</content><author><name></name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://0.0.0.0:4000/img/icons/quarkus.png" /></entry><entry><title type="html">Get ready for Citrus 5.0.0</title><link href="http://0.0.0.0:4000/news/2026/06/18/approaching-release-5.0/" rel="alternate" type="text/html" title="Get ready for Citrus 5.0.0" /><published>2026-06-18T00:00:00+02:00</published><updated>2026-06-18T00:00:00+02:00</updated><id>http://0.0.0.0:4000/news/2026/06/18/approaching-release-5.0</id><content type="html" xml:base="http://0.0.0.0:4000/news/2026/06/18/approaching-release-5.0/">&lt;p&gt;Citrus 5.0.0 is on the horizon! The next major release of the Citrus integration testing framework is planned for &lt;strong&gt;GA in Q3 2026&lt;/strong&gt; and brings a sweeping update of the core technology stack that Citrus builds on. Two milestone releases (M1 and M2) are already available for early adopters who want to get a head start on migration.&lt;/p&gt;
+&lt;p&gt;For deeper dives into Citrus capabilities, the &lt;a href=&quot;https://citrusframework.org/citrus/reference/html/&quot;&gt;reference guide&lt;/a&gt; covers Kafka endpoints, Quarkus integration, and the many other messaging transports that Citrus supports.&lt;/p&gt;</content><author><name></name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://0.0.0.0:4000/img/icons/quarkus.png" /></entry><entry><title type="html">Get ready for Citrus 5.0.0</title><link href="http://0.0.0.0:4000/news/2026/06/18/release-5.0.0-approaching/" rel="alternate" type="text/html" title="Get ready for Citrus 5.0.0" /><published>2026-06-18T00:00:00+02:00</published><updated>2026-06-18T00:00:00+02:00</updated><id>http://0.0.0.0:4000/news/2026/06/18/release-5.0.0-approaching</id><content type="html" xml:base="http://0.0.0.0:4000/news/2026/06/18/release-5.0.0-approaching/">&lt;p&gt;Citrus 5.0.0 is on the horizon! The next major release of the Citrus integration testing framework is planned for &lt;strong&gt;GA in Q3 2026&lt;/strong&gt; and brings a sweeping update of the core technology stack that Citrus builds on. Two milestone releases (M1 and M2) are already available for early adopters who want to get a head start on migration.&lt;/p&gt;
 
 &lt;h2 id=&quot;why-a-new-major-version&quot;&gt;Why a new major version?&lt;/h2&gt;
 
@@ -987,289 +989,4 @@ Give it a spin and let us know what you think!&lt;/p&gt;</content><author><name>
 
 &lt;p&gt;We would love to hear from you! If you run into issues during migration or have ideas for improvements, please open an issue on &lt;a href=&quot;https://github.com/citrusframework/citrus/issues&quot;&gt;GitHub&lt;/a&gt; or start a discussion. Your feedback is invaluable in shaping the GA release.&lt;/p&gt;
 
-&lt;p&gt;The Citrus community has once again shown its strength in bringing this major update together. After 18+ years of development Citrus continues to evolve with the Java ecosystem, and we are excited to deliver a framework that stays current with the technologies you use every day. Thank you to everyone who contributed!&lt;/p&gt;</content><author><name>Christoph Deppisch</name></author></entry><entry><title type="html">XML samples</title><link href="http://0.0.0.0:4000/samples/overview/xml/" rel="alternate" type="text/html" title="XML samples" /><published>2024-01-23T00:00:00+01:00</published><updated>2024-01-23T00:00:00+01:00</updated><id>http://0.0.0.0:4000/samples/overview/samples-xml</id><content type="html" xml:base="http://0.0.0.0:4000/samples/overview/xml/">&lt;p&gt;Read about the XML validation support in the &lt;a href=&quot;https://citrusframework.org/citrus/reference/html/#xml-message-validation&quot;&gt;reference guide&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author></entry><entry><title type="html">Soap WS samples</title><link href="http://0.0.0.0:4000/samples/overview/soap/" rel="alternate" type="text/html" title="Soap WS samples" /><published>2024-01-23T00:00:00+01:00</published><updated>2024-01-23T00:00:00+01:00</updated><id>http://0.0.0.0:4000/samples/overview/samples-soap</id><content type="html" xml:base="http://0.0.0.0:4000/samples/overview/soap/">&lt;p&gt;Read about the SOAP WebServices support in the &lt;a href=&quot;https://citrusframework.org/citrus/reference/html/#soap-webservices&quot;&gt;reference guide&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author></entry><entry><title type="html">Http samples</title><link href="http://0.0.0.0:4000/samples/overview/http/" rel="alternate" type="text/html" title="Http samples" /><published>2024-01-23T00:00:00+01:00</published><updated>2024-01-23T00:00:00+01:00</updated><id>http://0.0.0.0:4000/samples/overview/samples-http</id><content type="html" xml:base="http://0.0.0.0:4000/samples/overview/http/">&lt;p&gt;Read about the Http support in the &lt;a href=&quot;https://citrusframework.org/citrus/reference/html#http-rest&quot;&gt;reference guide&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author></entry><entry><title type="html">Ftp samples</title><link href="http://0.0.0.0:4000/samples/overview/ftp/" rel="alternate" type="text/html" title="Ftp samples" /><published>2024-01-23T00:00:00+01:00</published><updated>2024-01-23T00:00:00+01:00</updated><id>http://0.0.0.0:4000/samples/overview/samples-ftp</id><content type="html" xml:base="http://0.0.0.0:4000/samples/overview/ftp/">&lt;p&gt;Read about the Ftp/Sftp support in the &lt;a href=&quot;https://citrusframework.org/citrus/reference/html/#ftp&quot;&gt;reference guide&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author></entry><entry><title type="html">JBang sample</title><link href="http://0.0.0.0:4000/samples/jbang/" rel="alternate" type="text/html" title="JBang sample" /><published>2024-01-23T00:00:00+01:00</published><updated>2024-01-23T00:00:00+01:00</updated><id>http://0.0.0.0:4000/samples/sample-jbang</id><content type="html" xml:base="http://0.0.0.0:4000/samples/jbang/">&lt;p&gt;You can easily create and run Citrus tests with &lt;a href=&quot;https://www.jbang.dev/&quot;&gt;JBang&lt;/a&gt;.
-The JBang tool support in Citrus is described in more detail in &lt;a href=&quot;https://citrusframework.org/citrus/reference/html#runtime-jbang&quot;&gt;reference guide&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Running Citrus via JBang does not require any project setup which is a fantastic match for fast prototyping of integration tests.
-The JBang command will automatically set up everything you need to run the Citrus test.
-This means you can run your test case sources directly from your command line.&lt;/p&gt;
-
-&lt;p&gt;To initialize a test you can run the script &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus@citrusframework/citrus&lt;/code&gt; with the &lt;code class=&quot;highlighter-rouge&quot;&gt;init&lt;/code&gt; command as follows:&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Initialize my-test.yaml&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jbang citrus@citrusframework/citrus init my-test.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The command above uses the JBang catalog &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus@citrusframework/citrus&lt;/code&gt; located on the &lt;a href=&quot;https://github.com/citrusframework/citrus&quot;&gt;Citrus GitHub repository&lt;/a&gt;.
-JBang will automatically resolve all dependencies and execute the command line script tool.
-This initializes the Citrus test file.
-You will find the created test source file in the current directory.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;my-test.yaml&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;my-test&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;author&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Citrus&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;FINAL&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Sample test in YAML&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;variables&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;message&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Citrus rocks!&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;actions&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;echo&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;${message}&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The JBang script is able to initialize any supported Citrus test domain specific language &lt;code class=&quot;highlighter-rouge&quot;&gt;.java&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;.xml&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;.yaml&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;.groovy&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;.feature&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;You can now run this test source file without any prior project setup using Citrus JBang:&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Run my-test.yaml&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jbang citrus@citrusframework/citrus run my-test.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The command output will be like this:&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Output&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] citrusframework.testng.TestNGEngine : Running &lt;span class=&quot;nb&quot;&gt;test source &lt;/span&gt;my-test.yaml
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] org.testng.internal.Utils           : &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;TestNG] Running:
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] rusframework.report.LoggingReporter :        .__  __                       
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] rusframework.report.LoggingReporter :   ____ |__|/  |________ __ __  ______
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] rusframework.report.LoggingReporter : _/ ___&lt;span class=&quot;se&quot;&gt;\|&lt;/span&gt;  &lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;  __&lt;span class=&quot;se&quot;&gt;\_&lt;/span&gt;  __ &lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt; |  &lt;span class=&quot;se&quot;&gt;\/&lt;/span&gt;  ___/
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] rusframework.report.LoggingReporter : &lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\_&lt;/span&gt;__|  &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt;  |  |  | &lt;span class=&quot;se&quot;&gt;\/&lt;/span&gt;  |  /&lt;span class=&quot;se&quot;&gt;\_&lt;/span&gt;__ &lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] rusframework.report.LoggingReporter :  &lt;span class=&quot;se&quot;&gt;\_&lt;/span&gt;__  &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;__||__|  |__|  |____//____  &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] rusframework.report.LoggingReporter :      &lt;span class=&quot;se&quot;&gt;\/&lt;/span&gt;                           &lt;span class=&quot;se&quot;&gt;\/&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] rusframework.report.LoggingReporter : 
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] rusframework.report.LoggingReporter : C I T R U S  T E S T S  4.10.1
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] rusframework.report.LoggingReporter : 
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] rusframework.report.LoggingReporter : &lt;span class=&quot;nt&quot;&gt;------------------------------------------------------------------------&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] .citrusframework.actions.EchoAction : Citrus rocks!
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] rusframework.report.LoggingReporter : 
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] rusframework.report.LoggingReporter : TEST SUCCESS my-test &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;org.citrusframework&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] rusframework.report.LoggingReporter : &lt;span class=&quot;nt&quot;&gt;------------------------------------------------------------------------&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] rusframework.report.LoggingReporter : 
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] rusframework.report.LoggingReporter : 
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] rusframework.report.LoggingReporter : CITRUS TEST RESULTS
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] rusframework.report.LoggingReporter : 
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] rusframework.report.LoggingReporter : SUCCESS &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;     3 ms&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; my-test
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] rusframework.report.LoggingReporter : 
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] rusframework.report.LoggingReporter : TOTAL:		1
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] rusframework.report.LoggingReporter : SUCCESS:	1 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;100.0%&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] rusframework.report.LoggingReporter : FAILED:		0 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.0%&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] rusframework.report.LoggingReporter : PERFORMANCE:	0 ms
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] rusframework.report.LoggingReporter : 
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] rusframework.report.LoggingReporter : &lt;span class=&quot;nt&quot;&gt;------------------------------------------------------------------------&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;===============================================&lt;/span&gt;
-Default Suite
-Total tests run: 1, Passes: 1, Failures: 0, Skips: 0
-&lt;span class=&quot;o&quot;&gt;===============================================&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;install-citrus-jbang-app&quot;&gt;Install Citrus JBang app&lt;/h2&gt;
-
-&lt;p&gt;For a more convenient command line usage you can install Citrus as a JBang app.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Install Citrus as JBang app&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jbang trust add https://github.com/citrusframework/citrus/
-jbang app &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;citrus@citrusframework/citrus
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Now you can just call &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus&lt;/code&gt; and create and run tests with Citrus JBang.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Run my-test.yaml&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;citrus run my-test.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;run-tests&quot;&gt;Run tests&lt;/h2&gt;
-
-&lt;p&gt;You can directly run test sources with Citrus JBang.
-This includes test sources written in Java (&lt;code class=&quot;highlighter-rouge&quot;&gt;.java&lt;/code&gt;), XML (&lt;code class=&quot;highlighter-rouge&quot;&gt;.xml&lt;/code&gt;), YAML (&lt;code class=&quot;highlighter-rouge&quot;&gt;.yaml&lt;/code&gt;), Groovy (&lt;code class=&quot;highlighter-rouge&quot;&gt;.groovy&lt;/code&gt;) or as a Cucumber Gherkin feature file (&lt;code class=&quot;highlighter-rouge&quot;&gt;.feature&lt;/code&gt;).&lt;/p&gt;
-
-&lt;h3 id=&quot;java-test-sources&quot;&gt;Java test sources&lt;/h3&gt;
-
-&lt;p&gt;&lt;em&gt;Initialize MyTest.java&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;citrus init MyTest.java
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;em&gt;MyTest.java&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.citrusframework.TestCaseRunner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.citrusframework.annotations.CitrusResource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;org&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;citrusframework&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;actions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;CreateVariablesAction&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Builder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createVariables&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;org&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;citrusframework&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;actions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;EchoAction&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Builder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;echo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyTest&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Runnable&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@CitrusResource&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;TestCaseRunner&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;given&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;createVariables&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;variable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;message&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Citrus rocks!&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-        &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;echo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;${message}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;em&gt;Run MyTest.java&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;citrus run MyTest.java
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;xml-test-sources&quot;&gt;XML test sources&lt;/h3&gt;
-
-&lt;p&gt;&lt;em&gt;Initialize my-test.xml&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;citrus init my-test.xml
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;em&gt;my-test.xml&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;test&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;EchoTest&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;author=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Christoph&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;status=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;FINAL&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://citrusframework.org/schema/xml/testcase&quot;&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;xmlns:xsi=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;xsi:schemaLocation=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://citrusframework.org/schema/xml/testcase http://citrusframework.org/schema/xml/testcase/citrus-testcase.xsd&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;description&amp;gt;&lt;/span&gt;Sample test in XML&lt;span class=&quot;nt&quot;&gt;&amp;lt;/description&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;variables&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;variable&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;message&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Citrus rocks!&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/variables&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;actions&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;echo&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;message=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;${message}&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/actions&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/test&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;em&gt;Run my-test.xml&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;citrus run my-test.xml
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;yaml-test-sources&quot;&gt;YAML test sources&lt;/h3&gt;
-
-&lt;p&gt;&lt;em&gt;Initialize my-test.yaml&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;citrus init my-test.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;em&gt;my-test.yaml&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;EchoTest&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Sample&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;YAML&quot;&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;variables&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;message&quot;&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Citrus&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;rocks!&quot;&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;actions&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;echo&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;${message}&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;em&gt;Run my-test.yaml&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;citrus run my-test.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;groovy-test-sources&quot;&gt;Groovy test sources&lt;/h3&gt;
-
-&lt;p&gt;&lt;em&gt;Initialize my-test.groovy&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;citrus init my-test.groovy
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;em&gt;my-test.groovy&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;org&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;citrusframework&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;actions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;EchoAction&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Builder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;echo&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;EchoTest&quot;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;description&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Sample test in Groovy&quot;&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;variables&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Citrus rocks!&quot;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;actions&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;echo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'${message}'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;em&gt;Run my-test.groovy&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;citrus run my-test.groovy
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;cucumber-feature-sources&quot;&gt;Cucumber feature sources&lt;/h3&gt;
-
-&lt;p&gt;&lt;em&gt;Initialize my-test.feature&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;citrus init my-test.feature
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;em&gt;my-test.feature&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&quot;language-gherkin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;Feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; EchoTest
-
-  &lt;span class=&quot;kn&quot;&gt;Background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;nf&quot;&gt;Given &lt;/span&gt;variables
-    &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;Citrus&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;rocks!&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;
-
-  &lt;span class=&quot;kn&quot;&gt;Scenario&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; Print message
-    &lt;span class=&quot;nf&quot;&gt;Then &lt;/span&gt;print '${message}'
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;em&gt;Run my-test.feature&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jbang &lt;span class=&quot;nt&quot;&gt;--deps&lt;/span&gt; org.citrusframework:citrus-cucumber-all:4.9.0-SNAPSHOT citrus run my-test.feature
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;em&gt;NOTE:&lt;/em&gt; Many of the predefined Cucumber steps (e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;Then print '&amp;lt;message&amp;gt;'&lt;/code&gt;) in Citrus are provided in a separate Citrus child project called &lt;a href=&quot;https://github.com/citrusframework/yaks&quot;&gt;YAKS&lt;/a&gt;.
-You need to add additional project dependencies for that steps to be loaded as part of the JBang script.
-The &lt;code class=&quot;highlighter-rouge&quot;&gt;--deps&lt;/code&gt; option adds dependencies using Maven artifact coordinates.
-You may add the additional modules to the &lt;code class=&quot;highlighter-rouge&quot;&gt;jbang.properties&lt;/code&gt; as described in the next section.&lt;/p&gt;
-
-&lt;h2 id=&quot;additional-jbang-dependencies&quot;&gt;Additional JBang dependencies&lt;/h2&gt;
-
-&lt;p&gt;Citrus JBang comes with a set of default dependencies that makes the scripts run as tests.&lt;/p&gt;
-
-&lt;p&gt;The default modules that you can use in Citrus JBang are:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;org.citrusframework:citrus-base&lt;/li&gt;
-  &lt;li&gt;org.citrusframework:citrus-jbang-connector&lt;/li&gt;
-  &lt;li&gt;org.citrusframework:citrus-groovy&lt;/li&gt;
-  &lt;li&gt;org.citrusframework:citrus-xml&lt;/li&gt;
-  &lt;li&gt;org.citrusframework:citrus-yaml&lt;/li&gt;
-  &lt;li&gt;org.citrusframework:citrus-http&lt;/li&gt;
-  &lt;li&gt;org.citrusframework:citrus-validation-json&lt;/li&gt;
-  &lt;li&gt;org.citrusframework:citrus-validation-xml&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This enables you to run Java, YAML, XML, Groovy tests out of the box.
-In case your tests uses an additional feature from the Citrus project you may need to add the module so JBang can load the dependency at startup.&lt;/p&gt;
-
-&lt;p&gt;The easiest way to do this is to create a &lt;code class=&quot;highlighter-rouge&quot;&gt;jbang.properties&lt;/code&gt; file that defines the additional dependencies:&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;jbang.properties&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&quot;language-properties highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Declare required additional dependencies
-&lt;/span&gt;&lt;span class=&quot;py&quot;&gt;run.deps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;org.citrusframework:citrus-camel:4.10.1,&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\
-&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;org.citrusframework:citrus-testcontainers:4.10.1,&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\
-&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;org.citrusframework:citrus-kafka:4.10.1&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The file above adds the modules &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-camel&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-testcontainers&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-kafka&lt;/code&gt; so you can use them in your JBang Citrus test source.&lt;/p&gt;
-
-&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;jbang.properties&lt;/code&gt; file may be located right next to the test source file or in your user home directory for global settings.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;IMPORTANT:&lt;/em&gt; In case you want to run Cucumber BDD Gherkin feature files and use the predefined steps included in the &lt;a href=&quot;https://github.com/citrusframework/yaks&quot;&gt;YAKS&lt;/a&gt; project,
-you need to add this YAKS runtime dependency accordingly: &lt;code class=&quot;highlighter-rouge&quot;&gt;org.citrusframework.yaks:yaks-standard:0.20.0&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;run-from-clipboard&quot;&gt;Run from clipboard&lt;/h2&gt;
-
-&lt;p&gt;You can run tests from your current clipboard.
-Just use the file name &lt;code class=&quot;highlighter-rouge&quot;&gt;clipboard.xxx&lt;/code&gt; where the file extension defines the type of the test source (&lt;code class=&quot;highlighter-rouge&quot;&gt;.java&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;.yaml&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;.xml&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;.groovy&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;.feature&lt;/code&gt;).&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Run YAML test from Clipboard&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;citrus run clipboard.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;list-tests&quot;&gt;List tests&lt;/h2&gt;
-
-&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;ls&lt;/code&gt; command lists all running Citrus tests.
-These tests may be started&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;List running tests&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;citrus &lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;em&gt;Command output&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PID   NAME         STATUS  AGE 
-19201 my-test.yaml Running 20s
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://0.0.0.0:4000/img/icons/jbang.png" /></entry></feed>
+&lt;p&gt;The Citrus community has once again shown its strength in bringing this major update together. After 18+ years of development Citrus continues to evolve with the Java ecosystem, and we are excited to deliver a framework that stays current with the technologies you use every day. Thank you to everyone who contributed!&lt;/p&gt;</content><author><name>Christoph Deppisch</name></author></entry><entry><title type="html">XML samples</title><link href="http://0.0.0.0:4000/samples/overview/xml/" rel="alternate" type="text/html" title="XML samples" /><published>2024-01-23T00:00:00+01:00</published><updated>2024-01-23T00:00:00+01:00</updated><id>http://0.0.0.0:4000/samples/overview/samples-xml</id><content type="html" xml:base="http://0.0.0.0:4000/samples/overview/xml/">&lt;p&gt;Read about the XML validation support in the &lt;a href=&quot;https://citrusframework.org/citrus/reference/html/#xml-message-validation&quot;&gt;reference guide&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author></entry><entry><title type="html">Soap WS samples</title><link href="http://0.0.0.0:4000/samples/overview/soap/" rel="alternate" type="text/html" title="Soap WS samples" /><published>2024-01-23T00:00:00+01:00</published><updated>2024-01-23T00:00:00+01:00</updated><id>http://0.0.0.0:4000/samples/overview/samples-soap</id><content type="html" xml:base="http://0.0.0.0:4000/samples/overview/soap/">&lt;p&gt;Read about the SOAP WebServices support in the &lt;a href=&quot;https://citrusframework.org/citrus/reference/html/#soap-webservices&quot;&gt;reference guide&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author></entry></feed>
