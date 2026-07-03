@@ -113,7 +113,7 @@
   <select onchange="if (this.value) window.location.href=this.value">
     <option value="">Navigate the samples…</option>
     <option value="/samples/">Overview</option>
-    <option value="/samples/todo-app/">TodoList app</option>
+    <option value="/samples/todo-app/">TodoList App</option>
     <option value="/samples/run/">Running</option>
     
     
@@ -230,18 +230,127 @@
       <div class="unit four-fifths">
         <article>
   <h2>
-    Samples
+    Samples & Quickstarts
   </h2>
   <div class="post-content">
     <p>We try to give you example projects as a good starting point for your very own Citrus testing project.</p>
 
-    <p>The Citrus sample applications try to demonstrate how Citrus works in different integration test scenarios. The projects are executable with Maven
-      and should give you a detailed picture how Citrus testing works.</p>
+    <p>The Citrus sample applications try to demonstrate how Citrus works in different integration test scenarios.
+        The projects are executable with Maven and should give you a detailed picture how Citrus testing works.</p>
 
-    <p>Please have a look at the repository on <b><a href="https://github.com/citrusframework/citrus-samples" target="_blank">citrus-samples</a></b>. There you can find all our sample projects.</p>
+    <p>Please have a look at the following code repositories that provide Citrus examples:</p>
 
-    <p>Each sample demonstrates a special aspect of how to use Citrus. Most of the samples use a simple <b><a href="todo-app">todo-list</a></b> application as
-      system under test. Please find following list of samples and their primary objective</p>
+    <ul>
+      <li><a href="https://github.com/citrusframework/citrus-samples" target="_blank">citrus-samples</a></li>
+      <li><a href="https://github.com/citrusframework/citrus-quarkus-examples" target="_blank">citrus-quarkus-examples</a></li>
+      <li><a href="https://github.com/christophd/citrus-camel-jbang-demo" target="_blank">citrus-camel-jbang-demo</a></li>
+      <li><a href="https://github.com/apache/camel-jbang-examples" target="_blank">camel-jbang-examples</a></li>
+    </ul>
+
+    <p>Each sample demonstrates a special aspect of how to use Citrus.
+        Most of the samples use a simple system under test as an application, like the <b><a href="todo-app">todo-list</a></b> application.
+        Explore the following categories of sample projects. We hope this helps to find the right sample project for your needs.</p>
+  </div>
+
+  <div class="grid">
+    
+    
+    <div class="unit one-third">
+      
+      
+      <h2><img src="/img/icons/spring.png"/>&nbsp;Spring</h2>
+      
+      <p>Samples using Citrus to test Spring applications<br>
+        <a class="prominent" href="/samples/overview/spring/">&rarr; samples-spring</a>
+      </p>
+    </div>
+    
+    <div class="unit one-third">
+      
+      
+      <h2><img src="/img/icons/quarkus.png"/>&nbsp;Quarkus</h2>
+      
+      <p>Samples using Citrus to test Quarkus applications<br>
+        <a class="prominent" href="/samples/overview/quarkus/">&rarr; samples-quarkus</a>
+      </p>
+    </div>
+    
+    <div class="unit one-third">
+      
+      
+      <h2><img src="/img/icons/json.png"/>&nbsp;Json</h2>
+      
+      <p>Samples using Json validation capabilities<br>
+        <a class="prominent" href="/samples/overview/json/">&rarr; samples-json</a>
+      </p>
+    </div>
+    
+    <div class="unit one-third">
+      
+      <h2><i class="fa fa-main-cli" style="width: 1em;height: 1em;"></i>&nbsp;Demo</h2>
+      
+      
+      <p>Demo projects using Citrus for integration testing<br>
+        <a class="prominent" href="/samples/overview/demo/">&rarr; samples-demo</a>
+      </p>
+    </div>
+    
+    <div class="unit one-third">
+      
+      
+      <h2><img src="/img/icons/camel.png"/>&nbsp;Camel</h2>
+      
+      <p>Samples using Citrus to test Camel Quarkus applications<br>
+        <a class="prominent" href="/samples/overview/camel-quarkus/">&rarr; samples-camel-quarkus</a>
+      </p>
+    </div>
+    
+    <div class="unit one-third">
+      
+      <h2><i class="fa fa-globe" style="width: 1em;height: 1em;"></i>&nbsp;Xml</h2>
+      
+      
+      <p>Samples using XML validation capabilities<br>
+        <a class="prominent" href="/samples/overview/xml/">&rarr; samples-xml</a>
+      </p>
+    </div>
+    
+    <div class="unit one-third">
+      
+      <h2><i class="fa fa-soap" style="width: 1em;height: 1em;"></i>&nbsp;Soap</h2>
+      
+      
+      <p>Samples with SOAP WebServices client and server<br>
+        <a class="prominent" href="/samples/overview/soap/">&rarr; samples-soap</a>
+      </p>
+    </div>
+    
+    <div class="unit one-third">
+      
+      <h2><i class="fa fa-globe" style="width: 1em;height: 1em;"></i>&nbsp;Http</h2>
+      
+      
+      <p>Samples regarding Http protocol support<br>
+        <a class="prominent" href="/samples/overview/http/">&rarr; samples-http</a>
+      </p>
+    </div>
+    
+    <div class="unit one-third">
+      
+      <h2><i class="fa fa-ftp" style="width: 1em;height: 1em;"></i>&nbsp;Ftp</h2>
+      
+      
+      <p>Samples regarding Ftp protocol support<br>
+        <a class="prominent" href="/samples/overview/ftp/">&rarr; samples-ftp</a>
+      </p>
+    </div>
+    
+  </div>
+
+  <div class="grid">
+    <p>You can explore many more sample projects in the following section.
+        The samples should help you to learn about the capabilities of Citrus.
+        Please find following list of samples and their primary objective</p>
 
     <table>
       <thead>
@@ -900,7 +1009,9 @@
         
       </tbody>
     </table>
+  </div>
 
+  <div class="grid">
     <p>Pick your sample application for try out and got to the respective folder. Each sample is executable on your host. You just need Maven, Java and a git client.
       Refer to the detailed instructions in the sample <b><a href="https://github.com/citrusframework/citrus-samples/blob/master/README.md" target="_blank">README</a></b>.</p>
 
@@ -920,7 +1031,7 @@
         <a href="/samples/">Overview</a>
       </li>
       <li class="">
-        <a href="/samples/todo-app">TodoList application</a>
+        <a href="/samples/todo-app">TodoList App</a>
       </li>
       <li class="">
         <a href="/samples/run">Running</a>
