@@ -1,0 +1,1257 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 4.10.1">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus main branch" href="https://github.com/citrusframework/citrus/commits/main.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="stylesheet" href="/css/tabbed.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/atom-one-light.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+  <script src="/js/tabbed.js"></script>
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="samples">
+    <div class="grid">
+
+      <div class="samples-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the samples…</option>
+    <option value="/samples/">Overview</option>
+    <option value="/samples/todo-app/">TodoList App</option>
+    <option value="/samples/run/">Running</option>
+    
+    
+    <option value="/samples/annotation-config/">sample-annotation-config</option>
+    
+    <option value="/samples/javaconfig/">sample-javaconfig</option>
+    
+    <option value="/samples/reporting/">sample-reporting</option>
+    
+    <option value="/samples/kubernetes/">sample-kubernetes</option>
+    
+    <option value="/samples/docker/">sample-docker</option>
+    
+    <option value="/samples/quarkus/">sample-quarkus</option>
+    
+    <option value="/samples/cucumber/">sample-cucumber</option>
+    
+    <option value="/samples/selenium/">sample-selenium</option>
+    
+    <option value="/samples/apache-camel/">sample-camel-context</option>
+    
+    <option value="/samples/jbang/">sample-jbang</option>
+    
+    <option value="/samples/openapi/">sample-swagger</option>
+    
+    <option value="/samples/soap-wsaddressing/">sample-soap-wsaddressing</option>
+    
+    <option value="/samples/rmi/">sample-rmi</option>
+    
+    <option value="/samples/soap-ssl/">sample-soap-ssl</option>
+    
+    <option value="/samples/soap/">sample-soap</option>
+    
+    <option value="/samples/http-static-response/">sample-http-static-response</option>
+    
+    <option value="/samples/http/">sample-http</option>
+    
+    <option value="/samples/kafka/">sample-kafka</option>
+    
+    <option value="/samples/wsdl/">sample-wsdl</option>
+    
+    <option value="/samples/soap-static-response/">sample-soap-static-response</option>
+    
+    <option value="/samples/http-loadtest/">sample-http-loadtest</option>
+    
+    <option value="/samples/soap-mtom/">sample-soap-mtom</option>
+    
+    <option value="/samples/soap-attachment/">sample-soap-attachment</option>
+    
+    <option value="/samples/sftp/">sample-sftp</option>
+    
+    <option value="/samples/soap-wssecurity/">sample-soap-wssecurity</option>
+    
+    <option value="/samples/scp/">sample-scp</option>
+    
+    <option value="/samples/https/">sample-https</option>
+    
+    <option value="/samples/jdbc/">sample-jdbc</option>
+    
+    <option value="/samples/http-basic-auth/">sample-http-basic-auth</option>
+    
+    <option value="/samples/ftp/">sample-ftp</option>
+    
+    <option value="/samples/mail/">sample-mail</option>
+    
+    <option value="/samples/dynamic-endpoints/">sample-dynamic-endpoints</option>
+    
+    <option value="/samples/jms/">sample-jms</option>
+    
+    <option value="/samples/dictionaries/">sample-dictionaries</option>
+    
+    <option value="/samples/gradle/">sample-gradle</option>
+    
+    <option value="/samples/message-store/">sample-message-store</option>
+    
+    <option value="/samples/behavior/">sample-behavior</option>
+    
+    <option value="/samples/camel-quarkus-aws-s3-kafka/">camel-aws-s3-kafka</option>
+    
+    <option value="/samples/camel-quarkus-openapi-server/">camel-openapi-server</option>
+    
+    <option value="/samples/quarkus-event-driven-kafka/">event-driven-kafka</option>
+    
+    <option value="/samples/quarkus-event-driven-jms/">event-driven-jms</option>
+    
+    <option value="/samples/camel-quarkus-kafka/">camel-kafka</option>
+    
+    <option value="/samples/camel-quarkus-rest-to-soap/">camel-rest-to-soap</option>
+    
+    <option value="/samples/camel-quarkus-cxf-soap-client/">camel-cxf-soap-client</option>
+    
+    <option value="/samples/camel-quarkus-mqtt/">camel-mqtt</option>
+    
+    <option value="/samples/camel-quarkus-direct-http/">camel-direct-http</option>
+    
+    <option value="/samples/camel-quarkus-direct/">camel-direct</option>
+    
+    <option value="/samples/camel-quarkus-rest-dsl/">camel-rest-dsl</option>
+    
+    <option value="/samples/camel-quarkus-file-inbox/">camel-file-inbox</option>
+    
+    <option value="/samples/camel-quarkus-file-outbox/">camel-file-outbox</option>
+    
+    <option value="/samples/camel-quarkus-jms/">camel-jms</option>
+    
+    <option value="/samples/camel-quarkus-cxf-soap/">camel-cxf-soap</option>
+    
+    <option value="/samples/testng/">sample-testng</option>
+    
+    <option value="/samples/dataprovider/">sample-dataprovider</option>
+    
+    <option value="/samples/junit/">sample-junit</option>
+    
+    <option value="/samples/junit5/">sample-junit5</option>
+    
+    <option value="/samples/json/">sample-json</option>
+    
+    <option value="/samples/oxm/">sample-oxm</option>
+    
+    <option value="/samples/xhtml/">sample-xhtml</option>
+    
+    <option value="/samples/xml/">sample-xml</option>
+    
+    <option value="/samples/hamcrest/">sample-hamcrest</option>
+    
+    <option value="/samples/databind/">sample-databind</option>
+    
+    <option value="/samples/http-form-data/">sample-http-form-data</option>
+    
+    <option value="/samples/sql/">sample-sql</option>
+    
+    <option value="/samples/binary/">sample-binary</option>
+    
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+  <h2>
+    
+    
+    <img src="/img/icons/camel.png" style="width: 1em;height: 1em;" alt="">
+    
+    Apache Camel Quarkus - REST to SOAP Bridge
+    <a href="/samples/camel-quarkus-rest-to-soap/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <div class="right">
+    
+    <a href="https://github.com/citrusframework/citrus-quarkus-examples/blob/master/apache-camel/camel-rest-to-soap" target="_blank">
+      <i class="fa fa-pencil"></i> View source code
+    </a>
+    
+    
+  </div>
+  <span class="post-category">
+    <span class="label">
+      samples
+    </span>
+  </span>
+  <div class="post-content">
+    <p>A common enterprise integration pattern is the protocol bridge — a component that exposes a modern REST/JSON API while delegating to a legacy SOAP/XML backend. External consumers see a clean HTTP interface with JSON payloads. Behind the scenes, Apache Camel translates every request into SOAP XML, calls the backend service, and converts the XML response back to JSON. The consumers never know they are talking to a SOAP service.</p>
+
+<p>Testing this kind of bridge is uniquely challenging. You need to verify the entire translation chain: JSON in, SOAP XML out, SOAP XML back, JSON out. You need to test happy paths across multiple HTTP verbs. And you need to verify that SOAP faults from the backend are correctly translated into HTTP error responses for the REST consumer.</p>
+
+<p>This post walks you through testing an Apache Camel REST-to-SOAP bridge in a Quarkus application using the <a href="https://citrusframework.org">Citrus</a> integration testing framework. Citrus plays two roles simultaneously in this test: an HTTP client that sends JSON requests to the REST API, and a SOAP server that simulates the backend WebService. This dual-role setup lets you verify the complete end-to-end flow — from the REST request through the protocol translation to the SOAP backend and back.</p>
+
+<p>By the end you will have a recipe for testing any protocol bridge where Camel mediates between different message formats and transports.</p>
+
+<h1 id="the-application-under-test">The application under test</h1>
+
+<p>The example application exposes a FruitService REST API that delegates to a SOAP backend. Three HTTP operations map to three SOAP operations on the same FruitService WSDL contract used in the <a href="/samples/camel-quarkus-cxf-soap/">CXF SOAP server</a> and <a href="/samples/camel-quarkus-cxf-soap-client/">CXF SOAP client</a> samples:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET    /fruits  --&gt;  direct:listFruits  --&gt;  CXF client  --&gt;  SOAP listFruits
+POST   /fruits  --&gt;  direct:addFruit    --&gt;  CXF client  --&gt;  SOAP addFruit
+DELETE /fruits  --&gt;  direct:deleteFruit --&gt;  CXF client  --&gt;  SOAP deleteFruit
+</code></pre></div></div>
+
+<p>The entire bridge fits in a single route builder:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FruitClientRoutes</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@ConfigProperty</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"fruit.service.url"</span><span class="o">)</span>
+    <span class="n">String</span> <span class="n">fruitServiceUrl</span><span class="o">;</span>
+
+    <span class="nd">@Produces</span>
+    <span class="nd">@ApplicationScoped</span>
+    <span class="nd">@Named</span>
+    <span class="n">CxfEndpoint</span> <span class="nf">fruitSoapClient</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">CxfEndpoint</span> <span class="n">fruitEndpoint</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CxfEndpoint</span><span class="o">();</span>
+        <span class="n">fruitEndpoint</span><span class="o">.</span><span class="na">setServiceClass</span><span class="o">(</span><span class="n">FruitService</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="n">fruitEndpoint</span><span class="o">.</span><span class="na">setAddress</span><span class="o">(</span><span class="n">fruitServiceUrl</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">fruitEndpoint</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">onException</span><span class="o">(</span><span class="n">SoapFault</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">handled</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="k">this</span><span class="o">::</span><span class="n">processSoapFault</span><span class="o">);</span>
+
+        <span class="n">restConfiguration</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">bindingMode</span><span class="o">(</span><span class="n">RestBindingMode</span><span class="o">.</span><span class="na">json</span><span class="o">);</span>
+
+        <span class="n">rest</span><span class="o">(</span><span class="s">"/fruits"</span><span class="o">).</span><span class="na">post</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">type</span><span class="o">(</span><span class="n">Fruit</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">produces</span><span class="o">(</span><span class="n">APPLICATION_JSON_CONTENT_TYPE</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"direct:addFruit"</span><span class="o">);</span>
+        <span class="n">rest</span><span class="o">(</span><span class="s">"/fruits"</span><span class="o">).</span><span class="na">get</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">type</span><span class="o">(</span><span class="n">Fruit</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">produces</span><span class="o">(</span><span class="n">APPLICATION_JSON_CONTENT_TYPE</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"direct:listFruits"</span><span class="o">);</span>
+        <span class="n">rest</span><span class="o">(</span><span class="s">"/fruits"</span><span class="o">).</span><span class="na">delete</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">type</span><span class="o">(</span><span class="n">Fruit</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">produces</span><span class="o">(</span><span class="n">APPLICATION_JSON_CONTENT_TYPE</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"direct:deleteFruit"</span><span class="o">);</span>
+
+        <span class="n">from</span><span class="o">(</span><span class="s">"direct:listFruits"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="n">CxfConstants</span><span class="o">.</span><span class="na">OPERATION_NAME</span><span class="o">,</span>
+                        <span class="n">constant</span><span class="o">(</span><span class="s">"listFruits"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"cxf:bean:fruitSoapClient"</span><span class="o">);</span>
+
+        <span class="n">from</span><span class="o">(</span><span class="s">"direct:addFruit"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="n">CxfConstants</span><span class="o">.</span><span class="na">OPERATION_NAME</span><span class="o">,</span>
+                        <span class="n">constant</span><span class="o">(</span><span class="s">"addFruit"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"cxf:bean:fruitSoapClient"</span><span class="o">);</span>
+
+        <span class="n">from</span><span class="o">(</span><span class="s">"direct:deleteFruit"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="n">CxfConstants</span><span class="o">.</span><span class="na">OPERATION_NAME</span><span class="o">,</span>
+                        <span class="n">constant</span><span class="o">(</span><span class="s">"deleteFruit"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"cxf:bean:fruitSoapClient"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">processSoapFault</span><span class="o">(</span><span class="n">Exchange</span> <span class="n">exchange</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">SoapFault</span> <span class="n">caused</span> <span class="o">=</span> <span class="n">exchange</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span>
+                <span class="n">Exchange</span><span class="o">.</span><span class="na">EXCEPTION_CAUGHT</span><span class="o">,</span> <span class="n">SoapFault</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">setBody</span><span class="o">(</span><span class="n">caused</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">setHeader</span><span class="o">(</span><span class="n">Exchange</span><span class="o">.</span><span class="na">HTTP_RESPONSE_CODE</span><span class="o">,</span> <span class="mi">500</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>There are several layers of translation happening here, so let’s walk through them.</p>
+
+<h2 id="the-rest-facade">The REST facade</h2>
+
+<p>The <code class="highlighter-rouge">restConfiguration().bindingMode(RestBindingMode.json)</code> setting tells Camel to automatically marshal and unmarshal JSON request and response bodies using Jackson. When a POST request arrives with <code class="highlighter-rouge">{"name": "Mango", "description": "Tropical fruit"}</code>, Camel deserializes it into a <code class="highlighter-rouge">Fruit</code> POJO before the route logic runs. When the route produces a response, Camel serializes the Java objects back to JSON before sending the HTTP response.</p>
+
+<p>The <code class="highlighter-rouge">rest("/fruits")</code> block defines three HTTP operations — GET, POST, and DELETE — all on the <code class="highlighter-rouge">/fruits</code> path. Each operation routes to a <code class="highlighter-rouge">direct:</code> endpoint that bridges to the SOAP backend. The <code class="highlighter-rouge">.type(Fruit.class)</code> declaration tells the REST binding which Java type to deserialize the request body into.</p>
+
+<h2 id="the-soap-backend-call">The SOAP backend call</h2>
+
+<p>Each <code class="highlighter-rouge">direct:</code> route sets the <code class="highlighter-rouge">CxfConstants.OPERATION_NAME</code> header and forwards to the CXF endpoint. The CXF component in POJO data format mode takes the Java <code class="highlighter-rouge">Fruit</code> object, marshals it to SOAP XML matching the WSDL schema, sends the request, and unmarshals the SOAP XML response back to Java objects. The REST binding mode then converts those Java objects to JSON for the HTTP response.</p>
+
+<p>The full translation chain for a POST request looks like this:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>JSON {"name":"Mango"} --&gt; Fruit POJO --&gt; SOAP &lt;addFruit&gt;&lt;fruit&gt;...&lt;/fruit&gt;&lt;/addFruit&gt;
+                                                    |
+SOAP &lt;addFruitResponse&gt;&lt;fruits&gt;...&lt;/fruits&gt;&lt;/addFruitResponse&gt; --&gt; Fruits POJO --&gt; JSON [...]
+</code></pre></div></div>
+
+<h2 id="soap-fault-translation">SOAP fault translation</h2>
+
+<p>The <code class="highlighter-rouge">onException(SoapFault.class)</code> handler catches SOAP faults from the backend and translates them into HTTP 500 responses. The <code class="highlighter-rouge">.handled(true)</code> directive prevents the exception from propagating further. The <code class="highlighter-rouge">processSoapFault</code> method extracts the fault message string and sets it as the HTTP response body with a 500 status code.</p>
+
+<p>Without this handler, a SOAP fault would bubble up as an unhandled exception and produce a generic Quarkus error page. With it, REST consumers get a clear error message that originated from the SOAP backend.</p>
+
+<h1 id="adding-citrus-to-the-project">Adding Citrus to the project</h1>
+
+<p>This example needs Citrus modules for both the HTTP client side and the SOAP server side:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-quarkus<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>4.10.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-http<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>4.10.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-ws<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>4.10.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-validation-xml<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>4.10.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-validation-json<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>4.10.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-junit-jupiter<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>4.10.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>Here is what each module brings to the table:</p>
+
+<ul>
+  <li>
+<strong>citrus-quarkus</strong> integrates Citrus with the Quarkus test lifecycle.</li>
+  <li>
+<strong>citrus-http</strong> provides the HTTP client that sends JSON requests to the REST API and validates JSON responses.</li>
+  <li>
+<strong>citrus-ws</strong> provides the SOAP server that simulates the backend WebService, including SOAP fault simulation.</li>
+  <li>
+<strong>citrus-validation-xml</strong> enables structural XML validation and JAXB unmarshalling for SOAP request verification.</li>
+  <li>
+<strong>citrus-validation-json</strong> handles JSON response body validation on the HTTP side.</li>
+  <li>
+<strong>citrus-junit-jupiter</strong> connects Citrus to JUnit 5.</li>
+</ul>
+
+<p>This is the first sample on this site that uses both <strong>citrus-http</strong> and <strong>citrus-ws</strong> in the same test. The HTTP module drives the REST client side while the WS module handles the SOAP server side — matching the dual-protocol nature of the bridge under test.</p>
+
+<h1 id="setting-up-the-test-class">Setting up the test class</h1>
+
+<p>The test class configures both a Citrus HTTP client and a Citrus SOAP server:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@QuarkusTest</span>
+<span class="nd">@CitrusSupport</span>
+<span class="nd">@TestInstance</span><span class="o">(</span><span class="n">TestInstance</span><span class="o">.</span><span class="na">Lifecycle</span><span class="o">.</span><span class="na">PER_CLASS</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">FruitRestSoapBridgeTest</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
+
+    <span class="nd">@CitrusEndpoint</span>
+    <span class="nd">@HttpClientConfig</span><span class="o">(</span><span class="n">requestUrl</span> <span class="o">=</span> <span class="s">"http://localhost:8081"</span><span class="o">)</span>
+    <span class="n">HttpClient</span> <span class="n">fruitRestClient</span><span class="o">;</span>
+
+    <span class="nd">@CitrusEndpoint</span>
+    <span class="nd">@WebServiceServerConfig</span><span class="o">(</span><span class="n">port</span> <span class="o">=</span> <span class="mi">18080</span><span class="o">,</span> <span class="n">autoStart</span> <span class="o">=</span> <span class="kc">true</span><span class="o">,</span>
+            <span class="n">timeout</span> <span class="o">=</span> <span class="mi">10000</span><span class="o">)</span>
+    <span class="n">WebServiceServer</span> <span class="n">soapServer</span><span class="o">;</span>
+
+    <span class="nd">@CitrusResource</span>
+    <span class="n">GherkinTestActionRunner</span> <span class="n">runner</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">HttpClient</code> sends requests to the Quarkus REST API on port 8081 (the Quarkus test port). The <code class="highlighter-rouge">WebServiceServer</code> starts on port 18080 — the same port that <code class="highlighter-rouge">fruit.service.url</code> points to in <code class="highlighter-rouge">application.properties</code>. When the Camel CXF client sends a SOAP request to the backend, it reaches this simulated server.</p>
+
+<p>The <code class="highlighter-rouge">@TestInstance(TestInstance.Lifecycle.PER_CLASS)</code> annotation shares the SOAP server instance across test methods, avoiding port conflicts that would occur if JUnit created a new server for each test.</p>
+
+<p>With this setup, the test controls both ends of the bridge: it initiates requests on the REST side and handles them on the SOAP side.</p>
+
+<h1 id="testing-the-happy-path">Testing the happy path</h1>
+
+<p>Each test follows a four-step pattern: send an HTTP request, validate the SOAP request on the backend, send a simulated SOAP response, and (implicitly) let the REST response flow back to the HTTP client.</p>
+
+<h2 id="listing-fruits">Listing fruits</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kt">void</span> <span class="nf">shouldListFruits</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">runner</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+        <span class="n">http</span><span class="o">().</span><span class="na">client</span><span class="o">(</span><span class="n">fruitRestClient</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">send</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"/fruits"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">fork</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">runner</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+        <span class="n">soap</span><span class="o">().</span><span class="na">server</span><span class="o">(</span><span class="n">soapServer</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"&lt;ns:listFruits xmlns:ns=\""</span> <span class="o">+</span> <span class="n">TARGET_NS</span> <span class="o">+</span> <span class="s">"\"/&gt;"</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">runner</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+        <span class="n">soap</span><span class="o">().</span><span class="na">server</span><span class="o">(</span><span class="n">soapServer</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">send</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"&lt;ns:listFruitsResponse xmlns:ns=\""</span> <span class="o">+</span> <span class="n">TARGET_NS</span> <span class="o">+</span> <span class="s">"\"&gt;"</span> <span class="o">+</span>
+                <span class="s">"&lt;fruits&gt;"</span> <span class="o">+</span>
+                    <span class="s">"&lt;fruit&gt;"</span> <span class="o">+</span>
+                        <span class="s">"&lt;description&gt;Winter fruit&lt;/description&gt;"</span> <span class="o">+</span>
+                        <span class="s">"&lt;name&gt;Apple&lt;/name&gt;"</span> <span class="o">+</span>
+                    <span class="s">"&lt;/fruit&gt;"</span> <span class="o">+</span>
+                    <span class="s">"&lt;fruit&gt;"</span> <span class="o">+</span>
+                        <span class="s">"&lt;description&gt;Citrus fruit&lt;/description&gt;"</span> <span class="o">+</span>
+                        <span class="s">"&lt;name&gt;Orange&lt;/name&gt;"</span> <span class="o">+</span>
+                    <span class="s">"&lt;/fruit&gt;"</span> <span class="o">+</span>
+                <span class="s">"&lt;/fruits&gt;"</span> <span class="o">+</span>
+            <span class="s">"&lt;/ns:listFruitsResponse&gt;"</span><span class="o">)</span>
+    <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">http().client(fruitRestClient).send().get("/fruits")</code> action sends an HTTP GET request to the Camel REST API. The <code class="highlighter-rouge">fork(true)</code> option is essential here — the HTTP call blocks until the backend responds, and the backend is the Citrus SOAP server that the test itself controls. Without forking, the test thread would be stuck waiting for a response it has not sent yet.</p>
+
+<p>The <code class="highlighter-rouge">soap().server(soapServer).receive()</code> action waits for the SOAP request that the Camel CXF client sends to the backend. Citrus validates the body matches the expected <code class="highlighter-rouge">listFruits</code> XML structure. This is the first verification point: it confirms that the Camel route correctly translated the HTTP GET into a SOAP <code class="highlighter-rouge">listFruits</code> operation.</p>
+
+<p>The <code class="highlighter-rouge">soap().server(soapServer).send()</code> action sends back a simulated SOAP response containing Apple and Orange. CXF unmarshals this response to Java objects, and the REST binding mode serializes them to JSON for the HTTP response. The HTTP client receives the JSON response, completing the round trip.</p>
+
+<h2 id="adding-a-fruit">Adding a fruit</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kt">void</span> <span class="nf">shouldAddFruit</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">runner</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+        <span class="n">http</span><span class="o">().</span><span class="na">client</span><span class="o">(</span><span class="n">fruitRestClient</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">send</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/fruits"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"""
+                {
+                  "</span><span class="n">name</span><span class="s">": "</span><span class="n">Mango</span><span class="s">",
+                  "</span><span class="n">description</span><span class="s">": "</span><span class="n">Tropical</span> <span class="n">fruit</span><span class="s">"
+                }
+                """</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="n">APPLICATION_JSON_CONTENT_TYPE</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">fork</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">runner</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+        <span class="n">soap</span><span class="o">().</span><span class="na">server</span><span class="o">(</span><span class="n">soapServer</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"&lt;ns:addFruit xmlns:ns=\""</span> <span class="o">+</span> <span class="n">TARGET_NS</span> <span class="o">+</span> <span class="s">"\"&gt;"</span> <span class="o">+</span>
+                <span class="s">"&lt;fruit&gt;"</span> <span class="o">+</span>
+                    <span class="s">"&lt;description&gt;Tropical fruit&lt;/description&gt;"</span> <span class="o">+</span>
+                    <span class="s">"&lt;name&gt;Mango&lt;/name&gt;"</span> <span class="o">+</span>
+                <span class="s">"&lt;/fruit&gt;"</span> <span class="o">+</span>
+            <span class="s">"&lt;/ns:addFruit&gt;"</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">runner</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+        <span class="n">soap</span><span class="o">().</span><span class="na">server</span><span class="o">(</span><span class="n">soapServer</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">send</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"&lt;ns:addFruitResponse xmlns:ns=\""</span> <span class="o">+</span> <span class="n">TARGET_NS</span> <span class="o">+</span> <span class="s">"\"&gt;"</span> <span class="o">+</span>
+                <span class="s">"&lt;fruits&gt;...&lt;/fruits&gt;"</span> <span class="o">+</span>
+            <span class="s">"&lt;/ns:addFruitResponse&gt;"</span><span class="o">)</span>
+    <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This test verifies the full JSON-to-SOAP translation. The HTTP client sends <code class="highlighter-rouge">{"name": "Mango", "description": "Tropical fruit"}</code> as a JSON POST body. The Camel REST binding mode deserializes it into a <code class="highlighter-rouge">Fruit</code> POJO. The CXF client marshals that POJO into <code class="highlighter-rouge">&lt;addFruit&gt;&lt;fruit&gt;&lt;name&gt;Mango&lt;/name&gt;...&lt;/fruit&gt;&lt;/addFruit&gt;</code> SOAP XML.</p>
+
+<p>The SOAP server receive step validates the XML structure — confirming that the JSON fields were correctly mapped to the SOAP schema elements. This is the critical verification point for a protocol bridge: the translation from one format to the other must be exact.</p>
+
+<h1 id="testing-soap-fault-translation">Testing SOAP fault translation</h1>
+
+<p>The most valuable test verifies the error path end to end — from a SOAP fault on the backend to an HTTP 500 response on the REST side:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kt">void</span> <span class="nf">shouldHandleSoapFault</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">runner</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+        <span class="n">http</span><span class="o">().</span><span class="na">client</span><span class="o">(</span><span class="n">fruitRestClient</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">send</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="s">"/fruits"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"""
+                {
+                  "</span><span class="n">name</span><span class="s">": "</span><span class="n">Pineapple</span><span class="s">",
+                  "</span><span class="n">description</span><span class="s">": "</span><span class="n">Tropical</span> <span class="n">fruit</span><span class="s">"
+                }
+                """</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="n">APPLICATION_JSON_CONTENT_TYPE</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">fork</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">runner</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+        <span class="n">soap</span><span class="o">().</span><span class="na">server</span><span class="o">(</span><span class="n">soapServer</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"&lt;ns:deleteFruit xmlns:ns=\""</span> <span class="o">+</span> <span class="n">TARGET_NS</span> <span class="o">+</span> <span class="s">"\"&gt;"</span> <span class="o">+</span>
+                <span class="s">"&lt;fruit&gt;"</span> <span class="o">+</span>
+                    <span class="s">"&lt;description&gt;Tropical fruit&lt;/description&gt;"</span> <span class="o">+</span>
+                    <span class="s">"&lt;name&gt;Pineapple&lt;/name&gt;"</span> <span class="o">+</span>
+                <span class="s">"&lt;/fruit&gt;"</span> <span class="o">+</span>
+            <span class="s">"&lt;/ns:deleteFruit&gt;"</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">runner</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+        <span class="n">soap</span><span class="o">().</span><span class="na">server</span><span class="o">(</span><span class="n">soapServer</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">sendFault</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">faultCode</span><span class="o">(</span>
+                <span class="s">"{http://schemas.xmlsoap.org/soap/envelope/}Server"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">faultString</span><span class="o">(</span>
+                <span class="s">"Fruit \"Pineapple\" does not exist."</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">runner</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+        <span class="n">http</span><span class="o">().</span><span class="na">client</span><span class="o">(</span><span class="n">fruitRestClient</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="mi">500</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">validate</span><span class="o">((</span><span class="n">message</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                <span class="n">Assertions</span><span class="o">.</span><span class="na">assertEquals</span><span class="o">(</span>
+                    <span class="s">"Fruit \"Pineapple\" does not exist."</span><span class="o">,</span>
+                    <span class="n">message</span><span class="o">.</span><span class="na">getPayload</span><span class="o">());</span>
+            <span class="o">})</span>
+    <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This test has four steps that trace the complete error flow.</p>
+
+<p><strong>Step 1</strong> — the HTTP client sends a DELETE request with a Pineapple fruit that does not exist on the backend.</p>
+
+<p><strong>Step 2</strong> — the SOAP server validates the incoming <code class="highlighter-rouge">deleteFruit</code> SOAP request to confirm the CXF client sent the correct XML.</p>
+
+<p><strong>Step 3</strong> — the SOAP server sends back a SOAP fault with a <code class="highlighter-rouge">Server</code> fault code and the message <code class="highlighter-rouge">"Fruit \"Pineapple\" does not exist."</code>. The CXF client on the Camel side receives this fault and throws a <code class="highlighter-rouge">SoapFault</code> exception.</p>
+
+<p><strong>Step 4</strong> — the Camel route’s <code class="highlighter-rouge">onException(SoapFault.class)</code> handler catches the exception, extracts the fault message, and returns it as an HTTP 500 response. The Citrus HTTP client validates the 500 status code and the error message in the response body.</p>
+
+<p>This single test verifies the entire error translation chain: REST request → SOAP request → SOAP fault → HTTP 500 with fault message. Without the dual-role Citrus setup, you would need a real SOAP backend that can produce faults on demand — which makes the test fragile and hard to reproduce.</p>
+
+<h1 id="jaxb-based-testing">JAXB-based testing</h1>
+
+<p>The example also includes a POJO test class that uses JAXB marshalling on the SOAP server side and <code class="highlighter-rouge">JsonSupport.marshal()</code> for JSON request generation. This approach avoids XML and JSON string literals entirely.</p>
+
+<h2 id="sending-json-from-java-objects">Sending JSON from Java objects</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Fruit</span> <span class="n">mango</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Fruit</span><span class="o">();</span>
+<span class="n">mango</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">"Mango"</span><span class="o">);</span>
+<span class="n">mango</span><span class="o">.</span><span class="na">setDescription</span><span class="o">(</span><span class="s">"Tropical fruit"</span><span class="o">);</span>
+
+<span class="n">runner</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+    <span class="n">http</span><span class="o">().</span><span class="na">client</span><span class="o">(</span><span class="n">fruitRestClient</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">send</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/fruits"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">JsonSupport</span><span class="o">.</span><span class="na">marshal</span><span class="o">(</span><span class="n">mango</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="n">APPLICATION_JSON_CONTENT_TYPE</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">fork</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">JsonSupport.marshal()</code> helper serializes the <code class="highlighter-rouge">Fruit</code> object to JSON using the registered Jackson <code class="highlighter-rouge">ObjectMapper</code>. This eliminates the risk of typos in hand-written JSON strings and keeps the request body in sync with the model class.</p>
+
+<h2 id="validating-soap-requests-as-java-objects">Validating SOAP requests as Java objects</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">runner</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+    <span class="n">soap</span><span class="o">().</span><span class="na">server</span><span class="o">(</span><span class="n">soapServer</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">validate</span><span class="o">(</span>
+            <span class="k">new</span> <span class="n">XmlMarshallingValidationProcessor</span>
+                    <span class="o">&lt;</span><span class="n">JAXBElement</span><span class="o">&lt;</span><span class="n">AddFruit</span><span class="o">&gt;&gt;()</span> <span class="o">{</span>
+                <span class="nd">@Override</span>
+                <span class="kd">public</span> <span class="kt">void</span> <span class="nf">validate</span><span class="o">(</span>
+                        <span class="n">JAXBElement</span><span class="o">&lt;</span><span class="n">AddFruit</span><span class="o">&gt;</span> <span class="n">payload</span><span class="o">,</span>
+                        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">headers</span><span class="o">,</span>
+                        <span class="n">TestContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">AddFruit</span> <span class="n">request</span> <span class="o">=</span> <span class="n">payload</span><span class="o">.</span><span class="na">getValue</span><span class="o">();</span>
+                    <span class="n">Assertions</span><span class="o">.</span><span class="na">assertEquals</span><span class="o">(</span><span class="s">"Mango"</span><span class="o">,</span>
+                            <span class="n">request</span><span class="o">.</span><span class="na">getFruit</span><span class="o">().</span><span class="na">getName</span><span class="o">());</span>
+                    <span class="n">Assertions</span><span class="o">.</span><span class="na">assertEquals</span><span class="o">(</span><span class="s">"Tropical fruit"</span><span class="o">,</span>
+                            <span class="n">request</span><span class="o">.</span><span class="na">getFruit</span><span class="o">().</span><span class="na">getDescription</span><span class="o">());</span>
+                <span class="o">}</span>
+            <span class="o">})</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">XmlMarshallingValidationProcessor</code> unmarshals the incoming SOAP request into a typed <code class="highlighter-rouge">JAXBElement&lt;AddFruit&gt;</code>. You validate the request using Java getters and assertions instead of XML string comparison. If the WSDL changes and the generated types are updated, the compiler catches any mismatches.</p>
+
+<h2 id="sending-soap-responses-as-java-objects">Sending SOAP responses as Java objects</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">runner</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+    <span class="n">soap</span><span class="o">().</span><span class="na">server</span><span class="o">(</span><span class="n">soapServer</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">send</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">marshal</span><span class="o">(</span><span class="n">addFruitResponse</span><span class="o">(</span>
+            <span class="n">fruit</span><span class="o">(</span><span class="s">"Apple"</span><span class="o">,</span> <span class="s">"Winter fruit"</span><span class="o">),</span>
+            <span class="n">fruit</span><span class="o">(</span><span class="s">"Orange"</span><span class="o">,</span> <span class="s">"Citrus fruit"</span><span class="o">),</span>
+            <span class="n">mango</span>
+        <span class="o">)))</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">marshal()</code> helper with <code class="highlighter-rouge">addFruitResponse()</code> and <code class="highlighter-rouge">fruit()</code> factory methods from the <code class="highlighter-rouge">FruitPojoHelper</code> class constructs the SOAP response from Java objects. No XML strings anywhere — the JAXB marshaller handles the serialization.</p>
+
+<h2 id="port-isolation-with-test-profiles">Port isolation with test profiles</h2>
+
+<p>Since both the XML and POJO test classes start a SOAP server, they need different ports to avoid conflicts:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@TestProfile</span><span class="o">(</span><span class="n">FruitPojoRestSoapBridgeTest</span><span class="o">.</span><span class="na">TestConfig</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">TestConfig</span> <span class="kd">implements</span> <span class="n">QuarkusTestProfile</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="nf">getConfigOverrides</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">Map</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"fruit.service.url"</span><span class="o">,</span>
+                <span class="s">"http://localhost:18081/services/fruits"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">@TestProfile</code> overrides the CXF client URL to point at port 18081 instead of 18080. Each test class runs its own SOAP server on its own port.</p>
+
+<h1 id="how-it-all-fits-together">How it all fits together</h1>
+
+<p>When you run the tests with <code class="highlighter-rouge">./mvnw clean test</code>, here is the sequence of events:</p>
+
+<ol>
+  <li>
+<strong>Citrus starts</strong> the SOAP server on port 18080.</li>
+  <li>
+<strong>Quarkus starts</strong> the application with the REST facade and CXF client, with the backend URL pointing to the Citrus server.</li>
+  <li>
+<strong>The HTTP client</strong> sends a JSON request to the Camel REST API.</li>
+  <li>
+<strong>Camel REST binding</strong> deserializes the JSON to a Java object.</li>
+  <li>
+<strong>The CXF client</strong> marshals the object to SOAP XML and sends it to the Citrus server.</li>
+  <li>
+<strong>Citrus validates</strong> the SOAP request (XML comparison or JAXB unmarshalling).</li>
+  <li>
+<strong>Citrus sends</strong> a simulated SOAP response (or a SOAP fault).</li>
+  <li>
+<strong>The CXF client</strong> unmarshals the response to Java objects.</li>
+  <li>
+<strong>Camel REST binding</strong> serializes the objects to JSON for the HTTP response.</li>
+  <li>
+<strong>The HTTP client</strong> receives and validates the JSON response (or the HTTP 500 error).</li>
+</ol>
+
+<p>The entire test suite runs in under five seconds with no external services. Seven tests across two test classes verify all three operations plus SOAP fault handling.</p>
+
+<h1 id="the-bridge-testing-pattern">The bridge testing pattern</h1>
+
+<p>This dual-role pattern — Citrus as both HTTP client and SOAP server — applies to any protocol bridge, not just REST-to-SOAP. If your Camel route bridges:</p>
+
+<ul>
+  <li>
+<strong>REST to JMS</strong> — use a Citrus HTTP client and a Citrus JMS endpoint</li>
+  <li>
+<strong>REST to Kafka</strong> — use a Citrus HTTP client and a Citrus Kafka endpoint</li>
+  <li>
+<strong>JMS to SOAP</strong> — use a Citrus JMS endpoint and a Citrus SOAP server</li>
+  <li>
+<strong>Kafka to REST</strong> — use a Citrus Kafka endpoint and a Citrus HTTP server</li>
+</ul>
+
+<p>The idea is always the same: Citrus controls both ends of the bridge so you can verify the translation in isolation without depending on real external systems.</p>
+
+<h1 id="where-to-go-from-here">Where to go from here</h1>
+
+<p>This example covers the core bridge testing pattern. Here are several directions you can take it:</p>
+
+<ul>
+  <li>
+<strong>Response validation</strong>: Add <code class="highlighter-rouge">http().client(fruitRestClient).receive()</code> steps to validate the JSON response body after each SOAP response — verify that the JSON structure matches what your REST consumers expect.</li>
+  <li>
+<strong>Content-Type negotiation</strong>: Test what happens when the REST client sends XML instead of JSON, or requests XML responses via the <code class="highlighter-rouge">Accept</code> header.</li>
+  <li>
+<strong>Error code mapping</strong>: Extend the <code class="highlighter-rouge">processSoapFault</code> method to map different SOAP fault codes to different HTTP status codes (400 for client faults, 503 for service unavailable) and test each mapping.</li>
+  <li>
+<strong>SOAP-only testing</strong>: If you need to test the SOAP backend in isolation (without the REST facade), the <a href="/samples/camel-quarkus-cxf-soap-client/">CXF SOAP client sample</a> demonstrates direct route triggering with <code class="highlighter-rouge">camel().send()</code>.</li>
+  <li>
+<strong>Server-side SOAP testing</strong>: If your application exposes a SOAP service rather than consuming one, the <a href="/samples/camel-quarkus-cxf-soap/">CXF SOAP server sample</a> demonstrates Citrus as a SOAP client.</li>
+  <li>
+<strong>OpenAPI-driven REST testing</strong>: If your REST API has an OpenAPI specification, the <a href="/samples/camel-quarkus-openapi-server/">OpenAPI contract testing sample</a> demonstrates specification-driven testing.</li>
+</ul>
+
+<p>To explore the full example project including both test classes and the WSDL contract, head over to the <a href="https://github.com/citrusframework/citrus-quarkus-examples">citrus-quarkus-examples</a> repository on GitHub.</p>
+
+<p>For deeper dives into Citrus capabilities, the <a href="https://citrusframework.org/citrus/reference/html/">reference guide</a> covers HTTP endpoints, SOAP WebService endpoints, JSON and XML validation, and the many other transports that Citrus supports.</p>
+
+  </div>
+</article>
+
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <h4>Samples</h4>
+    <ul>
+      <li class="">
+        <a href="/samples/">Overview</a>
+      </li>
+      <li class="">
+        <a href="/samples/todo-app">TodoList App</a>
+      </li>
+      <li class="">
+        <a href="/samples/run">Running</a>
+      </li>
+    </ul>
+    <h4>Configuration</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+
+      
+      
+      <li class="">
+        <a href="/samples/annotation-config/">sample-annotation-config</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/javaconfig/">sample-javaconfig</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/reporting/">sample-reporting</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Connectors</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/kubernetes/">sample-kubernetes</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/docker/">sample-docker</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Demo</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/quarkus/">sample-quarkus</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/cucumber/">sample-cucumber</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/apache-camel/">sample-camel-context</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jbang/">sample-jbang</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Endpoints</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/openapi/">sample-swagger</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-wsaddressing/">sample-soap-wsaddressing</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/rmi/">sample-rmi</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-ssl/">sample-soap-ssl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap/">sample-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-static-response/">sample-http-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http/">sample-http</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/kafka/">sample-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/wsdl/">sample-wsdl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-static-response/">sample-soap-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-loadtest/">sample-http-loadtest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-mtom/">sample-soap-mtom</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-attachment/">sample-soap-attachment</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/sftp/">sample-sftp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-wssecurity/">sample-soap-wssecurity</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/scp/">sample-scp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/https/">sample-https</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jdbc/">sample-jdbc</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-basic-auth/">sample-http-basic-auth</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/ftp/">sample-ftp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/mail/">sample-mail</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dynamic-endpoints/">sample-dynamic-endpoints</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jms/">sample-jms</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Miscellaneous</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/dictionaries/">sample-dictionaries</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/gradle/">sample-gradle</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/message-store/">sample-message-store</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/behavior/">sample-behavior</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Quarkus</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-aws-s3-kafka/">camel-aws-s3-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-openapi-server/">camel-openapi-server</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus-event-driven-kafka/">event-driven-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus-event-driven-jms/">event-driven-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-kafka/">camel-kafka</a>
+      </li>
+      
+      
+      <li class="current">
+        <a href="/samples/camel-quarkus-rest-to-soap/">camel-rest-to-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-cxf-soap-client/">camel-cxf-soap-client</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-mqtt/">camel-mqtt</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-direct-http/">camel-direct-http</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-direct/">camel-direct</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-rest-dsl/">camel-rest-dsl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-file-inbox/">camel-file-inbox</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-file-outbox/">camel-file-outbox</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-jms/">camel-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-cxf-soap/">camel-cxf-soap</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Runtimes</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/testng/">sample-testng</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dataprovider/">sample-dataprovider</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/junit/">sample-junit</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/junit5/">sample-junit5</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Validation</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/json/">sample-json</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/oxm/">sample-oxm</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xhtml/">sample-xhtml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xml/">sample-xml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/hamcrest/">sample-hamcrest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/databind/">sample-databind</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-form-data/">sample-http-form-data</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/sql/">sample-sql</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/binary/">sample-binary</a>
+      </li>
+      
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/citrusframework/citrus/blob/master/LICENSE">MIT License</a>.</p>
+      <br>
+      <p>© 2026 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p> </p>
+      <br>
+      <br>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>

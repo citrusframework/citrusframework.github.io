@@ -1,0 +1,1116 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 4.10.1">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus main branch" href="https://github.com/citrusframework/citrus/commits/main.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="stylesheet" href="/css/tabbed.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/atom-one-light.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+  <script src="/js/tabbed.js"></script>
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="samples">
+    <div class="grid">
+
+      <div class="samples-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the samples…</option>
+    <option value="/samples/">Overview</option>
+    <option value="/samples/todo-app/">TodoList App</option>
+    <option value="/samples/run/">Running</option>
+    
+    
+    <option value="/samples/annotation-config/">sample-annotation-config</option>
+    
+    <option value="/samples/javaconfig/">sample-javaconfig</option>
+    
+    <option value="/samples/reporting/">sample-reporting</option>
+    
+    <option value="/samples/kubernetes/">sample-kubernetes</option>
+    
+    <option value="/samples/docker/">sample-docker</option>
+    
+    <option value="/samples/quarkus/">sample-quarkus</option>
+    
+    <option value="/samples/cucumber/">sample-cucumber</option>
+    
+    <option value="/samples/selenium/">sample-selenium</option>
+    
+    <option value="/samples/apache-camel/">sample-camel-context</option>
+    
+    <option value="/samples/jbang/">sample-jbang</option>
+    
+    <option value="/samples/openapi/">sample-swagger</option>
+    
+    <option value="/samples/soap-wsaddressing/">sample-soap-wsaddressing</option>
+    
+    <option value="/samples/rmi/">sample-rmi</option>
+    
+    <option value="/samples/soap-ssl/">sample-soap-ssl</option>
+    
+    <option value="/samples/soap/">sample-soap</option>
+    
+    <option value="/samples/http-static-response/">sample-http-static-response</option>
+    
+    <option value="/samples/http/">sample-http</option>
+    
+    <option value="/samples/kafka/">sample-kafka</option>
+    
+    <option value="/samples/wsdl/">sample-wsdl</option>
+    
+    <option value="/samples/soap-static-response/">sample-soap-static-response</option>
+    
+    <option value="/samples/http-loadtest/">sample-http-loadtest</option>
+    
+    <option value="/samples/soap-mtom/">sample-soap-mtom</option>
+    
+    <option value="/samples/soap-attachment/">sample-soap-attachment</option>
+    
+    <option value="/samples/sftp/">sample-sftp</option>
+    
+    <option value="/samples/soap-wssecurity/">sample-soap-wssecurity</option>
+    
+    <option value="/samples/scp/">sample-scp</option>
+    
+    <option value="/samples/https/">sample-https</option>
+    
+    <option value="/samples/jdbc/">sample-jdbc</option>
+    
+    <option value="/samples/http-basic-auth/">sample-http-basic-auth</option>
+    
+    <option value="/samples/ftp/">sample-ftp</option>
+    
+    <option value="/samples/mail/">sample-mail</option>
+    
+    <option value="/samples/dynamic-endpoints/">sample-dynamic-endpoints</option>
+    
+    <option value="/samples/jms/">sample-jms</option>
+    
+    <option value="/samples/dictionaries/">sample-dictionaries</option>
+    
+    <option value="/samples/gradle/">sample-gradle</option>
+    
+    <option value="/samples/message-store/">sample-message-store</option>
+    
+    <option value="/samples/behavior/">sample-behavior</option>
+    
+    <option value="/samples/camel-quarkus-aws-s3-kafka/">camel-aws-s3-kafka</option>
+    
+    <option value="/samples/camel-quarkus-openapi-server/">camel-openapi-server</option>
+    
+    <option value="/samples/quarkus-event-driven-kafka/">event-driven-kafka</option>
+    
+    <option value="/samples/quarkus-event-driven-jms/">event-driven-jms</option>
+    
+    <option value="/samples/camel-quarkus-kafka/">camel-kafka</option>
+    
+    <option value="/samples/camel-quarkus-rest-to-soap/">camel-rest-to-soap</option>
+    
+    <option value="/samples/camel-quarkus-cxf-soap-client/">camel-cxf-soap-client</option>
+    
+    <option value="/samples/camel-quarkus-mqtt/">camel-mqtt</option>
+    
+    <option value="/samples/camel-quarkus-direct-http/">camel-direct-http</option>
+    
+    <option value="/samples/camel-quarkus-direct/">camel-direct</option>
+    
+    <option value="/samples/camel-quarkus-rest-dsl/">camel-rest-dsl</option>
+    
+    <option value="/samples/camel-quarkus-file-inbox/">camel-file-inbox</option>
+    
+    <option value="/samples/camel-quarkus-file-outbox/">camel-file-outbox</option>
+    
+    <option value="/samples/camel-quarkus-jms/">camel-jms</option>
+    
+    <option value="/samples/camel-quarkus-cxf-soap/">camel-cxf-soap</option>
+    
+    <option value="/samples/testng/">sample-testng</option>
+    
+    <option value="/samples/dataprovider/">sample-dataprovider</option>
+    
+    <option value="/samples/junit/">sample-junit</option>
+    
+    <option value="/samples/junit5/">sample-junit5</option>
+    
+    <option value="/samples/json/">sample-json</option>
+    
+    <option value="/samples/oxm/">sample-oxm</option>
+    
+    <option value="/samples/xhtml/">sample-xhtml</option>
+    
+    <option value="/samples/xml/">sample-xml</option>
+    
+    <option value="/samples/hamcrest/">sample-hamcrest</option>
+    
+    <option value="/samples/databind/">sample-databind</option>
+    
+    <option value="/samples/http-form-data/">sample-http-form-data</option>
+    
+    <option value="/samples/sql/">sample-sql</option>
+    
+    <option value="/samples/binary/">sample-binary</option>
+    
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+  <h2>
+    
+    
+    <img src="/img/icons/camel.png" style="width: 1em;height: 1em;" alt="">
+    
+    Apache Camel Quarkus - OpenAPI Contract Testing
+    <a href="/samples/camel-quarkus-openapi-server/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <div class="right">
+    
+    <a href="https://github.com/citrusframework/citrus-quarkus-examples/blob/master/apache-camel/camel-openapi-server" target="_blank">
+      <i class="fa fa-pencil"></i> View source code
+    </a>
+    
+    
+  </div>
+  <span class="post-category">
+    <span class="label">
+      samples
+    </span>
+  </span>
+  <div class="post-content">
+    <p>REST APIs are everywhere, and most of them start with a contract — an OpenAPI specification that defines the endpoints, request formats, response schemas, and status codes. Apache Camel can generate an entire REST service from that specification with just a few lines of code. The routes, the parameter binding, the request validation — all derived from the JSON or YAML file that describes your API.</p>
+
+<p>Testing such a service should follow the same contract-first philosophy. Instead of manually constructing HTTP requests, hardcoding URLs, and writing ad-hoc response checks, your tests should be driven by the same specification that drives the server. When a path parameter is added, a schema field changes, or a new operation appears, both the server and the tests pick it up automatically.</p>
+
+<p>This post walks you through testing an Apache Camel OpenAPI REST service in a Quarkus application using the <a href="https://citrusframework.org">Citrus</a> integration testing framework. You will see how Citrus loads the OpenAPI specification at runtime, sends requests by operation ID instead of URL, auto-generates valid request payloads from schema definitions, and validates responses against the contract — all without writing a single line of JSON or constructing a single URL in the test code.</p>
+
+<p>By the end you will have a recipe for specification-driven API testing that stays in sync with your API contract by design.</p>
+
+<h1 id="the-application-under-test">The application under test</h1>
+
+<p>The example application implements a Petstore REST API — the classic OpenAPI demonstration service. Instead of defining each endpoint manually, it uses Camel’s contract-first <code class="highlighter-rouge">rest().openApi()</code> DSL to generate all routes from a <code class="highlighter-rouge">petstore-api.json</code> specification file.</p>
+
+<p>The entire application fits in a single route builder:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PetstoreRoutes</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">restConfiguration</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">clientRequestValidation</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">apiContextPath</span><span class="o">(</span><span class="s">"openapi"</span><span class="o">);</span>
+
+        <span class="n">rest</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">openApi</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">specification</span><span class="o">(</span><span class="s">"petstore-api.json"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">missingOperation</span><span class="o">(</span><span class="s">"mock"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>There is remarkably little code here, but each line does something important.</p>
+
+<p>The <code class="highlighter-rouge">restConfiguration()</code> block sets up two things. The <code class="highlighter-rouge">clientRequestValidation(true)</code> setting tells Camel to validate every incoming request against the OpenAPI schema before it reaches any route logic. If a client sends a request with a missing required field or an invalid data type, Camel rejects it with a 400 Bad Request — no custom validation code needed. The <code class="highlighter-rouge">apiContextPath("openapi")</code> setting exposes the full OpenAPI specification at the <code class="highlighter-rouge">/openapi</code> endpoint, making the contract available for runtime discovery.</p>
+
+<p>The <code class="highlighter-rouge">rest().openApi()</code> block is where the magic happens. The <code class="highlighter-rouge">.specification("petstore-api.json")</code> call points Camel at the OpenAPI file on the classpath, and Camel generates REST endpoints for every operation defined in the spec. The <code class="highlighter-rouge">.missingOperation("mock")</code> setting tells Camel what to do when an operation has no explicit route implementation: instead of failing, it returns mock responses loaded from classpath resources.</p>
+
+<p>The OpenAPI specification defines four operations on the Pet resource:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Operation</th>
+      <th>Method</th>
+      <th>Path</th>
+      <th>Operation ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Find a pet</td>
+      <td>GET</td>
+      <td><code class="highlighter-rouge">/petstore/pet/{petId}</code></td>
+      <td><code class="highlighter-rouge">getPetById</code></td>
+    </tr>
+    <tr>
+      <td>Add a pet</td>
+      <td>POST</td>
+      <td><code class="highlighter-rouge">/petstore/pet</code></td>
+      <td><code class="highlighter-rouge">addPet</code></td>
+    </tr>
+    <tr>
+      <td>Update a pet</td>
+      <td>PUT</td>
+      <td><code class="highlighter-rouge">/petstore/pet</code></td>
+      <td><code class="highlighter-rouge">updatePet</code></td>
+    </tr>
+    <tr>
+      <td>Delete a pet</td>
+      <td>DELETE</td>
+      <td><code class="highlighter-rouge">/petstore/pet/{petId}</code></td>
+      <td><code class="highlighter-rouge">deletePet</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>For the <code class="highlighter-rouge">getPetById</code> operation, the mock mode loads a response from <code class="highlighter-rouge">examples/pet/1000.json</code> on the classpath:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fluffy"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dog"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"photoUrls"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"petstore/v3/photos/1000"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"generated"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"available"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This mock pattern is configured via a single application property:</p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">camel.component.rest-openapi.mock-include-pattern</span><span class="p">=</span><span class="s">classpath:examples/**</span>
+</code></pre></div></div>
+
+<p>The result is a fully functional REST API with request validation, schema-compliant responses, and a live OpenAPI endpoint — all generated from the specification with zero hand-written endpoint code.</p>
+
+<h1 id="adding-citrus-to-the-project">Adding Citrus to the project</h1>
+
+<p>This example uses Citrus’s OpenAPI module, which is specifically designed for specification-driven testing:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-quarkus<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>4.10.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-http<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>4.10.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-openapi<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>4.10.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-validation-json<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>4.10.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>Here is what each module brings to the table:</p>
+
+<ul>
+  <li>
+<strong>citrus-quarkus</strong> integrates Citrus with the Quarkus test lifecycle.</li>
+  <li>
+<strong>citrus-http</strong> provides the HTTP client that sends requests and receives responses.</li>
+  <li>
+<strong>citrus-openapi</strong> is the key module — it provides the <code class="highlighter-rouge">openapi()</code> DSL that lets you reference operations by ID, auto-generate request payloads from schemas, and validate responses against the specification.</li>
+  <li>
+<strong>citrus-validation-json</strong> handles JSON response body validation.</li>
+</ul>
+
+<p>The <strong>citrus-openapi</strong> module is what sets this example apart from the other samples on this site. Instead of building requests manually with <code class="highlighter-rouge">http().client().send().post("/petstore/pet")</code>, you simply say <code class="highlighter-rouge">openapi().send("addPet")</code> and Citrus figures out the method, the path, the content type, and the request body from the specification.</p>
+
+<h1 id="setting-up-the-test-class">Setting up the test class</h1>
+
+<p>The test class is minimal — no endpoint declarations, no container annotations, no lifecycle listeners:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@QuarkusTest</span>
+<span class="nd">@CitrusSupport</span>
+<span class="kd">class</span> <span class="nc">PetstoreOpenApiTest</span> <span class="o">{</span>
+
+    <span class="nd">@CitrusResource</span>
+    <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
+
+    <span class="n">OpenApiSpecification</span> <span class="n">petstoreApi</span> <span class="o">=</span>
+            <span class="n">OpenApiSpecification</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="s">"http://localhost:8081/openapi"</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">OpenApiSpecification</code> is loaded from the running application’s <code class="highlighter-rouge">/openapi</code> endpoint. This is a deliberate design choice: the test fetches the specification from the same source that serves it to real API consumers. If the specification changes — a new field becomes required, an operation is renamed, a path parameter is added — the test automatically picks up the change because it reads the live contract.</p>
+
+<p>The <code class="highlighter-rouge">TestCaseRunner</code> (named <code class="highlighter-rouge">t</code> for brevity) provides the Given-When-Then structure for test actions. Unlike the other Camel samples that use <code class="highlighter-rouge">GherkinTestActionRunner</code>, this test uses the standard runner, which works the same way with a slightly different naming style.</p>
+
+<p>There are no <code class="highlighter-rouge">@CitrusEndpoint</code> annotations in this test. The OpenAPI DSL handles endpoint creation internally — you just point it at the server URL and the specification, and Citrus manages the HTTP client.</p>
+
+<h1 id="testing-get--find-a-pet-by-id">Testing GET — find a pet by ID</h1>
+
+<p>The first test retrieves a pet and validates the response against the OpenAPI schema:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kt">void</span> <span class="nf">shouldGetPetById</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+        <span class="n">createVariables</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"petId"</span><span class="o">,</span> <span class="s">"1000"</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+        <span class="n">openapi</span><span class="o">().</span><span class="na">specification</span><span class="o">(</span><span class="n">petstoreApi</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="s">"http://localhost:8081"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="s">"getPetById"</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+        <span class="n">openapi</span><span class="o">().</span><span class="na">specification</span><span class="o">(</span><span class="n">petstoreApi</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="s">"http://localhost:8081"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">receive</span><span class="o">(</span><span class="s">"getPetById"</span><span class="o">,</span> <span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">)</span>
+    <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Three steps, each doing a lot behind the scenes.</p>
+
+<p>The <strong>given</strong> block creates a test variable named <code class="highlighter-rouge">petId</code> with value <code class="highlighter-rouge">"1000"</code>. This variable is not just a local value — Citrus uses it to resolve the <code class="highlighter-rouge">{petId}</code> path parameter defined in the OpenAPI specification. When the specification says the <code class="highlighter-rouge">getPetById</code> operation has a path <code class="highlighter-rouge">/pet/{petId}</code>, Citrus looks for a test variable with that name and substitutes it automatically.</p>
+
+<p>The <strong>when</strong> block sends the request. The <code class="highlighter-rouge">openapi().send("getPetById")</code> call tells Citrus to look up the <code class="highlighter-rouge">getPetById</code> operation in the specification, determine that it is a GET request to <code class="highlighter-rouge">/petstore/pet/{petId}</code>, resolve the path parameter from the test variable, and send the request to <code class="highlighter-rouge">http://localhost:8081/petstore/pet/1000</code>. You never write the URL, the HTTP method, or the content type — the specification provides all of it.</p>
+
+<p>The <strong>then</strong> block receives and validates the response. The <code class="highlighter-rouge">openapi().receive("getPetById", HttpStatus.OK)</code> call tells Citrus to expect a 200 OK response and validate the response body against the Pet schema defined in the OpenAPI specification. Citrus checks that all required fields (<code class="highlighter-rouge">name</code>, <code class="highlighter-rouge">category</code>, <code class="highlighter-rouge">status</code>) are present, that field types match (integers are integers, strings are strings, arrays are arrays), and that enum values fall within the allowed set. If the response body contains <code class="highlighter-rouge">"status": "unknown"</code> instead of <code class="highlighter-rouge">"available"</code>, <code class="highlighter-rouge">"pending"</code>, or <code class="highlighter-rouge">"sold"</code>, the validation fails automatically.</p>
+
+<h1 id="testing-post--add-a-new-pet">Testing POST — add a new pet</h1>
+
+<p>Creating a resource requires a request body, but Citrus generates one from the schema:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kt">void</span> <span class="nf">shouldAddPet</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+        <span class="n">openapi</span><span class="o">().</span><span class="na">specification</span><span class="o">(</span><span class="n">petstoreApi</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="s">"http://localhost:8081"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="s">"addPet"</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+        <span class="n">openapi</span><span class="o">().</span><span class="na">specification</span><span class="o">(</span><span class="n">petstoreApi</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="s">"http://localhost:8081"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">receive</span><span class="o">(</span><span class="s">"addPet"</span><span class="o">,</span> <span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">)</span>
+    <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>There is no request body in the test code — and that is the point. The <code class="highlighter-rouge">addPet</code> operation in the OpenAPI specification defines a required request body with a Pet schema that includes required fields (<code class="highlighter-rouge">name</code>, <code class="highlighter-rouge">category</code>, <code class="highlighter-rouge">status</code>), optional fields (<code class="highlighter-rouge">id</code>, <code class="highlighter-rouge">photoUrls</code>, <code class="highlighter-rouge">tags</code>), and specific types and constraints for each.</p>
+
+<p>When Citrus encounters <code class="highlighter-rouge">send("addPet")</code>, it reads the schema, generates a valid JSON object that satisfies all the constraints, and sends it as the POST body. The generated payload includes proper values for every required field, correct data types, and valid enum values. You get a complete, schema-compliant request without writing any JSON.</p>
+
+<p>This auto-generation has a practical benefit beyond convenience: it tests the server’s ability to accept a schema-compliant request. If the server rejects a valid request, the test fails — catching bugs in the server’s request handling that manual tests with hand-crafted payloads might miss.</p>
+
+<h1 id="testing-put-and-delete">Testing PUT and DELETE</h1>
+
+<p>The update and delete operations follow the same pattern:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kt">void</span> <span class="nf">shouldUpdatePet</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+        <span class="n">openapi</span><span class="o">().</span><span class="na">specification</span><span class="o">(</span><span class="n">petstoreApi</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="s">"http://localhost:8081"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="s">"updatePet"</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+        <span class="n">openapi</span><span class="o">().</span><span class="na">specification</span><span class="o">(</span><span class="n">petstoreApi</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="s">"http://localhost:8081"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">receive</span><span class="o">(</span><span class="s">"updatePet"</span><span class="o">,</span> <span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">)</span>
+    <span class="o">);</span>
+<span class="o">}</span>
+
+<span class="nd">@Test</span>
+<span class="kt">void</span> <span class="nf">shouldDeletePet</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+        <span class="n">createVariables</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"petId"</span><span class="o">,</span> <span class="s">"1000"</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+        <span class="n">openapi</span><span class="o">().</span><span class="na">specification</span><span class="o">(</span><span class="n">petstoreApi</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="s">"http://localhost:8081"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="s">"deletePet"</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+        <span class="n">openapi</span><span class="o">().</span><span class="na">specification</span><span class="o">(</span><span class="n">petstoreApi</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="s">"http://localhost:8081"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">receive</span><span class="o">(</span><span class="s">"deletePet"</span><span class="o">,</span> <span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">)</span>
+    <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">updatePet</code> test is identical in structure to <code class="highlighter-rouge">addPet</code> — Citrus generates a valid Pet JSON body and sends it as a PUT request. The <code class="highlighter-rouge">deletePet</code> test mirrors <code class="highlighter-rouge">getPetById</code> — it sets a <code class="highlighter-rouge">petId</code> variable that Citrus resolves into the path parameter, then sends a DELETE request to <code class="highlighter-rouge">/petstore/pet/1000</code>.</p>
+
+<p>Every test follows the same three-step structure: optionally set variables, send a request by operation ID, and receive a response with schema validation. The consistency is not accidental — it is a direct consequence of the specification-driven approach. Since the specification describes everything about each operation, the tests only need to name the operation and declare the expected outcome.</p>
+
+<h1 id="what-the-openapi-dsl-does-for-you">What the OpenAPI DSL does for you</h1>
+
+<p>It is worth stepping back to appreciate how much work the <code class="highlighter-rouge">openapi()</code> DSL handles automatically. In a traditional HTTP test, each of these concerns is your responsibility:</p>
+
+<p><strong>Request construction</strong> — the DSL reads the operation’s HTTP method, path, content type, and parameter definitions from the specification. You never write <code class="highlighter-rouge">post("/petstore/pet")</code> or set a <code class="highlighter-rouge">Content-Type: application/json</code> header.</p>
+
+<p><strong>Path parameter resolution</strong> — when a path contains <code class="highlighter-rouge">{petId}</code>, the DSL looks for a Citrus test variable with that name and substitutes it. No string concatenation, no URL building.</p>
+
+<p><strong>Request body generation</strong> — for operations that require a body, the DSL generates a valid JSON object from the schema definition. Required fields are populated, data types are correct, and enum values are valid.</p>
+
+<p><strong>Response schema validation</strong> — the DSL validates the response body against the schema defined for the expected status code. Field names, types, required fields, and enum constraints are all checked.</p>
+
+<p><strong>Contract synchronization</strong> — since the specification is loaded from the running application at <code class="highlighter-rouge">http://localhost:8081/openapi</code>, any change to the contract is immediately reflected in the tests. There is no stale copy to keep in sync.</p>
+
+<p>This means that when you add a new required field to the Pet schema, the server’s request validation starts enforcing it, the mock responses need to include it, and the tests automatically generate it in requests and validate it in responses — all from a single change in the specification file.</p>
+
+<h1 id="how-it-all-fits-together">How it all fits together</h1>
+
+<p>When you run the tests with <code class="highlighter-rouge">./mvnw clean test</code>, here is the sequence of events:</p>
+
+<ol>
+  <li>
+<strong>Quarkus starts</strong> the application in test mode on port 8081.</li>
+  <li>
+<strong>Apache Camel reads</strong> <code class="highlighter-rouge">petstore-api.json</code> and generates REST endpoints for all four operations.</li>
+  <li>
+<strong>The OpenAPI spec</strong> is served at <code class="highlighter-rouge">http://localhost:8081/openapi</code> for runtime discovery.</li>
+  <li>
+<strong>Citrus loads</strong> the specification from the application’s <code class="highlighter-rouge">/openapi</code> endpoint.</li>
+  <li>
+<strong>Each test</strong> references an operation by ID (e.g., <code class="highlighter-rouge">getPetById</code>), and Citrus resolves the method, path, parameters, and body from the spec.</li>
+  <li>
+<strong>The request</strong> is sent to the Camel REST endpoint, which validates it against the schema.</li>
+  <li>
+<strong>Camel’s mock handler</strong> returns a response (from classpath resources or a generated default).</li>
+  <li>
+<strong>Citrus validates</strong> the response against the schema defined for the expected status code.</li>
+</ol>
+
+<p>The entire test suite runs in under three seconds with no containers, no external services, and no hand-written JSON. Four operations — GET, POST, PUT, DELETE — are tested with full schema validation in about 30 lines of test code.</p>
+
+<p>There is one piece of test configuration worth mentioning:</p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">quarkus.arc.ignored-split-packages</span><span class="p">=</span><span class="s">org.citrusframework.*</span>
+</code></pre></div></div>
+
+<p>This avoids CDI bean discovery conflicts between Citrus and Quarkus.</p>
+
+<h1 id="contract-first-vs-code-first-testing">Contract-first vs code-first testing</h1>
+
+<p>This specification-driven approach inverts the usual testing workflow. In code-first testing, you write the server, then write tests that exercise specific URLs with specific payloads. If the API changes, you update both. In contract-first testing, the specification is the single source of truth — the server and the tests are both derived from it.</p>
+
+<p>The practical difference shows up in maintenance. When you add a new operation to the OpenAPI specification:</p>
+
+<ul>
+  <li>
+<strong>Server side</strong>: Camel generates the endpoint automatically (or you add a route for it).</li>
+  <li>
+<strong>Test side</strong>: you write one test method with <code class="highlighter-rouge">send("newOperationId")</code> and <code class="highlighter-rouge">receive("newOperationId", HttpStatus.OK)</code>.</li>
+</ul>
+
+<p>When you modify an existing schema:</p>
+
+<ul>
+  <li>
+<strong>Server side</strong>: request validation and mock responses update automatically.</li>
+  <li>
+<strong>Test side</strong>: request generation and response validation update automatically.</li>
+</ul>
+
+<p>The specification change propagates through both sides without manual synchronization. This is especially valuable in larger teams where the API contract is defined by one team and consumed by several others — everyone works against the same source of truth.</p>
+
+<h1 id="where-to-go-from-here">Where to go from here</h1>
+
+<p>This example covers the happy path with mock responses. Here are several directions you can take it:</p>
+
+<ul>
+  <li>
+<strong>Custom request bodies</strong>: Override the auto-generated body with a specific payload using <code class="highlighter-rouge">.message().body(...)</code> on the send action, while still letting Citrus handle the URL and method resolution.</li>
+  <li>
+<strong>Error status codes</strong>: Test 400 (invalid request), 404 (not found), and 405 (method not allowed) responses by sending requests that violate schema constraints — the server’s <code class="highlighter-rouge">clientRequestValidation(true)</code> setting rejects them automatically.</li>
+  <li>
+<strong>Real route implementations</strong>: Replace the <code class="highlighter-rouge">missingOperation("mock")</code> setting with actual Camel route implementations that handle business logic, and test the complete processing pipeline.</li>
+  <li>
+<strong>Multiple specifications</strong>: If your application serves multiple APIs, create separate <code class="highlighter-rouge">OpenApiSpecification</code> instances for each and test them independently in the same test class.</li>
+  <li>
+<strong>External HTTP services</strong>: If your Camel routes call external APIs as part of handling a request, combine this approach with the <a href="/samples/camel-quarkus-direct-http/">HTTP service virtualization sample</a> to simulate those dependencies while testing the contract-first endpoints.</li>
+  <li>
+<strong>Simpler routes</strong>: If your Camel routes use direct endpoints without REST or OpenAPI, the <a href="/samples/camel-quarkus-direct/">direct endpoint sample</a> demonstrates the simplest possible testing setup.</li>
+</ul>
+
+<p>To explore the full example project including the source code and the OpenAPI specification, head over to the <a href="https://github.com/citrusframework/citrus-quarkus-examples">citrus-quarkus-examples</a> repository on GitHub.</p>
+
+<p>For deeper dives into Citrus capabilities, the <a href="https://citrusframework.org/citrus/reference/html/">reference guide</a> covers OpenAPI integration, HTTP endpoints, JSON validation, and the many other transports that Citrus supports.</p>
+
+  </div>
+</article>
+
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <h4>Samples</h4>
+    <ul>
+      <li class="">
+        <a href="/samples/">Overview</a>
+      </li>
+      <li class="">
+        <a href="/samples/todo-app">TodoList App</a>
+      </li>
+      <li class="">
+        <a href="/samples/run">Running</a>
+      </li>
+    </ul>
+    <h4>Configuration</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+
+      
+      
+      <li class="">
+        <a href="/samples/annotation-config/">sample-annotation-config</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/javaconfig/">sample-javaconfig</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/reporting/">sample-reporting</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Connectors</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/kubernetes/">sample-kubernetes</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/docker/">sample-docker</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Demo</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/quarkus/">sample-quarkus</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/cucumber/">sample-cucumber</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/apache-camel/">sample-camel-context</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jbang/">sample-jbang</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Endpoints</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/openapi/">sample-swagger</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-wsaddressing/">sample-soap-wsaddressing</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/rmi/">sample-rmi</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-ssl/">sample-soap-ssl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap/">sample-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-static-response/">sample-http-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http/">sample-http</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/kafka/">sample-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/wsdl/">sample-wsdl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-static-response/">sample-soap-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-loadtest/">sample-http-loadtest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-mtom/">sample-soap-mtom</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-attachment/">sample-soap-attachment</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/sftp/">sample-sftp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-wssecurity/">sample-soap-wssecurity</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/scp/">sample-scp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/https/">sample-https</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jdbc/">sample-jdbc</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-basic-auth/">sample-http-basic-auth</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/ftp/">sample-ftp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/mail/">sample-mail</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dynamic-endpoints/">sample-dynamic-endpoints</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jms/">sample-jms</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Miscellaneous</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/dictionaries/">sample-dictionaries</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/gradle/">sample-gradle</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/message-store/">sample-message-store</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/behavior/">sample-behavior</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Quarkus</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-aws-s3-kafka/">camel-aws-s3-kafka</a>
+      </li>
+      
+      
+      <li class="current">
+        <a href="/samples/camel-quarkus-openapi-server/">camel-openapi-server</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus-event-driven-kafka/">event-driven-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus-event-driven-jms/">event-driven-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-kafka/">camel-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-rest-to-soap/">camel-rest-to-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-cxf-soap-client/">camel-cxf-soap-client</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-mqtt/">camel-mqtt</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-direct-http/">camel-direct-http</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-direct/">camel-direct</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-rest-dsl/">camel-rest-dsl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-file-inbox/">camel-file-inbox</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-file-outbox/">camel-file-outbox</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-jms/">camel-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-cxf-soap/">camel-cxf-soap</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Runtimes</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/testng/">sample-testng</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dataprovider/">sample-dataprovider</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/junit/">sample-junit</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/junit5/">sample-junit5</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Validation</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/json/">sample-json</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/oxm/">sample-oxm</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xhtml/">sample-xhtml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xml/">sample-xml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/hamcrest/">sample-hamcrest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/databind/">sample-databind</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-form-data/">sample-http-form-data</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/sql/">sample-sql</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/binary/">sample-binary</a>
+      </li>
+      
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/citrusframework/citrus/blob/master/LICENSE">MIT License</a>.</p>
+      <br>
+      <p>© 2026 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p> </p>
+      <br>
+      <br>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>

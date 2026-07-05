@@ -1,0 +1,1047 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 4.10.1">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus main branch" href="https://github.com/citrusframework/citrus/commits/main.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="stylesheet" href="/css/tabbed.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/atom-one-light.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+  <script src="/js/tabbed.js"></script>
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="samples">
+    <div class="grid">
+
+      <div class="samples-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the samples…</option>
+    <option value="/samples/">Overview</option>
+    <option value="/samples/todo-app/">TodoList App</option>
+    <option value="/samples/run/">Running</option>
+    
+    
+    <option value="/samples/annotation-config/">sample-annotation-config</option>
+    
+    <option value="/samples/javaconfig/">sample-javaconfig</option>
+    
+    <option value="/samples/reporting/">sample-reporting</option>
+    
+    <option value="/samples/kubernetes/">sample-kubernetes</option>
+    
+    <option value="/samples/docker/">sample-docker</option>
+    
+    <option value="/samples/quarkus/">sample-quarkus</option>
+    
+    <option value="/samples/cucumber/">sample-cucumber</option>
+    
+    <option value="/samples/selenium/">sample-selenium</option>
+    
+    <option value="/samples/apache-camel/">sample-camel-context</option>
+    
+    <option value="/samples/jbang/">sample-jbang</option>
+    
+    <option value="/samples/openapi/">sample-swagger</option>
+    
+    <option value="/samples/soap-wsaddressing/">sample-soap-wsaddressing</option>
+    
+    <option value="/samples/rmi/">sample-rmi</option>
+    
+    <option value="/samples/soap-ssl/">sample-soap-ssl</option>
+    
+    <option value="/samples/soap/">sample-soap</option>
+    
+    <option value="/samples/http-static-response/">sample-http-static-response</option>
+    
+    <option value="/samples/http/">sample-http</option>
+    
+    <option value="/samples/kafka/">sample-kafka</option>
+    
+    <option value="/samples/wsdl/">sample-wsdl</option>
+    
+    <option value="/samples/soap-static-response/">sample-soap-static-response</option>
+    
+    <option value="/samples/http-loadtest/">sample-http-loadtest</option>
+    
+    <option value="/samples/soap-mtom/">sample-soap-mtom</option>
+    
+    <option value="/samples/soap-attachment/">sample-soap-attachment</option>
+    
+    <option value="/samples/sftp/">sample-sftp</option>
+    
+    <option value="/samples/soap-wssecurity/">sample-soap-wssecurity</option>
+    
+    <option value="/samples/scp/">sample-scp</option>
+    
+    <option value="/samples/https/">sample-https</option>
+    
+    <option value="/samples/jdbc/">sample-jdbc</option>
+    
+    <option value="/samples/http-basic-auth/">sample-http-basic-auth</option>
+    
+    <option value="/samples/ftp/">sample-ftp</option>
+    
+    <option value="/samples/mail/">sample-mail</option>
+    
+    <option value="/samples/dynamic-endpoints/">sample-dynamic-endpoints</option>
+    
+    <option value="/samples/jms/">sample-jms</option>
+    
+    <option value="/samples/dictionaries/">sample-dictionaries</option>
+    
+    <option value="/samples/gradle/">sample-gradle</option>
+    
+    <option value="/samples/message-store/">sample-message-store</option>
+    
+    <option value="/samples/behavior/">sample-behavior</option>
+    
+    <option value="/samples/camel-quarkus-aws-s3-kafka/">camel-aws-s3-kafka</option>
+    
+    <option value="/samples/camel-quarkus-openapi-server/">camel-openapi-server</option>
+    
+    <option value="/samples/quarkus-event-driven-kafka/">event-driven-kafka</option>
+    
+    <option value="/samples/quarkus-event-driven-jms/">event-driven-jms</option>
+    
+    <option value="/samples/camel-quarkus-kafka/">camel-kafka</option>
+    
+    <option value="/samples/camel-quarkus-rest-to-soap/">camel-rest-to-soap</option>
+    
+    <option value="/samples/camel-quarkus-cxf-soap-client/">camel-cxf-soap-client</option>
+    
+    <option value="/samples/camel-quarkus-mqtt/">camel-mqtt</option>
+    
+    <option value="/samples/camel-quarkus-direct-http/">camel-direct-http</option>
+    
+    <option value="/samples/camel-quarkus-direct/">camel-direct</option>
+    
+    <option value="/samples/camel-quarkus-rest-dsl/">camel-rest-dsl</option>
+    
+    <option value="/samples/camel-quarkus-file-inbox/">camel-file-inbox</option>
+    
+    <option value="/samples/camel-quarkus-file-outbox/">camel-file-outbox</option>
+    
+    <option value="/samples/camel-quarkus-jms/">camel-jms</option>
+    
+    <option value="/samples/camel-quarkus-cxf-soap/">camel-cxf-soap</option>
+    
+    <option value="/samples/testng/">sample-testng</option>
+    
+    <option value="/samples/dataprovider/">sample-dataprovider</option>
+    
+    <option value="/samples/junit/">sample-junit</option>
+    
+    <option value="/samples/junit5/">sample-junit5</option>
+    
+    <option value="/samples/json/">sample-json</option>
+    
+    <option value="/samples/oxm/">sample-oxm</option>
+    
+    <option value="/samples/xhtml/">sample-xhtml</option>
+    
+    <option value="/samples/xml/">sample-xml</option>
+    
+    <option value="/samples/hamcrest/">sample-hamcrest</option>
+    
+    <option value="/samples/databind/">sample-databind</option>
+    
+    <option value="/samples/http-form-data/">sample-http-form-data</option>
+    
+    <option value="/samples/sql/">sample-sql</option>
+    
+    <option value="/samples/binary/">sample-binary</option>
+    
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+  <h2>
+    
+    
+    <img src="/img/icons/camel.png" style="width: 1em;height: 1em;" alt="">
+    
+    Apache Camel Quarkus - AWS S3 to Kafka Pipeline
+    <a href="/samples/camel-quarkus-aws-s3-kafka/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <div class="right">
+    
+    <a href="https://github.com/citrusframework/citrus-quarkus-examples/blob/master/apache-camel/camel-aws-s3-kafka" target="_blank">
+      <i class="fa fa-pencil"></i> View source code
+    </a>
+    
+    
+  </div>
+  <span class="post-category">
+    <span class="label">
+      samples
+    </span>
+  </span>
+  <div class="post-content">
+    <p>Cloud-native integration often starts with a file landing in an S3 bucket. A new CSV is uploaded, a data export arrives, a batch of events is dropped — and your application needs to pick it up, process the content, and publish the results to a Kafka topic for downstream consumption. Apache Camel handles this pattern elegantly with its S3 Kamelet and Splitter EIP.</p>
+
+<p>Testing it is the challenge. You need an S3-compatible object store, a Kafka broker, a bucket created before the test runs, and a way to upload files and verify the downstream output — all coordinated in a single test. You certainly do not want to test against real AWS services.</p>
+
+<p>This post walks you through testing an Apache Camel route that bridges AWS S3 and Kafka in a Quarkus application using the <a href="https://citrusframework.org">Citrus</a> integration testing framework. You will see how Citrus provisions a LocalStack container for S3 emulation, uploads files through Camel’s S3 component, and validates that each line of the file arrives as a separate JSON event on a Kafka topic.</p>
+
+<p>By the end you will have a recipe for testing cloud-native Camel pipelines without touching real AWS services.</p>
+
+<h1 id="the-application-under-test">The application under test</h1>
+
+<p>The example application implements a file ingestion pipeline. It polls an S3 bucket for new files, splits each file into individual lines, wraps every line in a JSON structure, and publishes the resulting events to a Kafka topic.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>S3 Bucket (citrus-camel-demo) --&gt; Split by newline --&gt; Filter empty lines --&gt; JSON wrap --&gt; Kafka Topic (s3-events)
+</code></pre></div></div>
+
+<p>The entire logic lives in a single Camel route:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Routes</span> <span class="kd">extends</span> <span class="n">EndpointRouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">from</span><span class="o">(</span><span class="s">"kamelet:aws-s3-source?"</span> <span class="o">+</span>
+                <span class="s">"bucketNameOrArn=&amp;"</span> <span class="o">+</span>
+                <span class="s">"region=&amp;"</span> <span class="o">+</span>
+                <span class="s">"overrideEndpoint=true&amp;"</span> <span class="o">+</span>
+                <span class="s">"forcePathStyle=true&amp;"</span> <span class="o">+</span>
+                <span class="s">"uriEndpointOverride=&amp;"</span> <span class="o">+</span>
+                <span class="s">"accessKey=&amp;"</span> <span class="o">+</span>
+                <span class="s">"secretKey="</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="n">body</span><span class="o">().</span><span class="na">tokenize</span><span class="o">(</span><span class="s">"\n"</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">simple</span><span class="o">(</span><span class="s">"${body} != \"\""</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">setBody</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">simple</span><span class="o">(</span><span class="s">"""
+                    { "</span><span class="n">message</span><span class="s">": "</span><span class="err">$</span><span class="o">{</span><span class="n">body</span><span class="o">}</span><span class="s">" }
+                    """</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="n">kafka</span><span class="o">(</span><span class="s">"s3-events"</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The route uses the <code class="highlighter-rouge">aws-s3-source</code> <strong>Kamelet</strong> — a pre-built, reusable Camel connector — to poll the S3 bucket for new objects. The <code class="highlighter-rouge">overrideEndpoint</code> and <code class="highlighter-rouge">forcePathStyle</code> options enable LocalStack compatibility, so the same route works against both real AWS and a local emulator. All connection properties are externalized as Camel property placeholders, resolved from <code class="highlighter-rouge">application.properties</code>.</p>
+
+<p>Once a file arrives, the <strong>Splitter EIP</strong> breaks the content on newline characters. A file containing three lines becomes three separate Camel exchanges, each carrying one line as its body. The filter step removes empty lines that might result from trailing newlines.</p>
+
+<p>Each surviving line is wrapped in a JSON structure using a Simple expression: <code class="highlighter-rouge">{ "message": "Hello Camel!" }</code>. Finally, the JSON event is published to the <code class="highlighter-rouge">s3-events</code> Kafka topic. A three-line file produces three separate Kafka messages.</p>
+
+<h1 id="adding-citrus-to-the-project">Adding Citrus to the project</h1>
+
+<p>This example spans two cloud services — S3 and Kafka — so it needs a few more Citrus modules:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-quarkus<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>4.10.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-camel<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>4.10.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-kafka<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>4.10.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-testcontainers<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>4.10.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-junit-jupiter<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>4.10.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>Here is what each module brings to the table:</p>
+
+<ul>
+  <li>
+<strong>citrus-quarkus</strong> integrates Citrus with the Quarkus test lifecycle.</li>
+  <li>
+<strong>citrus-camel</strong> provides the <code class="highlighter-rouge">camel()</code> DSL that lets you use Camel’s <code class="highlighter-rouge">aws2-s3</code> component to upload files to the LocalStack S3 bucket from within the test.</li>
+  <li>
+<strong>citrus-kafka</strong> provides Kafka endpoint implementations for receiving and validating the output events.</li>
+  <li>
+<strong>citrus-testcontainers</strong> adds the <code class="highlighter-rouge">@LocalStackContainerSupport</code> and <code class="highlighter-rouge">@KafkaContainerSupport</code> annotations for provisioning both containers.</li>
+  <li>
+<strong>citrus-junit-jupiter</strong> connects Citrus to JUnit 5.</li>
+</ul>
+
+<p>The key module here is <strong>citrus-testcontainers</strong>. It provides built-in support for LocalStack — the same project that many teams use for local AWS development — wrapped in a simple annotation that handles container lifecycle, service selection, and property injection.</p>
+
+<h1 id="provisioning-the-test-infrastructure">Provisioning the test infrastructure</h1>
+
+<p>This test needs two containers: a LocalStack instance for S3 and a Kafka broker for the output. Citrus provisions both with annotations.</p>
+
+<h2 id="the-localstack-s3-service">The LocalStack S3 service</h2>
+
+<p>The <code class="highlighter-rouge">@LocalStackContainerSupport</code> annotation starts a LocalStack container with only the S3 service enabled:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@LocalStackContainerSupport</span><span class="o">(</span><span class="n">services</span> <span class="o">=</span> <span class="n">AwsService</span><span class="o">.</span><span class="na">S3</span><span class="o">,</span>
+        <span class="n">containerLifecycleListener</span> <span class="o">=</span> <span class="n">QuarkusApplicationTest</span><span class="o">.</span><span class="na">LocalStackConfigurer</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="kd">class</span> <span class="nc">QuarkusApplicationTest</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">LocalStackConfigurer</span>
+            <span class="kd">implements</span> <span class="n">ContainerLifecycleListener</span><span class="o">&lt;</span><span class="n">LocalStackContainer</span><span class="o">&gt;</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="nf">started</span><span class="o">(</span><span class="n">LocalStackContainer</span> <span class="n">container</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">String</span> <span class="n">serviceEndpoint</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="na">getEndpointOverride</span><span class="o">(</span><span class="n">AwsService</span><span class="o">.</span><span class="na">S3</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+
+            <span class="n">S3Client</span> <span class="n">s3Client</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="na">getClient</span><span class="o">(</span><span class="n">AwsService</span><span class="o">.</span><span class="na">S3</span><span class="o">);</span>
+            <span class="n">s3Client</span><span class="o">.</span><span class="na">createBucket</span><span class="o">(</span><span class="n">builder</span> <span class="o">-&gt;</span> <span class="n">builder</span><span class="o">.</span><span class="na">bucket</span><span class="o">(</span><span class="n">BUCKET_NAME</span><span class="o">));</span>
+
+            <span class="k">return</span> <span class="n">Map</span><span class="o">.</span><span class="na">of</span><span class="o">(</span>
+                    <span class="s">"aws.s3.bucketNameOrArn"</span><span class="o">,</span> <span class="n">BUCKET_NAME</span><span class="o">,</span>
+                    <span class="s">"aws.s3.uriEndpointOverride"</span><span class="o">,</span> <span class="n">serviceEndpoint</span><span class="o">,</span>
+                    <span class="s">"aws.s3.accessKey"</span><span class="o">,</span> <span class="n">container</span><span class="o">.</span><span class="na">getAccessKey</span><span class="o">(),</span>
+                    <span class="s">"aws.s3.secretKey"</span><span class="o">,</span> <span class="n">container</span><span class="o">.</span><span class="na">getSecretKey</span><span class="o">(),</span>
+                    <span class="s">"aws.s3.region"</span><span class="o">,</span> <span class="n">container</span><span class="o">.</span><span class="na">getRegion</span><span class="o">()</span>
+            <span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">services = AwsService.S3</code> parameter tells LocalStack to start only the S3 service, keeping the container lightweight. The lifecycle listener does two things: it creates the S3 bucket that the Camel route expects, and it returns a map of connection properties that override the <code class="highlighter-rouge">application.properties</code> defaults.</p>
+
+<p>These returned properties — bucket name, endpoint URL, access key, secret key, region — are automatically injected into the Quarkus application context. When the Camel route resolves its `` placeholders, they point to the LocalStack container instead of real AWS.</p>
+
+<h2 id="the-kafka-broker">The Kafka broker</h2>
+
+<p>The Kafka side uses the familiar <code class="highlighter-rouge">@KafkaContainerSupport</code> annotation with a lifecycle listener that creates the topic:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@KafkaContainerSupport</span><span class="o">(</span><span class="n">port</span> <span class="o">=</span> <span class="mi">9092</span><span class="o">,</span> <span class="n">version</span> <span class="o">=</span> <span class="s">"4.2.0"</span><span class="o">,</span>
+        <span class="n">containerLifecycleListener</span> <span class="o">=</span> <span class="n">QuarkusApplicationTest</span><span class="o">.</span><span class="na">KafkaConfigurer</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="kd">class</span> <span class="nc">QuarkusApplicationTest</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">KafkaConfigurer</span>
+            <span class="kd">implements</span> <span class="n">ContainerLifecycleListener</span><span class="o">&lt;</span><span class="n">KafkaContainer</span><span class="o">&gt;</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="nf">started</span><span class="o">(</span><span class="n">KafkaContainer</span> <span class="n">container</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">(</span><span class="n">Admin</span> <span class="n">adminClient</span> <span class="o">=</span> <span class="n">Admin</span><span class="o">.</span><span class="na">create</span><span class="o">(</span>
+                    <span class="n">Collections</span><span class="o">.</span><span class="na">singletonMap</span><span class="o">(</span>
+                        <span class="n">AdminClientConfig</span><span class="o">.</span><span class="na">BOOTSTRAP_SERVERS_CONFIG</span><span class="o">,</span>
+                        <span class="n">container</span><span class="o">.</span><span class="na">getBootstrapServers</span><span class="o">())))</span> <span class="o">{</span>
+
+                <span class="n">adminClient</span><span class="o">.</span><span class="na">createTopics</span><span class="o">(</span><span class="n">Set</span><span class="o">.</span><span class="na">of</span><span class="o">(</span>
+                    <span class="k">new</span> <span class="nf">NewTopic</span><span class="o">(</span><span class="s">"s3-events"</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="o">(</span><span class="kt">short</span><span class="o">)</span> <span class="mi">1</span><span class="o">)</span>
+                <span class="o">)).</span><span class="na">all</span><span class="o">().</span><span class="na">get</span><span class="o">();</span>
+            <span class="o">}</span>
+
+            <span class="k">return</span> <span class="n">Collections</span><span class="o">.</span><span class="na">emptyMap</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This is the same pattern you see in the <a href="/samples/camel-quarkus-kafka/">Camel Kafka sample</a> — the listener creates the <code class="highlighter-rouge">s3-events</code> topic before the application starts.</p>
+
+<h1 id="uploading-files-through-camels-s3-component">Uploading files through Camel’s S3 component</h1>
+
+<p>The test uses Camel’s <code class="highlighter-rouge">aws2-s3</code> component to upload a multi-line file to the LocalStack bucket. As with the <a href="/samples/camel-quarkus-mqtt/">MQTT sample</a>, Citrus leverages Camel’s component library for protocols it does not natively support:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">runner</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+    <span class="n">camel</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">send</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"aws2-s3://citrus-camel-demo?"</span> <span class="o">+</span>
+                <span class="s">"overrideEndpoint=true&amp;"</span> <span class="o">+</span>
+                <span class="s">"forcePathStyle=true&amp;"</span> <span class="o">+</span>
+                <span class="s">"uriEndpointOverride=&amp;"</span> <span class="o">+</span>
+                <span class="s">"accessKey=&amp;"</span> <span class="o">+</span>
+                <span class="s">"secretKey=&amp;"</span> <span class="o">+</span>
+                <span class="s">"region="</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">fork</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Hello Camel!\nHello Citrus!\nHello Quarkus!"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"CamelAwsS3Key"</span><span class="o">,</span> <span class="s">"hello.txt"</span><span class="o">)</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">camel().send()</code> DSL sends a message through Camel’s <code class="highlighter-rouge">aws2-s3</code> endpoint, which uploads the content as an S3 object. The <code class="highlighter-rouge">CamelAwsS3Key</code> header sets the object key to <code class="highlighter-rouge">hello.txt</code>. The property placeholders resolve to the same LocalStack connection settings that the application route uses.</p>
+
+<p>The <code class="highlighter-rouge">fork(true)</code> option sends the upload asynchronously. The S3 Kamelet polls the bucket at intervals, so there is a delay between the upload and the route picking up the file. Forking lets the test proceed to the verification step while the upload and polling happen in the background.</p>
+
+<p>The file body contains three lines separated by newlines. Once the Camel route picks up this file, the Splitter EIP will produce three separate messages — one for each line.</p>
+
+<h1 id="verifying-the-kafka-events">Verifying the Kafka events</h1>
+
+<p>The output side uses standard Citrus Kafka endpoints:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@CitrusEndpoint</span>
+<span class="nd">@KafkaEndpointConfig</span><span class="o">(</span><span class="n">topic</span> <span class="o">=</span> <span class="s">"s3-events"</span><span class="o">,</span> <span class="n">consumerGroup</span> <span class="o">=</span> <span class="s">"citrus-consumer-1"</span><span class="o">)</span>
+<span class="n">KafkaEndpoint</span> <span class="n">s3Events</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p>After uploading the file, the test verifies that each line produces a separate JSON event on the <code class="highlighter-rouge">s3-events</code> Kafka topic:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">runner</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+    <span class="n">receive</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="n">s3Events</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"{ \"message\": \"Hello Camel!\" }"</span><span class="o">)</span>
+<span class="o">);</span>
+
+<span class="n">runner</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+    <span class="n">receive</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="n">s3Events</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"{ \"message\": \"Hello Citrus!\" }"</span><span class="o">)</span>
+<span class="o">);</span>
+
+<span class="n">runner</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+    <span class="n">receive</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="n">s3Events</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"{ \"message\": \"Hello Quarkus!\" }"</span><span class="o">)</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p>Three <code class="highlighter-rouge">receive()</code> actions validate three Kafka messages — one for each line of the uploaded file. Each assertion checks that the JSON wrapper was applied correctly: the line <code class="highlighter-rouge">Hello Camel!</code> becomes <code class="highlighter-rouge">{ "message": "Hello Camel!" }</code>. If the Splitter produces the wrong number of messages, or if the JSON transformation is incorrect, Citrus fails the test with a clear message.</p>
+
+<h1 id="how-it-all-fits-together">How it all fits together</h1>
+
+<p>When you run the test with <code class="highlighter-rouge">./mvnw clean test</code>, here is the sequence of events:</p>
+
+<ol>
+  <li>
+<strong><code class="highlighter-rouge">@LocalStackContainerSupport</code> launches</strong> a LocalStack container with the S3 service and creates the <code class="highlighter-rouge">citrus-camel-demo</code> bucket.</li>
+  <li>
+<strong><code class="highlighter-rouge">@KafkaContainerSupport</code> launches</strong> a Kafka broker and creates the <code class="highlighter-rouge">s3-events</code> topic.</li>
+  <li>
+<strong>Quarkus starts</strong> the application in test mode with S3 and Kafka connection properties pointing to the test containers.</li>
+  <li>
+<strong>Apache Camel discovers</strong> the route and starts polling the S3 bucket via the <code class="highlighter-rouge">aws-s3-source</code> Kamelet.</li>
+  <li>
+<strong>The test uploads</strong> <code class="highlighter-rouge">hello.txt</code> with three lines to the S3 bucket through Camel’s <code class="highlighter-rouge">aws2-s3</code> component.</li>
+  <li>
+<strong>The Kamelet detects</strong> the new object and consumes it from the bucket.</li>
+  <li>
+<strong>The Splitter EIP</strong> breaks the file into three messages — one per line.</li>
+  <li>
+<strong>The filter</strong> removes any empty lines.</li>
+  <li>
+<strong>Each line is wrapped</strong> in a JSON structure: <code class="highlighter-rouge">{ "message": "Hello Camel!" }</code>.</li>
+  <li>
+<strong>Three Kafka messages</strong> are published to the <code class="highlighter-rouge">s3-events</code> topic.</li>
+  <li>
+<strong>Citrus receives</strong> each message and validates the JSON body.</li>
+  <li>
+<strong>Both containers</strong> are stopped and cleaned up automatically.</li>
+</ol>
+
+<p>The critical point is that the same connection properties drive both the application and the test. The <code class="highlighter-rouge">LocalStackConfigurer</code> returns properties like <code class="highlighter-rouge">aws.s3.uriEndpointOverride</code> that the Camel route resolves through its placeholders. The test’s <code class="highlighter-rouge">aws2-s3</code> endpoint uses the same placeholders. This ensures that both sides always point to the same LocalStack instance.</p>
+
+<p>There is one piece of test configuration worth mentioning:</p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">quarkus.arc.ignored-split-packages</span><span class="p">=</span><span class="s">org.citrusframework.*</span>
+</code></pre></div></div>
+
+<p>This avoids CDI bean discovery conflicts between Citrus and Quarkus and is a one-line addition you set once and forget.</p>
+
+<h1 id="localstack--real-aws-behavior-without-real-aws">LocalStack — real AWS behavior without real AWS</h1>
+
+<p>LocalStack emulates AWS services locally with high fidelity. For S3 in particular, it supports bucket creation, object upload and download, listing, and deletion — everything the Camel <code class="highlighter-rouge">aws-s3-source</code> Kamelet needs.</p>
+
+<p>The <code class="highlighter-rouge">@LocalStackContainerSupport</code> annotation makes this integration seamless. You specify which AWS services you need (<code class="highlighter-rouge">AwsService.S3</code>, <code class="highlighter-rouge">AwsService.SQS</code>, <code class="highlighter-rouge">AwsService.SNS</code>, etc.), and the annotation starts a container with only those services enabled. The lifecycle listener gives you a typed <code class="highlighter-rouge">LocalStackContainer</code> instance with convenience methods like <code class="highlighter-rouge">getClient(AwsService.S3)</code> for creating AWS SDK clients and <code class="highlighter-rouge">getEndpointOverride()</code> for retrieving the service URL.</p>
+
+<p>This approach extends to any AWS service that LocalStack supports. If your Camel route consumes from SQS, writes to DynamoDB, or publishes to SNS, the same annotation-and-listener pattern provisions the infrastructure and injects the connection properties.</p>
+
+<h1 id="where-to-go-from-here">Where to go from here</h1>
+
+<p>This example covers the fundamentals of S3-to-Kafka testing, but there are several directions you can take it:</p>
+
+<ul>
+  <li>
+<strong>JSON validation</strong>: Add the <code class="highlighter-rouge">citrus-validation-json</code> module to validate JSON payloads with JsonPath expressions, ignore patterns, and flexible element ordering instead of exact string comparison.</li>
+  <li>
+<strong>Multiple files</strong>: Upload several files to the bucket and verify that each is processed independently, with the correct number of Kafka events per file.</li>
+  <li>
+<strong>Large files</strong>: Test with files containing hundreds of lines to verify that the Splitter and Kafka producer handle volume correctly.</li>
+  <li>
+<strong>Error scenarios</strong>: Upload a file with malformed content and verify that the route handles it gracefully — does it skip bad lines, route them to a dead-letter topic, or log an error?</li>
+  <li>
+<strong>Other AWS services</strong>: If your Camel route consumes from SQS or publishes to SNS, apply the same <code class="highlighter-rouge">@LocalStackContainerSupport</code> pattern with the appropriate <code class="highlighter-rouge">AwsService</code> enum values.</li>
+  <li>
+<strong>Simpler pipelines</strong>: If your Camel route uses Kafka without S3, the <a href="/samples/camel-quarkus-kafka/">Camel Kafka sample</a> demonstrates a simpler setup. For file-based input without cloud storage, the <a href="/samples/camel-quarkus-file-inbox/">file processing pipeline sample</a> shows local file consumption.</li>
+</ul>
+
+<p>To explore the full example project including the source code, head over to the <a href="https://github.com/citrusframework/citrus-quarkus-examples">citrus-quarkus-examples</a> repository on GitHub.</p>
+
+<p>For deeper dives into Citrus capabilities, the <a href="https://citrusframework.org/citrus/reference/html/">reference guide</a> covers Testcontainers integration, Kafka endpoints, Apache Camel support, and the many other transports that Citrus supports.</p>
+
+  </div>
+</article>
+
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <h4>Samples</h4>
+    <ul>
+      <li class="">
+        <a href="/samples/">Overview</a>
+      </li>
+      <li class="">
+        <a href="/samples/todo-app">TodoList App</a>
+      </li>
+      <li class="">
+        <a href="/samples/run">Running</a>
+      </li>
+    </ul>
+    <h4>Configuration</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+
+      
+      
+      <li class="">
+        <a href="/samples/annotation-config/">sample-annotation-config</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/javaconfig/">sample-javaconfig</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/reporting/">sample-reporting</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Connectors</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/kubernetes/">sample-kubernetes</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/docker/">sample-docker</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Demo</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/quarkus/">sample-quarkus</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/cucumber/">sample-cucumber</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/apache-camel/">sample-camel-context</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jbang/">sample-jbang</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Endpoints</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/openapi/">sample-swagger</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-wsaddressing/">sample-soap-wsaddressing</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/rmi/">sample-rmi</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-ssl/">sample-soap-ssl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap/">sample-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-static-response/">sample-http-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http/">sample-http</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/kafka/">sample-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/wsdl/">sample-wsdl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-static-response/">sample-soap-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-loadtest/">sample-http-loadtest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-mtom/">sample-soap-mtom</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-attachment/">sample-soap-attachment</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/sftp/">sample-sftp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-wssecurity/">sample-soap-wssecurity</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/scp/">sample-scp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/https/">sample-https</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jdbc/">sample-jdbc</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-basic-auth/">sample-http-basic-auth</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/ftp/">sample-ftp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/mail/">sample-mail</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dynamic-endpoints/">sample-dynamic-endpoints</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jms/">sample-jms</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Miscellaneous</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/dictionaries/">sample-dictionaries</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/gradle/">sample-gradle</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/message-store/">sample-message-store</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/behavior/">sample-behavior</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Quarkus</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="current">
+        <a href="/samples/camel-quarkus-aws-s3-kafka/">camel-aws-s3-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-openapi-server/">camel-openapi-server</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus-event-driven-kafka/">event-driven-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus-event-driven-jms/">event-driven-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-kafka/">camel-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-rest-to-soap/">camel-rest-to-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-cxf-soap-client/">camel-cxf-soap-client</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-mqtt/">camel-mqtt</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-direct-http/">camel-direct-http</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-direct/">camel-direct</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-rest-dsl/">camel-rest-dsl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-file-inbox/">camel-file-inbox</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-file-outbox/">camel-file-outbox</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-jms/">camel-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-cxf-soap/">camel-cxf-soap</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Runtimes</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/testng/">sample-testng</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dataprovider/">sample-dataprovider</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/junit/">sample-junit</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/junit5/">sample-junit5</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Validation</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/json/">sample-json</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/oxm/">sample-oxm</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xhtml/">sample-xhtml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xml/">sample-xml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/hamcrest/">sample-hamcrest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/databind/">sample-databind</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-form-data/">sample-http-form-data</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/sql/">sample-sql</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/binary/">sample-binary</a>
+      </li>
+      
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/citrusframework/citrus/blob/master/LICENSE">MIT License</a>.</p>
+      <br>
+      <p>© 2026 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p> </p>
+      <br>
+      <br>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>

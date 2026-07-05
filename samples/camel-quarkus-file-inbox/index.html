@@ -1,0 +1,1022 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 4.10.1">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus main branch" href="https://github.com/citrusframework/citrus/commits/main.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="stylesheet" href="/css/tabbed.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/atom-one-light.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+  <script src="/js/tabbed.js"></script>
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="samples">
+    <div class="grid">
+
+      <div class="samples-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the samples…</option>
+    <option value="/samples/">Overview</option>
+    <option value="/samples/todo-app/">TodoList App</option>
+    <option value="/samples/run/">Running</option>
+    
+    
+    <option value="/samples/annotation-config/">sample-annotation-config</option>
+    
+    <option value="/samples/javaconfig/">sample-javaconfig</option>
+    
+    <option value="/samples/reporting/">sample-reporting</option>
+    
+    <option value="/samples/kubernetes/">sample-kubernetes</option>
+    
+    <option value="/samples/docker/">sample-docker</option>
+    
+    <option value="/samples/quarkus/">sample-quarkus</option>
+    
+    <option value="/samples/cucumber/">sample-cucumber</option>
+    
+    <option value="/samples/selenium/">sample-selenium</option>
+    
+    <option value="/samples/apache-camel/">sample-camel-context</option>
+    
+    <option value="/samples/jbang/">sample-jbang</option>
+    
+    <option value="/samples/openapi/">sample-swagger</option>
+    
+    <option value="/samples/soap-wsaddressing/">sample-soap-wsaddressing</option>
+    
+    <option value="/samples/rmi/">sample-rmi</option>
+    
+    <option value="/samples/soap-ssl/">sample-soap-ssl</option>
+    
+    <option value="/samples/soap/">sample-soap</option>
+    
+    <option value="/samples/http-static-response/">sample-http-static-response</option>
+    
+    <option value="/samples/http/">sample-http</option>
+    
+    <option value="/samples/kafka/">sample-kafka</option>
+    
+    <option value="/samples/wsdl/">sample-wsdl</option>
+    
+    <option value="/samples/soap-static-response/">sample-soap-static-response</option>
+    
+    <option value="/samples/http-loadtest/">sample-http-loadtest</option>
+    
+    <option value="/samples/soap-mtom/">sample-soap-mtom</option>
+    
+    <option value="/samples/soap-attachment/">sample-soap-attachment</option>
+    
+    <option value="/samples/sftp/">sample-sftp</option>
+    
+    <option value="/samples/soap-wssecurity/">sample-soap-wssecurity</option>
+    
+    <option value="/samples/scp/">sample-scp</option>
+    
+    <option value="/samples/https/">sample-https</option>
+    
+    <option value="/samples/jdbc/">sample-jdbc</option>
+    
+    <option value="/samples/http-basic-auth/">sample-http-basic-auth</option>
+    
+    <option value="/samples/ftp/">sample-ftp</option>
+    
+    <option value="/samples/mail/">sample-mail</option>
+    
+    <option value="/samples/dynamic-endpoints/">sample-dynamic-endpoints</option>
+    
+    <option value="/samples/jms/">sample-jms</option>
+    
+    <option value="/samples/dictionaries/">sample-dictionaries</option>
+    
+    <option value="/samples/gradle/">sample-gradle</option>
+    
+    <option value="/samples/message-store/">sample-message-store</option>
+    
+    <option value="/samples/behavior/">sample-behavior</option>
+    
+    <option value="/samples/camel-quarkus-aws-s3-kafka/">camel-aws-s3-kafka</option>
+    
+    <option value="/samples/camel-quarkus-openapi-server/">camel-openapi-server</option>
+    
+    <option value="/samples/quarkus-event-driven-kafka/">event-driven-kafka</option>
+    
+    <option value="/samples/quarkus-event-driven-jms/">event-driven-jms</option>
+    
+    <option value="/samples/camel-quarkus-kafka/">camel-kafka</option>
+    
+    <option value="/samples/camel-quarkus-rest-to-soap/">camel-rest-to-soap</option>
+    
+    <option value="/samples/camel-quarkus-cxf-soap-client/">camel-cxf-soap-client</option>
+    
+    <option value="/samples/camel-quarkus-mqtt/">camel-mqtt</option>
+    
+    <option value="/samples/camel-quarkus-direct-http/">camel-direct-http</option>
+    
+    <option value="/samples/camel-quarkus-direct/">camel-direct</option>
+    
+    <option value="/samples/camel-quarkus-rest-dsl/">camel-rest-dsl</option>
+    
+    <option value="/samples/camel-quarkus-file-inbox/">camel-file-inbox</option>
+    
+    <option value="/samples/camel-quarkus-file-outbox/">camel-file-outbox</option>
+    
+    <option value="/samples/camel-quarkus-jms/">camel-jms</option>
+    
+    <option value="/samples/camel-quarkus-cxf-soap/">camel-cxf-soap</option>
+    
+    <option value="/samples/testng/">sample-testng</option>
+    
+    <option value="/samples/dataprovider/">sample-dataprovider</option>
+    
+    <option value="/samples/junit/">sample-junit</option>
+    
+    <option value="/samples/junit5/">sample-junit5</option>
+    
+    <option value="/samples/json/">sample-json</option>
+    
+    <option value="/samples/oxm/">sample-oxm</option>
+    
+    <option value="/samples/xhtml/">sample-xhtml</option>
+    
+    <option value="/samples/xml/">sample-xml</option>
+    
+    <option value="/samples/hamcrest/">sample-hamcrest</option>
+    
+    <option value="/samples/databind/">sample-databind</option>
+    
+    <option value="/samples/http-form-data/">sample-http-form-data</option>
+    
+    <option value="/samples/sql/">sample-sql</option>
+    
+    <option value="/samples/binary/">sample-binary</option>
+    
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+  <h2>
+    
+    
+    <img src="/img/icons/camel.png" style="width: 1em;height: 1em;" alt="">
+    
+    Apache Camel Quarkus - File Processing Pipeline
+    <a href="/samples/camel-quarkus-file-inbox/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <div class="right">
+    
+    <a href="https://github.com/citrusframework/citrus-quarkus-examples/blob/master/apache-camel/camel-file-inbox" target="_blank">
+      <i class="fa fa-pencil"></i> View source code
+    </a>
+    
+    
+  </div>
+  <span class="post-category">
+    <span class="label">
+      samples
+    </span>
+  </span>
+  <div class="post-content">
+    <p>File-based integration is one of the oldest patterns in enterprise software, and it is still everywhere. A process drops a file into a directory, another process picks it up, transforms the content, and publishes the results downstream. Apache Camel has supported this pattern since day one with its file component, data format processors, and enterprise integration patterns like the Splitter.</p>
+
+<p>Testing file processing pipelines is tricky. You need to create files in the right format, drop them into the right directory, wait for the application to pick them up, and then verify the output on the other end. And if the file is compressed — a ZIP archive, for instance — you also need to create valid compressed test data.</p>
+
+<p>This post walks you through testing an Apache Camel file processing route in a Quarkus application using the <a href="https://citrusframework.org">Citrus</a> integration testing framework. The key insight is that Citrus can leverage Camel’s own data format processors to create test data.</p>
+
+<p>Instead of writing boilerplate code to build ZIP files manually, you let Camel compress the content the same way the production route decompresses it.</p>
+
+<p>By the end you will have a clear recipe for testing file-based Camel routes with complex data transformations.</p>
+
+<h1 id="the-application-under-test">The application under test</h1>
+
+<p>The example application implements a file processing pipeline. It polls a directory for ZIP files, decompresses them, splits the content into individual words, transforms each word to uppercase, and publishes the results to a Kafka topic.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>File Inbox (ZIP) --&gt; Unmarshal --&gt; Split --&gt; Transform --&gt; Kafka Topic (words-out)
+</code></pre></div></div>
+
+<p>The entire logic lives in a single Camel route using the type-safe Endpoint DSL:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Routes</span> <span class="kd">extends</span> <span class="n">EndpointRouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">from</span><span class="o">(</span><span class="n">file</span><span class="o">(</span><span class="s">"inbox"</span><span class="o">).</span><span class="na">delete</span><span class="o">(</span><span class="kc">true</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">unmarshal</span><span class="o">(</span><span class="n">dataFormat</span><span class="o">().</span><span class="na">zipFile</span><span class="o">().</span><span class="na">end</span><span class="o">())</span>
+            <span class="o">.</span><span class="na">convertBodyTo</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="n">body</span><span class="o">().</span><span class="na">tokenize</span><span class="o">(</span><span class="s">" "</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">setBody</span><span class="o">(</span><span class="n">exchange</span> <span class="o">-&gt;</span> <span class="s">"&gt;&gt; "</span> <span class="o">+</span> <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">getBody</span><span class="o">().</span><span class="na">toString</span><span class="o">().</span><span class="na">toUpperCase</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"kafka:words-out"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>There is a lot happening in these few lines, so let’s walk through each step.</p>
+
+<p>The route starts with <code class="highlighter-rouge">file("inbox").delete(true)</code>, which polls the <code class="highlighter-rouge">inbox</code> directory for new files and deletes each file after successful processing. By extending <code class="highlighter-rouge">EndpointRouteBuilder</code>, the route uses Camel’s Endpoint DSL — <code class="highlighter-rouge">file("inbox")</code> is a type-safe method call with IDE auto-completion, not a string URI like <code class="highlighter-rouge">"file:inbox?delete=true"</code> that could contain typos.</p>
+
+<p>Next, <code class="highlighter-rouge">unmarshal(dataFormat().zipFile().end())</code> decompresses the ZIP archive using Camel’s zipFile data format. Data formats are Camel’s abstraction for marshalling (object to format) and unmarshalling (format to object). The zipFile format uses Java’s <code class="highlighter-rouge">ZipInputStream</code> under the hood, but you never deal with that directly.</p>
+
+<p>After converting the decompressed content to a string, the <strong>Splitter EIP</strong> takes over. The expression <code class="highlighter-rouge">body().tokenize(" ")</code> splits the message body on whitespace, turning a single message containing <code class="highlighter-rouge">"Hello World"</code> into two separate messages: <code class="highlighter-rouge">"Hello"</code> and <code class="highlighter-rouge">"World"</code>. Each token becomes an individual Camel exchange that flows through the rest of the route independently.</p>
+
+<p>Finally, each token is transformed to uppercase with a <code class="highlighter-rouge">"&gt;&gt; "</code> prefix and published to the <code class="highlighter-rouge">words-out</code> Kafka topic as a separate message.</p>
+
+<h1 id="adding-citrus-to-the-project">Adding Citrus to the project</h1>
+
+<p>This example uses the Citrus-Camel integration to send files and Kafka endpoints to verify the output. Add these test-scoped dependencies to the Maven POM:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-quarkus<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>4.10.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-camel<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>4.10.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-kafka<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>4.10.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-junit-jupiter<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>4.10.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>Here is what each module brings to the table:</p>
+
+<ul>
+  <li>
+<strong>citrus-quarkus</strong> integrates Citrus with the Quarkus test lifecycle.</li>
+  <li>
+<strong>citrus-camel</strong> provides the <code class="highlighter-rouge">camel()</code> DSL for sending messages through Camel endpoints and — critically — access to Camel’s data format processors for creating test data.</li>
+  <li>
+<strong>citrus-kafka</strong> provides Kafka endpoint implementations for receiving and validating the output messages.</li>
+  <li>
+<strong>citrus-junit-jupiter</strong> connects Citrus to JUnit 5.</li>
+</ul>
+
+<p>The key module is <strong>citrus-camel</strong>. It does not just let you send messages through Camel endpoints — it also gives your tests access to Camel’s entire library of data format processors. This is how the test creates ZIP files without any manual compression code.</p>
+
+<h1 id="setting-up-the-test-class">Setting up the test class</h1>
+
+<p>The test class wires together Quarkus, Camel, and Citrus:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@QuarkusTest</span>
+<span class="nd">@CitrusSupport</span>
+<span class="kd">class</span> <span class="nc">QuarkusApplicationTest</span> <span class="kd">extends</span> <span class="n">CamelQuarkusTestSupport</span>
+        <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
+
+    <span class="nd">@Inject</span>
+    <span class="nd">@BindToRegistry</span>
+    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="nd">@CitrusEndpoint</span>
+    <span class="nd">@KafkaEndpointConfig</span><span class="o">(</span><span class="n">topic</span> <span class="o">=</span> <span class="s">"words-out"</span><span class="o">,</span>
+            <span class="n">server</span> <span class="o">=</span> <span class="s">"${kafka.bootstrap.servers}"</span><span class="o">)</span>
+    <span class="n">KafkaEndpoint</span> <span class="n">wordsOut</span><span class="o">;</span>
+
+    <span class="nd">@CitrusResource</span>
+    <span class="n">GherkinTestActionRunner</span> <span class="n">runner</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>A few things are worth noting here.</p>
+
+<p>The class extends <code class="highlighter-rouge">CamelQuarkusTestSupport</code>, which provides additional Camel testing capabilities on top of the standard Quarkus test lifecycle. The <code class="highlighter-rouge">CamelContext</code> is injected with <code class="highlighter-rouge">@Inject</code> and registered in the Citrus registry with <code class="highlighter-rouge">@BindToRegistry</code>. This shared context is what enables the test to use Camel’s data format processors — the test accesses the same Camel runtime that the application uses.</p>
+
+<p>The Kafka endpoint uses <code class="highlighter-rouge">${kafka.bootstrap.servers}</code> as the server address. This property is provided by Quarkus Kafka dev services, which automatically starts a Kafka container via Testcontainers. Unlike the other Camel samples on this site, there is no explicit <code class="highlighter-rouge">@KafkaContainerSupport</code> annotation — Quarkus handles the broker provisioning entirely on its own.</p>
+
+<h1 id="creating-test-data-with-camel-data-formats">Creating test data with Camel data formats</h1>
+
+<p>This is the heart of the example. The test needs to create a valid ZIP file and drop it into the <code class="highlighter-rouge">inbox</code> directory. Without Camel, you would write something like this:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ByteArrayOutputStream</span> <span class="n">baos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ByteArrayOutputStream</span><span class="o">();</span>
+<span class="n">ZipOutputStream</span> <span class="n">zos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ZipOutputStream</span><span class="o">(</span><span class="n">baos</span><span class="o">);</span>
+<span class="n">zos</span><span class="o">.</span><span class="na">putNextEntry</span><span class="o">(</span><span class="k">new</span> <span class="n">ZipEntry</span><span class="o">(</span><span class="s">"content.txt"</span><span class="o">));</span>
+<span class="n">zos</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"Hello World"</span><span class="o">.</span><span class="na">getBytes</span><span class="o">());</span>
+<span class="n">zos</span><span class="o">.</span><span class="na">closeEntry</span><span class="o">();</span>
+<span class="n">zos</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="kt">byte</span><span class="o">[]</span> <span class="n">zipContent</span> <span class="o">=</span> <span class="n">baos</span><span class="o">.</span><span class="na">toByteArray</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p>That is six lines of low-level Java I/O just to create a simple ZIP file. With Citrus and Camel, you replace all of it with a single declarative transform:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">runner</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+    <span class="n">camel</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">send</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"file:inbox"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"CamelFileName"</span><span class="o">,</span> <span class="s">"words.zip"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Hello World"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">transform</span><span class="o">(</span><span class="n">processor</span><span class="o">().</span><span class="na">camel</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">marshal</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">zipFile</span><span class="o">())</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p>Let’s break this down.</p>
+
+<p>The <code class="highlighter-rouge">camel().send()</code> DSL sends a message through a Camel endpoint. The endpoint is the <code class="highlighter-rouge">inbox</code> file directory — the same directory the application route polls. The <code class="highlighter-rouge">CamelFileName</code> header tells Camel what to name the file.</p>
+
+<p>The body is just the plain text <code class="highlighter-rouge">"Hello World"</code>. The transform step is where the magic happens: <code class="highlighter-rouge">processor().camel().marshal().zipFile()</code> tells Citrus to run the message body through Camel’s zipFile data format processor before writing it to disk. Camel compresses the text into a valid ZIP archive, and the resulting <code class="highlighter-rouge">words.zip</code> file lands in the <code class="highlighter-rouge">inbox</code> directory ready for the application route to pick up.</p>
+
+<p>This approach has a deep advantage beyond saving lines of code. The test uses the exact same data format implementation as the production route — just in the opposite direction. The route calls <code class="highlighter-rouge">unmarshal()</code> to decompress; the test calls <code class="highlighter-rouge">marshal()</code> to compress. If the data format configuration ever changes, both sides stay in sync automatically.</p>
+
+<h1 id="writing-the-test">Writing the test</h1>
+
+<p>With the test data creation covered, the full test verifies the entire pipeline from ZIP file to Kafka messages:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kt">void</span> <span class="nf">shouldConsumeFileContent</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">runner</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+        <span class="n">camel</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">send</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"file:inbox"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"CamelFileName"</span><span class="o">,</span> <span class="s">"words.zip"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Hello World"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">transform</span><span class="o">(</span><span class="n">processor</span><span class="o">().</span><span class="na">camel</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">marshal</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">zipFile</span><span class="o">())</span>
+    <span class="o">);</span>
+
+    <span class="n">runner</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+        <span class="n">receive</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="n">wordsOut</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"&gt;&gt; HELLO"</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">runner</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+        <span class="n">receive</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="n">wordsOut</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"&gt;&gt; WORLD"</span><span class="o">)</span>
+    <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The <strong>when</strong> block creates the ZIP file and drops it into the <code class="highlighter-rouge">inbox</code> directory. The Camel file consumer detects the new file, decompresses it, splits <code class="highlighter-rouge">"Hello World"</code> into two tokens, transforms each to uppercase with the <code class="highlighter-rouge">"&gt;&gt; "</code> prefix, and publishes them to Kafka.</p>
+
+<p>The two <strong>then</strong> blocks verify that both messages arrive on the <code class="highlighter-rouge">words-out</code> Kafka topic in the correct order: first <code class="highlighter-rouge">"&gt;&gt; HELLO"</code>, then <code class="highlighter-rouge">"&gt;&gt; WORLD"</code>. Each <code class="highlighter-rouge">receive()</code> action blocks until a message arrives or a timeout occurs, ensuring deterministic verification of the Splitter EIP output.</p>
+
+<p>This single test covers the entire processing pipeline:</p>
+<ul>
+  <li>File detection and consumption from the <code class="highlighter-rouge">inbox</code> directory</li>
+  <li>ZIP decompression using the zipFile data format</li>
+  <li>Content splitting with the Splitter EIP</li>
+  <li>Uppercase transformation with prefix formatting</li>
+  <li>Kafka publication of each split message</li>
+  <li>Message ordering across the split</li>
+</ul>
+
+<h1 id="how-it-all-fits-together">How it all fits together</h1>
+
+<p>When you run the test with <code class="highlighter-rouge">./mvnw clean test</code>, here is the sequence of events:</p>
+
+<ol>
+  <li>
+<strong>Quarkus starts</strong> the application in test mode.</li>
+  <li>
+<strong>Kafka dev services</strong> start a Kafka container and expose the bootstrap servers property.</li>
+  <li>
+<strong>Apache Camel discovers</strong> the route and starts polling the <code class="highlighter-rouge">inbox</code> directory.</li>
+  <li>
+<strong>Citrus creates</strong> a ZIP file using Camel’s zipFile data format and writes it to <code class="highlighter-rouge">inbox/words.zip</code>.</li>
+  <li>
+<strong>The Camel file consumer</strong> detects the new file and begins processing.</li>
+  <li>
+<strong>The route decompresses</strong> the ZIP archive, converts to string, and splits on whitespace.</li>
+  <li>
+<strong>Each token</strong> is transformed to uppercase with the <code class="highlighter-rouge">"&gt;&gt; "</code> prefix.</li>
+  <li>
+<strong>Two Kafka messages</strong> are published to the <code class="highlighter-rouge">words-out</code> topic: <code class="highlighter-rouge">"&gt;&gt; HELLO"</code> and <code class="highlighter-rouge">"&gt;&gt; WORLD"</code>.</li>
+  <li>
+<strong>Citrus receives</strong> both messages and validates the bodies.</li>
+  <li>
+<strong>The file is deleted</strong> from the inbox (because <code class="highlighter-rouge">delete(true)</code> is set on the file endpoint).</li>
+  <li>
+<strong>The Kafka container</strong> is stopped and cleaned up automatically.</li>
+</ol>
+
+<p>One piece of test configuration is needed for Quarkus CDI compatibility:</p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">quarkus.arc.ignored-split-packages</span><span class="p">=</span><span class="s">org.citrusframework.*</span>
+</code></pre></div></div>
+
+<h1 id="beyond-zip-using-other-data-formats-in-tests">Beyond ZIP: using other data formats in tests</h1>
+
+<p>The pattern shown here works with any Camel data format. If your route unmarshals JSON, you can marshal JSON in the test. If your route decodes Base64, you can encode Base64 in the test. The syntax stays the same — only the data format name changes:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// JSON marshalling</span>
+<span class="o">.</span><span class="na">transform</span><span class="o">(</span><span class="n">processor</span><span class="o">().</span><span class="na">camel</span><span class="o">(</span><span class="n">camelContext</span><span class="o">).</span><span class="na">marshal</span><span class="o">().</span><span class="na">json</span><span class="o">())</span>
+
+<span class="c1">// Base64 encoding</span>
+<span class="o">.</span><span class="na">transform</span><span class="o">(</span><span class="n">processor</span><span class="o">().</span><span class="na">camel</span><span class="o">(</span><span class="n">camelContext</span><span class="o">).</span><span class="na">marshal</span><span class="o">().</span><span class="na">base64</span><span class="o">())</span>
+
+<span class="c1">// GZIP compression</span>
+<span class="o">.</span><span class="na">transform</span><span class="o">(</span><span class="n">processor</span><span class="o">().</span><span class="na">camel</span><span class="o">(</span><span class="n">camelContext</span><span class="o">).</span><span class="na">marshal</span><span class="o">().</span><span class="na">gzip</span><span class="o">())</span>
+
+<span class="c1">// CSV generation</span>
+<span class="o">.</span><span class="na">transform</span><span class="o">(</span><span class="n">processor</span><span class="o">().</span><span class="na">camel</span><span class="o">(</span><span class="n">camelContext</span><span class="o">).</span><span class="na">marshal</span><span class="o">().</span><span class="na">csv</span><span class="o">())</span>
+</code></pre></div></div>
+
+<p>This consistency means you can test any Camel route that uses data formats without writing custom serialization code. The production route and the test always use the same underlying implementation, which eliminates an entire class of test-vs-production divergence bugs.</p>
+
+<h1 id="where-to-go-from-here">Where to go from here</h1>
+
+<p>This example covers file processing with ZIP compression and the Splitter EIP, but Citrus and Camel support many more file-based scenarios:</p>
+
+<ul>
+  <li>
+<strong>File filters and patterns</strong>: Configure the file consumer with <code class="highlighter-rouge">include("*.zip")</code> to process only certain file types. Test that non-matching files are correctly ignored.</li>
+  <li>
+<strong>Error handling</strong>: Test what happens when the route encounters an invalid ZIP file or a file with unexpected content. Camel’s error handling and dead-letter channels can be verified with Citrus.</li>
+  <li>
+<strong>Multiple files</strong>: Send several ZIP files in sequence and verify that all messages arrive on Kafka in the expected order.</li>
+  <li>
+<strong>Aggregator EIP</strong>: The opposite of the Splitter — combine multiple messages back into a single file. Test the round-trip by splitting and re-aggregating.</li>
+  <li>
+<strong>Messaging comparison</strong>: If your Camel route uses JMS or Kafka input instead of file polling, the <a href="/samples/camel-quarkus-jms/">Camel JMS sample</a> and <a href="/samples/camel-quarkus-kafka/">Camel Kafka sample</a> on this site demonstrate the equivalent setup.</li>
+</ul>
+
+<p>To explore the full example project including the source code, head over to the <a href="https://github.com/citrusframework/citrus-quarkus-examples">citrus-quarkus-examples</a> repository on GitHub.</p>
+
+<p>For deeper dives into Citrus capabilities, the <a href="https://citrusframework.org/citrus/reference/html/">reference guide</a> covers Camel integration, Kafka endpoints, data format processors, and the many other transports that Citrus supports.</p>
+
+  </div>
+</article>
+
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <h4>Samples</h4>
+    <ul>
+      <li class="">
+        <a href="/samples/">Overview</a>
+      </li>
+      <li class="">
+        <a href="/samples/todo-app">TodoList App</a>
+      </li>
+      <li class="">
+        <a href="/samples/run">Running</a>
+      </li>
+    </ul>
+    <h4>Configuration</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+
+      
+      
+      <li class="">
+        <a href="/samples/annotation-config/">sample-annotation-config</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/javaconfig/">sample-javaconfig</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/reporting/">sample-reporting</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Connectors</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/kubernetes/">sample-kubernetes</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/docker/">sample-docker</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Demo</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/quarkus/">sample-quarkus</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/cucumber/">sample-cucumber</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/apache-camel/">sample-camel-context</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jbang/">sample-jbang</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Endpoints</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/openapi/">sample-swagger</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-wsaddressing/">sample-soap-wsaddressing</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/rmi/">sample-rmi</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-ssl/">sample-soap-ssl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap/">sample-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-static-response/">sample-http-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http/">sample-http</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/kafka/">sample-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/wsdl/">sample-wsdl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-static-response/">sample-soap-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-loadtest/">sample-http-loadtest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-mtom/">sample-soap-mtom</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-attachment/">sample-soap-attachment</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/sftp/">sample-sftp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-wssecurity/">sample-soap-wssecurity</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/scp/">sample-scp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/https/">sample-https</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jdbc/">sample-jdbc</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-basic-auth/">sample-http-basic-auth</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/ftp/">sample-ftp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/mail/">sample-mail</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dynamic-endpoints/">sample-dynamic-endpoints</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jms/">sample-jms</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Miscellaneous</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/dictionaries/">sample-dictionaries</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/gradle/">sample-gradle</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/message-store/">sample-message-store</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/behavior/">sample-behavior</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Quarkus</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-aws-s3-kafka/">camel-aws-s3-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-openapi-server/">camel-openapi-server</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus-event-driven-kafka/">event-driven-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus-event-driven-jms/">event-driven-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-kafka/">camel-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-rest-to-soap/">camel-rest-to-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-cxf-soap-client/">camel-cxf-soap-client</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-mqtt/">camel-mqtt</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-direct-http/">camel-direct-http</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-direct/">camel-direct</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-rest-dsl/">camel-rest-dsl</a>
+      </li>
+      
+      
+      <li class="current">
+        <a href="/samples/camel-quarkus-file-inbox/">camel-file-inbox</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-file-outbox/">camel-file-outbox</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-jms/">camel-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-cxf-soap/">camel-cxf-soap</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Runtimes</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/testng/">sample-testng</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dataprovider/">sample-dataprovider</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/junit/">sample-junit</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/junit5/">sample-junit5</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Validation</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/json/">sample-json</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/oxm/">sample-oxm</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xhtml/">sample-xhtml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xml/">sample-xml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/hamcrest/">sample-hamcrest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/databind/">sample-databind</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-form-data/">sample-http-form-data</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/sql/">sample-sql</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/binary/">sample-binary</a>
+      </li>
+      
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/citrusframework/citrus/blob/master/LICENSE">MIT License</a>.</p>
+      <br>
+      <p>© 2026 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p> </p>
+      <br>
+      <br>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>

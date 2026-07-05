@@ -1,0 +1,1061 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 4.10.1">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus main branch" href="https://github.com/citrusframework/citrus/commits/main.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="stylesheet" href="/css/tabbed.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/atom-one-light.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+  <script src="/js/tabbed.js"></script>
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="samples">
+    <div class="grid">
+
+      <div class="samples-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the samples…</option>
+    <option value="/samples/">Overview</option>
+    <option value="/samples/todo-app/">TodoList App</option>
+    <option value="/samples/run/">Running</option>
+    
+    
+    <option value="/samples/annotation-config/">sample-annotation-config</option>
+    
+    <option value="/samples/javaconfig/">sample-javaconfig</option>
+    
+    <option value="/samples/reporting/">sample-reporting</option>
+    
+    <option value="/samples/kubernetes/">sample-kubernetes</option>
+    
+    <option value="/samples/docker/">sample-docker</option>
+    
+    <option value="/samples/quarkus/">sample-quarkus</option>
+    
+    <option value="/samples/cucumber/">sample-cucumber</option>
+    
+    <option value="/samples/selenium/">sample-selenium</option>
+    
+    <option value="/samples/apache-camel/">sample-camel-context</option>
+    
+    <option value="/samples/jbang/">sample-jbang</option>
+    
+    <option value="/samples/openapi/">sample-swagger</option>
+    
+    <option value="/samples/soap-wsaddressing/">sample-soap-wsaddressing</option>
+    
+    <option value="/samples/rmi/">sample-rmi</option>
+    
+    <option value="/samples/soap-ssl/">sample-soap-ssl</option>
+    
+    <option value="/samples/soap/">sample-soap</option>
+    
+    <option value="/samples/http-static-response/">sample-http-static-response</option>
+    
+    <option value="/samples/http/">sample-http</option>
+    
+    <option value="/samples/kafka/">sample-kafka</option>
+    
+    <option value="/samples/wsdl/">sample-wsdl</option>
+    
+    <option value="/samples/soap-static-response/">sample-soap-static-response</option>
+    
+    <option value="/samples/http-loadtest/">sample-http-loadtest</option>
+    
+    <option value="/samples/soap-mtom/">sample-soap-mtom</option>
+    
+    <option value="/samples/soap-attachment/">sample-soap-attachment</option>
+    
+    <option value="/samples/sftp/">sample-sftp</option>
+    
+    <option value="/samples/soap-wssecurity/">sample-soap-wssecurity</option>
+    
+    <option value="/samples/scp/">sample-scp</option>
+    
+    <option value="/samples/https/">sample-https</option>
+    
+    <option value="/samples/jdbc/">sample-jdbc</option>
+    
+    <option value="/samples/http-basic-auth/">sample-http-basic-auth</option>
+    
+    <option value="/samples/ftp/">sample-ftp</option>
+    
+    <option value="/samples/mail/">sample-mail</option>
+    
+    <option value="/samples/dynamic-endpoints/">sample-dynamic-endpoints</option>
+    
+    <option value="/samples/jms/">sample-jms</option>
+    
+    <option value="/samples/dictionaries/">sample-dictionaries</option>
+    
+    <option value="/samples/gradle/">sample-gradle</option>
+    
+    <option value="/samples/message-store/">sample-message-store</option>
+    
+    <option value="/samples/behavior/">sample-behavior</option>
+    
+    <option value="/samples/camel-quarkus-aws-s3-kafka/">camel-aws-s3-kafka</option>
+    
+    <option value="/samples/camel-quarkus-openapi-server/">camel-openapi-server</option>
+    
+    <option value="/samples/quarkus-event-driven-kafka/">event-driven-kafka</option>
+    
+    <option value="/samples/quarkus-event-driven-jms/">event-driven-jms</option>
+    
+    <option value="/samples/camel-quarkus-kafka/">camel-kafka</option>
+    
+    <option value="/samples/camel-quarkus-rest-to-soap/">camel-rest-to-soap</option>
+    
+    <option value="/samples/camel-quarkus-cxf-soap-client/">camel-cxf-soap-client</option>
+    
+    <option value="/samples/camel-quarkus-mqtt/">camel-mqtt</option>
+    
+    <option value="/samples/camel-quarkus-direct-http/">camel-direct-http</option>
+    
+    <option value="/samples/camel-quarkus-direct/">camel-direct</option>
+    
+    <option value="/samples/camel-quarkus-rest-dsl/">camel-rest-dsl</option>
+    
+    <option value="/samples/camel-quarkus-file-inbox/">camel-file-inbox</option>
+    
+    <option value="/samples/camel-quarkus-file-outbox/">camel-file-outbox</option>
+    
+    <option value="/samples/camel-quarkus-jms/">camel-jms</option>
+    
+    <option value="/samples/camel-quarkus-cxf-soap/">camel-cxf-soap</option>
+    
+    <option value="/samples/testng/">sample-testng</option>
+    
+    <option value="/samples/dataprovider/">sample-dataprovider</option>
+    
+    <option value="/samples/junit/">sample-junit</option>
+    
+    <option value="/samples/junit5/">sample-junit5</option>
+    
+    <option value="/samples/json/">sample-json</option>
+    
+    <option value="/samples/oxm/">sample-oxm</option>
+    
+    <option value="/samples/xhtml/">sample-xhtml</option>
+    
+    <option value="/samples/xml/">sample-xml</option>
+    
+    <option value="/samples/hamcrest/">sample-hamcrest</option>
+    
+    <option value="/samples/databind/">sample-databind</option>
+    
+    <option value="/samples/http-form-data/">sample-http-form-data</option>
+    
+    <option value="/samples/sql/">sample-sql</option>
+    
+    <option value="/samples/binary/">sample-binary</option>
+    
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+  <h2>
+    
+    
+    <img src="/img/icons/camel.png" style="width: 1em;height: 1em;" alt="">
+    
+    Apache Camel Quarkus - HTTP Service Virtualization
+    <a href="/samples/camel-quarkus-direct-http/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <div class="right">
+    
+    <a href="https://github.com/citrusframework/citrus-quarkus-examples/blob/master/apache-camel/camel-direct-http" target="_blank">
+      <i class="fa fa-pencil"></i> View source code
+    </a>
+    
+    
+  </div>
+  <span class="post-category">
+    <span class="label">
+      samples
+    </span>
+  </span>
+  <div class="post-content">
+    <p>Most integration routes do not live in isolation. They call external HTTP services — a translation API, a payment gateway, a notification service. Testing these routes means you need a way to simulate those external dependencies: validate the requests your route makes, control the responses it receives, and verify the end-to-end flow without depending on real services.</p>
+
+<p>This is where service virtualization comes in. Instead of calling the real service, your test starts a simulated HTTP server that behaves exactly the way you tell it to. You get full control over request validation, response content, error scenarios, and timing — all within a deterministic, repeatable test.</p>
+
+<p>This post walks you through testing an Apache Camel route with an external HTTP dependency in a Quarkus application using the <a href="https://citrusframework.org">Citrus</a> integration testing framework. You will see how Citrus spins up a simulated HTTP server, validates the requests Camel sends to it, sends back controlled responses, and verifies the final output.</p>
+
+<p>By the end you will have a recipe for testing any Camel route that calls external HTTP services.</p>
+
+<h1 id="the-application-under-test">The application under test</h1>
+
+<p>The example application implements a translation pipeline. It receives a text message, optionally calls an external translation service based on a language header, transforms the result to uppercase with a prefix, and sends it to an output endpoint.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Direct Endpoint (direct:words-in) --&gt; Translation Route --&gt; HTTP Service --&gt; Transform --&gt; Mock Endpoint (mock:words-out)
+</code></pre></div></div>
+
+<p>The logic is split into two interconnected Camel routes. The main route handles the overall pipeline:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">from</span><span class="o">(</span><span class="s">"direct:words-in"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"direct:translate"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">setBody</span><span class="o">(</span><span class="n">exchange</span> <span class="o">-&gt;</span> <span class="s">"&gt;&gt; "</span> <span class="o">+</span> <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">getBody</span><span class="o">().</span><span class="na">toString</span><span class="o">().</span><span class="na">toUpperCase</span><span class="o">())</span>
+    <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"mock:words-out"</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>The translation route handles the HTTP service call with content-based routing:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">from</span><span class="o">(</span><span class="s">"direct:translate"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">choice</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">simple</span><span class="o">(</span><span class="s">"${header.lang} != null"</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">setVariable</span><span class="o">(</span><span class="s">"lang"</span><span class="o">,</span> <span class="n">simple</span><span class="o">(</span><span class="s">"${header.lang}"</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">removeHeaders</span><span class="o">(</span><span class="s">"*"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="n">Exchange</span><span class="o">.</span><span class="na">HTTP_METHOD</span><span class="o">,</span> <span class="n">constant</span><span class="o">(</span><span class="s">"POST"</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="n">Exchange</span><span class="o">.</span><span class="na">HTTP_QUERY</span><span class="o">,</span> <span class="n">simple</span><span class="o">(</span><span class="s">"lang=${variable.lang}"</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"http://:/translate"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">convertBodyTo</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">otherwise</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">setBody</span><span class="o">(</span><span class="n">simple</span><span class="o">(</span><span class="s">"${body}"</span><span class="o">));</span>
+</code></pre></div></div>
+
+<p>There is a lot going on in the translation route, so let’s walk through it.</p>
+
+<p>The <strong>Content Based Router</strong> (<code class="highlighter-rouge">choice().when()</code>) checks whether the incoming message carries a <code class="highlighter-rouge">lang</code> header. If it does, the route calls the translation service. If not, it passes the original message through unchanged.</p>
+
+<p>Before making the HTTP call, the route stores the <code class="highlighter-rouge">lang</code> value in a Camel <strong>variable</strong> using <code class="highlighter-rouge">setVariable()</code>. This is important because the next step — <code class="highlighter-rouge">removeHeaders("*")</code> — clears all message headers. Without saving the language first, it would be lost. Variables survive header removal, so the route can reconstruct the query parameter later with <code class="highlighter-rouge">simple("lang=${variable.lang}")</code>.</p>
+
+<p>The HTTP endpoint URL uses <strong>property placeholders</strong>, resolved from <code class="highlighter-rouge">application.properties</code>:</p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">camel.translate.service.host</span><span class="p">=</span><span class="s">localhost</span>
+<span class="py">camel.translate.service.port</span><span class="p">=</span><span class="s">9001</span>
+</code></pre></div></div>
+
+<p>This design — route composition, content-based routing, variable management, and property-driven configuration — is representative of real-world Camel applications. Now let’s test it.</p>
+
+<h1 id="adding-citrus-to-the-project">Adding Citrus to the project</h1>
+
+<p>This example needs the Citrus HTTP module for service virtualization and the Camel module for direct endpoint access:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-quarkus<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>4.10.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-camel<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>4.10.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-http<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>4.10.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-junit-jupiter<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>4.10.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>Here is what each module brings to the table:</p>
+
+<ul>
+  <li>
+<strong>citrus-quarkus</strong> integrates Citrus with the Quarkus test lifecycle.</li>
+  <li>
+<strong>citrus-camel</strong> provides the <code class="highlighter-rouge">camel:</code> URI scheme for sending messages into Camel routes and CamelContext sharing.</li>
+  <li>
+<strong>citrus-http</strong> provides the HTTP server endpoint that simulates the external translation service.</li>
+  <li>
+<strong>citrus-junit-jupiter</strong> connects Citrus to JUnit 5.</li>
+</ul>
+
+<p>You also need <code class="highlighter-rouge">camel-quarkus-junit</code> for mock endpoint access, as in the <a href="/samples/camel-quarkus-direct/">direct endpoint sample</a>. No brokers, no containers — just an in-process HTTP server managed by Citrus.</p>
+
+<h1 id="setting-up-the-test-class">Setting up the test class</h1>
+
+<p>The test class wires together the shared CamelContext and the simulated HTTP server:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@QuarkusTest</span>
+<span class="nd">@CitrusSupport</span>
+<span class="kd">class</span> <span class="nc">QuarkusApplicationTest</span> <span class="kd">extends</span> <span class="n">CamelQuarkusTestSupport</span>
+        <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
+
+    <span class="nd">@Inject</span>
+    <span class="nd">@BindToRegistry</span>
+    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="nd">@CitrusEndpoint</span>
+    <span class="nd">@HttpServerConfig</span><span class="o">(</span><span class="n">autoStart</span> <span class="o">=</span> <span class="kc">true</span><span class="o">,</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">9001</span><span class="o">)</span>
+    <span class="n">HttpServer</span> <span class="n">translateServer</span><span class="o">;</span>
+
+    <span class="nd">@CitrusResource</span>
+    <span class="n">GherkinTestActionRunner</span> <span class="n">runner</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The CamelContext is shared with <code class="highlighter-rouge">@BindToRegistry</code> as in the other Camel samples. The new element here is the <code class="highlighter-rouge">HttpServer</code>.</p>
+
+<p>The <code class="highlighter-rouge">@HttpServerConfig</code> annotation configures a Citrus HTTP server on port 9001 with <code class="highlighter-rouge">autoStart = true</code>, which means the server is ready before any test method runs. The port must match the <code class="highlighter-rouge">camel.translate.service.port</code> property in <code class="highlighter-rouge">application.properties</code> — this is how the Camel route’s HTTP call reaches the Citrus server instead of a real translation service.</p>
+
+<p>When the Camel route executes <code class="highlighter-rouge">to("http://localhost:9001/translate")</code>, the request lands on this simulated server. The test then has full control: it can inspect the request, validate its contents, and decide what response to send back.</p>
+
+<h1 id="writing-the-test">Writing the test</h1>
+
+<p>The test orchestrates a five-step flow: set up the mock expectation, send a message into the route, validate the HTTP request Camel makes, simulate the HTTP response, and verify the final output.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kt">void</span> <span class="nf">shouldHandleEvents</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">MockEndpoint</span> <span class="n">mockEndpoint</span> <span class="o">=</span> <span class="n">getMockEndpoint</span><span class="o">(</span><span class="s">"mock:words-out"</span><span class="o">);</span>
+    <span class="n">mockEndpoint</span><span class="o">.</span><span class="na">expectedBodiesReceived</span><span class="o">(</span><span class="s">"&gt;&gt; HOWDY"</span><span class="o">);</span>
+
+    <span class="n">runner</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+        <span class="n">send</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">fork</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"camel:direct:words-in"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"lang"</span><span class="o">,</span> <span class="s">"us-texas"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">runner</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+        <span class="n">http</span><span class="o">().</span><span class="na">server</span><span class="o">(</span><span class="n">translateServer</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/translate"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">queryParam</span><span class="o">(</span><span class="s">"lang"</span><span class="o">,</span> <span class="s">"us-texas"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">runner</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+        <span class="n">http</span><span class="o">().</span><span class="na">server</span><span class="o">(</span><span class="n">translateServer</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">send</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="mi">200</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Howdy"</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">runner</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+        <span class="n">context</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">mockEndpoint</span><span class="o">.</span><span class="na">assertIsSatisfied</span><span class="o">();</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nf">CitrusRuntimeException</span><span class="o">(</span>
+                    <span class="s">"Failed to verify mock endpoint"</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Let’s walk through each step.</p>
+
+<h2 id="triggering-the-route">Triggering the route</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">runner</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+    <span class="n">send</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">fork</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"camel:direct:words-in"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"lang"</span><span class="o">,</span> <span class="s">"us-texas"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">)</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p>The test sends the string <code class="highlighter-rouge">"Hello"</code> to the <code class="highlighter-rouge">camel:direct:words-in</code> endpoint with a <code class="highlighter-rouge">lang</code> header set to <code class="highlighter-rouge">"us-texas"</code>. The <code class="highlighter-rouge">fork(true)</code> option sends the message asynchronously because the <code class="highlighter-rouge">direct:</code> component is synchronous and the route will block while waiting for the HTTP response from the translation service.</p>
+
+<p>At this point, the Camel route begins executing. The main route delegates to the translation sub-route, which detects the <code class="highlighter-rouge">lang</code> header, prepares the HTTP request, and calls <code class="highlighter-rouge">http://localhost:9001/translate?lang=us-texas</code> with the body <code class="highlighter-rouge">"Hello"</code>. That request arrives at the Citrus HTTP server.</p>
+
+<h2 id="validating-the-http-request">Validating the HTTP request</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">runner</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+    <span class="n">http</span><span class="o">().</span><span class="na">server</span><span class="o">(</span><span class="n">translateServer</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/translate"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">queryParam</span><span class="o">(</span><span class="s">"lang"</span><span class="o">,</span> <span class="s">"us-texas"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">)</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p>The Citrus HTTP server receives the request from the Camel route and validates it. This step verifies four things at once:</p>
+
+<ul>
+  <li>The HTTP method is POST</li>
+  <li>The path is <code class="highlighter-rouge">/translate</code>
+</li>
+  <li>The query parameter <code class="highlighter-rouge">lang</code> equals <code class="highlighter-rouge">"us-texas"</code>
+</li>
+  <li>The request body is <code class="highlighter-rouge">"Hello"</code>
+</li>
+</ul>
+
+<p>If any of these checks fail, Citrus reports exactly what was expected versus what was received. This is a powerful validation point — it confirms that the Camel route correctly prepared the HTTP request, including the variable-to-query-parameter conversion and the header management logic.</p>
+
+<h2 id="simulating-the-response">Simulating the response</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">runner</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+    <span class="n">http</span><span class="o">().</span><span class="na">server</span><span class="o">(</span><span class="n">translateServer</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">send</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="mi">200</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Howdy"</span><span class="o">)</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p>After validating the request, the Citrus server sends back a 200 OK response with the body <code class="highlighter-rouge">"Howdy"</code>. This simulates the translation service returning the translated text. The Camel route receives this response, converts it to a string, and passes it back to the main route.</p>
+
+<p>The main route then transforms <code class="highlighter-rouge">"Howdy"</code> to <code class="highlighter-rouge">"&gt;&gt; HOWDY"</code> (uppercase with prefix) and sends it to <code class="highlighter-rouge">mock:words-out</code>.</p>
+
+<h2 id="verifying-the-final-output">Verifying the final output</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">runner</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+    <span class="n">context</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">mockEndpoint</span><span class="o">.</span><span class="na">assertIsSatisfied</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">CitrusRuntimeException</span><span class="o">(</span>
+                <span class="s">"Failed to verify mock endpoint"</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p>Finally, the test verifies that the mock endpoint received <code class="highlighter-rouge">"&gt;&gt; HOWDY"</code> — confirming that the entire pipeline worked correctly: the route sent the right request to the translation service, processed the response, applied the transformation, and delivered the final result.</p>
+
+<h1 id="the-power-of-service-virtualization">The power of service virtualization</h1>
+
+<p>The simulated HTTP server is what makes this test self-contained. Without it, you would need the real translation service running during tests — which introduces network dependencies, authentication, rate limits, and flaky failures.</p>
+
+<p>With Citrus, you get full control over both sides of the HTTP interaction:</p>
+
+<p><strong>Request validation</strong> — verify the method, path, query parameters, headers, and body of every request your route makes. This catches bugs in request preparation that would otherwise only surface in production.</p>
+
+<p><strong>Response simulation</strong> — return any status code, body, or header you want. Test the happy path with 200 OK, error handling with 500, not-found behavior with 404, or timeout handling by adding a delay.</p>
+
+<p><strong>Deterministic behavior</strong> — the simulated server always responds the same way, eliminating flaky tests caused by network issues or external service changes.</p>
+
+<p>This pattern applies to any external dependency your Camel route calls — REST APIs, SOAP services, webhooks, or any HTTP-based interaction.</p>
+
+<h1 id="how-it-all-fits-together">How it all fits together</h1>
+
+<p>When you run the test with <code class="highlighter-rouge">./mvnw clean test</code>, here is the sequence of events:</p>
+
+<ol>
+  <li>
+<strong>Citrus starts</strong> the HTTP server on port 9001.</li>
+  <li>
+<strong>Quarkus starts</strong> the application in test mode with the translation service configured to <code class="highlighter-rouge">localhost:9001</code>.</li>
+  <li>
+<strong>Apache Camel discovers</strong> both routes and registers the direct and mock endpoints.</li>
+  <li>
+<strong>The test sends</strong> <code class="highlighter-rouge">"Hello"</code> with <code class="highlighter-rouge">lang=us-texas</code> to <code class="highlighter-rouge">camel:direct:words-in</code>.</li>
+  <li>
+<strong>The main route</strong> delegates to the translation sub-route.</li>
+  <li>
+<strong>The translation route</strong> detects the <code class="highlighter-rouge">lang</code> header, prepares the HTTP request, and calls the Citrus server.</li>
+  <li>
+<strong>Citrus validates</strong> the request (POST, /translate, query param, body).</li>
+  <li>
+<strong>Citrus responds</strong> with 200 OK and body <code class="highlighter-rouge">"Howdy"</code>.</li>
+  <li>
+<strong>The main route</strong> transforms the response to <code class="highlighter-rouge">"&gt;&gt; HOWDY"</code> and sends it to the mock endpoint.</li>
+  <li>
+<strong>The test verifies</strong> the mock endpoint received the expected message.</li>
+</ol>
+
+<p>The entire test runs in under three seconds with no external services, no containers, and no network dependencies.</p>
+
+<h1 id="where-to-go-from-here">Where to go from here</h1>
+
+<p>This example tests the happy path with a successful translation. Here are several directions you can take it:</p>
+
+<ul>
+  <li>
+<strong>Error scenarios</strong>: Simulate a 500 error from the translation service and verify that the Camel route handles it correctly — does it fall back to the original text, retry, or route to a dead-letter endpoint?</li>
+  <li>
+<strong>Missing header path</strong>: Send a message without the <code class="highlighter-rouge">lang</code> header and verify that the route skips the HTTP call entirely and returns the original message transformed to uppercase.</li>
+  <li>
+<strong>Timeout testing</strong>: Add a delay to the simulated response and verify that the Camel route’s timeout handling works as expected.</li>
+  <li>
+<strong>JSON payloads</strong>: If your translation service uses JSON request and response bodies, add the <code class="highlighter-rouge">citrus-validation-json</code> module for structured payload validation.</li>
+  <li>
+<strong>Multiple services</strong>: If your route calls several external services, set up multiple Citrus HTTP servers on different ports and test the complete orchestration.</li>
+  <li>
+<strong>Simpler routes</strong>: If your Camel route does not call external services, the <a href="/samples/camel-quarkus-direct/">direct endpoint sample</a> demonstrates testing with just direct and mock endpoints — no HTTP server needed.</li>
+</ul>
+
+<p>To explore the full example project including the source code, head over to the <a href="https://github.com/citrusframework/citrus-quarkus-examples">citrus-quarkus-examples</a> repository on GitHub.</p>
+
+<p>For deeper dives into Citrus capabilities, the <a href="https://citrusframework.org/citrus/reference/html/">reference guide</a> covers HTTP endpoints, Camel integration, service virtualization, and the many other transports that Citrus supports.</p>
+
+  </div>
+</article>
+
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <h4>Samples</h4>
+    <ul>
+      <li class="">
+        <a href="/samples/">Overview</a>
+      </li>
+      <li class="">
+        <a href="/samples/todo-app">TodoList App</a>
+      </li>
+      <li class="">
+        <a href="/samples/run">Running</a>
+      </li>
+    </ul>
+    <h4>Configuration</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+
+      
+      
+      <li class="">
+        <a href="/samples/annotation-config/">sample-annotation-config</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/javaconfig/">sample-javaconfig</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/reporting/">sample-reporting</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Connectors</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/kubernetes/">sample-kubernetes</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/docker/">sample-docker</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Demo</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/quarkus/">sample-quarkus</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/cucumber/">sample-cucumber</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/apache-camel/">sample-camel-context</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jbang/">sample-jbang</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Endpoints</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/openapi/">sample-swagger</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-wsaddressing/">sample-soap-wsaddressing</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/rmi/">sample-rmi</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-ssl/">sample-soap-ssl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap/">sample-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-static-response/">sample-http-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http/">sample-http</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/kafka/">sample-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/wsdl/">sample-wsdl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-static-response/">sample-soap-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-loadtest/">sample-http-loadtest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-mtom/">sample-soap-mtom</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-attachment/">sample-soap-attachment</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/sftp/">sample-sftp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-wssecurity/">sample-soap-wssecurity</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/scp/">sample-scp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/https/">sample-https</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jdbc/">sample-jdbc</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-basic-auth/">sample-http-basic-auth</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/ftp/">sample-ftp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/mail/">sample-mail</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dynamic-endpoints/">sample-dynamic-endpoints</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jms/">sample-jms</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Miscellaneous</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/dictionaries/">sample-dictionaries</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/gradle/">sample-gradle</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/message-store/">sample-message-store</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/behavior/">sample-behavior</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Quarkus</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-aws-s3-kafka/">camel-aws-s3-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-openapi-server/">camel-openapi-server</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus-event-driven-kafka/">event-driven-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus-event-driven-jms/">event-driven-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-kafka/">camel-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-rest-to-soap/">camel-rest-to-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-cxf-soap-client/">camel-cxf-soap-client</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-mqtt/">camel-mqtt</a>
+      </li>
+      
+      
+      <li class="current">
+        <a href="/samples/camel-quarkus-direct-http/">camel-direct-http</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-direct/">camel-direct</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-rest-dsl/">camel-rest-dsl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-file-inbox/">camel-file-inbox</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-file-outbox/">camel-file-outbox</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-jms/">camel-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-cxf-soap/">camel-cxf-soap</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Runtimes</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/testng/">sample-testng</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dataprovider/">sample-dataprovider</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/junit/">sample-junit</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/junit5/">sample-junit5</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Validation</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/json/">sample-json</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/oxm/">sample-oxm</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xhtml/">sample-xhtml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xml/">sample-xml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/hamcrest/">sample-hamcrest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/databind/">sample-databind</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-form-data/">sample-http-form-data</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/sql/">sample-sql</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/binary/">sample-binary</a>
+      </li>
+      
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/citrusframework/citrus/blob/master/LICENSE">MIT License</a>.</p>
+      <br>
+      <p>© 2026 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p> </p>
+      <br>
+      <br>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>
