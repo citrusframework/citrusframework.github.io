@@ -410,7 +410,7 @@
 
 <p>The <code class="highlighter-rouge">services = AwsService.S3</code> parameter tells LocalStack to start only the S3 service, keeping the container lightweight. The lifecycle listener does two things: it creates the S3 bucket that the Camel route expects, and it returns a map of connection properties that override the <code class="highlighter-rouge">application.properties</code> defaults.</p>
 
-<p>These returned properties — bucket name, endpoint URL, access key, secret key, region — are automatically injected into the Quarkus application context. When the Camel route resolves its `` placeholders, they point to the LocalStack container instead of real AWS.</p>
+<p>These returned properties — bucket name, endpoint URL, access key, secret key, region — are automatically injected into the Quarkus application context. When the Camel route resolves its <code class="highlighter-rouge">aws.s3.*</code> placeholders, they point to the LocalStack container instead of real AWS.</p>
 
 <h2 id="the-kafka-broker">The Kafka broker</h2>
 
