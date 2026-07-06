@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2026-07-06T09:54:55+02:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Citrus Integration Tests</title><subtitle>Automated integration tests for message protocols and data formats that you require</subtitle><entry><title type="html">Apache Camel Quarkus - HTTP to PostgreSQL</title><link href="http://0.0.0.0:4000/samples/camel-quarkus-postgresql/" rel="alternate" type="text/html" title="Apache Camel Quarkus - HTTP to PostgreSQL" /><published>2026-07-06T00:00:00+02:00</published><updated>2026-07-06T00:00:00+02:00</updated><id>http://0.0.0.0:4000/samples/sample-camel-quarkus-postgresql</id><content type="html" xml:base="http://0.0.0.0:4000/samples/camel-quarkus-postgresql/">&lt;p&gt;An HTTP endpoint that accepts data and writes it to a database is one of the most common patterns in modern applications. It sounds simple, but testing it properly is not. You need to verify not only the HTTP response but also that the data actually landed in the database with the correct values. A test that checks only the response code tells you half the story.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2026-07-06T20:30:27+02:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Citrus Integration Tests</title><subtitle>Automated integration tests for message protocols and data formats that you require</subtitle><entry><title type="html">Apache Camel Quarkus - HTTP to PostgreSQL</title><link href="http://0.0.0.0:4000/samples/camel-quarkus-postgresql/" rel="alternate" type="text/html" title="Apache Camel Quarkus - HTTP to PostgreSQL" /><published>2026-07-06T00:00:00+02:00</published><updated>2026-07-06T00:00:00+02:00</updated><id>http://0.0.0.0:4000/samples/sample-camel-quarkus-postgresql</id><content type="html" xml:base="http://0.0.0.0:4000/samples/camel-quarkus-postgresql/">&lt;p&gt;An HTTP endpoint that accepts data and writes it to a database is one of the most common patterns in modern applications. It sounds simple, but testing it properly is not. You need to verify not only the HTTP response but also that the data actually landed in the database with the correct values. A test that checks only the response code tells you half the story.&lt;/p&gt;
 
 &lt;p&gt;This post walks through testing an &lt;a href=&quot;https://camel.apache.org&quot;&gt;Apache Camel&lt;/a&gt; route in a &lt;a href=&quot;https://quarkus.io&quot;&gt;Quarkus&lt;/a&gt; application that receives JSON over HTTP and persists it into PostgreSQL using a Camel Kamelet. &lt;a href=&quot;https://citrusframework.org&quot;&gt;Citrus&lt;/a&gt; handles both sides of the verification — the HTTP response and the database state — in a single, self-contained test. The database is provisioned automatically by Quarkus Dev Services, so there is no external infrastructure to manage.&lt;/p&gt;
 
@@ -286,7 +286,271 @@
 
 &lt;p&gt;To explore the full example project including the source code, head over to the &lt;a href=&quot;https://github.com/citrusframework/citrus-quarkus-examples&quot;&gt;citrus-quarkus-examples&lt;/a&gt; repository on GitHub.&lt;/p&gt;
 
-&lt;p&gt;For deeper dives into Citrus capabilities, the &lt;a href=&quot;https://citrusframework.org/citrus/reference/html/&quot;&gt;reference guide&lt;/a&gt; covers HTTP endpoints, SQL validation, Camel integration, and the many other transports that Citrus supports.&lt;/p&gt;</content><author><name></name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://0.0.0.0:4000/img/icons/camel.png" /></entry><entry><title type="html">Apache Camel Quarkus - REST to SOAP Bridge</title><link href="http://0.0.0.0:4000/samples/camel-quarkus-rest-to-soap/" rel="alternate" type="text/html" title="Apache Camel Quarkus - REST to SOAP Bridge" /><published>2026-07-05T00:00:00+02:00</published><updated>2026-07-05T00:00:00+02:00</updated><id>http://0.0.0.0:4000/samples/sample-camel-quarkus-rest-to-soap</id><content type="html" xml:base="http://0.0.0.0:4000/samples/camel-quarkus-rest-to-soap/">&lt;p&gt;A common enterprise integration pattern is the protocol bridge — a component that exposes a modern REST/JSON API while delegating to a legacy SOAP/XML backend. External consumers see a clean HTTP interface with JSON payloads. Behind the scenes, Apache Camel translates every request into SOAP XML, calls the backend service, and converts the XML response back to JSON. The consumers never know they are talking to a SOAP service.&lt;/p&gt;
+&lt;p&gt;For deeper dives into Citrus capabilities, the &lt;a href=&quot;https://citrusframework.org/citrus/reference/html/&quot;&gt;reference guide&lt;/a&gt; covers HTTP endpoints, SQL validation, Camel integration, and the many other transports that Citrus supports.&lt;/p&gt;</content><author><name></name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://0.0.0.0:4000/img/icons/camel.png" /></entry><entry><title type="html">How Apache Camel elevates Citrus Integration Testing to next levels</title><link href="http://0.0.0.0:4000/news/2026/07/06/how-camel-elevates-citrus/" rel="alternate" type="text/html" title="How Apache Camel elevates Citrus Integration Testing to next levels" /><published>2026-07-06T00:00:00+02:00</published><updated>2026-07-06T00:00:00+02:00</updated><id>http://0.0.0.0:4000/news/2026/07/06/how-camel-elevates-citrus</id><content type="html" xml:base="http://0.0.0.0:4000/news/2026/07/06/how-camel-elevates-citrus/">&lt;p&gt;&lt;a href=&quot;https://camel.apache.org&quot;&gt;Apache Camel&lt;/a&gt; is one of the most mature integration frameworks in the Java ecosystem, offering 300+ connectors to virtually every messaging system, cloud service, and protocol you can think of. &lt;a href=&quot;https://citrusframework.org&quot;&gt;Citrus&lt;/a&gt; is a powerful integration testing framework that orchestrates end-to-end test scenarios with clean, readable Java code. Each is strong on its own — but when you combine them, something remarkable happens.&lt;/p&gt;
+
+&lt;p&gt;Citrus gains the ability to speak every protocol Camel supports, transform test data with Camel’s rich data formats, and even reach into running Camel routes to trigger or verify business logic directly. In return, Camel gets a purpose-built test harness that can validate its routes in realistic, container-backed environments with proper message verification.&lt;/p&gt;
+
+&lt;p&gt;This post explores five concrete ways Apache Camel elevates Citrus integration testing. Each section focuses on a real scenario, backed by working sample projects that you can clone and run. By the end you will have a clear picture of how the two frameworks complement each other and where to reach for Camel when writing Citrus tests.&lt;/p&gt;
+
+&lt;h1 id=&quot;using-camel-components-to-send-and-receive-messages&quot;&gt;Using Camel components to send and receive messages&lt;/h1&gt;
+
+&lt;p&gt;The most immediate benefit of Camel integration in Citrus is access to Camel’s massive component library. Citrus has excellent built-in support for protocols like HTTP, Kafka, JMS, and FTP — but the world of integration is vast. What about MQTT? AMQP 1.0? gRPC? Rather than waiting for Citrus to add native support for every protocol, you can leverage any Camel component directly in your tests.&lt;/p&gt;
+
+&lt;p&gt;The key is the &lt;code class=&quot;highlighter-rouge&quot;&gt;CamelSupport.camel()&lt;/code&gt; DSL, which lets you send and receive messages through any Camel endpoint URI:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;camel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;paho-mqtt5:temperature?brokerUrl=&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;fork&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;{\&quot;value\&quot;: 25}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This snippet sends an MQTT message using Camel’s &lt;code class=&quot;highlighter-rouge&quot;&gt;paho-mqtt5&lt;/code&gt; component — something Citrus cannot do on its own. The message is published to the &lt;code class=&quot;highlighter-rouge&quot;&gt;temperature&lt;/code&gt; topic on an MQTT broker, and the `` placeholder is resolved from the application’s Camel context at runtime.&lt;/p&gt;
+
+&lt;p&gt;What makes this powerful is how natural it feels. The &lt;code class=&quot;highlighter-rouge&quot;&gt;camel().send()&lt;/code&gt; action follows the same Given-When-Then pattern as any other Citrus test action. You specify the Camel endpoint URI, set the message body and headers, and let Citrus handle the rest.&lt;/p&gt;
+
+&lt;p&gt;This approach can be mixed with arbitrary Citrus send and receive operations on endpoints such as Kafka. In the sample application the Camel route consumes MQTT messages, extracts the temperature value from the JSON body with a JQ expression, and uses a Content Based Router to decide whether the reading is warm or cold. Readings above 20 degrees go to the &lt;code class=&quot;highlighter-rouge&quot;&gt;temperature-warm&lt;/code&gt; Kafka topic, everything else to &lt;code class=&quot;highlighter-rouge&quot;&gt;temperature-cold&lt;/code&gt;. The test verifies this routing decision by sending a warm reading over MQTT and then checking that it arrives on the correct Kafka topic:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@CitrusEndpoint&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@KafkaEndpointConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;topic&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;temperature-warm&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;KafkaEndpoint&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;temperatureWarm&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;temperatureWarm&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;25&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The test sends MQTT and verifies Kafka — two different protocols, coordinated in a single test method. Citrus handles the MQTT side through Camel and the Kafka side through its own native endpoint. This multi-protocol testing is where the combination really shines.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;.fork(true)&lt;/code&gt; flag deserves a brief mention. It tells Citrus to send the message asynchronously so the test thread can proceed to the verification step. Without it, the test would block waiting for the MQTT publish to complete before checking Kafka, which could cause timing issues with asynchronous routes.&lt;/p&gt;
+
+&lt;p&gt;You can see this pattern in action in the &lt;a href=&quot;https://github.com/citrusframework/citrus-quarkus-examples/tree/main/apache-camel/camel-mqtt&quot;&gt;Camel MQTT sample&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;connecting-with-third-party-services-citrus-does-not-support-out-of-the-box&quot;&gt;Connecting with third-party services Citrus does not support out of the box&lt;/h1&gt;
+
+&lt;p&gt;The MQTT example above illustrates protocol bridging, but Camel’s component library goes far beyond messaging protocols. It covers cloud services like AWS S3, Azure Blob Storage, and Google Cloud Pub/Sub. It connects to databases, file systems, social media APIs, and dozens more. Any of these become available to your Citrus tests the moment you add the corresponding Camel dependency.&lt;/p&gt;
+
+&lt;p&gt;Consider a Camel route that polls an AWS S3 bucket, splits each file into individual lines, wraps each line as a JSON event, and publishes the result to Kafka. Testing this route requires uploading a file to S3 — but Citrus does not have a native S3 endpoint. With Camel, you can upload the file using the &lt;code class=&quot;highlighter-rouge&quot;&gt;aws2-s3&lt;/code&gt; component:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;camel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;aws2-s3://citrus-camel-demo?&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
+                      &lt;span class=&quot;s&quot;&gt;&quot;overrideEndpoint=true&amp;amp;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
+                      &lt;span class=&quot;s&quot;&gt;&quot;forcePathStyle=true&amp;amp;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
+                      &lt;span class=&quot;s&quot;&gt;&quot;uriEndpointOverride=&amp;amp;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
+                      &lt;span class=&quot;s&quot;&gt;&quot;accessKey=&amp;amp;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
+                      &lt;span class=&quot;s&quot;&gt;&quot;secretKey=&amp;amp;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
+                      &lt;span class=&quot;s&quot;&gt;&quot;region=&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;fork&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hello Camel!\nHello Citrus!\nHello Quarkus!&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;CamelAwsS3Key&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;hello.txt&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The test writes a multi-line text file to an S3 bucket backed by a local AWS test instance that Citrus provisions automatically via the &lt;code class=&quot;highlighter-rouge&quot;&gt;@LocalStackContainerSupport&lt;/code&gt; annotation and Testcontainers. The Camel endpoint URI points to the same AWS test instance that the application route polls, so the uploaded file is picked up and processed just as it would be in production.&lt;/p&gt;
+
+&lt;p&gt;After the route processes the file, the test verifies each line appears as a separate JSON event on Kafka:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s3Events&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;{ \&quot;message\&quot;: \&quot;Hello Camel!\&quot; }&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The pattern is the same as before: use Camel to interact with a technology that Citrus does not support natively, then verify the outcome with a Citrus endpoint that does. The infrastructure — a local AWS test instance for S3, a Kafka broker — is managed by Citrus annotations and Testcontainers, keeping the test self-contained and reproducible.&lt;/p&gt;
+
+&lt;p&gt;This approach scales to any service Camel supports. Need to drop a message on a RabbitMQ queue? Use &lt;code class=&quot;highlighter-rouge&quot;&gt;camel().send().endpoint(&quot;rabbitmq:...&quot;)&lt;/code&gt;. Need to write a file to an FTP server? Use &lt;code class=&quot;highlighter-rouge&quot;&gt;camel().send().endpoint(&quot;ftp:...&quot;)&lt;/code&gt;. The Camel component catalog becomes your test toolkit.&lt;/p&gt;
+
+&lt;p&gt;The full example is available in the &lt;a href=&quot;https://github.com/citrusframework/citrus-quarkus-examples/tree/main/apache-camel/camel-aws-s3-kafka&quot;&gt;Camel AWS S3 to Kafka sample&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;transforming-test-data-with-camel-data-formats&quot;&gt;Transforming test data with Camel data formats&lt;/h1&gt;
+
+&lt;p&gt;Real-world integration rarely deals with plain strings. Messages arrive as compressed archives, Base64-encoded payloads, serialized Protobuf messages, or structured CSV files. When your Camel route expects a ZIP file as input, your test needs to produce a ZIP file. You could write the compression logic by hand — create a &lt;code class=&quot;highlighter-rouge&quot;&gt;ZipOutputStream&lt;/code&gt;, add entries, close the stream — but that is boilerplate that obscures the test’s intent.&lt;/p&gt;
+
+&lt;p&gt;Citrus lets you tap into Camel’s data format system to marshal and unmarshal test data declaratively. Here is how you create a ZIP file in a test using Camel’s &lt;code class=&quot;highlighter-rouge&quot;&gt;zipFile&lt;/code&gt; data format:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;camel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;file:inbox&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;CamelFileName&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;words.zip&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hello World&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;transform&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;processor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;camel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;marshal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;zipFile&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;.transform()&lt;/code&gt; call is where Camel’s data format integration kicks in. The &lt;code class=&quot;highlighter-rouge&quot;&gt;processor().camel().marshal().zipFile()&lt;/code&gt; expression tells Citrus to pass the message body through Camel’s ZIP file marshaller before writing it to disk. The result is a properly compressed &lt;code class=&quot;highlighter-rouge&quot;&gt;words.zip&lt;/code&gt; file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;inbox&lt;/code&gt; directory — exactly what the Camel route expects to consume.&lt;/p&gt;
+
+&lt;p&gt;Compare this with the manual approach:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Manual ZIP creation — verbose and error-prone&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ByteArrayOutputStream&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;baos&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ByteArrayOutputStream&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ZipOutputStream&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;zos&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ZipOutputStream&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;baos&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;zos&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;putNextEntry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ZipEntry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;content.txt&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;zos&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hello World&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBytes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;zos&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;closeEntry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;zos&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;byte&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;zipContent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;baos&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toByteArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The Camel-powered version is one line of transformation logic. It is declarative, readable, and uses the exact same data format implementation that the production route uses for unmarshalling. This test-production parity matters — if the route changes its compression format, the test adapts by changing one data format call.&lt;/p&gt;
+
+&lt;p&gt;The same pattern works with any Camel data format. Need to create JSON test data?&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;transform&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;processor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;camel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;marshal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Base64-encoded content?&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;transform&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;processor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;camel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;marshal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;base64&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;GZIP compression?&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;transform&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;processor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;camel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;marshal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;gzip&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Camel supports dozens of data formats including CSV, Protobuf, Avro, JAXB, and many more. All of them are available for creating test data through the same &lt;code class=&quot;highlighter-rouge&quot;&gt;.transform(processor().camel().marshal()...)&lt;/code&gt; pattern.&lt;/p&gt;
+
+&lt;p&gt;The complete example is in the &lt;a href=&quot;https://github.com/citrusframework/citrus-quarkus-examples/tree/main/apache-camel/camel-file-inbox&quot;&gt;Camel File Inbox sample&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;using-camel-processors-for-verification&quot;&gt;Using Camel processors for verification&lt;/h1&gt;
+
+&lt;p&gt;Data formats handle structured transformations like compression and serialization, but sometimes you need more general processing power during verification. Camel processors fill this gap. They give you access to Camel’s type conversion system, header manipulation, and arbitrary processing logic — all usable within Citrus test actions.&lt;/p&gt;
+
+&lt;p&gt;A common scenario is verifying the content of files produced by a Camel route. When a route aggregates multiple messages and writes the result to a file, the test needs to read that file and validate its content. The file arrives as a byte stream, but you want to validate it as a string. Camel’s &lt;code class=&quot;highlighter-rouge&quot;&gt;convertBodyTo&lt;/code&gt; processor handles the conversion:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;camel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;file:outbox&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;processor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;camel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;convertBodyTo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;CamelFileName&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;tasks.txt&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;
+        Doctor's appointment 9:00am
+        Fetch kids from school
+        Plan next vacation in June
+        &quot;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;.process()&lt;/code&gt; call applies a Camel processor to the received message before validation. In this case, &lt;code class=&quot;highlighter-rouge&quot;&gt;convertBodyTo(String.class)&lt;/code&gt; uses Camel’s type conversion system to turn the raw file bytes into a &lt;code class=&quot;highlighter-rouge&quot;&gt;String&lt;/code&gt;, which Citrus can then compare against the expected body content.&lt;/p&gt;
+
+&lt;p&gt;This approach works because Citrus and the application share the same &lt;code class=&quot;highlighter-rouge&quot;&gt;CamelContext&lt;/code&gt;. The test injects and registers it:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Inject&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@BindToRegistry&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;CamelContext&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;camelContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;With the shared context, the test has access to all of Camel’s processing capabilities: type converters, data formats, header manipulation, and even custom processor logic. Instead of writing manual file-reading code, you express the transformation declaratively and let Camel do the heavy lifting.&lt;/p&gt;
+
+&lt;p&gt;The processor integration is not limited to type conversion. You can chain multiple processors, apply data format unmarshalling on received messages, or use any custom Camel processor that your application defines. This keeps test code focused on what it is verifying rather than how to prepare data for verification.&lt;/p&gt;
+
+&lt;p&gt;See the full example in the &lt;a href=&quot;https://github.com/citrusframework/citrus-quarkus-examples/tree/main/apache-camel/camel-file-outbox&quot;&gt;Camel File Outbox sample&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;accessing-internal-camel-routes-for-test-control&quot;&gt;Accessing internal Camel routes for test control&lt;/h1&gt;
+
+&lt;p&gt;The examples so far use Camel as a tool within Citrus — sending messages through Camel components, transforming data with Camel formats and processors. But there is another dimension to the integration: reaching into the application’s own Camel routes to trigger business logic or inject test data at precise points in the processing pipeline.&lt;/p&gt;
+
+&lt;p&gt;Camel’s &lt;code class=&quot;highlighter-rouge&quot;&gt;direct:&lt;/code&gt; component provides synchronous, in-memory endpoints that are ideal for this. When your application defines a route starting with &lt;code class=&quot;highlighter-rouge&quot;&gt;from(&quot;direct:tasks&quot;)&lt;/code&gt;, a Citrus test can send messages directly to that endpoint without going through any external transport:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;camel:direct:tasks&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Doctor's appointment 9:00am&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;camel:direct:tasks&lt;/code&gt; URI is a Citrus convention that resolves to the Camel &lt;code class=&quot;highlighter-rouge&quot;&gt;direct:tasks&lt;/code&gt; endpoint in the shared CamelContext. This gives the test direct access to the route’s entry point — no message broker, no HTTP server, no external transport required. Messages are passed in-memory, making this the fastest way to trigger a Camel route from a test.&lt;/p&gt;
+
+&lt;p&gt;This pattern is particularly useful for testing complex Camel routes that involve multiple processing steps. Consider a route that receives messages through a direct endpoint, aggregates three of them, and writes the result to a file. The test can send exactly three messages to trigger the aggregation:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Arrays&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;asList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;camel:direct:tasks&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Doctor's appointment 9:00am&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;camel:direct:tasks&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Fetch kids from school&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;camel:direct:tasks&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Plan next vacation in June&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;All three messages are delivered in-memory to the same Camel route, triggering the aggregation logic and producing the output file. The test has full control over what enters the route and can verify the aggregated result on the other side.&lt;/p&gt;
+
+&lt;p&gt;Direct endpoint access also works well with Camel’s &lt;code class=&quot;highlighter-rouge&quot;&gt;mock:&lt;/code&gt; component for verification. When a route ends with &lt;code class=&quot;highlighter-rouge&quot;&gt;to(&quot;mock:words-out&quot;)&lt;/code&gt;, the test can access that mock endpoint through the shared CamelContext and assert on the messages it received:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;MockEndpoint&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mockEndpoint&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getMockEndpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;mock:words-out&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;mockEndpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;expectedBodiesReceived&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&amp;gt;&amp;gt; HOWDY&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;fork&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;camel:direct:words-in&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;lang&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;us-texas&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hello&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;mockEndpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;assertIsSatisfied&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;CitrusRuntimeException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Failed to verify mock endpoint&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This combination of direct endpoints for input and mock endpoints for output gives you surgical precision in testing. You bypass external transports entirely, focus on the route’s transformation and routing logic, and verify the results through Camel’s own mock assertion API.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;.fork(true)&lt;/code&gt; flag is important here because the &lt;code class=&quot;highlighter-rouge&quot;&gt;direct:&lt;/code&gt; component is synchronous — it executes the route in the caller’s thread. Without forking, the send action would block until the entire route completes, which can cause timing issues when the route makes external calls (like the HTTP translation service in the example above) that the test needs to intercept.&lt;/p&gt;
+
+&lt;p&gt;Explore this pattern in the &lt;a href=&quot;https://github.com/citrusframework/citrus-quarkus-examples/tree/main/apache-camel/camel-direct&quot;&gt;Camel Direct sample&lt;/a&gt; for simple route testing and the &lt;a href=&quot;https://github.com/citrusframework/citrus-quarkus-examples/tree/main/apache-camel/camel-direct-http&quot;&gt;Camel Direct HTTP sample&lt;/a&gt; for a more advanced scenario that combines direct endpoint access with HTTP service simulation.&lt;/p&gt;
+
+&lt;h1 id=&quot;getting-started&quot;&gt;Getting started&lt;/h1&gt;
+
+&lt;p&gt;All the capabilities described in this post are available through the &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-camel&lt;/code&gt; module. Add it as a test-scoped dependency in your Maven POM:&lt;/p&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.citrusframework&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-camel&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;4.10.1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;scope&amp;gt;&lt;/span&gt;test&lt;span class=&quot;nt&quot;&gt;&amp;lt;/scope&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The module provides the &lt;code class=&quot;highlighter-rouge&quot;&gt;CamelSupport.camel()&lt;/code&gt; DSL for sending and receiving through Camel endpoints, the &lt;code class=&quot;highlighter-rouge&quot;&gt;processor().camel()&lt;/code&gt; API for data formats and processors, and the &lt;code class=&quot;highlighter-rouge&quot;&gt;@BindToRegistry&lt;/code&gt; annotation for sharing the CamelContext between your application and tests.&lt;/p&gt;
+
+&lt;p&gt;The sample projects referenced throughout this post are available in the &lt;a href=&quot;https://github.com/citrusframework/citrus-quarkus-examples/tree/main/apache-camel&quot;&gt;citrus-quarkus-examples&lt;/a&gt; repository. Each is a self-contained Quarkus application with a Camel route and a Citrus test that verifies it. Clone the repository, pick a sample, and run &lt;code class=&quot;highlighter-rouge&quot;&gt;./mvnw clean test&lt;/code&gt; to see it in action.&lt;/p&gt;
+
+&lt;h1 id=&quot;wrapping-up&quot;&gt;Wrapping up&lt;/h1&gt;
+
+&lt;p&gt;Apache Camel and Citrus are a natural fit. Camel’s strength is connecting systems — its 300+ components, rich data formats, and enterprise integration patterns cover virtually every integration scenario. Citrus’s strength is testing those integrations — orchestrating multi-protocol test flows, provisioning infrastructure, and validating message content with precision.&lt;/p&gt;
+
+&lt;p&gt;When you bring them together, Citrus tests gain the ability to speak any protocol Camel supports, transform test data with production-grade data formats, and reach directly into Camel routes for surgical testing. The five patterns we explored — using Camel components for protocol bridging, connecting with unsupported services, transforming test data with data formats, verifying with processors, and accessing internal routes — give you a comprehensive toolkit for testing even the most complex integration scenarios.&lt;/p&gt;
+
+&lt;p&gt;The best part is how little ceremony is involved. A shared CamelContext, a few imports, and the familiar Citrus Given-When-Then pattern. The code reads like what it does, and the tests run fast because infrastructure is managed by Citrus and Testcontainers.&lt;/p&gt;
+
+&lt;p&gt;Give it a try, and let us know what you think!&lt;/p&gt;</content><author><name>Christoph Deppisch</name></author></entry><entry><title type="html">Apache Camel Quarkus - REST to SOAP Bridge</title><link href="http://0.0.0.0:4000/samples/camel-quarkus-rest-to-soap/" rel="alternate" type="text/html" title="Apache Camel Quarkus - REST to SOAP Bridge" /><published>2026-07-05T00:00:00+02:00</published><updated>2026-07-05T00:00:00+02:00</updated><id>http://0.0.0.0:4000/samples/sample-camel-quarkus-rest-to-soap</id><content type="html" xml:base="http://0.0.0.0:4000/samples/camel-quarkus-rest-to-soap/">&lt;p&gt;A common enterprise integration pattern is the protocol bridge — a component that exposes a modern REST/JSON API while delegating to a legacy SOAP/XML backend. External consumers see a clean HTTP interface with JSON payloads. Behind the scenes, Apache Camel translates every request into SOAP XML, calls the backend service, and converts the XML response back to JSON. The consumers never know they are talking to a SOAP service.&lt;/p&gt;
 
 &lt;p&gt;Testing this kind of bridge is uniquely challenging. You need to verify the entire translation chain: JSON in, SOAP XML out, SOAP XML back, JSON out. You need to test happy paths across multiple HTTP verbs. And you need to verify that SOAP faults from the backend are correctly translated into HTTP error responses for the REST consumer.&lt;/p&gt;
 
@@ -2747,293 +3011,4 @@ Message 3 arrives → Aggregate complete → File written to outbox/tasks.txt
 
 &lt;p&gt;To explore the full example project including the source code, head over to the &lt;a href=&quot;https://github.com/citrusframework/citrus-quarkus-examples&quot;&gt;citrus-quarkus-examples&lt;/a&gt; repository on GitHub.&lt;/p&gt;
 
-&lt;p&gt;For deeper dives into Citrus capabilities, the &lt;a href=&quot;https://citrusframework.org/citrus/reference/html/&quot;&gt;reference guide&lt;/a&gt; covers Camel integration, mock endpoints, and the many other transports that Citrus supports.&lt;/p&gt;</content><author><name></name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://0.0.0.0:4000/img/icons/camel.png" /></entry><entry><title type="html">Apache Camel Quarkus - HTTP Service Virtualization</title><link href="http://0.0.0.0:4000/samples/camel-quarkus-direct-http/" rel="alternate" type="text/html" title="Apache Camel Quarkus - HTTP Service Virtualization" /><published>2026-07-05T00:00:00+02:00</published><updated>2026-07-05T00:00:00+02:00</updated><id>http://0.0.0.0:4000/samples/sample-camel-quarkus-direct-http</id><content type="html" xml:base="http://0.0.0.0:4000/samples/camel-quarkus-direct-http/">&lt;p&gt;Most integration routes do not live in isolation. They call external HTTP services — a translation API, a payment gateway, a notification service. Testing these routes means you need a way to simulate those external dependencies: validate the requests your route makes, control the responses it receives, and verify the end-to-end flow without depending on real services.&lt;/p&gt;
-
-&lt;p&gt;This is where service virtualization comes in. Instead of calling the real service, your test starts a simulated HTTP server that behaves exactly the way you tell it to. You get full control over request validation, response content, error scenarios, and timing — all within a deterministic, repeatable test.&lt;/p&gt;
-
-&lt;p&gt;This post walks you through testing an Apache Camel route with an external HTTP dependency in a Quarkus application using the &lt;a href=&quot;https://citrusframework.org&quot;&gt;Citrus&lt;/a&gt; integration testing framework. You will see how Citrus spins up a simulated HTTP server, validates the requests Camel sends to it, sends back controlled responses, and verifies the final output.&lt;/p&gt;
-
-&lt;p&gt;By the end you will have a recipe for testing any Camel route that calls external HTTP services.&lt;/p&gt;
-
-&lt;h1 id=&quot;the-application-under-test&quot;&gt;The application under test&lt;/h1&gt;
-
-&lt;p&gt;The example application implements a translation pipeline. It receives a text message, optionally calls an external translation service based on a language header, transforms the result to uppercase with a prefix, and sends it to an output endpoint.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Direct Endpoint (direct:words-in) --&amp;gt; Translation Route --&amp;gt; HTTP Service --&amp;gt; Transform --&amp;gt; Mock Endpoint (mock:words-out)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The logic is split into two interconnected Camel routes. The main route handles the overall pipeline:&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;direct:words-in&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;direct:translate&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setBody&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exchange&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&amp;gt;&amp;gt; &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exchange&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getIn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBody&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toUpperCase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;mock:words-out&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The translation route handles the HTTP service call with content-based routing:&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;direct:translate&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;choice&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;simple&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;${header.lang} != null&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setVariable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;lang&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;simple&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;${header.lang}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;removeHeaders&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;*&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setHeader&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Exchange&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;HTTP_METHOD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;constant&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;POST&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setHeader&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Exchange&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;HTTP_QUERY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;simple&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;lang=${variable.lang}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://:/translate&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;convertBodyTo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;otherwise&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setBody&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;simple&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;${body}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;There is a lot going on in the translation route, so let’s walk through it.&lt;/p&gt;
-
-&lt;p&gt;The &lt;strong&gt;Content Based Router&lt;/strong&gt; (&lt;code class=&quot;highlighter-rouge&quot;&gt;choice().when()&lt;/code&gt;) checks whether the incoming message carries a &lt;code class=&quot;highlighter-rouge&quot;&gt;lang&lt;/code&gt; header. If it does, the route calls the translation service. If not, it passes the original message through unchanged.&lt;/p&gt;
-
-&lt;p&gt;Before making the HTTP call, the route stores the &lt;code class=&quot;highlighter-rouge&quot;&gt;lang&lt;/code&gt; value in a Camel &lt;strong&gt;variable&lt;/strong&gt; using &lt;code class=&quot;highlighter-rouge&quot;&gt;setVariable()&lt;/code&gt;. This is important because the next step — &lt;code class=&quot;highlighter-rouge&quot;&gt;removeHeaders(&quot;*&quot;)&lt;/code&gt; — clears all message headers. Without saving the language first, it would be lost. Variables survive header removal, so the route can reconstruct the query parameter later with &lt;code class=&quot;highlighter-rouge&quot;&gt;simple(&quot;lang=${variable.lang}&quot;)&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;The HTTP endpoint URL uses &lt;strong&gt;property placeholders&lt;/strong&gt;, resolved from &lt;code class=&quot;highlighter-rouge&quot;&gt;application.properties&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-properties highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;py&quot;&gt;camel.translate.service.host&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;localhost&lt;/span&gt;
-&lt;span class=&quot;py&quot;&gt;camel.translate.service.port&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;9001&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This design — route composition, content-based routing, variable management, and property-driven configuration — is representative of real-world Camel applications. Now let’s test it.&lt;/p&gt;
-
-&lt;h1 id=&quot;adding-citrus-to-the-project&quot;&gt;Adding Citrus to the project&lt;/h1&gt;
-
-&lt;p&gt;This example needs the Citrus HTTP module for service virtualization and the Camel module for direct endpoint access:&lt;/p&gt;
-
-&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.citrusframework&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-quarkus&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;4.10.1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;scope&amp;gt;&lt;/span&gt;test&lt;span class=&quot;nt&quot;&gt;&amp;lt;/scope&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.citrusframework&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-camel&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;4.10.1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;scope&amp;gt;&lt;/span&gt;test&lt;span class=&quot;nt&quot;&gt;&amp;lt;/scope&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.citrusframework&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-http&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;4.10.1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;scope&amp;gt;&lt;/span&gt;test&lt;span class=&quot;nt&quot;&gt;&amp;lt;/scope&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.citrusframework&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-junit-jupiter&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;4.10.1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;scope&amp;gt;&lt;/span&gt;test&lt;span class=&quot;nt&quot;&gt;&amp;lt;/scope&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Here is what each module brings to the table:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;citrus-quarkus&lt;/strong&gt; integrates Citrus with the Quarkus test lifecycle.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;citrus-camel&lt;/strong&gt; provides the &lt;code class=&quot;highlighter-rouge&quot;&gt;camel:&lt;/code&gt; URI scheme for sending messages into Camel routes and CamelContext sharing.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;citrus-http&lt;/strong&gt; provides the HTTP server endpoint that simulates the external translation service.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;citrus-junit-jupiter&lt;/strong&gt; connects Citrus to JUnit 5.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;You also need &lt;code class=&quot;highlighter-rouge&quot;&gt;camel-quarkus-junit&lt;/code&gt; for mock endpoint access, as in the &lt;a href=&quot;/samples/camel-quarkus-direct/&quot;&gt;direct endpoint sample&lt;/a&gt;. No brokers, no containers — just an in-process HTTP server managed by Citrus.&lt;/p&gt;
-
-&lt;h1 id=&quot;setting-up-the-test-class&quot;&gt;Setting up the test class&lt;/h1&gt;
-
-&lt;p&gt;The test class wires together the shared CamelContext and the simulated HTTP server:&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@QuarkusTest&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@CitrusSupport&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;QuarkusApplicationTest&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CamelQuarkusTestSupport&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TestActionSupport&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Inject&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@BindToRegistry&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;CamelContext&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;camelContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@CitrusEndpoint&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@HttpServerConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;autoStart&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;port&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;9001&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;HttpServer&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;translateServer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@CitrusResource&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;GherkinTestActionRunner&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The CamelContext is shared with &lt;code class=&quot;highlighter-rouge&quot;&gt;@BindToRegistry&lt;/code&gt; as in the other Camel samples. The new element here is the &lt;code class=&quot;highlighter-rouge&quot;&gt;HttpServer&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;@HttpServerConfig&lt;/code&gt; annotation configures a Citrus HTTP server on port 9001 with &lt;code class=&quot;highlighter-rouge&quot;&gt;autoStart = true&lt;/code&gt;, which means the server is ready before any test method runs. The port must match the &lt;code class=&quot;highlighter-rouge&quot;&gt;camel.translate.service.port&lt;/code&gt; property in &lt;code class=&quot;highlighter-rouge&quot;&gt;application.properties&lt;/code&gt; — this is how the Camel route’s HTTP call reaches the Citrus server instead of a real translation service.&lt;/p&gt;
-
-&lt;p&gt;When the Camel route executes &lt;code class=&quot;highlighter-rouge&quot;&gt;to(&quot;http://localhost:9001/translate&quot;)&lt;/code&gt;, the request lands on this simulated server. The test then has full control: it can inspect the request, validate its contents, and decide what response to send back.&lt;/p&gt;
-
-&lt;h1 id=&quot;writing-the-test&quot;&gt;Writing the test&lt;/h1&gt;
-
-&lt;p&gt;The test orchestrates a five-step flow: set up the mock expectation, send a message into the route, validate the HTTP request Camel makes, simulate the HTTP response, and verify the final output.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;shouldHandleEvents&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;MockEndpoint&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mockEndpoint&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getMockEndpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;mock:words-out&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;mockEndpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;expectedBodiesReceived&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&amp;gt;&amp;gt; HOWDY&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;fork&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;camel:direct:words-in&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;lang&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;us-texas&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hello&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;translateServer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/translate&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;queryParam&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;lang&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;us-texas&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hello&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;translateServer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Howdy&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;mockEndpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;assertIsSatisfied&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;CitrusRuntimeException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-                    &lt;span class=&quot;s&quot;&gt;&quot;Failed to verify mock endpoint&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Let’s walk through each step.&lt;/p&gt;
-
-&lt;h2 id=&quot;triggering-the-route&quot;&gt;Triggering the route&lt;/h2&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;fork&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;camel:direct:words-in&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;lang&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;us-texas&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hello&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The test sends the string &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Hello&quot;&lt;/code&gt; to the &lt;code class=&quot;highlighter-rouge&quot;&gt;camel:direct:words-in&lt;/code&gt; endpoint with a &lt;code class=&quot;highlighter-rouge&quot;&gt;lang&lt;/code&gt; header set to &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;us-texas&quot;&lt;/code&gt;. The &lt;code class=&quot;highlighter-rouge&quot;&gt;fork(true)&lt;/code&gt; option sends the message asynchronously because the &lt;code class=&quot;highlighter-rouge&quot;&gt;direct:&lt;/code&gt; component is synchronous and the route will block while waiting for the HTTP response from the translation service.&lt;/p&gt;
-
-&lt;p&gt;At this point, the Camel route begins executing. The main route delegates to the translation sub-route, which detects the &lt;code class=&quot;highlighter-rouge&quot;&gt;lang&lt;/code&gt; header, prepares the HTTP request, and calls &lt;code class=&quot;highlighter-rouge&quot;&gt;http://localhost:9001/translate?lang=us-texas&lt;/code&gt; with the body &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Hello&quot;&lt;/code&gt;. That request arrives at the Citrus HTTP server.&lt;/p&gt;
-
-&lt;h2 id=&quot;validating-the-http-request&quot;&gt;Validating the HTTP request&lt;/h2&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;translateServer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/translate&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;queryParam&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;lang&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;us-texas&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hello&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The Citrus HTTP server receives the request from the Camel route and validates it. This step verifies four things at once:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;The HTTP method is POST&lt;/li&gt;
-  &lt;li&gt;The path is &lt;code class=&quot;highlighter-rouge&quot;&gt;/translate&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;The query parameter &lt;code class=&quot;highlighter-rouge&quot;&gt;lang&lt;/code&gt; equals &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;us-texas&quot;&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;The request body is &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Hello&quot;&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;If any of these checks fail, Citrus reports exactly what was expected versus what was received. This is a powerful validation point — it confirms that the Camel route correctly prepared the HTTP request, including the variable-to-query-parameter conversion and the header management logic.&lt;/p&gt;
-
-&lt;h2 id=&quot;simulating-the-response&quot;&gt;Simulating the response&lt;/h2&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;translateServer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Howdy&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;After validating the request, the Citrus server sends back a 200 OK response with the body &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Howdy&quot;&lt;/code&gt;. This simulates the translation service returning the translated text. The Camel route receives this response, converts it to a string, and passes it back to the main route.&lt;/p&gt;
-
-&lt;p&gt;The main route then transforms &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Howdy&quot;&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;&amp;gt;&amp;gt; HOWDY&quot;&lt;/code&gt; (uppercase with prefix) and sends it to &lt;code class=&quot;highlighter-rouge&quot;&gt;mock:words-out&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;verifying-the-final-output&quot;&gt;Verifying the final output&lt;/h2&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;mockEndpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;assertIsSatisfied&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;CitrusRuntimeException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-                &lt;span class=&quot;s&quot;&gt;&quot;Failed to verify mock endpoint&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Finally, the test verifies that the mock endpoint received &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;&amp;gt;&amp;gt; HOWDY&quot;&lt;/code&gt; — confirming that the entire pipeline worked correctly: the route sent the right request to the translation service, processed the response, applied the transformation, and delivered the final result.&lt;/p&gt;
-
-&lt;h1 id=&quot;the-power-of-service-virtualization&quot;&gt;The power of service virtualization&lt;/h1&gt;
-
-&lt;p&gt;The simulated HTTP server is what makes this test self-contained. Without it, you would need the real translation service running during tests — which introduces network dependencies, authentication, rate limits, and flaky failures.&lt;/p&gt;
-
-&lt;p&gt;With Citrus, you get full control over both sides of the HTTP interaction:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Request validation&lt;/strong&gt; — verify the method, path, query parameters, headers, and body of every request your route makes. This catches bugs in request preparation that would otherwise only surface in production.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Response simulation&lt;/strong&gt; — return any status code, body, or header you want. Test the happy path with 200 OK, error handling with 500, not-found behavior with 404, or timeout handling by adding a delay.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Deterministic behavior&lt;/strong&gt; — the simulated server always responds the same way, eliminating flaky tests caused by network issues or external service changes.&lt;/p&gt;
-
-&lt;p&gt;This pattern applies to any external dependency your Camel route calls — REST APIs, SOAP services, webhooks, or any HTTP-based interaction.&lt;/p&gt;
-
-&lt;h1 id=&quot;how-it-all-fits-together&quot;&gt;How it all fits together&lt;/h1&gt;
-
-&lt;p&gt;When you run the test with &lt;code class=&quot;highlighter-rouge&quot;&gt;./mvnw clean test&lt;/code&gt;, here is the sequence of events:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;strong&gt;Citrus starts&lt;/strong&gt; the HTTP server on port 9001.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Quarkus starts&lt;/strong&gt; the application in test mode with the translation service configured to &lt;code class=&quot;highlighter-rouge&quot;&gt;localhost:9001&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Apache Camel discovers&lt;/strong&gt; both routes and registers the direct and mock endpoints.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;The test sends&lt;/strong&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Hello&quot;&lt;/code&gt; with &lt;code class=&quot;highlighter-rouge&quot;&gt;lang=us-texas&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;camel:direct:words-in&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;The main route&lt;/strong&gt; delegates to the translation sub-route.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;The translation route&lt;/strong&gt; detects the &lt;code class=&quot;highlighter-rouge&quot;&gt;lang&lt;/code&gt; header, prepares the HTTP request, and calls the Citrus server.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Citrus validates&lt;/strong&gt; the request (POST, /translate, query param, body).&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Citrus responds&lt;/strong&gt; with 200 OK and body &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Howdy&quot;&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;The main route&lt;/strong&gt; transforms the response to &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;&amp;gt;&amp;gt; HOWDY&quot;&lt;/code&gt; and sends it to the mock endpoint.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;The test verifies&lt;/strong&gt; the mock endpoint received the expected message.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;The entire test runs in under three seconds with no external services, no containers, and no network dependencies.&lt;/p&gt;
-
-&lt;h1 id=&quot;where-to-go-from-here&quot;&gt;Where to go from here&lt;/h1&gt;
-
-&lt;p&gt;This example tests the happy path with a successful translation. Here are several directions you can take it:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Error scenarios&lt;/strong&gt;: Simulate a 500 error from the translation service and verify that the Camel route handles it correctly — does it fall back to the original text, retry, or route to a dead-letter endpoint?&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Missing header path&lt;/strong&gt;: Send a message without the &lt;code class=&quot;highlighter-rouge&quot;&gt;lang&lt;/code&gt; header and verify that the route skips the HTTP call entirely and returns the original message transformed to uppercase.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Timeout testing&lt;/strong&gt;: Add a delay to the simulated response and verify that the Camel route’s timeout handling works as expected.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;JSON payloads&lt;/strong&gt;: If your translation service uses JSON request and response bodies, add the &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-validation-json&lt;/code&gt; module for structured payload validation.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Multiple services&lt;/strong&gt;: If your route calls several external services, set up multiple Citrus HTTP servers on different ports and test the complete orchestration.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Simpler routes&lt;/strong&gt;: If your Camel route does not call external services, the &lt;a href=&quot;/samples/camel-quarkus-direct/&quot;&gt;direct endpoint sample&lt;/a&gt; demonstrates testing with just direct and mock endpoints — no HTTP server needed.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;To explore the full example project including the source code, head over to the &lt;a href=&quot;https://github.com/citrusframework/citrus-quarkus-examples&quot;&gt;citrus-quarkus-examples&lt;/a&gt; repository on GitHub.&lt;/p&gt;
-
-&lt;p&gt;For deeper dives into Citrus capabilities, the &lt;a href=&quot;https://citrusframework.org/citrus/reference/html/&quot;&gt;reference guide&lt;/a&gt; covers HTTP endpoints, Camel integration, service virtualization, and the many other transports that Citrus supports.&lt;/p&gt;</content><author><name></name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://0.0.0.0:4000/img/icons/camel.png" /></entry></feed>
+&lt;p&gt;For deeper dives into Citrus capabilities, the &lt;a href=&quot;https://citrusframework.org/citrus/reference/html/&quot;&gt;reference guide&lt;/a&gt; covers Camel integration, mock endpoints, and the many other transports that Citrus supports.&lt;/p&gt;</content><author><name></name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://0.0.0.0:4000/img/icons/camel.png" /></entry></feed>
