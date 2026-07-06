@@ -260,12 +260,12 @@
     
     <img src="/img/icons/camel.png" style="width: 1em;height: 1em;" alt="">
     
-    Apache Camel Quarkus - HTTP Service Virtualization
-    <a href="/samples/camel-quarkus-direct-http/" class="permalink" title="Permalink">∞</a>
+    Apache Camel Quarkus - HTTP to PostgreSQL
+    <a href="/samples/camel-quarkus-postgresql/" class="permalink" title="Permalink">∞</a>
   </h2>
   <div class="right">
     
-    <a href="https://github.com/citrusframework/citrus-quarkus-examples/blob/master/apache-camel/camel-direct-http" target="_blank">
+    <a href="https://github.com/citrusframework/citrus-quarkus-examples/blob/master/apache-camel/camel-postgresql" target="_blank">
       <i class="fa fa-pencil"></i> View source code
     </a>
     
@@ -277,61 +277,70 @@
     </span>
   </span>
   <div class="post-content">
-    <p>Most integration routes do not live in isolation. They call external HTTP services — a translation API, a payment gateway, a notification service. Testing these routes means you need a way to simulate those external dependencies: validate the requests your route makes, control the responses it receives, and verify the end-to-end flow without depending on real services.</p>
+    <p>An HTTP endpoint that accepts data and writes it to a database is one of the most common patterns in modern applications. It sounds simple, but testing it properly is not. You need to verify not only the HTTP response but also that the data actually landed in the database with the correct values. A test that checks only the response code tells you half the story.</p>
 
-<p>This is where service virtualization comes in. Instead of calling the real service, your test starts a simulated HTTP server that behaves exactly the way you tell it to. You get full control over request validation, response content, error scenarios, and timing — all within a deterministic, repeatable test.</p>
+<p>This post walks through testing an <a href="https://camel.apache.org">Apache Camel</a> route in a <a href="https://quarkus.io">Quarkus</a> application that receives JSON over HTTP and persists it into PostgreSQL using a Camel Kamelet. <a href="https://citrusframework.org">Citrus</a> handles both sides of the verification — the HTTP response and the database state — in a single, self-contained test. The database is provisioned automatically by Quarkus Dev Services, so there is no external infrastructure to manage.</p>
 
-<p>This post walks you through testing an Apache Camel route with an external HTTP dependency in a Quarkus application using the <a href="https://citrusframework.org">Citrus</a> integration testing framework. You will see how Citrus spins up a simulated HTTP server, validates the requests Camel sends to it, sends back controlled responses, and verifies the final output.</p>
-
-<p>By the end you will have a recipe for testing any Camel route that calls external HTTP services.</p>
+<p>By the end you will have a recipe for testing any data persistence route with full end-to-end confidence.</p>
 
 <h1 id="the-application-under-test">The application under test</h1>
 
-<p>The example application implements a translation pipeline. It receives a text message, optionally calls an external translation service based on a language header, transforms the result to uppercase with a prefix, and sends it to an output endpoint.</p>
+<p>The application exposes a single HTTP endpoint that accepts headline data and stores it in a PostgreSQL database. The entire flow fits in one Camel route:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Direct Endpoint (direct:words-in) --&gt; Translation Route --&gt; HTTP Service --&gt; Transform --&gt; Mock Endpoint (mock:words-out)
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>HTTP POST /headline  --&gt;  Apache Camel Route  --&gt;  PostgreSQL (via postgresql-sink Kamelet)
 </code></pre></div></div>
 
-<p>The logic is split into two interconnected Camel routes. The main route handles the overall pipeline:</p>
+<p>Here is the route definition:</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">from</span><span class="o">(</span><span class="s">"direct:words-in"</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"direct:translate"</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">setBody</span><span class="o">(</span><span class="n">exchange</span> <span class="o">-&gt;</span> <span class="s">"&gt;&gt; "</span> <span class="o">+</span> <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">getBody</span><span class="o">().</span><span class="na">toString</span><span class="o">().</span><span class="na">toUpperCase</span><span class="o">())</span>
-    <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"mock:words-out"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Routes</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">from</span><span class="o">(</span><span class="s">"platform-http:/headline?httpMethodRestrict=POST"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"kamelet:postgresql-sink?"</span> <span class="o">+</span>
+                    <span class="s">"serverName=&amp;"</span> <span class="o">+</span>
+                    <span class="s">"serverPort=&amp;"</span> <span class="o">+</span>
+                    <span class="s">"username=&amp;"</span> <span class="o">+</span>
+                    <span class="s">"password=&amp;"</span> <span class="o">+</span>
+                    <span class="s">"databaseName=&amp;"</span> <span class="o">+</span>
+                    <span class="s">"query=INSERT INTO headlines "</span> <span class="o">+</span>
+                    <span class="s">"VALUES (:#id,:#headline)"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">setBody</span><span class="o">().</span><span class="na">constant</span><span class="o">(</span><span class="s">"Headline created!"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="n">Exchange</span><span class="o">.</span><span class="na">HTTP_RESPONSE_CODE</span><span class="o">,</span> <span class="n">constant</span><span class="o">(</span><span class="mi">201</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre></div></div>
 
-<p>The translation route handles the HTTP service call with content-based routing:</p>
+<p>The route starts with <code class="highlighter-rouge">platform-http</code>, which integrates with the Quarkus HTTP server to expose a POST endpoint at <code class="highlighter-rouge">/headline</code>. The incoming JSON body is passed to the <code class="highlighter-rouge">postgresql-sink</code> Kamelet, which handles the database insert. After a successful insert, the route responds with <code class="highlighter-rouge">"Headline created!"</code> and HTTP status 201.</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">from</span><span class="o">(</span><span class="s">"direct:translate"</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">choice</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">simple</span><span class="o">(</span><span class="s">"${header.lang} != null"</span><span class="o">))</span>
-            <span class="o">.</span><span class="na">setVariable</span><span class="o">(</span><span class="s">"lang"</span><span class="o">,</span> <span class="n">simple</span><span class="o">(</span><span class="s">"${header.lang}"</span><span class="o">))</span>
-            <span class="o">.</span><span class="na">removeHeaders</span><span class="o">(</span><span class="s">"*"</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="n">Exchange</span><span class="o">.</span><span class="na">HTTP_METHOD</span><span class="o">,</span> <span class="n">constant</span><span class="o">(</span><span class="s">"POST"</span><span class="o">))</span>
-            <span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="n">Exchange</span><span class="o">.</span><span class="na">HTTP_QUERY</span><span class="o">,</span> <span class="n">simple</span><span class="o">(</span><span class="s">"lang=${variable.lang}"</span><span class="o">))</span>
-            <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"http://:/translate"</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">convertBodyTo</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">otherwise</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">setBody</span><span class="o">(</span><span class="n">simple</span><span class="o">(</span><span class="s">"${body}"</span><span class="o">));</span>
+<p>The <code class="highlighter-rouge">postgresql-sink</code> Kamelet deserves a closer look. It is a pre-built Camel component from the <a href="https://camel.apache.org/camel-kamelets/latest/">Kamelet catalog</a> that simplifies database writes. Under the hood it parses the incoming JSON into a Map, creates its own DBCP2 connection pool from the provided connection parameters, and executes the parameterized SQL query. The <code class="highlighter-rouge">:#id</code> and <code class="highlighter-rouge">:#headline</code> placeholders are named parameters that bind to the keys in the parsed JSON Map — so a body like <code class="highlighter-rouge">{"id": 42, "headline": "Camel rocks!"}</code> inserts the values <code class="highlighter-rouge">42</code> and <code class="highlighter-rouge">Camel rocks!</code> into the corresponding columns.</p>
+
+<p>The connection parameters use Camel property placeholders, which are resolved from the Quarkus <code class="highlighter-rouge">application.properties</code>. This keeps the route portable across environments.</p>
+
+<p>The database table is created at application startup by a small initializer:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ApplicationScoped</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DatabaseInit</span> <span class="o">{</span>
+
+    <span class="nd">@Inject</span>
+    <span class="n">DataSource</span> <span class="n">dataSource</span><span class="o">;</span>
+
+    <span class="kt">void</span> <span class="nf">onStart</span><span class="o">(</span><span class="nd">@Observes</span> <span class="n">StartupEvent</span> <span class="n">ev</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">SQLException</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">(</span><span class="kt">var</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">dataSource</span><span class="o">.</span><span class="na">getConnection</span><span class="o">();</span>
+             <span class="kt">var</span> <span class="n">stmt</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="na">createStatement</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">stmt</span><span class="o">.</span><span class="na">execute</span><span class="o">(</span><span class="s">"CREATE TABLE IF NOT EXISTS headlines "</span> <span class="o">+</span>
+                <span class="s">"(id INTEGER PRIMARY KEY, "</span> <span class="o">+</span>
+                <span class="s">"headline VARCHAR(255))"</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre></div></div>
 
-<p>There is a lot going on in the translation route, so let’s walk through it.</p>
-
-<p>The <strong>Content Based Router</strong> (<code class="highlighter-rouge">choice().when()</code>) checks whether the incoming message carries a <code class="highlighter-rouge">lang</code> header. If it does, the route calls the translation service. If not, it passes the original message through unchanged.</p>
-
-<p>Before making the HTTP call, the route stores the <code class="highlighter-rouge">lang</code> value in a Camel <strong>variable</strong> using <code class="highlighter-rouge">setVariable()</code>. This is important because the next step — <code class="highlighter-rouge">removeHeaders("*")</code> — clears all message headers. Without saving the language first, it would be lost. Variables survive header removal, so the route can reconstruct the query parameter later with <code class="highlighter-rouge">simple("lang=${variable.lang}")</code>.</p>
-
-<p>The HTTP endpoint URL uses <strong>property placeholders</strong>, resolved from <code class="highlighter-rouge">application.properties</code>:</p>
-
-<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">camel.translate.service.host</span><span class="p">=</span><span class="s">localhost</span>
-<span class="py">camel.translate.service.port</span><span class="p">=</span><span class="s">9001</span>
-</code></pre></div></div>
-
-<p>This design — route composition, content-based routing, variable management, and property-driven configuration — is representative of real-world Camel applications. Now let’s test it.</p>
+<p>This uses the Quarkus-managed <code class="highlighter-rouge">DataSource</code> to create the <code class="highlighter-rouge">headlines</code> table if it does not exist. In test mode, this DataSource connects to the Dev Services PostgreSQL container — so the table is ready before the first test runs.</p>
 
 <h1 id="adding-citrus-to-the-project">Adding Citrus to the project</h1>
 
-<p>This example needs the Citrus HTTP module for service virtualization and the Camel module for direct endpoint access:</p>
+<p>Testing this application requires two Citrus modules: one for HTTP and one for SQL.</p>
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
@@ -341,13 +350,13 @@
 <span class="nt">&lt;/dependency&gt;</span>
 <span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>citrus-camel<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-http<span class="nt">&lt;/artifactId&gt;</span>
     <span class="nt">&lt;version&gt;</span>4.10.1<span class="nt">&lt;/version&gt;</span>
     <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 <span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>citrus-http<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-sql<span class="nt">&lt;/artifactId&gt;</span>
     <span class="nt">&lt;version&gt;</span>4.10.1<span class="nt">&lt;/version&gt;</span>
     <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
@@ -363,181 +372,142 @@
 
 <ul>
   <li>
-<strong>citrus-quarkus</strong> integrates Citrus with the Quarkus test lifecycle.</li>
+<strong>citrus-quarkus</strong> integrates Citrus with the Quarkus test lifecycle and manages Dev Services property sharing.</li>
   <li>
-<strong>citrus-camel</strong> provides the <code class="highlighter-rouge">camel:</code> URI scheme for sending messages into Camel routes and CamelContext sharing.</li>
+<strong>citrus-http</strong> provides the HTTP client endpoint for sending requests to the Camel route.</li>
   <li>
-<strong>citrus-http</strong> provides the HTTP server endpoint that simulates the external translation service.</li>
+<strong>citrus-sql</strong> provides SQL query and validation actions for verifying database state.</li>
   <li>
 <strong>citrus-junit-jupiter</strong> connects Citrus to JUnit 5.</li>
 </ul>
 
-<p>You also need <code class="highlighter-rouge">camel-quarkus-junit</code> for mock endpoint access, as in the <a href="/samples/camel-quarkus-direct/">direct endpoint sample</a>. No brokers, no containers — just an in-process HTTP server managed by Citrus.</p>
+<p>No Camel-specific Citrus module is needed here because the test interacts with the application purely through its HTTP interface — no direct route invocation required. The Camel route is exercised indirectly when the test sends an HTTP POST.</p>
 
 <h1 id="setting-up-the-test-class">Setting up the test class</h1>
 
-<p>The test class wires together the shared CamelContext and the simulated HTTP server:</p>
+<p>The test class connects Citrus to the Quarkus application and the Dev Services database:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@QuarkusTest</span>
-<span class="nd">@CitrusSupport</span>
-<span class="kd">class</span> <span class="nc">QuarkusApplicationTest</span> <span class="kd">extends</span> <span class="n">CamelQuarkusTestSupport</span>
-        <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
-
-    <span class="nd">@Inject</span>
-    <span class="nd">@BindToRegistry</span>
-    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+<span class="nd">@CitrusSupport</span><span class="o">(</span><span class="n">devServicesProperties</span> <span class="o">=</span> <span class="s">"*"</span><span class="o">)</span>
+<span class="kd">class</span> <span class="nc">QuarkusApplicationTest</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
 
     <span class="nd">@CitrusEndpoint</span>
-    <span class="nd">@HttpServerConfig</span><span class="o">(</span><span class="n">autoStart</span> <span class="o">=</span> <span class="kc">true</span><span class="o">,</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">9001</span><span class="o">)</span>
-    <span class="n">HttpServer</span> <span class="n">translateServer</span><span class="o">;</span>
+    <span class="nd">@HttpClientConfig</span><span class="o">(</span><span class="n">requestUrl</span> <span class="o">=</span> <span class="s">"http://localhost:8081"</span><span class="o">)</span>
+    <span class="n">HttpClient</span> <span class="n">httpClient</span><span class="o">;</span>
+
+    <span class="nd">@Inject</span>
+    <span class="n">DataSource</span> <span class="n">dataSource</span><span class="o">;</span>
 
     <span class="nd">@CitrusResource</span>
     <span class="n">GherkinTestActionRunner</span> <span class="n">runner</span><span class="o">;</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The CamelContext is shared with <code class="highlighter-rouge">@BindToRegistry</code> as in the other Camel samples. The new element here is the <code class="highlighter-rouge">HttpServer</code>.</p>
+<p>Three things are worth noting here.</p>
 
-<p>The <code class="highlighter-rouge">@HttpServerConfig</code> annotation configures a Citrus HTTP server on port 9001 with <code class="highlighter-rouge">autoStart = true</code>, which means the server is ready before any test method runs. The port must match the <code class="highlighter-rouge">camel.translate.service.port</code> property in <code class="highlighter-rouge">application.properties</code> — this is how the Camel route’s HTTP call reaches the Citrus server instead of a real translation service.</p>
+<p>First, the <code class="highlighter-rouge">@CitrusSupport(devServicesProperties = "*")</code> annotation. The <code class="highlighter-rouge">devServicesProperties = "*"</code> parameter tells Citrus to accept all configuration properties injected by Quarkus Dev Services. This is how Citrus learns about the database connection that Quarkus provisioned — without it, the two frameworks would not share the same configuration context.</p>
 
-<p>When the Camel route executes <code class="highlighter-rouge">to("http://localhost:9001/translate")</code>, the request lands on this simulated server. The test then has full control: it can inspect the request, validate its contents, and decide what response to send back.</p>
+<p>Second, the <code class="highlighter-rouge">@Inject DataSource dataSource</code>. This injects the Quarkus-managed DataSource — the same one that <code class="highlighter-rouge">DatabaseInit</code> uses to create the table at startup. The DataSource connects to the Dev Services PostgreSQL container, so when the Citrus test queries the database, it reads from the exact same instance that the Camel route writes to. There is no separate test database.</p>
+
+<p>Third, the HTTP client is configured with <code class="highlighter-rouge">@HttpClientConfig(requestUrl = "http://localhost:8081")</code>. Port 8081 is the default Quarkus test port. This client sends requests to the application just like any external caller would.</p>
 
 <h1 id="writing-the-test">Writing the test</h1>
 
-<p>The test orchestrates a five-step flow: set up the mock expectation, send a message into the route, validate the HTTP request Camel makes, simulate the HTTP response, and verify the final output.</p>
+<p>The test follows a natural Given-When-Then flow: set up test data, call the HTTP endpoint, verify the response, and then verify the database.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
-<span class="kt">void</span> <span class="nf">shouldHandleEvents</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">MockEndpoint</span> <span class="n">mockEndpoint</span> <span class="o">=</span> <span class="n">getMockEndpoint</span><span class="o">(</span><span class="s">"mock:words-out"</span><span class="o">);</span>
-    <span class="n">mockEndpoint</span><span class="o">.</span><span class="na">expectedBodiesReceived</span><span class="o">(</span><span class="s">"&gt;&gt; HOWDY"</span><span class="o">);</span>
-
-    <span class="n">runner</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
-        <span class="n">send</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">fork</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"camel:direct:words-in"</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"lang"</span><span class="o">,</span> <span class="s">"us-texas"</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">)</span>
+<span class="kt">void</span> <span class="nf">shouldPersistData</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">runner</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+        <span class="n">createVariables</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"headline"</span><span class="o">,</span> <span class="s">"Camel rocks!"</span><span class="o">)</span>
     <span class="o">);</span>
 
     <span class="n">runner</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
-        <span class="n">http</span><span class="o">().</span><span class="na">server</span><span class="o">(</span><span class="n">translateServer</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/translate"</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">queryParam</span><span class="o">(</span><span class="s">"lang"</span><span class="o">,</span> <span class="s">"us-texas"</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">)</span>
-    <span class="o">);</span>
-
-    <span class="n">runner</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
-        <span class="n">http</span><span class="o">().</span><span class="na">server</span><span class="o">(</span><span class="n">translateServer</span><span class="o">)</span>
+        <span class="n">http</span><span class="o">().</span><span class="na">client</span><span class="o">(</span><span class="n">httpClient</span><span class="o">)</span>
             <span class="o">.</span><span class="na">send</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="mi">200</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/headline"</span><span class="o">)</span>
             <span class="o">.</span><span class="na">message</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Howdy"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"""
+                { "</span><span class="n">id</span><span class="s">": org.citrusframework:citrus-website:pom:1.1.0, "</span><span class="n">headline</span><span class="s">": "</span><span class="err">$</span><span class="o">{</span><span class="n">headline</span><span class="o">}</span><span class="s">" }
+                """</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="s">"application/json"</span><span class="o">)</span>
     <span class="o">);</span>
 
     <span class="n">runner</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
-        <span class="n">context</span> <span class="o">-&gt;</span> <span class="o">{</span>
-            <span class="k">try</span> <span class="o">{</span>
-                <span class="n">mockEndpoint</span><span class="o">.</span><span class="na">assertIsSatisfied</span><span class="o">();</span>
-            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">throw</span> <span class="k">new</span> <span class="nf">CitrusRuntimeException</span><span class="o">(</span>
-                    <span class="s">"Failed to verify mock endpoint"</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
+        <span class="n">http</span><span class="o">().</span><span class="na">client</span><span class="o">(</span><span class="n">httpClient</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">CREATED</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Headline created!"</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">runner</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+        <span class="n">sql</span><span class="o">().</span><span class="na">dataSource</span><span class="o">(</span><span class="n">dataSource</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">query</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">statement</span><span class="o">(</span>
+                <span class="s">"SELECT headline FROM headlines WHERE id=org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"HEADLINE"</span><span class="o">,</span> <span class="s">"${headline}"</span><span class="o">)</span>
     <span class="o">);</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
 <p>Let’s walk through each step.</p>
 
-<h2 id="triggering-the-route">Triggering the route</h2>
+<h2 id="setting-up-test-variables">Setting up test variables</h2>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">runner</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
-    <span class="n">send</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">fork</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"camel:direct:words-in"</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">message</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"lang"</span><span class="o">,</span> <span class="s">"us-texas"</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">)</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">runner</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+    <span class="n">createVariables</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"headline"</span><span class="o">,</span> <span class="s">"Camel rocks!"</span><span class="o">)</span>
 <span class="o">);</span>
 </code></pre></div></div>
 
-<p>The test sends the string <code class="highlighter-rouge">"Hello"</code> to the <code class="highlighter-rouge">camel:direct:words-in</code> endpoint with a <code class="highlighter-rouge">lang</code> header set to <code class="highlighter-rouge">"us-texas"</code>. The <code class="highlighter-rouge">fork(true)</code> option sends the message asynchronously because the <code class="highlighter-rouge">direct:</code> component is synchronous and the route will block while waiting for the HTTP response from the translation service.</p>
+<p>The test creates two variables: a random 4-digit <code class="highlighter-rouge">id</code> using the built-in <code class="highlighter-rouge">citrus:randomNumber()</code> function, and a fixed <code class="highlighter-rouge">headline</code> string. These variables are referenced throughout the test with <code class="highlighter-rouge">org.citrusframework:citrus-website:pom:1.1.0</code> and <code class="highlighter-rouge">${headline}</code>, ensuring the same values are used in the HTTP request, the expected response, and the SQL validation. The random ID prevents collisions between test runs without manual cleanup.</p>
 
-<p>At this point, the Camel route begins executing. The main route delegates to the translation sub-route, which detects the <code class="highlighter-rouge">lang</code> header, prepares the HTTP request, and calls <code class="highlighter-rouge">http://localhost:9001/translate?lang=us-texas</code> with the body <code class="highlighter-rouge">"Hello"</code>. That request arrives at the Citrus HTTP server.</p>
-
-<h2 id="validating-the-http-request">Validating the HTTP request</h2>
+<h2 id="sending-the-http-request">Sending the HTTP request</h2>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">runner</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
-    <span class="n">http</span><span class="o">().</span><span class="na">server</span><span class="o">(</span><span class="n">translateServer</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/translate"</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">message</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">queryParam</span><span class="o">(</span><span class="s">"lang"</span><span class="o">,</span> <span class="s">"us-texas"</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">)</span>
-<span class="o">);</span>
-</code></pre></div></div>
-
-<p>The Citrus HTTP server receives the request from the Camel route and validates it. This step verifies four things at once:</p>
-
-<ul>
-  <li>The HTTP method is POST</li>
-  <li>The path is <code class="highlighter-rouge">/translate</code>
-</li>
-  <li>The query parameter <code class="highlighter-rouge">lang</code> equals <code class="highlighter-rouge">"us-texas"</code>
-</li>
-  <li>The request body is <code class="highlighter-rouge">"Hello"</code>
-</li>
-</ul>
-
-<p>If any of these checks fail, Citrus reports exactly what was expected versus what was received. This is a powerful validation point — it confirms that the Camel route correctly prepared the HTTP request, including the variable-to-query-parameter conversion and the header management logic.</p>
-
-<h2 id="simulating-the-response">Simulating the response</h2>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">runner</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
-    <span class="n">http</span><span class="o">().</span><span class="na">server</span><span class="o">(</span><span class="n">translateServer</span><span class="o">)</span>
+    <span class="n">http</span><span class="o">().</span><span class="na">client</span><span class="o">(</span><span class="n">httpClient</span><span class="o">)</span>
         <span class="o">.</span><span class="na">send</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="mi">200</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/headline"</span><span class="o">)</span>
         <span class="o">.</span><span class="na">message</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Howdy"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"""
+            { "</span><span class="n">id</span><span class="s">": org.citrusframework:citrus-website:pom:1.1.0, "</span><span class="n">headline</span><span class="s">": "</span><span class="err">$</span><span class="o">{</span><span class="n">headline</span><span class="o">}</span><span class="s">" }
+            """</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="s">"application/json"</span><span class="o">)</span>
 <span class="o">);</span>
 </code></pre></div></div>
 
-<p>After validating the request, the Citrus server sends back a 200 OK response with the body <code class="highlighter-rouge">"Howdy"</code>. This simulates the translation service returning the translated text. The Camel route receives this response, converts it to a string, and passes it back to the main route.</p>
+<p>The test sends a POST request to <code class="highlighter-rouge">/headline</code> with a JSON body containing the test variables. This triggers the Camel route, which parses the JSON and passes it to the <code class="highlighter-rouge">postgresql-sink</code> Kamelet for database insertion.</p>
 
-<p>The main route then transforms <code class="highlighter-rouge">"Howdy"</code> to <code class="highlighter-rouge">"&gt;&gt; HOWDY"</code> (uppercase with prefix) and sends it to <code class="highlighter-rouge">mock:words-out</code>.</p>
-
-<h2 id="verifying-the-final-output">Verifying the final output</h2>
+<h2 id="verifying-the-http-response">Verifying the HTTP response</h2>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">runner</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
-    <span class="n">context</span> <span class="o">-&gt;</span> <span class="o">{</span>
-        <span class="k">try</span> <span class="o">{</span>
-            <span class="n">mockEndpoint</span><span class="o">.</span><span class="na">assertIsSatisfied</span><span class="o">();</span>
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="nf">CitrusRuntimeException</span><span class="o">(</span>
-                <span class="s">"Failed to verify mock endpoint"</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
+    <span class="n">http</span><span class="o">().</span><span class="na">client</span><span class="o">(</span><span class="n">httpClient</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">CREATED</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Headline created!"</span><span class="o">)</span>
 <span class="o">);</span>
 </code></pre></div></div>
 
-<p>Finally, the test verifies that the mock endpoint received <code class="highlighter-rouge">"&gt;&gt; HOWDY"</code> — confirming that the entire pipeline worked correctly: the route sent the right request to the translation service, processed the response, applied the transformation, and delivered the final result.</p>
+<p>After the route processes the request, the test verifies the HTTP response: status 201 Created and the body <code class="highlighter-rouge">"Headline created!"</code>. This confirms the route completed successfully — but it does not tell you whether the data actually reached the database. A route that swallows an insert error and still returns 201 would pass this check. That is why the next step is essential.</p>
 
-<h1 id="the-power-of-service-virtualization">The power of service virtualization</h1>
+<h2 id="verifying-the-database-state">Verifying the database state</h2>
 
-<p>The simulated HTTP server is what makes this test self-contained. Without it, you would need the real translation service running during tests — which introduces network dependencies, authentication, rate limits, and flaky failures.</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">runner</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+    <span class="n">sql</span><span class="o">().</span><span class="na">dataSource</span><span class="o">(</span><span class="n">dataSource</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">query</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">statement</span><span class="o">(</span>
+            <span class="s">"SELECT headline FROM headlines WHERE id=org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"HEADLINE"</span><span class="o">,</span> <span class="s">"${headline}"</span><span class="o">)</span>
+<span class="o">);</span>
+</code></pre></div></div>
 
-<p>With Citrus, you get full control over both sides of the HTTP interaction:</p>
+<p>This is where Citrus closes the loop. The <code class="highlighter-rouge">sql()</code> action executes a SELECT query against the shared DataSource, looking for the row that the Camel route just inserted. The <code class="highlighter-rouge">.validate("HEADLINE", "${headline}")</code> assertion checks that the <code class="highlighter-rouge">headline</code> column contains the expected value.</p>
 
-<p><strong>Request validation</strong> — verify the method, path, query parameters, headers, and body of every request your route makes. This catches bugs in request preparation that would otherwise only surface in production.</p>
-
-<p><strong>Response simulation</strong> — return any status code, body, or header you want. Test the happy path with 200 OK, error handling with 500, not-found behavior with 404, or timeout handling by adding a delay.</p>
-
-<p><strong>Deterministic behavior</strong> — the simulated server always responds the same way, eliminating flaky tests caused by network issues or external service changes.</p>
-
-<p>This pattern applies to any external dependency your Camel route calls — REST APIs, SOAP services, webhooks, or any HTTP-based interaction.</p>
+<p>If the Kamelet failed to insert the row, if the JSON parsing lost a field, or if the named parameter binding mapped the wrong key — this step catches it. The test validates the actual side effect, not just the HTTP facade.</p>
 
 <h1 id="how-it-all-fits-together">How it all fits together</h1>
 
@@ -545,51 +515,77 @@
 
 <ol>
   <li>
-<strong>Citrus starts</strong> the HTTP server on port 9001.</li>
+<strong>Quarkus Dev Services</strong> starts a PostgreSQL container on port 15432.</li>
   <li>
-<strong>Quarkus starts</strong> the application in test mode with the translation service configured to <code class="highlighter-rouge">localhost:9001</code>.</li>
+<strong><code class="highlighter-rouge">@CitrusSupport(devServicesProperties = "*")</code></strong> initializes Citrus with the Dev Services configuration.</li>
   <li>
-<strong>Apache Camel discovers</strong> both routes and registers the direct and mock endpoints.</li>
+<strong>Quarkus starts</strong> the application in test mode. The <code class="highlighter-rouge">DatabaseInit</code> bean creates the <code class="highlighter-rouge">headlines</code> table.</li>
   <li>
-<strong>The test sends</strong> <code class="highlighter-rouge">"Hello"</code> with <code class="highlighter-rouge">lang=us-texas</code> to <code class="highlighter-rouge">camel:direct:words-in</code>.</li>
+<strong>Apache Camel discovers</strong> the route and registers the <code class="highlighter-rouge">platform-http:/headline</code> endpoint.</li>
   <li>
-<strong>The main route</strong> delegates to the translation sub-route.</li>
+<strong>The test creates</strong> a random <code class="highlighter-rouge">id</code> and a <code class="highlighter-rouge">headline</code> variable.</li>
   <li>
-<strong>The translation route</strong> detects the <code class="highlighter-rouge">lang</code> header, prepares the HTTP request, and calls the Citrus server.</li>
+<strong>Citrus sends</strong> an HTTP POST with the JSON body to <code class="highlighter-rouge">/headline</code>.</li>
   <li>
-<strong>Citrus validates</strong> the request (POST, /translate, query param, body).</li>
+<strong>The Camel route</strong> receives the request, passes it to the <code class="highlighter-rouge">postgresql-sink</code> Kamelet, which inserts a row into PostgreSQL.</li>
   <li>
-<strong>Citrus responds</strong> with 200 OK and body <code class="highlighter-rouge">"Howdy"</code>.</li>
+<strong>The route responds</strong> with 201 Created and <code class="highlighter-rouge">"Headline created!"</code>.</li>
   <li>
-<strong>The main route</strong> transforms the response to <code class="highlighter-rouge">"&gt;&gt; HOWDY"</code> and sends it to the mock endpoint.</li>
+<strong>Citrus validates</strong> the HTTP response status and body.</li>
   <li>
-<strong>The test verifies</strong> the mock endpoint received the expected message.</li>
+<strong>Citrus queries</strong> the database using the shared DataSource and verifies the inserted row.</li>
+  <li>
+<strong>The test completes.</strong> The PostgreSQL container is automatically stopped.</li>
 </ol>
 
-<p>The entire test runs in under three seconds with no external services, no containers, and no network dependencies.</p>
+<p>The key insight is that three components — the Quarkus <code class="highlighter-rouge">DatabaseInit</code> bean, the Camel Kamelet, and the Citrus SQL action — all connect to the same PostgreSQL instance without any manual wiring. Quarkus Dev Services provisions the database, and the shared configuration makes it available to everyone.</p>
+
+<h1 id="dev-services-configuration">Dev Services configuration</h1>
+
+<p>The test configuration in <code class="highlighter-rouge">src/test/resources/application.properties</code> pins the Dev Services port so the Kamelet’s connection parameters can be statically configured:</p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">quarkus.datasource.devservices.port</span><span class="p">=</span><span class="s">15432</span>
+
+<span class="py">jdbc.server.host</span><span class="p">=</span><span class="s">localhost</span>
+<span class="py">jdbc.server.port</span><span class="p">=</span><span class="s">15432</span>
+<span class="py">jdbc.username</span><span class="p">=</span><span class="s">quarkus</span>
+<span class="py">jdbc.password</span><span class="p">=</span><span class="s">quarkus</span>
+<span class="py">jdbc.database.name</span><span class="p">=</span><span class="s">quarkus</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">quarkus.datasource.devservices.port=15432</code> setting fixes the PostgreSQL container to a known port. The <code class="highlighter-rouge">jdbc.*</code> properties override the production defaults to match the Dev Services container credentials (username <code class="highlighter-rouge">quarkus</code>, password <code class="highlighter-rouge">quarkus</code>, database <code class="highlighter-rouge">quarkus</code>). This way the Kamelet’s DBCP2 connection pool connects to the same database that the Quarkus DataSource manages.</p>
+
+<p>In production, the <code class="highlighter-rouge">jdbc.*</code> properties point to the real database:</p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">jdbc.server.host</span><span class="p">=</span><span class="s">localhost</span>
+<span class="py">jdbc.server.port</span><span class="p">=</span><span class="s">5432</span>
+<span class="py">jdbc.username</span><span class="p">=</span><span class="s">postgres</span>
+<span class="py">jdbc.password</span><span class="p">=</span><span class="s">postgres</span>
+<span class="py">jdbc.database.name</span><span class="p">=</span><span class="s">postgres</span>
+</code></pre></div></div>
+
+<p>The route itself stays identical across environments — only the property values change.</p>
 
 <h1 id="where-to-go-from-here">Where to go from here</h1>
 
-<p>This example tests the happy path with a successful translation. Here are several directions you can take it:</p>
+<p>This example tests a single insert operation. Here are directions you can extend it:</p>
 
 <ul>
   <li>
-<strong>Error scenarios</strong>: Simulate a 500 error from the translation service and verify that the Camel route handles it correctly — does it fall back to the original text, retry, or route to a dead-letter endpoint?</li>
+<strong>Multiple inserts</strong>: Send several headlines and use a SQL query with <code class="highlighter-rouge">ORDER BY</code> to validate all rows were persisted in the correct order.</li>
   <li>
-<strong>Missing header path</strong>: Send a message without the <code class="highlighter-rouge">lang</code> header and verify that the route skips the HTTP call entirely and returns the original message transformed to uppercase.</li>
+<strong>Update and delete</strong>: Add PUT and DELETE endpoints to the route and use <code class="highlighter-rouge">sql().execute()</code> for setup data and <code class="highlighter-rouge">sql().query()</code> for validation.</li>
   <li>
-<strong>Timeout testing</strong>: Add a delay to the simulated response and verify that the Camel route’s timeout handling works as expected.</li>
+<strong>Error scenarios</strong>: Send malformed JSON or duplicate IDs and verify that the route returns the appropriate HTTP error codes.</li>
   <li>
-<strong>JSON payloads</strong>: If your translation service uses JSON request and response bodies, add the <code class="highlighter-rouge">citrus-validation-json</code> module for structured payload validation.</li>
+<strong>Messaging integration</strong>: Replace the HTTP trigger with a Kafka or JMS consumer and combine messaging validation with SQL assertions — the <a href="/samples/camel-quarkus-kafka/">Kafka sample</a> shows how to set up Kafka endpoints with Citrus.</li>
   <li>
-<strong>Multiple services</strong>: If your route calls several external services, set up multiple Citrus HTTP servers on different ports and test the complete orchestration.</li>
-  <li>
-<strong>Simpler routes</strong>: If your Camel route does not call external services, the <a href="/samples/camel-quarkus-direct/">direct endpoint sample</a> demonstrates testing with just direct and mock endpoints — no HTTP server needed.</li>
+<strong>Protocol bridges</strong>: If your route exposes REST and delegates to a SOAP backend before writing to the database, the <a href="/samples/camel-quarkus-rest-to-soap/">REST-to-SOAP sample</a> demonstrates dual-role testing with HTTP clients and SOAP servers.</li>
 </ul>
 
 <p>To explore the full example project including the source code, head over to the <a href="https://github.com/citrusframework/citrus-quarkus-examples">citrus-quarkus-examples</a> repository on GitHub.</p>
 
-<p>For deeper dives into Citrus capabilities, the <a href="https://citrusframework.org/citrus/reference/html/">reference guide</a> covers HTTP endpoints, Camel integration, service virtualization, and the many other transports that Citrus supports.</p>
+<p>For deeper dives into Citrus capabilities, the <a href="https://citrusframework.org/citrus/reference/html/">reference guide</a> covers HTTP endpoints, SQL validation, Camel integration, and the many other transports that Citrus supports.</p>
 
   </div>
 </article>
@@ -837,7 +833,7 @@
       </li>
       
       
-      <li class="">
+      <li class="current">
         <a href="/samples/camel-quarkus-postgresql/">camel-postgresql</a>
       </li>
       
@@ -872,7 +868,7 @@
       </li>
       
       
-      <li class="current">
+      <li class="">
         <a href="/samples/camel-quarkus-direct-http/">camel-direct-http</a>
       </li>
       
