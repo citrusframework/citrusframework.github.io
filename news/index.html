@@ -145,10 +145,6 @@
       
       <option value="/news/2014/11/21/camel-testing-part-1/">Apache Camel Integration Testing - Part 1</option>
       
-      <option value="/news/2014/05/30/testing-webmethods-with-citrus-part-ii/">Testing webMethods with Citrus Part II</option>
-      
-      <option value="/news/2014/03/06/testing-webmethods-with-citrus-part-i/">Testing webMethods with Citrus Part I</option>
-      
       <option value="/news/2011/06/22/excel-validation/">Validate Excel files in Citrus</option>
       
       <option value="/news/2011/06/17/testng-data-provider/">Use TestNG data providers in Citrus</option>
@@ -190,6 +186,8 @@
   </div>
   <div class="post-content">
     <p><a href="https://camel.apache.org">Apache Camel</a> is one of the most mature integration frameworks in the Java ecosystem, offering 300+ connectors to virtually every messaging system, cloud service, and protocol you can think of. <a href="https://citrusframework.org">Citrus</a> is a powerful integration testing framework that orchestrates end-to-end test scenarios with clean, readable Java code. Each is strong on its own — but when you combine them, something remarkable happens.</p>
+
+<p><img src="/img/assets/camel-elevates-citrus/featured.png" alt="Camel elevates Citrus"></p>
 
 <p>Citrus gains the ability to speak every protocol Camel supports, transform test data with Camel’s rich data formats, and even reach into running Camel routes to trigger or verify business logic directly. In return, Camel gets a purpose-built test harness that can validate its routes in realistic, container-backed environments with proper message verification.</p>
 
@@ -4445,120 +4443,6 @@ add some error scenarios where the Seda endpoint component is forcing an excepti
 
   <article>
   <h2>
-    Testing webMethods with Citrus Part II
-    <a href="/news/2014/05/30/testing-webmethods-with-citrus-part-ii/" class="permalink" title="Permalink">∞</a>
-  </h2>
-  <span class="post-category">
-    <span class="label">
-      blog
-    </span>
-  </span>
-  <div class="post-meta">
-    <span class="post-date">
-      30 May 2014
-    </span>
-    <a href="https://github.com/jaza089" class="post-author">
-      
-      Jan Zahalka
-    </a>
-  </div>
-  <div class="post-content">
-    <p>In <a href="/news/2014/03/06/testing-webmethods-with-citrus-part-i">part I</a> of this tutorial I introduced the basic concepts and benefits of Citrus as a test driver for ESB projects in general and webMethods in particular. 
-In this second part I want to discuss some Citrus project setup options and provide a quickstart template project for Ant users.</p>
-
-<h3 id="maven-or-ant">Maven or Ant?</h3>
-
-<p>Basically, Citrus support both options – you are free in your choice of the build system to use to drive your Citrus tests. Typically a Maven setup is preferred since Maven reduces the necessary project setup 
-clutter one has to face when using Ant. Check this <a href="/docs/setup-maven.html">quickstart</a> if you want to let Maven create your project structure for you.</p>
-
-<p>However, everything in the webMethods world is ant-based (like tooling, deployment etc.), at least this was the case during my experience with the 8.2 version of webMethods, let me know if things have changed meanwhile. 
-So it might make pretty good sense to setup the Citrus project with Ant as well to reuse existing project knowledge. That’s what the rest of this blog entry is basically about.</p>
-
-<h3 id="ant-setup">Ant Setup</h3>
-
-<p>The Citrus homepage provides an awesome Ant <a href="/docs/setup-ant">quickstart</a>. Everything you need is described there in detail, however, it is quite a tough job to collect all the necessary dependency jar’s manually. 
-Since version 1.4, Citrus provides a maven assembly goal which creates a directory with all dependency jar’s which can be thrown into the lib folder of your newly created Citrus project. You can trigger this assembly 
-by grabbing the Citrus sources and execute</p>
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell">mvn assembly:assembly <span class="nt">-Passembly-antlibs</span></code></pre></figure>
-
-<p>from the project root. Unfortunately I faced some issues on my Macbook with Maven version 3.0.5 so this way was blocked for me. Additionally, not everyone might have interest or possibilities to check out the sources 
-or have maven installed and setup on his machine. That’s basically why I want to provide a template project to speed up Ant project setup.</p>
-
-<h3 id="citrus-ant-template-project">Citrus Ant Template Project</h3>
-
-<p>For those who prefer the easiest way (like me), I have set up up a little Eclipse template project, where everything needed to run Citrus with Ant is already in place. It contains</p>
-
-<ul>
-  <li>The correct folder structure</li>
-  <li>All necessary Citrus (1.4) core libs and dependencies</li>
-  <li>A prepared citrus citrus-context.xml and log4j.xml</li>
-  <li>A template build.xml file</li>
-</ul>
-
-<p>You can grab the template project on Github <a href="https://github.com/jaza089/citrus-wm-samples/tree/master/CitrusTemplateProject">here</a> , import it (Select Import –&gt; General/Archive File in Eclipse/SAG Designer) 
-and kick start developing integration tests for your webMethods project. Typically, you will work in Software AG Designer to develop your webMethods solution, luckily it is based on Eclipse and you can perfectly 
-work with your Citrus test projects in the Java perspective of SAG Designer. In fact, the template project is created and exported from SAG Designer 9.5.</p>
-
-<p>In the next part, I will enhance our empty project with a first test: a SOAP request/reply scenario with Citrus against a webMethods package.</p>
-
-  </div>
-</article>
-
-
-  <article>
-  <h2>
-    Testing webMethods with Citrus Part I
-    <a href="/news/2014/03/06/testing-webmethods-with-citrus-part-i/" class="permalink" title="Permalink">∞</a>
-  </h2>
-  <span class="post-category">
-    <span class="label">
-      blog
-    </span>
-  </span>
-  <div class="post-meta">
-    <span class="post-date">
-      06 Mar 2014
-    </span>
-    <a href="https://github.com/jaza089" class="post-author">
-      
-      Jan Zahalka
-    </a>
-  </div>
-  <div class="post-content">
-    <p>Continuous integration is almost mainstream nowadays. Probably no one wants to argue against the value of having an all-embracing integration test suite in place, 
-which is lightweight enough to be executed on each code change. In this blog series I want to show the interplay between <a href="http://www.citrusframework.org">Citrus</a>, 
-the integration test framework written and maintained by <a href="http://www.consol.com">ConSol</a> and a commonly used Enterprise Service Bus, the <a href="http://www.softwareag.com/corporate/products/wm/integration/overview/default.asp">webMethods Integration Server</a>.</p>
-
-<h3 id="meet-the-participants">Meet the participants</h3>
-
-<p>Citrus is a lightweight integration test framework specially suited for enterprise integration challenges. It supports a broad set of communication protocols and is able to 
-simulate partner applications of any type to provide proper end-to-end testing in a sandbox environment.</p>
-
-<p>Our system-under-test is Software AG’s webMethods Integration Server, which is an industry-proof ESB solving complex integration and B2B challenges in large-scale deployments around the globe.</p>
-
-<h3 id="why-citrus">Why Citrus?</h3>
-
-<p>On a closer look at the built-in support for automated testing, webMethods provides integrated tooling (namely the wMTestSuite), directly incorporated into the Software AG Designer to support 
-developers with tests operating on the basic building blocks inside webMethods – the Flow service.</p>
-
-<p>Comparing this tooling to traditional software development, this means there is a good framework for Unit/white box testing in place, but: wmTestSuite is not suited for automated tests from an 
-integration/black box perspective. For such tasks, several commercial tools are available, but this is where Citrus with its support for automated tests on interface level comes into play as a 
-smart and fully open source alternative.</p>
-
-<h2 id="whats-coming-up">What’s coming up?</h2>
-
-<p>Over the next parts of this series I want to share the basic steps in order to setup a Citrus project and develop automated tests for several webMethods integration scenarios, including SOAP 
-request/reply, SOAP and JMS mocking as well as flat file integration. In the end I might also cover the topic BPMN processes on top of webMethods which can be tested with Citrus as well.</p>
-
-<p>Stay tuned for the next upcoming part II: basic project setup</p>
-
-  </div>
-</article>
-
-
-  <article>
-  <h2>
     Validate Excel files in Citrus
     <a href="/news/2011/06/22/excel-validation/" class="permalink" title="Permalink">∞</a>
   </h2>
@@ -5244,7 +5128,7 @@ http://www.citrusframework.org/samples/my-testcase-info/my-testcase-info.xsd"</s
         </li>
         
         <li class="">
-          <a href="/news/2021/08/25/advanced-camel-support/">» Advanced Apache Camel testing</a>
+          <a href="/news/2021/08/25/advanced-camel-support/">» Advanced Camel support</a>
         </li>
         
         <li class="">
@@ -5260,7 +5144,7 @@ http://www.citrusframework.org/samples/my-testcase-info/my-testcase-info.xsd"</s
         </li>
         
         <li class="">
-          <a href="/news/2016/03/15/jcache-chat-citrus/">» Testing WebSockets</a>
+          <a href="/news/2016/03/15/jcache-chat-citrus/">» WebSockets testing</a>
         </li>
         
         <li class="">
@@ -5273,14 +5157,6 @@ http://www.citrusframework.org/samples/my-testcase-info/my-testcase-info.xsd"</s
         
         <li class="">
           <a href="/news/2014/11/21/camel-testing-part-1/">» Testing Apache Camel I</a>
-        </li>
-        
-        <li class="">
-          <a href="/news/2014/05/30/testing-webmethods-with-citrus-part-ii/">» Testing webMethods II</a>
-        </li>
-        
-        <li class="">
-          <a href="/news/2014/03/06/testing-webmethods-with-citrus-part-i/">» Testing webMethods I</a>
         </li>
         
         <li class="">
