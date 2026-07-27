@@ -1,4 +1,449 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2026-07-27T08:23:38+02:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Citrus Integration Tests</title><subtitle>Automated integration tests for message protocols and data formats that you require</subtitle><entry><title type="html">Apache Camel Quarkus - Knative Eventing with SSL/TLS</title><link href="http://0.0.0.0:4000/samples/camel-quarkus-knative-ssl/" rel="alternate" type="text/html" title="Apache Camel Quarkus - Knative Eventing with SSL/TLS" /><published>2026-07-24T00:00:00+02:00</published><updated>2026-07-24T00:00:00+02:00</updated><id>http://0.0.0.0:4000/samples/sample-camel-quarkus-knative-ssl</id><content type="html" xml:base="http://0.0.0.0:4000/samples/camel-quarkus-knative-ssl/">&lt;p&gt;Production Knative deployments almost always secure broker communication with TLS. Event sources connect over HTTPS, present client certificates, and validate the broker’s identity through a trust chain. This is standard practice for any system that handles sensitive data, but it introduces a testing challenge: how do you verify that your event source correctly negotiates TLS, sends valid CloudEvents over an encrypted channel, and handles the SSL handshake — all without deploying to a Kubernetes cluster?&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2026-07-27T20:14:28+02:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Citrus Integration Tests</title><subtitle>Automated integration tests for message protocols and data formats that you require</subtitle><entry><title type="html">Testing Knative Eventing with Citrus — from local brokers to TLS-secured CloudEvents</title><link href="http://0.0.0.0:4000/news/2026/07/27/knative-eventing-testing/" rel="alternate" type="text/html" title="Testing Knative Eventing with Citrus — from local brokers to TLS-secured CloudEvents" /><published>2026-07-27T00:00:00+02:00</published><updated>2026-07-27T00:00:00+02:00</updated><id>http://0.0.0.0:4000/news/2026/07/27/knative-eventing-testing</id><content type="html" xml:base="http://0.0.0.0:4000/news/2026/07/27/knative-eventing-testing/">&lt;p&gt;Event-driven architecture is everywhere. A file lands in a storage bucket, a database row changes, a sensor publishes a reading — and somewhere downstream, a consumer reacts. &lt;a href=&quot;https://knative.dev/docs/eventing/&quot;&gt;Knative Eventing&lt;/a&gt; brings this model to Kubernetes with a clean abstraction: event sources produce &lt;a href=&quot;https://cloudevents.io/&quot;&gt;CloudEvents&lt;/a&gt;, brokers route them, triggers filter them, and services consume them. The programming model is elegant, but testing it is not.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/assets/knative-eventing/featured.png&quot; alt=&quot;Knative eventing testing&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The usual testing approach is to deploy the application to a Kubernetes cluster that has Knative already installed, trigger the event source manually, and check the downstream consumers through event logs or manual inspection. This is slow, expensive, and fragile. It ties your development feedback loop to cluster availability, makes debugging difficult, and creates test environments that are hard to reproduce. What you really want is to test Knative eventing logic locally, with real message validation, but without any heavy cloud infrastructure.&lt;/p&gt;
+
+&lt;p&gt;This is exactly what the &lt;a href=&quot;https://citrusframework.org&quot;&gt;Citrus&lt;/a&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-knative&lt;/code&gt; module provides. It gives you a purpose-built DSL for creating local Knative brokers, producing and consuming CloudEvents, managing triggers with attribute filters, and validating every CloudEvent attribute — all within a standard JUnit test support. Citrus also supports testing against real Kubernetes clusters when you need to verify behavior in a deployed environment, but this is for a different day.&lt;/p&gt;
+
+&lt;p&gt;This post explores the full breadth of Citrus Knative testing capabilities. We start with the local broker abstraction that eliminates the need for a Kubernetes cluster, walk through CloudEvent production and consumption, cover trigger-based event filtering, and finish with TLS-secured eventing. Each capability is illustrated with code from working sample projects that running Knative eventing applications with Quarkus.  You can clone and run the code samples yourself without any Cloud infrastructure involved.&lt;/p&gt;
+
+&lt;h1 id=&quot;the-citrus-knative-module&quot;&gt;The Citrus Knative module&lt;/h1&gt;
+
+&lt;p&gt;Add the module as a test dependency to get started:&lt;/p&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.citrusframework&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-knative&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;4.10.2&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;scope&amp;gt;&lt;/span&gt;test&lt;span class=&quot;nt&quot;&gt;&amp;lt;/scope&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The module provides three groups of test actions, each accessible through the &lt;code class=&quot;highlighter-rouge&quot;&gt;knative()&lt;/code&gt; DSL:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Broker management&lt;/strong&gt; — create, verify, and delete Knative brokers. In local mode, Citrus starts a lightweight HTTP server that acts as a broker. In Kubernetes mode, Citrus creates real broker resources on the cluster through the Fabric8 Knative client.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Event operations&lt;/strong&gt; — send CloudEvents to a broker and receive CloudEvents from a service. The DSL lets you set and validate all CloudEvent attributes (&lt;code class=&quot;highlighter-rouge&quot;&gt;ce-type&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;ce-source&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;ce-subject&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;ce-id&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;ce-specversion&lt;/code&gt;) alongside the event payload.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Trigger and channel management&lt;/strong&gt; — create triggers with attribute filters that route events from brokers to services or channels. Create channels and subscriptions for pub/sub event distribution.&lt;/p&gt;
+
+&lt;p&gt;All resources created during a test are automatically cleaned up when the test finishes — even if the test fails. This default behavior prevents resource leaks and keeps test environments clean. You can disable auto-removal with the system property &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus.knative.auto.remove.resources=false&lt;/code&gt; when you want resources to persist across tests.&lt;/p&gt;
+
+&lt;h1 id=&quot;local-mode-knative-brokers&quot;&gt;Local mode Knative brokers&lt;/h1&gt;
+
+&lt;p&gt;The single most powerful feature of the &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-knative&lt;/code&gt; module is the ability to create local Knative brokers that run as plain HTTP endpoints on your localhost, with no Kubernetes cluster required. This is the foundation that makes all other Knative testing capabilities practical for local development.&lt;/p&gt;
+
+&lt;p&gt;Creating a local broker is a single test action:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;given&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;knative&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;brokers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;default&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;clusterType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ClusterType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;LOCAL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ClusterType.LOCAL&lt;/code&gt; is the critical setting. It tells Citrus to start a local HTTP server that accepts CloudEvent POST requests, stores the events, and makes them available for the test to receive and validate. From the application’s perspective, this server is indistinguishable from a real Knative broker — it speaks the same HTTP-based CloudEvent protocol.&lt;/p&gt;
+
+&lt;p&gt;The broker listens on &lt;code class=&quot;highlighter-rouge&quot;&gt;localhost:8080&lt;/code&gt; by default. Your application just needs to point its Knative sink URL at this address. For a Camel Quarkus application, this is typically a one-line property override in the test profile:&lt;/p&gt;
+
+&lt;div class=&quot;language-properties highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;py&quot;&gt;k.sink&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;http://localhost:8080&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In a real Kubernetes deployment, Knative injects the broker URL through a &lt;code class=&quot;highlighter-rouge&quot;&gt;SinkBinding&lt;/code&gt; that sets the &lt;code class=&quot;highlighter-rouge&quot;&gt;K_SINK&lt;/code&gt; environment variable. The test profile property achieves the same effect without any Kubernetes infrastructure.&lt;/p&gt;
+
+&lt;p&gt;A pro tip is to use the Quarkus test profile in the application.properties so the URL is only used during testing.&lt;/p&gt;
+
+&lt;div class=&quot;language-properties highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;py&quot;&gt;test.k.sink&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;http://localhost:8080&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;What makes this approach valuable is fidelity. The local broker does not mock the Knative API — it implements the same HTTP CloudEvent ingestion that a real broker uses. If your application constructs CloudEvents incorrectly — wrong headers, malformed payload, missing required attributes — the test catches it. The difference is entirely in the infrastructure layer: no Kubernetes, no Istio, no Knative operator.&lt;/p&gt;
+
+&lt;p&gt;You can also verify that a broker is up and ready before proceeding with the test:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;given&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;knative&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;knativeClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;brokers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;verify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;my-broker&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;inNamespace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;my-namespace&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This resolves the Knative broker named &lt;code class=&quot;highlighter-rouge&quot;&gt;my-broker&lt;/code&gt; and checks the running/ready status. This is more useful in Kubernetes mode, where broker creation is asynchronous, and you might want to wait for the broker to become ready before sending events.&lt;/p&gt;
+
+&lt;p&gt;Depending on the cluster mode &lt;code class=&quot;highlighter-rouge&quot;&gt;local&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;kubernetes&lt;/code&gt; the verify test action looks for a local Http Knative broker service or connects to the Kubernetes namespace to inspect the broker status.&lt;/p&gt;
+
+&lt;h1 id=&quot;producing-cloudevents&quot;&gt;Producing CloudEvents&lt;/h1&gt;
+
+&lt;p&gt;Once a broker is available, Citrus can produce CloudEvents and send them to the broker. This is useful when you need to simulate upstream event sources — for example, testing how a consumer service handles events with specific attributes or payloads.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;send()&lt;/code&gt; action constructs a complete CloudEvent with all required attributes:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;knative&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;brokerUrl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://localhost:8080&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;attribute&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ce-type&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;dev.knative.eventing.order&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;attribute&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ce-source&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;order-service&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;eventData&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;
+            { &quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;orderId&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;: &quot;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;12345&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;, &quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;: &quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;confirmed&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot; }
+        &quot;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Under the hood, Citrus translates this into an HTTP POST request to the broker with proper CloudEvent headers:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;POST http://localhost:8080
+Content-Type: application/json
+Ce-Id: 2818d613-bc75-4b25-b570-b825bbe33378
+Ce-Type: dev.knative.eventing.order
+Ce-Specversion: 1.0
+Ce-Source: order-service
+
+{ &quot;orderId&quot;: &quot;12345&quot;, &quot;status&quot;: &quot;confirmed&quot; }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you do not set the &lt;code class=&quot;highlighter-rouge&quot;&gt;ce-id&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;ce-specversion&lt;/code&gt; attributes explicitly, Citrus generates sensible defaults — a UUID for the ID and &lt;code class=&quot;highlighter-rouge&quot;&gt;1.0&lt;/code&gt; for the spec version. You can override any attribute through the fluent &lt;code class=&quot;highlighter-rouge&quot;&gt;.attribute()&lt;/code&gt; calls.&lt;/p&gt;
+
+&lt;p&gt;The send action supports both inline and pre-defined event data. For larger payloads, you can load the event data from a file resource in a separate step before the send action, keeping the action itself focused on the CloudEvent attributes.&lt;/p&gt;
+
+&lt;h1 id=&quot;receiving-and-validating-cloudevents&quot;&gt;Receiving and validating CloudEvents&lt;/h1&gt;
+
+&lt;p&gt;Receiving events is the other side of the conversation. A Citrus test receives CloudEvents that were delivered to a service by the Knative broker (or directly by an application), then validates the payload and attributes against expected values.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;receive()&lt;/code&gt; action waits for an event to arrive and validates its content:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;knative&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;serviceName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;default&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;eventData&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s3Data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;attribute&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ce-id&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;&quot;@matches([0-9A-Z]{15}-[0-9]{16})@&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;attribute&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ce-type&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;&quot;dev.knative.eventing.aws-s3&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;attribute&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ce-source&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;&quot;dev.knative.eventing.aws-s3-source&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;attribute&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ce-subject&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;aws-s3-source&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Several things are worth noting here. The &lt;code class=&quot;highlighter-rouge&quot;&gt;serviceName&lt;/code&gt; identifies which broker or service to receive from — in local mode, this matches the broker name used in the &lt;code class=&quot;highlighter-rouge&quot;&gt;create()&lt;/code&gt; action. The &lt;code class=&quot;highlighter-rouge&quot;&gt;eventData&lt;/code&gt; assertion validates the payload content. Each &lt;code class=&quot;highlighter-rouge&quot;&gt;.attribute()&lt;/code&gt; call validates a specific CloudEvent header.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;@matches(...)@&lt;/code&gt; syntax is a Citrus validation expression that applies a regular expression to the attribute value. This is essential for dynamic attributes like &lt;code class=&quot;highlighter-rouge&quot;&gt;ce-id&lt;/code&gt; where the exact value changes on every run but the format is predictable. Citrus supports a rich set of validation matchers including &lt;code class=&quot;highlighter-rouge&quot;&gt;@startsWith()@&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;@contains()@&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;@isNumber()@&lt;/code&gt;, and many others that help you write precise yet flexible assertions.&lt;/p&gt;
+
+&lt;p&gt;This receive-and-validate pattern is what gives Knative eventing testing its teeth. In a deployed Knative environment, the events flowing through the broker are invisible — you only see them indirectly when a consumer processes them. With Citrus, you validate the events at the broker level, catching problems in CloudEvent construction, attribute configuration, and payload transformation before they propagate to downstream consumers.&lt;/p&gt;
+
+&lt;h2 id=&quot;a-real-world-example&quot;&gt;A real-world example&lt;/h2&gt;
+
+&lt;p&gt;The &lt;a href=&quot;/samples/camel-quarkus-knative/&quot;&gt;Knative eventing sample&lt;/a&gt; demonstrates this pattern end-to-end. The application under test is a Camel Quarkus event source that polls an S3 bucket for new files, transforms each file into a CloudEvent, and delivers it to a Knative broker:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Routes&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RouteBuilder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;configure&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;kamelet:aws-s3-source&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;transformDataType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+                    &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;DataType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http:application-cloudevents&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;knative:event/org.apache.camel.event.messages&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
+                    &lt;span class=&quot;s&quot;&gt;&quot;?kind=Broker&amp;amp;name=default&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The test creates a local Knative broker, provisions an S3 bucket through LocalStack, uploads a file, and validates the resulting CloudEvent:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@QuarkusTest&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@CitrusSupport&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@LocalStackContainerSupport&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;services&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AwsService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;S3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;containerLifecycleListener&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;QuarkusApplicationTest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;QuarkusApplicationTest&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TestActionSupport&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+                   &lt;span class=&quot;n&quot;&gt;ContainerLifecycleListener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LocalStackContainer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@CitrusResource&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;GherkinTestActionRunner&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s3Data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Hello Knative!&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;shouldProduceCloudEvents&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;given&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;knative&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;brokers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;default&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;clusterType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ClusterType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;LOCAL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;uploadS3File&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;knative&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;serviceName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;default&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;eventData&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s3Data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;attribute&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ce-type&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;s&quot;&gt;&quot;dev.knative.eventing.aws-s3&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;attribute&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ce-source&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;s&quot;&gt;&quot;dev.knative.eventing.aws-s3-source&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;attribute&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ce-subject&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;aws-s3-source&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The Given-When-Then structure makes the test’s intent immediately clear: given a local Knative broker, when a file is uploaded to S3, then a CloudEvent arrives at the broker with the expected payload and attributes. No Kubernetes cluster, no real AWS account, no manual log inspection.&lt;/p&gt;
+
+&lt;h1 id=&quot;ssltls-secured-eventing&quot;&gt;SSL/TLS secured eventing&lt;/h1&gt;
+
+&lt;p&gt;Production Knative deployments almost always secure broker communication with TLS. Event sources connect over HTTPS, present client certificates, and validate the broker’s identity through a trust chain. Testing SSL is important because SSL configuration is one of the most common sources of deployment failures — a missing truststore entry, an expired certificate, or a wrong keystore password can all cause silent failures.&lt;/p&gt;
+
+&lt;p&gt;Citrus supports TLS-secured Knative testing through its HTTP server infrastructure. Instead of using the high-level &lt;code class=&quot;highlighter-rouge&quot;&gt;knative()&lt;/code&gt; broker DSL, you configure an explicit HTTP server with SSL settings:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@BindToRegistry&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HttpServer&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;knativeBroker&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HttpEndpoints&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8080&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5000L&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;securePort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8443&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;secured&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HttpSecureConnection&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ssl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;keyStore&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;classpath:keystore/server.jks&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+                          &lt;span class=&quot;s&quot;&gt;&quot;secr3t&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;trustStore&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;classpath:keystore/truststore.jks&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+                            &lt;span class=&quot;s&quot;&gt;&quot;secr3t&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;autoStart&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This creates a Citrus HTTP server that listens on both port 8080 (plain HTTP) and port 8443 (HTTPS). The &lt;code class=&quot;highlighter-rouge&quot;&gt;secured()&lt;/code&gt; call configures TLS with a server keystore and a truststore. The server presents the certificate from &lt;code class=&quot;highlighter-rouge&quot;&gt;server.jks&lt;/code&gt; during the TLS handshake, and uses &lt;code class=&quot;highlighter-rouge&quot;&gt;truststore.jks&lt;/code&gt; to verify client certificates for mutual TLS.&lt;/p&gt;
+
+&lt;p&gt;The test then validates CloudEvents using the &lt;code class=&quot;highlighter-rouge&quot;&gt;http().server()&lt;/code&gt; DSL, which gives explicit control over the HTTP exchange:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;knativeBroker&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s3Data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ce-type&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;s&quot;&gt;&quot;dev.knative.eventing.aws-s3&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ce-source&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;s&quot;&gt;&quot;dev.knative.eventing.aws-s3-source&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ce-subject&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;aws-s3-source&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;knativeBroker&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HttpStatus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;OK&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The assertions are the same — you validate CloudEvent headers and the payload body. The difference is that the exchange happens over a TLS-encrypted channel. If the SSL handshake fails — wrong certificate, expired CA, mismatched hostname — the test fails before the receive action even executes, giving you immediate feedback about SSL configuration problems.&lt;/p&gt;
+
+&lt;p&gt;For the application side, SSL is configured through properties that the &lt;code class=&quot;highlighter-rouge&quot;&gt;KnativeSslClientOptions&lt;/code&gt; CDI bean reads at startup:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ofEntries&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;entry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;camel.knative.client.ssl.enabled&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;true&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;entry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;camel.knative.client.ssl.verify.hostname&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+              &lt;span class=&quot;s&quot;&gt;&quot;false&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;entry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;camel.knative.client.ssl.key.path&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+              &lt;span class=&quot;s&quot;&gt;&quot;keystore/client.pem&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;entry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;camel.knative.client.ssl.key.cert.path&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+              &lt;span class=&quot;s&quot;&gt;&quot;keystore/client.crt&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;entry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;camel.knative.client.ssl.truststore.path&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+              &lt;span class=&quot;s&quot;&gt;&quot;keystore/truststore.jks&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;entry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;camel.knative.client.ssl.truststore.password&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+              &lt;span class=&quot;s&quot;&gt;&quot;secr3t&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The test controls both sides of the TLS connection — it provides the server certificate through the HTTP server configuration and the client certificate through these properties — so the handshake succeeds with self-signed test certificates and no external PKI infrastructure.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&quot;/samples/camel-quarkus-knative-ssl/&quot;&gt;Knative SSL sample&lt;/a&gt; demonstrates this pattern end-to-end with mutual TLS between a Camel Quarkus application and a Citrus HTTPS broker.&lt;/p&gt;
+
+&lt;h1 id=&quot;testing-against-real-kubernetes-clusters&quot;&gt;Testing against real Kubernetes clusters&lt;/h1&gt;
+
+&lt;p&gt;While local testing covers the majority of development scenarios, sometimes you need to verify behavior on a real Kubernetes cluster with Knative installed. The &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-knative&lt;/code&gt; module supports this through the Fabric8 Knative client.&lt;/p&gt;
+
+&lt;p&gt;Configure the Kubernetes and Knative clients as Citrus beans:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@BindToRegistry&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;KubernetesClient&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;kubernetesClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;KubernetesClientBuilder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@BindToRegistry&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;KnativeClient&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;knativeClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;kubernetesClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;adapt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;KnativeClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;With these clients registered, the same DSL actions you used in local mode now operate against the real cluster. Create a broker without &lt;code class=&quot;highlighter-rouge&quot;&gt;ClusterType.LOCAL&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;given&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;knative&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;knativeClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;brokers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;my-broker&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;inNamespace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;my-namespace&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This creates an actual Knative Broker resource on the cluster. The broker goes through the normal Knative reconciliation process — the Knative operator provisions the underlying channel, the ingress, and the filter services. You can verify readiness before proceeding:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;given&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;knative&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;knativeClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;brokers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;verify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;my-broker&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;inNamespace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;my-namespace&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Sending events targets the real broker URL:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;knative&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;brokerUrl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://broker-ingress.knative-eventing&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
+                   &lt;span class=&quot;s&quot;&gt;&quot;.svc.cluster.local/my-namespace/my-broker&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;attribute&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ce-type&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;greeting&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;eventData&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;{ \&quot;msg\&quot;: \&quot;Hello Knative!\&quot; }&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And receiving events uses a real Kubernetes service that the test creates through the Citrus Kubernetes module. The Citrus HTTP server backing the service receives events dispatched by the broker through real Knative triggers, and the test validates them with the same assertions used in local mode.&lt;/p&gt;
+
+&lt;p&gt;This dual-mode capability is one of the strengths of the &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-knative&lt;/code&gt; module. You develop and iterate locally with &lt;code class=&quot;highlighter-rouge&quot;&gt;ClusterType.LOCAL&lt;/code&gt;, then run the same test logic against a real cluster in CI/CD by switching to the Kubernetes client. The assertions stay the same — only the infrastructure changes.&lt;/p&gt;
+
+&lt;h1 id=&quot;triggers-and-event-filtering&quot;&gt;Triggers and event filtering&lt;/h1&gt;
+
+&lt;p&gt;In Knative, triggers control which events reach which consumers. A trigger subscribes to a broker and forwards matching events to a service, filtering on CloudEvent attributes like &lt;code class=&quot;highlighter-rouge&quot;&gt;type&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;source&lt;/code&gt;, or custom extensions. Testing trigger behavior is important because a misconfigured filter can silently drop events or route them to the wrong consumer.&lt;/p&gt;
+
+&lt;p&gt;Citrus can create trigger resources as part of the test:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;given&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;knative&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;knativeClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;trigger&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;order-trigger&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;broker&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;my-broker&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;service&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;order-processor&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;filter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;dev.knative.eventing.order&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;inNamespace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;my-namespace&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This creates a Knative Trigger resource that watches the &lt;code class=&quot;highlighter-rouge&quot;&gt;my-broker&lt;/code&gt; broker for events with &lt;code class=&quot;highlighter-rouge&quot;&gt;type=dev.knative.eventing.order&lt;/code&gt; and forwards them to the &lt;code class=&quot;highlighter-rouge&quot;&gt;order-processor&lt;/code&gt; service. The resulting Trigger resource looks like this on the cluster:&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eventing.knative.dev/v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Trigger&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;order-trigger&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;broker&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;my-broker&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;filter&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;attributes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;dev.knative.eventing.order&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;subscriber&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;ref&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Service&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;order-processor&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You can add multiple filter attributes to narrow the event selection further. The trigger only dispatches events that match all specified attributes — this is Knative’s AND-based filtering model.&lt;/p&gt;
+
+&lt;p&gt;To consume the filtered events, you first need a Kubernetes service. Citrus integrates with its Kubernetes support module to create a service that routes to a local HTTP server:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;given&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;kubernetes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k8sClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;service&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;order-processor&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;portMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;80&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8080&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;inNamespace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;my-namespace&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Citrus automatically starts a local HTTP server on port 8080 that receives events dispatched by the trigger. You can then receive and validate the events in the test.&lt;/p&gt;
+
+&lt;p&gt;Triggers also support forwarding events to channels instead of services, which is useful for fan-out scenarios where multiple consumers need to process the same events:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;given&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;knative&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;knativeClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;trigger&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;audit-trigger&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;broker&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;my-broker&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;channel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;audit-channel&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;filter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;security.audit.event&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;inNamespace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;my-namespace&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;channels-and-subscriptions&quot;&gt;Channels and subscriptions&lt;/h1&gt;
+
+&lt;p&gt;Channels are Knative’s pub/sub abstraction. They deliver events to multiple subscribers, unlike services that receive events directly from triggers. Citrus supports creating channels and subscriptions as part of the test setup.&lt;/p&gt;
+
+&lt;p&gt;Creating a channel is straightforward:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;given&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;knative&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;knativeClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;channels&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;audit-channel&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;inNamespace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;my-namespace&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Subscribing a service to a channel connects the event delivery pipeline:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;given&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;knative&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;knativeClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;subscriptions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;audit-subscription&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;channel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;audit-channel&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;service&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;audit-logger&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;inNamespace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;my-namespace&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;With this setup, any event that flows into &lt;code class=&quot;highlighter-rouge&quot;&gt;audit-channel&lt;/code&gt; — whether from a trigger or directly — is delivered to the &lt;code class=&quot;highlighter-rouge&quot;&gt;audit-logger&lt;/code&gt; service. You can create multiple subscriptions on the same channel to test fan-out scenarios where the same event is processed by different consumers.&lt;/p&gt;
+
+&lt;h1 id=&quot;putting-it-all-together&quot;&gt;Putting it all together&lt;/h1&gt;
+
+&lt;p&gt;When you combine the Citrus Knative capabilities, a typical eventing test follows a clear structure:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Create infrastructure&lt;/strong&gt; — a local Knative broker, any required services and triggers, and supporting resources like S3 buckets or Kafka topics.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Trigger the event source&lt;/strong&gt; — upload a file, send a message, or call an API that causes the application to produce events.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Validate the events&lt;/strong&gt; — receive CloudEvents from the broker and assert on the payload, CloudEvent type, source, subject, and any other attributes.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Clean up&lt;/strong&gt; — automatic. Citrus removes brokers, triggers, channels, and subscriptions when the test finishes.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The &lt;a href=&quot;/samples/camel-quarkus-knative/&quot;&gt;Knative eventing sample&lt;/a&gt; demonstrates this with a Camel Quarkus event source that turns S3 uploads into CloudEvents. The &lt;a href=&quot;/samples/camel-quarkus-knative-ssl/&quot;&gt;Knative SSL sample&lt;/a&gt; extends the same application with TLS-secured broker communication, showing how SSL configuration is tested without changing the Camel route.&lt;/p&gt;
+
+&lt;p&gt;Both samples run entirely on localhost. No Kubernetes cluster, no Knative installation, no AWS account. Yet they exercise the complete event delivery pipeline — from source to broker — with real container-based infrastructure for S3 and faithful local implementations for Knative.&lt;/p&gt;
+
+&lt;h1 id=&quot;knative-eventing-sample-projects&quot;&gt;Knative eventing sample projects&lt;/h1&gt;
+
+&lt;p&gt;The Citrus sample projects are available in the &lt;a href=&quot;https://github.com/citrusframework/citrus-quarkus-examples&quot;&gt;citrus-quarkus-examples&lt;/a&gt; repository on GitHub:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/citrusframework/citrus-quarkus-examples/tree/main/apache-camel/camel-knative&quot;&gt;camel-knative&lt;/a&gt; — local Knative broker with CloudEvent validation&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/citrusframework/citrus-quarkus-examples/tree/main/apache-camel/camel-knative-ssl&quot;&gt;camel-knative-ssl&lt;/a&gt; — TLS-secured broker with mutual TLS&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Knative eventing is a powerful model for building event-driven applications, and Citrus makes sure you can test it with the same rigor you apply to any other integration. Give it a try, and let us know what you think!&lt;/p&gt;</content><author><name>Christoph Deppisch</name></author></entry><entry><title type="html">Apache Camel Quarkus - Knative Eventing with SSL/TLS</title><link href="http://0.0.0.0:4000/samples/camel-quarkus-knative-ssl/" rel="alternate" type="text/html" title="Apache Camel Quarkus - Knative Eventing with SSL/TLS" /><published>2026-07-24T00:00:00+02:00</published><updated>2026-07-24T00:00:00+02:00</updated><id>http://0.0.0.0:4000/samples/sample-camel-quarkus-knative-ssl</id><content type="html" xml:base="http://0.0.0.0:4000/samples/camel-quarkus-knative-ssl/">&lt;p&gt;Production Knative deployments almost always secure broker communication with TLS. Event sources connect over HTTPS, present client certificates, and validate the broker’s identity through a trust chain. This is standard practice for any system that handles sensitive data, but it introduces a testing challenge: how do you verify that your event source correctly negotiates TLS, sends valid CloudEvents over an encrypted channel, and handles the SSL handshake — all without deploying to a Kubernetes cluster?&lt;/p&gt;
 
 &lt;p&gt;This post extends the &lt;a href=&quot;/samples/camel-quarkus-knative/&quot;&gt;Knative eventing sample&lt;/a&gt; with full TLS/SSL support. You will test an Apache Camel Knative event source that delivers CloudEvents to an HTTPS-secured broker, using &lt;a href=&quot;https://citrusframework.org&quot;&gt;Citrus&lt;/a&gt; as a local SSL-enabled Knative broker and LocalStack for S3 emulation. The Camel route itself does not change at all — the SSL wiring lives entirely in configuration and a CDI bean, and Citrus validates the encrypted communication transparently.&lt;/p&gt;
 
@@ -3346,262 +3791,4 @@ DELETE /fruits  -&amp;gt;  Deletes a fruit by name   (204 or 404)
 
 &lt;p&gt;To explore the full example project including the source code, head over to the &lt;a href=&quot;https://github.com/citrusframework/citrus-quarkus-examples&quot;&gt;citrus-quarkus-examples&lt;/a&gt; repository on GitHub.&lt;/p&gt;
 
-&lt;p&gt;For deeper dives into Citrus capabilities, the &lt;a href=&quot;https://citrusframework.org/citrus/reference/html/&quot;&gt;reference guide&lt;/a&gt; covers Kafka endpoints, Testcontainers integration, Apache Camel support, and the many other messaging transports that Citrus supports.&lt;/p&gt;</content><author><name></name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://0.0.0.0:4000/img/icons/camel.png" /></entry><entry><title type="html">Apache Camel Quarkus - JMS Integration Testing</title><link href="http://0.0.0.0:4000/samples/camel-quarkus-jms/" rel="alternate" type="text/html" title="Apache Camel Quarkus - JMS Integration Testing" /><published>2026-07-05T00:00:00+02:00</published><updated>2026-07-05T00:00:00+02:00</updated><id>http://0.0.0.0:4000/samples/sample-camel-quarkus-jms</id><content type="html" xml:base="http://0.0.0.0:4000/samples/camel-quarkus-jms/">&lt;p&gt;Apache Camel is a natural fit for JMS-based integration in Quarkus. Where a pure Quarkus approach requires multiple classes to bridge JMS queues with reactive channels, a single Camel route can express the same flow in a few lines of code.&lt;/p&gt;
-
-&lt;p&gt;But testing that flow end to end is another story. You need a real JMS broker, a shared connection factory, and a test framework that can send and receive messages across queues while the application processes them asynchronously. Getting all of that to work together without fragile test infrastructure takes some careful wiring.&lt;/p&gt;
-
-&lt;p&gt;This post walks you through testing an Apache Camel JMS route in a Quarkus application using the &lt;a href=&quot;https://citrusframework.org&quot;&gt;Citrus&lt;/a&gt; integration testing framework. You will see how Citrus shares the JMS connection factory with both Quarkus and Camel, sends messages into the route, and validates the output with clean, readable test code. By the end you will have a clear recipe for testing your own Camel JMS routes in Quarkus.&lt;/p&gt;
-
-&lt;h1 id=&quot;the-application-under-test&quot;&gt;The application under test&lt;/h1&gt;
-
-&lt;p&gt;The example application is intentionally simple so we can focus on the testing side. It is a Quarkus service that uses an Apache Camel route to consume text messages from a JMS queue, transform them to uppercase, and publish the result to an output queue.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;JMS Queue (words-in) --&amp;gt; Apache Camel Route (Transform) --&amp;gt; JMS Queue (words-out)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The entire integration logic lives in a single Camel &lt;code class=&quot;highlighter-rouge&quot;&gt;RouteBuilder&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Routes&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RouteBuilder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;configure&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;jms:words-in&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setBody&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exchange&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&amp;gt;&amp;gt; &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exchange&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getIn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBody&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toUpperCase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;jms:words-out&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Three lines of fluent API code handle the complete integration flow. The route consumes messages from the &lt;code class=&quot;highlighter-rouge&quot;&gt;words-in&lt;/code&gt; JMS queue, transforms each message body to uppercase with a &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;&amp;gt;&amp;gt; &quot;&lt;/code&gt; prefix, and publishes the result to the &lt;code class=&quot;highlighter-rouge&quot;&gt;words-out&lt;/code&gt; queue.&lt;/p&gt;
-
-&lt;p&gt;Compare this with the multi-class approach you would need without Camel: a JMS consumer class, a reactive messaging processor, and a JMS producer class. Camel collapses all of that into a single, readable route definition. Quarkus automatically discovers any class extending &lt;code class=&quot;highlighter-rouge&quot;&gt;RouteBuilder&lt;/code&gt; on the classpath and starts the route when the application boots.&lt;/p&gt;
-
-&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;jms:&lt;/code&gt; component prefix tells Camel to use the JMS component, which Quarkus auto-configures to use the Artemis connection factory. No additional configuration code is needed — just the broker address in &lt;code class=&quot;highlighter-rouge&quot;&gt;application.properties&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-properties highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;py&quot;&gt;quarkus.artemis.url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;tcp://localhost:61616&lt;/span&gt;
-&lt;span class=&quot;py&quot;&gt;quarkus.artemis.username&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;quarkus&lt;/span&gt;
-&lt;span class=&quot;py&quot;&gt;quarkus.artemis.password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;quarkus&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;That is the entire application. Now let’s verify it.&lt;/p&gt;
-
-&lt;h1 id=&quot;adding-citrus-to-the-project&quot;&gt;Adding Citrus to the project&lt;/h1&gt;
-
-&lt;p&gt;Citrus is highly modular, so you only pull in the capabilities you actually need. For this Camel JMS scenario you add three test-scoped dependencies to the Maven POM:&lt;/p&gt;
-
-&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.citrusframework&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-quarkus&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;4.10.2&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;scope&amp;gt;&lt;/span&gt;test&lt;span class=&quot;nt&quot;&gt;&amp;lt;/scope&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.citrusframework&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-jms&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;4.10.2&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;scope&amp;gt;&lt;/span&gt;test&lt;span class=&quot;nt&quot;&gt;&amp;lt;/scope&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.citrusframework&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-junit-jupiter&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;4.10.2&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;scope&amp;gt;&lt;/span&gt;test&lt;span class=&quot;nt&quot;&gt;&amp;lt;/scope&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Here is what each module brings to the table:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;citrus-quarkus&lt;/strong&gt; integrates Citrus with the Quarkus test lifecycle. It hooks into &lt;code class=&quot;highlighter-rouge&quot;&gt;@QuarkusTest&lt;/code&gt; so that Citrus endpoints and test runners are available without any extra configuration.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;citrus-jms&lt;/strong&gt; provides JMS endpoint implementations with built-in producer and consumer capabilities and message validation.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;citrus-junit-jupiter&lt;/strong&gt; connects Citrus to JUnit 5, the test engine that Quarkus uses under the hood.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;You also need the Quarkus Artemis test resource to provision a real broker automatically:&lt;/p&gt;
-
-&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;io.quarkiverse.artemis&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;quarkus-test-artemis&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;scope&amp;gt;&lt;/span&gt;test&lt;span class=&quot;nt&quot;&gt;&amp;lt;/scope&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This dependency starts an ActiveMQ Artemis container via Testcontainers when the tests run. No manual broker setup, no Docker Compose files, no cleanup scripts.&lt;/p&gt;
-
-&lt;h1 id=&quot;setting-up-the-test-class&quot;&gt;Setting up the test class&lt;/h1&gt;
-
-&lt;p&gt;The test class starts with three annotations that set up the complete test infrastructure:&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@QuarkusTest&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@CitrusSupport&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@WithTestResource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ArtemisTestResource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;QuarkusApplicationTest&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TestActionSupport&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;@QuarkusTest&lt;/code&gt; starts the Quarkus application in test mode and activates the Camel routes. &lt;code class=&quot;highlighter-rouge&quot;&gt;@WithTestResource(ArtemisTestResource.class)&lt;/code&gt; provisions an ActiveMQ Artemis broker via Testcontainers and configures the Quarkus connection factory to point to it. &lt;code class=&quot;highlighter-rouge&quot;&gt;@CitrusSupport&lt;/code&gt; layers the Citrus framework on top of that lifecycle so you can inject Citrus-specific resources into the test class.&lt;/p&gt;
-
-&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;TestActionSupport&lt;/code&gt; interface is a convenience that gives you static access to test actions like &lt;code class=&quot;highlighter-rouge&quot;&gt;send()&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;receive()&lt;/code&gt; without extra imports.&lt;/p&gt;
-
-&lt;h1 id=&quot;sharing-the-connection-factory-across-three-frameworks&quot;&gt;Sharing the connection factory across three frameworks&lt;/h1&gt;
-
-&lt;p&gt;This is the most important piece of the setup. When your application uses Apache Camel’s JMS component, three frameworks need to talk to the same broker: Quarkus manages the connection factory, Camel uses it for its &lt;code class=&quot;highlighter-rouge&quot;&gt;jms:&lt;/code&gt; component, and Citrus needs it for its test endpoints. All three must share the same &lt;code class=&quot;highlighter-rouge&quot;&gt;ConnectionFactory&lt;/code&gt; instance.&lt;/p&gt;
-
-&lt;p&gt;Citrus solves this with a single pair of annotations:&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Inject&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@BindToRegistry&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;ConnectionFactory&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;connectionFactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;@Inject&lt;/code&gt; tells Quarkus to provide the connection factory it configured for the Artemis test resource. &lt;code class=&quot;highlighter-rouge&quot;&gt;@BindToRegistry&lt;/code&gt; is a Citrus annotation that registers this same instance in the Citrus component registry. From that point on, every Citrus JMS endpoint automatically picks up this connection factory.&lt;/p&gt;
-
-&lt;p&gt;The result is that all three frameworks — Quarkus, Apache Camel, and Citrus — communicate through the same broker connection without any manual wiring. This two-annotation pattern is the key to seamless JMS testing with Camel in Quarkus.&lt;/p&gt;
-
-&lt;h1 id=&quot;configuring-jms-endpoints&quot;&gt;Configuring JMS endpoints&lt;/h1&gt;
-
-&lt;p&gt;With the broker running and the connection factory shared, you need to tell Citrus which JMS queues to use. Citrus offers a declarative annotation-based approach:&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@CitrusEndpoint&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@JmsEndpointConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;destinationName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;words-in&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;JmsEndpoint&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wordsIn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;nd&quot;&gt;@CitrusEndpoint&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@JmsEndpointConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;destinationName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;words-out&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;JmsEndpoint&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wordsOut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Each field annotated with &lt;code class=&quot;highlighter-rouge&quot;&gt;@CitrusEndpoint&lt;/code&gt; becomes a fully configured JMS endpoint. The &lt;code class=&quot;highlighter-rouge&quot;&gt;@JmsEndpointConfig&lt;/code&gt; annotation specifies the JMS destination (queue) name. The connection factory is automatically resolved from the Citrus registry — the one you registered with &lt;code class=&quot;highlighter-rouge&quot;&gt;@BindToRegistry&lt;/code&gt; in the previous step. No explicit wiring needed.&lt;/p&gt;
-
-&lt;p&gt;Two endpoints are defined: &lt;code class=&quot;highlighter-rouge&quot;&gt;wordsIn&lt;/code&gt; for sending messages into the Camel route’s input queue, and &lt;code class=&quot;highlighter-rouge&quot;&gt;wordsOut&lt;/code&gt; for receiving and validating the transformed output.&lt;/p&gt;
-
-&lt;h1 id=&quot;writing-the-test&quot;&gt;Writing the test&lt;/h1&gt;
-
-&lt;p&gt;With the infrastructure and endpoints in place, the actual test is remarkably concise:&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@CitrusResource&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;GherkinTestActionRunner&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;shouldHandleEvents&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wordsIn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Howdy&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wordsOut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&amp;gt;&amp;gt; HOWDY&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;GherkinTestActionRunner&lt;/code&gt; provides a fluent API with Given-When-Then semantics. The &lt;strong&gt;when&lt;/strong&gt; block sends the string &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Howdy&quot;&lt;/code&gt; to the &lt;code class=&quot;highlighter-rouge&quot;&gt;words-in&lt;/code&gt; queue. The Camel route picks it up, transforms it to uppercase with the &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;&amp;gt;&amp;gt; &quot;&lt;/code&gt; prefix, and publishes the result to &lt;code class=&quot;highlighter-rouge&quot;&gt;words-out&lt;/code&gt;. The &lt;strong&gt;then&lt;/strong&gt; block verifies that a message with body &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;&amp;gt;&amp;gt; HOWDY&quot;&lt;/code&gt; arrives on the output queue.&lt;/p&gt;
-
-&lt;p&gt;That single assertion covers the entire processing pipeline: JMS consumption by Camel, the uppercase transformation, the prefix formatting, and the JMS production on the output side. If the received message does not match the expected body, Citrus fails the test with a clear diff showing exactly what went wrong.&lt;/p&gt;
-
-&lt;p&gt;While the Camel route processes messages asynchronously, the Citrus test runs synchronously. The &lt;code class=&quot;highlighter-rouge&quot;&gt;receive()&lt;/code&gt; action blocks until a message arrives on the output queue or a timeout occurs. This approach ensures deterministic test execution without flaky sleeps or polling loops.&lt;/p&gt;
-
-&lt;h1 id=&quot;how-it-all-fits-together&quot;&gt;How it all fits together&lt;/h1&gt;
-
-&lt;p&gt;When you run the test with &lt;code class=&quot;highlighter-rouge&quot;&gt;./mvnw clean test&lt;/code&gt;, here is the sequence of events that unfolds behind the scenes:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;strong&gt;The Artemis test resource&lt;/strong&gt; launches an ActiveMQ Artemis container via Testcontainers and configures the connection factory.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Quarkus starts&lt;/strong&gt; the application in test mode with the connection factory pointing to the test broker.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Apache Camel discovers&lt;/strong&gt; the &lt;code class=&quot;highlighter-rouge&quot;&gt;Routes&lt;/code&gt; class and starts the JMS consumer on the &lt;code class=&quot;highlighter-rouge&quot;&gt;words-in&lt;/code&gt; queue.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Citrus registers&lt;/strong&gt; the connection factory and initializes the &lt;code class=&quot;highlighter-rouge&quot;&gt;wordsIn&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;wordsOut&lt;/code&gt; JMS endpoints.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;The test sends&lt;/strong&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Howdy&quot;&lt;/code&gt; to the &lt;code class=&quot;highlighter-rouge&quot;&gt;words-in&lt;/code&gt; queue through the &lt;code class=&quot;highlighter-rouge&quot;&gt;wordsIn&lt;/code&gt; endpoint.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;The Camel route consumes&lt;/strong&gt; the message, transforms it to &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;&amp;gt;&amp;gt; HOWDY&quot;&lt;/code&gt;, and produces it to &lt;code class=&quot;highlighter-rouge&quot;&gt;words-out&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Citrus receives&lt;/strong&gt; the message from the &lt;code class=&quot;highlighter-rouge&quot;&gt;words-out&lt;/code&gt; queue and validates it against the expected body.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;The test completes&lt;/strong&gt; and the Artemis container is stopped and cleaned up automatically.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;The critical point is step 4: all three frameworks — Quarkus, Apache Camel, and Citrus — share the same connection factory and broker instance. The &lt;code class=&quot;highlighter-rouge&quot;&gt;@BindToRegistry&lt;/code&gt; annotation takes care of distributing the connection factory so you do not have to wire it manually.&lt;/p&gt;
-
-&lt;p&gt;There is one small piece of test configuration worth mentioning. Because Citrus and Quarkus share the same classpath, you need to tell Quarkus CDI to allow split packages from the Citrus framework. This is done in &lt;code class=&quot;highlighter-rouge&quot;&gt;src/test/resources/application.properties&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-properties highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;py&quot;&gt;quarkus.arc.ignored-split-packages&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;org.citrusframework.*&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The test configuration also clears the broker credentials because the Artemis test resource starts an unauthenticated broker by default:&lt;/p&gt;
-
-&lt;div class=&quot;language-properties highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;py&quot;&gt;test.quarkus.artemis.username&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;py&quot;&gt;test.quarkus.artemis.password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Both are one-time additions that you set once and forget.&lt;/p&gt;
-
-&lt;h1 id=&quot;the-complete-test-class&quot;&gt;The complete test class&lt;/h1&gt;
-
-&lt;p&gt;Here is the full test in one place for easy reference:&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@QuarkusTest&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@CitrusSupport&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@WithTestResource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ArtemisTestResource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;QuarkusApplicationTest&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TestActionSupport&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Inject&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@BindToRegistry&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;ConnectionFactory&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;connectionFactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@CitrusEndpoint&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@JmsEndpointConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;destinationName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;words-in&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;JmsEndpoint&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wordsIn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@CitrusEndpoint&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@JmsEndpointConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;destinationName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;words-out&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;JmsEndpoint&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wordsOut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@CitrusResource&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;GherkinTestActionRunner&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;shouldHandleEvents&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wordsIn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Howdy&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-        &lt;span class=&quot;n&quot;&gt;runner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wordsOut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&amp;gt;&amp;gt; HOWDY&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Under 40 lines of code for a complete integration test that provisions a real JMS broker, starts a Quarkus application with Apache Camel, sends a message through the entire pipeline, and validates the output. That is the power of Citrus combined with Camel and Quarkus.&lt;/p&gt;
-
-&lt;h1 id=&quot;camel-jms-vs-plain-quarkus-jms&quot;&gt;Camel JMS vs plain Quarkus JMS&lt;/h1&gt;
-
-&lt;p&gt;If you have read the &lt;a href=&quot;/samples/quarkus-event-driven-jms/&quot;&gt;event-driven JMS sample&lt;/a&gt; on this site, you will notice that the Citrus test structure is almost identical. The connection factory sharing, endpoint configuration, and test actions are the same. The difference is in the application code.&lt;/p&gt;
-
-&lt;p&gt;The plain Quarkus approach uses three separate classes — a JMS consumer, a reactive messaging processor, and a JMS producer — to bridge JMS queues with SmallRye Reactive Messaging channels. The Apache Camel approach replaces all of that with a single three-line route. Camel handles the JMS consumption, transformation, and production natively, removing the need for manual message bridging.&lt;/p&gt;
-
-&lt;p&gt;From a testing perspective, this means the same Citrus patterns work regardless of whether your Quarkus application uses Camel or reactive messaging for JMS integration. Citrus abstracts the messaging transport behind its endpoint model, so your test code stays consistent across different application architectures.&lt;/p&gt;
-
-&lt;h1 id=&quot;where-to-go-from-here&quot;&gt;Where to go from here&lt;/h1&gt;
-
-&lt;p&gt;This example covers the fundamentals, but Citrus has much more to offer for Apache Camel JMS testing scenarios:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Message headers and properties&lt;/strong&gt;: JMS messages carry headers and custom properties alongside the payload. Citrus lets you set and verify both in your send and receive actions, which is useful for testing header-based routing in Camel.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;JSON validation&lt;/strong&gt;: Add the &lt;code class=&quot;highlighter-rouge&quot;&gt;citrus-validation-json&lt;/code&gt; module and Citrus will compare received JSON payloads field by field, supporting ignore patterns, validation matchers, and flexible element ordering.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Complex Camel patterns&lt;/strong&gt;: Test content-based routing, message filters, aggregation, and error handling. Citrus can simulate multiple input and output queues to cover multi-step integration scenarios.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Error scenarios&lt;/strong&gt;: Test what happens when the application receives malformed input or when downstream services are unavailable. Citrus gives you full control over the messages you send, making negative testing straightforward.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Kafka comparison&lt;/strong&gt;: If your Camel route uses Kafka instead of JMS, the &lt;a href=&quot;/samples/camel-quarkus-kafka/&quot;&gt;Camel Kafka sample&lt;/a&gt; on this site demonstrates the equivalent setup with &lt;code class=&quot;highlighter-rouge&quot;&gt;@KafkaContainerSupport&lt;/code&gt; for broker provisioning. The test actions stay the same — only the endpoint configuration changes.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;To explore the full example project including the source code, head over to the &lt;a href=&quot;https://github.com/citrusframework/citrus-quarkus-examples&quot;&gt;citrus-quarkus-examples&lt;/a&gt; repository on GitHub.&lt;/p&gt;
-
-&lt;p&gt;For deeper dives into Citrus capabilities, the &lt;a href=&quot;https://citrusframework.org/citrus/reference/html/&quot;&gt;reference guide&lt;/a&gt; covers JMS endpoints, Quarkus integration, Apache Camel support, and the many other messaging transports that Citrus supports.&lt;/p&gt;</content><author><name></name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://0.0.0.0:4000/img/icons/camel.png" /></entry></feed>
+&lt;p&gt;For deeper dives into Citrus capabilities, the &lt;a href=&quot;https://citrusframework.org/citrus/reference/html/&quot;&gt;reference guide&lt;/a&gt; covers Kafka endpoints, Testcontainers integration, Apache Camel support, and the many other messaging transports that Citrus supports.&lt;/p&gt;</content><author><name></name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://0.0.0.0:4000/img/icons/camel.png" /></entry></feed>
