@@ -1,0 +1,1099 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 4.10.2">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus main branch" href="https://github.com/citrusframework/citrus/commits/main.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="stylesheet" href="/css/tabbed.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/atom-one-light.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+  <script src="/js/tabbed.js"></script>
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="samples">
+    <div class="grid">
+
+      <div class="samples-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the samples…</option>
+    <option value="/samples/">Overview</option>
+    <option value="/samples/todo-app/">TodoList App</option>
+    <option value="/samples/run/">Running</option>
+    
+    
+    <option value="/samples/javaconfig/">sample-javaconfig</option>
+    
+    <option value="/samples/reporting/">sample-reporting</option>
+    
+    <option value="/samples/annotation-config/">sample-annotation-config</option>
+    
+    <option value="/samples/kubernetes/">sample-kubernetes</option>
+    
+    <option value="/samples/docker/">sample-docker</option>
+    
+    <option value="/samples/jbang/">sample-jbang</option>
+    
+    <option value="/samples/quarkus/">sample-quarkus</option>
+    
+    <option value="/samples/apache-camel/">sample-camel-context</option>
+    
+    <option value="/samples/cucumber/">sample-cucumber</option>
+    
+    <option value="/samples/selenium/">sample-selenium</option>
+    
+    <option value="/samples/dynamic-endpoints/">sample-dynamic-endpoints</option>
+    
+    <option value="/samples/rmi/">sample-rmi</option>
+    
+    <option value="/samples/soap-wsaddressing/">sample-soap-wsaddressing</option>
+    
+    <option value="/samples/soap-static-response/">sample-soap-static-response</option>
+    
+    <option value="/samples/https/">sample-https</option>
+    
+    <option value="/samples/http/">sample-http</option>
+    
+    <option value="/samples/soap-ssl/">sample-soap-ssl</option>
+    
+    <option value="/samples/mail/">sample-mail</option>
+    
+    <option value="/samples/http-static-response/">sample-http-static-response</option>
+    
+    <option value="/samples/http-loadtest/">sample-http-loadtest</option>
+    
+    <option value="/samples/kafka/">sample-kafka</option>
+    
+    <option value="/samples/wsdl/">sample-wsdl</option>
+    
+    <option value="/samples/openapi/">sample-swagger</option>
+    
+    <option value="/samples/soap-wssecurity/">sample-soap-wssecurity</option>
+    
+    <option value="/samples/soap-mtom/">sample-soap-mtom</option>
+    
+    <option value="/samples/soap-attachment/">sample-soap-attachment</option>
+    
+    <option value="/samples/sftp/">sample-sftp</option>
+    
+    <option value="/samples/ftp/">sample-ftp</option>
+    
+    <option value="/samples/scp/">sample-scp</option>
+    
+    <option value="/samples/jdbc/">sample-jdbc</option>
+    
+    <option value="/samples/jms/">sample-jms</option>
+    
+    <option value="/samples/http-basic-auth/">sample-http-basic-auth</option>
+    
+    <option value="/samples/soap/">sample-soap</option>
+    
+    <option value="/samples/message-store/">sample-message-store</option>
+    
+    <option value="/samples/gradle/">sample-gradle</option>
+    
+    <option value="/samples/behavior/">sample-behavior</option>
+    
+    <option value="/samples/dictionaries/">sample-dictionaries</option>
+    
+    <option value="/samples/camel-quarkus-file-inbox/">camel-file-inbox</option>
+    
+    <option value="/samples/camel-quarkus-aws-s3-kafka/">camel-aws-s3-kafka</option>
+    
+    <option value="/samples/camel-quarkus-kafka/">camel-kafka</option>
+    
+    <option value="/samples/camel-quarkus-cxf-soap/">camel-cxf-soap</option>
+    
+    <option value="/samples/camel-quarkus-direct-http/">camel-direct-http</option>
+    
+    <option value="/samples/camel-quarkus-direct/">camel-direct</option>
+    
+    <option value="/samples/camel-quarkus-cxf-soap-client/">camel-cxf-soap-client</option>
+    
+    <option value="/samples/camel-quarkus-file-outbox/">camel-file-outbox</option>
+    
+    <option value="/samples/camel-quarkus-jms/">camel-jms</option>
+    
+    <option value="/samples/camel-quarkus-mqtt/">camel-mqtt</option>
+    
+    <option value="/samples/camel-quarkus-openapi-server/">camel-openapi-server</option>
+    
+    <option value="/samples/camel-quarkus-rest-dsl/">camel-rest-dsl</option>
+    
+    <option value="/samples/camel-quarkus-rest-to-soap/">camel-rest-to-soap</option>
+    
+    <option value="/samples/quarkus-event-driven-jms/">event-driven-jms</option>
+    
+    <option value="/samples/camel-quarkus-postgresql/">camel-postgresql</option>
+    
+    <option value="/samples/camel-quarkus-knative/">camel-knative</option>
+    
+    <option value="/samples/camel-quarkus-knative-ssl/">camel-knative-ssl</option>
+    
+    <option value="/samples/quarkus-event-driven-kafka/">event-driven-kafka</option>
+    
+    <option value="/samples/junit5/">sample-junit5</option>
+    
+    <option value="/samples/dataprovider/">sample-dataprovider</option>
+    
+    <option value="/samples/testng/">sample-testng</option>
+    
+    <option value="/samples/junit/">sample-junit</option>
+    
+    <option value="/samples/oxm/">sample-oxm</option>
+    
+    <option value="/samples/xml/">sample-xml</option>
+    
+    <option value="/samples/hamcrest/">sample-hamcrest</option>
+    
+    <option value="/samples/xhtml/">sample-xhtml</option>
+    
+    <option value="/samples/json/">sample-json</option>
+    
+    <option value="/samples/databind/">sample-databind</option>
+    
+    <option value="/samples/http-form-data/">sample-http-form-data</option>
+    
+    <option value="/samples/sql/">sample-sql</option>
+    
+    <option value="/samples/binary/">sample-binary</option>
+    
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+  <h2>
+    
+    
+    <img src="/img/icons/camel.png" style="width: 1em;height: 1em;" alt="">
+    
+    Apache Camel Quarkus - Knative Eventing with CloudEvents
+    <a href="/samples/camel-quarkus-knative/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <div class="right">
+    
+    <a href="https://github.com/citrusframework/citrus-quarkus-examples/blob/master/apache-camel/camel-knative" target="_blank">
+      <i class="fa fa-pencil"></i> View source code
+    </a>
+    
+    
+  </div>
+  <span class="post-category">
+    <span class="label">
+      samples
+    </span>
+  </span>
+  <div class="post-content">
+    <p>Knative eventing brings a powerful, event-driven programming model to Kubernetes. An event source detects a change — a file uploaded, a message posted, a database row updated — wraps it in a CloudEvent, and delivers it to a broker. Consumers subscribe to the broker with triggers that filter by event type. It is a clean architecture, but testing it traditionally requires a running Kubernetes cluster with Knative installed, which is a heavyweight dependency for a development feedback loop.</p>
+
+<p>What if you could test the entire flow locally, without Kubernetes, without a real Knative installation, and without touching real AWS services?</p>
+
+<p>This post walks you through testing an Apache Camel Knative event source in a Quarkus application using the <a href="https://citrusframework.org">Citrus</a> integration testing framework. The application picks up files from an S3 bucket, transforms them into CloudEvents, and sends them to a Knative broker. Citrus provides a local Knative broker, provisions an S3 service through LocalStack, and validates every CloudEvent attribute — all within a standard JUnit 5 test.</p>
+
+<p>By the end you will have a recipe for testing Knative eventing locally with zero cloud infrastructure.</p>
+
+<h1 id="the-application-under-test">The application under test</h1>
+
+<p>The example application implements a Knative event source. It polls an S3 bucket for new files, converts each file into a CloudEvent, and delivers the event to a Knative broker. In production this would run on a Kubernetes cluster with Knative installed. In tests, everything runs on localhost.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Amazon S3 upload --&gt; Camel aws-s3-source Kamelet --&gt; CloudEvent transform --&gt; Knative broker
+</code></pre></div></div>
+
+<p>The entire integration logic fits in a single Camel route:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Routes</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">from</span><span class="o">(</span><span class="s">"kamelet:aws-s3-source"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">transformDataType</span><span class="o">(</span>
+                    <span class="k">new</span> <span class="nf">DataType</span><span class="o">(</span><span class="s">"http:application-cloudevents"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"knative:event/org.apache.camel.event.messages"</span> <span class="o">+</span>
+                    <span class="s">"?kind=Broker&amp;name=default"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Three steps, three lines of code. The <code class="highlighter-rouge">aws-s3-source</code> Kamelet polls the S3 bucket for new objects. The <code class="highlighter-rouge">transformDataType</code> call converts the exchange into a CloudEvent HTTP message — this is Camel’s built-in data type transformation that wraps the payload with the correct <code class="highlighter-rouge">Content-Type</code> header and CloudEvent metadata structure. Finally, the <code class="highlighter-rouge">knative:event</code> endpoint delivers the CloudEvent to a Knative broker named <code class="highlighter-rouge">default</code>.</p>
+
+<p>The Kamelet is a pre-built, reusable Camel connector. It encapsulates all the S3 polling logic — connection management, credential handling, object consumption — behind a simple URI. You configure it through Camel property placeholders, and it works identically against real AWS or a LocalStack emulator.</p>
+
+<h2 id="configuring-the-knative-component">Configuring the Knative component</h2>
+
+<p>The Camel Knative component needs to know where to send events. In a real Kubernetes deployment, Knative injects the broker URL through a <code class="highlighter-rouge">SinkBinding</code> that sets the <code class="highlighter-rouge">K_SINK</code> environment variable. For local development and testing, the component reads a JSON environment file instead.</p>
+
+<p>The application configures this in <code class="highlighter-rouge">application.properties</code>:</p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">camel.component.knative.environment-path</span><span class="p">=</span><span class="s">classpath:knative.json</span>
+
+<span class="err">camel.component.knative.ceOverride[ce-type]=dev.knative.eventing.aws-s3</span>
+<span class="err">camel.component.knative.ceOverride[ce-source]=dev.knative.eventing.aws-s3-source</span>
+<span class="err">camel.component.knative.ceOverride[ce-subject]=aws-s3-source</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">ceOverride</code> settings explicitly set the CloudEvent metadata on every produced event. This makes the event look like a proper Knative AWS S3 source event, with a specific type, source, and subject that downstream consumers can use for trigger filtering.</p>
+
+<p>The <code class="highlighter-rouge">knative.json</code> file defines the broker as a sink resource:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"resources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"default"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"event"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"endpointKind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sink"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{k.sink:http://localhost:8080}}"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"objectApiVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eventing.knative.dev/v1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"objectKind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Broker"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"objectName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"default"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The broker URL is resolved from the <code class="highlighter-rouge">k.sink</code> property, defaulting to <code class="highlighter-rouge">http://localhost:8080</code>. In production, this property would be set by the Knative SinkBinding. In tests, the application’s test profile sets <code class="highlighter-rouge">%test.k.sink=http://localhost:8080</code>, pointing Camel at the local Citrus Knative broker that we will set up in the test.</p>
+
+<h1 id="adding-citrus-to-the-project">Adding Citrus to the project</h1>
+
+<p>This example spans two technologies — Knative eventing and AWS S3 — so the test needs several Citrus modules:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-quarkus<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>4.10.2<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-knative<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>4.10.2<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-testcontainers<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>4.10.2<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-junit-jupiter<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>4.10.2<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>Here is what each module brings to the table:</p>
+
+<ul>
+  <li>
+<strong>citrus-quarkus</strong> integrates Citrus with the Quarkus test lifecycle, ensuring both frameworks start and stop together.</li>
+  <li>
+<strong>citrus-knative</strong> provides the <code class="highlighter-rouge">knative()</code> DSL for creating local brokers, sending events, and receiving and validating CloudEvents — all without a Kubernetes cluster.</li>
+  <li>
+<strong>citrus-testcontainers</strong> adds the <code class="highlighter-rouge">@LocalStackContainerSupport</code> annotation for provisioning a LocalStack container with S3 enabled.</li>
+  <li>
+<strong>citrus-junit-jupiter</strong> connects Citrus to JUnit 5.</li>
+</ul>
+
+<p>The key module is <strong>citrus-knative</strong>. It provides a lightweight, local implementation of a Knative broker that runs as an HTTP endpoint. Camel sends CloudEvents to this endpoint just as it would to a real Knative broker on Kubernetes, and Citrus captures every event for validation.</p>
+
+<h1 id="understanding-the-test">Understanding the test</h1>
+
+<p>The test class combines Citrus Knative support with LocalStack container provisioning to verify the complete event source flow:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@QuarkusTest</span>
+<span class="nd">@CitrusSupport</span>
+<span class="nd">@LocalStackContainerSupport</span><span class="o">(</span><span class="n">services</span> <span class="o">=</span> <span class="n">AwsService</span><span class="o">.</span><span class="na">S3</span><span class="o">,</span>
+        <span class="n">containerLifecycleListener</span> <span class="o">=</span> <span class="n">QuarkusApplicationTest</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">QuarkusApplicationTest</span>
+        <span class="kd">implements</span> <span class="n">TestActionSupport</span><span class="o">,</span>
+                   <span class="n">ContainerLifecycleListener</span><span class="o">&lt;</span><span class="n">LocalStackContainer</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="nd">@CitrusResource</span>
+    <span class="n">GherkinTestActionRunner</span> <span class="n">runner</span><span class="o">;</span>
+
+    <span class="nd">@CitrusResource</span>
+    <span class="kd">private</span> <span class="n">LocalStackContainer</span> <span class="n">localStackContainer</span><span class="o">;</span>
+
+    <span class="kd">final</span> <span class="n">String</span> <span class="n">s3Key</span> <span class="o">=</span> <span class="s">"message.txt"</span><span class="o">;</span>
+    <span class="kd">final</span> <span class="n">String</span> <span class="n">s3Data</span> <span class="o">=</span> <span class="s">"Hello Knative!"</span><span class="o">;</span>
+    <span class="kd">final</span> <span class="n">String</span> <span class="n">s3BucketName</span> <span class="o">=</span> <span class="s">"knative-bucket"</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Three annotations set up the entire test infrastructure:</p>
+
+<ul>
+  <li>
+<code class="highlighter-rouge">@QuarkusTest</code> starts the Quarkus application and the Camel route.</li>
+  <li>
+<code class="highlighter-rouge">@CitrusSupport</code> activates the Citrus framework.</li>
+  <li>
+<code class="highlighter-rouge">@LocalStackContainerSupport</code> starts a LocalStack container with the S3 service enabled.</li>
+</ul>
+
+<p>The class implements two interfaces. <code class="highlighter-rouge">TestActionSupport</code> provides access to the <code class="highlighter-rouge">knative()</code> DSL builder. <code class="highlighter-rouge">ContainerLifecycleListener&lt;LocalStackContainer&gt;</code> lets the test hook into the container lifecycle to create the S3 bucket and inject connection properties before the application starts.</p>
+
+<h2 id="provisioning-the-s3-bucket">Provisioning the S3 bucket</h2>
+
+<p>When the LocalStack container starts, the lifecycle listener creates the bucket and returns the Camel Kamelet properties that connect the application to the emulated S3 service:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="nf">started</span><span class="o">(</span><span class="n">LocalStackContainer</span> <span class="n">container</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">S3Client</span> <span class="n">s3Client</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="na">getClient</span><span class="o">(</span><span class="n">AwsService</span><span class="o">.</span><span class="na">S3</span><span class="o">);</span>
+    <span class="n">s3Client</span><span class="o">.</span><span class="na">createBucket</span><span class="o">(</span>
+            <span class="n">builder</span> <span class="o">-&gt;</span> <span class="n">builder</span><span class="o">.</span><span class="na">bucket</span><span class="o">(</span><span class="n">s3BucketName</span><span class="o">));</span>
+
+    <span class="k">return</span> <span class="n">Map</span><span class="o">.</span><span class="na">of</span><span class="o">(</span>
+        <span class="s">"camel.kamelet.aws-s3-source.accessKey"</span><span class="o">,</span>
+            <span class="n">container</span><span class="o">.</span><span class="na">getAccessKey</span><span class="o">(),</span>
+        <span class="s">"camel.kamelet.aws-s3-source.secretKey"</span><span class="o">,</span>
+            <span class="n">container</span><span class="o">.</span><span class="na">getSecretKey</span><span class="o">(),</span>
+        <span class="s">"camel.kamelet.aws-s3-source.region"</span><span class="o">,</span>
+            <span class="n">container</span><span class="o">.</span><span class="na">getRegion</span><span class="o">(),</span>
+        <span class="s">"camel.kamelet.aws-s3-source.bucketNameOrArn"</span><span class="o">,</span>
+            <span class="n">s3BucketName</span><span class="o">,</span>
+        <span class="s">"camel.kamelet.aws-s3-source.uriEndpointOverride"</span><span class="o">,</span>
+            <span class="n">container</span><span class="o">.</span><span class="na">getServiceEndpoint</span><span class="o">().</span><span class="na">toString</span><span class="o">(),</span>
+        <span class="s">"camel.kamelet.aws-s3-source.overrideEndpoint"</span><span class="o">,</span> <span class="s">"true"</span><span class="o">,</span>
+        <span class="s">"camel.kamelet.aws-s3-source.forcePathStyle"</span><span class="o">,</span> <span class="s">"true"</span>
+    <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The returned map overrides the Camel Kamelet properties at runtime. The <code class="highlighter-rouge">overrideEndpoint</code> and <code class="highlighter-rouge">forcePathStyle</code> options enable LocalStack compatibility — without them, the AWS SDK would try to use virtual-hosted-style bucket addressing, which does not work with a local emulator. All other properties (access key, secret key, region, endpoint URL) point the Kamelet at the LocalStack container instead of real AWS.</p>
+
+<p>This is the same pattern you see in the <a href="/samples/camel-quarkus-aws-s3-kafka/">Camel S3-to-Kafka sample</a> — the lifecycle listener bridges the gap between dynamically assigned container ports and the application’s configuration properties.</p>
+
+<h2 id="creating-a-local-knative-broker">Creating a local Knative broker</h2>
+
+<p>The first step in the test creates a local Knative broker:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">runner</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+    <span class="n">knative</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">brokers</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"default"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">clusterType</span><span class="o">(</span><span class="n">ClusterType</span><span class="o">.</span><span class="na">LOCAL</span><span class="o">)</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">ClusterType.LOCAL</code> is the critical setting here. It tells Citrus to create a local HTTP endpoint that acts as a Knative broker instead of calling the Kubernetes API to create a real broker resource. The broker listens on <code class="highlighter-rouge">localhost:8080</code> — the same URL that the Camel Knative component resolves from <code class="highlighter-rouge">k.sink</code> in the test profile.</p>
+
+<p>From Camel’s perspective, this local broker is indistinguishable from a real Knative broker. It accepts HTTP POST requests with CloudEvent headers, stores the events, and makes them available for the test to receive and validate. The difference is entirely in the infrastructure: no Kubernetes, no Istio, no Knative operator.</p>
+
+<h2 id="triggering-the-event-source">Triggering the event source</h2>
+
+<p>With the broker and the S3 bucket in place, the test triggers the event source by uploading a file to LocalStack S3:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">runner</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="k">this</span><span class="o">::</span><span class="n">uploadS3File</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">uploadS3File</code> method uses the AWS SDK’s S3 client to perform a multipart upload:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">uploadS3File</span><span class="o">(</span><span class="n">TestContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">S3Client</span> <span class="n">s3Client</span> <span class="o">=</span>
+            <span class="n">localStackContainer</span><span class="o">.</span><span class="na">getClient</span><span class="o">(</span><span class="n">AwsService</span><span class="o">.</span><span class="na">S3</span><span class="o">);</span>
+
+    <span class="n">CreateMultipartUploadResponse</span> <span class="n">initResponse</span> <span class="o">=</span>
+            <span class="n">s3Client</span><span class="o">.</span><span class="na">createMultipartUpload</span><span class="o">(</span>
+                <span class="n">b</span> <span class="o">-&gt;</span> <span class="n">b</span><span class="o">.</span><span class="na">bucket</span><span class="o">(</span><span class="n">s3BucketName</span><span class="o">).</span><span class="na">key</span><span class="o">(</span><span class="n">s3Key</span><span class="o">));</span>
+
+    <span class="n">String</span> <span class="n">etag</span> <span class="o">=</span> <span class="n">s3Client</span><span class="o">.</span><span class="na">uploadPart</span><span class="o">(</span>
+            <span class="n">b</span> <span class="o">-&gt;</span> <span class="n">b</span><span class="o">.</span><span class="na">bucket</span><span class="o">(</span><span class="n">s3BucketName</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">key</span><span class="o">(</span><span class="n">s3Key</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">uploadId</span><span class="o">(</span><span class="n">initResponse</span><span class="o">.</span><span class="na">uploadId</span><span class="o">())</span>
+                    <span class="o">.</span><span class="na">partNumber</span><span class="o">(</span><span class="mi">1</span><span class="o">),</span>
+            <span class="n">RequestBody</span><span class="o">.</span><span class="na">fromString</span><span class="o">(</span><span class="n">s3Data</span><span class="o">)).</span><span class="na">eTag</span><span class="o">();</span>
+
+    <span class="n">s3Client</span><span class="o">.</span><span class="na">completeMultipartUpload</span><span class="o">(</span>
+            <span class="n">b</span> <span class="o">-&gt;</span> <span class="n">b</span><span class="o">.</span><span class="na">bucket</span><span class="o">(</span><span class="n">s3BucketName</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">multipartUpload</span><span class="o">(</span><span class="n">CompletedMultipartUpload</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">parts</span><span class="o">(</span><span class="n">Collections</span><span class="o">.</span><span class="na">singletonList</span><span class="o">(</span>
+                        <span class="n">CompletedPart</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">partNumber</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">eTag</span><span class="o">(</span><span class="n">etag</span><span class="o">).</span><span class="na">build</span><span class="o">()))</span>
+                    <span class="o">.</span><span class="na">build</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">key</span><span class="o">(</span><span class="n">s3Key</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">uploadId</span><span class="o">(</span><span class="n">initResponse</span><span class="o">.</span><span class="na">uploadId</span><span class="o">()));</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The file <code class="highlighter-rouge">message.txt</code> with content <code class="highlighter-rouge">Hello Knative!</code> lands in the <code class="highlighter-rouge">knative-bucket</code> on LocalStack. The Camel <code class="highlighter-rouge">aws-s3-source</code> Kamelet polls the bucket, detects the new object, consumes it, and triggers the route. The route transforms the content into a CloudEvent and posts it to the Citrus local broker.</p>
+
+<h2 id="receiving-and-validating-cloudevents">Receiving and validating CloudEvents</h2>
+
+<p>The final step receives the CloudEvent from the local broker and validates both the payload and the CloudEvent metadata attributes:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">runner</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+    <span class="n">knative</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">event</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">serviceName</span><span class="o">(</span><span class="s">"default"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">eventData</span><span class="o">(</span><span class="n">s3Data</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">attribute</span><span class="o">(</span><span class="s">"ce-id"</span><span class="o">,</span>
+            <span class="s">"@matches([0-9A-Z]{15}-[0-9]{16})@"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">attribute</span><span class="o">(</span><span class="s">"ce-type"</span><span class="o">,</span>
+            <span class="s">"dev.knative.eventing.aws-s3"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">attribute</span><span class="o">(</span><span class="s">"ce-source"</span><span class="o">,</span>
+            <span class="s">"dev.knative.eventing.aws-s3-source"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">attribute</span><span class="o">(</span><span class="s">"ce-subject"</span><span class="o">,</span> <span class="s">"aws-s3-source"</span><span class="o">)</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">receive()</code> action waits for a CloudEvent to arrive on the broker named <code class="highlighter-rouge">default</code> and validates five things:</p>
+
+<ul>
+  <li>
+<strong><code class="highlighter-rouge">eventData</code></strong> — the uploaded file content <code class="highlighter-rouge">Hello Knative!</code>. This confirms that the S3 object content survived the entire pipeline: upload to LocalStack, consumption by the Kamelet, CloudEvent transformation, and delivery to the broker.</li>
+  <li>
+<strong><code class="highlighter-rouge">ce-id</code></strong> — a generated identifier matching the pattern <code class="highlighter-rouge">[0-9A-Z]{15}-[0-9]{16}</code>. The <code class="highlighter-rouge">@matches()@</code> syntax is a Citrus validation expression that applies a regular expression, useful when the exact value is dynamic but the format is predictable.</li>
+  <li>
+<strong><code class="highlighter-rouge">ce-type</code></strong> — <code class="highlighter-rouge">dev.knative.eventing.aws-s3</code>, set by the <code class="highlighter-rouge">ceOverride</code> configuration. Downstream consumers would use this type in their trigger filters to subscribe only to S3 events.</li>
+  <li>
+<strong><code class="highlighter-rouge">ce-source</code></strong> — <code class="highlighter-rouge">dev.knative.eventing.aws-s3-source</code>, identifying the origin of the event.</li>
+  <li>
+<strong><code class="highlighter-rouge">ce-subject</code></strong> — <code class="highlighter-rouge">aws-s3-source</code>, the subject of the event.</li>
+</ul>
+
+<p>These CloudEvent attributes are part of the <a href="https://cloudevents.io/">CloudEvents specification</a> — a CNCF standard for describing events in a common way. By validating them explicitly, the test ensures that downstream consumers relying on these attributes for routing and filtering will work correctly with the events this source produces.</p>
+
+<h1 id="how-it-all-fits-together">How it all fits together</h1>
+
+<p>When you run the test with <code class="highlighter-rouge">./mvnw verify</code>, here is the sequence of events:</p>
+
+<ol>
+  <li>
+<strong><code class="highlighter-rouge">@LocalStackContainerSupport</code> launches</strong> a LocalStack container with the S3 service and the lifecycle listener creates the <code class="highlighter-rouge">knative-bucket</code>.</li>
+  <li>
+<strong>Camel Kamelet properties</strong> are injected from the lifecycle listener, pointing the <code class="highlighter-rouge">aws-s3-source</code> Kamelet at LocalStack.</li>
+  <li>
+<strong>Quarkus starts</strong> the application in test mode. The Camel route begins polling the S3 bucket.</li>
+  <li>
+<strong>Citrus creates</strong> a local Knative broker named <code class="highlighter-rouge">default</code> on <code class="highlighter-rouge">localhost:8080</code>.</li>
+  <li>
+<strong>The test uploads</strong> <code class="highlighter-rouge">message.txt</code> with content <code class="highlighter-rouge">Hello Knative!</code> to the S3 bucket via the AWS SDK.</li>
+  <li>
+<strong>The Kamelet detects</strong> the new object and consumes it from the bucket.</li>
+  <li>
+<strong>The route transforms</strong> the content into a CloudEvent with the configured <code class="highlighter-rouge">ce-type</code>, <code class="highlighter-rouge">ce-source</code>, and <code class="highlighter-rouge">ce-subject</code> attributes.</li>
+  <li>
+<strong>Camel posts</strong> the CloudEvent to the Citrus local broker at <code class="highlighter-rouge">localhost:8080</code>.</li>
+  <li>
+<strong>Citrus receives</strong> the event and validates the payload and all CloudEvent attributes.</li>
+  <li>
+<strong>The LocalStack container</strong> is stopped and cleaned up automatically.</li>
+</ol>
+
+<p>The test runs entirely on localhost. No Kubernetes cluster, no Knative installation, no AWS account. Yet it exercises the complete event source flow — from S3 upload to CloudEvent delivery — with real container-based infrastructure for S3 and a faithful local broker implementation for Knative.</p>
+
+<h1 id="why-local-knative-testing-matters">Why local Knative testing matters</h1>
+
+<p>Knative eventing introduces a level of indirection that can be hard to test. Your application produces events and sends them to a broker, but you typically have no visibility into what the broker receives until a consumer processes the event downstream. Bugs in CloudEvent attribute configuration, payload transformation, or broker connectivity only surface in a deployed environment — which is slow, expensive, and hard to debug.</p>
+
+<p>Citrus eliminates this gap. The local Knative broker captures every event exactly as the real broker would receive it, and the test can inspect every attribute. If your <code class="highlighter-rouge">ce-type</code> is wrong, the test fails immediately with a clear mismatch message. If the payload transformation drops content, you see it in the diff. You do not need to deploy, wait for a consumer to pick up the event, and dig through logs to find the problem.</p>
+
+<p>This is especially valuable during development. When you are iterating on the CloudEvent format or adding new event sources, a local test that runs in seconds provides a much tighter feedback loop than deploying to a staging cluster. The test acts as a contract — it defines what the event source promises to deliver, and it verifies that promise on every build.</p>
+
+<h1 id="where-to-go-from-here">Where to go from here</h1>
+
+<p>This example covers a single event source with one event type, but the same pattern extends to more complex eventing scenarios:</p>
+
+<ul>
+  <li>
+<strong>Multiple event types</strong>: Add a second route that produces events with a different <code class="highlighter-rouge">ce-type</code> and verify that the broker receives both types with the correct attributes.</li>
+  <li>
+<strong>Trigger filtering</strong>: Create multiple local brokers or use trigger filters to verify that events are routed to the correct consumer based on CloudEvent attributes.</li>
+  <li>
+<strong>Event chains</strong>: Test a pipeline where one event triggers processing that produces a second event. Citrus can validate both the intermediate and final events.</li>
+  <li>
+<strong>Error handling</strong>: Verify that the event source handles S3 connectivity issues gracefully — does it retry? Does it produce a dead-letter event?</li>
+  <li>
+<strong>SQS and SNS sources</strong>: Apply the same LocalStack pattern with <code class="highlighter-rouge">AwsService.SQS</code> or <code class="highlighter-rouge">AwsService.SNS</code> to test event sources backed by other AWS services.</li>
+</ul>
+
+<p>To explore the full example project including the source code, head over to the <a href="https://github.com/citrusframework/citrus-quarkus-examples">citrus-quarkus-examples</a> repository on GitHub.</p>
+
+<p>For deeper dives into Citrus capabilities, the <a href="https://citrusframework.org/citrus/reference/html/">reference guide</a> covers Knative support, Testcontainers integration, and the many other transports that Citrus supports.</p>
+
+  </div>
+</article>
+
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <h4>Samples</h4>
+    <ul>
+      <li class="">
+        <a href="/samples/">Overview</a>
+      </li>
+      <li class="">
+        <a href="/samples/todo-app">TodoList App</a>
+      </li>
+      <li class="">
+        <a href="/samples/run">Running</a>
+      </li>
+    </ul>
+    <h4>Configuration</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+
+      
+      
+      <li class="">
+        <a href="/samples/javaconfig/">sample-javaconfig</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/reporting/">sample-reporting</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/annotation-config/">sample-annotation-config</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Connectors</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/kubernetes/">sample-kubernetes</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/docker/">sample-docker</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Demo</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/jbang/">sample-jbang</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus/">sample-quarkus</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/apache-camel/">sample-camel-context</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/cucumber/">sample-cucumber</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Endpoints</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/dynamic-endpoints/">sample-dynamic-endpoints</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/rmi/">sample-rmi</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-wsaddressing/">sample-soap-wsaddressing</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-static-response/">sample-soap-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/https/">sample-https</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http/">sample-http</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-ssl/">sample-soap-ssl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/mail/">sample-mail</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-static-response/">sample-http-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-loadtest/">sample-http-loadtest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/kafka/">sample-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/wsdl/">sample-wsdl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/openapi/">sample-swagger</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-wssecurity/">sample-soap-wssecurity</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-mtom/">sample-soap-mtom</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-attachment/">sample-soap-attachment</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/sftp/">sample-sftp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/ftp/">sample-ftp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/scp/">sample-scp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jdbc/">sample-jdbc</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jms/">sample-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-basic-auth/">sample-http-basic-auth</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap/">sample-soap</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Miscellaneous</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/message-store/">sample-message-store</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/gradle/">sample-gradle</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/behavior/">sample-behavior</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dictionaries/">sample-dictionaries</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Quarkus</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-file-inbox/">camel-file-inbox</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-aws-s3-kafka/">camel-aws-s3-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-kafka/">camel-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-cxf-soap/">camel-cxf-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-direct-http/">camel-direct-http</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-direct/">camel-direct</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-cxf-soap-client/">camel-cxf-soap-client</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-file-outbox/">camel-file-outbox</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-jms/">camel-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-mqtt/">camel-mqtt</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-openapi-server/">camel-openapi-server</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-rest-dsl/">camel-rest-dsl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-rest-to-soap/">camel-rest-to-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus-event-driven-jms/">event-driven-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-postgresql/">camel-postgresql</a>
+      </li>
+      
+      
+      <li class="current">
+        <a href="/samples/camel-quarkus-knative/">camel-knative</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-knative-ssl/">camel-knative-ssl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus-event-driven-kafka/">event-driven-kafka</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Runtimes</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/junit5/">sample-junit5</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dataprovider/">sample-dataprovider</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/testng/">sample-testng</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/junit/">sample-junit</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>Validation</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/oxm/">sample-oxm</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xml/">sample-xml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/hamcrest/">sample-hamcrest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xhtml/">sample-xhtml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/json/">sample-json</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/databind/">sample-databind</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-form-data/">sample-http-form-data</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/sql/">sample-sql</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/binary/">sample-binary</a>
+      </li>
+      
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/citrusframework/citrus/blob/master/LICENSE">MIT License</a>.</p>
+      <br>
+      <p>© 2026 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p> </p>
+      <br>
+      <br>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>
