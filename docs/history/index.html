@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Citrus Framework</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="generator" content="Citrus 4.10.3">
+  <meta name="generator" content="Citrus 5.0.0">
   <meta name="description" content="Citrus Framework Website"/>
   <meta name="author" content="ConSol Software GmbH"/>
   <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
@@ -255,6 +255,436 @@
           </div>
           <h1>Release history</h1>
           
+<h2 id="v5.0.0">v5.0.0</h2>
+<h7>2026-08-05</h7>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Id</th>
+      <th style="text-align: center">Changes</th>
+      <th style="text-align: center">By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1054">#1054</a></td>
+      <td style="text-align: center">Resolve split packages to support Java module system (JPMS)</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1505">#1505</a></td>
+      <td style="text-align: center">Citrus MCP server implementation</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1550">#1550</a></td>
+      <td style="text-align: center">Publish the Citrus JBang MCP server as a Claude Code plugin</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1634">#1634</a></td>
+      <td style="text-align: center">Add migration guide resource to the Citrus MCP server</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1658">#1658</a></td>
+      <td style="text-align: center">Add migration prompt to Citrus MCP server</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1659">#1659</a></td>
+      <td style="text-align: center">Add MCP server resource for Citrus settings catalog</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1553">#1553</a></td>
+      <td style="text-align: center">Add Floci container support to citrus-testcontainers</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1555">#1555</a></td>
+      <td style="text-align: center">Add Strimzi Kafka container implementation option</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1559">#1559</a></td>
+      <td style="text-align: center">Add native Apache Kafka container implementation option</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1551">#1551</a></td>
+      <td style="text-align: center">Add Localstack auth token option</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1558">#1558</a></td>
+      <td style="text-align: center">Auto create Kafka topics on Testcontainers container start</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">OpenAPI code generation with model builders</td>
+      <td style="text-align: center">bbortt</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1580">#1580</a></td>
+      <td style="text-align: center">Support beans configuration in YAML and XML DSL</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1533">#1533</a></td>
+      <td style="text-align: center">Support message processors in YAML DSL</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1519">#1519</a></td>
+      <td style="text-align: center">Add typed endpoints schema for XML DSL</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1586">#1586</a></td>
+      <td style="text-align: center">Redesign logging concept for clearer test workflow output</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1602">#1602</a></td>
+      <td style="text-align: center">Support Camel Launcher CLI jar as alternative to JBang</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1588">#1588</a></td>
+      <td style="text-align: center">Add fixed port configuration support for Camel infra services</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1593">#1593</a></td>
+      <td style="text-align: center">Add schema examples and autocompletion for Camel infra service names</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1594">#1594</a></td>
+      <td style="text-align: center">Add auto dependency resolving for Camel infra services in JBang</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1639">#1639</a></td>
+      <td style="text-align: center">Simplify Java DSL access to message payload builders</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1643">#1643</a></td>
+      <td style="text-align: center">Add Camel unmarshal data format support in YAML DSL message processing</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1645">#1645</a></td>
+      <td style="text-align: center">Add JSON and XML marshalling/unmarshalling message processor implementations</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1647">#1647</a></td>
+      <td style="text-align: center">Add formatting message processors (JSON, XML, SOAP) to the message processor API</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1652">#1652</a></td>
+      <td style="text-align: center">Support Java ServiceLoader SPI as fallback for ResourcePathTypeResolver</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1655">#1655</a></td>
+      <td style="text-align: center">Support property placeholders in JBang Maven GAV dependency coordinates</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1527">#1527</a></td>
+      <td style="text-align: center">Add test variables support in annotation config</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1525">#1525</a></td>
+      <td style="text-align: center">Set Quarkus dev services properties as test variables</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1582">#1582</a></td>
+      <td style="text-align: center">Add log output when receive actions start waiting for messages</td>
+      <td style="text-align: center">w3lld1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1567">#1567</a></td>
+      <td style="text-align: center">Add Maven build skipTests option</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1583">#1583</a></td>
+      <td style="text-align: center">Support JBang command arguments via system property or envVars</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1549">#1549</a></td>
+      <td style="text-align: center">Reinstall Camel plugin when version or GAV args change</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1633">#1633</a></td>
+      <td style="text-align: center">Add expected status condition option to Knative broker verify action</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1578">#1578</a></td>
+      <td style="text-align: center">Allow function and validation matcher bean injection</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1529">#1529</a></td>
+      <td style="text-align: center">Include most likely message validator hints</td>
+      <td style="text-align: center">bbortt</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1520">#1520</a></td>
+      <td style="text-align: center">Support authorization/SASL when starting Redpanda Testcontainers</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1524">#1524</a></td>
+      <td style="text-align: center">Filter Citrus internal message headers for Camel Exchanges</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1576">#1576</a></td>
+      <td style="text-align: center">Improve Camel Exchange message converter</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1667">#1667</a></td>
+      <td style="text-align: center">Propagate bean references from Citrus to Camel with dynamic endpoints</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1669">#1669</a></td>
+      <td style="text-align: center">YamlCodeAnalyzer fails to detect Camel endpoints using YAML multiline scalar indicators</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1523">#1523</a></td>
+      <td style="text-align: center">Improve handling of binary file resource message payloads</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1562">#1562</a></td>
+      <td style="text-align: center">Fix handling of Citrus file resources in CamelMessageConverter</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1570">#1570</a></td>
+      <td style="text-align: center">Fix NPE in TestActionResult for null payloads</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1590">#1590</a></td>
+      <td style="text-align: center">Handle unconvertible message payloads in TestActionResult Json report</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1591">#1591</a></td>
+      <td style="text-align: center">Fix ConcurrentModificationException in HttpEndpointConfiguration</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Fix ConcurrentModificationException in Quarkus test resource</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1575">#1575</a></td>
+      <td style="text-align: center">Fix flaky SendSoapMessageTestActionBuilderTest with UnfinishedStubbingException</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1581">#1581</a></td>
+      <td style="text-align: center">Fix misleading log output when Camel waitForRunningState is false</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/809">#809</a></td>
+      <td style="text-align: center">URL-encode commas in query param values to support complex query strings</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1572">#1572</a></td>
+      <td style="text-align: center">Improve JBang init and run commands</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1656">#1656</a></td>
+      <td style="text-align: center">Filter .java extension from JBang dynamic module resolution</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1622">#1622</a></td>
+      <td style="text-align: center">DefaultTestActionBuilder produces unnamed TestAction instances</td>
+      <td style="text-align: center">bbortt</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1609">#1609</a></td>
+      <td style="text-align: center">Improve Citrus Test DSL JSON Schema quality and correctness</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1592">#1592</a></td>
+      <td style="text-align: center">Fix compiler warnings across all modules</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1636">#1636</a></td>
+      <td style="text-align: center">Add documentation for using Citrus with Kaoto visual designer</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-update"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1447">#1447</a></td>
+      <td style="text-align: center">Update to Jackson 3.2.1</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-update"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1447">#1447</a></td>
+      <td style="text-align: center">Update to JUnit 6.1.2</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-update"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1447">#1447</a></td>
+      <td style="text-align: center">Update to Spring 7.0.8 and Spring Boot 4.1.0</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-update"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1447">#1447</a></td>
+      <td style="text-align: center">Update to Spring WS 5.0.2 and Spring Integration 7.1.0</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-update"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1447">#1447</a></td>
+      <td style="text-align: center">Update to Apache Camel 4.21.0</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-update"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1447">#1447</a></td>
+      <td style="text-align: center">Update to Jetty 12.1.11 and Kafka 4.3.1</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-update"></i></td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Update to Java 21 and Java 25 as LTS versions</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-update"></i></td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Replace org.apache.activemq with org.apache.artemis</td>
+      <td style="text-align: center">bbortt</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-update"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1601">#1601</a></td>
+      <td style="text-align: center">Rename Camel JBang references to Camel CLI</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-update"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1528">#1528</a></td>
+      <td style="text-align: center">Move Test API Generator modules to citrus-tools</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-update"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1632">#1632</a></td>
+      <td style="text-align: center">Reduce Maven Central publishing file count by limiting checksum algorithms</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-update"></i></td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Convert value classes to records</td>
+      <td style="text-align: center">bbortt</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-update"></i></td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Code modernization (lambdas, try-with-resources, enhanced switch)</td>
+      <td style="text-align: center">bbortt</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-update"></i></td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Update dependency versions</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+  </tbody>
+</table>
+
 <h2 id="v4.10.3">v4.10.3</h2>
 <h7>2026-07-29</h7>
 
