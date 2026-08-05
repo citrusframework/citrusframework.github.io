@@ -416,7 +416,8 @@
   <div class="post-content">
     <p>Event-driven architecture is everywhere. A file lands in a storage bucket, a database row changes, a sensor publishes a reading — and somewhere downstream, a consumer reacts. <a href="https://knative.dev/docs/eventing/">Knative Eventing</a> brings this model to Kubernetes with a clean abstraction: event sources produce <a href="https://cloudevents.io/">CloudEvents</a>, brokers route them, triggers filter them, and services consume them. The programming model is elegant, but testing it is not.</p>
 
-<p><img src="/img/assets/knative-eventing/featured.png" alt="Knative eventing testing"></p>
+<p><img src="/img/assets/knative-eventing/featured.png" alt="Knative eventing testing">
+<em>AI generated with Google Gemini</em></p>
 
 <p>The usual testing approach is to deploy the application to a Kubernetes cluster that has Knative already installed, trigger the event source manually, and check the downstream consumers through event logs or manual inspection. This is slow, expensive, and fragile. It ties your development feedback loop to cluster availability, makes debugging difficult, and creates test environments that are hard to reproduce. What you really want is to test Knative eventing logic locally, with real message validation, but without any heavy cloud infrastructure.</p>
 
@@ -893,7 +894,8 @@ Ce-Source: order-service
   <div class="post-content">
     <p>SOAP is far from dead. Contract-first, WSDL-driven services still power banking systems, healthcare exchanges, government APIs, and countless internal enterprise platforms. If you do integration work in Java, the chances are still quite high that you will encounter SOAP — either as a service you expose, a backend you consume, or a legacy system you bridge to a modern REST API.</p>
 
-<p><img src="/img/assets/soap-ws-testing/featured.png" alt="CXF SOAP WebServices testing"></p>
+<p><img src="/img/assets/soap-ws-testing/featured.png" alt="CXF SOAP WebServices testing">
+<em>AI generated with Google Gemini</em></p>
 
 <p>Testing these SOAP integrations is where things get interesting. You need to verify SOAP envelopes, validate XML payloads against WSDL schemas, handle SOAP faults, and often coordinate multiple protocols in a single test. Unit tests with mocked stubs only get you so far — real confidence comes from end-to-end tests that exercise the actual SOAP processing stack.</p>
 
@@ -1618,7 +1620,8 @@ DELETE /fruits  --&gt;  direct:deleteFruit --&gt;  CXF client  --&gt;  SOAP
   <div class="post-content">
     <p><a href="https://camel.apache.org">Apache Camel</a> is one of the most mature integration frameworks in the Java ecosystem, offering 300+ connectors to virtually every messaging system, cloud service, and protocol you can think of. <a href="https://citrusframework.org">Citrus</a> is a powerful integration testing framework that orchestrates end-to-end test scenarios with clean, readable Java code. Each is strong on its own — but when you combine them, something remarkable happens.</p>
 
-<p><img src="/img/assets/camel-elevates-citrus/featured.png" alt="Camel elevates Citrus"></p>
+<p><img src="/img/assets/camel-elevates-citrus/featured.png" alt="Camel elevates Citrus">
+<em>AI generated with Google Gemini</em></p>
 
 <p>Citrus gains the ability to speak every protocol Camel supports, transform test data with Camel’s rich data formats, and even reach into running Camel routes to trigger or verify business logic directly. In return, Camel gets a purpose-built test harness that can validate its routes in realistic, container-backed environments with proper message verification.</p>
 
