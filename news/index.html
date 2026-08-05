@@ -193,6 +193,9 @@
   <div class="post-content">
     <p>The Citrus community is thrilled to announce the general availability of <strong>Citrus 5.0.0</strong>! After two milestone releases and extensive testing by early adopters, the next major version of the Citrus integration testing framework has landed.</p>
 
+<p><img src="/img/assets/citrus-5.0.0/featured.png" alt="Citrus 5 released">
+<em>AI generated with Google Gemini</em></p>
+
 <h2 id="why-citrus-5">Why Citrus 5?</h2>
 
 <p>The Java ecosystem has taken significant leaps forward. Spring Framework 7, Spring Boot 4, Jackson 3, JUnit 6, Quarkus 3.38 and Apache Camel 4.21 all represent new major versions that come with breaking changes and modern API improvements. Citrus 5 aligns with these releases so you can use the latest enterprise Java libraries alongside your integration tests without dependency conflicts.</p>
@@ -341,7 +344,9 @@
 
 <h2 id="migration-from-citrus-4x">Migration from Citrus 4.x</h2>
 
-<p>The migration from Citrus 4.x to 5.0 primarily involves updating your dependency versions and adapting to the new package structure introduced by the JPMS work. The Citrus MCP server includes a built-in migration guide that can assist with the package renames.</p>
+<p>The migration from Citrus 4.x to 5.0 primarily involves updating your dependency versions and adapting to the new package structure introduced by the JPMS work. A comprehensive <a href="https://github.com/citrusframework/citrus/wiki/Migration-guide:-Citrus-4.x-to-5.x">migration guide</a> is available on the Citrus wiki covering all required changes in detail.</p>
+
+<p>The Citrus MCP server also ships with an enhanced migration prompt, making AI-assisted migration very straightforward. Simply install the Citrus MCP server plugin in your AI coding assistant and let it guide you through the package renames, dependency updates and API changes automatically.</p>
 
 <p>Update the Citrus BOM in your <code class="highlighter-rouge">pom.xml</code>:</p>
 
@@ -358,15 +363,21 @@
 
 <ul>
   <li>
-<strong>Package renames</strong> — the split package resolution moved some classes to different packages. Check your imports against the new module structure.</li>
+<strong>Package renames</strong> — the split package resolution moved classes to new packages. The migration guide lists all renames; most can be resolved with IDE “Optimize Imports”. The most common moves include <code class="highlighter-rouge">TestActionSupport</code> → <code class="highlighter-rouge">o.c.dsl</code>, <code class="highlighter-rouge">NamespaceContextBuilder</code> → <code class="highlighter-rouge">o.c.api.xml.namespace</code>, and <code class="highlighter-rouge">XsdSchemaRepository</code> → <code class="highlighter-rouge">o.c.xml.schema</code>.</li>
   <li>
-<strong>Spring Framework 7</strong> — if you use the Spring Framework to run tests with Spring’s Inversion of Control bean definition container follow the excellent guides for upgrading to Spring 7 and Spring Boot 4.</li>
+<strong>Artifact rename</strong> — <code class="highlighter-rouge">citrus-junit5</code> has been renamed to <code class="highlighter-rouge">citrus-junit-jupiter</code>. Update your <code class="highlighter-rouge">pom.xml</code> dependency accordingly.</li>
   <li>
-<strong>Jackson 3</strong> — if you use Jackson APIs directly in custom validators or message processors, review the Jackson 3 migration guide for API changes.</li>
+<strong>Spring Framework 7</strong> — if you use the Spring Framework to run tests with Spring’s Inversion of Control bean definition container follow the excellent guides for upgrading to Spring 7 and Spring Boot 4. Non-Spring-Boot setups may need to add an explicit <code class="highlighter-rouge">spring-expression</code> dependency.</li>
+  <li>
+<strong>Jackson 3</strong> — Jackson 3 changed both Maven coordinates (group ID <code class="highlighter-rouge">com.fasterxml.jackson.core</code> → <code class="highlighter-rouge">tools.jackson.core</code>) and Java packages (<code class="highlighter-rouge">com.fasterxml.jackson.databind</code> → <code class="highlighter-rouge">tools.jackson.databind</code>). Update your imports and dependency declarations if you use Jackson APIs directly.</li>
   <li>
 <strong>JUnit 6</strong> — if you use the Citrus JUnit runtime, update to the JUnit 6 extension API.</li>
   <li>
 <strong>ActiveMQ → Artemis</strong> — if your tests use the JMS module with ActiveMQ Classic, switch to the Apache Artemis dependency.</li>
+  <li>
+<strong>Camel JBang → CLI</strong> — the <code class="highlighter-rouge">jbang()</code> DSL method, <code class="highlighter-rouge">&lt;jbang&gt;</code> XML element, and <code class="highlighter-rouge">jbang:</code> YAML key are deprecated in favor of <code class="highlighter-rouge">cli()</code>, <code class="highlighter-rouge">&lt;cli&gt;</code>, and <code class="highlighter-rouge">cli:</code> respectively. Configuration properties changed from <code class="highlighter-rouge">citrus.camel.jbang.*</code> to <code class="highlighter-rouge">citrus.camel.cli.*</code>.</li>
+  <li>
+<strong>API changes</strong> — <code class="highlighter-rouge">CitrusContext</code> and <code class="highlighter-rouge">TestContextFactory</code> are now interfaces. Use <code class="highlighter-rouge">CitrusContext.newInstance()</code> or <code class="highlighter-rouge">TestContextFactory.newInstance()</code> for instantiation.</li>
 </ul>
 
 <h2 id="provide-feedback">Provide feedback</h2>
