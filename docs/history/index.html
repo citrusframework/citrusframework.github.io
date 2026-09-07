@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Citrus Framework</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="generator" content="Citrus 5.0.0">
+  <meta name="generator" content="Citrus 5.0.1">
   <meta name="description" content="Citrus Framework Website"/>
   <meta name="author" content="ConSol Software GmbH"/>
   <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
@@ -255,6 +255,184 @@
           </div>
           <h1>Release history</h1>
           
+<h2 id="v5.0.1">v5.0.1</h2>
+<h7>2026-08-30</h7>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Id</th>
+      <th style="text-align: center">Changes</th>
+      <th style="text-align: center">By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1666">#1666</a></td>
+      <td style="text-align: center">Add configuration property metadata for IDE auto-completion and documentation</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1674">#1674</a></td>
+      <td style="text-align: center">Align Kafka bootstrap servers property name to “bootstrapServers”</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1688">#1688</a></td>
+      <td style="text-align: center">Add ComposeContainerSupport annotation for Quarkus tests</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1691">#1691</a></td>
+      <td style="text-align: center">Support dynamic consumer groups for dynamic Kafka endpoint URIs</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1692">#1692</a></td>
+      <td style="text-align: center">Add tests and explicit retry support for ActionCondition in waitFor action</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1693">#1693</a></td>
+      <td style="text-align: center">ActionCondition should support Completable test actions in waitFor</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1695">#1695</a></td>
+      <td style="text-align: center">Add verify Camel route test action to check route existence and status</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1697">#1697</a></td>
+      <td style="text-align: center">Add shutdown strategy options (timeout, immediate) to Camel context stop action</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1705">#1705</a></td>
+      <td style="text-align: center">Add times(int) shortcut to iterate, repeat, and repeatOnError containers</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1707">#1707</a></td>
+      <td style="text-align: center">Add KafkaMessageByKeySelector to filter ConsumerRecords by key</td>
+      <td style="text-align: center">kalayciburak</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1717">#1717</a></td>
+      <td style="text-align: center">Add Camel route statistics verification test action</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/618">#618</a></td>
+      <td style="text-align: center">Improve documentation concerning validation logic substitution in validation callbacks</td>
+      <td style="text-align: center">AzazelSensei</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1671">#1671</a></td>
+      <td style="text-align: center">Fix SendHttpMessageTestActionBuilderTest flaky test with UnfinishedStubbingException</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1673">#1673</a></td>
+      <td style="text-align: center">Testcontainers registry mirror breaks image names and fails with compatibility check</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1676">#1676</a></td>
+      <td style="text-align: center">Stale AWS clients in registry when LocalStack containers are recreated between tests</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1657">#1657</a></td>
+      <td style="text-align: center">Fix build compatibility for Java 25</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1690">#1690</a></td>
+      <td style="text-align: center">Fix HttpEndpointConfiguration RestTemplate access thread-safety</td>
+      <td style="text-align: center">kalayciburak</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1654">#1654</a></td>
+      <td style="text-align: center">Subsequent Maven builds without clean fail due to stale compiled test resources</td>
+      <td style="text-align: center">kalayciburak</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1192">#1192</a></td>
+      <td style="text-align: center">Honour explicit correlationId header checks in HTTP transport</td>
+      <td style="text-align: center">kalayciburak</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1678">#1678</a></td>
+      <td style="text-align: center">Fix test candidate detection in provided packages for remote server with TestNG Engine</td>
+      <td style="text-align: center">cquoss</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1682">#1682</a></td>
+      <td style="text-align: center">JarFile Test Scanner should not inspect META-INF entries</td>
+      <td style="text-align: center">cquoss</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1686">#1686</a></td>
+      <td style="text-align: center">Add throws Exception clause to ThrowingHandler interface in citrus-agent</td>
+      <td style="text-align: center">cquoss</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1709">#1709</a></td>
+      <td style="text-align: center">Fix implements clause of inner parameter classes in code-gen-mojo-wrapper</td>
+      <td style="text-align: center">cquoss</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1711">#1711</a></td>
+      <td style="text-align: center">Fix type of duration field in remote-result of citrus-agent-maven-plugin</td>
+      <td style="text-align: center">cquoss</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-update"></i></td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Support test variables when setting custom AWS Service client names</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-update"></i></td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Update Apache Camel version to 4.22.0</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-update"></i></td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Bump log4j-api from 2.25.4 to 2.25.5</td>
+      <td style="text-align: center">dependabot</td>
+    </tr>
+  </tbody>
+</table>
+
 <h2 id="v5.0.0">v5.0.0</h2>
 <h7>2026-08-05</h7>
 
