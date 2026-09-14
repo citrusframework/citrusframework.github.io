@@ -117,6 +117,14 @@
     <optgroup label="Posts">
       
       
+      <option value="/news/2026/09/14/kafka-testing-pitfalls/">Kafka Testing Pitfalls in Camel Integration Tests</option>
+      
+      <option value="/news/2026/09/14/camel-testing-pitfalls/">Camel Integration Testing Pitfalls</option>
+      
+      <option value="/news/2026/09/11/testing-reliability-patterns/">Testing Reliability Patterns - Dead Letter Queues, Idempotent Receivers, and Circuit Breakers</option>
+      
+      <option value="/news/2026/09/10/testing-camel-routing/">Testing Camel Routing - Content-Based Routers, Filters, and Splitters</option>
+      
       <option value="/news/2026/08/05/release-5.0.0/">Citrus 5.0.0</option>
       
       <option value="/news/2026/07/27/knative-eventing-testing/">Testing Knative Eventing with Citrus — from local brokers to TLS-secured CloudEvents</option>
@@ -170,6 +178,1808 @@
 
       <div class="unit four-fifths">
         
+
+  <article>
+  <h2>
+    Kafka Testing Pitfalls in Camel Integration Tests
+    <a href="/news/2026/09/14/kafka-testing-pitfalls/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      blog
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      14 Sep 2026
+    </span>
+    <a href="https://github.com/christophd" class="post-author">
+      
+      Christoph Deppisch
+    </a>
+  </div>
+  <div class="post-content">
+    <p>Kafka adds a unique set of challenges to integration testing. 
+Offsets, consumer groups, header serialization, and shared topics introduce failure modes that do not exist with simpler transports like direct or SEDA endpoints.</p>
+
+<p>This post covers Kafka-specific testing pitfalls collected from real-world <a href="https://camel.apache.org">Apache Camel</a> integration projects, each with a concrete fix.
+For general Camel testing pitfalls — route testability, missing marshal steps, timer interference, and more — see the companion post <a href="/news/2026/09/14/camel-testing-pitfalls/">Camel Integration Testing Pitfalls</a>.</p>
+
+<p><img src="/img/assets/camel-testing-pitfalls/featured.png" alt="Citrus" width="700px" class="center-image">
+<em>AI generated with Google Gemini</em></p>
+
+<h1 id="pitfall-kafka-offset-and-racing-conditions">Pitfall: Kafka offset and racing conditions</h1>
+
+<p>Multi-hop flows are common in Camel: route1 consumes messages from topic A, processes the message and produces an outcome to topic B. 
+The test sends to topic A and expects to receive the output from topic B. But there is a timing problem.</p>
+
+<h2 id="the-problem">The problem</h2>
+
+<p>When the test sends the initial message to topic A the consumer on topic B may not have established its offset yet. 
+So the Camel route processing and the verifying test consumer enter a racing condition. 
+Racing conditions are always bad in terms of unstable tests because the success or failure is dependent on the performance of the machine that runs the tests.
+By the time Camel produces the message on topic B and the message has already been committed at an offset the consumer may skip this message because <code class="highlighter-rouge">auto.offset.reset=latest</code> is the default for new consumer groups in Citrus.</p>
+
+<p>The test passes sometimes and fails sometimes (with message timeout error), depending on how fast the Camel route processes the events and how fast the test consumers initialize.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldProcessOrderSuccessfully</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+        <span class="n">createVariables</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="mi">1001</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mi">100</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"status"</span><span class="o">,</span> <span class="s">"placed"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"priority"</span><span class="o">,</span> <span class="s">"STANDARD"</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"order-processing"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+        <span class="n">send</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+        <span class="n">receive</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.processed?consumerGroup=citrus-processed-group"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+    <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="the-fix">The fix</h2>
+
+<p>Basically we run into these timing problems because the test both produces the initial event and consumes the triggered output event for verification purpose.
+So the test is producer and consumer at the same time with the Camel route processing in the middle.</p>
+
+<p>The fix to prevent timing issues is to use <code class="highlighter-rouge">fork(true)</code> when sending the 1st event to the Camel route.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldProcessOrderSuccessfully</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+        <span class="n">createVariables</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="mi">1001</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mi">100</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"status"</span><span class="o">,</span> <span class="s">"placed"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"priority"</span><span class="o">,</span> <span class="s">"STANDARD"</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"order-processing"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+        <span class="n">send</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">fork</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+        <span class="n">receive</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.processed?consumerGroup=citrus-processed-group"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+    <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">fork(true)</code> on the send action forces Citrus to perform the Kafka send operation and the subsequent receive action concurrently. 
+Citrus sends the message and immediately starts the <code class="highlighter-rouge">receive</code> action listening for the event on the output topic.</p>
+
+<p>The fork enabled <code class="highlighter-rouge">send</code> avoids the situation where the test sends the message, waits for the Kafka acknowledgement, then starts listening, and potentially misses the processed message if the Camel route finishes before the Citrus consumer is ready.
+This can lead to flaky tests where the timing condition may succeed or fail in an unpredictable way.</p>
+
+<p>You can find the complete code and test in the <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing/examples/05-reliability/quarkus">05-reliability example</a>.</p>
+
+<h1 id="pitfall-cross-test-interference-on-shared-kafka-topics">Pitfall: Cross-test interference on shared Kafka topics</h1>
+
+<p>Multiple tests often produce/consume event on the same Kafka topics. 
+When one test sends data to <code class="highlighter-rouge">eip.orders.placed</code>, it might interfere with other tests also consuming from that topic.</p>
+
+<p>Also, multiple tests may try to verify output messages on the same topic for different use cases. 
+This is the situation where running a single test is successful but running the same test together with other tests in a test suite fails all of a sudden.
+The reason is that multiple tests running in the same test suite creates an interference where one test steals messages from another test.</p>
+
+<h2 id="the-problem-1">The problem</h2>
+
+<p>A test that sends an order with <code class="highlighter-rouge">amount=250</code> to <code class="highlighter-rouge">eip.orders.placed</code> and expects to receive it on <code class="highlighter-rouge">eip.orders.domestic</code> will work. 
+But it also interferes with other tests that use the same topic. 
+A later test for the Message Filter might pick up this message instead of its own test data, causing a false pass or an unexpected failure.</p>
+
+<h2 id="the-fix-1">The fix</h2>
+
+<p>Multiple strategies work together to fix this situation:</p>
+
+<p><strong>Design test data to be inert for unrelated routes.</strong> Be sure to use different test data for different tests. 
+Always using the same test customer or the same order id may interfere with other tests. 
+Citrus provides the concept of test variables where each test can use unique identifiers and data.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">createVariables</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mf">75.00</span><span class="o">)</span>   <span class="c1">// below filter threshold</span>
+    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"country"</span><span class="o">,</span> <span class="s">"US"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"hazmat"</span><span class="o">,</span> <span class="kc">false</span><span class="o">)</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p><strong>Use unique consumer groups on every receive action.</strong> Never reuse consumer group names across tests. 
+This ensures that another test does not consume messages that were supposed for the current test because both tests have been using the very same consumer group.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Test A</span>
+<span class="n">receive</span><span class="o">().</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.domestic?consumerGroup=citrus-domestic-group"</span><span class="o">)</span>
+
+<span class="c1">// Test B — different consumer group, even though same topic</span>
+<span class="n">receive</span><span class="o">().</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.domestic?consumerGroup=citrus-domestic-other-group"</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p><em>IMPORTANT</em>: Sometimes using the very same consumer group (within the same test) may be mandatory. 
+For instance when a test verifies idempotent message processing by sending duplicates to a topic and consuming from the same topic multiple times to check that only one event has been produced.</p>
+
+<p><strong>Use message keys or headers to correlate send and receive.</strong> When inert data is not possible, use a <code class="highlighter-rouge">KafkaMessageFilter</code> to select only messages matching your test’s identifier:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+    <span class="n">receive</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">selector</span><span class="o">(</span><span class="n">KafkaMessageFilter</span><span class="o">.</span><span class="na">kafkaMessageFilter</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">eventLookbackWindow</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">10</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">kafkaMessageSelector</span><span class="o">(</span><span class="n">kafkaHeaderEquals</span><span class="o">(</span><span class="s">"order-id"</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">build</span><span class="o">())</span>
+        <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.processed?consumerGroup=citrus-processed-group"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">KafkaMessageFilter</code> scans messages within the <code class="highlighter-rouge">lookback</code> window and selects only those whose <code class="highlighter-rouge">order-id</code> header matches the test variable. 
+Messages from other tests or routes are ignored.</p>
+
+<p><strong>Review the Kafka auto offset setting</strong> Each consumer on a Kafka topic uses the offset setting to define where in the message history to start consuming messages.</p>
+
+<p>Kafka’s <code class="highlighter-rouge">auto.offset.reset=earliest</code> setting means the consumer reads from the beginning of the topic. 
+If a prior test class wrote a message to that topic, the <code class="highlighter-rouge">receive()</code> assertion finds it — even though the current test did not produce any output.</p>
+
+<p>Kafka’s <code class="highlighter-rouge">auto.offset.reset=latest</code> setting skips all messages that arrived prior to the consumer starting to listen. 
+This may lead to racing conditions where the consumer misses an already commited message from the same test. 
+The fork option on the send operation in Citrus may help to solve this racing condition.</p>
+
+<h1 id="pitfall-different-value-types-in-kafka-headers">Pitfall: Different value types in Kafka headers</h1>
+
+<p>When Citrus sends messages through Kafka using <code class="highlighter-rouge">camel().send()</code> with <code class="highlighter-rouge">CamelEndpointBuilder</code>, Kafka serializes header values to byte arrays.
+The arbitrary <code class="highlighter-rouge">send()</code> action in Citrus uses String serializer for header values, by default.</p>
+
+<p>This means based on the used header value serialization strategy Kafka headers may have different types.</p>
+
+<p>On the Camel route consumer side, <code class="highlighter-rouge">exchange.getIn().getHeader("myHeader")</code> returns <code class="highlighter-rouge">byte[]</code>, not <code class="highlighter-rouge">String</code>. 
+Calling <code class="highlighter-rouge">Long.parseLong(header.toString())</code> produces <code class="highlighter-rouge">NumberFormatException</code> because <code class="highlighter-rouge">byte[].toString()</code> returns something like <code class="highlighter-rouge">[B@3a1c9d4f</code>.</p>
+
+<h2 id="the-problem-2">The problem</h2>
+
+<p>A Camel route reads a timestamp value from a Kafka header and assumes a very specific value type for this header:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Fails when header value is a byte array</span>
+<span class="n">Object</span> <span class="n">value</span> <span class="o">=</span> <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">getHeader</span><span class="o">(</span><span class="s">"orderTimestamp"</span><span class="o">);</span>
+<span class="kt">long</span> <span class="n">orderTimestamp</span> <span class="o">=</span> <span class="n">Long</span><span class="o">.</span><span class="na">parseLong</span><span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+</code></pre></div></div>
+
+<p>Depending on how the Kafka message was sent to the topic the message header value type might differ based on the header value serialization strategy.
+When the message was sent via <code class="highlighter-rouge">CamelEndpointBuilder</code> in a Citrus test, <code class="highlighter-rouge">orderTimestamp</code> is a <code class="highlighter-rouge">byte[]</code> array and <code class="highlighter-rouge">value.toString()</code> is not parseable.</p>
+
+<h2 id="the-fix-2">The fix</h2>
+
+<p>The fix can be done on the Citrus test or on the Camel route.
+The Citrus test should make sure to use the proper Kafka message header value serialization strategy that matches the Camel route logic.
+In this case this would be a String value serializer as the Camel route expects the header to of type String.
+You can configure the serializer/deserializer strategy for Kafka endpoints in Citrus and Camel via the endpoint configuration.</p>
+
+<p>On the other hand the Camel route can use a more robust processing logic by handling both header value types with an <code class="highlighter-rouge">instanceof</code> check in the route:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">exchange</span> <span class="o">-&gt;</span> <span class="o">{</span>
+    <span class="kt">long</span> <span class="n">orderTimestamp</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="n">Object</span> <span class="n">ts</span> <span class="o">=</span> <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">getHeader</span><span class="o">(</span><span class="s">"orderTimestamp"</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">ts</span> <span class="k">instanceof</span> <span class="kt">byte</span><span class="o">[])</span> <span class="o">{</span>
+        <span class="n">orderTimestamp</span> <span class="o">=</span> <span class="n">Long</span><span class="o">.</span><span class="na">parseLong</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">((</span><span class="kt">byte</span><span class="o">[])</span> <span class="n">ts</span><span class="o">));</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">ts</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">orderTimestamp</span> <span class="o">=</span> <span class="n">Long</span><span class="o">.</span><span class="na">parseLong</span><span class="o">(</span><span class="n">ts</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+    <span class="o">}</span>
+    <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">setHeader</span><span class="o">(</span><span class="s">"messageAge"</span><span class="o">,</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">()</span> <span class="o">-</span> <span class="n">orderTimestamp</span><span class="o">);</span>
+<span class="o">})</span>
+</code></pre></div></div>
+
+<p>On the test side, send numeric headers as strings to match what a Kafka producer would normally send:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+    <span class="n">camel</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">send</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="n">CamelSupport</span><span class="o">.</span><span class="na">camel</span><span class="o">().</span><span class="na">endpoints</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">kafka</span><span class="o">(</span><span class="s">"eip.orders.accepted"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">brokers</span><span class="o">(</span><span class="s">"localhost:9092"</span><span class="o">)::</span><span class="n">getRawUri</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"orderTimestamp"</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">()))</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">String.valueOf()</code> ensures the header is a string before Kafka serializes it. The route-side <code class="highlighter-rouge">instanceof</code> check handles both raw strings (from production Kafka producers) and byte arrays (from test CamelEndpointBuilder sends).</p>
+
+<h1 id="a-kafka-testing-checklist">A Kafka testing checklist</h1>
+
+<p>Here are all Kafka pitfalls as a quick-reference checklist:</p>
+
+<ul>
+  <li>Use <code class="highlighter-rouge">fork(true)</code> on the initial <code class="highlighter-rouge">send()</code> in multi-hop Kafka flows to avoid racing conditions where the Camel route produces the output before the test consumer has established its offset.</li>
+  <li>Use unique consumer groups per receive action, unique test data via test variables, and <code class="highlighter-rouge">KafkaMessageFilter</code> selectors to prevent cross-test interference on shared Kafka topics.</li>
+  <li>Handle Kafka headers with consistent serialization strategies or support both <code class="highlighter-rouge">byte[]</code> and <code class="highlighter-rouge">String</code> value types in route processors with an <code class="highlighter-rouge">instanceof</code> check.</li>
+  <li>Review the <code class="highlighter-rouge">auto.offset.reset</code> setting for each test consumer — <code class="highlighter-rouge">earliest</code> risks picking up leftover messages, <code class="highlighter-rouge">latest</code> risks missing already committed messages.</li>
+</ul>
+
+<p>None of these pitfalls are specific to <a href="https://citrusframework.org">Citrus</a> — they apply to Kafka integration testing in general. But Citrus gives you the tools and capabilities to fix every one of them.</p>
+
+<p>You can explore all the testing patterns and pitfall fixes in the <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing">eip-with-camel repository</a>.</p>
+
+<p>Give it a try, and let us know what you think!</p>
+
+  </div>
+</article>
+
+
+  <article>
+  <h2>
+    Camel Integration Testing Pitfalls
+    <a href="/news/2026/09/14/camel-testing-pitfalls/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      blog
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      14 Sep 2026
+    </span>
+    <a href="https://github.com/christophd" class="post-author">
+      
+      Christoph Deppisch
+    </a>
+  </div>
+  <div class="post-content">
+    <p>Your integration tests keep failing for non-obvious reasons. Or even worse, the test suite reports success, but some of those green tests might be lying to you. 
+The tests pass because the validations are too week, because timing coincidences mask real problems, or because poor testability of routes makes an assertion trivially true.</p>
+
+<p>Integration tests are especially prone to false confidence or flakiness because there are more moving parts — Kafka topics, multiple routes, multiple consumers, shared infrastructure, asynchronous processing.</p>
+
+<p>This post covers several testing pitfalls collected from real-world <a href="https://camel.apache.org">Apache Camel</a> integration projects, each with a concrete fix.
+For Kafka-specific pitfalls — offset races, cross-test interference, and header serialization — see the companion post <a href="/news/2026/09/14/kafka-testing-pitfalls/">Kafka Testing Pitfalls in Camel Integration Tests</a>.</p>
+
+<p><img src="/img/assets/camel-testing-pitfalls/featured.png" alt="Citrus" width="700px" class="center-image">
+<em>AI generated with Google Gemini</em></p>
+
+<h1 id="pitfall-poor-testability-of-routes">Pitfall: Poor testability of routes</h1>
+
+<p>An <code class="highlighter-rouge">otherwise()</code> branch that just calls <code class="highlighter-rouge">.log(...)</code> is invisible to Camel’s management API. 
+It is extremely hard to verify that the otherwise branch has been executed in a test because inline log statements do not have their own route MBean.</p>
+
+<h2 id="the-bad-pattern">The bad pattern</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">from</span><span class="o">(</span><span class="s">"kafka:eip.consumer.dispatch?brokers="</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"message-dispatcher"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">unmarshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">choice</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="k">this</span><span class="o">::</span><span class="n">isknownEventType</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">toD</span><span class="o">(</span><span class="s">"direct:handle-${body[event_type]}"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">otherwise</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Unknown event_type '${body[event_type]}' — skipping"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">end</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p>The route evaluates the event type of incoming messages to be known to the system. Unknown event types are handled by the <code class="highlighter-rouge">otherwise()</code> branch which logs and drops the message. 
+An integration test that sends an unknown event type has a hard time to verify that the branch was taken. 
+There is no output message to receive, and no named route whose exchange count can be checked.</p>
+
+<h2 id="the-fix">The fix</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">from</span><span class="o">(</span><span class="s">"kafka:eip.consumer.dispatch?brokers="</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"message-dispatcher"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">unmarshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">choice</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="k">this</span><span class="o">::</span><span class="n">isknownEventType</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">toD</span><span class="o">(</span><span class="s">"direct:handle-${body[event_type]}"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">otherwise</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"direct:handle-order_unknown"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">end</span><span class="o">();</span>
+
+<span class="n">from</span><span class="o">(</span><span class="s">"direct:handle-order_unknown"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"handle-order-unknown"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Unknown event_type '${body[event_type]}' — skipping"</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">otherwise()</code> branch now routes to a named <code class="highlighter-rouge">direct:handle-order_unknown</code> endpoint, backed by a separate route with its own <code class="highlighter-rouge">routeId</code>. 
+A Citrus test can now verify the otherwise branch by accessing the route stats with an expected number of completed exchanges:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+    <span class="n">camel</span><span class="o">().</span><span class="na">route</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">verifyRouteStats</span><span class="o">(</span><span class="s">"handle-order-unknown"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">completed</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">failed</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p>This pattern applies to any inline processing that should be testable. 
+The <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing/examples/14-consumer-patterns/quarkus">14-consumer-patterns example</a> shows the Message Dispatcher route with named handlers for every event type — including the unknown handler.</p>
+
+<h1 id="pitfall-too-weak-message-validations-gives-false-confidence">Pitfall: Too weak message validations gives false confidence</h1>
+
+<p>When receiving messages with Citrus the test should verify that the incoming message matches a given set of assertions. 
+An empty <code class="highlighter-rouge">receive().message()</code> call with no expected body or header validation proves only that <em>some</em> message arrived at the test endpoint. 
+It could even be a leftover from a previous test run, a message from a demo data generator, or output from an unrelated route that happens to write to the same topic.</p>
+
+<h2 id="the-bad-pattern-1">The bad pattern</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+    <span class="n">receive</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.processed?consumerGroup=citrus-group"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p>This test will pass as long as any message exists on the topic. 
+It says nothing about whether your route processed the specific order input your test has sent.</p>
+
+<p>The same issue applies to message validation that are too weak or trivially true.
+For instance when all field values in a Json structure are ignored by <code class="highlighter-rouge">@ignore@</code> expression.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+    <span class="n">receive</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.processed?consumerGroup=citrus-group"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">body</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">data</span><span class="o">(</span><span class="s">"""
+        {
+          "</span><span class="n">order_id</span><span class="s">": "</span><span class="nd">@ignore</span><span class="err">@</span><span class="s">",
+          "</span><span class="n">customer_id</span><span class="s">": "</span><span class="nd">@ignore</span><span class="err">@</span><span class="s">",
+          "</span><span class="n">item_sku</span><span class="s">": "</span><span class="nd">@ignore</span><span class="err">@</span><span class="s">",
+          "</span><span class="n">quantity</span><span class="s">": 1,
+          "</span><span class="n">amount</span><span class="s">": "</span><span class="nd">@ignore</span><span class="err">@</span><span class="s">"
+        }
+        """</span><span class="o">)</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<h2 id="the-fix-1">The fix</h2>
+
+<p>Always validate at least one field that ties the received message to your test input — a message key, an order ID, or the full template body.
+It helps when the test creates unique identifiers and test data at the very beginning of the test in the form of test variables.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+    <span class="n">createVariables</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mf">90.00</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"country"</span><span class="o">,</span> <span class="s">"US"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"hazmat"</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+    <span class="n">receive</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.processed?consumerGroup=citrus-group"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p>The message template <code class="highlighter-rouge">order.json</code> should use the test variables to verify the field values for the current test data.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="err">org.citrusframework</span><span class="p">:</span><span class="err">citrus-website</span><span class="p">:</span><span class="err">pom</span><span class="p">:</span><span class="mf">1.1</span><span class="err">.</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUST-org.citrusframework:citrus-website:pom:1.1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"item_sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SKU-org.citrusframework:citrus-website:pom:1.1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="p">{</span><span class="err">amount</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Now the test verifies that the message body matches the expected template with the same variable values used in the send step, and that the Kafka message key matches the order ID. 
+If the message came from somewhere else, the assertion fails.</p>
+
+<p>When the full body content is unreliable verify message headers instead. Or better yet, identify reliable parts of the message body and perform message expression validations for that part for instance via JsonPath or XPath expressions that evaluate a very specific element in a Json or XML message body.</p>
+
+<h1 id="pitfall-missing-json-marshalling-step">Pitfall: Missing JSON marshalling step</h1>
+
+<p>This is the most common route-side bug that breaks Citrus tests. A route does <code class="highlighter-rouge">unmarshal().json()</code> to parse JSON into a Java <code class="highlighter-rouge">Map</code> object, processes the map, then sends it to let’s say a Kafka topic. On the output topic, the message body is <code class="highlighter-rouge">{order_id=1234, amount=99.95}</code> — Java’s <code class="highlighter-rouge">Map.toString()</code> format, not valid JSON. 
+Citrus’s JSON validator fails with <code class="highlighter-rouge">Failed to parse JSON text</code>.</p>
+
+<h2 id="the-problem">The problem</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">from</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed?brokers=&amp;groupId=filter-demo"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"message-filter"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">unmarshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">simple</span><span class="o">(</span><span class="s">"${body[amount]} &gt;= 100"</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"High-value order ${body[order_id]}: $${body[amount]}"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"kafka:eip.orders.high-value?brokers="</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">end</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p>After <code class="highlighter-rouge">unmarshal().json()</code>, the body is a <code class="highlighter-rouge">Map&lt;String, Object&gt;</code>. The <code class="highlighter-rouge">to("kafka:...")</code> serializes it using <code class="highlighter-rouge">Map.toString()</code>, which produces <code class="highlighter-rouge">{order_id=1234, ...}</code> with equals signs instead of colons and no quotes around keys. This is not JSON.</p>
+
+<p><em>IMPORTANT:</em> The missing marshal step problem is nasty because unit tests that mock the Kafka output topic may pass without noticing the issue. Only integration tests that perform the Kafka value serialization may reveal the issue when Citrus tries to parse the serialized Json body.</p>
+
+<h2 id="the-fix-2">The fix</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">from</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed?brokers=&amp;groupId=filter-demo"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"message-filter"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">unmarshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">simple</span><span class="o">(</span><span class="s">"${body[amount]} &gt;= 100"</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"High-value order ${body[order_id]}: $${body[amount]}"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">marshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"kafka:eip.orders.high-value?brokers="</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">end</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p>The added <code class="highlighter-rouge">marshal().json()</code> converts the <code class="highlighter-rouge">Map</code> back to valid JSON before sending to Kafka. Two important details:</p>
+
+<p><strong>The <code class="highlighter-rouge">log()</code> must come before <code class="highlighter-rouge">marshal()</code>.</strong> Expressions like <code class="highlighter-rouge">${body[order_id]}</code> work on a <code class="highlighter-rouge">Map</code> — they access map entries by key. After <code class="highlighter-rouge">marshal().json()</code>, the body is a JSON string, and <code class="highlighter-rouge">${body[order_id]}</code> no longer resolves.</p>
+
+<h1 id="pitfall-testing-only-the-happy-path">Pitfall: Testing only the happy path</h1>
+
+<p>A <code class="highlighter-rouge">choice()</code> route with three branches, tested with one test method, gives 33% branch coverage. The other two branches might be completely broken — wrong topic names, missing marshal calls, incorrect conditions — and your test suite will not catch it.</p>
+
+<h2 id="the-bad-pattern-2">The bad pattern</h2>
+
+<p>A message filter route passes messages that match a condition and silently drops the rest. 
+Here is a route that filters for high-value orders.
+Orders with <code class="highlighter-rouge">amount &gt;= 100</code> pass through to <code class="highlighter-rouge">eip.orders.high-value</code>. Orders below that threshold are simply dropped.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ApplicationScoped</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MessageFilterRoute</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">from</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed?brokers=&amp;groupId=filter-demo"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"message-filter"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">unmarshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">simple</span><span class="o">(</span><span class="s">"${body[amount]} &gt;= 100"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"High-value order ${body[order_id]}: $${body[amount]}"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">marshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"kafka:eip.orders.high-value?brokers="</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">end</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Testing only the happy path where high-value orders are sent to the Kafka topic is not enough!</p>
+
+<h2 id="the-fix-3">The fix</h2>
+
+<p>One test per distinct routing outcome.
+For the Message Filter specifically, you need both a pass test and a reject test.
+Even if it is significantly harder to verify that something has <strong>not</strong> happened such as low-value orders being dropped.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldPassHighValueOrder</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">// amount=250 → arrives on eip.orders.high-value</span>
+    <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+        <span class="n">receive</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.high-value?consumerGroup=citrus-high-value-group"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+    <span class="o">);</span>
+<span class="o">}</span>
+
+<span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldFilterLowValueOrder</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">// amount=50 → nothing on eip.orders.high-value</span>
+    <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+        <span class="n">expectTimeout</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.high-value?consumerGroup=citrus-filter-reject-group"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">timeout</span><span class="o">(</span><span class="mi">5000</span><span class="o">)</span>
+    <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">expectTimeout()</code> assertion proves that no message arrived — which is the correct behavior for a filtered message.</p>
+
+<p>The same principle applies to Content-Based routers, format indicators (test each content type), and any route with <code class="highlighter-rouge">choice()</code> or <code class="highlighter-rouge">when()</code> logic. 
+The <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing/examples/09-routing-fundamentals/quarkus">09-routing-fundamentals example</a> demonstrates this pattern with separate tests for each branch of the Content-Based Router and the Message Filter.</p>
+
+<h1 id="pitfall-locale-dependent-string-formatting-in-json">Pitfall: Locale-dependent String formatting in JSON</h1>
+
+<p>Routes that build JSON strings via <code class="highlighter-rouge">String.format("%.2f", amount)</code> produce locale-sensitive output. 
+On machines with a non-English locale (for example, German), the decimal separator changes from <code class="highlighter-rouge">.</code> to <code class="highlighter-rouge">,</code>. The value <code class="highlighter-rouge">29.99</code> becomes <code class="highlighter-rouge">29,99</code>, which is invalid JSON. Citrus body validation fails with <code class="highlighter-rouge">Failed to parse JSON text</code>.</p>
+
+<h2 id="the-problem-1">The problem</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">String</span> <span class="n">enriched</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span>
+    <span class="s">"{\"order_id\": %d, \"amount\": %.2f, \"status\": \"%s\"}"</span><span class="o">,</span>
+    <span class="n">orderId</span><span class="o">,</span> <span class="n">amount</span><span class="o">.</span><span class="na">doubleValue</span><span class="o">(),</span> <span class="n">status</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>On a German-locale machine, this produces <code class="highlighter-rouge">{"order_id": 42, "amount": 29,99, "status": "placed"}</code> — the comma in <code class="highlighter-rouge">29,99</code> makes it unparseable JSON.</p>
+
+<h2 id="the-fix-4">The fix</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">String</span> <span class="n">enriched</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">,</span>
+    <span class="s">"{\"order_id\": %d, \"amount\": %.2f, \"status\": \"%s\"}"</span><span class="o">,</span>
+    <span class="n">orderId</span><span class="o">,</span> <span class="n">amount</span><span class="o">.</span><span class="na">doubleValue</span><span class="o">(),</span> <span class="n">status</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>Always pass <code class="highlighter-rouge">Locale.US</code> as the first argument to <code class="highlighter-rouge">String.format</code> wherever a floating-point format specifier (<code class="highlighter-rouge">%f</code>, <code class="highlighter-rouge">%.2f</code>) appears in a JSON-producing context.</p>
+
+<p>This bug is particularly insidious because it is invisible on CI runners, which typically use <code class="highlighter-rouge">en_US.UTF-8</code>. 
+Tests pass in CI but fail on developer machines with different locales. 
+The symptom — <code class="highlighter-rouge">Failed to parse JSON text</code> — does not immediately suggest a locale issue, so developers often waste time looking at the wrong layer.</p>
+
+<h1 id="pitfall-timer-driven-routes-breaking-tests">Pitfall: Timer-driven routes breaking tests</h1>
+
+<p>Timer-based routes — demo data generators, scheduled business processes, periodic polling — fire at unpredictable moments during tests.
+They pollute exchange counts, compete for resources like distributed locks, and produce messages that tests do not expect.</p>
+
+<h2 id="the-problem-2">The problem</h2>
+
+<p>A <code class="highlighter-rouge">DemoDataGenerator</code> fires every 5 seconds and writes random orders to <code class="highlighter-rouge">eip.orders.placed</code>. 
+During a test that sends its own order to the same topic and reads from the output, the generator’s messages appear as noise. Exchange counts for routes that process <code class="highlighter-rouge">eip.orders.placed</code> include both test messages and generator messages, making <code class="highlighter-rouge">verifyRouteStats()</code> test action unreliable.</p>
+
+<h2 id="the-fix-5">The fix</h2>
+
+<p>Add a configuration property that disables auto-start.</p>
+
+<p><em>For Quarkus:</em></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ApplicationScoped</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DemoDataGenerator</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@ConfigProperty</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"eip.demo.data.generator.enabled"</span><span class="o">,</span> <span class="n">defaultValue</span> <span class="o">=</span> <span class="s">"true"</span><span class="o">)</span>
+    <span class="kt">boolean</span> <span class="n">enabled</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">from</span><span class="o">(</span><span class="s">"timer:demo-orders?period=5000&amp;delay=3000"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"demo-data-generator"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">autoStartup</span><span class="o">(</span><span class="n">enabled</span><span class="o">)</span>
+            <span class="c1">// ... processing logic</span>
+            <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed?brokers="</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><em>For Spring Boot:</em></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DemoDataGenerator</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@Value</span><span class="o">(</span><span class="s">"${eip.demo.data.generator.enabled:true}"</span><span class="o">)</span>
+    <span class="kt">boolean</span> <span class="n">enabled</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">from</span><span class="o">(</span><span class="s">"timer:demo-orders?period=5000&amp;delay=3000"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"demo-data-generator"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">autoStartup</span><span class="o">(</span><span class="n">enabled</span><span class="o">)</span>
+            <span class="c1">// ... processing logic</span>
+            <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed?brokers="</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>In both cases, the default value is <code class="highlighter-rouge">true</code> so the timer-based route is enabled by default. 
+The automated test suite will disable the timer-based generator in the test-scoped <code class="highlighter-rouge">application.properties</code>:</p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">eip.demo.data.generator.enabled</span><span class="p">=</span><span class="s">false</span>
+</code></pre></div></div>
+
+<p>Use a specific property name per route — <code class="highlighter-rouge">eip.demo.data.generator.enabled</code>, <code class="highlighter-rouge">eip.distributed.lock.enabled</code> — not a generic <code class="highlighter-rouge">timers.enabled</code> flag. 
+Different tests may need different timer routes active.</p>
+
+<h1 id="pitfall-eager-initialization-tasks">Pitfall: Eager initialization tasks</h1>
+
+<p>A Spring Boot application with a <code class="highlighter-rouge">@Component</code> with <code class="highlighter-rouge">@PostConstruct</code> that connects to an external service (Redis, database, message broker) fires during Spring context creation. 
+In tests, the Citrus <code class="highlighter-rouge">BeforeSuite</code> has not started the Docker Compose infrastructure yet. 
+The <code class="highlighter-rouge">@PostConstruct</code> runs, the service is not available, and the test fails with a connection error before it even begins.</p>
+
+<h2 id="the-problem-3">The problem</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">RedisProductCatalog</span> <span class="o">{</span>
+
+    <span class="nd">@PostConstruct</span>
+    <span class="kt">void</span> <span class="nf">init</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">seedCatalog</span><span class="o">();</span>   <span class="c1">// connects to Redis — fails if Redis isn't running</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">seedCatalog</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">hash</span><span class="o">.</span><span class="na">putAll</span><span class="o">(</span><span class="s">"product:SKU-ABC-42"</span><span class="o">,</span> <span class="n">Map</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="s">"Wireless Headphones"</span><span class="o">,</span> <span class="o">...));</span>
+        <span class="c1">// ... more products</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>In production, Redis is running when the application starts, so <code class="highlighter-rouge">@PostConstruct</code> works. 
+In tests, the Spring Boot context loads first (creating all beans and running <code class="highlighter-rouge">@PostConstruct</code>), then test infrastructure is started for instance via Citrus <code class="highlighter-rouge">BeforeSuite</code> which starts Docker Compose. The initialization order is wrong.</p>
+
+<h2 id="the-fix-6">The fix</h2>
+
+<p>Make the eager initialization conditional with a toggle property:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">RedisProductCatalog</span> <span class="o">{</span>
+
+    <span class="nd">@Value</span><span class="o">(</span><span class="s">"${redis.catalog.seed:true}"</span><span class="o">)</span>
+    <span class="kt">boolean</span> <span class="n">seedEnabled</span><span class="o">;</span>
+
+    <span class="nd">@PostConstruct</span>
+    <span class="kt">void</span> <span class="nf">init</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">seedEnabled</span><span class="o">)</span> <span class="n">seedCatalog</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">seedCatalog</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">hash</span><span class="o">.</span><span class="na">putAll</span><span class="o">(</span><span class="s">"product:SKU-ABC-42"</span><span class="o">,</span> <span class="n">Map</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="s">"Wireless Headphones"</span><span class="o">,</span> <span class="o">...));</span>
+        <span class="c1">// ... more products</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The test <code class="highlighter-rouge">application.properties</code> disables automatic seeding:</p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">redis.catalog.seed</span><span class="p">=</span><span class="s">false</span>
+</code></pre></div></div>
+
+<p>The test class then calls <code class="highlighter-rouge">seedCatalog()</code> explicitly after the infrastructure is up:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Autowired</span>
+<span class="n">RedisProductCatalog</span> <span class="n">redisProductCatalog</span><span class="o">;</span>
+
+<span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldEnrichOrderWithProductData</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">redisProductCatalog</span><span class="o">.</span><span class="na">seedCatalog</span><span class="o">();</span>   <span class="c1">// call after infra is up</span>
+    <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"content-enricher"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+    <span class="c1">// ... send and receive</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This pattern applies whenever a <code class="highlighter-rouge">@Component</code> or <code class="highlighter-rouge">@Service</code> connects to infrastructure in <code class="highlighter-rouge">@PostConstruct</code>.
+The default property value stays <code class="highlighter-rouge">true</code> so production behavior is unchanged.</p>
+
+<p><em>NOTE:</em> this issue is specific to Spring Boot. Quarkus runs <code class="highlighter-rouge">@PostConstruct</code> after Citrus <code class="highlighter-rouge">beforeSuite</code>, so the infrastructure is already available.</p>
+
+<h1 id="pitfall-rest-routes-via-http-merges-direct-endpoints">Pitfall: REST routes via HTTP merges direct endpoints</h1>
+
+<p>When a REST DSL definition uses <code class="highlighter-rouge">.to("direct:route-status")</code> and a separate <code class="highlighter-rouge">from("direct:route-status")</code> exists in the same <code class="highlighter-rouge">RouteBuilder</code>, Camel merges them into a single REST route. 
+The <code class="highlighter-rouge">direct:</code> consumer is not registered as a standalone endpoint.</p>
+
+<h2 id="the-problem-4">The problem</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">rest</span><span class="o">(</span><span class="s">"/control"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"/status/{routeId}"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"direct:route-status"</span><span class="o">);</span>
+
+<span class="n">from</span><span class="o">(</span><span class="s">"direct:route-status"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"control-bus-status"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">toD</span><span class="o">(</span><span class="s">"controlbus:route?routeId=${header.routeId}&amp;action=status"</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>At runtime, the route log shows <code class="highlighter-rouge">control-bus-status (rest://get:/control:/status/{routeId})</code> — the <code class="highlighter-rouge">from("direct:route-status")</code> logic was inlined into the REST route. 
+Sending to <code class="highlighter-rouge">direct:route-status</code> via <code class="highlighter-rouge">camel().send()</code> or <code class="highlighter-rouge">CamelEndpointBuilder</code> in a test fails with <code class="highlighter-rouge">DirectConsumerNotAvailableException</code>.</p>
+
+<p>So it is not possible to access the direct endpoint from a Citrus test at all.
+Also accessing the route statistics for that direct route is not possible.
+We need to keep this in mind when designing the tests to verify if a REST operation has been processed as expected.</p>
+
+<h2 id="the-fix-7">The fix</h2>
+
+<p>Test REST-backed routes via HTTP instead of <code class="highlighter-rouge">direct:</code> endpoint injection:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+    <span class="n">http</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="s">"http://localhost:8081"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">send</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"/control/status/my-route"</span><span class="o">)</span>
+<span class="o">);</span>
+
+<span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+    <span class="n">http</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="s">"http://localhost:8081"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"\"Started\""</span><span class="o">)</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p>For Quarkus, the default test port is <code class="highlighter-rouge">8081</code>. For Spring Boot, configure the port with <code class="highlighter-rouge">webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT</code>.</p>
+
+<p>If you control the route design, the REST DSL plus <code class="highlighter-rouge">direct:</code> plus separate route pattern may be avoided entirely. 
+Either use <code class="highlighter-rouge">rest().route()</code> inline, or accept that the <code class="highlighter-rouge">direct:</code> endpoint will not be independently addressable in tests. 
+The REST DSL’s merging behavior is a Camel optimization, not a bug — but it does change the testing surface.</p>
+
+<h1 id="pitfall-synchronous-messaging-deadlock">Pitfall: Synchronous messaging deadlock</h1>
+
+<p>Multi-hop flows are common in Camel: route1 provides a REST endpoint and processes synchronous requests from clients. 
+Each incoming request in route1 produces events on a Kafka topic. 
+The test sends Http requests to route1 and expects to receive events from  the topic for verification. 
+At the very end the test verifies the Http response 200 OK. 
+But there is a timing problem.</p>
+
+<h2 id="the-problem-5">The problem</h2>
+
+<p>An order enrichment route calls an intermediate service <code class="highlighter-rouge">inventory-service</code> to enrich the order with warehouse specific data such as warehouse ids and stock availability.
+The <code class="highlighter-rouge">inventory-service</code> gets called via Http REST endpoint and the enriched order response is then passed to further internal processing.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ApplicationScoped</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">OrderEnrichmentRoute</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">rest</span><span class="o">(</span><span class="s">"/api/orders"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/enrich"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">consumes</span><span class="o">(</span><span class="s">"application/json"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">produces</span><span class="o">(</span><span class="s">"application/json"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"direct:order-enrichment"</span><span class="o">);</span>
+
+        <span class="n">from</span><span class="o">(</span><span class="s">"direct:order-enrichment"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"order-enrichment"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"https://inventory-service/checkStock"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">marshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Enriched order: ${body}"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"direct:enriched-output"</span><span class="o">);</span>
+
+        <span class="n">from</span><span class="o">(</span><span class="s">"direct:enriched-output"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"enriched-output-handler"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Enriched order ready for downstream processing"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The synchronous nature of Http causes issues here, because the test both triggers the initial Http request to the <code class="highlighter-rouge">/api/orders/enrich</code> REST endpoint and verifies the intermediate <code class="highlighter-rouge">inventory-service</code> call.
+Also, the test is in charge of simulating the <code class="highlighter-rouge">inventory-service</code> with a proper enriched order response.</p>
+
+<p>So while the test is synchronously waiting for the enriched orders response it should handle the <code class="highlighter-rouge">inventory-service</code> calls.
+This is a deadlock situation that leads to message timeout errors.</p>
+
+<h2 id="the-fix-8">The fix</h2>
+
+<p>The fix is to fork the initial Http send operation in the test so the test is able to continue with the next steps that handle the <code class="highlighter-rouge">inventory-service</code> calls.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldEnrichOrder</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+        <span class="n">createVariables</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mi">100</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"status"</span><span class="o">,</span> <span class="s">"placed"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"priority"</span><span class="o">,</span> <span class="s">"STANDARD"</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"enriched-output-handler"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+        <span class="n">http</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="s">"http://localhost:8081"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">send</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"/api/orders/enrich"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">fork</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="s">"application/json"</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+        <span class="n">http</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">server</span><span class="o">(</span><span class="s">"inventoryService"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">receive</span><span class="o">(</span><span class="s">"/checkStock"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">post</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="s">"application/json"</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+        <span class="n">http</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">server</span><span class="o">(</span><span class="s">"inventoryService"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">send</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">response</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/enriched_order.json"</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="s">"application/json"</span><span class="o">)</span>
+    <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The test now both sends the initial Http request at the same time receives the <code class="highlighter-rouge">inventory-service</code> Http request and provides the enriched orders response.
+With the enabled fork the test sequence is not blocked by the synchronous nature of Http and a deadlock in the test actions is avoided.</p>
+
+<h1 id="a-testing-checklist">A testing checklist</h1>
+
+<p>Here are all pitfalls as a quick-reference checklist:</p>
+
+<ul>
+  <li>Add <code class="highlighter-rouge">marshal().json()</code> before every <code class="highlighter-rouge">to("kafka:...")</code> that follows an <code class="highlighter-rouge">unmarshal()</code> — on every branch.</li>
+  <li>Extract all routing branches (including <code class="highlighter-rouge">otherwise()</code>) into named <code class="highlighter-rouge">direct:</code> routes so they show up in MBean statistics.</li>
+  <li>Make all timer-based routes toggleable via a configuration property with <code class="highlighter-rouge">.autoStartup(enabled)</code>.</li>
+  <li>Defer <code class="highlighter-rouge">@PostConstruct</code> initialization that connects to external services behind a conditional property — call it explicitly in tests after infrastructure is up.</li>
+  <li>Always pass <code class="highlighter-rouge">Locale.US</code> to <code class="highlighter-rouge">String.format</code> when producing JSON with floating-point values.</li>
+  <li>Test REST DSL routes via HTTP, not via <code class="highlighter-rouge">direct:</code> endpoint injection.</li>
+  <li>Validate at least one field that ties the received message to your test input — never use an empty <code class="highlighter-rouge">receive().message()</code> or ignore all fields with <code class="highlighter-rouge">@ignore@</code>.</li>
+  <li>Write one test per distinct routing outcome — including reject paths, filter drops, and <code class="highlighter-rouge">otherwise()</code> branches. Use <code class="highlighter-rouge">expectTimeout()</code> to verify that no message arrived when that is the expected behavior.</li>
+  <li>Fork synchronous HTTP requests with <code class="highlighter-rouge">fork(true)</code> when the test both triggers the request and simulates an intermediate service to avoid deadlock in the test actions.</li>
+</ul>
+
+<p>For Kafka-specific checklist items — offset races, consumer group isolation, header serialization — see the <a href="/news/2026/09/14/kafka-testing-pitfalls/">Kafka Testing Pitfalls</a> post.</p>
+
+<p>None of these pitfalls are specific to <a href="https://citrusframework.org">Citrus</a> — they apply to integration testing in general. But Citrus gives you the tools and capabilities to fix every one of them.</p>
+
+<p>You can explore all the testing patterns and pitfall fixes in the <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing">eip-with-camel repository</a>.</p>
+
+<p>Give it a try, and let us know what you think!</p>
+
+  </div>
+</article>
+
+
+  <article>
+  <h2>
+    Testing Reliability Patterns - Dead Letter Queues, Idempotent Receivers, and Circuit Breakers
+    <a href="/news/2026/09/11/testing-reliability-patterns/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      blog
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      11 Sep 2026
+    </span>
+    <a href="https://github.com/christophd" class="post-author">
+      
+      Christoph Deppisch
+    </a>
+  </div>
+  <div class="post-content">
+    <p>Reliability patterns exist for when things go wrong. 
+Messages get duplicated, services become unavailable, processing throws exceptions. 
+<a href="https://camel.apache.org">Apache Camel</a> provides Dead Letter Channels, Idempotent Receivers, and Circuit Breakers to handle these situations. 
+But there is an uncomfortable truth: if you only test the happy path, you have no idea whether your error handling actually works.</p>
+
+<p>Testing failure scenarios is harder than testing success. 
+How do you send a message that triggers a Dead Letter Channel? How do you verify that a duplicate was silently dropped? How do you assert on a route that logs an error but produces no output message? 
+These questions matter because reliability patterns are invisible until something breaks — and production is the worst place to discover they are misconfigured.</p>
+
+<p><a href="https://citrusframework.org">Citrus</a> provides the tools to test all of these scenarios: <code class="highlighter-rouge">repeatOnError</code> for polling DLQ topics, <code class="highlighter-rouge">assertProcessedExchanges</code> for verifying routes with no output topic, deterministic test data for triggering specific failure conditions, and ordered test methods for building stateful test sequences like deduplication.</p>
+
+<p><img src="/img/assets/testing-reliability-patterns/featured.png" alt="Citrus" width="700px" class="center-image">
+<em>AI generated with Google Gemini</em></p>
+
+<h1 id="testing-dead-letter-channels">Testing Dead Letter Channels</h1>
+
+<p>A Dead Letter Channel catches messages that fail processing after exhausting all retry attempts and routes them to a separate destination — typically a DLQ topic — instead of losing them. 
+The Camel route configuration is straightforward:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">errorHandler</span><span class="o">(</span><span class="n">deadLetterChannel</span><span class="o">(</span><span class="s">"kafka:eip.orders.dlq?brokers="</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">maximumRedeliveries</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">redeliveryDelay</span><span class="o">(</span><span class="mi">1000</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">retryAttemptedLogLevel</span><span class="o">(</span><span class="n">LoggingLevel</span><span class="o">.</span><span class="na">WARN</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">logExhausted</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">useOriginalMessage</span><span class="o">());</span>
+
+<span class="n">from</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed?brokers=&amp;groupId=reliability-demo"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"dead-letter-channel-demo"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">unmarshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Processing order ${body[order_id]}"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">exchange</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        <span class="kt">var</span> <span class="n">body</span> <span class="o">=</span> <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">getBody</span><span class="o">(</span><span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Map</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="kt">long</span> <span class="n">orderId</span> <span class="o">=</span> <span class="o">((</span><span class="n">Number</span><span class="o">)</span> <span class="n">body</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"order_id"</span><span class="o">)).</span><span class="na">longValue</span><span class="o">();</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">orderId</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">RuntimeException</span><span class="o">(</span><span class="s">"Simulated failure for order "</span> <span class="o">+</span> <span class="n">orderId</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">})</span>
+    <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Order ${body[order_id]} processed successfully"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">marshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"kafka:eip.orders.processed?brokers="</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>This route processes orders from <code class="highlighter-rouge">eip.orders.placed</code>. Orders whose <code class="highlighter-rouge">order_id</code> is divisible by 5 throw an exception simulating errors. 
+After 3 retries, the Dead Letter Channel routes the original message to <code class="highlighter-rouge">eip.orders.dlq</code>. 
+The <code class="highlighter-rouge">useOriginalMessage()</code> option is important — it sends the message as it was <em>before</em> processing, not the partially-transformed version that failed.</p>
+
+<p>Testing this pattern requires two tests: one that proves the happy path works, and one that deliberately triggers the failure path.</p>
+
+<h2 id="happy-path-order-processed-successfully">Happy path: order processed successfully</h2>
+
+<p>The first test sends an order with <code class="highlighter-rouge">id=1001</code> — not divisible by 5, so processing succeeds:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldProcessOrderSuccessfully</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+        <span class="n">createVariables</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="mi">1001</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mi">100</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"status"</span><span class="o">,</span> <span class="s">"placed"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"priority"</span><span class="o">,</span> <span class="s">"STANDARD"</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"dead-letter-channel-demo"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+        <span class="n">send</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">fork</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+        <span class="n">receive</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.processed?consumerGroup=citrus-processed-group"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+    <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><em>IMPORTANT:</em> Notice the <code class="highlighter-rouge">fork(true)</code> on the send action. This forces Citrus to perform the Kafka send and the subsequent receive concurrently — Citrus sends the message and immediately starts listening for the event on the output topic. 
+Without <code class="highlighter-rouge">fork(true)</code> we run into timing conditions as the test both produces an event and consumes the triggered output event. 
+The test would send the message wait for the Kafka acknowledgement, then start listening, and potentially miss the processed message if the Camel route finishes before the Citrus consumer is ready.
+This can lead to flaky tests where the timing condition may succeed or fail in an unpredictable way.</p>
+
+<h2 id="failure-path-order-routes-to-dlq">Failure path: order routes to DLQ</h2>
+
+<p>The second test sends an order with <code class="highlighter-rouge">id=1000</code> — divisible by 5, triggering the exception:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldRouteFailedOrderToDLQ</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+        <span class="n">createVariables</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="mi">1000</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mi">200</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"status"</span><span class="o">,</span> <span class="s">"placed"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"priority"</span><span class="o">,</span> <span class="s">"EXPRESS"</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"dead-letter-channel-demo"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+        <span class="n">send</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">fork</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+        <span class="n">repeatOnError</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                <span class="n">receive</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.dlq?consumerGroup=citrus-dlq-group"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+            <span class="o">)</span>
+    <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">repeatOnError</code> wrapper is essential here. The Dead Letter Channel retries the message 3 times with a 1-second delay before giving up. 
+That means the DLQ message will not appear for at least 3 seconds. 
+The test polls the DLQ topic up to 10 times, sleeping 1 second between attempts, until it finds the expected message.</p>
+
+<p>There is a subtle point about what lands on the DLQ. Because the route uses <code class="highlighter-rouge">useOriginalMessage()</code>, the DLQ receives the message exactly as it was sent — the original JSON with the same <code class="highlighter-rouge">order_id</code>, <code class="highlighter-rouge">amount</code>, and other fields. 
+Any fields the route would have added during successful processing (enrichment data, computed values) are absent. 
+When writing assertions against DLQ messages, only assert on what was in the original input.</p>
+
+<p>You can find the complete Dead Letter Channel route and test in the <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing/examples/05-reliability/quarkus">05-reliability example</a>.</p>
+
+<h1 id="testing-idempotent-receivers">Testing Idempotent Receivers</h1>
+
+<p>An Idempotent Receiver prevents duplicate messages from being processed more than once. 
+The pattern uses a unique identifier — an event ID, transaction ID, or message key — and checks it against a deduplication store before processing. 
+If the key has been seen before, the message is either dropped or routed to a separate handler.</p>
+
+<p>Here is an Idempotent Receiver route that uses Redis for deduplication:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">from</span><span class="o">(</span><span class="s">"kafka:eip.orders.payments?brokers=&amp;groupId=redis-idempotent"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"idempotent-receiver"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">unmarshal</span><span class="o">().</span><span class="na">json</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="k">this</span><span class="o">::</span><span class="n">deduplicateAndProcess</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">choice</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">header</span><span class="o">(</span><span class="s">"CamelDuplicate"</span><span class="o">).</span><span class="na">isEqualTo</span><span class="o">(</span><span class="kc">true</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"direct:handle-duplicate-payment"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">otherwise</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Processing payment event ${body[event_id]} for order ${body[order_id]}"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">marshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"kafka:eip.orders.payment-confirmed?brokers="</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">end</span><span class="o">();</span>
+
+<span class="n">from</span><span class="o">(</span><span class="s">"direct:handle-duplicate-payment"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"handle-duplicate-payment"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Duplicate payment event ${body[event_id]} -- skipping"</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">deduplicateAndProcess</code> method performs a Redis <code class="highlighter-rouge">SET NX</code> with a 24-hour TTL. 
+If the key already exists (meaning this event was already processed), it sets the <code class="highlighter-rouge">CamelDuplicate</code> header to <code class="highlighter-rouge">true</code>. 
+The route’s <code class="highlighter-rouge">choice()</code> then branches: unique events go to <code class="highlighter-rouge">payment-confirmed</code>, duplicates go to <code class="highlighter-rouge">handle-duplicate-payment</code>.</p>
+
+<p>Here is the deduplication logic:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">deduplicateAndProcess</span><span class="o">(</span><span class="n">Exchange</span> <span class="n">exchange</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">event</span> <span class="o">=</span> <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">getBody</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="n">String</span> <span class="n">eventId</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"event_id"</span><span class="o">));</span>
+    <span class="n">String</span> <span class="n">dedupeKey</span> <span class="o">=</span> <span class="s">"idempotent:"</span> <span class="o">+</span> <span class="n">eventId</span><span class="o">;</span>
+
+    <span class="n">Response</span> <span class="n">result</span> <span class="o">=</span> <span class="n">redis</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">List</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">dedupeKey</span><span class="o">,</span> <span class="s">"1"</span><span class="o">,</span> <span class="s">"NX"</span><span class="o">,</span> <span class="s">"EX"</span><span class="o">,</span> <span class="s">"86400"</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">await</span><span class="o">().</span><span class="na">indefinitely</span><span class="o">();</span>
+
+    <span class="kt">boolean</span> <span class="n">isDuplicate</span> <span class="o">=</span> <span class="o">(</span><span class="n">result</span> <span class="o">==</span> <span class="kc">null</span><span class="o">);</span>
+    <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">setHeader</span><span class="o">(</span><span class="s">"CamelDuplicate"</span><span class="o">,</span> <span class="n">isDuplicate</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="ordered-tests-for-stateful-deduplication">Ordered tests for stateful deduplication</h2>
+
+<p>Testing deduplication requires something that most tests do not need: execution order. 
+The first test must seed the deduplication key, and the second test must verify that the same key is recognized as a duplicate. 
+JUnit 5’s <code class="highlighter-rouge">@TestMethodOrder</code> and <code class="highlighter-rouge">@Order</code> annotations make this explicit:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Nested</span>
+<span class="kd">class</span> <span class="nc">IdempotentReceiverTest</span> <span class="o">{</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldDropDuplicatePaymentEvent</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">paymentEvent</span> <span class="o">=</span> <span class="s">"""
+            {
+              "</span><span class="n">event_id</span><span class="s">": "</span><span class="n">EVT</span><span class="o">-</span><span class="mi">2001</span><span class="s">",
+              "</span><span class="n">order_id</span><span class="s">": 2001,
+              "</span><span class="n">amount</span><span class="s">": 149.99
+            }
+            """</span><span class="o">;</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"idempotent-receiver"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+            <span class="n">send</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.payments"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">paymentEvent</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"PAY-2001"</span><span class="o">)</span>
+        <span class="o">);</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+            <span class="n">receive</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.payment-confirmed?consumerGroup=citrus-payment-confirmed-group"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">paymentEvent</span><span class="o">)</span>
+        <span class="o">);</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+            <span class="n">send</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.payments"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">paymentEvent</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"PAY-2001-DUP"</span><span class="o">)</span>
+        <span class="o">);</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+            <span class="n">expectTimeout</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.payment-confirmed?consumerGroup=citrus-payment-confirmed-group"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">timeout</span><span class="o">(</span><span class="mi">5000</span><span class="o">)</span>
+        <span class="o">);</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+            <span class="n">camel</span><span class="o">().</span><span class="na">route</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">verifyRouteStats</span><span class="o">(</span><span class="s">"handle-duplicate-payment"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">completed</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">failed</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span>
+        <span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The first test step sends the payment event <code class="highlighter-rouge">EVT-2001</code> and verifies that it gets routed to the <code class="highlighter-rouge">payment-confirmed</code> topic. 
+This seeds the key <code class="highlighter-rouge">idempotent:EVT-2001</code> in Redis. 
+Then the test sends the exact same event again. 
+This time, the Redis <code class="highlighter-rouge">SET NX</code> returns <code class="highlighter-rouge">null</code> (the key already exists), the route sets <code class="highlighter-rouge">CamelDuplicate=true</code>, and the message is routed to <code class="highlighter-rouge">handle-duplicate-payment</code> instead of <code class="highlighter-rouge">payment-confirmed</code>.
+The <code class="highlighter-rouge">expectTimeout()</code> action verifies that the event has <strong>not</strong> been sent to the <code class="highlighter-rouge">payment-confirmed</code> topic.</p>
+
+<p>In addition to that the test verifies that the <code class="highlighter-rouge">handle-duplicate-payment</code> route has been called. 
+But here is a challenge: the <code class="highlighter-rouge">handle-duplicate-payment</code> route only logs — it produces no output message on any topic. 
+There is nothing to <code class="highlighter-rouge">receive()</code>. This is where <code class="highlighter-rouge">verifyRouteStats</code> comes in.
+It uses the Camel management route statistics to verify the number of completed and failed exchanges on that route.</p>
+
+<p><em>IMPORTANT:</em> The <code class="highlighter-rouge">ManagedCamelContext</code> API that provides access to route statistics requires a management dependency. 
+Without it, <code class="highlighter-rouge">getManagedRoute()</code> returns <code class="highlighter-rouge">null</code> and the assertion on the route statistics fails with “Failed to get managed route statistics.” For Quarkus, add:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.apache.camel.quarkus<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>camel-quarkus-management<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>For Spring Boot, add:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.apache.camel.springboot<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>camel-spring-boot-starter-management<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>You can find the complete Idempotent Receiver route and test in the <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing/examples/22-redis-integration/quarkus">22-redis-integration example</a>.</p>
+
+<h1 id="testing-circuit-breaker-fallback-paths">Testing Circuit Breaker fallback paths</h1>
+
+<p>A Circuit Breaker wraps calls to an external service and provides a fallback when the service is unavailable. In Camel, you configure this with <code class="highlighter-rouge">circuitBreaker()</code> and <code class="highlighter-rouge">onFallback()</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">from</span><span class="o">(</span><span class="s">"kafka:eip.orders.processed?brokers=&amp;groupId=managed-adapter-demo"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"managed-adapter-circuit-breaker"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">unmarshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Managed Adapter: checking inventory for order ${body[order_id]}"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">circuitBreaker</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"direct:inventory-check"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">onFallback</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Circuit OPEN: routing order ${body[order_id]} to DLQ for retry"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">marshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"kafka:eip.orders.dlq?brokers="</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">end</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Managed Adapter: order ${body[order_id]} processed successfully"</span><span class="o">);</span>
+
+<span class="n">from</span><span class="o">(</span><span class="s">"direct:inventory-check"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"managed-adapter-inventory-check"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">exchange</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        <span class="kt">var</span> <span class="n">body</span> <span class="o">=</span> <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">getBody</span><span class="o">(</span><span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Map</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="n">Number</span> <span class="n">orderId</span> <span class="o">=</span> <span class="o">(</span><span class="n">Number</span><span class="o">)</span> <span class="n">body</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"order_id"</span><span class="o">);</span>
+        <span class="kt">long</span> <span class="n">id</span> <span class="o">=</span> <span class="n">orderId</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">?</span> <span class="n">orderId</span><span class="o">.</span><span class="na">longValue</span><span class="o">()</span> <span class="o">:</span> <span class="mi">0</span><span class="o">;</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">id</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">RuntimeException</span><span class="o">(</span>
+                <span class="s">"Inventory service unavailable for order "</span> <span class="o">+</span> <span class="n">id</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="n">body</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"inventory_status"</span><span class="o">,</span> <span class="s">"IN_STOCK"</span><span class="o">);</span>
+        <span class="n">body</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"warehouse_location"</span><span class="o">,</span> <span class="s">"WH-CENTRAL-02"</span><span class="o">);</span>
+    <span class="o">})</span>
+    <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Inventory check passed for order ${body[order_id]}"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">marshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"kafka:eip.orders.inventory-checked?brokers="</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>This route consumes orders from <code class="highlighter-rouge">eip.orders.processed</code>, wraps the inventory check in a circuit breaker, and routes to the DLQ when the check fails. 
+The simulated inventory service fails for every order whose <code class="highlighter-rouge">order_id</code> is divisible by 3.</p>
+
+<h2 id="testing-the-happy-path">Testing the happy path</h2>
+
+<p>When the inventory check succeeds, the order arrives on the <code class="highlighter-rouge">inventory-checked</code> topic with enriched fields:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldProcessOrderAndCheckInventory</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+        <span class="n">createVariables</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"1"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mi">200</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"managed-adapter-circuit-breaker"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+        <span class="n">send</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.processed"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"ADAPTER-org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+        <span class="n">receive</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.inventory-checked?consumerGroup=citrus-inventory-checked-group"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"""
+            {
+              "</span><span class="n">order_id</span><span class="s">": org.citrusframework:citrus-website:pom:1.1.0,
+              "</span><span class="n">customer_id</span><span class="s">": "</span><span class="n">CUST</span><span class="o">-</span><span class="mo">001</span><span class="s">",
+              "</span><span class="n">item_sku</span><span class="s">": "</span><span class="n">SKU</span><span class="o">-</span><span class="n">TEST</span><span class="o">-</span><span class="mi">1</span><span class="s">",
+              "</span><span class="n">quantity</span><span class="s">": 1,
+              "</span><span class="n">amount</span><span class="s">": ${amount},
+              "</span><span class="n">inventory_status</span><span class="s">": "</span><span class="n">IN_STOCK</span><span class="s">",
+              "</span><span class="n">warehouse_location</span><span class="s">": "</span><span class="n">WH</span><span class="o">-</span><span class="n">CENTRAL</span><span class="o">-</span><span class="mo">02</span><span class="s">"
+            }
+            """</span><span class="o">)</span>
+    <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Notice the deterministic <code class="highlighter-rouge">id</code> value: <code class="highlighter-rouge">"1"</code>, not <code class="highlighter-rouge">citrus:randomNumber(4)</code>. 
+The route’s behavior depends on whether <code class="highlighter-rouge">order_id % 3 == 0</code>, so we need to control the exact value. 
+Using <code class="highlighter-rouge">1</code> ensures the inventory check passes.</p>
+
+<h2 id="testing-the-fallback-path">Testing the fallback path</h2>
+
+<p>When the inventory check fails, the circuit breaker’s <code class="highlighter-rouge">onFallback()</code> routes the message to the DLQ:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldRouteToDeadLetterWhenCircuitBreaks</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+        <span class="n">createVariables</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"3"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mi">300</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"managed-adapter-circuit-breaker"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+        <span class="n">send</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.processed"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"ADAPTER-DLQ-org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+        <span class="n">receive</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.dlq?consumerGroup=citrus-dlq-group"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"""
+            {
+              "</span><span class="n">order_id</span><span class="s">": org.citrusframework:citrus-website:pom:1.1.0,
+              "</span><span class="n">customer_id</span><span class="s">": "</span><span class="n">CUST</span><span class="o">-</span><span class="mo">003</span><span class="s">",
+              "</span><span class="n">item_sku</span><span class="s">": "</span><span class="n">SKU</span><span class="o">-</span><span class="n">TEST</span><span class="o">-</span><span class="mi">3</span><span class="s">",
+              "</span><span class="n">quantity</span><span class="s">": 1,
+              "</span><span class="n">amount</span><span class="s">": ${amount}
+            }
+            """</span><span class="o">)</span>
+    <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Here <code class="highlighter-rouge">id=3</code> — divisible by 3, triggering the failure. 
+The <code class="highlighter-rouge">onFallback()</code> block marshals the original body to JSON and sends it to the DLQ. 
+The test verifies that the DLQ message contains the original order fields without the enrichment fields (<code class="highlighter-rouge">inventory_status</code>, <code class="highlighter-rouge">warehouse_location</code>) that would only be present on a successful path.</p>
+
+<h2 id="a-common-misconception-about-onfallback">A common misconception about onFallback</h2>
+
+<p>It is worth clarifying: <code class="highlighter-rouge">onFallback()</code> fires on <em>any</em> exception thrown inside the <code class="highlighter-rouge">circuitBreaker()</code> block, not only when the circuit is in the “open” state. 
+The first time the inventory check fails, the fallback executes immediately — the circuit does not need to have tripped from prior failures. 
+This makes testing straightforward: you just need one message that triggers the exception. 
+You do not need to send enough failing messages to trip the circuit first.</p>
+
+<p>You can find the complete Circuit Breaker route and test in the <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing/examples/18-testing-management/quarkus">18-testing-management example</a>.</p>
+
+<h1 id="wrapping-up">Wrapping up</h1>
+
+<p>Testing reliability patterns means testing failure — deliberately, systematically, and reproducibly. The techniques we covered work together:</p>
+
+<ul>
+  <li>
+<strong>Dead Letter Channels</strong>: use deterministic IDs that trigger exceptions, <code class="highlighter-rouge">repeatOnError</code> to poll the DLQ, and assert only on original message fields.</li>
+  <li>
+<strong>Idempotent Receivers</strong>: use ordered tests to seed and re-send the same event, and <code class="highlighter-rouge">assertProcessedExchanges</code> to verify the duplicate handler.</li>
+  <li>
+<strong>Circuit Breakers</strong>: use deterministic IDs that trigger fallback paths, and verify that the fallback output matches the pre-failure message.</li>
+  <li>
+<strong>Route testability</strong>: extract inline branches into named <code class="highlighter-rouge">direct:</code> routes so every code path is visible to MBean-based assertions by accessing the route statistics and the number of completed exchanges.</li>
+</ul>
+
+<p>You can explore all the reliability pattern examples in the <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing">eip-with-camel repository</a>, specifically the <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing/examples/05-reliability">05-reliability</a>, <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing/examples/22-redis-integration">22-redis-integration</a>, and <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing/examples/18-testing-management">18-testing-management</a> examples.</p>
+
+<p>Give it a try, and let us know what you think!</p>
+
+  </div>
+</article>
+
+
+  <article>
+  <h2>
+    Testing Camel Routing - Content-Based Routers, Filters, and Splitters
+    <a href="/news/2026/09/10/testing-camel-routing/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      blog
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      10 Sep 2026
+    </span>
+    <a href="https://github.com/christophd" class="post-author">
+      
+      Christoph Deppisch
+    </a>
+  </div>
+  <div class="post-content">
+    <p>Routing is the backbone of every Apache Camel application. 
+A <code class="highlighter-rouge">choice()</code> inspects a field and sends the message down one of multiple branches. 
+A <code class="highlighter-rouge">filter()</code> drops everything that does not match a given expression. 
+A <code class="highlighter-rouge">split()</code> breaks a batch into individual messages. 
+These patterns are simple to write in Apache Camel yet the routing logic requires proper testing coverage to ensure that the route is doing what it is supposed to do.</p>
+
+<p>Routing bugs are silent. A misconfigured filter predicate passes everything through. 
+A content-based router checks the wrong field and sends incoming orders to the wrong queue. 
+A splitter produces empty messages because the JsonPath expression doesn’t match the actual payload structure. 
+Without thorough testing, these defects ship to production.</p>
+
+<p><img src="/img/assets/testing-camel-routing/featured.png" alt="Featured" width="700px" class="center-image">
+<em>AI generated with Google Gemini</em></p>
+
+<p>The challenge is not just proving that the right messages arrive at the right destination. 
+It is also proving that the <em>wrong</em> messages do <em>not</em> arrive. 
+A filter test that only checks the happy path — high-value order passes through — tells you nothing about whether low-value orders are actually being skipped. 
+<a href="https://citrusframework.org">Citrus</a> as a test framework provides the tools to test both sides: <code class="highlighter-rouge">receive()</code> for verifying that a message has been routed to a destination (e.g. a Kafka topic), and <code class="highlighter-rouge">expectTimeout()</code> for verifying that it has been filtered successfully.</p>
+
+<p>This post walks through three fundamental routing patterns — Content-Based Router, Message Filter, and Splitter — and shows how to write thorough Citrus integration tests for each. 
+We test every branch, prove what gets filtered, and verify that a batch split produces the expected number of output messages.</p>
+
+<h1 id="testing-a-content-based-router">Testing a Content-Based Router</h1>
+
+<p>A Content-Based Router enterprise integration pattern examines the message content and sends it to one of several destinations based on a condition. 
+Here is a Camel route that classifies orders as hazmat (hazardous material), international, or domestic for a specific country:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ApplicationScoped</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContentBasedRouterRoute</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">from</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed?brokers=&amp;groupId=routing-demo"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"content-based-router"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">unmarshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Order received: ${body[order_id]} to ${body[destination_country]}"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">choice</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">simple</span><span class="o">(</span><span class="s">"${body[contains_hazmat]} == true"</span><span class="o">))</span>
+                    <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"HAZMAT order ${body[order_id]} → hazmat handler"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">marshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"kafka:eip.orders.hazmat?brokers="</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">simple</span><span class="o">(</span><span class="s">"${body[destination_country]} != 'US'"</span><span class="o">))</span>
+                    <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"International order ${body[order_id]} → customs"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">marshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"kafka:eip.orders.international?brokers="</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">otherwise</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Domestic order ${body[order_id]} → standard"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">marshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"kafka:eip.orders.domestic?brokers="</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">end</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The route has three branches: hazmat (hazardous material) orders go to <code class="highlighter-rouge">eip.orders.hazmat</code>, international orders go to <code class="highlighter-rouge">eip.orders.international</code>, and everything else goes to <code class="highlighter-rouge">eip.orders.domestic</code>. 
+The evaluation order matters — a hazmat order from the UK goes to the hazmat topic, not the international one.</p>
+
+<h2 id="minimum-one-test-per-branch">Minimum one test per branch</h2>
+
+<p>A single happy-path test gives us 33% branch coverage. We need three tests, one for each routing decision:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Nested</span>
+<span class="kd">class</span> <span class="nc">ContentBasedRouterTest</span> <span class="o">{</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldRouteDomesticOrder</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+            <span class="n">createVariables</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mf">75.00</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"country"</span><span class="o">,</span> <span class="s">"US"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"hazmat"</span><span class="o">,</span> <span class="kc">false</span><span class="o">)</span>
+        <span class="o">);</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"content-based-router"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+            <span class="n">send</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"kafka.KEY"</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+        <span class="o">);</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+            <span class="n">receive</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.domestic?consumerGroup=citrus-domestic-group"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+        <span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This test sends a domestic order (country <code class="highlighter-rouge">US</code>, no hazmat) and verifies it arrives on <code class="highlighter-rouge">eip.orders.domestic</code>. 
+The pattern is straightforward: set variables that define the routing outcome according to the business logic, send the data to the input topic, receive the event from the expected output topic.</p>
+
+<p><em>NOTE:</em> You may wonder what the step <code class="highlighter-rouge">waitForCamelRouteStarted()</code> is all about. This is a helper method that waits for the Camel route with the id <code class="highlighter-rouge">content-based-router</code> to report the status <code class="highlighter-rouge">Started</code>. 
+Citrus is able to leverage the exposed route statistics exposed by Camel management module. 
+This way the test makes sure to start sending Kafka events only when the Camel route is ready to consume events. 
+This prevents unstable tests where consumer startup timing conditions play a role.</p>
+
+<p>Here is the code for the helper method <code class="highlighter-rouge">waitForCamelRouteStarted()</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">default</span> <span class="n">TestActionBuilder</span><span class="o">&lt;?&gt;</span> <span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="n">String</span> <span class="n">routeId</span><span class="o">,</span> <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="nf">repeatOnError</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">(</span><span class="n">camelContext</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">controlBus</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">route</span><span class="o">(</span><span class="n">routeId</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">status</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">result</span><span class="o">(</span><span class="n">ServiceStatus</span><span class="o">.</span><span class="na">Started</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">description</span><span class="o">(</span><span class="s">"Waiting for Camel route '%s' to be started ..."</span><span class="o">.</span><span class="na">formatted</span><span class="o">(</span><span class="n">routeId</span><span class="o">)),</span>
+                <span class="n">sleep</span><span class="o">().</span><span class="na">seconds</span><span class="o">(</span><span class="mi">5</span><span class="o">)</span>
+            <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The international and hazmat tests follow the same structure — only the variable values and the output topic change:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldRouteInternationalOrder</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+        <span class="n">createVariables</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mf">80.00</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"country"</span><span class="o">,</span> <span class="s">"GB"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"hazmat"</span><span class="o">,</span> <span class="kc">false</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"content-based-router"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+        <span class="n">send</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"kafka.KEY"</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+        <span class="n">receive</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.international?consumerGroup=citrus-international-group"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+    <span class="o">);</span>
+<span class="o">}</span>
+
+<span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldRouteHazmatOrder</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+        <span class="n">createVariables</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mf">90.00</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"country"</span><span class="o">,</span> <span class="s">"US"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"hazmat"</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"content-based-router"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+        <span class="n">send</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"kafka.KEY"</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+        <span class="n">receive</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.hazmat?consumerGroup=citrus-hazmat-group"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+    <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>All three tests share the same input topic (<code class="highlighter-rouge">eip.orders.placed</code>) and the same message template. 
+The only differences are the variable values that control which branch the router takes and the output topic where we expect the message to appear.
+With JUnit Jupiter we could also think about using a parameterized test that just changes the values for <code class="highlighter-rouge">country</code> and <code class="highlighter-rouge">hazmat</code> with the expected output topic name as another parameter.</p>
+
+<h2 id="template-based-validation">Template-based validation</h2>
+
+<p>The message template at <code class="highlighter-rouge">src/test/resources/templates/order.json</code> is the same for all three test variations. 
+The template uses Citrus variable placeholders so each variation can place its individual values into the template:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="err">org.citrusframework</span><span class="p">:</span><span class="err">citrus-website</span><span class="p">:</span><span class="err">pom</span><span class="p">:</span><span class="mf">1.1</span><span class="err">.</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUST-org.citrusframework:citrus-website:pom:1.1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"item_sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SKU-org.citrusframework:citrus-website:pom:1.1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="p">{</span><span class="err">amount</span><span class="p">},</span><span class="w">
+  </span><span class="s2">"destination_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${country}"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"contains_hazmat"</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="p">{</span><span class="err">hazmat</span><span class="p">},</span><span class="w">
+  </span><span class="s2">"shipping_priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STANDARD"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The same template also serves both sending and receiving. 
+When Citrus sends an event, it resolves the placeholders to produce the actual JSON. 
+When Citrus receives an event, it resolves the same placeholders and compares every field against the actual message from Kafka. 
+If the route changed any value — for example, if a buggy transformation overwrote the <code class="highlighter-rouge">amount</code> — the validation catches it immediately.</p>
+
+<p>The <code class="highlighter-rouge">citrus:randomNumber(4)</code> function generates a unique 4-digit ID for each test run, preventing interference between test executions.
+Citrus provides many functions to generate dynamic test data for better test stability where each test uses unique test data.
+Each test operates on its own order, even if tests run in parallel or in quick succession.</p>
+
+<h2 id="kafka-consumer-group-isolation">Kafka consumer group isolation</h2>
+
+<p>Each <code class="highlighter-rouge">receive()</code> action uses a unique <code class="highlighter-rouge">consumerGroup</code> parameter: <code class="highlighter-rouge">citrus-domestic-group</code>, <code class="highlighter-rouge">citrus-international-group</code>, <code class="highlighter-rouge">citrus-hazmat-group</code>. This is important for two reasons.</p>
+
+<p>First, it prevents the test consumer from competing with the application’s own consumer groups. 
+The Camel route consumes from <code class="highlighter-rouge">eip.orders.placed</code> with group <code class="highlighter-rouge">routing-demo</code> — the test consumers read from the output topics with their own groups, so they never steal messages from each other.</p>
+
+<p>Second, it prevents cross-test interference. If two tests read from the same topic with the same consumer group, Kafka’s partition assignment can cause one test to miss messages that the other consumed. Unique consumer groups per test guarantee that each test sees all messages on its topic.</p>
+
+<h1 id="testing-a-message-filter">Testing a Message Filter</h1>
+
+<p>A message filter enterprise integration pattern passes messages that match a condition and silently drops the rest. Here is a route that filters for high-value orders:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ApplicationScoped</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MessageFilterRoute</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">from</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed?brokers=&amp;groupId=filter-demo"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"message-filter"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">unmarshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">simple</span><span class="o">(</span><span class="s">"${body[amount]} &gt;= 100"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"High-value order ${body[order_id]}: $${body[amount]}"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">marshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"kafka:eip.orders.high-value?brokers="</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">end</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Orders with <code class="highlighter-rouge">amount &gt;= 100</code> pass through to <code class="highlighter-rouge">eip.orders.high-value</code>. Orders below that threshold are dropped — no output, no error, nothing.</p>
+
+<h2 id="the-positive-test">The positive test</h2>
+
+<p>The positive test is straightforward — send a high-value order and verify it arrives:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldPassHighValueOrder</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+        <span class="n">createVariables</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mf">250.00</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"country"</span><span class="o">,</span> <span class="s">"US"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"hazmat"</span><span class="o">,</span> <span class="kc">false</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"message-filter"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+        <span class="n">send</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"kafka.KEY"</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+        <span class="n">receive</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.high-value?consumerGroup=citrus-high-value-group"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+    <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This proves the filter lets high-value orders through. But if we stop here, we have no evidence that the filter actually blocks anything. 
+A broken predicate that passes <em>all</em> orders would still make this test green.</p>
+
+<h2 id="the-negative-test-with-expecttimeout">The negative test with expectTimeout()</h2>
+
+<p>The negative test proves that a low-value order does <em>not</em> appear on the high-value topic:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldFilterLowValueOrder</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+        <span class="n">createVariables</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mf">50.00</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"country"</span><span class="o">,</span> <span class="s">"US"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"hazmat"</span><span class="o">,</span> <span class="kc">false</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"message-filter"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+        <span class="n">send</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"kafka.KEY"</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+    <span class="o">);</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+        <span class="n">expectTimeout</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.high-value?consumerGroup=citrus-filter-reject-group"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">timeout</span><span class="o">(</span><span class="mi">5000</span><span class="o">)</span>
+    <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The <strong><code class="highlighter-rouge">expectTimeout()</code></strong> action is the key here. It attempts to consume a message from the specified Kafka endpoint and waits for the given timeout (5 seconds). 
+If <em>no</em> message arrives within that window, the test <strong>passes</strong>. 
+If a message does arrive, the test <strong>fails</strong> — because it proves the filter let something through that it should have dropped.</p>
+
+<p>This is the opposite of <code class="highlighter-rouge">receive()</code>. Where <code class="highlighter-rouge">receive()</code> asserts presence — a message must arrive — <code class="highlighter-rouge">expectTimeout()</code> asserts absence — no message must arrive.</p>
+
+<p><em>NOTE:</em> A few things to watch for when using <code class="highlighter-rouge">expectTimeout()</code>:</p>
+
+<ul>
+  <li>
+<strong>Use a dedicated consumer group.</strong> The <code class="highlighter-rouge">consumerGroup</code> is <code class="highlighter-rouge">citrus-filter-reject-group</code>, different from the positive test’s <code class="highlighter-rouge">citrus-high-value-group</code>. If both tests used the same group, the positive test might consume the message before the negative test checks for it, causing a false pass.</li>
+  <li>
+<strong>The timeout must be long enough.</strong> Five seconds is typically sufficient for a single-hop Kafka route. If the route does complex processing or calls external services, increase the timeout.</li>
+  <li>
+<strong>Watch for message ordering.</strong> If <code class="highlighter-rouge">expectTimeout()</code> runs <em>after</em> a test that wrote to the same topic, it might pick up leftover messages from the earlier test. You may consider using very specific message selectors on the Kafka headers to selectively pick the right message form the topic. More on this in the closing section.</li>
+</ul>
+
+<p>Proving something did <em>not</em> happen is fundamentally harder than proving something did. <code class="highlighter-rouge">expectTimeout()</code> makes this possible with a clear, declarative API — no manual thread sleeps or polling loops needed.</p>
+
+<h1 id="testing-a-splitter">Testing a Splitter</h1>
+
+<p>A splitter takes a single message containing multiple items and produces one output message per item. Here is a route that splits batch orders:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ApplicationScoped</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SplitterRoute</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">from</span><span class="o">(</span><span class="s">"kafka:eip.orders.batch?brokers=&amp;groupId=splitter-demo"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"order-splitter"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">unmarshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Batch received with ${body[items].size()} items"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="n">jsonpath</span><span class="o">(</span><span class="s">"$.items[*]"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Processing item: ${body[item_sku]} qty=${body[quantity]}"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">marshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"kafka:eip.orders.individual?brokers="</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">end</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The route consumes from <code class="highlighter-rouge">eip.orders.batch</code>, extracts each item from the <code class="highlighter-rouge">items</code> array using JsonPath, and publishes each one individually to <code class="highlighter-rouge">eip.orders.individual</code>.</p>
+
+<h2 id="sending-a-batch-and-receiving-multiple-outputs">Sending a batch and receiving multiple outputs</h2>
+
+<p>The batch order template (<code class="highlighter-rouge">"templates/batch-order.json"</code>) sends two items:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"batch_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BATCH-org.citrusframework:citrus-website:pom:1.1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="s2">"item_sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PART-A1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="s2">"item_sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PART-B2"</span><span class="p">,</span><span class="w"> </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The test sends this order batch with two items and expects individual messages on the output topic based on the splitter EIP:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Nested</span>
+<span class="kd">class</span> <span class="nc">SplitterTest</span> <span class="o">{</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldSplitBatchIntoIndividualItems</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+            <span class="n">createVariables</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+        <span class="o">);</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"order-splitter"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+            <span class="n">send</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.batch"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/batch-order.json"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"kafka.KEY"</span><span class="o">,</span> <span class="s">"BATCH-org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+        <span class="o">);</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+            <span class="n">createVariables</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"item_sku"</span><span class="o">,</span> <span class="s">"PART-A1"</span><span class="o">),</span>
+            <span class="n">receive</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.individual?consumerGroup=citrus-individual-group"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/item.json"</span><span class="o">))</span>
+        <span class="o">).</span><span class="na">and</span><span class="o">(</span>
+            <span class="n">createVariables</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"item_sku"</span><span class="o">,</span> <span class="s">"PART-B2"</span><span class="o">),</span>
+            <span class="n">receive</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.individual?consumerGroup=citrus-individual-group"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/item.json"</span><span class="o">))</span>
+        <span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Both receives use the <strong>same consumer group</strong> (<code class="highlighter-rouge">citrus-individual-group</code>). This is intentional — we want the second receive to pick up where the first left off. If they used different consumer groups, both would try to read from the beginning of the topic, and Kafka’s partition assignment might give both the same message.</p>
+
+<h2 id="validating-the-split-items">Validating the split items</h2>
+
+<p>The item template <code class="highlighter-rouge">"templates/item.json"</code> uses variables and <code class="highlighter-rouge">@ignore@</code> markers for fields whose specific values we don’t need to assert:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"item_sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${item_sku}"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@ignore@"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">@ignore@</code> marker tells Citrus to accept any value for that field. 
+This is useful when the split produces items with different field values — <code class="highlighter-rouge">PART-A1</code> with quantity 2 and <code class="highlighter-rouge">PART-B2</code> with quantity 1 — but we want a single template that validates both. 
+The template asserts the message <em>structure</em> (has <code class="highlighter-rouge">item_sku</code> and <code class="highlighter-rouge">quantity</code> fields) without pinning the specific values.</p>
+
+<p><em>TIP:</em> If you need to validate specific field values, you can use separate templates for each split item or use more test variables in the template. 
+For many splitter tests, though, structural validation is sufficient — the important thing is that two messages arrived, both with the expected fields.</p>
+
+<h1 id="routing-branch-coverage-as-a-testing-discipline">Routing branch coverage as a testing discipline</h1>
+
+<p>The principle behind all of these tests is simple: <strong>one test per routing branch, not just the happy path.</strong> 
+A <code class="highlighter-rouge">choice()</code> with three branches needs at least three tests. 
+A <code class="highlighter-rouge">filter()</code> needs a positive test and a negative test. 
+A splitter needs a test that verifies the correct number of output messages.</p>
+
+<p>This might seem obvious, but in practice it is common to write a single test that exercises the default branch and call it done. 
+Especially when verifying that something has <strong>not</strong> happened feels cumbersome. 
+The problem is that routing bugs in the other branches remain hidden until production traffic triggers them. 
+A Content-Based Router with a typo in the hazmat predicate — <code class="highlighter-rouge">${body[contains_hazmat]} = true</code> instead of <code class="highlighter-rouge">== true</code> — will pass the domestic test perfectly. 
+Only the hazmat test variation catches it.</p>
+
+<p>The investment is small. Each additional branch test follows the same structure as the first — change the input variables, change the expected output topic, done.
+With parameterized tests you can even reuse the testing logic for multiple input and output variants.
+The reward is high — complete confidence that every routing path produces the correct output.</p>
+
+<h1 id="where-to-find-the-examples">Where to find the examples</h1>
+
+<p>The complete source code for all tests shown in this post is available in the <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing">EIP with Camel</a> repository. The <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing/examples/09-routing-fundamentals">Routing Fundamentals example</a> includes:</p>
+
+<ul>
+  <li>
+<strong>Quarkus tests:</strong> <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/quarkus/src/test/java/com/example/eip/routing/EipTests.java">EipTests.java</a> with Content-Based Router, Message Filter, Recipient List, and Splitter tests.</li>
+  <li>
+<strong>Spring Boot tests:</strong> <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/spring-boot/src/test/java/com/example/eip/routing/EipTests.java">EipTests.java</a> with Content-Based Router, Message Filter, Recipient List, and Splitter tests.</li>
+  <li>
+<strong>Route definitions:</strong> <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/quarkus/src/main/java/com/example/eip/routing/ContentBasedRouterRoute.java">ContentBasedRouterRoute.java</a>, <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/quarkus/src/main/java/com/example/eip/routing/MessageFilterRoute.java">MessageFilterRoute.java</a>, <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/quarkus/src/main/java/com/example/eip/routing/SplitterRoute.java">SplitterRoute.java</a>.</li>
+  <li>
+<strong>YAML DSL tests:</strong> <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/yaml-dsl/test/content-based-router.citrus.it.yaml">content-based-router.citrus.it.yaml</a>, <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/yaml-dsl/test/message-filter.citrus.it.yaml">message-filter.citrus.it.yaml</a>, <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/yaml-dsl/test/splitter.citrus.it.yaml">splitter.citrus.it.yaml</a>.</li>
+  <li>
+<strong>Message templates:</strong> <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/quarkus/src/test/resources/templates/order.json">order.json</a>, <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/quarkus/src/test/resources/templates/batch-order.json">batch-order.json</a>, <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/quarkus/src/test/resources/templates/item.json">item.json</a>.</li>
+</ul>
+
+<p>Clone the repository and run <code class="highlighter-rouge">mvn verify</code> in one of the runtime directories (e.g. <code class="highlighter-rouge">quarkus/</code>) to see all tests execute against real Kafka infrastructure.</p>
+
+<p>Give it a try, and let us know what you think!</p>
+
+  </div>
+</article>
+
 
   <article>
   <h2>
@@ -6536,6 +8346,22 @@ http://www.citrusframework.org/samples/my-testcase-info/my-testcase-info.xsd"</s
     <h4>Posts</h4>
     <ul>
         
+        
+        <li class="">
+          <a href="/news/2026/09/14/kafka-testing-pitfalls/">» Kafka Testing Pitfalls</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/09/14/camel-testing-pitfalls/">» Camel Testing Pitfalls</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/09/11/testing-reliability-patterns/">» Testing Reliability Patterns</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/09/10/testing-camel-routing/">» Testing Camel Routing</a>
+        </li>
         
         <li class="">
           <a href="/news/2026/08/05/release-5.0.0/">» Citrus 5.0.0</a>
