@@ -117,6 +117,10 @@
     <optgroup label="Posts">
       
       
+      <option value="/news/2026/09/16/multi-runtime-testing/">Multi-Runtime Testing — One Test Pattern, Three Different Runtimes</option>
+      
+      <option value="/news/2026/09/15/camel-cli-test-plugin/">Camel CLI test plugin - Zero-Code Integration Tests</option>
+      
       <option value="/news/2026/09/14/kafka-testing-pitfalls/">Kafka Testing Pitfalls in Camel Integration Tests</option>
       
       <option value="/news/2026/09/14/camel-testing-pitfalls/">Camel Integration Testing Pitfalls</option>
@@ -332,7 +336,7 @@ The test polls the DLQ topic up to 10 times, sleeping 1 second between attempts,
 Any fields the route would have added during successful processing (enrichment data, computed values) are absent. 
 When writing assertions against DLQ messages, only assert on what was in the original input.</p>
 
-<p>You can find the complete Dead Letter Channel route and test in the <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing/examples/05-reliability/quarkus">05-reliability example</a>.</p>
+<p>You can find the complete Dead Letter Channel route and test in the <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main/examples/05-reliability/quarkus">05-reliability example</a>.</p>
 
 <h1 id="testing-idempotent-receivers">Testing Idempotent Receivers</h1>
 
@@ -467,7 +471,7 @@ Without it, <code class="highlighter-rouge">getManagedRoute()</code> returns <co
 <span class="nt">&lt;/dependency&gt;</span>
 </code></pre></div></div>
 
-<p>You can find the complete Idempotent Receiver route and test in the <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing/examples/22-redis-integration/quarkus">22-redis-integration example</a>.</p>
+<p>You can find the complete Idempotent Receiver route and test in the <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main/examples/22-redis-integration/quarkus">22-redis-integration example</a>.</p>
 
 <h1 id="testing-circuit-breaker-fallback-paths">Testing Circuit Breaker fallback paths</h1>
 
@@ -604,7 +608,7 @@ The first time the inventory check fails, the fallback executes immediately — 
 This makes testing straightforward: you just need one message that triggers the exception. 
 You do not need to send enough failing messages to trip the circuit first.</p>
 
-<p>You can find the complete Circuit Breaker route and test in the <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing/examples/18-testing-management/quarkus">18-testing-management example</a>.</p>
+<p>You can find the complete Circuit Breaker route and test in the <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main/examples/18-testing-management/quarkus">18-testing-management example</a>.</p>
 
 <h1 id="wrapping-up">Wrapping up</h1>
 
@@ -621,7 +625,7 @@ You do not need to send enough failing messages to trip the circuit first.</p>
 <strong>Route testability</strong>: extract inline branches into named <code class="highlighter-rouge">direct:</code> routes so every code path is visible to MBean-based assertions by accessing the route statistics and the number of completed exchanges.</li>
 </ul>
 
-<p>You can explore all the reliability pattern examples in the <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing">eip-with-camel repository</a>, specifically the <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing/examples/05-reliability">05-reliability</a>, <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing/examples/22-redis-integration">22-redis-integration</a>, and <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing/examples/18-testing-management">18-testing-management</a> examples.</p>
+<p>You can explore all the reliability pattern examples in the <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main">eip-with-camel repository</a>, specifically the <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main/examples/05-reliability">05-reliability</a>, <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main/examples/22-redis-integration">22-redis-integration</a>, and <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main/examples/18-testing-management">18-testing-management</a> examples.</p>
 
 <p>Give it a try, and let us know what you think!</p>
 
@@ -644,6 +648,14 @@ You do not need to send enough failing messages to trip the circuit first.</p>
     <h4>Posts</h4>
     <ul>
         
+        
+        <li class="">
+          <a href="/news/2026/09/16/multi-runtime-testing/">» Multi-Runtime Testing</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/09/15/camel-cli-test-plugin/">» Camel CLI test plugin</a>
+        </li>
         
         <li class="">
           <a href="/news/2026/09/14/kafka-testing-pitfalls/">» Kafka Testing Pitfalls</a>

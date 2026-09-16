@@ -117,6 +117,10 @@
     <optgroup label="Posts">
       
       
+      <option value="/news/2026/09/16/multi-runtime-testing/">Multi-Runtime Testing — One Test Pattern, Three Different Runtimes</option>
+      
+      <option value="/news/2026/09/15/camel-cli-test-plugin/">Camel CLI test plugin - Zero-Code Integration Tests</option>
+      
       <option value="/news/2026/09/14/kafka-testing-pitfalls/">Kafka Testing Pitfalls in Camel Integration Tests</option>
       
       <option value="/news/2026/09/14/camel-testing-pitfalls/">Camel Integration Testing Pitfalls</option>
@@ -178,6 +182,1235 @@
 
       <div class="unit four-fifths">
         
+
+  <article>
+  <h2>
+    Multi-Runtime Testing — One Test Pattern, Three Different Runtimes
+    <a href="/news/2026/09/16/multi-runtime-testing/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      blog
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      16 Sep 2026
+    </span>
+    <a href="https://github.com/christophd" class="post-author">
+      
+      Christoph Deppisch
+    </a>
+  </div>
+  <div class="post-content">
+    <p><a href="https://camel.apache.org">Apache Camel</a> runs on multiple runtimes like Quarkus, Spring Boot, and standalone with YAML DSL via JBang. 
+Your routes might be identical across runtimes — the same Kafka consumer, the same content-based router, the same message filtering or database enrichment. 
+Depending on the underlying framework our tests need runtime-specific wiring: different annotations, different dependency injection, different lifecycle management. The good news is that the core <a href="https://citrusframework.org">Citrus</a> testing patterns are the same everywhere. Only the scaffolding changes.</p>
+
+<p>In this post, we walk through the same test scenario — send an order to Kafka, verify that events get produced on the correct output topic — implemented on all three runtimes Quarkus, Spring Boot and plain YAML. We highlight exactly what changes between Quarkus, Spring Boot, and YAML DSL, and what stays constant. By the end, you will know how to apply proper Citrus integration testing to the runtime that matches your project.</p>
+
+<p><img src="/img/assets/multi-runtime-testing/featured.png" alt="Featured" width="700px" class="center-image">
+<em>AI generated with Google Gemini</em></p>
+
+<h1 id="the-common-test-pattern">The common test pattern</h1>
+
+<p>Regardless of runtime, every Citrus integration test for Camel follows the same pattern:</p>
+
+<ol>
+  <li>Wait for the Camel route to start.</li>
+  <li>Send a message to the route’s input endpoint.</li>
+  <li>Receive and verify the message on the route’s output endpoint.</li>
+</ol>
+
+<p>Here is what that looks like in Java — this code is identical across Quarkus and Spring Boot runtimes:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+    <span class="n">createVariables</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mi">100</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"status"</span><span class="o">,</span> <span class="s">"placed"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"priority"</span><span class="o">,</span> <span class="s">"STANDARD"</span><span class="o">)</span>
+<span class="o">);</span>
+
+<span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"datatype-channel-router"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+<span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+    <span class="n">send</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">fork</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+<span class="o">);</span>
+
+<span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+    <span class="n">receive</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed.typed?consumerGroup=citrus-placed-group-group"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p>The test actions — <code class="highlighter-rouge">send()</code>, <code class="highlighter-rouge">receive()</code>, <code class="highlighter-rouge">repeatOnError()</code>, <code class="highlighter-rouge">waitForCamelRouteStarted()</code>, <code class="highlighter-rouge">createVariables()</code> — are runtime-agnostic. They come from the <code class="highlighter-rouge">TestActionSupport</code> interface, which both Quarkus and Spring Boot test classes can implement in the exact same way. Both test classes in the different runtimes may implement the exact same base interface <code class="highlighter-rouge">EipTestSupport</code> that we explore next.</p>
+
+<h2 id="the-message-template">The message template</h2>
+
+<p>Place an <code class="highlighter-rouge">order.json</code> template under <code class="highlighter-rouge">src/test/resources/templates/</code>:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="err">org.citrusframework</span><span class="p">:</span><span class="err">citrus-website</span><span class="p">:</span><span class="err">pom</span><span class="p">:</span><span class="mf">1.1</span><span class="err">.</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUST-00org.citrusframework:citrus-website:pom:1.1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"item_sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SKU-SHIP-org.citrusframework:citrus-website:pom:1.1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="p">{</span><span class="err">amount</span><span class="p">},</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${status}"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"shipping_priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${priority}"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Citrus resolves the <code class="highlighter-rouge">MavenProject: org.citrusframework:citrus-website:1.1.0 @ /Users/cdeppisc/Projects/Citrus/citrus-website/pom.xml</code> placeholders at runtime. The same template is used for both sending and receiving — the test sends an order with specific values and expects to receive it back with the same values after processing. This ensures the route preserved the message content faithfully.</p>
+
+<p>Test variable support is runtime agnostic and the same template can be used across all different runtimes Quarkus, Spring Boot and YAML DSL.</p>
+
+<h2 id="shared-test-actions---waiting-for-camel-routes-to-start">Shared test actions - Waiting for Camel routes to start</h2>
+
+<p>Test classes in all runtimes can implement the base interface <code class="highlighter-rouge">TestActionSupport</code> with all its basic Citrus test actions like <code class="highlighter-rouge">send()</code> and <code class="highlighter-rouge">receive()</code>. In fact, we can use a custom base interface <code class="highlighter-rouge">EipTestSupport</code> that extends the Citrus base interface. This is the place to provide default shared test action methods that can be used in all tests, like the <code class="highlighter-rouge">waitForCamelRouteStarted()</code> helper method that makes use of the normal Citrus <code class="highlighter-rouge">repeatOnError()</code> to poll the Camel control bus until a given route reaches <code class="highlighter-rouge">Started</code> status. The helper method only depends on the <code class="highlighter-rouge">CamelContext</code>, which both runtimes provide — just through different injection mechanisms.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">EipTestSupport</span> <span class="kd">extends</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
+
+    <span class="k">default</span> <span class="n">TestActionBuilder</span><span class="o">&lt;?&gt;</span> <span class="n">waitForCamelRouteStarted</span><span class="o">(</span>
+            <span class="n">String</span> <span class="n">routeId</span><span class="o">,</span> <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">repeatOnError</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">(</span><span class="n">camelContext</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">controlBus</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">route</span><span class="o">(</span><span class="n">routeId</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">status</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">result</span><span class="o">(</span><span class="n">ServiceStatus</span><span class="o">.</span><span class="na">Started</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">description</span><span class="o">(</span><span class="s">"Waiting for Camel route '%s' to be started ..."</span>
+                                <span class="o">.</span><span class="na">formatted</span><span class="o">(</span><span class="n">routeId</span><span class="o">)),</span>
+                    <span class="n">sleep</span><span class="o">().</span><span class="na">seconds</span><span class="o">(</span><span class="mi">5</span><span class="o">)</span>
+                <span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This uses Camel’s <strong>ControlBus</strong> component to query the route’s status. The ControlBus is a management interface built into Camel that lets you inspect and control routes at runtime. The method polls the route status in a retry loop — if the route hasn’t started yet (because the Kafka broker is still initializing, for example), it retries up to 20 times with 1-second intervals.</p>
+
+<p>The test class implements this interface (<code class="highlighter-rouge">class EipTests implements EipTestSupport</code>), which makes the method available in all test methods. This interface is identical across chapters and can be copied as-is into any Citrus test package.</p>
+
+<h1 id="quarkus-runtime">Quarkus runtime</h1>
+
+<p>The Quarkus runtime uses <code class="highlighter-rouge">@QuarkusTest</code> for the test lifecycle and <code class="highlighter-rouge">@CitrusSupport</code> (coming from the Citrus Quarkus extension) to activate Citrus. Here is the full test class structure:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@QuarkusTest</span>
+<span class="nd">@CitrusSupport</span>
+<span class="kd">class</span> <span class="nc">EipTests</span> <span class="kd">implements</span> <span class="n">EipTestSupport</span> <span class="o">{</span>
+
+    <span class="nd">@CitrusResource</span>
+    <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
+
+    <span class="nd">@Inject</span>
+    <span class="nd">@BindToRegistry</span>
+    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="nd">@Nested</span>
+    <span class="kd">class</span> <span class="nc">DatatypeChannelRouteTest</span> <span class="o">{</span>
+
+        <span class="nd">@Test</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldHandlePlacedOrders</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+                <span class="n">createVariables</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"status"</span><span class="o">,</span> <span class="s">"placed"</span><span class="o">)</span>
+            <span class="o">);</span>
+            
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"datatype-channel-router"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+                <span class="n">send</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">fork</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+                <span class="n">receive</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed.typed?consumerGroup=citrus-placed-group-group"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+            <span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Three things to notice:</p>
+
+<h2 id="testcaserunner-placement">TestCaseRunner placement</h2>
+
+<p>The <code class="highlighter-rouge">@CitrusResource TestCaseRunner t</code> field is declared on the <strong>outer class</strong>, not inside each <code class="highlighter-rouge">@Nested</code> class. Quarkus injects the runner at the top level, and nested test classes inherit it. This is the opposite of Spring Boot, where the runner must be declared inside each nested class.</p>
+
+<h2 id="camelcontext-injection">CamelContext injection</h2>
+
+<p>The <code class="highlighter-rouge">CamelContext</code> requires <strong>both</strong> <code class="highlighter-rouge">@Inject</code> and <code class="highlighter-rouge">@BindToRegistry</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Inject</span>
+<span class="nd">@BindToRegistry</span>
+<span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">@Inject</code> is the standard CDI injection. <code class="highlighter-rouge">@BindToRegistry</code> registers the context in the Citrus bean registry so that Citrus test actions can find it. Without <code class="highlighter-rouge">@BindToRegistry</code>, actions like <code class="highlighter-rouge">camel().camelContext(camelContext)</code> would fail to resolve the context.</p>
+
+<h2 id="infrastructure-setup-with-citrusconfiguration">Infrastructure setup with <a href="https://github.com/CitrusConfiguration" class="user-mention">@CitrusConfiguration</a>
+</h2>
+
+<p>Quarkus uses Citrus-native annotations for infrastructure setup:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@CitrusConfiguration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EipInfraSetup</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
+
+    <span class="nd">@BindToRegistry</span>
+    <span class="kd">public</span> <span class="n">BeforeSuite</span> <span class="nf">startInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">beforeSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">up</span><span class="o">(</span><span class="s">"_infra/compose.yaml"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">autoRemove</span><span class="o">(</span><span class="kc">false</span><span class="o">),</span>
+                    <span class="n">waitFor</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">http</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://localhost:8090"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">25</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@BindToRegistry</span>
+    <span class="kd">public</span> <span class="n">AfterSuite</span> <span class="nf">stopInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">afterSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">().</span><span class="na">stop</span><span class="o">(),</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">down</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The class uses <code class="highlighter-rouge">@CitrusConfiguration</code> (not Spring’s <code class="highlighter-rouge">@Configuration</code>) and <code class="highlighter-rouge">@BindToRegistry</code> (not Spring’s <code class="highlighter-rouge">@Bean</code>). Citrus discovers this configuration class through a properties file.</p>
+
+<h2 id="configuration-discovery">Configuration discovery</h2>
+
+<p>Quarkus requires a <code class="highlighter-rouge">citrus-application.properties</code> file in <code class="highlighter-rouge">src/test/resources/</code> to tell Citrus where to find the configuration:</p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">citrus.java.config</span><span class="p">=</span><span class="s">com.example.eip.channels.config.EipInfraSetup</span>
+</code></pre></div></div>
+
+<p>Without this file, Citrus will not discover the <code class="highlighter-rouge">EipInfraSetup</code> class and the Docker Compose infrastructure will not start.</p>
+
+<h2 id="dependencies">Dependencies</h2>
+
+<p>The Quarkus test module requires these Citrus dependencies:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-quarkus<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-camel<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-junit-jupiter<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-kafka<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-testcontainers<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-validation-json<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>The key module is <code class="highlighter-rouge">citrus-quarkus</code> — it provides the <code class="highlighter-rouge">@CitrusSupport</code> annotation and the Quarkus-specific test lifecycle integration.</p>
+
+<p>You can find the complete Quarkus test in the <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main/examples/04-channel-types/quarkus">04-channel-types/quarkus example</a>.</p>
+
+<h1 id="spring-boot-runtime">Spring Boot runtime</h1>
+
+<p>The Spring Boot runtime uses a different set of annotations but the same core test logic. Here is the test class structure:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@SpringBootTest</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="n">ChannelTypesApplication</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="nd">@CamelSpringBootTest</span>
+<span class="nd">@CitrusSpringSupport</span>
+<span class="nd">@ContextConfiguration</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="o">{</span> <span class="n">EipInfraSetup</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">CitrusSpringConfig</span><span class="o">.</span><span class="na">class</span> <span class="o">})</span>
+<span class="kd">class</span> <span class="nc">EipTests</span> <span class="kd">implements</span> <span class="n">EipTestSupport</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="nd">@Nested</span>
+    <span class="kd">class</span> <span class="nc">DatatypeChannelRouteTest</span> <span class="o">{</span>
+
+        <span class="nd">@CitrusResource</span>
+        <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
+
+        <span class="nd">@Test</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldHandlePlacedOrders</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+                <span class="n">createVariables</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"status"</span><span class="o">,</span> <span class="s">"placed"</span><span class="o">)</span>
+            <span class="o">);</span>
+            
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"datatype-channel-router"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+                <span class="n">send</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">fork</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+                <span class="n">receive</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed.typed?consumerGroup=citrus-placed-group-group"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+            <span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The test body inside <code class="highlighter-rouge">shouldHandlePlacedOrders</code> is identical to the Quarkus version. Everything that differs is in the class-level annotations and field declarations.</p>
+
+<h2 id="class-level-annotations-in-spring-boot">Class-level annotations in Spring Boot</h2>
+
+<p>Spring Boot requires four class-level annotations to combine Spring, Apache Camel and Citrus:</p>
+
+<ul>
+  <li>
+<code class="highlighter-rouge">@SpringBootTest(classes = ChannelTypesApplication.class)</code> — boots the Spring application context.</li>
+  <li>
+<code class="highlighter-rouge">@CamelSpringBootTest</code> — integrates the Camel test lifecycle with Spring Boot.</li>
+  <li>
+<code class="highlighter-rouge">@CitrusSpringSupport</code> — activates Citrus with Spring-aware dependency injection.</li>
+  <li>
+<code class="highlighter-rouge">@ContextConfiguration(classes = { EipInfraSetup.class, CitrusSpringConfig.class })</code> — loads the infrastructure setup and Citrus Spring configuration.</li>
+</ul>
+
+<p>The <code class="highlighter-rouge">@ContextConfiguration</code> is how Spring Boot discovers the infrastructure setup class — no <code class="highlighter-rouge">citrus-application.properties</code> needed.</p>
+
+<h2 id="testcaserunner-placement--the-key-difference">TestCaseRunner placement — the key difference</h2>
+
+<p>In Spring Boot, <code class="highlighter-rouge">@CitrusResource TestCaseRunner t</code> must be declared inside <strong>each <code class="highlighter-rouge">@Nested</code> class</strong>, not on the outer class:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Nested</span>
+<span class="kd">class</span> <span class="nc">DatatypeChannelRouteTest</span> <span class="o">{</span>
+
+    <span class="nd">@CitrusResource</span>
+    <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
+
+    <span class="c1">// tests use t here</span>
+<span class="o">}</span>
+
+<span class="nd">@Nested</span>
+<span class="kd">class</span> <span class="nc">PointToPointRouteTest</span> <span class="o">{</span>
+
+    <span class="nd">@CitrusResource</span>
+    <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
+
+    <span class="c1">// tests use t here</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This is the single most common source of confusion when moving tests between runtimes. In Quarkus, declaring <code class="highlighter-rouge">t</code> on the outer class works because the CDI-based injection flows into nested classes. In Spring Boot, each nested class gets its own Citrus test context, so each needs its own runner.</p>
+
+<h2 id="camelcontext-injection--simpler">CamelContext injection — simpler</h2>
+
+<p>Spring Boot uses standard <code class="highlighter-rouge">@Autowired</code> without any registry annotation:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Autowired</span>
+<span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p>No <code class="highlighter-rouge">@BindToRegistry</code> is needed because Spring Boot’s application context already makes the <code class="highlighter-rouge">CamelContext</code> available to Citrus through Spring’s dependency injection.</p>
+
+<h2 id="infrastructure-setup-with-configuration">Infrastructure setup with <a href="https://github.com/Configuration" class="user-mention">@Configuration</a>
+</h2>
+
+<p>Spring Boot uses Spring-native annotations:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EipInfraSetup</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">BeforeSuite</span> <span class="nf">startInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">beforeSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">up</span><span class="o">(</span><span class="s">"_infra/compose.yaml"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">autoRemove</span><span class="o">(</span><span class="kc">false</span><span class="o">),</span>
+                    <span class="n">waitFor</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">http</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://localhost:8090"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">25</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">AfterSuite</span> <span class="nf">stopInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">afterSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">().</span><span class="na">stop</span><span class="o">(),</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">down</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Compare this to the Quarkus version: <code class="highlighter-rouge">@Configuration</code> replaces <code class="highlighter-rouge">@CitrusConfiguration</code>, and <code class="highlighter-rouge">@Bean</code> replaces <code class="highlighter-rouge">@BindToRegistry</code>. The method bodies are identical — only the annotations differ.</p>
+
+<h2 id="dependencies-1">Dependencies</h2>
+
+<p>The Spring Boot module swaps <code class="highlighter-rouge">citrus-quarkus</code> for <code class="highlighter-rouge">citrus-spring</code>:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-spring<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>All other Citrus dependencies (<code class="highlighter-rouge">citrus-camel</code>, <code class="highlighter-rouge">citrus-junit-jupiter</code>, <code class="highlighter-rouge">citrus-kafka</code>, <code class="highlighter-rouge">citrus-testcontainers</code>, <code class="highlighter-rouge">citrus-validation-json</code>) are the same.</p>
+
+<p>You can find the complete Spring Boot test in the <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main/examples/04-channel-types/spring-boot">04-channel-types/spring-boot example</a>.</p>
+
+<h1 id="yaml-dsl-runtime">YAML DSL runtime</h1>
+
+<p>The YAML DSL runtime takes a completely different approach. There are no Java classes, no annotations, and no POM dependencies. Tests are written as <code class="highlighter-rouge">.citrus.it.yaml</code> files and executed by the Camel JBang test runner.</p>
+
+<p>Here is a YAML DSL test for the same datatype channel scenario:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">datatype-channel-test</span>
+<span class="na">description</span><span class="pi">:</span> <span class="s">Test verifying the Datatype Channel route</span>
+<span class="na">variables</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">kafka.broker</span>
+    <span class="na">value</span><span class="pi">:</span> <span class="s">localhost:9092</span>
+<span class="na">actions</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">testcontainers</span><span class="pi">:</span>
+      <span class="na">compose</span><span class="pi">:</span>
+        <span class="na">up</span><span class="pi">:</span>
+          <span class="na">file</span><span class="pi">:</span> <span class="s2">"</span><span class="s">_infra/compose.yaml"</span>
+  <span class="pi">-</span> <span class="na">camel</span><span class="pi">:</span>
+      <span class="na">jbang</span><span class="pi">:</span>
+        <span class="na">run</span><span class="pi">:</span>
+          <span class="na">integration</span><span class="pi">:</span>
+            <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">datatype-channel"</span>
+            <span class="na">file</span><span class="pi">:</span> <span class="s2">"</span><span class="s">../datatype-channel.yaml"</span>
+            <span class="na">systemProperties</span><span class="pi">:</span>
+              <span class="na">file</span><span class="pi">:</span> <span class="s2">"</span><span class="s">../application.properties"</span>
+  <span class="pi">-</span> <span class="na">createVariables</span><span class="pi">:</span>
+      <span class="na">variables</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">id</span>
+          <span class="na">value</span><span class="pi">:</span> <span class="s2">"</span><span class="s">citrus:randomNumber(4)"</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">status</span>
+          <span class="na">value</span><span class="pi">:</span> <span class="s2">"</span><span class="s">placed"</span>
+  <span class="pi">-</span> <span class="na">send</span><span class="pi">:</span>
+      <span class="na">endpoint</span><span class="pi">:</span> <span class="pi">&gt;-</span>
+        <span class="no">kafka:eip.orders.placed?server=${kafka.broker}</span>
+      <span class="no">message:</span>
+        <span class="no">body:</span>
+          <span class="no">resource:</span>
+            <span class="no">file: "templates/order.json"</span>
+  <span class="pi">-</span> <span class="na">camel</span><span class="pi">:</span>
+      <span class="na">jbang</span><span class="pi">:</span>
+        <span class="na">verify</span><span class="pi">:</span>
+          <span class="na">integration</span><span class="pi">:</span> <span class="s2">"</span><span class="s">datatype-channel"</span>
+          <span class="na">logMessage</span><span class="pi">:</span> <span class="s2">"</span><span class="s">→</span><span class="nv"> </span><span class="s">eip.orders.placed.typed"</span>
+</code></pre></div></div>
+
+<h2 id="structure">Structure</h2>
+
+<p>A YAML DSL test file has three top-level keys:</p>
+
+<ul>
+  <li>
+<code class="highlighter-rouge">name</code> and <code class="highlighter-rouge">description</code> — test metadata.</li>
+  <li>
+<code class="highlighter-rouge">variables</code> — test-scoped variables, equivalent to <code class="highlighter-rouge">createVariables()</code> in Java.</li>
+  <li>
+<code class="highlighter-rouge">actions</code> — the test steps, executed in order.</li>
+</ul>
+
+<h2 id="starting-infrastructure-and-routes">Starting infrastructure and routes</h2>
+
+<p>The first two actions handle what the <code class="highlighter-rouge">EipInfraSetup</code> class does in Java:</p>
+
+<ol>
+  <li>
+<code class="highlighter-rouge">testcontainers.compose.up</code> starts Docker Compose infrastructure.</li>
+  <li>
+<code class="highlighter-rouge">camel.jbang.run</code> starts the Camel route as a JBang integration, loading its properties file.</li>
+</ol>
+
+<p>There is no equivalent of <code class="highlighter-rouge">BeforeSuite</code>/<code class="highlighter-rouge">AfterSuite</code> — the infrastructure starts inline as the first test actions.</p>
+
+<h2 id="verification-with-log-messages">Verification with log messages</h2>
+
+<p>Instead of receiving messages from Kafka output topics, YAML DSL tests use <code class="highlighter-rouge">camel.jbang.verify</code> to check route log output:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">camel</span><span class="pi">:</span>
+    <span class="na">jbang</span><span class="pi">:</span>
+      <span class="na">verify</span><span class="pi">:</span>
+        <span class="na">integration</span><span class="pi">:</span> <span class="s2">"</span><span class="s">datatype-channel"</span>
+        <span class="na">logMessage</span><span class="pi">:</span> <span class="s2">"</span><span class="s">→</span><span class="nv"> </span><span class="s">eip.orders.placed.typed"</span>
+</code></pre></div></div>
+
+<p>This asserts that the running Camel integration logged a message containing the specified text. It is a lighter-weight verification than consuming from the output topic, and it works well for routes where the log statement confirms the routing decision.</p>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>YAML DSL tests has a <code class="highlighter-rouge">citrus-application.properties</code> in the test directory with some properties specific to the JBang runtime:</p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">citrus.camel.jbang.dump.integration.output</span><span class="p">=</span><span class="s">true</span>
+<span class="py">citrus.camel.jbang.version</span><span class="p">=</span><span class="s">4.21.0</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">dump.integration.output=true</code> setting enables log capture so that <code class="highlighter-rouge">camel.jbang.verify</code> can match against route log output. The <code class="highlighter-rouge">version</code> setting pins the JBang Camel version.</p>
+
+<p>You can find the complete YAML DSL tests in the <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main/examples/04-channel-types/yaml-dsl">04-channel-types/yaml-dsl example</a>.</p>
+
+<h1 id="side-by-side-comparison">Side-by-side comparison</h1>
+
+<p>Here is the full comparison of what changes across runtimes:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Aspect</th>
+      <th>Quarkus</th>
+      <th>Spring Boot</th>
+      <th>YAML DSL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Test annotations</td>
+      <td>
+<code class="highlighter-rouge">@QuarkusTest</code>, <code class="highlighter-rouge">@CitrusSupport</code>
+</td>
+      <td>
+<code class="highlighter-rouge">@SpringBootTest</code>, <code class="highlighter-rouge">@CamelSpringBootTest</code>, <code class="highlighter-rouge">@CitrusSpringSupport</code>, <code class="highlighter-rouge">@ContextConfig</code>
+</td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>TestCaseRunner injection</td>
+      <td>Outer class</td>
+      <td>Each <code class="highlighter-rouge">@Nested</code> class</td>
+      <td>N/A (implicit)</td>
+    </tr>
+    <tr>
+      <td>CamelContext injection</td>
+      <td>
+<code class="highlighter-rouge">@Inject</code>, <code class="highlighter-rouge">@BindToRegistry</code>
+</td>
+      <td><code class="highlighter-rouge">@Autowired</code></td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>Infrastructure setup</td>
+      <td>
+<code class="highlighter-rouge">@CitrusConfiguration</code>, <code class="highlighter-rouge">@BindToRegistry</code>
+</td>
+      <td>
+<code class="highlighter-rouge">@Configuration</code>, <code class="highlighter-rouge">@Bean</code>
+</td>
+      <td>
+<code class="highlighter-rouge">testcontainers</code> action</td>
+    </tr>
+    <tr>
+      <td>Config discovery</td>
+      <td>
+<code class="highlighter-rouge">citrus-application</code> properties</td>
+      <td>Automatic via <code class="highlighter-rouge">@ContextConfig</code>
+</td>
+      <td>
+<code class="highlighter-rouge">citrus-application</code> properties</td>
+    </tr>
+    <tr>
+      <td>Runtime module</td>
+      <td><code class="highlighter-rouge">citrus-quarkus</code></td>
+      <td><code class="highlighter-rouge">citrus-spring</code></td>
+      <td>Built into JBang CLI tooling</td>
+    </tr>
+    <tr>
+      <td>Verification</td>
+      <td>Kafka event receive</td>
+      <td>Kafka event receive</td>
+      <td>Kafka event + Log message</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The key takeaway: the test actions — <code class="highlighter-rouge">send()</code>, <code class="highlighter-rouge">receive()</code>, <code class="highlighter-rouge">repeatOnError()</code>, <code class="highlighter-rouge">waitForCamelRouteStarted()</code> — are identical in Quarkus and Spring Boot. The YAML DSL uses its own action syntax but expresses the same concepts. What changes is the wiring: how you start the test, how you inject dependencies, and how you discover configuration.</p>
+
+<h1 id="infrastructure-setup--what-is-shared">Infrastructure setup — what is shared</h1>
+
+<p>Despite the annotation differences, the infrastructure setup logic is identical across runtimes.</p>
+
+<h2 id="docker-compose-files">Docker Compose files</h2>
+
+<p>The <code class="highlighter-rouge">compose.yaml</code> file under <code class="highlighter-rouge">_infra/</code> is the same for all three runtimes. 
+It defines the Kafka broker, schema registry, PostgreSQL, or whatever services the routes need. The only difference is how the test references it:</p>
+
+<ul>
+  <li>
+<strong>Quarkus/Spring Boot</strong>: <code class="highlighter-rouge">testcontainers().compose().up("_infra/compose.yaml")</code> in the <code class="highlighter-rouge">EipInfraSetup</code> class.</li>
+  <li>
+<strong>YAML DSL</strong>: <code class="highlighter-rouge">testcontainers.compose.up.file: "_infra/compose.yaml"</code> as the first test action.</li>
+</ul>
+
+<h2 id="readiness-checks">Readiness checks</h2>
+
+<p>The <code class="highlighter-rouge">waitFor().http()</code> pattern is the same in both Java runtimes:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">waitFor</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">http</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://localhost:8090"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">25</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>In YAML DSL, the route startup is handled by <code class="highlighter-rouge">camel.jbang.run</code>, which waits for the integration to be ready before proceeding.</p>
+
+<h2 id="template-files">Template files</h2>
+
+<p>JSON template files (like <code class="highlighter-rouge">order.json</code>) live under <code class="highlighter-rouge">src/test/resources/templates/</code> in Java runtimes and under <code class="highlighter-rouge">test/templates/</code> in YAML DSL. The file structure is the same — only the variable placeholder style differs (<code class="highlighter-rouge">org.citrusframework:citrus-website:pom:1.1.0</code> vs <code class="highlighter-rouge">${order.id}</code>).</p>
+
+<h1 id="choosing-a-runtime">Choosing a runtime</h1>
+
+<p>Pick the runtime that matches your project:</p>
+
+<ul>
+  <li>
+<strong>Quarkus</strong> if you are building a Quarkus application. The test annotations are minimal (<code class="highlighter-rouge">@QuarkusTest @CitrusSupport</code>), and CDI injection keeps the wiring lean.</li>
+  <li>
+<strong>Spring Boot</strong> if you are building a Spring Boot application. The additional annotations (<code class="highlighter-rouge">@CamelSpringBootTest</code>, <code class="highlighter-rouge">@ContextConfiguration</code>) are verbose but integrate naturally with Spring’s test infrastructure.</li>
+  <li>
+<strong>YAML DSL</strong> if you are prototyping with Camel JBang or writing standalone routes without a Java framework. No POM, no annotations, no compiled code.</li>
+</ul>
+
+<p>The testing patterns transfer across all three. Once you learn <code class="highlighter-rouge">send()</code>, <code class="highlighter-rouge">receive()</code>, <code class="highlighter-rouge">repeatOnError()</code>, and <code class="highlighter-rouge">waitForCamelRouteStarted()</code> in one runtime, you can apply the same patterns in any other. The EipTestSupport interface, the infrastructure lifecycle, and the assertion strategies are portable — only the annotations and injection mechanisms are runtime-specific.</p>
+
+<p>You can explore all three runtime variants side by side in the <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main">eip-with-camel repository</a>. Every example under <code class="highlighter-rouge">examples/</code> has <code class="highlighter-rouge">quarkus/</code>, <code class="highlighter-rouge">spring-boot/</code>, and <code class="highlighter-rouge">yaml-dsl/</code> subdirectories implementing the same routes and tests.</p>
+
+<p>Give it a try, and let us know what you think!</p>
+
+  </div>
+</article>
+
+
+  <article>
+  <h2>
+    Camel CLI test plugin - Zero-Code Integration Tests
+    <a href="/news/2026/09/15/camel-cli-test-plugin/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      blog
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      15 Sep 2026
+    </span>
+    <a href="https://github.com/christophd" class="post-author">
+      
+      Christoph Deppisch
+    </a>
+  </div>
+  <div class="post-content">
+    <p><a href="https://camel.apache.org">Apache Camel</a>’s YAML DSL lets you define integration routes without writing Java. <a href="https://camel.apache.org/manual/camel-jbang.html">Camel JBang</a> lets you run them without a build tool. But how do you test them? Writing a Java test class with JUnit, <code class="highlighter-rouge">@QuarkusTest</code>, and Maven feels like overkill when the route itself is a single 20-line YAML file.</p>
+
+<p><a href="https://citrusframework.org">Citrus</a> supports a YAML test DSL that mirrors this philosophy. You define your tests in <code class="highlighter-rouge">*.citrus.it.yaml</code> files alongside your YAML routes and run them with <code class="highlighter-rouge">camel test</code>. The test files follow the same declarative style as the routes — no Java, no Maven, no build configuration. Infrastructure starts with Docker Compose, messages flow through real Kafka topics, REST endpoints receive real HTTP requests, and database rows get inserted and verified — all in YAML.</p>
+
+<p>This post walks through the full range of YAML DSL testing: Kafka message validation, REST endpoint testing, database interactions, and the infrastructure lifecycle that ties it all together.</p>
+
+<h1 id="the-yaml-test-file-structure">The YAML test file structure</h1>
+
+<p>A Citrus YAML test file has four parts: a name, a description, optional variables, and a list of actions that execute sequentially:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">OrderValidationTest</span>
+<span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Verify</span><span class="nv"> </span><span class="s">order</span><span class="nv"> </span><span class="s">validation</span><span class="nv"> </span><span class="s">route</span><span class="nv"> </span><span class="s">correctly</span><span class="nv"> </span><span class="s">routes</span><span class="nv"> </span><span class="s">valid</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">invalid</span><span class="nv"> </span><span class="s">orders"</span>
+<span class="na">actions</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">send</span><span class="pi">:</span>
+      <span class="na">endpoint</span><span class="pi">:</span> <span class="s2">"</span><span class="s">kafka:eip.orders.incoming"</span>
+      <span class="na">message</span><span class="pi">:</span>
+        <span class="na">body</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="no">{"orderId":"ORD-001","customerId":"C-101","item":"Shipping Container","quantity":2}</span>
+  <span class="pi">-</span> <span class="na">receive</span><span class="pi">:</span>
+      <span class="na">endpoint</span><span class="pi">:</span> <span class="s2">"</span><span class="s">kafka:eip.orders.validated"</span>
+      <span class="na">timeout</span><span class="pi">:</span> <span class="s">10000</span>
+      <span class="na">message</span><span class="pi">:</span>
+        <span class="na">body</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="no">{"orderId":"ORD-001","customerId":"C-101","item":"Shipping Container","quantity":2}</span>
+</code></pre></div></div>
+
+<p>The file uses the naming convention <code class="highlighter-rouge">&lt;name&gt;.citrus.it.yaml</code> — the <code class="highlighter-rouge">.citrus.it.yaml</code> suffix tells the Camel test runner to treat it as a Citrus integration test. Actions run top to bottom: each action must complete before the next one starts. If any action fails, the test stops immediately with a validation error.</p>
+
+<p>You run the test with the Camel CLI:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>camel <span class="nb">test </span>run <span class="nb">test</span>/order-validation-test.yaml
+</code></pre></div></div>
+
+<p>No <code class="highlighter-rouge">pom.xml</code>, no <code class="highlighter-rouge">mvn verify</code>, no JUnit runner. The Camel test plugin handles dependency resolution, Citrus initialization, and test execution.</p>
+
+<h1 id="an-example---testing-kafka-routes">An example - Testing Kafka routes</h1>
+
+<h2 id="the-camel-route-under-test">The Camel route under test</h2>
+
+<p>Here is an order validation route written in YAML DSL. 
+It consumes orders from Kafka, checks for required fields, and routes valid orders to <code class="highlighter-rouge">eip.orders.validated</code> and invalid ones to <code class="highlighter-rouge">eip.orders.rejected</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">route</span><span class="pi">:</span>
+    <span class="na">id</span><span class="pi">:</span> <span class="s">order-validation</span>
+    <span class="na">from</span><span class="pi">:</span>
+      <span class="na">uri</span><span class="pi">:</span> <span class="s">kafka:eip.orders.incoming</span>
+      <span class="na">steps</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">unmarshal</span><span class="pi">:</span>
+            <span class="na">json</span><span class="pi">:</span>
+              <span class="na">unmarshalType</span><span class="pi">:</span> <span class="s">java.util.Map</span>
+        <span class="pi">-</span> <span class="na">choice</span><span class="pi">:</span>
+            <span class="na">when</span><span class="pi">:</span>
+              <span class="pi">-</span> <span class="na">simple</span><span class="pi">:</span> <span class="s2">"</span><span class="s">${body[orderId]}</span><span class="nv"> </span><span class="s">==</span><span class="nv"> </span><span class="s">null"</span>
+                <span class="na">steps</span><span class="pi">:</span>
+                  <span class="pi">-</span> <span class="na">setHeader</span><span class="pi">:</span>
+                      <span class="na">name</span><span class="pi">:</span> <span class="s">rejectionReason</span>
+                      <span class="na">constant</span><span class="pi">:</span> <span class="s2">"</span><span class="s">orderId</span><span class="nv"> </span><span class="s">must</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">null"</span>
+                  <span class="pi">-</span> <span class="na">marshal</span><span class="pi">:</span>
+                      <span class="na">json</span><span class="pi">:</span> <span class="pi">{}</span>
+                  <span class="pi">-</span> <span class="na">to</span><span class="pi">:</span>
+                      <span class="na">uri</span><span class="pi">:</span> <span class="s">kafka:eip.orders.rejected</span>
+              <span class="pi">-</span> <span class="na">simple</span><span class="pi">:</span> <span class="s2">"</span><span class="s">${body[customerId]}</span><span class="nv"> </span><span class="s">==</span><span class="nv"> </span><span class="s">null"</span>
+                <span class="na">steps</span><span class="pi">:</span>
+                  <span class="pi">-</span> <span class="na">setHeader</span><span class="pi">:</span>
+                      <span class="na">name</span><span class="pi">:</span> <span class="s">rejectionReason</span>
+                      <span class="na">constant</span><span class="pi">:</span> <span class="s2">"</span><span class="s">customerId</span><span class="nv"> </span><span class="s">must</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">null"</span>
+                  <span class="pi">-</span> <span class="na">marshal</span><span class="pi">:</span>
+                      <span class="na">json</span><span class="pi">:</span> <span class="pi">{}</span>
+                  <span class="pi">-</span> <span class="na">to</span><span class="pi">:</span>
+                      <span class="na">uri</span><span class="pi">:</span> <span class="s">kafka:eip.orders.rejected</span>
+              <span class="pi">-</span> <span class="na">simple</span><span class="pi">:</span> <span class="s2">"</span><span class="s">${body[item]}</span><span class="nv"> </span><span class="s">==</span><span class="nv"> </span><span class="s">null"</span>
+                <span class="na">steps</span><span class="pi">:</span>
+                  <span class="pi">-</span> <span class="na">setHeader</span><span class="pi">:</span>
+                      <span class="na">name</span><span class="pi">:</span> <span class="s">rejectionReason</span>
+                      <span class="na">constant</span><span class="pi">:</span> <span class="s2">"</span><span class="s">item</span><span class="nv"> </span><span class="s">must</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">null"</span>
+                  <span class="pi">-</span> <span class="na">marshal</span><span class="pi">:</span>
+                      <span class="na">json</span><span class="pi">:</span> <span class="pi">{}</span>
+                  <span class="pi">-</span> <span class="na">to</span><span class="pi">:</span>
+                      <span class="na">uri</span><span class="pi">:</span> <span class="s">kafka:eip.orders.rejected</span>
+              <span class="pi">-</span> <span class="na">simple</span><span class="pi">:</span> <span class="s2">"</span><span class="s">${body[quantity]}</span><span class="nv"> </span><span class="s">==</span><span class="nv"> </span><span class="s">null</span><span class="nv"> </span><span class="s">||</span><span class="nv"> </span><span class="s">${body[quantity]}</span><span class="nv"> </span><span class="s">&lt;=</span><span class="nv"> </span><span class="s">0"</span>
+                <span class="na">steps</span><span class="pi">:</span>
+                  <span class="pi">-</span> <span class="na">setHeader</span><span class="pi">:</span>
+                      <span class="na">name</span><span class="pi">:</span> <span class="s">rejectionReason</span>
+                      <span class="na">constant</span><span class="pi">:</span> <span class="s2">"</span><span class="s">quantity</span><span class="nv"> </span><span class="s">must</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">greater</span><span class="nv"> </span><span class="s">than</span><span class="nv"> </span><span class="s">zero"</span>
+                  <span class="pi">-</span> <span class="na">marshal</span><span class="pi">:</span>
+                      <span class="na">json</span><span class="pi">:</span> <span class="pi">{}</span>
+                  <span class="pi">-</span> <span class="na">to</span><span class="pi">:</span>
+                      <span class="na">uri</span><span class="pi">:</span> <span class="s">kafka:eip.orders.rejected</span>
+            <span class="na">otherwise</span><span class="pi">:</span>
+              <span class="na">steps</span><span class="pi">:</span>
+                <span class="pi">-</span> <span class="na">setHeader</span><span class="pi">:</span>
+                    <span class="na">name</span><span class="pi">:</span> <span class="s">validatedAt</span>
+                    <span class="na">simple</span><span class="pi">:</span> <span class="s2">"</span><span class="s">${date:now:yyyy-MM-dd'T'HH:mm:ss.SSSZ}"</span>
+                <span class="pi">-</span> <span class="na">marshal</span><span class="pi">:</span>
+                    <span class="na">json</span><span class="pi">:</span> <span class="pi">{}</span>
+                <span class="pi">-</span> <span class="na">to</span><span class="pi">:</span>
+                    <span class="na">uri</span><span class="pi">:</span> <span class="s">kafka:eip.orders.validated</span>
+</code></pre></div></div>
+
+<p>The route has five branches: four rejection cases (missing <code class="highlighter-rouge">orderId</code>, <code class="highlighter-rouge">customerId</code>, <code class="highlighter-rouge">item</code>, or zero/missing <code class="highlighter-rouge">quantity</code>) and one success path. A thorough test covers all of them.</p>
+
+<p>With the Camel CLI tooling you can just run this single file with no further project setup.
+This is a perfect scene for fast prototyping and experimenting.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>camel run order-validation.yaml
+</code></pre></div></div>
+
+<h2 id="the-citrus-yaml-test">The Citrus YAML test</h2>
+
+<p>Citrus can use pure YAML test definitions in the same approach for fast prototyping and declarative testing without any further project setup.</p>
+
+<p>The Citrus YAML test can use the full capabilities of the framework with test actions and validation steps as we know it from the Java DSL.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">OrderValidationTest</span>
+<span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Verify</span><span class="nv"> </span><span class="s">order</span><span class="nv"> </span><span class="s">validation</span><span class="nv"> </span><span class="s">route</span><span class="nv"> </span><span class="s">correctly</span><span class="nv"> </span><span class="s">routes</span><span class="nv"> </span><span class="s">valid</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">invalid</span><span class="nv"> </span><span class="s">orders"</span>
+<span class="na">actions</span><span class="pi">:</span>
+  <span class="c1"># --- Scenario 1: valid order ---</span>
+  <span class="pi">-</span> <span class="na">send</span><span class="pi">:</span>
+      <span class="na">endpoint</span><span class="pi">:</span> <span class="s2">"</span><span class="s">kafka:eip.orders.incoming"</span>
+      <span class="na">message</span><span class="pi">:</span>
+        <span class="na">body</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="no">{"orderId":"ORD-001","customerId":"C-101","item":"Shipping Container","quantity":2}</span>
+  <span class="pi">-</span> <span class="na">receive</span><span class="pi">:</span>
+      <span class="na">endpoint</span><span class="pi">:</span> <span class="s2">"</span><span class="s">kafka:eip.orders.validated"</span>
+      <span class="na">timeout</span><span class="pi">:</span> <span class="s">10000</span>
+      <span class="na">message</span><span class="pi">:</span>
+        <span class="na">body</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="no">{"orderId":"ORD-001","customerId":"C-101","item":"Shipping Container","quantity":2}</span>
+
+  <span class="c1"># --- Scenario 2: missing customerId ---</span>
+  <span class="pi">-</span> <span class="na">send</span><span class="pi">:</span>
+      <span class="na">endpoint</span><span class="pi">:</span> <span class="s2">"</span><span class="s">kafka:eip.orders.incoming"</span>
+      <span class="na">message</span><span class="pi">:</span>
+        <span class="na">body</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="no">{"orderId":"ORD-002","item":"Pallet Jack","quantity":1}</span>
+  <span class="pi">-</span> <span class="na">receive</span><span class="pi">:</span>
+      <span class="na">endpoint</span><span class="pi">:</span> <span class="s2">"</span><span class="s">kafka:eip.orders.rejected"</span>
+      <span class="na">timeout</span><span class="pi">:</span> <span class="s">10000</span>
+      <span class="na">message</span><span class="pi">:</span>
+        <span class="na">body</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="no">{"orderId":"ORD-002","item":"Pallet Jack","quantity":1}</span>
+
+  <span class="c1"># --- Scenario 3: zero quantity ---</span>
+  <span class="pi">-</span> <span class="na">send</span><span class="pi">:</span>
+      <span class="na">endpoint</span><span class="pi">:</span> <span class="s2">"</span><span class="s">kafka:eip.orders.incoming"</span>
+      <span class="na">message</span><span class="pi">:</span>
+        <span class="na">body</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="no">{"orderId":"ORD-003","customerId":"C-102","item":"Cargo Net","quantity":0}</span>
+  <span class="pi">-</span> <span class="na">receive</span><span class="pi">:</span>
+      <span class="na">endpoint</span><span class="pi">:</span> <span class="s2">"</span><span class="s">kafka:eip.orders.rejected"</span>
+      <span class="na">timeout</span><span class="pi">:</span> <span class="s">10000</span>
+      <span class="na">message</span><span class="pi">:</span>
+        <span class="na">body</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="no">{"orderId":"ORD-003","customerId":"C-102","item":"Cargo Net","quantity":0}</span>
+
+  <span class="c1"># --- Scenario 4: missing item ---</span>
+  <span class="pi">-</span> <span class="na">send</span><span class="pi">:</span>
+      <span class="na">endpoint</span><span class="pi">:</span> <span class="s2">"</span><span class="s">kafka:eip.orders.incoming"</span>
+      <span class="na">message</span><span class="pi">:</span>
+        <span class="na">body</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="no">{"orderId":"ORD-004","customerId":"C-103","quantity":5}</span>
+  <span class="pi">-</span> <span class="na">receive</span><span class="pi">:</span>
+      <span class="na">endpoint</span><span class="pi">:</span> <span class="s2">"</span><span class="s">kafka:eip.orders.rejected"</span>
+      <span class="na">timeout</span><span class="pi">:</span> <span class="s">10000</span>
+      <span class="na">message</span><span class="pi">:</span>
+        <span class="na">body</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="no">{"orderId":"ORD-004","customerId":"C-103","quantity":5}</span>
+</code></pre></div></div>
+
+<p>Each scenario follows the same pattern: <code class="highlighter-rouge">send</code> a message to the input topic, <code class="highlighter-rouge">receive</code> from the expected output topic. The <code class="highlighter-rouge">timeout: 10000</code> gives the route up to 10 seconds to process the message — if no message arrives on the expected topic within that window, the test fails.</p>
+
+<p>The body validation is an exact JSON match. Citrus parses both the expected and actual JSON, compares every field, and reports any found mismatch. If the route changed a field value or dropped a field during processing, the validation catches it.</p>
+
+<h1 id="starting-test-infrastructure">Starting test infrastructure</h1>
+
+<p>The route under test connects to a Kafka message broker.
+We need to prepare this test infrastructure locally before starting the Camel route and the test. Or even more comfortable we let the Citrus test care about the test infrastructure provisioning.</p>
+
+<p>When the test needs real infrastructure — a Kafka broker, a database, a Pulsar cluster — you can start it with the <code class="highlighter-rouge">testcontainers</code> action and wait for its readiness:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">actions</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">testcontainers</span><span class="pi">:</span>
+      <span class="na">compose</span><span class="pi">:</span>
+        <span class="na">up</span><span class="pi">:</span>
+          <span class="na">file</span><span class="pi">:</span> <span class="s2">"</span><span class="s">_infra/compose.yaml"</span>
+  <span class="pi">-</span> <span class="na">waitFor</span><span class="pi">:</span>
+      <span class="na">timeout</span><span class="pi">:</span> <span class="s2">"</span><span class="s">25000"</span>
+      <span class="na">http</span><span class="pi">:</span>
+        <span class="na">url</span><span class="pi">:</span> <span class="s">http://localhost:8090</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">testcontainers.compose.up</code> action starts the Docker Compose stack defined in <code class="highlighter-rouge">_infra/compose.yaml</code>. The <code class="highlighter-rouge">waitFor.http</code> action polls the given URL — in this case kafka-ui on port 8090 — for up to 25 seconds. Once kafka-ui responds, we know Kafka is ready.</p>
+
+<p>The compose file lives in the <code class="highlighter-rouge">_infra/</code> directory relative to the test file. This keeps infrastructure definitions separate from test logic and makes them reusable across multiple test files.</p>
+
+<p>Here is the compose file that starts a Kafka broker in KRaft mode (no ZooKeeper) together with a kafka-ui instance for health checking:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
+  <span class="na">kafka</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">docker.io/apache/kafka:latest</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">9092:9092"</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">KAFKA_NODE_ID=1</span>
+      <span class="pi">-</span> <span class="s">KAFKA_PROCESS_ROLES=broker,controller</span>
+      <span class="pi">-</span> <span class="s">KAFKA_CONTROLLER_QUORUM_VOTERS=1@kafka:9093</span>
+      <span class="pi">-</span> <span class="s">KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093,DOCKER://0.0.0.0:9094</span>
+      <span class="pi">-</span> <span class="s">KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092,DOCKER://kafka:9094</span>
+      <span class="pi">-</span> <span class="s">KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT,DOCKER:PLAINTEXT</span>
+      <span class="pi">-</span> <span class="s">KAFKA_CONTROLLER_LISTENER_NAMES=CONTROLLER</span>
+      <span class="pi">-</span> <span class="s">KAFKA_INTER_BROKER_LISTENER_NAME=PLAINTEXT</span>
+      <span class="pi">-</span> <span class="s">KAFKA_AUTO_CREATE_TOPICS_ENABLE=true</span>
+      <span class="pi">-</span> <span class="s">CLUSTER_ID=RUlQQ2FtZWxQYXR0ZXJucw</span>
+    <span class="na">healthcheck</span><span class="pi">:</span>
+      <span class="na">test</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">CMD-SHELL"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">nc</span><span class="nv"> </span><span class="s">-z</span><span class="nv"> </span><span class="s">localhost</span><span class="nv"> </span><span class="s">9092"</span><span class="pi">]</span>
+      <span class="na">interval</span><span class="pi">:</span> <span class="s">5s</span>
+      <span class="na">timeout</span><span class="pi">:</span> <span class="s">5s</span>
+      <span class="na">retries</span><span class="pi">:</span> <span class="s">12</span>
+      <span class="na">start_period</span><span class="pi">:</span> <span class="s">30s</span>
+
+  <span class="na">kafka-ui</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">docker.io/provectuslabs/kafka-ui:latest</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">8090:8080"</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">KAFKA_CLUSTERS_0_NAME=eip-local</span>
+      <span class="pi">-</span> <span class="s">KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9094</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+      <span class="na">kafka</span><span class="pi">:</span>
+        <span class="na">condition</span><span class="pi">:</span> <span class="s">service_healthy</span>
+</code></pre></div></div>
+
+<p>The kafka-ui service depends on a healthy Kafka broker and exposes port 8090. That is why the <code class="highlighter-rouge">waitFor.http</code> action in the test polls <code class="highlighter-rouge">http://localhost:8090</code> — once kafka-ui responds, the entire Kafka stack is ready for the test to send and receive messages.</p>
+
+<h1 id="launching-camel-route-integrations">Launching Camel route integrations</h1>
+
+<p>If you are running your tests as part of a full Quarkus or Spring Boot project you are used to leverage the fact that these frameworks automatically start the application under test with each test.</p>
+
+<p>When prototyping with the YAML DSL the Citrus tests take care of launching the Camel route explicitly</p>
+
+<p>You can use the Camel CLI test actions to run an integration as part of the test:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="pi">-</span> <span class="na">camel</span><span class="pi">:</span>
+      <span class="na">cli</span><span class="pi">:</span>
+        <span class="na">run</span><span class="pi">:</span>
+          <span class="na">integration</span><span class="pi">:</span>
+            <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">order-validation"</span>
+            <span class="na">file</span><span class="pi">:</span> <span class="s2">"</span><span class="s">../order-validation.yaml"</span>
+            <span class="na">systemProperties</span><span class="pi">:</span>
+              <span class="na">file</span><span class="pi">:</span> <span class="s2">"</span><span class="s">../application.properties"</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">camel.cli.run</code> action starts a Camel JBang integration as a subprocess managed by Citrus. The <code class="highlighter-rouge">name</code> identifies the integration for later verification. The <code class="highlighter-rouge">file</code> points to the YAML route definition, and <code class="highlighter-rouge">systemProperties.file</code> loads configuration (Kafka broker addresses, REST ports, etc.) from an application properties file.</p>
+
+<p>This makes sure to start the Camel integration as part of the test.
+It also configures the Camel integration with the local Kafka message broker and other connection properties from the previous Testcontainers infrastructure setup.</p>
+
+<h1 id="verifying-camel-integration-logs">Verifying Camel integration logs</h1>
+
+<p>An advantage of starting the Camel integration as part of the Citrus YAML test is that we can access the log output of the sub-process. 
+This means you can verify that the route processed the message data correctly by checking its log output:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="pi">-</span> <span class="na">camel</span><span class="pi">:</span>
+      <span class="na">cli</span><span class="pi">:</span>
+        <span class="na">verify</span><span class="pi">:</span>
+          <span class="na">integration</span><span class="pi">:</span> <span class="s2">"</span><span class="s">order-validation"</span>
+          <span class="na">logMessage</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Order</span><span class="nv"> </span><span class="s">validation</span><span class="nv"> </span><span class="s">successful"</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">camel.cli.verify</code> action scans the integration’s log for the specified message. If the route logged <code class="highlighter-rouge">Order validation successful</code> during processing, the verification passes. This is a quick way to confirm the route received and processed a message without needing a separate <code class="highlighter-rouge">receive</code> action on the output topic.</p>
+
+<p>To see the full integration output during test runs, add this setting to <code class="highlighter-rouge">citrus-application.properties</code> in your test directory:</p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">citrus.camel.jbang.dump.integration.output</span><span class="p">=</span><span class="s">true</span>
+</code></pre></div></div>
+
+<p>This is also a great way to inspect the Camel integration log output after the test for the sake of proper debugging and failure analysis.</p>
+
+<h1 id="testing-rest-endpoints">Testing REST endpoints</h1>
+
+<p>For routes that expose REST endpoints, Citrus provides HTTP client actions. Here is a test that validates a REST API for order processing:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">OrderHttpValidationTest</span>
+<span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Verify</span><span class="nv"> </span><span class="s">order</span><span class="nv"> </span><span class="s">validation</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">REST</span><span class="nv"> </span><span class="s">endpoint"</span>
+<span class="na">actions</span><span class="pi">:</span>
+  <span class="c1"># --- Scenario 1: valid order via POST ---</span>
+  <span class="pi">-</span> <span class="na">http</span><span class="pi">:</span>
+      <span class="na">client</span><span class="pi">:</span> <span class="s2">"</span><span class="s">orderApi"</span>
+      <span class="na">send</span><span class="pi">:</span>
+        <span class="na">method</span><span class="pi">:</span> <span class="s">POST</span>
+        <span class="na">url</span><span class="pi">:</span> <span class="s2">"</span><span class="s">http://localhost:8088/api/orders"</span>
+        <span class="na">message</span><span class="pi">:</span>
+          <span class="na">headers</span><span class="pi">:</span>
+            <span class="na">Content-Type</span><span class="pi">:</span> <span class="s">application/json</span>
+          <span class="na">body</span><span class="pi">:</span> <span class="pi">|</span>
+            <span class="no">{"orderId":"ORD-010","customerId":"C-110","item":"Cargo Net","quantity":5}</span>
+  <span class="pi">-</span> <span class="na">http</span><span class="pi">:</span>
+      <span class="na">client</span><span class="pi">:</span> <span class="s2">"</span><span class="s">orderApi"</span>
+      <span class="na">receive</span><span class="pi">:</span>
+        <span class="na">status</span><span class="pi">:</span> <span class="s">200</span>
+        <span class="na">message</span><span class="pi">:</span>
+          <span class="na">body</span><span class="pi">:</span> <span class="pi">|</span>
+            <span class="no">{"status":"accepted","orderId":"ORD-010"}</span>
+
+  <span class="c1"># --- Scenario 2: invalid order (missing item) ---</span>
+  <span class="pi">-</span> <span class="na">http</span><span class="pi">:</span>
+      <span class="na">client</span><span class="pi">:</span> <span class="s2">"</span><span class="s">orderApi"</span>
+      <span class="na">send</span><span class="pi">:</span>
+        <span class="na">method</span><span class="pi">:</span> <span class="s">POST</span>
+        <span class="na">url</span><span class="pi">:</span> <span class="s2">"</span><span class="s">http://localhost:8088/api/orders"</span>
+        <span class="na">message</span><span class="pi">:</span>
+          <span class="na">headers</span><span class="pi">:</span>
+            <span class="na">Content-Type</span><span class="pi">:</span> <span class="s">application/json</span>
+          <span class="na">body</span><span class="pi">:</span> <span class="pi">|</span>
+            <span class="no">{"orderId":"ORD-011","customerId":"C-111","quantity":3}</span>
+  <span class="pi">-</span> <span class="na">http</span><span class="pi">:</span>
+      <span class="na">client</span><span class="pi">:</span> <span class="s2">"</span><span class="s">orderApi"</span>
+      <span class="na">receive</span><span class="pi">:</span>
+        <span class="na">status</span><span class="pi">:</span> <span class="s">400</span>
+        <span class="na">message</span><span class="pi">:</span>
+          <span class="na">body</span><span class="pi">:</span> <span class="pi">|</span>
+            <span class="no">{"status":"rejected","orderId":"ORD-011","reason":"item must not be null"}</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">http.client.send</code> action sends a POST request with a JSON body. The <code class="highlighter-rouge">http.client.receive</code> action waits for the response and validates both the HTTP status code and the response body. The <code class="highlighter-rouge">client: "orderApi"</code> parameter names a logical HTTP client — Citrus manages the connection and reuses it across send/receive pairs.</p>
+
+<p>The test covers both the happy path (valid order, 200 response) and the error path (missing field, 400 response). The response body is validated as an exact JSON match, ensuring the API returns the expected structure and values.</p>
+
+<p>The REST port is configured in the route’s <code class="highlighter-rouge">application.properties</code>:</p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">camel.rest.port</span><span class="p">=</span><span class="s">8088</span>
+</code></pre></div></div>
+
+<h1 id="database-testing">Database testing</h1>
+
+<p>YAML DSL tests can interact with databases directly. This is powerful for testing SQL Polling Consumer routes — routes that poll a database table for new rows and publish them to Kafka.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># deps: org.postgresql:postgresql:42.7.5</span>
+<span class="na">name</span><span class="pi">:</span> <span class="s">sql-polling-consumer-test</span>
+<span class="na">description</span><span class="pi">:</span> <span class="s">Test SQL Polling Consumer — polls PostgreSQL rows and publishes to Kafka</span>
+<span class="na">variables</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">kafka.broker</span>
+    <span class="na">value</span><span class="pi">:</span> <span class="s">localhost:9092</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">order.id</span>
+    <span class="na">value</span><span class="pi">:</span> <span class="s2">"</span><span class="s">citrus:randomNumber(4)"</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">order.amount</span>
+    <span class="na">value</span><span class="pi">:</span> <span class="s">40</span>
+<span class="na">configuration</span><span class="pi">:</span>
+  <span class="na">beans</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">dataSource</span>
+      <span class="na">type</span><span class="pi">:</span> <span class="s">org.postgresql.ds.PGSimpleDataSource</span>
+      <span class="na">properties</span><span class="pi">:</span>
+        <span class="na">url</span><span class="pi">:</span> <span class="s2">"</span><span class="s">jdbc:postgresql://localhost:5432/eip"</span>
+        <span class="na">user</span><span class="pi">:</span> <span class="s2">"</span><span class="s">eip"</span>
+        <span class="na">password</span><span class="pi">:</span> <span class="s2">"</span><span class="s">eip"</span>
+<span class="na">actions</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">testcontainers</span><span class="pi">:</span>
+      <span class="na">compose</span><span class="pi">:</span>
+        <span class="na">up</span><span class="pi">:</span>
+          <span class="na">file</span><span class="pi">:</span> <span class="s2">"</span><span class="s">_infra/compose.yaml"</span>
+  <span class="pi">-</span> <span class="na">waitFor</span><span class="pi">:</span>
+      <span class="na">timeout</span><span class="pi">:</span> <span class="s2">"</span><span class="s">25000"</span>
+      <span class="na">http</span><span class="pi">:</span>
+        <span class="na">url</span><span class="pi">:</span> <span class="s">http://localhost:8090</span>
+  <span class="pi">-</span> <span class="na">camel</span><span class="pi">:</span>
+      <span class="na">cli</span><span class="pi">:</span>
+        <span class="na">run</span><span class="pi">:</span>
+          <span class="na">integration</span><span class="pi">:</span>
+            <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">sql-polling-consumer"</span>
+            <span class="na">file</span><span class="pi">:</span> <span class="s2">"</span><span class="s">../sql-polling-consumer.yaml"</span>
+            <span class="na">systemProperties</span><span class="pi">:</span>
+              <span class="na">file</span><span class="pi">:</span> <span class="s2">"</span><span class="s">../application.properties"</span>
+  <span class="pi">-</span> <span class="na">camel</span><span class="pi">:</span>
+      <span class="na">cli</span><span class="pi">:</span>
+        <span class="na">verify</span><span class="pi">:</span>
+          <span class="na">integration</span><span class="pi">:</span> <span class="s2">"</span><span class="s">sql-polling-consumer"</span>
+          <span class="na">logMessage</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Routes</span><span class="nv"> </span><span class="s">startup"</span>
+
+  <span class="c1"># Insert a test order into PostgreSQL</span>
+  <span class="pi">-</span> <span class="na">sql</span><span class="pi">:</span>
+      <span class="na">dataSource</span><span class="pi">:</span> <span class="s2">"</span><span class="s">dataSource"</span>
+      <span class="na">statements</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">statement</span><span class="pi">:</span> <span class="pi">&gt;-</span>
+            <span class="no">INSERT INTO orders.orders (customer_id, item_sku, quantity, amount)</span>
+            <span class="no">VALUES ('CUST-00${order.id}', 'SKU-${order.id}', 1, ${order.amount})</span>
+
+  <span class="c1"># Verify the route picks up the row and publishes to Kafka</span>
+  <span class="pi">-</span> <span class="na">receive</span><span class="pi">:</span>
+      <span class="na">endpoint</span><span class="pi">:</span> <span class="pi">&gt;-</span>
+        <span class="no">kafka:eip.orders.placed?server=${kafka.broker}&amp;consumerGroup=citrus-placed-group</span>
+      <span class="no">timeout: 60000</span>
+      <span class="no">message:</span>
+        <span class="no">body:</span>
+          <span class="no">data: |</span>
+            <span class="no">{</span>
+              <span class="no">"id": "@variable(order.dbId)@",</span>
+              <span class="no">"customer_id": "CUST-00${order.id}",</span>
+              <span class="no">"status": "PLACED",</span>
+              <span class="no">"amount": ${order.amount}.0,</span>
+              <span class="no">"item_sku": "SKU-${order.id}",</span>
+              <span class="no">"quantity": 1,</span>
+              <span class="no">"created_at": "@ignore@"</span>
+            <span class="no">}</span>
+
+  <span class="c1"># Verify the route's onConsume updated the status to PROCESSING</span>
+  <span class="pi">-</span> <span class="na">sql</span><span class="pi">:</span>
+      <span class="na">dataSource</span><span class="pi">:</span> <span class="s2">"</span><span class="s">dataSource"</span>
+      <span class="na">statements</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">statement</span><span class="pi">:</span> <span class="s2">"</span><span class="s">SELECT</span><span class="nv"> </span><span class="s">status</span><span class="nv"> </span><span class="s">FROM</span><span class="nv"> </span><span class="s">orders.orders</span><span class="nv"> </span><span class="s">WHERE</span><span class="nv"> </span><span class="s">id</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">'${order.dbId}'"</span>
+      <span class="na">validate</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">column</span><span class="pi">:</span> <span class="s2">"</span><span class="s">status"</span>
+          <span class="na">value</span><span class="pi">:</span> <span class="s2">"</span><span class="s">PROCESSING"</span>
+</code></pre></div></div>
+
+<p>This test does several interesting things.</p>
+
+<h2 id="declaring-dependencies-and-beans">Declaring dependencies and beans</h2>
+
+<p>The <code class="highlighter-rouge"># deps:</code> comment at the top declares a Maven dependency — the PostgreSQL JDBC driver. Camel JBang resolves this dependency automatically when running the test. No <code class="highlighter-rouge">pom.xml</code> needed.</p>
+
+<p>The <code class="highlighter-rouge">configuration.beans</code> section declares a <code class="highlighter-rouge">PGSimpleDataSource</code> bean named <code class="highlighter-rouge">dataSource</code>. This bean is registered in the Citrus context and referenced by name in <code class="highlighter-rouge">sql</code> actions. The connection properties match the PostgreSQL service defined in the Docker Compose file.</p>
+
+<h2 id="sql-insert-and-validation">SQL insert and validation</h2>
+
+<p>The first <code class="highlighter-rouge">sql</code> action inserts a test order into the database. Variables like <code class="highlighter-rouge">${order.id}</code> are resolved at runtime, creating a unique row for each test run.</p>
+
+<p>After the route polls the row and publishes it to Kafka, the <code class="highlighter-rouge">receive</code> action validates the Kafka message. Two special markers appear in the body:</p>
+
+<ul>
+  <li>
+<strong><code class="highlighter-rouge">@variable(order.dbId)@</code></strong> — extracts the <code class="highlighter-rouge">id</code> field value from the actual message and stores it in a variable named <code class="highlighter-rouge">order.dbId</code>. This captures the database-generated primary key so it can be used in subsequent assertions.</li>
+  <li>
+<strong><code class="highlighter-rouge">@ignore@</code></strong> — accepts any value for the <code class="highlighter-rouge">created_at</code> field. Timestamps are non-deterministic, so we skip their validation.</li>
+</ul>
+
+<p>The final <code class="highlighter-rouge">sql</code> action queries the database to verify that the route’s <code class="highlighter-rouge">onConsume</code> callback updated the order status from <code class="highlighter-rouge">PLACED</code> to <code class="highlighter-rouge">PROCESSING</code>. The <code class="highlighter-rouge">validate</code> block compares the <code class="highlighter-rouge">status</code> column against the expected value.</p>
+
+<p>This test covers the full pipeline: database → Camel route → Kafka topic → database update. All in YAML.</p>
+
+<h1 id="negative-testing-with-expecttimeout">Negative testing with expectTimeout</h1>
+
+<p>Proving that a message was <em>not</em> routed somewhere works the same way in YAML as in Java. Here is a Message Filter test that verifies low-value orders are dropped:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1"># --- Send a low-value order (amount=50) → should be filtered out ---</span>
+  <span class="pi">-</span> <span class="na">createVariables</span><span class="pi">:</span>
+      <span class="na">variables</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">id</span>
+          <span class="na">value</span><span class="pi">:</span> <span class="s2">"</span><span class="s">citrus:randomNumber(4)"</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">amount</span>
+          <span class="na">value</span><span class="pi">:</span> <span class="s2">"</span><span class="s">50.00"</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">country</span>
+          <span class="na">value</span><span class="pi">:</span> <span class="s2">"</span><span class="s">US"</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">hazmat</span>
+          <span class="na">value</span><span class="pi">:</span> <span class="s2">"</span><span class="s">false"</span>
+  <span class="pi">-</span> <span class="na">send</span><span class="pi">:</span>
+      <span class="na">endpoint</span><span class="pi">:</span> <span class="pi">&gt;-</span>
+        <span class="no">kafka:eip.orders.placed?server=${kafka.broker}</span>
+      <span class="no">message:</span>
+        <span class="no">body:</span>
+          <span class="no">resource:</span>
+            <span class="no">file: "templates/order.json"</span>
+  <span class="pi">-</span> <span class="na">expectTimeout</span><span class="pi">:</span>
+      <span class="na">endpoint</span><span class="pi">:</span> <span class="pi">&gt;-</span>
+        <span class="no">kafka:eip.orders.high-value?server=${kafka.broker}&amp;consumerGroup=citrus-filter-reject-group</span>
+      <span class="no">wait: 5000</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">expectTimeout</code> action tries to consume from <code class="highlighter-rouge">eip.orders.high-value</code> for 5 seconds. If nothing arrives, the test passes — proving the filter correctly dropped the low-value order. If a message does arrive, the test fails.</p>
+
+<p>This is the YAML equivalent of Java’s <code class="highlighter-rouge">expectTimeout().endpoint(...).timeout(5000)</code>. The keyword mapping is straightforward: <code class="highlighter-rouge">wait</code> in YAML corresponds to <code class="highlighter-rouge">timeout</code> in Java.</p>
+
+<h1 id="when-to-use-yaml-tests">When to use YAML tests</h1>
+
+<p>YAML DSL tests are a natural fit for:</p>
+
+<ul>
+  <li>
+<strong>Camel CLI projects</strong> — the route is YAML, the test is YAML, no build tool required.</li>
+  <li>
+<strong>Quick prototyping</strong> — validate a route idea in minutes without setting up a Maven project.</li>
+  <li>
+<strong>Teams without Java expertise</strong> — operations or DevOps teams maintaining integration routes.</li>
+  <li>
+<strong>Simple send/receive/validate flows</strong> — the declarative syntax handles the most common test patterns cleanly.</li>
+</ul>
+
+<p>Java tests are the better choice when you need:</p>
+
+<ul>
+  <li>
+<strong>Complex assertion logic</strong> — custom predicates, programmatic validation, computed expected values.</li>
+  <li>
+<strong>Shared test utilities</strong> — interfaces like <code class="highlighter-rouge">EipTestSupport</code> with reusable helper methods.</li>
+  <li>
+<strong>Camel context access</strong> — ControlBus commands, access to MBean route statistics, Camel mock endpoints.</li>
+</ul>
+
+<p>Both approaches use the same Citrus engine underneath. The YAML DSL is a frontend that maps to the same action classes as the Java API. You can start with YAML tests for a JBang prototype and migrate to Java tests when the project grows into a Quarkus or Spring Boot application — the testing patterns transfer directly.</p>
+
+<h1 id="designing-tests-visually-with-kaoto">Designing tests visually with Kaoto</h1>
+
+<p>Writing YAML by hand works well for simple tests, but as test files grow — multiple scenarios, infrastructure setup, database interactions, nested validation — a graphical view can make the structure easier to understand and edit.</p>
+
+<p><img src="/img/assets/kaoto-citrus-integration/kaoto-logo.png" alt="Kaoto Logo" width="600px"></p>
+
+<p><a href="https://kaoto.io">Kaoto</a> is a visual designer for Apache Camel integrations. 
+It renders YAML DSL definitions as interactive flow diagrams where you can add, configure, and reorder steps by clicking instead of typing. 
+Since Kaoto has added the Citrus YAML DSL schemas to its catalog the visual designer is able to handle Citrus YAML test files, too. 
+Kaoto is able to visualize and edit the declarative structure of a Citrus test with full support f all test actions, action containers, functions and validation matcher.</p>
+
+<p><img src="/img/assets/kaoto-citrus-integration/test-icons.png" alt="Citrus in Kaoto" width="700px" class="center-image"></p>
+
+<p>In Kaoto, a Citrus YAML test renders as a sequence of actions — <code class="highlighter-rouge">send</code>, <code class="highlighter-rouge">receive</code>, <code class="highlighter-rouge">http</code>, <code class="highlighter-rouge">sql</code>, <code class="highlighter-rouge">testcontainers</code> — each represented as a configurable node. You can:</p>
+
+<ul>
+  <li>
+<strong>Add test actions</strong> from a palette — drag a <code class="highlighter-rouge">send</code> or <code class="highlighter-rouge">receive</code> action into the flow and configure endpoint URIs, message bodies, and headers through form fields instead of editing raw YAML.</li>
+  <li>
+<strong>Reorder actions</strong> by moving action nodes up or down in the flow.</li>
+  <li>
+<strong>Configure validation</strong> — set expected HTTP status codes, JSON response bodies, SQL column assertions, and timeout values through the action’s property panel.</li>
+  <li>
+<strong>See the full test structure at a glance</strong> — the flow diagram shows the complete test lifecycle from infrastructure startup through message exchange to final assertions.</li>
+</ul>
+
+<p>This is especially useful for teams that are new to Citrus or prefer visual tooling. 
+The graphical editor produces the same <code class="highlighter-rouge">*.citrus.it.yaml</code> files shown throughout this post — you can switch between the visual editor and the YAML source at any time. 
+There is no lock-in: the file on disk is always standard Citrus YAML DSL.</p>
+
+<p>Kaoto runs as an <a href="https://kaotoio.github.io/kaoto/#/">online editor in your browser</a> or as a <a href="https://marketplace.visualstudio.com/items?itemName=redhat.vscode-kaoto">VS Code extension</a> — install it, open a <code class="highlighter-rouge">.citrus.it.yaml</code> file, and the visual editor loads automatically.</p>
+
+<h1 id="where-to-find-the-examples">Where to find the examples</h1>
+
+<p>The complete source code for all tests shown in this post is available in the <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main">EIP with Camel</a> repository:</p>
+
+<ul>
+  <li>
+<strong>Order validation example</strong>: <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/41-citrus-testing/test/order-validation-test.yaml">order-validation-test.yaml</a>, <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/41-citrus-testing/test/order-http-test.yaml">order-http-test.yaml</a>, and the <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/41-citrus-testing/order-validation-route.yaml">route under test</a>.</li>
+  <li>
+<strong>SQL Polling Consumer YAML test</strong>: <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/14-consumer-patterns/yaml-dsl/test/sql-polling-consumer.citrus.it.yaml">Consumer Patterns example</a> with PostgreSQL database interactions.</li>
+  <li>
+<strong>Message Filter negative test</strong>: <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/09-routing-fundamentals/yaml-dsl/test/message-filter.citrus.it.yaml">Routing Fundamentals example</a> with <code class="highlighter-rouge">expectTimeout</code> in YAML.</li>
+</ul>
+
+<p>Install the Camel test plugin with <code class="highlighter-rouge">camel plugin add test</code>, then run any test with <code class="highlighter-rouge">camel test run &lt;file&gt;</code>.</p>
+
+<p>Give it a try, and let us know what you think!</p>
+
+  </div>
+</article>
+
 
   <article>
   <h2>
@@ -296,7 +1529,7 @@ Citrus sends the message and immediately starts the <code class="highlighter-rou
 <p>The fork enabled <code class="highlighter-rouge">send</code> avoids the situation where the test sends the message, waits for the Kafka acknowledgement, then starts listening, and potentially misses the processed message if the Camel route finishes before the Citrus consumer is ready.
 This can lead to flaky tests where the timing condition may succeed or fail in an unpredictable way.</p>
 
-<p>You can find the complete code and test in the <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing/examples/05-reliability/quarkus">05-reliability example</a>.</p>
+<p>You can find the complete code and test in the <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main/examples/05-reliability/quarkus">05-reliability example</a>.</p>
 
 <h1 id="pitfall-cross-test-interference-on-shared-kafka-topics">Pitfall: Cross-test interference on shared Kafka topics</h1>
 
@@ -441,7 +1674,7 @@ You can configure the serializer/deserializer strategy for Kafka endpoints in Ci
 
 <p>None of these pitfalls are specific to <a href="https://citrusframework.org">Citrus</a> — they apply to Kafka integration testing in general. But Citrus gives you the tools and capabilities to fix every one of them.</p>
 
-<p>You can explore all the testing patterns and pitfall fixes in the <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing">eip-with-camel repository</a>.</p>
+<p>You can explore all the testing patterns and pitfall fixes in the <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main">eip-with-camel repository</a>.</p>
 
 <p>Give it a try, and let us know what you think!</p>
 
@@ -531,7 +1764,7 @@ A Citrus test can now verify the otherwise branch by accessing the route stats w
 </code></pre></div></div>
 
 <p>This pattern applies to any inline processing that should be testable. 
-The <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing/examples/14-consumer-patterns/quarkus">14-consumer-patterns example</a> shows the Message Dispatcher route with named handlers for every event type — including the unknown handler.</p>
+The <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main/examples/14-consumer-patterns/quarkus">14-consumer-patterns example</a> shows the Message Dispatcher route with named handlers for every event type — including the unknown handler.</p>
 
 <h1 id="pitfall-too-weak-message-validations-gives-false-confidence">Pitfall: Too weak message validations gives false confidence</h1>
 
@@ -706,7 +1939,7 @@ Even if it is significantly harder to verify that something has <strong>not</str
 <p>The <code class="highlighter-rouge">expectTimeout()</code> assertion proves that no message arrived — which is the correct behavior for a filtered message.</p>
 
 <p>The same principle applies to Content-Based routers, format indicators (test each content type), and any route with <code class="highlighter-rouge">choice()</code> or <code class="highlighter-rouge">when()</code> logic. 
-The <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing/examples/09-routing-fundamentals/quarkus">09-routing-fundamentals example</a> demonstrates this pattern with separate tests for each branch of the Content-Based Router and the Message Filter.</p>
+The <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main/examples/09-routing-fundamentals/quarkus">09-routing-fundamentals example</a> demonstrates this pattern with separate tests for each branch of the Content-Based Router and the Message Filter.</p>
 
 <h1 id="pitfall-locale-dependent-string-formatting-in-json">Pitfall: Locale-dependent String formatting in JSON</h1>
 
@@ -1033,7 +2266,7 @@ With the enabled fork the test sequence is not blocked by the synchronous nature
 
 <p>None of these pitfalls are specific to <a href="https://citrusframework.org">Citrus</a> — they apply to integration testing in general. But Citrus gives you the tools and capabilities to fix every one of them.</p>
 
-<p>You can explore all the testing patterns and pitfall fixes in the <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing">eip-with-camel repository</a>.</p>
+<p>You can explore all the testing patterns and pitfall fixes in the <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main">eip-with-camel repository</a>.</p>
 
 <p>Give it a try, and let us know what you think!</p>
 
@@ -1197,7 +2430,7 @@ The test polls the DLQ topic up to 10 times, sleeping 1 second between attempts,
 Any fields the route would have added during successful processing (enrichment data, computed values) are absent. 
 When writing assertions against DLQ messages, only assert on what was in the original input.</p>
 
-<p>You can find the complete Dead Letter Channel route and test in the <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing/examples/05-reliability/quarkus">05-reliability example</a>.</p>
+<p>You can find the complete Dead Letter Channel route and test in the <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main/examples/05-reliability/quarkus">05-reliability example</a>.</p>
 
 <h1 id="testing-idempotent-receivers">Testing Idempotent Receivers</h1>
 
@@ -1332,7 +2565,7 @@ Without it, <code class="highlighter-rouge">getManagedRoute()</code> returns <co
 <span class="nt">&lt;/dependency&gt;</span>
 </code></pre></div></div>
 
-<p>You can find the complete Idempotent Receiver route and test in the <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing/examples/22-redis-integration/quarkus">22-redis-integration example</a>.</p>
+<p>You can find the complete Idempotent Receiver route and test in the <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main/examples/22-redis-integration/quarkus">22-redis-integration example</a>.</p>
 
 <h1 id="testing-circuit-breaker-fallback-paths">Testing Circuit Breaker fallback paths</h1>
 
@@ -1469,7 +2702,7 @@ The first time the inventory check fails, the fallback executes immediately — 
 This makes testing straightforward: you just need one message that triggers the exception. 
 You do not need to send enough failing messages to trip the circuit first.</p>
 
-<p>You can find the complete Circuit Breaker route and test in the <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing/examples/18-testing-management/quarkus">18-testing-management example</a>.</p>
+<p>You can find the complete Circuit Breaker route and test in the <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main/examples/18-testing-management/quarkus">18-testing-management example</a>.</p>
 
 <h1 id="wrapping-up">Wrapping up</h1>
 
@@ -1486,7 +2719,7 @@ You do not need to send enough failing messages to trip the circuit first.</p>
 <strong>Route testability</strong>: extract inline branches into named <code class="highlighter-rouge">direct:</code> routes so every code path is visible to MBean-based assertions by accessing the route statistics and the number of completed exchanges.</li>
 </ul>
 
-<p>You can explore all the reliability pattern examples in the <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing">eip-with-camel repository</a>, specifically the <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing/examples/05-reliability">05-reliability</a>, <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing/examples/22-redis-integration">22-redis-integration</a>, and <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing/examples/18-testing-management">18-testing-management</a> examples.</p>
+<p>You can explore all the reliability pattern examples in the <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main">eip-with-camel repository</a>, specifically the <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main/examples/05-reliability">05-reliability</a>, <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main/examples/22-redis-integration">22-redis-integration</a>, and <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main/examples/18-testing-management">18-testing-management</a> examples.</p>
 
 <p>Give it a try, and let us know what you think!</p>
 
@@ -1958,19 +3191,19 @@ The reward is high — complete confidence that every routing path produces the 
 
 <h1 id="where-to-find-the-examples">Where to find the examples</h1>
 
-<p>The complete source code for all tests shown in this post is available in the <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing">EIP with Camel</a> repository. The <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing/examples/09-routing-fundamentals">Routing Fundamentals example</a> includes:</p>
+<p>The complete source code for all tests shown in this post is available in the <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main">EIP with Camel</a> repository. The <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main/examples/09-routing-fundamentals">Routing Fundamentals example</a> includes:</p>
 
 <ul>
   <li>
-<strong>Quarkus tests:</strong> <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/quarkus/src/test/java/com/example/eip/routing/EipTests.java">EipTests.java</a> with Content-Based Router, Message Filter, Recipient List, and Splitter tests.</li>
+<strong>Quarkus tests:</strong> <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/09-routing-fundamentals/quarkus/src/test/java/com/example/eip/routing/EipTests.java">EipTests.java</a> with Content-Based Router, Message Filter, Recipient List, and Splitter tests.</li>
   <li>
-<strong>Spring Boot tests:</strong> <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/spring-boot/src/test/java/com/example/eip/routing/EipTests.java">EipTests.java</a> with Content-Based Router, Message Filter, Recipient List, and Splitter tests.</li>
+<strong>Spring Boot tests:</strong> <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/09-routing-fundamentals/spring-boot/src/test/java/com/example/eip/routing/EipTests.java">EipTests.java</a> with Content-Based Router, Message Filter, Recipient List, and Splitter tests.</li>
   <li>
-<strong>Route definitions:</strong> <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/quarkus/src/main/java/com/example/eip/routing/ContentBasedRouterRoute.java">ContentBasedRouterRoute.java</a>, <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/quarkus/src/main/java/com/example/eip/routing/MessageFilterRoute.java">MessageFilterRoute.java</a>, <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/quarkus/src/main/java/com/example/eip/routing/SplitterRoute.java">SplitterRoute.java</a>.</li>
+<strong>Route definitions:</strong> <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/09-routing-fundamentals/quarkus/src/main/java/com/example/eip/routing/ContentBasedRouterRoute.java">ContentBasedRouterRoute.java</a>, <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/09-routing-fundamentals/quarkus/src/main/java/com/example/eip/routing/MessageFilterRoute.java">MessageFilterRoute.java</a>, <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/09-routing-fundamentals/quarkus/src/main/java/com/example/eip/routing/SplitterRoute.java">SplitterRoute.java</a>.</li>
   <li>
-<strong>YAML DSL tests:</strong> <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/yaml-dsl/test/content-based-router.citrus.it.yaml">content-based-router.citrus.it.yaml</a>, <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/yaml-dsl/test/message-filter.citrus.it.yaml">message-filter.citrus.it.yaml</a>, <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/yaml-dsl/test/splitter.citrus.it.yaml">splitter.citrus.it.yaml</a>.</li>
+<strong>YAML DSL tests:</strong> <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/09-routing-fundamentals/yaml-dsl/test/content-based-router.citrus.it.yaml">content-based-router.citrus.it.yaml</a>, <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/09-routing-fundamentals/yaml-dsl/test/message-filter.citrus.it.yaml">message-filter.citrus.it.yaml</a>, <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/09-routing-fundamentals/yaml-dsl/test/splitter.citrus.it.yaml">splitter.citrus.it.yaml</a>.</li>
   <li>
-<strong>Message templates:</strong> <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/quarkus/src/test/resources/templates/order.json">order.json</a>, <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/quarkus/src/test/resources/templates/batch-order.json">batch-order.json</a>, <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/quarkus/src/test/resources/templates/item.json">item.json</a>.</li>
+<strong>Message templates:</strong> <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/09-routing-fundamentals/quarkus/src/test/resources/templates/order.json">order.json</a>, <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/09-routing-fundamentals/quarkus/src/test/resources/templates/batch-order.json">batch-order.json</a>, <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/09-routing-fundamentals/quarkus/src/test/resources/templates/item.json">item.json</a>.</li>
 </ul>
 
 <p>Clone the repository and run <code class="highlighter-rouge">mvn verify</code> in one of the runtime directories (e.g. <code class="highlighter-rouge">quarkus/</code>) to see all tests execute against real Kafka infrastructure.</p>
@@ -8346,6 +9579,14 @@ http://www.citrusframework.org/samples/my-testcase-info/my-testcase-info.xsd"</s
     <h4>Posts</h4>
     <ul>
         
+        
+        <li class="">
+          <a href="/news/2026/09/16/multi-runtime-testing/">» Multi-Runtime Testing</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/09/15/camel-cli-test-plugin/">» Camel CLI test plugin</a>
+        </li>
         
         <li class="">
           <a href="/news/2026/09/14/kafka-testing-pitfalls/">» Kafka Testing Pitfalls</a>

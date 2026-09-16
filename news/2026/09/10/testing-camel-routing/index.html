@@ -117,6 +117,10 @@
     <optgroup label="Posts">
       
       
+      <option value="/news/2026/09/16/multi-runtime-testing/">Multi-Runtime Testing — One Test Pattern, Three Different Runtimes</option>
+      
+      <option value="/news/2026/09/15/camel-cli-test-plugin/">Camel CLI test plugin - Zero-Code Integration Tests</option>
+      
       <option value="/news/2026/09/14/kafka-testing-pitfalls/">Kafka Testing Pitfalls in Camel Integration Tests</option>
       
       <option value="/news/2026/09/14/camel-testing-pitfalls/">Camel Integration Testing Pitfalls</option>
@@ -640,19 +644,19 @@ The reward is high — complete confidence that every routing path produces the 
 
 <h1 id="where-to-find-the-examples">Where to find the examples</h1>
 
-<p>The complete source code for all tests shown in this post is available in the <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing">EIP with Camel</a> repository. The <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing/examples/09-routing-fundamentals">Routing Fundamentals example</a> includes:</p>
+<p>The complete source code for all tests shown in this post is available in the <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main">EIP with Camel</a> repository. The <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main/examples/09-routing-fundamentals">Routing Fundamentals example</a> includes:</p>
 
 <ul>
   <li>
-<strong>Quarkus tests:</strong> <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/quarkus/src/test/java/com/example/eip/routing/EipTests.java">EipTests.java</a> with Content-Based Router, Message Filter, Recipient List, and Splitter tests.</li>
+<strong>Quarkus tests:</strong> <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/09-routing-fundamentals/quarkus/src/test/java/com/example/eip/routing/EipTests.java">EipTests.java</a> with Content-Based Router, Message Filter, Recipient List, and Splitter tests.</li>
   <li>
-<strong>Spring Boot tests:</strong> <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/spring-boot/src/test/java/com/example/eip/routing/EipTests.java">EipTests.java</a> with Content-Based Router, Message Filter, Recipient List, and Splitter tests.</li>
+<strong>Spring Boot tests:</strong> <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/09-routing-fundamentals/spring-boot/src/test/java/com/example/eip/routing/EipTests.java">EipTests.java</a> with Content-Based Router, Message Filter, Recipient List, and Splitter tests.</li>
   <li>
-<strong>Route definitions:</strong> <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/quarkus/src/main/java/com/example/eip/routing/ContentBasedRouterRoute.java">ContentBasedRouterRoute.java</a>, <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/quarkus/src/main/java/com/example/eip/routing/MessageFilterRoute.java">MessageFilterRoute.java</a>, <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/quarkus/src/main/java/com/example/eip/routing/SplitterRoute.java">SplitterRoute.java</a>.</li>
+<strong>Route definitions:</strong> <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/09-routing-fundamentals/quarkus/src/main/java/com/example/eip/routing/ContentBasedRouterRoute.java">ContentBasedRouterRoute.java</a>, <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/09-routing-fundamentals/quarkus/src/main/java/com/example/eip/routing/MessageFilterRoute.java">MessageFilterRoute.java</a>, <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/09-routing-fundamentals/quarkus/src/main/java/com/example/eip/routing/SplitterRoute.java">SplitterRoute.java</a>.</li>
   <li>
-<strong>YAML DSL tests:</strong> <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/yaml-dsl/test/content-based-router.citrus.it.yaml">content-based-router.citrus.it.yaml</a>, <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/yaml-dsl/test/message-filter.citrus.it.yaml">message-filter.citrus.it.yaml</a>, <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/yaml-dsl/test/splitter.citrus.it.yaml">splitter.citrus.it.yaml</a>.</li>
+<strong>YAML DSL tests:</strong> <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/09-routing-fundamentals/yaml-dsl/test/content-based-router.citrus.it.yaml">content-based-router.citrus.it.yaml</a>, <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/09-routing-fundamentals/yaml-dsl/test/message-filter.citrus.it.yaml">message-filter.citrus.it.yaml</a>, <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/09-routing-fundamentals/yaml-dsl/test/splitter.citrus.it.yaml">splitter.citrus.it.yaml</a>.</li>
   <li>
-<strong>Message templates:</strong> <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/quarkus/src/test/resources/templates/order.json">order.json</a>, <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/quarkus/src/test/resources/templates/batch-order.json">batch-order.json</a>, <a href="https://github.com/christophd/eip-with-camel/blob/chore/citrus-testing/examples/09-routing-fundamentals/quarkus/src/test/resources/templates/item.json">item.json</a>.</li>
+<strong>Message templates:</strong> <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/09-routing-fundamentals/quarkus/src/test/resources/templates/order.json">order.json</a>, <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/09-routing-fundamentals/quarkus/src/test/resources/templates/batch-order.json">batch-order.json</a>, <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/09-routing-fundamentals/quarkus/src/test/resources/templates/item.json">item.json</a>.</li>
 </ul>
 
 <p>Clone the repository and run <code class="highlighter-rouge">mvn verify</code> in one of the runtime directories (e.g. <code class="highlighter-rouge">quarkus/</code>) to see all tests execute against real Kafka infrastructure.</p>
@@ -678,6 +682,14 @@ The reward is high — complete confidence that every routing path produces the 
     <h4>Posts</h4>
     <ul>
         
+        
+        <li class="">
+          <a href="/news/2026/09/16/multi-runtime-testing/">» Multi-Runtime Testing</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/09/15/camel-cli-test-plugin/">» Camel CLI test plugin</a>
+        </li>
         
         <li class="">
           <a href="/news/2026/09/14/kafka-testing-pitfalls/">» Kafka Testing Pitfalls</a>

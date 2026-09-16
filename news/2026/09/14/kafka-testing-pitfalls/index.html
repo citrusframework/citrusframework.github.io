@@ -117,6 +117,10 @@
     <optgroup label="Posts">
       
       
+      <option value="/news/2026/09/16/multi-runtime-testing/">Multi-Runtime Testing — One Test Pattern, Three Different Runtimes</option>
+      
+      <option value="/news/2026/09/15/camel-cli-test-plugin/">Camel CLI test plugin - Zero-Code Integration Tests</option>
+      
       <option value="/news/2026/09/14/kafka-testing-pitfalls/">Kafka Testing Pitfalls in Camel Integration Tests</option>
       
       <option value="/news/2026/09/14/camel-testing-pitfalls/">Camel Integration Testing Pitfalls</option>
@@ -293,7 +297,7 @@ Citrus sends the message and immediately starts the <code class="highlighter-rou
 <p>The fork enabled <code class="highlighter-rouge">send</code> avoids the situation where the test sends the message, waits for the Kafka acknowledgement, then starts listening, and potentially misses the processed message if the Camel route finishes before the Citrus consumer is ready.
 This can lead to flaky tests where the timing condition may succeed or fail in an unpredictable way.</p>
 
-<p>You can find the complete code and test in the <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing/examples/05-reliability/quarkus">05-reliability example</a>.</p>
+<p>You can find the complete code and test in the <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main/examples/05-reliability/quarkus">05-reliability example</a>.</p>
 
 <h1 id="pitfall-cross-test-interference-on-shared-kafka-topics">Pitfall: Cross-test interference on shared Kafka topics</h1>
 
@@ -438,7 +442,7 @@ You can configure the serializer/deserializer strategy for Kafka endpoints in Ci
 
 <p>None of these pitfalls are specific to <a href="https://citrusframework.org">Citrus</a> — they apply to Kafka integration testing in general. But Citrus gives you the tools and capabilities to fix every one of them.</p>
 
-<p>You can explore all the testing patterns and pitfall fixes in the <a href="https://github.com/christophd/eip-with-camel/tree/chore/citrus-testing">eip-with-camel repository</a>.</p>
+<p>You can explore all the testing patterns and pitfall fixes in the <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main">eip-with-camel repository</a>.</p>
 
 <p>Give it a try, and let us know what you think!</p>
 
@@ -461,6 +465,14 @@ You can configure the serializer/deserializer strategy for Kafka endpoints in Ci
     <h4>Posts</h4>
     <ul>
         
+        
+        <li class="">
+          <a href="/news/2026/09/16/multi-runtime-testing/">» Multi-Runtime Testing</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/09/15/camel-cli-test-plugin/">» Camel CLI test plugin</a>
+        </li>
         
         <li class="current">
           <a href="/news/2026/09/14/kafka-testing-pitfalls/">» Kafka Testing Pitfalls</a>
