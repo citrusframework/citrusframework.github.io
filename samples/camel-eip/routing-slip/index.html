@@ -1,0 +1,1428 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 5.0.1">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus main branch" href="https://github.com/citrusframework/citrus/commits/main.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="stylesheet" href="/css/tabbed.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/atom-one-light.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+  <script src="/js/tabbed.js"></script>
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="samples">
+    <div class="grid">
+
+      <div class="samples-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the samples…</option>
+    <option value="/samples/">Overview</option>
+    <option value="/samples/todo-app/">TodoList App</option>
+    <option value="/samples/run/">Running</option>
+    
+    
+    <option value="/samples/annotation-config/">sample-annotation-config</option>
+    
+    <option value="/samples/reporting/">sample-reporting</option>
+    
+    <option value="/samples/javaconfig/">sample-javaconfig</option>
+    
+    <option value="/samples/kubernetes/">sample-kubernetes</option>
+    
+    <option value="/samples/docker/">sample-docker</option>
+    
+    <option value="/samples/apache-camel/">sample-camel-context</option>
+    
+    <option value="/samples/jbang/">sample-jbang</option>
+    
+    <option value="/samples/selenium/">sample-selenium</option>
+    
+    <option value="/samples/cucumber/">sample-cucumber</option>
+    
+    <option value="/samples/quarkus/">sample-quarkus</option>
+    
+    <option value="/samples/camel-eip/wire-tap/">wire-tap</option>
+    
+    <option value="/samples/camel-eip/content-based-router/">content-based-router</option>
+    
+    <option value="/samples/camel-eip/routing-slip/">routing-slip</option>
+    
+    <option value="/samples/camel-eip/load-balancer/">load-balancer</option>
+    
+    <option value="/samples/camel-eip/splitter/">splitter</option>
+    
+    <option value="/samples/camel-eip/messaging-bridge/">messaging-bridge</option>
+    
+    <option value="/samples/camel-eip/message-reliability/">message-reliability</option>
+    
+    <option value="/samples/camel-eip/message-filter/">message-filter</option>
+    
+    <option value="/samples/dynamic-endpoints/">sample-dynamic-endpoints</option>
+    
+    <option value="/samples/mail/">sample-mail</option>
+    
+    <option value="/samples/soap-wssecurity/">sample-soap-wssecurity</option>
+    
+    <option value="/samples/ftp/">sample-ftp</option>
+    
+    <option value="/samples/http-loadtest/">sample-http-loadtest</option>
+    
+    <option value="/samples/https/">sample-https</option>
+    
+    <option value="/samples/http/">sample-http</option>
+    
+    <option value="/samples/jms/">sample-jms</option>
+    
+    <option value="/samples/jdbc/">sample-jdbc</option>
+    
+    <option value="/samples/soap-ssl/">sample-soap-ssl</option>
+    
+    <option value="/samples/kafka/">sample-kafka</option>
+    
+    <option value="/samples/wsdl/">sample-wsdl</option>
+    
+    <option value="/samples/openapi/">sample-swagger</option>
+    
+    <option value="/samples/rmi/">sample-rmi</option>
+    
+    <option value="/samples/soap-mtom/">sample-soap-mtom</option>
+    
+    <option value="/samples/soap-attachment/">sample-soap-attachment</option>
+    
+    <option value="/samples/sftp/">sample-sftp</option>
+    
+    <option value="/samples/soap-wsaddressing/">sample-soap-wsaddressing</option>
+    
+    <option value="/samples/scp/">sample-scp</option>
+    
+    <option value="/samples/soap-static-response/">sample-soap-static-response</option>
+    
+    <option value="/samples/http-static-response/">sample-http-static-response</option>
+    
+    <option value="/samples/http-basic-auth/">sample-http-basic-auth</option>
+    
+    <option value="/samples/soap/">sample-soap</option>
+    
+    <option value="/samples/dictionaries/">sample-dictionaries</option>
+    
+    <option value="/samples/message-store/">sample-message-store</option>
+    
+    <option value="/samples/gradle/">sample-gradle</option>
+    
+    <option value="/samples/behavior/">sample-behavior</option>
+    
+    <option value="/samples/camel-quarkus-file-outbox/">camel-file-outbox</option>
+    
+    <option value="/samples/camel-quarkus-cxf-soap-client/">camel-cxf-soap-client</option>
+    
+    <option value="/samples/camel-quarkus-kafka/">camel-kafka</option>
+    
+    <option value="/samples/camel-quarkus-cxf-soap/">camel-cxf-soap</option>
+    
+    <option value="/samples/camel-quarkus-direct/">camel-direct</option>
+    
+    <option value="/samples/camel-quarkus-file-inbox/">camel-file-inbox</option>
+    
+    <option value="/samples/camel-quarkus-aws-s3-kafka/">camel-aws-s3-kafka</option>
+    
+    <option value="/samples/camel-quarkus-jms/">camel-jms</option>
+    
+    <option value="/samples/camel-quarkus-mqtt/">camel-mqtt</option>
+    
+    <option value="/samples/camel-quarkus-openapi-server/">camel-openapi-server</option>
+    
+    <option value="/samples/camel-quarkus-rest-dsl/">camel-rest-dsl</option>
+    
+    <option value="/samples/camel-quarkus-rest-to-soap/">camel-rest-to-soap</option>
+    
+    <option value="/samples/camel-quarkus-postgresql/">camel-postgresql</option>
+    
+    <option value="/samples/quarkus-event-driven-jms/">event-driven-jms</option>
+    
+    <option value="/samples/camel-quarkus-knative/">camel-knative</option>
+    
+    <option value="/samples/camel-quarkus-knative-ssl/">camel-knative-ssl</option>
+    
+    <option value="/samples/quarkus-event-driven-kafka/">event-driven-kafka</option>
+    
+    <option value="/samples/camel-quarkus-direct-http/">camel-direct-http</option>
+    
+    <option value="/samples/junit5/">sample-junit5</option>
+    
+    <option value="/samples/dataprovider/">sample-dataprovider</option>
+    
+    <option value="/samples/testng/">sample-testng</option>
+    
+    <option value="/samples/junit/">sample-junit</option>
+    
+    <option value="/samples/oxm/">sample-oxm</option>
+    
+    <option value="/samples/xml/">sample-xml</option>
+    
+    <option value="/samples/hamcrest/">sample-hamcrest</option>
+    
+    <option value="/samples/xhtml/">sample-xhtml</option>
+    
+    <option value="/samples/json/">sample-json</option>
+    
+    <option value="/samples/databind/">sample-databind</option>
+    
+    <option value="/samples/http-form-data/">sample-http-form-data</option>
+    
+    <option value="/samples/sql/">sample-sql</option>
+    
+    <option value="/samples/binary/">sample-binary</option>
+    
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+  <h2>
+    
+    
+    <img src="/img/icons/camel.png" style="width: 1em;height: 1em;" alt="">
+    
+    Testing the Routing Slip Pattern with Citrus
+    <a href="/samples/camel-eip/routing-slip/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <div class="right">
+    
+    <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/master/examples/routing-slip" target="_blank">
+      <i class="fa fa-pencil"></i> View source code
+    </a>
+    
+    
+  </div>
+  <span class="post-category">
+    <span class="label">
+      samples
+    </span>
+  </span>
+  <div class="post-content">
+    <p>Content-based routers and message filters make a routing decision based on a fixed criteria: <em>this</em> message goes <em>there</em>.
+What if the integration workflow requires sequences of decisions, and the sequence itself varies from message to message?</p>
+
+<p>A standard domestic order passes through validation and carrier assignment.
+An international order adds a customs classification step.
+A hazardous-materials order adds a compliance check.
+An international hazmat order needs both.</p>
+
+<p>You could hard-code every combination into a massive content-based router, but every new order type would require code changes and the route logic would grow increasingly fragile.
+The <a href="https://www.enterpriseintegrationpatterns.com/patterns/messaging/RoutingTable.html">Routing Slip</a> pattern, described in <em>Enterprise Integration Patterns</em> by Hohpe and Woolf, offers a cleaner solution: attach the processing sequence to the message itself and let the router follow it.</p>
+
+<p>Testing a routing slip raises a challenge that does not come up with simpler patterns.
+With a content-based router, you verify that a message lands on the right destination.
+With a routing slip, the same message must pass through <em>multiple</em> destinations in <em>sequence</em>, and the set of destinations varies depending on the message content.
+The test must prove that the correct steps were visited — and that the wrong ones were skipped.</p>
+
+<p>This is where <a href="https://citrusframework.org">Citrus</a> comes in.
+Citrus can send an order message to the input topic, then verify that the Camel routes corresponding to each slip step actually processed the message — proving the dynamic routing slip was assembled and executed correctly.
+In this post, we walk through a complete example that tests a Routing Slip route with Citrus, running on both Quarkus and Spring Boot.</p>
+
+<h1 id="the-camel-route-under-test">The Camel route under test</h1>
+
+<p>The scenario is an order processing pipeline.
+Orders arrive on a Kafka topic <code class="highlighter-rouge">eip.orders.placed</code> as JSON messages.
+A processor inspects each order and builds a comma-separated list of <code class="highlighter-rouge">direct:</code> endpoint URIs — the routing slip.
+The slip always starts with validation and ends with carrier assignment, but optional steps are inserted in between based on order properties.</p>
+
+<p>Here is the Camel route on Quarkus:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ApplicationScoped</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">RoutingSlipRoute</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">from</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed?brokers={{kafka.brokers}}&amp;groupId=routing-slip-demo"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"order-routing-slip"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">unmarshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">exchange</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                <span class="kt">var</span> <span class="n">body</span> <span class="o">=</span> <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">getBody</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+                <span class="kt">var</span> <span class="n">steps</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+                <span class="n">steps</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"direct:validate-order"</span><span class="o">);</span>
+
+                <span class="kt">boolean</span> <span class="n">hazmat</span> <span class="o">=</span> <span class="n">Boolean</span><span class="o">.</span><span class="na">TRUE</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">body</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"contains_hazmat"</span><span class="o">));</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">hazmat</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">steps</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"direct:hazmat-compliance"</span><span class="o">);</span>
+                <span class="o">}</span>
+
+                <span class="n">String</span> <span class="n">country</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span> <span class="n">body</span><span class="o">.</span><span class="na">getOrDefault</span><span class="o">(</span><span class="s">"destination_country"</span><span class="o">,</span> <span class="s">"US"</span><span class="o">);</span>
+                <span class="k">if</span> <span class="o">(!</span><span class="s">"US"</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">country</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="n">steps</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"direct:customs-classification"</span><span class="o">);</span>
+                <span class="o">}</span>
+
+                <span class="n">steps</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"direct:assign-carrier"</span><span class="o">);</span>
+                <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">setHeader</span><span class="o">(</span><span class="s">"orderSlip"</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="s">","</span><span class="o">,</span> <span class="n">steps</span><span class="o">));</span>
+            <span class="o">})</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Routing slip: ${header.orderSlip}"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routingSlip</span><span class="o">(</span><span class="n">header</span><span class="o">(</span><span class="s">"orderSlip"</span><span class="o">),</span> <span class="s">","</span><span class="o">);</span>
+
+        <span class="n">from</span><span class="o">(</span><span class="s">"direct:validate-order"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"validate-order"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Validating order ${body[order_id]}"</span><span class="o">);</span>
+
+        <span class="n">from</span><span class="o">(</span><span class="s">"direct:hazmat-compliance"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"hazmat-compliance"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"HAZMAT compliance check for order ${body[order_id]}"</span><span class="o">);</span>
+
+        <span class="n">from</span><span class="o">(</span><span class="s">"direct:customs-classification"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"customs-classification"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Customs classification for order ${body[order_id]} to ${body[destination_country]}"</span><span class="o">);</span>
+
+        <span class="n">from</span><span class="o">(</span><span class="s">"direct:assign-carrier"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"assign-carrier"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Assigning carrier for order ${body[order_id]}"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>There are several things worth noting about this route.</p>
+
+<p>First, the inline processor inspects the order body and builds the routing slip dynamically.
+The <code class="highlighter-rouge">contains_hazmat</code> flag adds a <code class="highlighter-rouge">direct:hazmat-compliance</code> step, and a non-US <code class="highlighter-rouge">destination_country</code> adds <code class="highlighter-rouge">direct:customs-classification</code>.
+The slip is stored in the <code class="highlighter-rouge">orderSlip</code> header as a comma-separated string like <code class="highlighter-rouge">direct:validate-order,direct:hazmat-compliance,direct:assign-carrier</code>.</p>
+
+<p>Second, Camel’s <code class="highlighter-rouge">routingSlip(header("orderSlip"), ",")</code> reads this header and routes the message through each endpoint in order.
+The message visits every endpoint in the list, one after another.
+Each step receives the same exchange — headers set by earlier steps are visible to later ones.</p>
+
+<p>Third, each step in the slip is a standalone route with its own <code class="highlighter-rouge">routeId</code>.
+This is important for testing: Camel’s managed route beans expose exchange counters per route, so a test can verify which routes actually processed messages.</p>
+
+<p>On Spring Boot, the route is identical except for the annotation:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">RoutingSlipRoute</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// ... identical route logic</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The routing slip logic is runtime-agnostic.
+Only the CDI annotation (<code class="highlighter-rouge">@ApplicationScoped</code> vs. <code class="highlighter-rouge">@Component</code>) changes between Quarkus and Spring Boot.</p>
+
+<h1 id="what-makes-testing-a-routing-slip-different">What makes testing a routing slip different</h1>
+
+<p>Testing a routing slip differs from testing a content-based router in a fundamental way.
+With a router, you send a message and verify it landed on the right output channel.
+You have a clear input-output relationship: one message in, one message out on a specific topic.</p>
+
+<p>With a routing slip, the message does not end up on a single output channel.
+Instead, it passes <em>through</em> a series of internal processing steps.
+The steps are <code class="highlighter-rouge">direct:</code> endpoints — they are in-process and do not produce output messages on external channels like Kafka topics.
+The message enters on the input topic, flows through the slip, and the route completes.
+There is no output message to consume and validate.</p>
+
+<p>This means the test must verify the routing slip’s behavior differently: not by consuming output messages, but by inspecting which Camel routes actually processed the exchange.
+The key questions become:</p>
+
+<ul>
+  <li>
+<strong>Did the correct steps execute?</strong> An international hazmat order should visit <code class="highlighter-rouge">validate-order</code>, <code class="highlighter-rouge">hazmat-compliance</code>, <code class="highlighter-rouge">customs-classification</code>, and <code class="highlighter-rouge">assign-carrier</code>.</li>
+  <li>
+<strong>Were the wrong steps skipped?</strong> A standard domestic order should <em>not</em> visit <code class="highlighter-rouge">hazmat-compliance</code> or <code class="highlighter-rouge">customs-classification</code>.</li>
+  <li>
+<strong>Did any step fail?</strong> A routing slip that silently drops a step due to an exception looks like a success from the outside.</li>
+</ul>
+
+<p>Citrus addresses these challenges by leveraging Camel’s JMX management API to inspect route-level exchange statistics.
+Each route tracks how many exchanges it has completed and how many have failed.
+By asserting these counters, the test can prove exactly which steps were visited.</p>
+
+<h1 id="the-message-template">The message template</h1>
+
+<p>The test uses a single JSON template for the order, stored in <code class="highlighter-rouge">src/test/resources/templates/order.json</code>:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="err">org.citrusframework</span><span class="p">:</span><span class="err">citrus-website</span><span class="p">:</span><span class="err">pom</span><span class="p">:</span><span class="mf">1.1</span><span class="err">.</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUST-org.citrusframework:citrus-website:pom:1.1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"destination_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${country}"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"contains_hazmat"</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="p">{</span><span class="err">hazmat</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">org.citrusframework:citrus-website:pom:1.1.0</code>, <code class="highlighter-rouge">${country}</code>, and <code class="highlighter-rouge">${hazmat}</code> placeholders are resolved by Citrus at runtime from test variables.
+This single template serves all four test scenarios.
+A domestic order sets <code class="highlighter-rouge">country</code> to <code class="highlighter-rouge">"US"</code> and <code class="highlighter-rouge">hazmat</code> to <code class="highlighter-rouge">false</code>.
+An international hazmat order sets <code class="highlighter-rouge">country</code> to <code class="highlighter-rouge">"DE"</code> and <code class="highlighter-rouge">hazmat</code> to <code class="highlighter-rouge">true</code>.
+The same template, different variables — the test data drives the routing slip behavior.</p>
+
+<h1 id="testing-the-four-routing-slip-scenarios">Testing the four routing slip scenarios</h1>
+
+<p>The test suite covers four distinct routing paths, each as a separate nested test class.
+Let us walk through them from simplest to most complex.</p>
+
+<h2 id="standard-domestic-order">Standard domestic order</h2>
+
+<p>The simplest case: a US domestic, non-hazmat order should only visit <code class="highlighter-rouge">validate-order</code> and <code class="highlighter-rouge">assign-carrier</code>, skipping both optional steps.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Nested</span>
+<span class="kd">class</span> <span class="nc">RoutingSlipDomesticTest</span> <span class="o">{</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldRouteStandardDomesticOrder</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+            <span class="n">createVariables</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"country"</span><span class="o">,</span> <span class="s">"US"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"hazmat"</span><span class="o">,</span> <span class="kc">false</span><span class="o">)</span>
+        <span class="o">);</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"order-routing-slip"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+            <span class="n">send</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"kafka.KEY"</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+        <span class="o">);</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">assertProcessedExchanges</span><span class="o">(</span><span class="s">"order-routing-slip"</span><span class="o">,</span> <span class="n">it</span> <span class="o">-&gt;</span> <span class="n">it</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The test follows Citrus’s given-when-then structure.</p>
+
+<p>The <code class="highlighter-rouge">given</code> phase creates test variables — a random order ID, <code class="highlighter-rouge">"US"</code> as the country, and <code class="highlighter-rouge">false</code> for hazmat.
+It then waits for the <code class="highlighter-rouge">order-routing-slip</code> route to be fully started and connected to Kafka.</p>
+
+<p>The <code class="highlighter-rouge">when</code> phase sends the order to the <code class="highlighter-rouge">eip.orders.placed</code> topic.
+The message body is loaded from the <code class="highlighter-rouge">order.json</code> template, and Citrus resolves the placeholders with the variables defined above.</p>
+
+<p>The <code class="highlighter-rouge">then</code> phase verifies that the <code class="highlighter-rouge">order-routing-slip</code> route processed at least one exchange successfully.
+The <code class="highlighter-rouge">assertProcessedExchanges</code> utility (described below) uses Camel’s managed route beans to check the exchange counter, confirming the routing slip ran to completion.</p>
+
+<h2 id="hazmat-order">Hazmat order</h2>
+
+<p>A US order containing hazardous materials should add the <code class="highlighter-rouge">hazmat-compliance</code> step to the slip:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Nested</span>
+<span class="kd">class</span> <span class="nc">RoutingSlipHazmatTest</span> <span class="o">{</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldRouteHazmatOrder</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+            <span class="n">createVariables</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"country"</span><span class="o">,</span> <span class="s">"US"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"hazmat"</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
+        <span class="o">);</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"order-routing-slip"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+            <span class="n">send</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"kafka.KEY"</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+        <span class="o">);</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">assertProcessedExchanges</span><span class="o">(</span><span class="s">"hazmat-compliance"</span><span class="o">,</span> <span class="n">it</span> <span class="o">-&gt;</span> <span class="n">it</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The only variable change is <code class="highlighter-rouge">hazmat</code> set to <code class="highlighter-rouge">true</code>.
+The assertion targets the <code class="highlighter-rouge">hazmat-compliance</code> route specifically — if its exchange counter is at least 1, the routing slip included the hazmat step.</p>
+
+<h2 id="international-order">International order</h2>
+
+<p>A non-US order without hazmat should include <code class="highlighter-rouge">customs-classification</code> but skip <code class="highlighter-rouge">hazmat-compliance</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Nested</span>
+<span class="kd">class</span> <span class="nc">RoutingSlipInternationalTest</span> <span class="o">{</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldRouteInternationalOrder</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+            <span class="n">createVariables</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"country"</span><span class="o">,</span> <span class="s">"DE"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"hazmat"</span><span class="o">,</span> <span class="kc">false</span><span class="o">)</span>
+        <span class="o">);</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"order-routing-slip"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+            <span class="n">send</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"kafka.KEY"</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+        <span class="o">);</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">assertProcessedExchanges</span><span class="o">(</span><span class="s">"customs-classification"</span><span class="o">,</span> <span class="n">it</span> <span class="o">-&gt;</span> <span class="n">it</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Setting <code class="highlighter-rouge">country</code> to <code class="highlighter-rouge">"DE"</code> triggers the customs classification step.
+The assertion targets <code class="highlighter-rouge">customs-classification</code> to verify it was included in the slip.</p>
+
+<h2 id="international-hazmat-order--the-full-pipeline">International hazmat order — the full pipeline</h2>
+
+<p>The most comprehensive test sends an order that triggers <em>every</em> optional step and then verifies <em>all</em> routes in the slip:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Nested</span>
+<span class="kd">class</span> <span class="nc">RoutingSlipFullPipelineTest</span> <span class="o">{</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldRouteInternationalHazmatOrderThroughAllSteps</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+            <span class="n">createVariables</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"country"</span><span class="o">,</span> <span class="s">"DE"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"hazmat"</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
+        <span class="o">);</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"order-routing-slip"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+            <span class="n">send</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"kafka.KEY"</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+        <span class="o">);</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">assertProcessedExchanges</span><span class="o">(</span><span class="s">"order-routing-slip"</span><span class="o">,</span> <span class="n">it</span> <span class="o">-&gt;</span> <span class="n">it</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+        <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">assertProcessedExchanges</span><span class="o">(</span><span class="s">"validate-order"</span><span class="o">,</span> <span class="n">it</span> <span class="o">-&gt;</span> <span class="n">it</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+        <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">assertProcessedExchanges</span><span class="o">(</span><span class="s">"hazmat-compliance"</span><span class="o">,</span> <span class="n">it</span> <span class="o">-&gt;</span> <span class="n">it</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+        <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">assertProcessedExchanges</span><span class="o">(</span><span class="s">"customs-classification"</span><span class="o">,</span> <span class="n">it</span> <span class="o">-&gt;</span> <span class="n">it</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+        <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">assertProcessedExchanges</span><span class="o">(</span><span class="s">"assign-carrier"</span><span class="o">,</span> <span class="n">it</span> <span class="o">-&gt;</span> <span class="n">it</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This test sets both <code class="highlighter-rouge">country</code> to <code class="highlighter-rouge">"DE"</code> and <code class="highlighter-rouge">hazmat</code> to <code class="highlighter-rouge">true</code>, producing the maximum-length routing slip: <code class="highlighter-rouge">direct:validate-order,direct:hazmat-compliance,direct:customs-classification,direct:assign-carrier</code>.</p>
+
+<p>The <code class="highlighter-rouge">then</code> phase asserts against <em>every</em> route in the slip.
+Each <code class="highlighter-rouge">assertProcessedExchanges</code> call verifies that the named route completed at least one exchange without errors.
+If any step was skipped or failed, the corresponding assertion catches it.</p>
+
+<h1 id="verifying-route-execution-with-camels-management-api">Verifying route execution with Camel’s management API</h1>
+
+<p>The <code class="highlighter-rouge">assertProcessedExchanges</code> utility is the core verification mechanism for routing slip tests.
+Unlike pattern tests that consume output messages, this approach inspects Camel’s internal route statistics:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">EipTestSupport</span> <span class="kd">extends</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
+
+    <span class="k">default</span> <span class="n">TestActionBuilder</span><span class="o">&lt;?&gt;</span> <span class="n">assertProcessedExchanges</span><span class="o">(</span>
+            <span class="n">String</span> <span class="n">routeId</span><span class="o">,</span> <span class="n">Predicate</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span> <span class="n">check</span><span class="o">,</span> <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">repeatOnError</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">context</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                        <span class="n">ManagedCamelContext</span> <span class="n">managedContext</span> <span class="o">=</span> <span class="n">camelContext</span>
+                                <span class="o">.</span><span class="na">getCamelContextExtension</span><span class="o">()</span>
+                                <span class="o">.</span><span class="na">getContextPlugin</span><span class="o">(</span><span class="n">ManagedCamelContext</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+                        <span class="n">ManagedRouteMBean</span> <span class="n">routeMBean</span> <span class="o">=</span>
+                                <span class="n">managedContext</span><span class="o">.</span><span class="na">getManagedRoute</span><span class="o">(</span><span class="n">routeId</span><span class="o">);</span>
+
+                        <span class="k">if</span> <span class="o">(</span><span class="n">routeMBean</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                            <span class="kt">long</span> <span class="n">failed</span> <span class="o">=</span> <span class="n">routeMBean</span><span class="o">.</span><span class="na">getExchangesFailed</span><span class="o">();</span>
+                            <span class="k">if</span> <span class="o">(</span><span class="n">failed</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                                <span class="k">throw</span> <span class="k">new</span> <span class="nf">ValidationException</span><span class="o">(</span>
+                                    <span class="s">"Route '%s' has %d failed exchanges"</span>
+                                        <span class="o">.</span><span class="na">formatted</span><span class="o">(</span><span class="n">routeId</span><span class="o">,</span> <span class="n">failed</span><span class="o">));</span>
+                            <span class="o">}</span>
+                            <span class="kt">long</span> <span class="n">completed</span> <span class="o">=</span> <span class="n">routeMBean</span><span class="o">.</span><span class="na">getExchangesCompleted</span><span class="o">();</span>
+                            <span class="k">if</span> <span class="o">(!</span><span class="n">check</span><span class="o">.</span><span class="na">test</span><span class="o">(</span><span class="n">completed</span><span class="o">))</span> <span class="o">{</span>
+                                <span class="k">throw</span> <span class="k">new</span> <span class="nf">ValidationException</span><span class="o">(</span>
+                                    <span class="s">"Route '%s' has %d completed exchanges"</span>
+                                        <span class="o">.</span><span class="na">formatted</span><span class="o">(</span><span class="n">routeId</span><span class="o">,</span> <span class="n">completed</span><span class="o">));</span>
+                            <span class="o">}</span>
+                        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                            <span class="k">throw</span> <span class="k">new</span> <span class="nf">CitrusRuntimeException</span><span class="o">(</span>
+                                <span class="s">"No managed route for routeId '%s'"</span>
+                                    <span class="o">.</span><span class="na">formatted</span><span class="o">(</span><span class="n">routeId</span><span class="o">));</span>
+                        <span class="o">}</span>
+                    <span class="o">}</span>
+                <span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The utility uses Camel’s <code class="highlighter-rouge">ManagedCamelContext</code> to access the <code class="highlighter-rouge">ManagedRouteMBean</code> for a given route ID.
+Each managed route bean tracks two key counters: completed exchanges and failed exchanges.</p>
+
+<p>The method first checks for failures — if any exchange failed on the route, the test fails immediately with a clear error message.
+Then it checks the completed count against the provided predicate.
+The <code class="highlighter-rouge">repeatOnError</code> wrapper retries up to 20 times with one-second pauses, accommodating the asynchronous nature of Kafka-based processing where there is a delay between sending a message and the route completing its execution.</p>
+
+<p>This approach has an important advantage over output-message verification: it directly proves which processing steps the message visited, not just where it ended up.
+A routing slip with four steps produces no output messages if the steps are all <code class="highlighter-rouge">direct:</code> endpoints — there is nothing to consume.
+But each step’s route counter increments, providing a precise record of the processing path.</p>
+
+<h1 id="waiting-for-the-camel-route">Waiting for the Camel route</h1>
+
+<p>Camel routes that consume from Kafka take a moment to start and subscribe to the broker.
+If the test sends a message before the route’s consumer is ready, the message sits unprocessed and the test times out.</p>
+
+<p>The example addresses this with a reusable utility that uses Camel’s Control Bus to poll the route status:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">default</span> <span class="n">TestActionBuilder</span><span class="o">&lt;?&gt;</span> <span class="n">waitForCamelRouteStarted</span><span class="o">(</span>
+        <span class="n">String</span> <span class="n">routeId</span><span class="o">,</span> <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="nf">repeatOnError</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">(</span><span class="n">camelContext</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">controlBus</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">route</span><span class="o">(</span><span class="n">routeId</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">status</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">result</span><span class="o">(</span><span class="n">ServiceStatus</span><span class="o">.</span><span class="na">Started</span><span class="o">),</span>
+                <span class="n">sleep</span><span class="o">().</span><span class="na">seconds</span><span class="o">(</span><span class="mi">5</span><span class="o">)</span>
+            <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This polls the Camel context up to 20 times with one-second pauses.
+Once the route reports <code class="highlighter-rouge">Started</code>, it waits an additional five seconds for the Kafka consumer to fully connect and receive its partition assignments.
+Every test class implements <code class="highlighter-rouge">EipTestSupport</code> and calls <code class="highlighter-rouge">waitForCamelRouteStarted(...)</code> in its <code class="highlighter-rouge">given</code> phase.</p>
+
+<h1 id="setting-up-the-test-infrastructure">Setting up the test infrastructure</h1>
+
+<p>The route consumes from Kafka, so the test needs a running broker.
+Citrus manages this lifecycle with Testcontainers — a Docker Compose file defines a single-node Kafka (KRaft mode) setup along with a Kafka UI for observability.</p>
+
+<p>On Quarkus, the infrastructure setup uses <code class="highlighter-rouge">@CitrusConfiguration</code> with <code class="highlighter-rouge">@BindToRegistry</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@CitrusConfiguration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EipInfraSetup</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
+
+    <span class="nd">@BindToRegistry</span>
+    <span class="kd">public</span> <span class="n">BeforeSuite</span> <span class="nf">startInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">beforeSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">up</span><span class="o">(</span><span class="s">"_infra/compose.yaml"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">autoRemove</span><span class="o">(</span><span class="kc">false</span><span class="o">),</span>
+                    <span class="n">waitFor</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">http</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://localhost:8090"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">25</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@BindToRegistry</span>
+    <span class="kd">public</span> <span class="n">AfterSuite</span> <span class="nf">stopInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">afterSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">().</span><span class="na">stop</span><span class="o">(),</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">down</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>On Spring Boot, the same logic uses <code class="highlighter-rouge">@Configuration</code> and <code class="highlighter-rouge">@Bean</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EipInfraSetup</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">BeforeSuite</span> <span class="nf">startInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">beforeSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">up</span><span class="o">(</span><span class="s">"_infra/compose.yaml"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">autoRemove</span><span class="o">(</span><span class="kc">false</span><span class="o">),</span>
+                    <span class="n">waitFor</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">http</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://localhost:8090"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">25</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">AfterSuite</span> <span class="nf">stopInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">afterSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">().</span><span class="na">stop</span><span class="o">(),</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">down</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The test actions are identical — only the bean registration mechanism differs between the two runtimes.</p>
+
+<h1 id="running-on-quarkus-and-spring-boot">Running on Quarkus and Spring Boot</h1>
+
+<p>The Camel route logic is identical across both runtimes.
+The test code differences are limited to the wiring annotations.</p>
+
+<p>On Quarkus, the test class uses <code class="highlighter-rouge">@CitrusSupport</code> alongside <code class="highlighter-rouge">@QuarkusTest</code>, and the <code class="highlighter-rouge">CamelContext</code> is injected with CDI:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@QuarkusTest</span>
+<span class="nd">@CitrusSupport</span>
+<span class="kd">class</span> <span class="nc">EipTests</span> <span class="kd">implements</span> <span class="n">EipTestSupport</span> <span class="o">{</span>
+
+    <span class="nd">@CitrusResource</span>
+    <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
+
+    <span class="nd">@Inject</span>
+    <span class="nd">@BindToRegistry</span>
+    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="nd">@Nested</span>
+    <span class="kd">class</span> <span class="nc">RoutingSlipDomesticTest</span> <span class="o">{</span>
+        <span class="c1">// ... test methods</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>On Spring Boot, the test uses <code class="highlighter-rouge">@CitrusSpringSupport</code> alongside Spring Boot and Camel test annotations:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@SpringBootTest</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="n">ComposedRoutingApplication</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="nd">@CamelSpringBootTest</span>
+<span class="nd">@CitrusSpringSupport</span>
+<span class="nd">@ContextConfiguration</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="o">{</span> <span class="n">EipInfraSetup</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">CitrusSpringConfig</span><span class="o">.</span><span class="na">class</span> <span class="o">})</span>
+<span class="kd">class</span> <span class="nc">EipTests</span> <span class="kd">implements</span> <span class="n">EipTestSupport</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="nd">@Nested</span>
+    <span class="kd">class</span> <span class="nc">RoutingSlipDomesticTest</span> <span class="o">{</span>
+
+        <span class="nd">@CitrusResource</span>
+        <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
+
+        <span class="c1">// ... test methods</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>On Spring Boot, the <code class="highlighter-rouge">TestCaseRunner</code> is declared in the <code class="highlighter-rouge">@Nested</code> inner class, while on Quarkus it lives at the outer class level — a structural difference driven by how each test framework manages injection scopes.
+The actual test methods inside each nested class are identical on both runtimes.</p>
+
+<h1 id="test-dependencies">Test dependencies</h1>
+
+<p>Both runtime variants share the same core Citrus dependencies.
+The runtime adapter is the only difference — <code class="highlighter-rouge">citrus-quarkus</code> for Quarkus, <code class="highlighter-rouge">citrus-spring</code> for Spring Boot:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- Quarkus runtime adapter --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-quarkus<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="c">&lt;!-- OR Spring Boot runtime adapter --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-spring<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>Both runtimes share these common dependencies:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-camel<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-kafka<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-testcontainers<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">citrus-camel</code> module provides the Control Bus integration used in <code class="highlighter-rouge">waitForCamelRouteStarted</code> and the managed route bean access in <code class="highlighter-rouge">assertProcessedExchanges</code>.
+The <code class="highlighter-rouge">citrus-kafka</code> module provides the Kafka send actions.
+The <code class="highlighter-rouge">citrus-testcontainers</code> module manages the Docker Compose lifecycle for the Kafka broker.</p>
+
+<h1 id="running-the-tests">Running the tests</h1>
+
+<p>Make sure Docker (or Podman) is running, then execute:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Quarkus</span>
+<span class="nb">cd </span>examples/10-composed-routing/quarkus
+mvn verify
+
+<span class="c"># Spring Boot</span>
+<span class="nb">cd </span>examples/10-composed-routing/spring-boot
+mvn verify
+</code></pre></div></div>
+
+<p>The test suite starts the Kafka broker via Testcontainers, boots the Camel application, runs all four routing slip tests, and tears everything down.</p>
+
+<h1 id="key-takeaways">Key takeaways</h1>
+
+<p>Testing a Routing Slip means verifying that a message visits the correct sequence of processing steps — and skips the ones it should not visit.
+Unlike single-destination patterns where you check output messages, a routing slip test must prove which internal routes were activated by the dynamic slip.</p>
+
+<p>Here is what Citrus brings to this problem:</p>
+
+<ul>
+  <li>
+<strong>Route-level exchange assertions</strong> — The <code class="highlighter-rouge">assertProcessedExchanges</code> utility uses Camel’s <code class="highlighter-rouge">ManagedRouteMBean</code> to inspect completed and failed exchange counters per route. This directly proves which steps were visited without relying on output messages.</li>
+  <li>
+<strong>Test variables for data-driven scenarios</strong> — A single <code class="highlighter-rouge">order.json</code> template serves all four test scenarios. The <code class="highlighter-rouge">${country}</code> and <code class="highlighter-rouge">${hazmat}</code> variables drive the routing slip behavior, keeping the tests concise and the intent clear.</li>
+  <li>
+<strong>Retry-tolerant verification</strong> — The <code class="highlighter-rouge">repeatOnError</code> wrapper accommodates Kafka’s asynchronous processing model, retrying assertions until the route counters reflect the completed exchange.</li>
+  <li>
+<strong>Multi-runtime portability</strong> — The same test logic runs on Quarkus and Spring Boot. Only the wiring annotations change; the send, wait, and assertion logic stays identical.</li>
+</ul>
+
+<p>The complete source code for this example is available on GitHub:</p>
+
+<ul>
+  <li><a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main/examples/10-composed-routing/quarkus">Quarkus variant</a></li>
+  <li><a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main/examples/10-composed-routing/spring-boot">Spring Boot variant</a></li>
+</ul>
+
+<p>Give it a try, and let us know what you think!</p>
+
+  </div>
+</article>
+
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <h4>Samples</h4>
+    <ul>
+      <li class="">
+        <a href="/samples/">Overview</a>
+      </li>
+      <li class="">
+        <a href="/samples/todo-app">TodoList App</a>
+      </li>
+      <li class="">
+        <a href="/samples/run">Running</a>
+      </li>
+    </ul>
+    <h4>Configuration</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+
+      
+      
+      <li class="">
+        <a href="/samples/annotation-config/">sample-annotation-config</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/reporting/">sample-reporting</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/javaconfig/">sample-javaconfig</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>CONNECTORS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/kubernetes/">sample-kubernetes</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/docker/">sample-docker</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>DEMO</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/apache-camel/">sample-camel-context</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jbang/">sample-jbang</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/cucumber/">sample-cucumber</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus/">sample-quarkus</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>EIP</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/wire-tap/">wire-tap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/content-based-router/">content-based-router</a>
+      </li>
+      
+      
+      <li class="current">
+        <a href="/samples/camel-eip/routing-slip/">routing-slip</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/load-balancer/">load-balancer</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/splitter/">splitter</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/messaging-bridge/">messaging-bridge</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/message-reliability/">message-reliability</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/message-filter/">message-filter</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>ENDPOINTS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/dynamic-endpoints/">sample-dynamic-endpoints</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/mail/">sample-mail</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-wssecurity/">sample-soap-wssecurity</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/ftp/">sample-ftp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-loadtest/">sample-http-loadtest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/https/">sample-https</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http/">sample-http</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jms/">sample-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jdbc/">sample-jdbc</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-ssl/">sample-soap-ssl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/kafka/">sample-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/wsdl/">sample-wsdl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/openapi/">sample-swagger</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/rmi/">sample-rmi</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-mtom/">sample-soap-mtom</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-attachment/">sample-soap-attachment</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/sftp/">sample-sftp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-wsaddressing/">sample-soap-wsaddressing</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/scp/">sample-scp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-static-response/">sample-soap-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-static-response/">sample-http-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-basic-auth/">sample-http-basic-auth</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap/">sample-soap</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>MISCELLANEOUS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/dictionaries/">sample-dictionaries</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/message-store/">sample-message-store</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/gradle/">sample-gradle</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/behavior/">sample-behavior</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>QUARKUS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-file-outbox/">camel-file-outbox</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-cxf-soap-client/">camel-cxf-soap-client</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-kafka/">camel-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-cxf-soap/">camel-cxf-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-direct/">camel-direct</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-file-inbox/">camel-file-inbox</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-aws-s3-kafka/">camel-aws-s3-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-jms/">camel-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-mqtt/">camel-mqtt</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-openapi-server/">camel-openapi-server</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-rest-dsl/">camel-rest-dsl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-rest-to-soap/">camel-rest-to-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-postgresql/">camel-postgresql</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus-event-driven-jms/">event-driven-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-knative/">camel-knative</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-knative-ssl/">camel-knative-ssl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus-event-driven-kafka/">event-driven-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-direct-http/">camel-direct-http</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>RUNTIMES</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/junit5/">sample-junit5</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dataprovider/">sample-dataprovider</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/testng/">sample-testng</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/junit/">sample-junit</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>VALIDATION</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/oxm/">sample-oxm</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xml/">sample-xml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/hamcrest/">sample-hamcrest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xhtml/">sample-xhtml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/json/">sample-json</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/databind/">sample-databind</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-form-data/">sample-http-form-data</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/sql/">sample-sql</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/binary/">sample-binary</a>
+      </li>
+      
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/citrusframework/citrus/blob/master/LICENSE">MIT License</a>.</p>
+      <br>
+      <p>© 2026 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p> </p>
+      <br>
+      <br>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,1410 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 5.0.1">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus main branch" href="https://github.com/citrusframework/citrus/commits/main.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="stylesheet" href="/css/tabbed.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/atom-one-light.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+  <script src="/js/tabbed.js"></script>
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="samples">
+    <div class="grid">
+
+      <div class="samples-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the samples…</option>
+    <option value="/samples/">Overview</option>
+    <option value="/samples/todo-app/">TodoList App</option>
+    <option value="/samples/run/">Running</option>
+    
+    
+    <option value="/samples/annotation-config/">sample-annotation-config</option>
+    
+    <option value="/samples/reporting/">sample-reporting</option>
+    
+    <option value="/samples/javaconfig/">sample-javaconfig</option>
+    
+    <option value="/samples/kubernetes/">sample-kubernetes</option>
+    
+    <option value="/samples/docker/">sample-docker</option>
+    
+    <option value="/samples/apache-camel/">sample-camel-context</option>
+    
+    <option value="/samples/jbang/">sample-jbang</option>
+    
+    <option value="/samples/selenium/">sample-selenium</option>
+    
+    <option value="/samples/cucumber/">sample-cucumber</option>
+    
+    <option value="/samples/quarkus/">sample-quarkus</option>
+    
+    <option value="/samples/camel-eip/wire-tap/">wire-tap</option>
+    
+    <option value="/samples/camel-eip/content-based-router/">content-based-router</option>
+    
+    <option value="/samples/camel-eip/routing-slip/">routing-slip</option>
+    
+    <option value="/samples/camel-eip/load-balancer/">load-balancer</option>
+    
+    <option value="/samples/camel-eip/splitter/">splitter</option>
+    
+    <option value="/samples/camel-eip/messaging-bridge/">messaging-bridge</option>
+    
+    <option value="/samples/camel-eip/message-reliability/">message-reliability</option>
+    
+    <option value="/samples/camel-eip/message-filter/">message-filter</option>
+    
+    <option value="/samples/dynamic-endpoints/">sample-dynamic-endpoints</option>
+    
+    <option value="/samples/mail/">sample-mail</option>
+    
+    <option value="/samples/soap-wssecurity/">sample-soap-wssecurity</option>
+    
+    <option value="/samples/ftp/">sample-ftp</option>
+    
+    <option value="/samples/http-loadtest/">sample-http-loadtest</option>
+    
+    <option value="/samples/https/">sample-https</option>
+    
+    <option value="/samples/http/">sample-http</option>
+    
+    <option value="/samples/jms/">sample-jms</option>
+    
+    <option value="/samples/jdbc/">sample-jdbc</option>
+    
+    <option value="/samples/soap-ssl/">sample-soap-ssl</option>
+    
+    <option value="/samples/kafka/">sample-kafka</option>
+    
+    <option value="/samples/wsdl/">sample-wsdl</option>
+    
+    <option value="/samples/openapi/">sample-swagger</option>
+    
+    <option value="/samples/rmi/">sample-rmi</option>
+    
+    <option value="/samples/soap-mtom/">sample-soap-mtom</option>
+    
+    <option value="/samples/soap-attachment/">sample-soap-attachment</option>
+    
+    <option value="/samples/sftp/">sample-sftp</option>
+    
+    <option value="/samples/soap-wsaddressing/">sample-soap-wsaddressing</option>
+    
+    <option value="/samples/scp/">sample-scp</option>
+    
+    <option value="/samples/soap-static-response/">sample-soap-static-response</option>
+    
+    <option value="/samples/http-static-response/">sample-http-static-response</option>
+    
+    <option value="/samples/http-basic-auth/">sample-http-basic-auth</option>
+    
+    <option value="/samples/soap/">sample-soap</option>
+    
+    <option value="/samples/dictionaries/">sample-dictionaries</option>
+    
+    <option value="/samples/message-store/">sample-message-store</option>
+    
+    <option value="/samples/gradle/">sample-gradle</option>
+    
+    <option value="/samples/behavior/">sample-behavior</option>
+    
+    <option value="/samples/camel-quarkus-file-outbox/">camel-file-outbox</option>
+    
+    <option value="/samples/camel-quarkus-cxf-soap-client/">camel-cxf-soap-client</option>
+    
+    <option value="/samples/camel-quarkus-kafka/">camel-kafka</option>
+    
+    <option value="/samples/camel-quarkus-cxf-soap/">camel-cxf-soap</option>
+    
+    <option value="/samples/camel-quarkus-direct/">camel-direct</option>
+    
+    <option value="/samples/camel-quarkus-file-inbox/">camel-file-inbox</option>
+    
+    <option value="/samples/camel-quarkus-aws-s3-kafka/">camel-aws-s3-kafka</option>
+    
+    <option value="/samples/camel-quarkus-jms/">camel-jms</option>
+    
+    <option value="/samples/camel-quarkus-mqtt/">camel-mqtt</option>
+    
+    <option value="/samples/camel-quarkus-openapi-server/">camel-openapi-server</option>
+    
+    <option value="/samples/camel-quarkus-rest-dsl/">camel-rest-dsl</option>
+    
+    <option value="/samples/camel-quarkus-rest-to-soap/">camel-rest-to-soap</option>
+    
+    <option value="/samples/camel-quarkus-postgresql/">camel-postgresql</option>
+    
+    <option value="/samples/quarkus-event-driven-jms/">event-driven-jms</option>
+    
+    <option value="/samples/camel-quarkus-knative/">camel-knative</option>
+    
+    <option value="/samples/camel-quarkus-knative-ssl/">camel-knative-ssl</option>
+    
+    <option value="/samples/quarkus-event-driven-kafka/">event-driven-kafka</option>
+    
+    <option value="/samples/camel-quarkus-direct-http/">camel-direct-http</option>
+    
+    <option value="/samples/junit5/">sample-junit5</option>
+    
+    <option value="/samples/dataprovider/">sample-dataprovider</option>
+    
+    <option value="/samples/testng/">sample-testng</option>
+    
+    <option value="/samples/junit/">sample-junit</option>
+    
+    <option value="/samples/oxm/">sample-oxm</option>
+    
+    <option value="/samples/xml/">sample-xml</option>
+    
+    <option value="/samples/hamcrest/">sample-hamcrest</option>
+    
+    <option value="/samples/xhtml/">sample-xhtml</option>
+    
+    <option value="/samples/json/">sample-json</option>
+    
+    <option value="/samples/databind/">sample-databind</option>
+    
+    <option value="/samples/http-form-data/">sample-http-form-data</option>
+    
+    <option value="/samples/sql/">sample-sql</option>
+    
+    <option value="/samples/binary/">sample-binary</option>
+    
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+  <h2>
+    
+    
+    <img src="/img/icons/camel.png" style="width: 1em;height: 1em;" alt="">
+    
+    Testing the Wire Tap Pattern with Citrus
+    <a href="/samples/camel-eip/wire-tap/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <div class="right">
+    
+    <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/master/examples/wire-tap" target="_blank">
+      <i class="fa fa-pencil"></i> View source code
+    </a>
+    
+    
+  </div>
+  <span class="post-category">
+    <span class="label">
+      samples
+    </span>
+  </span>
+  <div class="post-content">
+    <p>Production integration systems need observability.
+Every order that flows through a pipeline should leave an audit trail — a timestamped record of what was processed, when, and by whom.
+At the same time, auditing must never slow down or block the main processing flow.
+If the audit system is overloaded, unreachable, or simply slow, the customer waiting for their order confirmation should not notice.</p>
+
+<p>The naive approach is to add a synchronous <code class="highlighter-rouge">.to("kafka:eip.orders.audit")</code> step in the middle of the route.
+But now the main flow waits for the Kafka acknowledgment on the audit topic before continuing.
+A spike in audit topic latency — or a broker partition reassignment — stalls every order in the pipeline.</p>
+
+<p>The <a href="https://www.enterpriseintegrationpatterns.com/patterns/messaging/WireTap.html">Wire Tap</a> pattern, described in <em>Enterprise Integration Patterns</em> by Hohpe and Woolf, solves this by sending a <em>copy</em> of the message to a secondary channel without affecting the main flow.
+The main route continues immediately; the tapped copy processes asynchronously in a separate thread.
+Think of it as a network packet capture — it observes the traffic without interfering.</p>
+
+<p><a href="https://camel.apache.org">Apache Camel</a> implements this with the <code class="highlighter-rouge">wireTap()</code> EIP, which sends a shallow copy of the current exchange to another endpoint in a separate thread.
+The main route does not wait for the tap to complete, and a failure in the tap does not propagate back to the main flow.</p>
+
+<p>Testing a wire tap creates a challenge that is distinct from other routing patterns.
+With a content-based router or a splitter, you verify a single flow: message in, message out on the expected channel.
+With a wire tap, a single inbound message produces activity on <em>two</em> independent paths — the main processing flow and the audit tap — and both must be verified.
+The test needs to prove that the main flow completed normally <em>and</em> that the tapped copy reached the audit channel, even though the two paths run asynchronously.</p>
+
+<p>This is where <a href="https://citrusframework.org">Citrus</a> comes in.
+Citrus can send a message to the input topic and then verify that both the main route and the audit route processed the exchange — proving that the wire tap fired without disrupting the primary flow.
+In this post, we walk through a complete example that tests a Wire Tap route with Citrus, running on both Quarkus and Spring Boot.</p>
+
+<h1 id="the-camel-route-under-test">The Camel route under test</h1>
+
+<p>The scenario is an order processing pipeline with audit logging.
+Orders arrive on a Kafka topic <code class="highlighter-rouge">eip.orders.processing</code> as JSON messages.
+The main flow processes each order — stamping it with a <code class="highlighter-rouge">PROCESSED</code> status and a timestamp — then publishes the result to <code class="highlighter-rouge">eip.orders.processed</code>.
+Along the way, a wire tap sends a copy of the original order to an audit route, which enriches it with audit metadata and publishes it to <code class="highlighter-rouge">eip.orders.audit</code>.</p>
+
+<p>Here is the Camel route on Quarkus:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ApplicationScoped</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">WireTapRoute</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">from</span><span class="o">(</span><span class="s">"kafka:eip.orders.processing?brokers={{kafka.brokers}}&amp;groupId=wiretap-demo"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"wire-tap-main"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">unmarshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Processing order ${body[order_id]} — main flow"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">wireTap</span><span class="o">(</span><span class="s">"direct:audit"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">exchange</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                <span class="kt">var</span> <span class="n">body</span> <span class="o">=</span> <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">getBody</span><span class="o">(</span><span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Map</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+                <span class="n">body</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"status"</span><span class="o">,</span> <span class="s">"PROCESSED"</span><span class="o">);</span>
+                <span class="n">body</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"processed_at"</span><span class="o">,</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">());</span>
+            <span class="o">})</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Order ${body[order_id]} processed successfully"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">marshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"kafka:eip.orders.processed?brokers={{kafka.brokers}}"</span><span class="o">);</span>
+
+        <span class="n">from</span><span class="o">(</span><span class="s">"direct:audit"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"wire-tap-audit"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">exchange</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                <span class="kt">var</span> <span class="n">body</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedHashMap</span><span class="o">&lt;&gt;(</span>
+                        <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">getBody</span><span class="o">(</span><span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Map</span><span class="o">.</span><span class="na">class</span><span class="o">));</span>
+                <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">setBody</span><span class="o">(</span><span class="n">body</span><span class="o">);</span>
+            <span class="o">})</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"AUDIT: Recording copy of order ${body[order_id]} for compliance"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">exchange</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                <span class="kt">var</span> <span class="n">body</span> <span class="o">=</span> <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">getBody</span><span class="o">(</span><span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Map</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+                <span class="n">body</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"audit_timestamp"</span><span class="o">,</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">());</span>
+                <span class="n">body</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"audit_source"</span><span class="o">,</span> <span class="s">"wire-tap"</span><span class="o">);</span>
+            <span class="o">})</span>
+            <span class="o">.</span><span class="na">marshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"kafka:eip.orders.audit?brokers={{kafka.brokers}}"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>There are several things worth noting about this route.</p>
+
+<p>First, the <code class="highlighter-rouge">.wireTap("direct:audit")</code> call sits between the unmarshal step and the main processing logic.
+When Camel reaches this point, it sends a shallow copy of the current exchange to <code class="highlighter-rouge">direct:audit</code> in a separate thread and <em>immediately</em> continues to the next step in the main route.
+The main flow does not wait for the audit route to complete.</p>
+
+<p>Second, the audit route creates a deep copy of the message body with <code class="highlighter-rouge">new LinkedHashMap&lt;&gt;(...)</code> before modifying it.
+This is critical.
+The wire tap sends a <em>shallow</em> copy of the exchange — the body reference in the tapped copy points to the same <code class="highlighter-rouge">Map</code> object as the main flow.
+Without the deep copy, modifications in the audit route (adding <code class="highlighter-rouge">audit_timestamp</code> and <code class="highlighter-rouge">audit_source</code>) would be visible in the main flow’s body, corrupting it.
+The deep copy isolates the two flows so they can modify the body independently.</p>
+
+<p>Third, the two flows produce output on <em>different</em> Kafka topics.
+The main flow writes to <code class="highlighter-rouge">eip.orders.processed</code> with a <code class="highlighter-rouge">PROCESSED</code> status.
+The audit route writes to <code class="highlighter-rouge">eip.orders.audit</code> with additional audit metadata.
+This separation means a test can verify both outputs independently.</p>
+
+<p>On Spring Boot, the route is identical except for the annotation:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">WireTapRoute</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// ... identical route logic</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h1 id="how-the-wire-tap-works">How the wire tap works</h1>
+
+<p>The wire tap is often confused with the multicast pattern, but they differ in fundamental ways:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Dimension</th>
+      <th>Wire Tap</th>
+      <th>Multicast</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Blocking</strong></td>
+      <td>No — async, fire-and-forget</td>
+      <td>Yes — waits for all recipients</td>
+    </tr>
+    <tr>
+      <td><strong>Failure impact</strong></td>
+      <td>Tap failure does not affect main flow</td>
+      <td>Recipient failure can affect the flow</td>
+    </tr>
+    <tr>
+      <td><strong>Threading</strong></td>
+      <td>Tap runs in a separate thread</td>
+      <td>Can run in parallel or sequential threads</td>
+    </tr>
+    <tr>
+      <td><strong>Use case</strong></td>
+      <td>Auditing, logging, analytics, monitoring</td>
+      <td>Sending to multiple recipients that all matter</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The wire tap is specifically designed for secondary concerns — things that should happen alongside the main flow but must never block or break it.
+If the audit topic is temporarily unavailable, the main order processing continues without interruption.
+The tapped message is lost, but the customer’s order is not affected.</p>
+
+<p>This fire-and-forget behavior is what makes wire taps valuable in production — and what makes them tricky to test.
+In a test environment, you need to prove that the tap <em>did</em> fire, even though the main flow does not depend on it.</p>
+
+<h1 id="what-makes-testing-a-wire-tap-different">What makes testing a wire tap different</h1>
+
+<p>Testing a wire tap is fundamentally different from testing other routing patterns because a single inbound message produces <em>two independent processing paths</em>.</p>
+
+<p>With a content-based router, one message goes in and one message comes out on a deterministic channel.
+With a splitter, one message goes in and N messages come out on the same channel.
+With a wire tap, one message goes in and activity happens on <em>two separate channels concurrently</em>: the main processed output and the audit copy.</p>
+
+<p>This creates three verification challenges:</p>
+
+<ul>
+  <li>
+<strong>Main flow completion</strong>: the order must arrive on <code class="highlighter-rouge">eip.orders.processed</code> with a <code class="highlighter-rouge">PROCESSED</code> status, proving the main route ran to completion.</li>
+  <li>
+<strong>Audit flow completion</strong>: the same order must also arrive on <code class="highlighter-rouge">eip.orders.audit</code> with audit metadata, proving the wire tap fired and the audit route processed the copy.</li>
+  <li>
+<strong>Independence</strong>: the main flow must not be affected by the audit route’s behavior. The test should verify both flows completed, but a slow or failing audit should not prevent the main flow from succeeding.</li>
+</ul>
+
+<p>The asynchronous nature of the wire tap adds a timing dimension.
+The audit route may complete before, after, or concurrently with the main flow.
+The test must accommodate this non-deterministic ordering — it cannot assume the audit message appears before or after the processed message.</p>
+
+<p>Citrus handles this with two techniques: a forked send that does not block the test thread, and a <code class="highlighter-rouge">parallel()</code> block that consumes from both output topics simultaneously — so neither receive blocks the other regardless of which flow completes first.</p>
+
+<h1 id="the-message-templates">The message templates</h1>
+
+<p>The test uses three JSON templates.</p>
+
+<p>The input order template at <code class="highlighter-rouge">src/test/resources/templates/order.json</code>:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="err">org.citrusframework</span><span class="p">:</span><span class="err">citrus-website</span><span class="p">:</span><span class="err">pom</span><span class="p">:</span><span class="mf">1.1</span><span class="err">.</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUST-00org.citrusframework:citrus-website:pom:1.1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"item_sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SKU-TEST-org.citrusframework:citrus-website:pom:1.1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="p">{</span><span class="err">amount</span><span class="p">},</span><span class="w">
+  </span><span class="s2">"destination_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${country}"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"shipping_priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${priority}"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The processed order template at <code class="highlighter-rouge">src/test/resources/templates/processed-order.json</code>, used to validate the main flow’s output:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="err">org.citrusframework</span><span class="p">:</span><span class="err">citrus-website</span><span class="p">:</span><span class="err">pom</span><span class="p">:</span><span class="mf">1.1</span><span class="err">.</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUST-00org.citrusframework:citrus-website:pom:1.1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"item_sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SKU-TEST-org.citrusframework:citrus-website:pom:1.1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="p">{</span><span class="err">amount</span><span class="p">},</span><span class="w">
+  </span><span class="s2">"destination_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${country}"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"shipping_priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${priority}"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROCESSED"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"processed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@ignore@"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The audit order template at <code class="highlighter-rouge">src/test/resources/templates/audit-order.json</code>, used to validate the audit flow’s output:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="err">org.citrusframework</span><span class="p">:</span><span class="err">citrus-website</span><span class="p">:</span><span class="err">pom</span><span class="p">:</span><span class="mf">1.1</span><span class="err">.</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUST-00org.citrusframework:citrus-website:pom:1.1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"item_sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SKU-TEST-org.citrusframework:citrus-website:pom:1.1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="p">{</span><span class="err">amount</span><span class="p">},</span><span class="w">
+  </span><span class="s2">"destination_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${country}"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"shipping_priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${priority}"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROCESSED"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"processed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@ignore@"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"audit_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@ignore@"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"audit_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wire-tap"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Notice the progression across the three templates.
+The input order has the base fields.
+The processed order adds <code class="highlighter-rouge">status</code> and <code class="highlighter-rouge">processed_at</code> — fields set by the main flow.
+The audit order adds <code class="highlighter-rouge">audit_timestamp</code> and <code class="highlighter-rouge">audit_source</code> on top of the processed fields — metadata added by the audit route.</p>
+
+<p>The <code class="highlighter-rouge">@ignore@</code> markers tell Citrus to accept any value for timestamp fields.
+These are system-generated values (millisecond timestamps from <code class="highlighter-rouge">System.currentTimeMillis()</code>) that differ on every test run.
+The <code class="highlighter-rouge">audit_source</code> field, however, is validated exactly: it must be the string <code class="highlighter-rouge">"wire-tap"</code>, confirming that the audit route — not some other process — produced this record.</p>
+
+<h1 id="the-wire-tap-test">The wire tap test</h1>
+
+<p>The test sends a single order and verifies that both the main flow’s output and the audit copy arrive on their respective Kafka topics with the expected content.
+Here is the test on Quarkus:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Nested</span>
+<span class="kd">class</span> <span class="nc">WireTapTest</span> <span class="o">{</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldProcessOrderAndSendAuditCopy</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+            <span class="n">createVariables</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="s">"150.00"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"country"</span><span class="o">,</span> <span class="s">"US"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"priority"</span><span class="o">,</span> <span class="s">"EXPRESS"</span><span class="o">)</span>
+        <span class="o">);</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"wire-tap-main"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+        <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"wire-tap-audit"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+            <span class="n">send</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.processing"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">fork</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+        <span class="o">);</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+            <span class="n">parallel</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">receive</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.processed?consumerGroup=citrus-wiretap-processed-group"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/processed-order.json"</span><span class="o">)),</span>
+                    <span class="n">receive</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.audit?consumerGroup=citrus-wiretap-audit-group"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/audit-order.json"</span><span class="o">))</span>
+                <span class="o">)</span>
+        <span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Let us walk through each phase.</p>
+
+<h2 id="the-given-phase--waiting-for-two-routes">The given phase — waiting for two routes</h2>
+
+<p>The <code class="highlighter-rouge">given</code> phase creates test variables and then waits for <em>two</em> routes to be fully started: <code class="highlighter-rouge">wire-tap-main</code> and <code class="highlighter-rouge">wire-tap-audit</code>.</p>
+
+<p>This is different from single-route patterns where you wait for one route.
+With a wire tap, the main route’s Kafka consumer may be ready before the audit route’s <code class="highlighter-rouge">direct:</code> endpoint is registered.
+If the test sends a message before both routes are started, the wire tap call might fail silently — the message enters the main flow but the tapped copy has nowhere to go.
+Waiting for both routes ensures the full pipeline is ready.</p>
+
+<h2 id="the-when-phase--a-forked-send">The when phase — a forked send</h2>
+
+<p>The <code class="highlighter-rouge">when</code> phase sends a single order to <code class="highlighter-rouge">eip.orders.processing</code>.
+The <code class="highlighter-rouge">KafkaMessageHeaders.MESSAGE_KEY</code> is set to the random <code class="highlighter-rouge">org.citrusframework:citrus-website:pom:1.1.0</code> for consistent partitioning.</p>
+
+<p>The <code class="highlighter-rouge">.fork(true)</code> on the send action is important.
+By default, a Citrus <code class="highlighter-rouge">send()</code> action blocks the test thread until the Kafka producer confirms delivery.
+With <code class="highlighter-rouge">fork(true)</code>, the send executes in a background thread and the test immediately proceeds to the next phase.
+This matters because the <code class="highlighter-rouge">then</code> phase needs to start consuming from both output topics <em>before</em> the Camel route finishes processing — otherwise a fast route might publish its output before the Citrus consumers are subscribed, and the <code class="highlighter-rouge">receive()</code> action would miss the message.</p>
+
+<p>Unlike the load balancer test (which sends multiple messages to prove distribution), the wire tap test needs only <em>one</em> message.
+A single message should trigger both flows — the main processing and the audit copy.
+If the wire tap is misconfigured (for example, commented out or pointing to a nonexistent endpoint), one message is enough to detect the problem.</p>
+
+<h2 id="the-then-phase--parallel-receives-on-two-topics">The then phase — parallel receives on two topics</h2>
+
+<p>The <code class="highlighter-rouge">then</code> phase is where the wire-tap-specific verification happens.
+A <code class="highlighter-rouge">parallel()</code> block wraps two <code class="highlighter-rouge">receive()</code> actions that run concurrently:</p>
+
+<ol>
+  <li>One <code class="highlighter-rouge">receive()</code> consumes from <code class="highlighter-rouge">eip.orders.processed</code> and validates the message against the <code class="highlighter-rouge">processed-order.json</code> template — proving the main flow ran to completion, stamped the order with <code class="highlighter-rouge">PROCESSED</code> status and a timestamp.</li>
+  <li>The other <code class="highlighter-rouge">receive()</code> consumes from <code class="highlighter-rouge">eip.orders.audit</code> and validates against the <code class="highlighter-rouge">audit-order.json</code> template — proving the wire tap fired and the audit route enriched the copy with <code class="highlighter-rouge">audit_timestamp</code> and <code class="highlighter-rouge">audit_source</code>.</li>
+</ol>
+
+<p>The <code class="highlighter-rouge">parallel()</code> wrapper is essential here.
+If the receives ran sequentially, one would block waiting for its message while the other topic’s message sits unconsumed.
+Because the wire tap is asynchronous, the audit message might arrive before or after the processed message — sequential receives would depend on a specific ordering that is not guaranteed.
+Running both receives in parallel eliminates this timing dependency: whichever message arrives first is consumed immediately, and neither receive blocks the other.</p>
+
+<p>Each receive uses a dedicated consumer group (<code class="highlighter-rouge">citrus-wiretap-processed-group</code> and <code class="highlighter-rouge">citrus-wiretap-audit-group</code>) to avoid interference with other tests or the application’s own consumers.</p>
+
+<p>If the wire tap is removed from the route, the receive on <code class="highlighter-rouge">eip.orders.audit</code> times out and the test fails — no audit message was produced.
+If the audit route corrupts the message (for example, due to the shallow copy body mutation problem), the template validation catches the content mismatch.
+If the main flow fails, the receive on <code class="highlighter-rouge">eip.orders.processed</code> times out.</p>
+
+<h1 id="why-parallel-receives-beat-route-counter-assertions">Why parallel receives beat route counter assertions</h1>
+
+<p>An earlier version of this test used Camel’s <code class="highlighter-rouge">ManagedRouteMBean</code> API to check exchange counters — verifying that both the <code class="highlighter-rouge">wire-tap-main</code> and <code class="highlighter-rouge">wire-tap-audit</code> routes had processed at least one exchange.
+That approach confirms the routes <em>ran</em>, but it says nothing about <em>what they produced</em>.</p>
+
+<p>The parallel-receive approach is stronger in three ways:</p>
+
+<ul>
+  <li>
+<strong>Content validation</strong>: the test proves that the processed order has a <code class="highlighter-rouge">PROCESSED</code> status and the audit order has <code class="highlighter-rouge">audit_source: "wire-tap"</code>. Route counters cannot verify message content.</li>
+  <li>
+<strong>End-to-end coverage</strong>: consuming from the output Kafka topics proves the entire pipeline works — from Kafka input through Camel routing through JSON serialization to Kafka output. Counter-based assertions only prove the route’s internal processing ran.</li>
+  <li>
+<strong>No dependency on Camel internals</strong>: the test uses Kafka topics as its interface, not Camel’s JMX management beans. This makes it portable — the same assertion approach works regardless of whether the route is deployed on Camel, a different integration framework, or a plain Kafka Streams application.</li>
+</ul>
+
+<h1 id="waiting-for-the-camel-routes">Waiting for the Camel routes</h1>
+
+<p>Camel routes that consume from Kafka take a moment to start and subscribe to the broker.
+If the test sends a message before the route’s consumer is ready, the message sits unprocessed and the assertions time out.</p>
+
+<p>The example addresses this with a reusable utility that uses Camel’s Control Bus to poll the route status:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">default</span> <span class="n">TestActionBuilder</span><span class="o">&lt;?&gt;</span> <span class="n">waitForCamelRouteStarted</span><span class="o">(</span>
+        <span class="n">String</span> <span class="n">routeId</span><span class="o">,</span> <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="nf">repeatOnError</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">(</span><span class="n">camelContext</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">controlBus</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">route</span><span class="o">(</span><span class="n">routeId</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">status</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">result</span><span class="o">(</span><span class="n">ServiceStatus</span><span class="o">.</span><span class="na">Started</span><span class="o">),</span>
+                <span class="n">sleep</span><span class="o">().</span><span class="na">seconds</span><span class="o">(</span><span class="mi">5</span><span class="o">)</span>
+            <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This polls the Camel context up to 20 times with one-second pauses.
+Once the route reports <code class="highlighter-rouge">Started</code>, it waits an additional five seconds for the Kafka consumer to fully connect and receive its partition assignments.
+The wire tap test calls this utility <em>twice</em> — once for <code class="highlighter-rouge">wire-tap-main</code> and once for <code class="highlighter-rouge">wire-tap-audit</code> — ensuring both routes are ready before sending any messages.</p>
+
+<h1 id="setting-up-the-test-infrastructure">Setting up the test infrastructure</h1>
+
+<p>The route consumes from Kafka, so the test needs a running broker.
+Citrus manages this lifecycle with Testcontainers — a Docker Compose file defines a single-node Kafka (KRaft mode) setup along with a Kafka UI for observability.</p>
+
+<p>On Quarkus, the infrastructure setup uses <code class="highlighter-rouge">@CitrusConfiguration</code> with <code class="highlighter-rouge">@BindToRegistry</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@CitrusConfiguration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EipInfraSetup</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
+
+    <span class="nd">@BindToRegistry</span>
+    <span class="kd">public</span> <span class="n">BeforeSuite</span> <span class="nf">startInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">beforeSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">up</span><span class="o">(</span><span class="s">"_infra/compose.yaml"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">autoRemove</span><span class="o">(</span><span class="kc">false</span><span class="o">),</span>
+                    <span class="n">waitFor</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">http</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://localhost:8090"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">25</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@BindToRegistry</span>
+    <span class="kd">public</span> <span class="n">AfterSuite</span> <span class="nf">stopInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">afterSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">().</span><span class="na">stop</span><span class="o">(),</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">down</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>On Spring Boot, the same logic uses <code class="highlighter-rouge">@Configuration</code> and <code class="highlighter-rouge">@Bean</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EipInfraSetup</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">BeforeSuite</span> <span class="nf">startInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">beforeSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">up</span><span class="o">(</span><span class="s">"_infra/compose.yaml"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">autoRemove</span><span class="o">(</span><span class="kc">false</span><span class="o">),</span>
+                    <span class="n">waitFor</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">http</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://localhost:8090"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">25</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">AfterSuite</span> <span class="nf">stopInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">afterSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">().</span><span class="na">stop</span><span class="o">(),</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">down</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The test actions are identical — only the bean registration mechanism differs between the two runtimes.</p>
+
+<h1 id="running-on-quarkus-and-spring-boot">Running on Quarkus and Spring Boot</h1>
+
+<p>The Camel route logic is identical across both runtimes.
+The test code differences are limited to the wiring annotations.</p>
+
+<p>On Quarkus, the test class uses <code class="highlighter-rouge">@CitrusSupport</code> alongside <code class="highlighter-rouge">@QuarkusTest</code>, and the <code class="highlighter-rouge">CamelContext</code> is injected with CDI:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@QuarkusTest</span>
+<span class="nd">@CitrusSupport</span>
+<span class="kd">class</span> <span class="nc">EipTests</span> <span class="kd">implements</span> <span class="n">EipTestSupport</span> <span class="o">{</span>
+
+    <span class="nd">@CitrusResource</span>
+    <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
+
+    <span class="nd">@Inject</span>
+    <span class="nd">@BindToRegistry</span>
+    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="nd">@Nested</span>
+    <span class="kd">class</span> <span class="nc">WireTapTest</span> <span class="o">{</span>
+        <span class="c1">// ... test methods</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>On Spring Boot, the test uses <code class="highlighter-rouge">@CitrusSpringSupport</code> alongside Spring Boot and Camel test annotations:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@SpringBootTest</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="n">AdvancedRoutingApplication</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="nd">@CamelSpringBootTest</span>
+<span class="nd">@CitrusSpringSupport</span>
+<span class="nd">@ContextConfiguration</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="o">{</span> <span class="n">EipInfraSetup</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">CitrusSpringConfig</span><span class="o">.</span><span class="na">class</span> <span class="o">})</span>
+<span class="kd">class</span> <span class="nc">EipTests</span> <span class="kd">implements</span> <span class="n">EipTestSupport</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="nd">@Nested</span>
+    <span class="kd">class</span> <span class="nc">WireTapTest</span> <span class="o">{</span>
+
+        <span class="nd">@CitrusResource</span>
+        <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
+
+        <span class="c1">// ... test methods</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>On Spring Boot, the <code class="highlighter-rouge">TestCaseRunner</code> is declared in the <code class="highlighter-rouge">@Nested</code> inner class, while on Quarkus it lives at the outer class level — a structural difference driven by how each test framework manages injection scopes.
+The actual test methods inside <code class="highlighter-rouge">WireTapTest</code> are identical on both runtimes.</p>
+
+<h1 id="test-dependencies">Test dependencies</h1>
+
+<p>Both runtime variants share the same core Citrus dependencies.
+The runtime adapter is the only difference — <code class="highlighter-rouge">citrus-quarkus</code> for Quarkus, <code class="highlighter-rouge">citrus-spring</code> for Spring Boot:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- Quarkus runtime adapter --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-quarkus<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="c">&lt;!-- OR Spring Boot runtime adapter --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-spring<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>Both runtimes share these common dependencies:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-camel<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-kafka<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-testcontainers<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-validation-json<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">citrus-camel</code> module provides the Control Bus integration used in <code class="highlighter-rouge">waitForCamelRouteStarted</code>.
+The <code class="highlighter-rouge">citrus-kafka</code> module provides the Kafka send and receive actions used to produce and consume messages on the input, processed, and audit topics.
+The <code class="highlighter-rouge">citrus-testcontainers</code> module manages the Docker Compose lifecycle for the Kafka broker.
+The <code class="highlighter-rouge">citrus-validation-json</code> module enables JSON message validation with template-based assertions and <code class="highlighter-rouge">@ignore@</code> matchers used to verify the processed and audit output messages.</p>
+
+<h1 id="running-the-tests">Running the tests</h1>
+
+<p>Make sure Docker (or Podman) is running, then execute:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Quarkus</span>
+<span class="nb">cd </span>examples/11-advanced-routing/quarkus
+mvn verify
+
+<span class="c"># Spring Boot</span>
+<span class="nb">cd </span>examples/11-advanced-routing/spring-boot
+mvn verify
+</code></pre></div></div>
+
+<p>The test suite starts the Kafka broker via Testcontainers, boots the Camel application, runs the wire tap test (along with the other pattern tests in the suite), and tears everything down.</p>
+
+<h1 id="key-takeaways">Key takeaways</h1>
+
+<p>Testing a Wire Tap means verifying that a single inbound message triggers two independent processing paths — the main flow and the tapped copy — and that both complete successfully without interfering with each other.</p>
+
+<p>Here is what Citrus brings to this problem:</p>
+
+<ul>
+  <li>
+<strong>Parallel receives for concurrent verification</strong> — A <code class="highlighter-rouge">parallel()</code> block consumes from both <code class="highlighter-rouge">eip.orders.processed</code> and <code class="highlighter-rouge">eip.orders.audit</code> simultaneously. This eliminates timing dependencies between the asynchronous main flow and the wire tap — whichever message arrives first is consumed immediately, and neither receive blocks the other.</li>
+  <li>
+<strong>Forked send for non-blocking test flow</strong> — The <code class="highlighter-rouge">.fork(true)</code> on the send action ensures the test thread proceeds to the receives before the Camel route finishes processing. Without forking, a fast route could publish output before the Citrus consumers are subscribed.</li>
+  <li>
+<strong>Content validation on both paths</strong> — Each <code class="highlighter-rouge">receive()</code> validates the message body against a template. The processed order must have <code class="highlighter-rouge">status: "PROCESSED"</code>, and the audit order must have <code class="highlighter-rouge">audit_source: "wire-tap"</code>. This proves not just that both routes ran, but that they produced the correct output.</li>
+  <li>
+<strong>Multi-route startup coordination</strong> — The <code class="highlighter-rouge">given</code> phase waits for <em>both</em> <code class="highlighter-rouge">wire-tap-main</code> and <code class="highlighter-rouge">wire-tap-audit</code> to report <code class="highlighter-rouge">Started</code>, ensuring the full pipeline is ready before sending messages. This prevents false negatives from messages arriving before the audit route is registered.</li>
+  <li>
+<strong>Multi-runtime portability</strong> — The same test logic runs on Quarkus and Spring Boot. Only the wiring annotations change; the send, receive, and validation logic stays identical.</li>
+</ul>
+
+<p>The complete source code for this example is available on GitHub:</p>
+
+<ul>
+  <li><a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main/examples/11-advanced-routing/quarkus">Quarkus variant</a></li>
+  <li><a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main/examples/11-advanced-routing/spring-boot">Spring Boot variant</a></li>
+</ul>
+
+<p>Give it a try, and let us know what you think!</p>
+
+  </div>
+</article>
+
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <h4>Samples</h4>
+    <ul>
+      <li class="">
+        <a href="/samples/">Overview</a>
+      </li>
+      <li class="">
+        <a href="/samples/todo-app">TodoList App</a>
+      </li>
+      <li class="">
+        <a href="/samples/run">Running</a>
+      </li>
+    </ul>
+    <h4>Configuration</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+
+      
+      
+      <li class="">
+        <a href="/samples/annotation-config/">sample-annotation-config</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/reporting/">sample-reporting</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/javaconfig/">sample-javaconfig</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>CONNECTORS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/kubernetes/">sample-kubernetes</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/docker/">sample-docker</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>DEMO</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/apache-camel/">sample-camel-context</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jbang/">sample-jbang</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/cucumber/">sample-cucumber</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus/">sample-quarkus</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>EIP</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="current">
+        <a href="/samples/camel-eip/wire-tap/">wire-tap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/content-based-router/">content-based-router</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/routing-slip/">routing-slip</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/load-balancer/">load-balancer</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/splitter/">splitter</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/messaging-bridge/">messaging-bridge</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/message-reliability/">message-reliability</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/message-filter/">message-filter</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>ENDPOINTS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/dynamic-endpoints/">sample-dynamic-endpoints</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/mail/">sample-mail</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-wssecurity/">sample-soap-wssecurity</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/ftp/">sample-ftp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-loadtest/">sample-http-loadtest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/https/">sample-https</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http/">sample-http</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jms/">sample-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jdbc/">sample-jdbc</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-ssl/">sample-soap-ssl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/kafka/">sample-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/wsdl/">sample-wsdl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/openapi/">sample-swagger</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/rmi/">sample-rmi</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-mtom/">sample-soap-mtom</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-attachment/">sample-soap-attachment</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/sftp/">sample-sftp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-wsaddressing/">sample-soap-wsaddressing</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/scp/">sample-scp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-static-response/">sample-soap-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-static-response/">sample-http-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-basic-auth/">sample-http-basic-auth</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap/">sample-soap</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>MISCELLANEOUS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/dictionaries/">sample-dictionaries</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/message-store/">sample-message-store</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/gradle/">sample-gradle</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/behavior/">sample-behavior</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>QUARKUS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-file-outbox/">camel-file-outbox</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-cxf-soap-client/">camel-cxf-soap-client</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-kafka/">camel-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-cxf-soap/">camel-cxf-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-direct/">camel-direct</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-file-inbox/">camel-file-inbox</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-aws-s3-kafka/">camel-aws-s3-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-jms/">camel-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-mqtt/">camel-mqtt</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-openapi-server/">camel-openapi-server</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-rest-dsl/">camel-rest-dsl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-rest-to-soap/">camel-rest-to-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-postgresql/">camel-postgresql</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus-event-driven-jms/">event-driven-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-knative/">camel-knative</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-knative-ssl/">camel-knative-ssl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus-event-driven-kafka/">event-driven-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-direct-http/">camel-direct-http</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>RUNTIMES</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/junit5/">sample-junit5</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dataprovider/">sample-dataprovider</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/testng/">sample-testng</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/junit/">sample-junit</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>VALIDATION</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/oxm/">sample-oxm</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xml/">sample-xml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/hamcrest/">sample-hamcrest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xhtml/">sample-xhtml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/json/">sample-json</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/databind/">sample-databind</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-form-data/">sample-http-form-data</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/sql/">sample-sql</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/binary/">sample-binary</a>
+      </li>
+      
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/citrusframework/citrus/blob/master/LICENSE">MIT License</a>.</p>
+      <br>
+      <p>© 2026 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p> </p>
+      <br>
+      <br>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>

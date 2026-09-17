@@ -1,0 +1,949 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 5.0.1">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus main branch" href="https://github.com/citrusframework/citrus/commits/main.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="stylesheet" href="/css/tabbed.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/atom-one-light.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+  <script src="/js/tabbed.js"></script>
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="current">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="current">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="news">
+    <div class="grid">
+
+      <div class="docs-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the blog…</option>
+    <option value="/news/">News</option>
+    <option value="/docs/history/">Releases</option>
+    <optgroup label="Posts">
+      
+      
+      <option value="/news/2026/09/17/database-testing-citrus/">Database Testing - SQL Polling Consumers and Data Verification</option>
+      
+      <option value="/news/2026/09/16/multi-runtime-testing/">Multi-Runtime Testing — One Test Pattern, Three Different Runtimes</option>
+      
+      <option value="/news/2026/09/15/camel-cli-test-plugin/">Camel CLI test plugin - Zero-Code Integration Tests</option>
+      
+      <option value="/news/2026/09/14/kafka-testing-pitfalls/">Kafka Testing Pitfalls in Camel Integration Tests</option>
+      
+      <option value="/news/2026/09/14/camel-testing-pitfalls/">Camel Integration Testing Pitfalls</option>
+      
+      <option value="/news/2026/09/11/testing-reliability-patterns/">Testing Reliability Patterns - Dead Letter Queues, Idempotent Receivers, and Circuit Breakers</option>
+      
+      <option value="/news/2026/09/10/testing-camel-routing/">Testing Camel Routing - Content-Based Routers, Filters, and Splitters</option>
+      
+      <option value="/news/2026/08/05/release-5.0.0/">Citrus 5.0.0</option>
+      
+      <option value="/news/2026/07/27/knative-eventing-testing/">Testing Knative Eventing with Citrus — from local brokers to TLS-secured CloudEvents</option>
+      
+      <option value="/news/2026/07/07/soap-webservices-testing/">Testing CXF SOAP WebServices with Citrus</option>
+      
+      <option value="/news/2026/07/06/how-camel-elevates-citrus/">How Apache Camel elevates Citrus Integration Testing to next levels</option>
+      
+      <option value="/news/2026/06/19/kaoto-meets-citrus/">Design Citrus Tests Visually — Kaoto Meets Citrus</option>
+      
+      <option value="/news/2026/06/18/release-5.0.0-approaching/">Get ready for Citrus 5.0.0</option>
+      
+      <option value="/news/2023/10/25/release-4.0.0/">Citrus 4.0.0</option>
+      
+      <option value="/news/2023/01/30/camel-k-yaks/">Testing Camel K with YAKS</option>
+      
+      <option value="/news/2021/08/30/introducing-yaks/">Cloud-native BDD testing with YAKS</option>
+      
+      <option value="/news/2021/08/25/advanced-camel-support/">Advanced Apache Camel support in Citrus</option>
+      
+      <option value="/news/2021/08/16/release-3.0.0/">YAY, Citrus 3.0.0 is here!</option>
+      
+      <option value="/news/2017/09/21/introducing-citrus-simulator/">Simulating 3rd party services with Spring Boot and Citrus</option>
+      
+      <option value="/news/2017/07/07/introducing-citrus-admin/">Introducing Citrus Admin Web UI</option>
+      
+      <option value="/news/2016/03/15/jcache-chat-citrus/">Testing WebSockets with a Citrus twist</option>
+      
+      <option value="/news/2015/06/03/camel-testing-part-3/">Apache Camel Integration Testing - Part 3</option>
+      
+      <option value="/news/2015/05/27/camel-testing-part-2/">Apache Camel Integration Testing - Part 2</option>
+      
+      <option value="/news/2014/11/21/camel-testing-part-1/">Apache Camel Integration Testing - Part 1</option>
+      
+      <option value="/news/2011/06/22/excel-validation/">Validate Excel files in Citrus</option>
+      
+      <option value="/news/2011/06/17/testng-data-provider/">Use TestNG data providers in Citrus</option>
+      
+      <option value="/news/2010/12/14/integrate-your-own-validator/">Integrate your own validator into your Citrus project</option>
+      
+      <option value="/news/2010/08/13/testng-groups/">Citrus and TestNG groups</option>
+      
+      <option value="/news/2010/05/19/soap-mustunderstand/">Handle SOAP-ENV:mustUnderstand headers</option>
+      
+      <option value="/news/2010/01/18/custom-meta-info/">Customize meta information</option>
+      
+    </optgroup>
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+  <h2>
+    Database Testing - SQL Polling Consumers and Data Verification
+    <a href="/news/2026/09/17/database-testing-citrus/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      blog
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      17 Sep 2026
+    </span>
+    <a href="https://github.com/christophd" class="post-author">
+      Christoph Deppisch
+    </a>
+  </div>
+  <div class="post-content">
+    <p>Many <a href="https://camel.apache.org">Apache Camel</a> routes don’t just shuttle messages between Kafka topics. 
+They read from databases, write to databases, and use database state to drive routing decisions. 
+SQL Polling Consumers pull new rows from a table on a schedule. 
+Transactional Outbox patterns write both the business record and a publication event in a single transaction. 
+Enrichment routes look up reference data before forwarding a message.</p>
+
+<p>Testing these flows with a mocked persistence layer is dangerous. 
+A mock returns whatever you tell it to — it never catches a broken SQL query, a missing column, or a transaction that commits the payment but fails the outbox insert. 
+Real database testing requires inserting test data, waiting for the route to process it, verifying the output message, and then checking that the database state changed correctly.</p>
+
+<p><a href="https://citrusframework.org">Citrus</a> provides a <code class="highlighter-rouge">citrus-sql</code> module with first-class SQL test actions: insert rows, execute queries, validate column values, and capture auto-generated keys — all integrated with the same <code class="highlighter-rouge">given</code>/<code class="highlighter-rouge">when</code>/<code class="highlighter-rouge">then</code> flow used for Kafka and HTTP testing. 
+Combined with <code class="highlighter-rouge">citrus-testcontainers</code> for PostgreSQL infrastructure, you get a complete database testing toolkit that works with real databases, not mocks.</p>
+
+<h1 id="setting-up-database-infrastructure">Setting up database infrastructure</h1>
+
+<p>Database tests need a real database. Docker Compose with PostgreSQL is a simple way to get one running for tests.</p>
+
+<h2 id="the-docker-compose-service">The Docker Compose service</h2>
+
+<p>Add a PostgreSQL service to your <code class="highlighter-rouge">compose.yaml</code> under <code class="highlighter-rouge">src/test/resources/_infra/</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="na">postgres</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">docker.io/library/postgres:16-alpine</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">5432:5432"</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">POSTGRES_DB=eipdb</span>
+      <span class="pi">-</span> <span class="s">POSTGRES_USER=eipuser</span>
+      <span class="pi">-</span> <span class="s">POSTGRES_PASSWORD=eippass</span>
+      <span class="pi">-</span> <span class="s">POSTGRES_INITDB_ARGS=--encoding=UTF8 --locale=C</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">postgres-data:/var/lib/postgresql/data:Z</span>
+      <span class="pi">-</span> <span class="s">./postgres/init-schemas.sql:/docker-entrypoint-initdb.d/01-init-schemas.sql:Z</span>
+    <span class="na">healthcheck</span><span class="pi">:</span>
+      <span class="na">test</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">CMD-SHELL"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">pg_isready</span><span class="nv"> </span><span class="s">-U</span><span class="nv"> </span><span class="s">eipuser</span><span class="nv"> </span><span class="s">-d</span><span class="nv"> </span><span class="s">eipdb"</span><span class="pi">]</span>
+      <span class="na">interval</span><span class="pi">:</span> <span class="s">5s</span>
+      <span class="na">timeout</span><span class="pi">:</span> <span class="s">5s</span>
+      <span class="na">retries</span><span class="pi">:</span> <span class="s">10</span>
+      <span class="na">start_period</span><span class="pi">:</span> <span class="s">15s</span>
+</code></pre></div></div>
+
+<p>The key detail is the init script mount. The <code class="highlighter-rouge">init-schemas.sql</code> file is placed in PostgreSQL’s <code class="highlighter-rouge">docker-entrypoint-initdb.d/</code> directory, which means it runs automatically on first startup — creating schemas and tables before any test touches the database.</p>
+
+<h2 id="the-schema-initialization-script">The schema initialization script</h2>
+
+<p>Place <code class="highlighter-rouge">init-schemas.sql</code> under <code class="highlighter-rouge">src/test/resources/_infra/postgres/</code>:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">SCHEMA</span> <span class="n">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">orders</span><span class="p">;</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">orders</span><span class="p">.</span><span class="n">orders</span> <span class="p">(</span>
+    <span class="n">id</span>          <span class="n">SERIAL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">customer_id</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span>    <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">item_sku</span>    <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span>    <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">quantity</span>    <span class="n">INTEGER</span>        <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">amount</span>      <span class="n">DECIMAL</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">status</span>      <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>    <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">'PLACED'</span><span class="p">,</span>
+    <span class="n">created_at</span>  <span class="k">TIMESTAMP</span>      <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="n">NOW</span><span class="p">()</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">id</code> column uses <code class="highlighter-rouge">SERIAL</code> — PostgreSQL auto-generates it on insert. 
+This is important for testing because we need to capture this value from the route’s output to use in subsequent database queries.</p>
+
+<h2 id="datasource-injection">DataSource injection</h2>
+
+<p>In Quarkus, inject the application’s <code class="highlighter-rouge">DataSource</code> and register it with Citrus:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@QuarkusTest</span>
+<span class="nd">@CitrusSupport</span>
+<span class="kd">class</span> <span class="nc">EipTests</span> <span class="kd">implements</span> <span class="n">EipTestSupport</span> <span class="o">{</span>
+
+    <span class="nd">@CitrusResource</span>
+    <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
+
+    <span class="nd">@Inject</span>
+    <span class="nd">@BindToRegistry</span>
+    <span class="n">DataSource</span> <span class="n">dataSource</span><span class="o">;</span>
+
+    <span class="nd">@Inject</span>
+    <span class="nd">@BindToRegistry</span>
+    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="c1">// ... test methods</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Both annotations are needed: <code class="highlighter-rouge">@Inject</code> for CDI injection and <code class="highlighter-rouge">@BindToRegistry</code> so Citrus’s <code class="highlighter-rouge">sql()</code> actions can find the DataSource by name. 
+In Spring Boot, the equivalent is <code class="highlighter-rouge">@Autowired DataSource dataSource</code> — no <code class="highlighter-rouge">@BindToRegistry</code> needed because Spring’s application context serves as the Citrus registry.</p>
+
+<h1 id="testing-a-sql-polling-consumer--the-full-flow">Testing a SQL Polling Consumer — the full flow</h1>
+
+<p>The SQL Polling Consumer is a Camel route that polls a database table for new rows, publishes them to Kafka, and updates their status to prevent reprocessing. 
+Here is the route:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ApplicationScoped</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SqlPollingConsumerRoute</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">from</span><span class="o">(</span><span class="s">"sql:SELECT * FROM orders.orders WHERE status = 'PLACED' "</span>
+                <span class="o">+</span> <span class="s">"ORDER BY created_at LIMIT 10"</span>
+                <span class="o">+</span> <span class="s">"?delay=30000"</span>
+                <span class="o">+</span> <span class="s">"&amp;onConsume=UPDATE orders.orders SET status = 'PROCESSING' WHERE id = :#id"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"polling-consumer-sql"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"SQL Polling Consumer — processing order from DB: "</span>
+                <span class="o">+</span> <span class="s">"id=${body[id]}, customer=${body[customer_id]}, sku=${body[item_sku]}"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">marshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed?brokers="</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The route does three things:</p>
+
+<ol>
+  <li>
+<strong>SELECT</strong> — queries for rows with status <code class="highlighter-rouge">PLACED</code>, ordered by creation time, limited to 10 per poll.</li>
+  <li>
+<strong>Publish</strong> — marshals each row to JSON and sends it to the <code class="highlighter-rouge">eip.orders.placed</code> Kafka topic.</li>
+  <li>
+<strong>onConsume</strong> — after successfully publishing, updates the row’s status to <code class="highlighter-rouge">PROCESSING</code> so it won’t be picked up again.</li>
+</ol>
+
+<p>Testing this flow requires inserting a row, waiting for the route to poll it, verifying the Kafka message, and then checking that the database status changed.</p>
+
+<p>Here is the complete test:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Nested</span>
+<span class="kd">class</span> <span class="nc">SqlPollingConsumerTest</span> <span class="o">{</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldHandleSqlPollingConsumer</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+            <span class="n">createVariables</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mi">40</span><span class="o">)</span>
+        <span class="o">);</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"polling-consumer-sql"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+            <span class="n">sql</span><span class="o">(</span><span class="n">dataSource</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">statement</span><span class="o">(</span><span class="s">"INSERT INTO orders.orders "</span>
+                    <span class="o">+</span> <span class="s">"(customer_id, item_sku, quantity, amount) "</span>
+                    <span class="o">+</span> <span class="s">"VALUES ('CUST-00org.citrusframework:citrus-website:pom:1.1.0', 'SKU-org.citrusframework:citrus-website:pom:1.1.0', '1', '${amount}')"</span><span class="o">)</span>
+        <span class="o">);</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+            <span class="n">repeatOnError</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">15</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">receive</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed?consumerGroup=citrus-placed-group"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"""
+                        {
+                          "</span><span class="n">id</span><span class="s">": "</span><span class="nd">@variable</span><span class="o">(</span><span class="n">order_id</span><span class="o">)</span><span class="err">@</span><span class="s">",
+                          "</span><span class="n">customer_id</span><span class="s">": "</span><span class="n">CUST</span><span class="o">-</span><span class="mo">00</span><span class="n">org</span><span class="o">.</span><span class="na">citrusframework</span><span class="o">:</span><span class="n">citrus</span><span class="o">-</span><span class="nl">website:pom:</span><span class="mf">1.1</span><span class="o">.</span><span class="mi">0</span><span class="s">",
+                          "</span><span class="n">status</span><span class="s">": "</span><span class="n">PLACED</span><span class="s">",
+                          "</span><span class="n">amount</span><span class="s">": ${amount}.0,
+                          "</span><span class="n">item_sku</span><span class="s">": "</span><span class="n">SKU</span><span class="o">-</span><span class="n">org</span><span class="o">.</span><span class="na">citrusframework</span><span class="o">:</span><span class="n">citrus</span><span class="o">-</span><span class="nl">website:pom:</span><span class="mf">1.1</span><span class="o">.</span><span class="mi">0</span><span class="s">",
+                          "</span><span class="n">quantity</span><span class="s">": 1,
+                          "</span><span class="n">created_at</span><span class="s">": "</span><span class="nd">@ignore</span><span class="err">@</span><span class="s">"
+                        }
+                        """</span><span class="o">)</span>
+                <span class="o">)</span>
+        <span class="o">);</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+            <span class="n">sql</span><span class="o">(</span><span class="n">dataSource</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">query</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">statement</span><span class="o">(</span><span class="s">"SELECT status FROM orders.orders WHERE id = '${order_id}'"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"status"</span><span class="o">,</span> <span class="s">"PROCESSING"</span><span class="o">)</span>
+        <span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Let’s walk through each step.</p>
+
+<h2 id="step-1-insert-test-data">Step 1: Insert test data</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+    <span class="n">sql</span><span class="o">(</span><span class="n">dataSource</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">statement</span><span class="o">(</span><span class="s">"INSERT INTO orders.orders "</span>
+            <span class="o">+</span> <span class="s">"(customer_id, item_sku, quantity, amount) "</span>
+            <span class="o">+</span> <span class="s">"VALUES ('CUST-00org.citrusframework:citrus-website:pom:1.1.0', 'SKU-org.citrusframework:citrus-website:pom:1.1.0', '1', '${amount}')"</span><span class="o">)</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">sql(dataSource).statement(...)</code> action executes a SQL INSERT using the injected DataSource. Citrus variables (<code class="highlighter-rouge">org.citrusframework:citrus-website:pom:1.1.0</code>, <code class="highlighter-rouge">${amount}</code>) are resolved before execution, producing unique test data for each run. The <code class="highlighter-rouge">id</code> column is not specified — PostgreSQL generates it with the <code class="highlighter-rouge">SERIAL</code> auto-increment.</p>
+
+<h2 id="step-2-receive-the-kafka-message-and-capture-the-generated-id">Step 2: Receive the Kafka message and capture the generated ID</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+    <span class="n">repeatOnError</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">15</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+            <span class="n">receive</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed?consumerGroup=citrus-placed-group"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"""
+                {
+                  "</span><span class="n">id</span><span class="s">": "</span><span class="nd">@variable</span><span class="o">(</span><span class="n">order_id</span><span class="o">)</span><span class="err">@</span><span class="s">",
+                  "</span><span class="n">customer_id</span><span class="s">": "</span><span class="n">CUST</span><span class="o">-</span><span class="mo">00</span><span class="n">org</span><span class="o">.</span><span class="na">citrusframework</span><span class="o">:</span><span class="n">citrus</span><span class="o">-</span><span class="nl">website:pom:</span><span class="mf">1.1</span><span class="o">.</span><span class="mi">0</span><span class="s">",
+                  "</span><span class="n">status</span><span class="s">": "</span><span class="n">PLACED</span><span class="s">",
+                  "</span><span class="n">amount</span><span class="s">": ${amount}.0,
+                  "</span><span class="n">item_sku</span><span class="s">": "</span><span class="n">SKU</span><span class="o">-</span><span class="n">org</span><span class="o">.</span><span class="na">citrusframework</span><span class="o">:</span><span class="n">citrus</span><span class="o">-</span><span class="nl">website:pom:</span><span class="mf">1.1</span><span class="o">.</span><span class="mi">0</span><span class="s">",
+                  "</span><span class="n">quantity</span><span class="s">": 1,
+                  "</span><span class="n">created_at</span><span class="s">": "</span><span class="nd">@ignore</span><span class="err">@</span><span class="s">"
+                }
+                """</span><span class="o">)</span>
+        <span class="o">)</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">receive</code>action is wrapped in <code class="highlighter-rouge">repeatOnError()</code> because the SQL Polling Consumer runs on a timer — the route might not have polled the new row yet when the test first tries to read from Kafka. The retry loop gives the route up to 15 seconds to pick up and publish the row.</p>
+
+<p>The body template contains three types of field references:</p>
+
+<ul>
+  <li>
+<strong><code class="highlighter-rouge">org.citrusframework:citrus-website:pom:1.1.0</code></strong> and <strong><code class="highlighter-rouge">${amount}</code></strong> — standard Citrus variables, resolved to the values set in <code class="highlighter-rouge">createVariables</code>. These validate that the route preserved the original data.</li>
+  <li>
+<strong><code class="highlighter-rouge">@variable(order_id)@</code></strong> — captures the actual value of the <code class="highlighter-rouge">id</code> field from the received message and stores it in a new variable named <code class="highlighter-rouge">order_id</code>. This is the auto-generated database primary key that we need for the next step.</li>
+  <li>
+<strong><code class="highlighter-rouge">@ignore@</code></strong> — accepts any value for the <code class="highlighter-rouge">created_at</code> field. Timestamps are non-deterministic, so we skip validation.</li>
+</ul>
+
+<h2 id="step-3-verify-the-database-state-changed">Step 3: Verify the database state changed</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+    <span class="n">sql</span><span class="o">(</span><span class="n">dataSource</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">query</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">statement</span><span class="o">(</span><span class="s">"SELECT status FROM orders.orders WHERE id = '${order_id}'"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"status"</span><span class="o">,</span> <span class="s">"PROCESSING"</span><span class="o">)</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">sql(dataSource).query()</code> action executes a SELECT and validates the result. 
+The <code class="highlighter-rouge">${order_id}</code> variable — captured from the Kafka message in step 2 — identifies the exact row to check. The <code class="highlighter-rouge">.validate("status", "PROCESSING")</code> assertion confirms that the route’s <code class="highlighter-rouge">onConsume</code> callback updated the status from <code class="highlighter-rouge">PLACED</code> to <code class="highlighter-rouge">PROCESSING</code>.</p>
+
+<p>This is the critical verification that many tests skip. The route might successfully publish to Kafka but fail the <code class="highlighter-rouge">onConsume</code> update — a bug that causes the same row to be published again on the next poll cycle. Only a database assertion catches this.</p>
+
+<h1 id="capturing-auto-generated-values-with-variable">Capturing auto-generated values with <a href="https://github.com/variable" class="user-mention">@variable</a>()@</h1>
+
+<p>The <code class="highlighter-rouge">@variable(name)@</code> notation is one of Citrus’s most useful features for database testing. 
+When it appears in a received message body, Citrus extracts the actual value at that position and stores it in a test variable. 
+After extraction, the variable is available for all subsequent actions.</p>
+
+<p>Compare <code class="highlighter-rouge">@variable()@</code> with <code class="highlighter-rouge">@ignore@</code>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Marker</th>
+      <th>Behavior</th>
+      <th>Use when</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">@variable(name)@</code></td>
+      <td>Accepts any value, <strong>captures</strong> it as a named variable</td>
+      <td>You need the value later (database IDs, transaction IDs, correlation keys)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">@ignore@</code></td>
+      <td>Accepts any value, <strong>discards</strong> it</td>
+      <td>You don’t need the value (timestamps, UUIDs you won’t reference again)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>In the SQL Polling Consumer test, <code class="highlighter-rouge">@variable(order_id)@</code> captures the auto-generated primary key so it can be used in the subsequent <code class="highlighter-rouge">SELECT</code> query. 
+Without this mechanism, you would need to query the database first to find the generated ID, adding complexity and a race condition.</p>
+
+<h1 id="database-testing-in-yaml-dsl">Database testing in YAML DSL</h1>
+
+<p>One of the most significant features in Citrus is that it supports multiple test domain specific languages.
+In the sections before we have been using Java DSL that can be combined with arbitrary JUnit Jupiter tests on top of Quarkus or Spring Boot.</p>
+
+<p>The same SQL Polling Consumer test can be written in pure YAML with a zero code approach (e.g. for Camel CLI projects):</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># deps: org.postgresql:postgresql:42.7.5</span>
+<span class="na">name</span><span class="pi">:</span> <span class="s">sql-polling-consumer-test</span>
+<span class="na">description</span><span class="pi">:</span> <span class="s">Test SQL Polling Consumer — polls PostgreSQL and publishes to Kafka</span>
+<span class="na">variables</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">kafka.broker</span>
+    <span class="na">value</span><span class="pi">:</span> <span class="s">localhost:9092</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">id</span>
+    <span class="na">value</span><span class="pi">:</span> <span class="s2">"</span><span class="s">citrus:randomNumber(4)"</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">amount</span>
+    <span class="na">value</span><span class="pi">:</span> <span class="s">40</span>
+<span class="na">configuration</span><span class="pi">:</span>
+  <span class="na">beans</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">dataSource</span>
+      <span class="na">type</span><span class="pi">:</span> <span class="s">org.postgresql.ds.PGSimpleDataSource</span>
+      <span class="na">properties</span><span class="pi">:</span>
+        <span class="na">url</span><span class="pi">:</span> <span class="s2">"</span><span class="s">jdbc:postgresql://localhost:5432/eip"</span>
+        <span class="na">user</span><span class="pi">:</span> <span class="s2">"</span><span class="s">eip"</span>
+        <span class="na">password</span><span class="pi">:</span> <span class="s2">"</span><span class="s">eip"</span>
+<span class="na">actions</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">testcontainers</span><span class="pi">:</span>
+      <span class="na">compose</span><span class="pi">:</span>
+        <span class="na">up</span><span class="pi">:</span>
+          <span class="na">file</span><span class="pi">:</span> <span class="s2">"</span><span class="s">_infra/compose.yaml"</span>
+  <span class="pi">-</span> <span class="na">waitFor</span><span class="pi">:</span>
+      <span class="na">timeout</span><span class="pi">:</span> <span class="s2">"</span><span class="s">25000"</span>
+      <span class="na">http</span><span class="pi">:</span>
+        <span class="na">url</span><span class="pi">:</span> <span class="s">http://localhost:8090</span>
+  <span class="pi">-</span> <span class="na">camel</span><span class="pi">:</span>
+      <span class="na">jbang</span><span class="pi">:</span>
+        <span class="na">run</span><span class="pi">:</span>
+          <span class="na">integration</span><span class="pi">:</span>
+            <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">sql-polling-consumer"</span>
+            <span class="na">file</span><span class="pi">:</span> <span class="s2">"</span><span class="s">../sql-polling-consumer.yaml"</span>
+            <span class="na">systemProperties</span><span class="pi">:</span>
+              <span class="na">file</span><span class="pi">:</span> <span class="s2">"</span><span class="s">../application.properties"</span>
+  <span class="pi">-</span> <span class="na">camel</span><span class="pi">:</span>
+      <span class="na">jbang</span><span class="pi">:</span>
+        <span class="na">verify</span><span class="pi">:</span>
+          <span class="na">integration</span><span class="pi">:</span> <span class="s2">"</span><span class="s">sql-polling-consumer"</span>
+          <span class="na">logMessage</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Routes</span><span class="nv"> </span><span class="s">startup"</span>
+
+  <span class="c1"># Insert test data</span>
+  <span class="pi">-</span> <span class="na">sql</span><span class="pi">:</span>
+      <span class="na">dataSource</span><span class="pi">:</span> <span class="s2">"</span><span class="s">dataSource"</span>
+      <span class="na">statements</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">statement</span><span class="pi">:</span> <span class="pi">&gt;-</span>
+            <span class="no">INSERT INTO orders.orders (customer_id, item_sku, quantity, amount)</span>
+            <span class="no">VALUES ('CUST-00org.citrusframework:citrus-website:pom:1.1.0', 'SKU-org.citrusframework:citrus-website:pom:1.1.0', 1, ${amount})</span>
+
+  <span class="c1"># Receive from Kafka and capture the generated ID</span>
+  <span class="pi">-</span> <span class="na">repeatOnError</span><span class="pi">:</span>
+      <span class="na">until</span><span class="pi">:</span> <span class="s">i &gt;= 15</span>
+      <span class="na">autoSleep</span><span class="pi">:</span> <span class="s">1000</span>
+      <span class="na">actions</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">receive</span><span class="pi">:</span>
+          <span class="na">endpoint</span><span class="pi">:</span> <span class="pi">&gt;-</span>
+            <span class="no">kafka:eip.orders.placed?server=${kafka.broker}&amp;consumerGroup=citrus-placed-group</span>
+          <span class="no">timeout: 60000</span>
+          <span class="no">message:</span>
+            <span class="no">body:</span>
+              <span class="no">data: |</span>
+                <span class="no">{</span>
+                  <span class="no">"id": "@variable(order_id)@",</span>
+                  <span class="no">"customer_id": "CUST-00org.citrusframework:citrus-website:pom:1.1.0",</span>
+                  <span class="no">"status": "PLACED",</span>
+                  <span class="no">"amount": ${amount}.0,</span>
+                  <span class="no">"item_sku": "SKU-org.citrusframework:citrus-website:pom:1.1.0",</span>
+                  <span class="no">"quantity": 1,</span>
+                  <span class="no">"created_at": "@ignore@"</span>
+                <span class="no">}</span>
+
+  <span class="c1"># Verify the database status changed</span>
+  <span class="pi">-</span> <span class="na">sql</span><span class="pi">:</span>
+      <span class="na">dataSource</span><span class="pi">:</span> <span class="s2">"</span><span class="s">dataSource"</span>
+      <span class="na">statements</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">statement</span><span class="pi">:</span> <span class="s2">"</span><span class="s">SELECT</span><span class="nv"> </span><span class="s">status</span><span class="nv"> </span><span class="s">FROM</span><span class="nv"> </span><span class="s">orders</span><span class="nv"> </span><span class="s">WHERE</span><span class="nv"> </span><span class="s">id</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">'${order_id}'"</span>
+      <span class="na">validate</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">column</span><span class="pi">:</span> <span class="s2">"</span><span class="s">status"</span>
+          <span class="na">value</span><span class="pi">:</span> <span class="s2">"</span><span class="s">PROCESSING"</span>
+</code></pre></div></div>
+
+<p>A few YAML-specific details:</p>
+
+<ul>
+  <li>The <code class="highlighter-rouge"># deps:</code> comment at the top declares the PostgreSQL JDBC driver as a Maven dependency. Camel JBang resolves it automatically — no <code class="highlighter-rouge">pom.xml</code> needed.</li>
+  <li>The <code class="highlighter-rouge">configuration.beans</code> section declares a <code class="highlighter-rouge">PGSimpleDataSource</code> bean. In Java tests, the DataSource comes from the application’s CDI or Spring context. In YAML tests, you declare it explicitly.</li>
+  <li>SQL validation uses <code class="highlighter-rouge">column</code>/<code class="highlighter-rouge">value</code> pairs in the <code class="highlighter-rouge">validate</code> block, compared to Java’s <code class="highlighter-rouge">.validate("column", "value")</code> chained calls.</li>
+</ul>
+
+<h1 id="transactional-outbox-pattern">Transactional Outbox Pattern</h1>
+
+<p>The SQL Polling Consumer test follows a DB → Kafka → DB flow. 
+The reverse is equally common: Kafka → route → DB. When a route consumes from Kafka, processes the message, and writes to the database, the test needs to verify that the database write happened. 
+But the write operation is asynchronous — the message might still be in-flight when the test queries the database.</p>
+
+<p>The transactional outbox pattern demonstrates this scenario. 
+The route consumes a payment request from Kafka, writes a payment record and an outbox event in a single transaction, and a second route polls the outbox and publishes to Kafka:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">from</span><span class="o">(</span><span class="s">"kafka:eip.payments.required?brokers=&amp;groupId=payment-outbox"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"transactional-client"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">unmarshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">transacted</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"sql:INSERT INTO payments.payments (order_id, amount, status) "</span>
+        <span class="o">+</span> <span class="s">"VALUES (:#${body[order_id]}, :#${body[amount]}, 'PROCESSED')"</span><span class="o">)</span>
+    <span class="c1">// ... build outbox event ...</span>
+    <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"sql:INSERT INTO payments.outbox (event_id, event_type, aggregate_id, payload) "</span>
+        <span class="o">+</span> <span class="s">"VALUES (:#${body[event_id]}, :#${body[event_type]}, "</span>
+        <span class="o">+</span> <span class="s">":#${body[aggregate_id]}, :#${body[payload]})"</span><span class="o">);</span>
+
+<span class="n">from</span><span class="o">(</span><span class="s">"sql:SELECT * FROM payments.outbox WHERE published = false "</span>
+        <span class="o">+</span> <span class="s">"ORDER BY created_at LIMIT 100"</span>
+        <span class="o">+</span> <span class="s">"?delay=5000"</span>
+        <span class="o">+</span> <span class="s">"&amp;onConsume=UPDATE payments.outbox SET published = true "</span>
+        <span class="o">+</span> <span class="s">"WHERE event_id = :#event_id"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"outbox-publisher"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">setBody</span><span class="o">(</span><span class="n">simple</span><span class="o">(</span><span class="s">"${body[payload]}"</span><span class="o">))</span>
+    <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"kafka:eip.payments.processed?brokers="</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>The test sends a payment request to Kafka and then needs to verify three things: the payment row exists in the database, the payment event was published to Kafka, and the outbox row was marked as published. Each check wraps its assertion in <code class="highlighter-rouge">repeatOnError()</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Nested</span>
+<span class="kd">class</span> <span class="nc">TransactionalOutboxTest</span> <span class="o">{</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldProcessPaymentAndPublishViaOutbox</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+            <span class="n">createVariables</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mi">500</span><span class="o">)</span>
+        <span class="o">);</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"transactional-client"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+        <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"outbox-publisher"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+            <span class="n">send</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.payments.required"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+        <span class="o">);</span>
+
+        <span class="c1">// Verify the payment row was written</span>
+        <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+            <span class="n">repeatOnError</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">15</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">sql</span><span class="o">(</span><span class="n">dataSource</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">query</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">statement</span><span class="o">(</span><span class="s">"SELECT order_id, status FROM payments.payments "</span>
+                            <span class="o">+</span> <span class="s">"WHERE order_id = 'org.citrusframework:citrus-website:pom:1.1.0'"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"order_id"</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"status"</span><span class="o">,</span> <span class="s">"PROCESSED"</span><span class="o">)</span>
+                <span class="o">)</span>
+        <span class="o">);</span>
+
+        <span class="c1">// Verify the outbox event was published to Kafka</span>
+        <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+            <span class="n">repeatOnError</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">2</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">receive</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.payments.processed?consumerGroup=citrus-payments-group"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"""
+                        {
+                          "</span><span class="n">order_id</span><span class="s">": org.citrusframework:citrus-website:pom:1.1.0,
+                          "</span><span class="n">amount</span><span class="s">": ${amount},
+                          "</span><span class="n">status</span><span class="s">": "</span><span class="n">PROCESSED</span><span class="s">"
+                        }
+                        """</span><span class="o">)</span>
+                <span class="o">)</span>
+        <span class="o">);</span>
+
+        <span class="c1">// Verify the outbox row was marked as published</span>
+        <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+            <span class="n">repeatOnError</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">15</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">sql</span><span class="o">(</span><span class="n">dataSource</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">query</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">statement</span><span class="o">(</span><span class="s">"SELECT published FROM payments.outbox "</span>
+                            <span class="o">+</span> <span class="s">"WHERE aggregate_id = 'org.citrusframework:citrus-website:pom:1.1.0'"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"published"</span><span class="o">,</span> <span class="s">"true"</span><span class="o">)</span>
+                <span class="o">)</span>
+        <span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The pattern is the same each time: wrap the assertion in <code class="highlighter-rouge">repeatOnError()</code> with a retry loop. 
+The first SQL query retries up to 15 times with 1-second intervals, giving the route 15 seconds to process the Kafka message and write to the database. 
+The Kafka receive retries with 2-second intervals because the outbox publisher polls on a 5-second delay. 
+The final SQL query verifies the outbox cleanup.</p>
+
+<p>Without the retry wrapper, these assertions would fail intermittently — the test queries the database before the route finishes writing. 
+This is the most common cause of flaky database tests, and <code class="highlighter-rouge">repeatOnError()</code> eliminates it.</p>
+
+<h1 id="best-practices-for-database-testing">Best practices for database testing</h1>
+
+<p>After working through these examples, a few patterns emerge that keep database tests reliable:</p>
+
+<p><strong>Use unique test data.</strong> Generate random IDs with <code class="highlighter-rouge">citrus:randomNumber()</code> so each test run operates on its own rows. 
+This prevents cross-test interference when tests run in sequence without a database reset.</p>
+
+<p><strong>Always verify the database state change.</strong> Don’t just check the Kafka output — verify that the database update happened too. 
+A route that publishes to Kafka but fails the <code class="highlighter-rouge">onConsume</code> UPDATE will reprocess the same row on the next poll cycle. 
+Only a database assertion catches this.</p>
+
+<p><strong>Wrap async queries in repeatOnError.</strong> When a route writes to the database asynchronously (after consuming from Kafka), the INSERT may not have landed when the test queries. 
+The <code class="highlighter-rouge">repeatOnError()</code> retry loop eliminates this race condition.</p>
+
+<p><strong>Use <a href="https://github.com/ignore" class="user-mention">@ignore</a>@ for timestamps, <a href="https://github.com/variable" class="user-mention">@variable</a>()@ for generated keys.</strong> Timestamps are non-deterministic — skip them. 
+Auto-generated IDs are non-deterministic but needed downstream — capture them.</p>
+
+<p><strong>Define schemas in init scripts, not application auto-DDL.</strong> The <code class="highlighter-rouge">init-schemas.sql</code> script in <code class="highlighter-rouge">docker-entrypoint-initdb.d/</code> runs before any test. 
+This is more reliable than relying on the application’s auto-DDL, which might create schemas in a different order or skip tables the test needs.</p>
+
+<h1 id="where-to-find-the-examples">Where to find the examples</h1>
+
+<p>The complete source code is available in the <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main">EIP with Camel</a> repository:</p>
+
+<ul>
+  <li>
+<strong>SQL Polling Consumer test</strong>: <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/14-consumer-patterns/quarkus/src/test/java/com/example/eip/consumers/EipTests.java">EipTests.java</a> (<code class="highlighter-rouge">SqlPollingConsumerTest</code> nested class) and the <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/14-consumer-patterns/quarkus/src/main/java/com/example/eip/consumers/SqlPollingConsumerRoute.java">route definition</a>.</li>
+  <li>
+<strong>Transactional Outbox test</strong>: <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/15-endpoints/quarkus/src/test/java/com/example/eip/endpoints/EipTests.java">EipTests.java</a> (<code class="highlighter-rouge">TransactionalOutboxTest</code> nested class) and the <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/15-endpoints/quarkus/src/main/java/com/example/eip/endpoints/OutboxPatternRoute.java">Outbox route</a>.</li>
+  <li>
+<strong>Database infrastructure</strong>: <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/14-consumer-patterns/quarkus/src/test/resources/_infra/compose.yaml">compose.yaml</a> with PostgreSQL and the <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/14-consumer-patterns/quarkus/src/test/resources/_infra/postgres/init-schemas.sql">init-schemas.sql</a> script.</li>
+  <li>
+<strong>YAML DSL database test</strong>: <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/14-consumer-patterns/yaml-dsl/test/sql-polling-consumer.citrus.it.yaml">sql-polling-consumer.citrus.it.yaml</a> with DataSource bean configuration.</li>
+  <li>
+<strong>EipTestSupport</strong>: <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/14-consumer-patterns/quarkus/src/test/java/com/example/eip/consumers/EipTestSupport.java">EipTestSupport.java</a> with <code class="highlighter-rouge">assertProcessedExchanges</code> and <code class="highlighter-rouge">waitForCamelRouteStarted</code> helpers.</li>
+</ul>
+
+<p>Give it a try, and let us know what you think!</p>
+
+  </div>
+</article>
+
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <h4>Overview</h4>
+    <ul>
+      <li class="">
+        <a href="/news/">All Posts</a>
+      </li>
+      <li class="">
+        <a href="/docs/history/">All Releases</a>
+      </li>
+    </ul>
+    <h4>Posts</h4>
+    <ul>
+        
+        
+        <li class="current">
+          <a href="/news/2026/09/17/database-testing-citrus/">» Database Testing with Citrus</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/09/16/multi-runtime-testing/">» Multi-Runtime Testing</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/09/15/camel-cli-test-plugin/">» Camel CLI test plugin</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/09/14/kafka-testing-pitfalls/">» Kafka Testing Pitfalls</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/09/14/camel-testing-pitfalls/">» Camel Testing Pitfalls</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/09/11/testing-reliability-patterns/">» Testing Reliability Patterns</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/09/10/testing-camel-routing/">» Testing Camel Routing</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/08/05/release-5.0.0/">» Citrus 5.0.0</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/07/27/knative-eventing-testing/">» Knative Eventing Testing</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/07/07/soap-webservices-testing/">» CXF SOAP WebServices Testing</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/07/06/how-camel-elevates-citrus/">» Apache Camel elevates Citrus</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/06/19/kaoto-meets-citrus/">» Kaoto meets Citrus</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/06/18/release-5.0.0-approaching/">» Citrus 5.0.0 approaching</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2023/10/25/release-4.0.0/">» Citrus 4.0.0</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2023/01/30/camel-k-yaks/">» Camel K &amp; YAKS</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2021/08/30/introducing-yaks/">» YAKS BDD testing</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2021/08/25/advanced-camel-support/">» Advanced Camel support</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2021/08/16/release-3.0.0/">» Citrus 3.0.0</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2017/09/21/introducing-citrus-simulator/">» Citrus Simulator</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2017/07/07/introducing-citrus-admin/">» Admin UI</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2016/03/15/jcache-chat-citrus/">» WebSockets testing</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2015/06/03/camel-testing-part-3/">» Testing Apache Camel III</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2015/05/27/camel-testing-part-2/">» Testing Apache Camel II</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2014/11/21/camel-testing-part-1/">» Testing Apache Camel I</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2011/06/22/excel-validation/">» Validate Excel files</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2011/06/17/testng-data-provider/">» TestNG data providers</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2010/12/14/integrate-your-own-validator/">» Integrate your own validator</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2010/08/13/testng-groups/">» TestNG groups</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2010/05/19/soap-mustunderstand/">» SOAP-ENV:mustUnderstand</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2010/01/18/custom-meta-info/">» Custom meta info</a>
+        </li>
+        
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/citrusframework/citrus/blob/master/LICENSE">MIT License</a>.</p>
+      <br>
+      <p>© 2026 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p> </p>
+      <br>
+      <br>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>
