@@ -1,0 +1,938 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 5.0.1">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus main branch" href="https://github.com/citrusframework/citrus/commits/main.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="stylesheet" href="/css/tabbed.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/atom-one-light.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+  <script src="/js/tabbed.js"></script>
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="current">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="current">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="news">
+    <div class="grid">
+
+      <div class="docs-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the blog…</option>
+    <option value="/news/">News</option>
+    <option value="/docs/history/">Releases</option>
+    <optgroup label="Posts">
+      
+      
+      <option value="/news/2026/09/18/camel-testing-strategies/">Camel Testing Strategies - From Unit to Integration Tests</option>
+      
+      <option value="/news/2026/09/17/database-testing-citrus/">Database Testing - SQL Polling Consumers and Data Verification</option>
+      
+      <option value="/news/2026/09/16/multi-runtime-testing/">Multi-Runtime Testing — One Test Pattern, Three Different Runtimes</option>
+      
+      <option value="/news/2026/09/15/camel-cli-test-plugin/">Camel CLI test plugin - Zero-Code Integration Tests</option>
+      
+      <option value="/news/2026/09/14/kafka-testing-pitfalls/">Kafka Testing Pitfalls in Camel Integration Tests</option>
+      
+      <option value="/news/2026/09/14/camel-testing-pitfalls/">Camel Integration Testing Pitfalls</option>
+      
+      <option value="/news/2026/09/11/testing-reliability-patterns/">Testing Reliability Patterns - Dead Letter Queues, Idempotent Receivers, and Circuit Breakers</option>
+      
+      <option value="/news/2026/09/10/testing-camel-routing/">Testing Camel Routing - Content-Based Routers, Filters, and Splitters</option>
+      
+      <option value="/news/2026/08/05/release-5.0.0/">Citrus 5.0.0</option>
+      
+      <option value="/news/2026/07/27/knative-eventing-testing/">Testing Knative Eventing with Citrus — from local brokers to TLS-secured CloudEvents</option>
+      
+      <option value="/news/2026/07/07/soap-webservices-testing/">Testing CXF SOAP WebServices with Citrus</option>
+      
+      <option value="/news/2026/07/06/how-camel-elevates-citrus/">How Apache Camel elevates Citrus Integration Testing to next levels</option>
+      
+      <option value="/news/2026/06/19/kaoto-meets-citrus/">Design Citrus Tests Visually — Kaoto Meets Citrus</option>
+      
+      <option value="/news/2026/06/18/release-5.0.0-approaching/">Get ready for Citrus 5.0.0</option>
+      
+      <option value="/news/2023/10/25/release-4.0.0/">Citrus 4.0.0</option>
+      
+      <option value="/news/2023/01/30/camel-k-yaks/">Testing Camel K with YAKS</option>
+      
+      <option value="/news/2021/08/30/introducing-yaks/">Cloud-native BDD testing with YAKS</option>
+      
+      <option value="/news/2021/08/25/advanced-camel-support/">Advanced Apache Camel support in Citrus</option>
+      
+      <option value="/news/2021/08/16/release-3.0.0/">YAY, Citrus 3.0.0 is here!</option>
+      
+      <option value="/news/2017/09/21/introducing-citrus-simulator/">Simulating 3rd party services with Spring Boot and Citrus</option>
+      
+      <option value="/news/2017/07/07/introducing-citrus-admin/">Introducing Citrus Admin Web UI</option>
+      
+      <option value="/news/2016/03/15/jcache-chat-citrus/">Testing WebSockets with a Citrus twist</option>
+      
+      <option value="/news/2015/06/03/camel-testing-part-3/">Apache Camel Integration Testing - Part 3</option>
+      
+      <option value="/news/2015/05/27/camel-testing-part-2/">Apache Camel Integration Testing - Part 2</option>
+      
+      <option value="/news/2014/11/21/camel-testing-part-1/">Apache Camel Integration Testing - Part 1</option>
+      
+      <option value="/news/2011/06/22/excel-validation/">Validate Excel files in Citrus</option>
+      
+      <option value="/news/2011/06/17/testng-data-provider/">Use TestNG data providers in Citrus</option>
+      
+      <option value="/news/2010/12/14/integrate-your-own-validator/">Integrate your own validator into your Citrus project</option>
+      
+      <option value="/news/2010/08/13/testng-groups/">Citrus and TestNG groups</option>
+      
+      <option value="/news/2010/05/19/soap-mustunderstand/">Handle SOAP-ENV:mustUnderstand headers</option>
+      
+      <option value="/news/2010/01/18/custom-meta-info/">Customize meta information</option>
+      
+    </optgroup>
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+  <h2>
+    Camel Testing Strategies - From Unit to Integration Tests
+    <a href="/news/2026/09/18/camel-testing-strategies/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      blog
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      18 Sep 2026
+    </span>
+    <a href="https://github.com/christophd" class="post-author">
+      Christoph Deppisch
+    </a>
+  </div>
+  <div class="post-content">
+    <p>Every <a href="https://camel.apache.org">Apache Camel</a> project needs tests, but which kind? A unit test with <code class="highlighter-rouge">AdviceWith</code> and <code class="highlighter-rouge">MockEndpoint</code> runs in milliseconds and tells you whether the filter predicate is correct. But it never touches a Kafka broker, never serializes a message to JSON bytes, never deals with consumer group offsets. An integration test with <a href="https://citrusframework.org">Citrus</a> starts real infrastructure, sends through real transports, and catches the bugs that in-memory mocking cannot see — but it takes seconds, not milliseconds, and requires Docker.</p>
+
+<p>The answer is not one or the other. A well-tested Camel project uses both. Unit tests provide fast feedback on routing logic during development. Integration tests provide confidence that the full pipeline works end-to-end before deployment. They test different things, and the bugs they catch barely overlap.</p>
+
+<p>This post walks through both approaches side by side, using the same routes as examples. We start with Camel’s built-in unit testing tools, then show how Citrus integration tests cover the gaps that have been missed. Along the way, we build a clear guidance for deciding which tool to use when.</p>
+
+<h1 id="unit-testing-with-advicewith-and-mockendpoint">Unit testing with AdviceWith and MockEndpoint</h1>
+
+<p>Camel’s built-in test support lets you replace a route’s real endpoints with in-memory stubs. The key tools are <code class="highlighter-rouge">AdviceWith</code> — which modifies a route’s definition before it starts — and <code class="highlighter-rouge">MockEndpoint</code> — which captures messages for assertion.</p>
+
+<h2 id="a-route-designed-for-both-testing-levels">A route designed for both testing levels</h2>
+
+<p>Here is an <code class="highlighter-rouge">OrderFilterRoute</code> that filters high-value orders. Notice the design: the Kafka consumer delegates to a <code class="highlighter-rouge">direct:filter-order</code> endpoint, and the filter’s output goes to a <code class="highlighter-rouge">direct:high-value-orders</code> endpoint:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ApplicationScoped</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">OrderFilterRoute</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">from</span><span class="o">(</span><span class="s">"direct:filter-order"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"order-filter"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">unmarshal</span><span class="o">().</span><span class="na">json</span><span class="o">(</span><span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Map</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">filter</span><span class="o">().</span><span class="na">simple</span><span class="o">(</span><span class="s">"${body[amount]} &gt;= 100"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"High-value order ${body[order_id]}: $${body[amount]}"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"direct:high-value-orders"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">end</span><span class="o">();</span>
+
+        <span class="n">from</span><span class="o">(</span><span class="s">"direct:high-value-orders"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"high-value-handler"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"High-value order received for priority processing"</span><span class="o">);</span>
+
+        <span class="n">from</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed?brokers=&amp;groupId=filter-service"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"kafka-order-filter"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"direct:filter-order"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This layered design is intentional. The core logic lives in <code class="highlighter-rouge">direct:filter-order</code>, which can be tested without Kafka. The Kafka consumer is a thin adapter that feeds into the same <code class="highlighter-rouge">direct:</code> endpoint. Unit tests target the logic layer; integration tests target the full Kafka path.</p>
+
+<h2 id="the-unit-test">The unit test</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@QuarkusTest</span>
+<span class="nd">@TestInstance</span><span class="o">(</span><span class="n">TestInstance</span><span class="o">.</span><span class="na">Lifecycle</span><span class="o">.</span><span class="na">PER_CLASS</span><span class="o">)</span>
+<span class="kd">class</span> <span class="nc">OrderFilterRouteTest</span> <span class="o">{</span>
+
+    <span class="nd">@Inject</span>
+    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="nd">@Inject</span>
+    <span class="n">ProducerTemplate</span> <span class="n">producer</span><span class="o">;</span>
+
+    <span class="nd">@BeforeAll</span>
+    <span class="kt">void</span> <span class="nf">adviceRoutes</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">AdviceWith</span><span class="o">.</span><span class="na">adviceWith</span><span class="o">(</span><span class="n">camelContext</span><span class="o">,</span> <span class="s">"kafka-order-filter"</span><span class="o">,</span> <span class="n">route</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">route</span><span class="o">.</span><span class="na">replaceFromWith</span><span class="o">(</span><span class="s">"direct:test-kafka-input"</span><span class="o">);</span>
+        <span class="o">});</span>
+        <span class="n">AdviceWith</span><span class="o">.</span><span class="na">adviceWith</span><span class="o">(</span><span class="n">camelContext</span><span class="o">,</span> <span class="s">"high-value-handler"</span><span class="o">,</span> <span class="n">route</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">route</span><span class="o">.</span><span class="na">weaveAddLast</span><span class="o">().</span><span class="na">to</span><span class="o">(</span><span class="s">"mock:high-value"</span><span class="o">);</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+
+    <span class="nd">@BeforeEach</span>
+    <span class="kt">void</span> <span class="nf">resetMocks</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">MockEndpoint</span><span class="o">.</span><span class="na">resetMocks</span><span class="o">(</span><span class="n">camelContext</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">highValueOrderPassesFilter</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">MockEndpoint</span> <span class="n">mock</span> <span class="o">=</span> <span class="n">camelContext</span><span class="o">.</span><span class="na">getEndpoint</span><span class="o">(</span><span class="s">"mock:high-value"</span><span class="o">,</span> <span class="n">MockEndpoint</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="n">mock</span><span class="o">.</span><span class="na">expectedMessageCount</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+
+        <span class="n">String</span> <span class="n">order</span> <span class="o">=</span> <span class="s">"""
+            {"</span><span class="n">order_id</span><span class="s">": 2001, "</span><span class="n">amount</span><span class="s">": 250.00, "</span><span class="n">customer_id</span><span class="s">": "</span><span class="n">C</span><span class="o">-</span><span class="mi">100</span><span class="s">"}
+            """</span><span class="o">;</span>
+        <span class="n">producer</span><span class="o">.</span><span class="na">sendBody</span><span class="o">(</span><span class="s">"direct:filter-order"</span><span class="o">,</span> <span class="n">order</span><span class="o">);</span>
+
+        <span class="n">mock</span><span class="o">.</span><span class="na">assertIsSatisfied</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">lowValueOrderIsFiltered</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">MockEndpoint</span> <span class="n">mock</span> <span class="o">=</span> <span class="n">camelContext</span><span class="o">.</span><span class="na">getEndpoint</span><span class="o">(</span><span class="s">"mock:high-value"</span><span class="o">,</span> <span class="n">MockEndpoint</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="n">mock</span><span class="o">.</span><span class="na">expectedMessageCount</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+
+        <span class="n">String</span> <span class="n">order</span> <span class="o">=</span> <span class="s">"""
+            {"</span><span class="n">order_id</span><span class="s">": 2002, "</span><span class="n">amount</span><span class="s">": 49.99, "</span><span class="n">customer_id</span><span class="s">": "</span><span class="n">C</span><span class="o">-</span><span class="mi">101</span><span class="s">"}
+            """</span><span class="o">;</span>
+        <span class="n">producer</span><span class="o">.</span><span class="na">sendBody</span><span class="o">(</span><span class="s">"direct:filter-order"</span><span class="o">,</span> <span class="n">order</span><span class="o">);</span>
+
+        <span class="n">mock</span><span class="o">.</span><span class="na">assertIsSatisfied</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">borderlineOrderPassesFilter</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">MockEndpoint</span> <span class="n">mock</span> <span class="o">=</span> <span class="n">camelContext</span><span class="o">.</span><span class="na">getEndpoint</span><span class="o">(</span><span class="s">"mock:high-value"</span><span class="o">,</span> <span class="n">MockEndpoint</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="n">mock</span><span class="o">.</span><span class="na">expectedMessageCount</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+
+        <span class="n">String</span> <span class="n">order</span> <span class="o">=</span> <span class="s">"""
+            {"</span><span class="n">order_id</span><span class="s">": 2003, "</span><span class="n">amount</span><span class="s">": 100.00, "</span><span class="n">customer_id</span><span class="s">": "</span><span class="n">C</span><span class="o">-</span><span class="mi">102</span><span class="s">"}
+            """</span><span class="o">;</span>
+        <span class="n">producer</span><span class="o">.</span><span class="na">sendBody</span><span class="o">(</span><span class="s">"direct:filter-order"</span><span class="o">,</span> <span class="n">order</span><span class="o">);</span>
+
+        <span class="n">mock</span><span class="o">.</span><span class="na">assertIsSatisfied</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">@BeforeAll</code> method does two things. First, it replaces the Kafka consumer route’s <code class="highlighter-rouge">from:</code> with a <code class="highlighter-rouge">direct:</code> endpoint, so no Kafka broker is needed. Second, it appends a <code class="highlighter-rouge">mock:high-value</code> endpoint to the <code class="highlighter-rouge">high-value-handler</code> route, capturing any message that passes the filter.</p>
+
+<p>Each test sends a JSON string to <code class="highlighter-rouge">direct:filter-order</code> via <code class="highlighter-rouge">ProducerTemplate</code> and checks whether <code class="highlighter-rouge">mock:high-value</code> received the expected number of messages. The boundary test with <code class="highlighter-rouge">amount: 100.00</code> catches off-by-one errors in the <code class="highlighter-rouge">&gt;= 100</code> predicate.</p>
+
+<h2 id="what-unit-tests-catch">What unit tests catch</h2>
+
+<p>This approach is excellent for testing <strong>routing logic in isolation</strong>:</p>
+
+<ul>
+  <li>Filter predicates — does the <code class="highlighter-rouge">simple("${body[amount]} &gt;= 100")</code> expression evaluate correctly?</li>
+  <li>Content-Based Router conditions — does each <code class="highlighter-rouge">when()</code> branch fire for the right input?</li>
+  <li>Bean method results — does the enrichment service return the expected data?</li>
+  <li>Boundary conditions — what happens at exactly 100.00?</li>
+</ul>
+
+<p>The tests run fast because they operate entirely in memory. No Docker, no network calls, no serialization overhead.</p>
+
+<h2 id="what-unit-tests-miss">What unit tests miss</h2>
+
+<p>The test sends a JSON <em>string</em> and receives a Java <em>object</em>. It never tests whether the route correctly marshals the output back to JSON before sending to Kafka. A route that does <code class="highlighter-rouge">unmarshal().json()</code> → filter → <code class="highlighter-rouge">to("kafka:...")</code> without a <code class="highlighter-rouge">marshal().json()</code> call would produce <code class="highlighter-rouge">{order_id=2001, amount=250.0, customer_id=C-100}</code> on the Kafka topic — Java <code class="highlighter-rouge">Map.toString()</code> output, not valid JSON. The unit test would never notice because <code class="highlighter-rouge">MockEndpoint</code> captures the in-memory Java object, not the serialized bytes.</p>
+
+<p>Unit tests also cannot verify:</p>
+
+<ul>
+  <li>
+<strong>Kafka consumer group behavior</strong> — offset management, rebalancing, partition assignment.</li>
+  <li>
+<strong>Header propagation</strong> — whether Kafka message keys and custom headers survive the transport.</li>
+  <li>
+<strong>Multi-hop async flows</strong> — where a message passes through multiple Kafka topics and routes.</li>
+  <li>
+<strong>Infrastructure configuration</strong> — broker connection strings, topic auto-creation, timeouts.</li>
+</ul>
+
+<h1 id="testing-routes-with-multiple-branches">Testing routes with multiple branches</h1>
+
+<p>The same <code class="highlighter-rouge">AdviceWith</code> pattern scales to Content-Based Routers. Here is a route that classifies orders by destination:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ApplicationScoped</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">OrderValidationRoute</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">from</span><span class="o">(</span><span class="s">"direct:validate-order"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"order-validation"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">unmarshal</span><span class="o">().</span><span class="na">json</span><span class="o">(</span><span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Map</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">choice</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">when</span><span class="o">().</span><span class="na">simple</span><span class="o">(</span><span class="s">"${body[shipping_type]} == 'HAZMAT'"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"direct:hazmat"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">when</span><span class="o">().</span><span class="na">simple</span><span class="o">(</span><span class="s">"${body[country]} != 'US'"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"direct:international"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">otherwise</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"direct:domestic"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">end</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The unit test adds mock endpoints to all three branches and verifies each one independently:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@QuarkusTest</span>
+<span class="nd">@TestInstance</span><span class="o">(</span><span class="n">TestInstance</span><span class="o">.</span><span class="na">Lifecycle</span><span class="o">.</span><span class="na">PER_CLASS</span><span class="o">)</span>
+<span class="kd">class</span> <span class="nc">OrderValidationRouteTest</span> <span class="o">{</span>
+
+    <span class="nd">@Inject</span>
+    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="nd">@Inject</span>
+    <span class="n">ProducerTemplate</span> <span class="n">producer</span><span class="o">;</span>
+
+    <span class="nd">@BeforeAll</span>
+    <span class="kt">void</span> <span class="nf">adviceRoutes</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">AdviceWith</span><span class="o">.</span><span class="na">adviceWith</span><span class="o">(</span><span class="n">camelContext</span><span class="o">,</span> <span class="s">"domestic-handler"</span><span class="o">,</span> <span class="n">route</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">route</span><span class="o">.</span><span class="na">weaveAddLast</span><span class="o">().</span><span class="na">to</span><span class="o">(</span><span class="s">"mock:domestic"</span><span class="o">);</span>
+        <span class="o">});</span>
+        <span class="n">AdviceWith</span><span class="o">.</span><span class="na">adviceWith</span><span class="o">(</span><span class="n">camelContext</span><span class="o">,</span> <span class="s">"international-handler"</span><span class="o">,</span> <span class="n">route</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">route</span><span class="o">.</span><span class="na">weaveAddLast</span><span class="o">().</span><span class="na">to</span><span class="o">(</span><span class="s">"mock:international"</span><span class="o">);</span>
+        <span class="o">});</span>
+        <span class="n">AdviceWith</span><span class="o">.</span><span class="na">adviceWith</span><span class="o">(</span><span class="n">camelContext</span><span class="o">,</span> <span class="s">"hazmat-handler"</span><span class="o">,</span> <span class="n">route</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">route</span><span class="o">.</span><span class="na">weaveAddLast</span><span class="o">().</span><span class="na">to</span><span class="o">(</span><span class="s">"mock:hazmat"</span><span class="o">);</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+
+    <span class="nd">@BeforeEach</span>
+    <span class="kt">void</span> <span class="nf">resetMocks</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">MockEndpoint</span><span class="o">.</span><span class="na">resetMocks</span><span class="o">(</span><span class="n">camelContext</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">domesticOrderRoutesToDomestic</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">MockEndpoint</span> <span class="n">domestic</span> <span class="o">=</span> <span class="n">camelContext</span><span class="o">.</span><span class="na">getEndpoint</span><span class="o">(</span><span class="s">"mock:domestic"</span><span class="o">,</span> <span class="n">MockEndpoint</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="n">MockEndpoint</span> <span class="n">international</span> <span class="o">=</span> <span class="n">camelContext</span><span class="o">.</span><span class="na">getEndpoint</span><span class="o">(</span><span class="s">"mock:international"</span><span class="o">,</span> <span class="n">MockEndpoint</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="n">MockEndpoint</span> <span class="n">hazmat</span> <span class="o">=</span> <span class="n">camelContext</span><span class="o">.</span><span class="na">getEndpoint</span><span class="o">(</span><span class="s">"mock:hazmat"</span><span class="o">,</span> <span class="n">MockEndpoint</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+        <span class="n">domestic</span><span class="o">.</span><span class="na">expectedMessageCount</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+        <span class="n">international</span><span class="o">.</span><span class="na">expectedMessageCount</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+        <span class="n">hazmat</span><span class="o">.</span><span class="na">expectedMessageCount</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+
+        <span class="n">String</span> <span class="n">order</span> <span class="o">=</span> <span class="s">"""
+            {"</span><span class="n">order_id</span><span class="s">": 1001, "</span><span class="n">country</span><span class="s">": "</span><span class="n">US</span><span class="s">", "</span><span class="n">shipping_type</span><span class="s">": "</span><span class="n">STANDARD</span><span class="s">", "</span><span class="n">amount</span><span class="s">": 59.99}
+            """</span><span class="o">;</span>
+        <span class="n">producer</span><span class="o">.</span><span class="na">sendBody</span><span class="o">(</span><span class="s">"direct:validate-order"</span><span class="o">,</span> <span class="n">order</span><span class="o">);</span>
+
+        <span class="n">domestic</span><span class="o">.</span><span class="na">assertIsSatisfied</span><span class="o">();</span>
+        <span class="n">international</span><span class="o">.</span><span class="na">assertIsSatisfied</span><span class="o">();</span>
+        <span class="n">hazmat</span><span class="o">.</span><span class="na">assertIsSatisfied</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Notice how the test asserts that the <em>other</em> mocks received zero messages. This is the unit-test equivalent of negative testing — proving that the domestic order did <em>not</em> go to the international or hazmat handlers. Each branch gets its own test method with appropriate assertions on all three mocks.</p>
+
+<h1 id="mocking-external-services">Mocking external services</h1>
+
+<p>When a route calls an external service, <code class="highlighter-rouge">@InjectMock</code> (from Quarkus) or <code class="highlighter-rouge">@MockBean</code> (from Spring Boot) lets you stub it:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@QuarkusTest</span>
+<span class="nd">@TestInstance</span><span class="o">(</span><span class="n">TestInstance</span><span class="o">.</span><span class="na">Lifecycle</span><span class="o">.</span><span class="na">PER_CLASS</span><span class="o">)</span>
+<span class="kd">class</span> <span class="nc">OrderEnrichmentRouteTest</span> <span class="o">{</span>
+
+    <span class="nd">@Inject</span>
+    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="nd">@Inject</span>
+    <span class="n">ProducerTemplate</span> <span class="n">producer</span><span class="o">;</span>
+
+    <span class="nd">@InjectMock</span>
+    <span class="n">InventoryService</span> <span class="n">inventoryService</span><span class="o">;</span>
+
+    <span class="nd">@BeforeEach</span>
+    <span class="kt">void</span> <span class="nf">setup</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">MockEndpoint</span><span class="o">.</span><span class="na">resetMocks</span><span class="o">(</span><span class="n">camelContext</span><span class="o">);</span>
+
+        <span class="n">when</span><span class="o">(</span><span class="n">inventoryService</span><span class="o">.</span><span class="na">checkStock</span><span class="o">(</span><span class="n">any</span><span class="o">())).</span><span class="na">thenReturn</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">of</span><span class="o">(</span>
+            <span class="s">"order_id"</span><span class="o">,</span> <span class="mi">3001</span><span class="o">,</span>
+            <span class="s">"item_sku"</span><span class="o">,</span> <span class="s">"ELEC-TV-55"</span><span class="o">,</span>
+            <span class="s">"warehouse"</span><span class="o">,</span> <span class="s">"WAREHOUSE-MOCK"</span><span class="o">,</span>
+            <span class="s">"stock_available"</span><span class="o">,</span> <span class="mi">99</span><span class="o">,</span>
+            <span class="s">"weight_kg"</span><span class="o">,</span> <span class="mf">15.0</span>
+        <span class="o">));</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">orderIsEnrichedWithInventoryData</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">MockEndpoint</span> <span class="n">mock</span> <span class="o">=</span> <span class="n">camelContext</span><span class="o">.</span><span class="na">getEndpoint</span><span class="o">(</span><span class="s">"mock:enriched"</span><span class="o">,</span> <span class="n">MockEndpoint</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="n">mock</span><span class="o">.</span><span class="na">expectedMessageCount</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+
+        <span class="n">String</span> <span class="n">order</span> <span class="o">=</span> <span class="s">"""
+            {"</span><span class="n">order_id</span><span class="s">": 3001, "</span><span class="n">item_sku</span><span class="s">": "</span><span class="n">ELEC</span><span class="o">-</span><span class="n">TV</span><span class="o">-</span><span class="mi">55</span><span class="s">", "</span><span class="n">amount</span><span class="s">": 599.99}
+            """</span><span class="o">;</span>
+        <span class="n">producer</span><span class="o">.</span><span class="na">sendBody</span><span class="o">(</span><span class="s">"direct:enrich-order"</span><span class="o">,</span> <span class="n">order</span><span class="o">);</span>
+
+        <span class="n">mock</span><span class="o">.</span><span class="na">assertIsSatisfied</span><span class="o">();</span>
+
+        <span class="n">String</span> <span class="n">body</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="na">getReceivedExchanges</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">getIn</span><span class="o">().</span><span class="na">getBody</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="n">assertTrue</span><span class="o">(</span><span class="n">body</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s">"WAREHOUSE-MOCK"</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The Mockito stub replaces the real <code class="highlighter-rouge">InventoryService</code> with a predictable response. 
+The test verifies that the route correctly calls the service and includes the enrichment data in the output. 
+This is useful for services that are expensive, slow, or unavailable in the test environment.</p>
+
+<h1 id="integration-testing-with-citrus">Integration testing with Citrus</h1>
+
+<p>Citrus integration tests operate at a different level. They start real infrastructure, send messages through real Kafka brokers, and validate the output on real topics. 
+Here is what the filter route test looks like with Citrus (from the <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main/examples/09-routing-fundamentals/quarkus">Routing Fundamentals example</a>):</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@QuarkusTest</span>
+<span class="nd">@CitrusSupport</span>
+<span class="kd">class</span> <span class="nc">EipTests</span> <span class="kd">implements</span> <span class="n">EipTestSupport</span> <span class="o">{</span>
+
+    <span class="nd">@CitrusResource</span>
+    <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
+
+    <span class="nd">@Inject</span>
+    <span class="nd">@BindToRegistry</span>
+    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="nd">@Nested</span>
+    <span class="kd">class</span> <span class="nc">MessageFilterTest</span> <span class="o">{</span>
+
+        <span class="nd">@Test</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldPassHighValueOrder</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+                <span class="n">createVariables</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mf">250.00</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"country"</span><span class="o">,</span> <span class="s">"US"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"hazmat"</span><span class="o">,</span> <span class="kc">false</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"message-filter"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+                <span class="n">send</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"kafka.KEY"</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+                <span class="n">receive</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.high-value?consumerGroup=citrus-high-value-group"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+            <span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="nd">@Test</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldFilterLowValueOrder</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+                <span class="n">createVariables</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mf">50.00</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"country"</span><span class="o">,</span> <span class="s">"US"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"hazmat"</span><span class="o">,</span> <span class="kc">false</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"message-filter"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+                <span class="n">send</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"kafka.KEY"</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+                <span class="n">expectTimeout</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.high-value?consumerGroup=citrus-filter-reject-group"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">timeout</span><span class="o">(</span><span class="mi">5000</span><span class="o">)</span>
+            <span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The Citrus test sends a JSON message to the real <code class="highlighter-rouge">eip.orders.placed</code> Kafka topic. 
+The Camel route — running inside the Quarkus application — consumes from that topic, applies the filter, and publishes to <code class="highlighter-rouge">eip.orders.high-value</code>. 
+The test then reads from <code class="highlighter-rouge">eip.orders.high-value</code> and validates the entire message body against the template.</p>
+
+<p>The negative test uses <code class="highlighter-rouge">expectTimeout()</code> — it sends a low-value order and verifies that nothing arrives on the output topic within 5 seconds. 
+This is a stronger guarantee than <code class="highlighter-rouge">mock.expectedMessageCount(0)</code> because it tests the full pipeline, including Kafka serialization and consumer group behavior.</p>
+
+<h2 id="what-citrus-catches-that-unit-tests-miss">What Citrus catches that unit tests miss</h2>
+
+<p>The Citrus test exercises the entire transport layer. Consider these failure modes:</p>
+
+<ul>
+  <li>
+    <p><strong>Missing <code class="highlighter-rouge">marshal().json()</code></strong> — the route unmarshals JSON into a Java Map for filtering but forgets to marshal it back to JSON before sending to Kafka. The Kafka topic receives <code class="highlighter-rouge">{order_id=2001, amount=250.0}</code> instead of valid JSON. The unit test with <code class="highlighter-rouge">MockEndpoint</code> passes because it captures the Java object. The Citrus test fails because it reads the actual bytes off the topic and validates them as JSON.</p>
+  </li>
+  <li>
+    <p><strong>Kafka header loss</strong> — the route strips or overwrites Kafka headers during processing. The unit test never sees headers because <code class="highlighter-rouge">ProducerTemplate</code> doesn’t simulate Kafka header behavior. The Citrus test validates headers explicitly with <code class="highlighter-rouge">.header("kafka.KEY", "org.citrusframework:citrus-website:pom:1.1.0")</code>.</p>
+  </li>
+  <li>
+    <p><strong>Consumer group misconfiguration</strong> — the route uses a consumer group that conflicts with another route, causing messages to be split between consumers. This is invisible in unit tests because there is no real consumer group. Citrus tests with unique consumer groups detect this immediately.</p>
+  </li>
+</ul>
+
+<h1 id="when-to-use-which">When to use which</h1>
+
+<p>Here is a practical decision framework:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Concern</th>
+      <th>Unit Test (AdviceWith)</th>
+      <th>Citrus Integration Test</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Routing logic (choice, filter)</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>Transformation correctness</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>Bean/service method behavior</td>
+      <td>Yes (with mocks)</td>
+      <td>Yes (with real services)</td>
+    </tr>
+    <tr>
+      <td>Serialization format on wire</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>Kafka header propagation</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>Consumer group behavior</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>Multi-hop async flows</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>REST endpoint HTTP behavior</td>
+      <td>Partial (via RestAssured)</td>
+      <td>Yes (via HTTP actions)</td>
+    </tr>
+    <tr>
+      <td>Execution speed</td>
+      <td>Fast (milliseconds)</td>
+      <td>Slower (seconds, Docker startup)</td>
+    </tr>
+    <tr>
+      <td>Infrastructure needed</td>
+      <td>None</td>
+      <td>Docker, Testcontainers</td>
+    </tr>
+    <tr>
+      <td>Failure isolation</td>
+      <td>Precise (single route)</td>
+      <td>Broader (full pipeline)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Start with unit tests</strong> for every route’s core logic. They run fast, give precise failure messages, and catch most predicate and transformation bugs during development.</p>
+
+<p><strong>Add Citrus integration tests</strong> for end-to-end flows that cross transport boundaries. 
+If a message goes from Kafka to your route to another Kafka topic — or from a REST endpoint through internal processing to a database — that flow needs an integration test. 
+The transport layer is where the most painful production bugs hide.</p>
+
+<h1 id="combining-both-in-a-single-project">Combining both in a single project</h1>
+
+<p>The <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main/examples/37-testing-strategies/quarkus">Testing Strategies example</a> demonstrates this layering of unit and integration tests in one Maven project.</p>
+
+<p>The separation of test categories is not just organizational. 
+Maven’s surefire plugin runs the unit tests (<code class="highlighter-rouge">*Test.java</code>) during the <code class="highlighter-rouge">test</code> phase, while the failsafe plugin runs the integration tests (<code class="highlighter-rouge">*IT.java</code>) during the <code class="highlighter-rouge">integration-test</code> phase. 
+This means <code class="highlighter-rouge">mvn test</code> gives fast feedback during development, and <code class="highlighter-rouge">mvn verify</code> runs the full suite including integration tests.</p>
+
+<p>The <code class="highlighter-rouge">IntegrationTestProfile</code> is critical for the Quarkus integration tests. 
+It disables Kafka Dev Services (since the integration tests manage their own infrastructure or use AdviceWith to bypass Kafka) and sets the payment gateway to mock mode:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">IntegrationTestProfile</span> <span class="kd">implements</span> <span class="n">QuarkusTestProfile</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="nf">getConfigOverrides</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">Map</span><span class="o">.</span><span class="na">of</span><span class="o">(</span>
+            <span class="s">"payment.gateway.mode"</span><span class="o">,</span> <span class="s">"mock"</span><span class="o">,</span>
+            <span class="s">"quarkus.kafka.devservices.enabled"</span><span class="o">,</span> <span class="s">"false"</span><span class="o">,</span>
+            <span class="s">"quarkus.http.test-port"</span><span class="o">,</span> <span class="s">"0"</span>
+        <span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h1 id="designing-routes-for-testability-at-both-levels">Designing routes for testability at both levels</h1>
+
+<p>The <code class="highlighter-rouge">OrderFilterRoute</code> shown earlier illustrates an important design principle: separate the transport layer from the business logic. 
+The core filter logic lives in <code class="highlighter-rouge">direct:filter-order</code> — a <code class="highlighter-rouge">direct:</code> endpoint that can be called from a unit test without any transport infrastructure. 
+The Kafka consumer is a thin adapter that delegates to the same <code class="highlighter-rouge">direct:</code> endpoint.</p>
+
+<p>This pattern makes the route testable at both levels:</p>
+
+<ul>
+  <li>
+<strong>Unit test</strong>: call <code class="highlighter-rouge">direct:filter-order</code> with <code class="highlighter-rouge">ProducerTemplate</code>, assert with <code class="highlighter-rouge">MockEndpoint</code> — no Kafka needed.</li>
+  <li>
+<strong>Integration test</strong>: send to the real Kafka topic, the Kafka consumer route calls <code class="highlighter-rouge">direct:filter-order</code>, and the output appears on the output topic.</li>
+</ul>
+
+<p>Both tests exercise the same filter predicate, but they do so through different entry points. 
+The unit test is fast and precise. 
+The integration test is slower but covers the full transport chain.</p>
+
+<h1 id="where-to-find-the-examples">Where to find the examples</h1>
+
+<p>The complete source code for all tests shown in this post is available in the <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main">EIP with Camel</a> repository:</p>
+
+<ul>
+  <li>
+<strong>Testing Strategies example</strong>: <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main/examples/37-testing-strategies/quarkus/src/test/java/com/example/eip/testing/unit">Unit tests</a> and <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main/examples/37-testing-strategies/quarkus/src/test/java/com/example/eip/testing/integration">integration tests</a> side by side.</li>
+  <li>
+<strong>Routes under test</strong>: <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/37-testing-strategies/quarkus/src/main/java/com/example/eip/testing/OrderFilterRoute.java">OrderFilterRoute</a>, <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/37-testing-strategies/quarkus/src/main/java/com/example/eip/testing/OrderValidationRoute.java">OrderValidationRoute</a>, <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/37-testing-strategies/quarkus/src/main/java/com/example/eip/testing/PaymentGatewayRoute.java">PaymentGatewayRoute</a>.</li>
+  <li>
+<strong>Citrus integration test examples</strong>: <a href="https://github.com/citrusframework/citrus-camel-eip-examples/tree/main/examples/09-routing-fundamentals/quarkus/src/test/java/com/example/eip/routing">Routing Fundamentals</a> for the full Citrus approach with real Kafka infrastructure.</li>
+</ul>
+
+<p>Use unit tests for fast iteration on routing logic. Add Citrus integration tests for end-to-end confidence across transport boundaries. 
+Together they cover the full spectrum — from predicate correctness to wire-format fidelity.</p>
+
+<p>Give it a try, and let us know what you think!</p>
+
+  </div>
+</article>
+
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <h4>Overview</h4>
+    <ul>
+      <li class="">
+        <a href="/news/">All Posts</a>
+      </li>
+      <li class="">
+        <a href="/docs/history/">All Releases</a>
+      </li>
+    </ul>
+    <h4>Posts</h4>
+    <ul>
+        
+        
+        <li class="current">
+          <a href="/news/2026/09/18/camel-testing-strategies/">» Camel Testing Strategies</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/09/17/database-testing-citrus/">» Database Testing with Citrus</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/09/16/multi-runtime-testing/">» Multi-Runtime Testing</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/09/15/camel-cli-test-plugin/">» Camel CLI test plugin</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/09/14/kafka-testing-pitfalls/">» Kafka Testing Pitfalls</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/09/14/camel-testing-pitfalls/">» Camel Testing Pitfalls</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/09/11/testing-reliability-patterns/">» Testing Reliability Patterns</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/09/10/testing-camel-routing/">» Testing Camel Routing</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/08/05/release-5.0.0/">» Citrus 5.0.0</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/07/27/knative-eventing-testing/">» Knative Eventing Testing</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/07/07/soap-webservices-testing/">» CXF SOAP WebServices Testing</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/07/06/how-camel-elevates-citrus/">» Apache Camel elevates Citrus</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/06/19/kaoto-meets-citrus/">» Kaoto meets Citrus</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2026/06/18/release-5.0.0-approaching/">» Citrus 5.0.0 approaching</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2023/10/25/release-4.0.0/">» Citrus 4.0.0</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2023/01/30/camel-k-yaks/">» Camel K &amp; YAKS</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2021/08/30/introducing-yaks/">» YAKS BDD testing</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2021/08/25/advanced-camel-support/">» Advanced Camel support</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2021/08/16/release-3.0.0/">» Citrus 3.0.0</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2017/09/21/introducing-citrus-simulator/">» Citrus Simulator</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2017/07/07/introducing-citrus-admin/">» Admin UI</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2016/03/15/jcache-chat-citrus/">» WebSockets testing</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2015/06/03/camel-testing-part-3/">» Testing Apache Camel III</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2015/05/27/camel-testing-part-2/">» Testing Apache Camel II</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2014/11/21/camel-testing-part-1/">» Testing Apache Camel I</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2011/06/22/excel-validation/">» Validate Excel files</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2011/06/17/testng-data-provider/">» TestNG data providers</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2010/12/14/integrate-your-own-validator/">» Integrate your own validator</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2010/08/13/testng-groups/">» TestNG groups</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2010/05/19/soap-mustunderstand/">» SOAP-ENV:mustUnderstand</a>
+        </li>
+        
+        <li class="">
+          <a href="/news/2010/01/18/custom-meta-info/">» Custom meta info</a>
+        </li>
+        
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/citrusframework/citrus/blob/master/LICENSE">MIT License</a>.</p>
+      <br>
+      <p>© 2026 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p> </p>
+      <br>
+      <br>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>

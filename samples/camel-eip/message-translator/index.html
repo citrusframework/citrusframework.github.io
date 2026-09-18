@@ -1,0 +1,1350 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 5.0.1">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus main branch" href="https://github.com/citrusframework/citrus/commits/main.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="stylesheet" href="/css/tabbed.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/atom-one-light.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+  <script src="/js/tabbed.js"></script>
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="samples">
+    <div class="grid">
+
+      <div class="samples-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the samples…</option>
+    <option value="/samples/">Overview</option>
+    <option value="/samples/todo-app/">TodoList App</option>
+    <option value="/samples/run/">Running</option>
+    
+    
+    <option value="/samples/javaconfig/">sample-javaconfig</option>
+    
+    <option value="/samples/annotation-config/">sample-annotation-config</option>
+    
+    <option value="/samples/reporting/">sample-reporting</option>
+    
+    <option value="/samples/kubernetes/">sample-kubernetes</option>
+    
+    <option value="/samples/docker/">sample-docker</option>
+    
+    <option value="/samples/selenium/">sample-selenium</option>
+    
+    <option value="/samples/quarkus/">sample-quarkus</option>
+    
+    <option value="/samples/jbang/">sample-jbang</option>
+    
+    <option value="/samples/cucumber/">sample-cucumber</option>
+    
+    <option value="/samples/apache-camel/">sample-camel-context</option>
+    
+    <option value="/samples/camel-eip/content-based-router/">content-based-router</option>
+    
+    <option value="/samples/camel-eip/message-filter/">message-filter</option>
+    
+    <option value="/samples/camel-eip/message-reliability/">message-reliability</option>
+    
+    <option value="/samples/camel-eip/messaging-bridge/">messaging-bridge</option>
+    
+    <option value="/samples/camel-eip/splitter/">splitter</option>
+    
+    <option value="/samples/camel-eip/load-balancer/">load-balancer</option>
+    
+    <option value="/samples/camel-eip/routing-slip/">routing-slip</option>
+    
+    <option value="/samples/camel-eip/wire-tap/">wire-tap</option>
+    
+    <option value="/samples/camel-eip/content-enricher/">content-enricher</option>
+    
+    <option value="/samples/camel-eip/content-filter/">content-filter</option>
+    
+    <option value="/samples/camel-eip/message-translator/">message-translator</option>
+    
+    <option value="/samples/camel-eip/resequencer/">resequencer</option>
+    
+    <option value="/samples/soap-wssecurity/">sample-soap-wssecurity</option>
+    
+    <option value="/samples/ftp/">sample-ftp</option>
+    
+    <option value="/samples/http-static-response/">sample-http-static-response</option>
+    
+    <option value="/samples/soap-static-response/">sample-soap-static-response</option>
+    
+    <option value="/samples/soap-wsaddressing/">sample-soap-wsaddressing</option>
+    
+    <option value="/samples/rmi/">sample-rmi</option>
+    
+    <option value="/samples/soap-ssl/">sample-soap-ssl</option>
+    
+    <option value="/samples/soap/">sample-soap</option>
+    
+    <option value="/samples/mail/">sample-mail</option>
+    
+    <option value="/samples/jms/">sample-jms</option>
+    
+    <option value="/samples/kafka/">sample-kafka</option>
+    
+    <option value="/samples/wsdl/">sample-wsdl</option>
+    
+    <option value="/samples/openapi/">sample-swagger</option>
+    
+    <option value="/samples/jdbc/">sample-jdbc</option>
+    
+    <option value="/samples/soap-mtom/">sample-soap-mtom</option>
+    
+    <option value="/samples/soap-attachment/">sample-soap-attachment</option>
+    
+    <option value="/samples/sftp/">sample-sftp</option>
+    
+    <option value="/samples/https/">sample-https</option>
+    
+    <option value="/samples/scp/">sample-scp</option>
+    
+    <option value="/samples/http/">sample-http</option>
+    
+    <option value="/samples/dynamic-endpoints/">sample-dynamic-endpoints</option>
+    
+    <option value="/samples/http-basic-auth/">sample-http-basic-auth</option>
+    
+    <option value="/samples/http-loadtest/">sample-http-loadtest</option>
+    
+    <option value="/samples/gradle/">sample-gradle</option>
+    
+    <option value="/samples/message-store/">sample-message-store</option>
+    
+    <option value="/samples/behavior/">sample-behavior</option>
+    
+    <option value="/samples/dictionaries/">sample-dictionaries</option>
+    
+    <option value="/samples/camel-quarkus-kafka/">camel-kafka</option>
+    
+    <option value="/samples/camel-quarkus-knative/">camel-knative</option>
+    
+    <option value="/samples/camel-quarkus-knative-ssl/">camel-knative-ssl</option>
+    
+    <option value="/samples/camel-quarkus-rest-to-soap/">camel-rest-to-soap</option>
+    
+    <option value="/samples/camel-quarkus-rest-dsl/">camel-rest-dsl</option>
+    
+    <option value="/samples/quarkus-event-driven-kafka/">event-driven-kafka</option>
+    
+    <option value="/samples/quarkus-event-driven-jms/">event-driven-jms</option>
+    
+    <option value="/samples/camel-quarkus-postgresql/">camel-postgresql</option>
+    
+    <option value="/samples/camel-quarkus-aws-s3-kafka/">camel-aws-s3-kafka</option>
+    
+    <option value="/samples/camel-quarkus-cxf-soap-client/">camel-cxf-soap-client</option>
+    
+    <option value="/samples/camel-quarkus-cxf-soap/">camel-cxf-soap</option>
+    
+    <option value="/samples/camel-quarkus-direct-http/">camel-direct-http</option>
+    
+    <option value="/samples/camel-quarkus-direct/">camel-direct</option>
+    
+    <option value="/samples/camel-quarkus-openapi-server/">camel-openapi-server</option>
+    
+    <option value="/samples/camel-quarkus-mqtt/">camel-mqtt</option>
+    
+    <option value="/samples/camel-quarkus-jms/">camel-jms</option>
+    
+    <option value="/samples/camel-quarkus-file-inbox/">camel-file-inbox</option>
+    
+    <option value="/samples/camel-quarkus-file-outbox/">camel-file-outbox</option>
+    
+    <option value="/samples/testng/">sample-testng</option>
+    
+    <option value="/samples/dataprovider/">sample-dataprovider</option>
+    
+    <option value="/samples/junit5/">sample-junit5</option>
+    
+    <option value="/samples/junit/">sample-junit</option>
+    
+    <option value="/samples/hamcrest/">sample-hamcrest</option>
+    
+    <option value="/samples/sql/">sample-sql</option>
+    
+    <option value="/samples/http-form-data/">sample-http-form-data</option>
+    
+    <option value="/samples/oxm/">sample-oxm</option>
+    
+    <option value="/samples/json/">sample-json</option>
+    
+    <option value="/samples/databind/">sample-databind</option>
+    
+    <option value="/samples/xml/">sample-xml</option>
+    
+    <option value="/samples/xhtml/">sample-xhtml</option>
+    
+    <option value="/samples/binary/">sample-binary</option>
+    
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+  <h2>
+    
+    
+    <img src="/img/icons/camel.png" style="width: 1em;height: 1em;" alt="">
+    
+    Testing the Message Translator Pattern with Citrus
+    <a href="/samples/camel-eip/message-translator/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <div class="right">
+    
+    <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/master/examples/message-translator" target="_blank">
+      <i class="fa fa-pencil"></i> View source code
+    </a>
+    
+    
+  </div>
+  <span class="post-category">
+    <span class="label">
+      samples
+    </span>
+  </span>
+  <div class="post-content">
+    <p>Sometimes messages arrive in the format the receiver does not expect.
+An external partner sends orders with field names like <code class="highlighter-rouge">orderNumber</code>, <code class="highlighter-rouge">clientRef</code>, and <code class="highlighter-rouge">qty</code>.
+Your internal services expect <code class="highlighter-rouge">order_id</code>, <code class="highlighter-rouge">customer_id</code>, and <code class="highlighter-rouge">quantity</code>.
+The data is the same, but the shape is different — different field names, different nesting, sometimes different data types.</p>
+
+<p>This mismatch is not a bug.
+It is the natural consequence of independent systems evolving on their own schedules with their own domain models.
+No two teams name things the same way, and no integration standard has ever changed that.</p>
+
+<p>The <a href="https://www.enterpriseintegrationpatterns.com/patterns/messaging/MessageTranslator.html">Message Translator</a> pattern, described by Hohpe and Woolf, solves this by inserting a transformation step between the source and the target.
+The translator reads the incoming message, maps its fields to the expected format, and produces a new message that the downstream consumer understands.
+It is the most common transformation pattern — almost every integration involves at least one translation.</p>
+
+<p><a href="https://camel.apache.org">Apache Camel</a> implements message translation through several mechanisms: <code class="highlighter-rouge">marshal()</code>/<code class="highlighter-rouge">unmarshal()</code> for format conversion (XML to JSON, CSV to Avro), <code class="highlighter-rouge">process()</code> blocks for schema mapping with business logic, and declarative tools like JOLT for JSON-to-JSON transformation.</p>
+
+<p>Testing a message translator is fundamentally about verifying that the mapping is correct.
+Send a message in the source format, receive it in the target format, and assert that every field landed where it should.
+That sounds simple, but in a real system the translator sits between Kafka topics, interacts with live serialization, and runs inside a framework that manages its lifecycle.
+An integration test with <a href="https://citrusframework.org">Citrus</a> proves that the entire pipeline — Kafka consumer, JSON deserialization, field mapping, JSON serialization, Kafka producer — works end-to-end.</p>
+
+<h2 id="the-scenario">The scenario</h2>
+
+<p>An external partner sends orders to a Kafka topic called <code class="highlighter-rouge">eip.orders.external</code>.
+The orders use the partner’s schema: <code class="highlighter-rouge">orderNumber</code>, <code class="highlighter-rouge">clientRef</code>, <code class="highlighter-rouge">productCode</code>, <code class="highlighter-rouge">qty</code>, <code class="highlighter-rouge">totalValue</code>, <code class="highlighter-rouge">shipToCountry</code>, and <code class="highlighter-rouge">hazardous</code>.</p>
+
+<p>The message translator route reads these orders, maps each field to the internal canonical format (<code class="highlighter-rouge">order_id</code>, <code class="highlighter-rouge">customer_id</code>, <code class="highlighter-rouge">item_sku</code>, <code class="highlighter-rouge">quantity</code>, <code class="highlighter-rouge">amount</code>, <code class="highlighter-rouge">destination_country</code>, <code class="highlighter-rouge">contains_hazmat</code>), adds a <code class="highlighter-rouge">status</code> field set to <code class="highlighter-rouge">"NEW"</code>, and publishes the translated order to <code class="highlighter-rouge">eip.orders.placed</code>.</p>
+
+<h2 id="the-camel-route">The Camel route</h2>
+
+<h3 id="quarkus">Quarkus</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ApplicationScoped</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MessageTranslatorRoute</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">from</span><span class="o">(</span><span class="s">"kafka:eip.orders.external?brokers={{kafka.brokers}}&amp;groupId=translator-demo"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"message-translator"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">unmarshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"External order received: ${body}"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">exchange</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                <span class="kt">var</span> <span class="n">external</span> <span class="o">=</span> <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">getBody</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+                <span class="kt">var</span> <span class="n">canonical</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedHashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+                <span class="n">canonical</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"order_id"</span><span class="o">,</span> <span class="n">external</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"orderNumber"</span><span class="o">));</span>
+                <span class="n">canonical</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"customer_id"</span><span class="o">,</span> <span class="n">external</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"clientRef"</span><span class="o">));</span>
+                <span class="n">canonical</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"item_sku"</span><span class="o">,</span> <span class="n">external</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"productCode"</span><span class="o">));</span>
+                <span class="n">canonical</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"quantity"</span><span class="o">,</span> <span class="n">external</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"qty"</span><span class="o">));</span>
+                <span class="n">canonical</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="n">external</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"totalValue"</span><span class="o">));</span>
+                <span class="n">canonical</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"destination_country"</span><span class="o">,</span>
+                    <span class="n">external</span><span class="o">.</span><span class="na">getOrDefault</span><span class="o">(</span><span class="s">"shipToCountry"</span><span class="o">,</span> <span class="s">"US"</span><span class="o">));</span>
+                <span class="n">canonical</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"contains_hazmat"</span><span class="o">,</span>
+                    <span class="n">Boolean</span><span class="o">.</span><span class="na">TRUE</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">external</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"hazardous"</span><span class="o">)));</span>
+                <span class="n">canonical</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"status"</span><span class="o">,</span> <span class="s">"NEW"</span><span class="o">);</span>
+                <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">setBody</span><span class="o">(</span><span class="n">canonical</span><span class="o">);</span>
+            <span class="o">})</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Translated to canonical: order_id=${body[order_id]}, amount=${body[amount]}"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">marshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed?brokers={{kafka.brokers}}"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The route follows three steps:</p>
+
+<ol>
+  <li>
+<strong>Deserialize</strong> — <code class="highlighter-rouge">unmarshal().json()</code> converts the raw Kafka message bytes into a Java <code class="highlighter-rouge">Map</code>.</li>
+  <li>
+<strong>Translate</strong> — The <code class="highlighter-rouge">process()</code> block reads fields from the external schema and writes them into a new <code class="highlighter-rouge">LinkedHashMap</code> using the internal field names. It also applies light business logic: <code class="highlighter-rouge">shipToCountry</code> defaults to <code class="highlighter-rouge">"US"</code> if absent, and the <code class="highlighter-rouge">hazardous</code> boolean is normalized through <code class="highlighter-rouge">Boolean.TRUE.equals()</code> to handle nulls safely.</li>
+  <li>
+<strong>Serialize and publish</strong> — <code class="highlighter-rouge">marshal().json()</code> converts the canonical map back to JSON, and the <code class="highlighter-rouge">to()</code> endpoint publishes it to the output topic.</li>
+</ol>
+
+<h3 id="spring-boot">Spring Boot</h3>
+
+<p>The Spring Boot variant is identical except for the class annotation:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MessageTranslatorRoute</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">from</span><span class="o">(</span><span class="s">"kafka:eip.orders.external?brokers={{kafka.brokers}}&amp;groupId=translator-demo"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"message-translator"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">unmarshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"External order received: ${body}"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">exchange</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                <span class="kt">var</span> <span class="n">external</span> <span class="o">=</span> <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">getBody</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+                <span class="kt">var</span> <span class="n">canonical</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedHashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+                <span class="n">canonical</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"order_id"</span><span class="o">,</span> <span class="n">external</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"orderNumber"</span><span class="o">));</span>
+                <span class="n">canonical</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"customer_id"</span><span class="o">,</span> <span class="n">external</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"clientRef"</span><span class="o">));</span>
+                <span class="n">canonical</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"item_sku"</span><span class="o">,</span> <span class="n">external</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"productCode"</span><span class="o">));</span>
+                <span class="n">canonical</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"quantity"</span><span class="o">,</span> <span class="n">external</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"qty"</span><span class="o">));</span>
+                <span class="n">canonical</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="n">external</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"totalValue"</span><span class="o">));</span>
+                <span class="n">canonical</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"destination_country"</span><span class="o">,</span>
+                    <span class="n">external</span><span class="o">.</span><span class="na">getOrDefault</span><span class="o">(</span><span class="s">"shipToCountry"</span><span class="o">,</span> <span class="s">"US"</span><span class="o">));</span>
+                <span class="n">canonical</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"contains_hazmat"</span><span class="o">,</span>
+                    <span class="n">Boolean</span><span class="o">.</span><span class="na">TRUE</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">external</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"hazardous"</span><span class="o">)));</span>
+                <span class="n">canonical</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"status"</span><span class="o">,</span> <span class="s">"NEW"</span><span class="o">);</span>
+                <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">setBody</span><span class="o">(</span><span class="n">canonical</span><span class="o">);</span>
+            <span class="o">})</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Translated to canonical: order_id=${body[order_id]}, amount=${body[amount]}"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">marshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed?brokers={{kafka.brokers}}"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">@Component</code> replaces <code class="highlighter-rouge">@ApplicationScoped</code> — the route logic stays identical across both runtimes.</p>
+
+<h2 id="what-makes-this-testable">What makes this testable</h2>
+
+<p>A message translator has a clear contract: given input in format A, produce output in format B.
+Every field mapping is a discrete assertion.
+This makes it an ideal candidate for template-based validation in Citrus.</p>
+
+<p>Instead of writing Java assertions that parse JSON and check individual fields, you define two JSON template files — one for the input (external format) and one for the expected output (canonical format).
+The test sends the input template and receives against the output template.
+If the translator maps a field incorrectly, renames it wrong, or drops it entirely, the receive action fails with a clear diff between expected and actual.</p>
+
+<h2 id="test-templates">Test templates</h2>
+
+<p>The input template represents the partner’s order format:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"orderNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ORD-org.citrusframework:citrus-website:pom:1.1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"clientRef"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CLIENT-org.citrusframework:citrus-website:pom:1.1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"productCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${sku}"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="p">{</span><span class="err">quantity</span><span class="p">},</span><span class="w">
+  </span><span class="s2">"totalValue"</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="p">{</span><span class="err">amount</span><span class="p">},</span><span class="w">
+  </span><span class="s2">"shipToCountry"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${country}"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"hazardous"</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="p">{</span><span class="err">hazardous</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The expected output template represents the internal canonical format:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ORD-org.citrusframework:citrus-website:pom:1.1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CLIENT-org.citrusframework:citrus-website:pom:1.1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"item_sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${sku}"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="p">{</span><span class="err">quantity</span><span class="p">},</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="p">{</span><span class="err">amount</span><span class="p">},</span><span class="w">
+  </span><span class="s2">"destination_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${country}"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"contains_hazmat"</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="p">{</span><span class="err">hazardous</span><span class="p">},</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NEW"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Both templates use the same Citrus variables (<code class="highlighter-rouge">org.citrusframework:citrus-website:pom:1.1.0</code>, <code class="highlighter-rouge">${sku}</code>, <code class="highlighter-rouge">${quantity}</code>, etc.).
+This is the key insight: the <em>values</em> stay the same across the translation — only the <em>field names</em> change.
+By using identical variables in both templates, the test implicitly asserts that the translator preserves data integrity while remapping the schema.</p>
+
+<p>The <code class="highlighter-rouge">status</code> field in the output template has no corresponding variable in the input.
+It is hardcoded to <code class="highlighter-rouge">"NEW"</code> because the translator adds it — this verifies that the route correctly injects default values that the external system does not provide.</p>
+
+<h2 id="test-infrastructure">Test infrastructure</h2>
+
+<p>Both runtimes use a <code class="highlighter-rouge">BeforeSuite</code>/<code class="highlighter-rouge">AfterSuite</code> pattern to manage the test infrastructure lifecycle.
+The Docker Compose stack includes Kafka and Redis (Redis is used by other transformation patterns in the same example project, but the message translator test only needs Kafka).</p>
+
+<h3 id="quarkus-infrastructure-setup">Quarkus infrastructure setup</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@CitrusConfiguration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EipInfraSetup</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
+
+    <span class="nd">@BindToRegistry</span>
+    <span class="kd">public</span> <span class="n">BeforeSuite</span> <span class="nf">startInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">beforeSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">up</span><span class="o">(</span><span class="s">"_infra/compose.yaml"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">autoRemove</span><span class="o">(</span><span class="kc">false</span><span class="o">),</span>
+                    <span class="n">waitFor</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">http</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://localhost:8090"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">25</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@BindToRegistry</span>
+    <span class="kd">public</span> <span class="n">AfterSuite</span> <span class="nf">stopInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">afterSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">().</span><span class="na">stop</span><span class="o">(),</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">down</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="spring-boot-infrastructure-setup">Spring Boot infrastructure setup</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EipInfraSetup</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">BeforeSuite</span> <span class="nf">startInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">beforeSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">up</span><span class="o">(</span><span class="s">"_infra/compose.yaml"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">autoRemove</span><span class="o">(</span><span class="kc">false</span><span class="o">),</span>
+                    <span class="n">waitFor</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">http</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://localhost:8090"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">25</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">AfterSuite</span> <span class="nf">stopInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">afterSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">().</span><span class="na">stop</span><span class="o">(),</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">down</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The infrastructure code uses Citrus’s <code class="highlighter-rouge">testcontainers()</code> DSL to bring up the Docker Compose stack and <code class="highlighter-rouge">waitFor().http()</code> to block until the Kafka UI (port 8090) is reachable — a proxy for the Kafka broker itself being ready.
+The <code class="highlighter-rouge">afterSuite</code> stops the Camel context first, then tears down the containers.</p>
+
+<p>The annotation difference is the same as in previous examples: <code class="highlighter-rouge">@CitrusConfiguration</code> with <code class="highlighter-rouge">@BindToRegistry</code> for Quarkus, <code class="highlighter-rouge">@Configuration</code> with <code class="highlighter-rouge">@Bean</code> for Spring Boot.</p>
+
+<h2 id="the-message-translator-test">The message translator test</h2>
+
+<h3 id="a-shared-test-utility">A shared test utility</h3>
+
+<p>Both runtimes implement the <code class="highlighter-rouge">EipTestSupport</code> interface, which provides a reusable <code class="highlighter-rouge">waitForCamelRouteStarted</code> method:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">EipTestSupport</span> <span class="kd">extends</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
+
+    <span class="k">default</span> <span class="n">TestActionBuilder</span><span class="o">&lt;?&gt;</span> <span class="n">waitForCamelRouteStarted</span><span class="o">(</span>
+            <span class="n">String</span> <span class="n">routeId</span><span class="o">,</span> <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">repeatOnError</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">(</span><span class="n">camelContext</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">controlBus</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">route</span><span class="o">(</span><span class="n">routeId</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">status</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">result</span><span class="o">(</span><span class="n">ServiceStatus</span><span class="o">.</span><span class="na">Started</span><span class="o">),</span>
+                    <span class="n">sleep</span><span class="o">().</span><span class="na">seconds</span><span class="o">(</span><span class="mi">5</span><span class="o">)</span>
+                <span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This utility polls the Camel route’s status via the Control Bus every second, up to 20 retries.
+It ensures the <code class="highlighter-rouge">message-translator</code> route is consuming from Kafka before the test sends any messages.</p>
+
+<h3 id="quarkus-test">Quarkus test</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@QuarkusTest</span>
+<span class="nd">@CitrusSupport</span>
+<span class="kd">class</span> <span class="nc">EipTests</span> <span class="kd">implements</span> <span class="n">EipTestSupport</span> <span class="o">{</span>
+
+    <span class="nd">@CitrusResource</span>
+    <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
+
+    <span class="nd">@Inject</span>
+    <span class="nd">@BindToRegistry</span>
+    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="nd">@Nested</span>
+    <span class="kd">class</span> <span class="nc">MessageTranslatorTest</span> <span class="o">{</span>
+
+        <span class="nd">@Test</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldTranslateExternalOrderToCanonicalFormat</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+                <span class="n">createVariables</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"sku"</span><span class="o">,</span> <span class="s">"SKU-ABC-42"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"quantity"</span><span class="o">,</span> <span class="mi">5</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mf">99.95</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"country"</span><span class="o">,</span> <span class="s">"US"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"hazardous"</span><span class="o">,</span> <span class="kc">false</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"message-translator"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+                <span class="n">send</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.external"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">fork</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/external-order.json"</span><span class="o">))</span>
+                    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+                <span class="n">receive</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed?consumerGroup=citrus-translator-placed-group"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/canonical-order.json"</span><span class="o">))</span>
+            <span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Let’s walk through the given-when-then structure.</p>
+
+<p><strong>Given — set up variables and wait for the route.</strong>
+The test creates six variables that populate both the input and output templates.
+<code class="highlighter-rouge">citrus:randomNumber(4)</code> generates a unique order ID for each test run, preventing cross-test interference on shared Kafka topics.
+The <code class="highlighter-rouge">waitForCamelRouteStarted</code> call blocks until the <code class="highlighter-rouge">message-translator</code> route reports <code class="highlighter-rouge">Started</code> via Camel’s Control Bus.</p>
+
+<p><strong>When — send the external order.</strong>
+A single message goes to <code class="highlighter-rouge">kafka:eip.orders.external</code> with the body loaded from <code class="highlighter-rouge">templates/external-order.json</code>.
+Citrus resolves the <code class="highlighter-rouge">org.citrusframework:citrus-website:pom:1.1.0</code>, <code class="highlighter-rouge">${sku}</code>, <code class="highlighter-rouge">${quantity}</code>, <code class="highlighter-rouge">${amount}</code>, <code class="highlighter-rouge">${country}</code>, and <code class="highlighter-rouge">${hazardous}</code> placeholders before sending, producing a concrete JSON message in the partner’s format.</p>
+
+<p><strong>Then — receive and validate the canonical order.</strong>
+The test consumes from <code class="highlighter-rouge">kafka:eip.orders.placed</code> using a dedicated consumer group (<code class="highlighter-rouge">citrus-translator-placed-group</code>) to avoid interfering with the application’s own consumers.
+The expected body is loaded from <code class="highlighter-rouge">templates/canonical-order.json</code>, with the same variables resolved.</p>
+
+<p>Citrus performs a structural comparison between the received JSON and the expected template.
+If the translator writes <code class="highlighter-rouge">"order_id": "ORD-1234"</code> but the template expects <code class="highlighter-rouge">"order_id": "ORD-5678"</code> (because the variables resolve differently), the assertion fails.
+If the translator forgets to map <code class="highlighter-rouge">contains_hazmat</code>, the field is missing from the output and the comparison catches it.</p>
+
+<p>The <code class="highlighter-rouge">fork=true</code> option on the send operation avoids a blocking situation and handles the asynchronous processing.
+The translator route needs time to consume the message, transform it, and publish the result.
+While all of that is done the receiving operation initializes the Kafka consumer with a proper offset.
+There is no racing condition between the order processing and the consumer initialization.</p>
+
+<h3 id="spring-boot-test">Spring Boot test</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@SpringBootTest</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="n">TransformationApplication</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="nd">@CamelSpringBootTest</span>
+<span class="nd">@CitrusSpringSupport</span>
+<span class="nd">@ContextConfiguration</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="o">{</span> <span class="n">EipInfraSetup</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">CitrusSpringConfig</span><span class="o">.</span><span class="na">class</span> <span class="o">})</span>
+<span class="kd">class</span> <span class="nc">EipTests</span> <span class="kd">implements</span> <span class="n">EipTestSupport</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="nd">@Nested</span>
+    <span class="kd">class</span> <span class="nc">MessageTranslatorTest</span> <span class="o">{</span>
+
+        <span class="nd">@CitrusResource</span>
+        <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
+
+        <span class="nd">@Test</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldTranslateExternalOrderToCanonicalFormat</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+                <span class="n">createVariables</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"sku"</span><span class="o">,</span> <span class="s">"SKU-ABC-42"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"quantity"</span><span class="o">,</span> <span class="mi">5</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mf">99.95</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"country"</span><span class="o">,</span> <span class="s">"US"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"hazardous"</span><span class="o">,</span> <span class="kc">false</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"message-translator"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+                <span class="n">send</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.external"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">fork</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/external-order.json"</span><span class="o">))</span>
+                    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+                <span class="n">receive</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed?consumerGroup=citrus-translator-placed-group"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/canonical-order.json"</span><span class="o">))</span>
+            <span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The test logic is identical.
+The differences are confined to the test class annotations and dependency injection:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Concern</th>
+      <th>Quarkus</th>
+      <th>Spring Boot</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Test bootstrap</td>
+      <td><code class="highlighter-rouge">@QuarkusTest</code></td>
+      <td>
+<code class="highlighter-rouge">@SpringBootTest</code> + <code class="highlighter-rouge">@CamelSpringBootTest</code>
+</td>
+    </tr>
+    <tr>
+      <td>Citrus integration</td>
+      <td><code class="highlighter-rouge">@CitrusSupport</code></td>
+      <td><code class="highlighter-rouge">@CitrusSpringSupport</code></td>
+    </tr>
+    <tr>
+      <td>CamelContext injection</td>
+      <td>
+<code class="highlighter-rouge">@Inject</code> + <code class="highlighter-rouge">@BindToRegistry</code>
+</td>
+      <td><code class="highlighter-rouge">@Autowired</code></td>
+    </tr>
+    <tr>
+      <td>TestCaseRunner scope</td>
+      <td>Class-level field</td>
+      <td>Nested class field with <code class="highlighter-rouge">@CitrusResource</code>
+</td>
+    </tr>
+    <tr>
+      <td>Infrastructure config</td>
+      <td>
+<code class="highlighter-rouge">@CitrusConfiguration</code> auto-discovered</td>
+      <td>
+<code class="highlighter-rouge">@ContextConfiguration</code> explicit</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="why-template-based-validation-beats-field-by-field-assertions">Why template-based validation beats field-by-field assertions</h2>
+
+<p>A common alternative to Citrus’s template approach is writing Java assertions that parse the received JSON and check each field individually:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// What you might write without templates</span>
+<span class="n">JsonNode</span> <span class="n">result</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">readTree</span><span class="o">(</span><span class="n">receivedBody</span><span class="o">);</span>
+<span class="n">assertEquals</span><span class="o">(</span><span class="s">"ORD-1234"</span><span class="o">,</span> <span class="n">result</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"order_id"</span><span class="o">).</span><span class="na">asText</span><span class="o">());</span>
+<span class="n">assertEquals</span><span class="o">(</span><span class="s">"CLIENT-1234"</span><span class="o">,</span> <span class="n">result</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"customer_id"</span><span class="o">).</span><span class="na">asText</span><span class="o">());</span>
+<span class="n">assertEquals</span><span class="o">(</span><span class="s">"SKU-ABC-42"</span><span class="o">,</span> <span class="n">result</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"item_sku"</span><span class="o">).</span><span class="na">asText</span><span class="o">());</span>
+<span class="c1">// ... and so on for every field</span>
+</code></pre></div></div>
+
+<p>This works, but it has three problems:</p>
+
+<p><strong>1. It doesn’t catch extra fields.</strong>
+If the translator accidentally passes through a field from the source format (say, <code class="highlighter-rouge">clientRef</code> alongside <code class="highlighter-rouge">customer_id</code>), field-by-field assertions won’t notice — they only check what they explicitly assert.
+Citrus’s template comparison validates the entire JSON structure, including the absence of unexpected fields.</p>
+
+<p><strong>2. It couples the test to the assertion code, not the contract.</strong>
+When the schema evolves — a new field is added, a field is renamed — you need to update both the route and the assertion code.
+With templates, you update the template file and the test automatically validates against the new contract.</p>
+
+<p><strong>3. It obscures the mapping.</strong>
+Placing the input template and output template side by side immediately shows what changes: <code class="highlighter-rouge">orderNumber</code> becomes <code class="highlighter-rouge">order_id</code>, <code class="highlighter-rouge">clientRef</code> becomes <code class="highlighter-rouge">customer_id</code>, <code class="highlighter-rouge">qty</code> becomes <code class="highlighter-rouge">quantity</code>.
+Java assertion code buries this relationship under layers of API calls.</p>
+
+<h2 id="what-the-test-proves">What the test proves</h2>
+
+<p>This single test verifies the complete translation pipeline:</p>
+
+<ul>
+  <li>
+<strong>Kafka deserialization</strong> — the raw bytes from the external topic are correctly parsed as JSON.</li>
+  <li>
+<strong>Field mapping</strong> — every source field maps to the correct target field (<code class="highlighter-rouge">orderNumber</code> → <code class="highlighter-rouge">order_id</code>, <code class="highlighter-rouge">clientRef</code> → <code class="highlighter-rouge">customer_id</code>, etc.).</li>
+  <li>
+<strong>Default value injection</strong> — the <code class="highlighter-rouge">status</code> field is set to <code class="highlighter-rouge">"NEW"</code> even though it does not exist in the source.</li>
+  <li>
+<strong>Null-safe boolean handling</strong> — the <code class="highlighter-rouge">hazardous</code> flag is normalized through <code class="highlighter-rouge">Boolean.TRUE.equals()</code> and mapped to <code class="highlighter-rouge">contains_hazmat</code>.</li>
+  <li>
+<strong>Kafka serialization</strong> — the canonical map is correctly serialized back to JSON and published to the output topic.</li>
+  <li>
+<strong>End-to-end flow</strong> — the message passes through a real Kafka broker, not a mocked endpoint.</li>
+</ul>
+
+<p>A unit test with mocked Kafka endpoints could verify the <code class="highlighter-rouge">process()</code> block in isolation.
+But it would not catch issues in serialization configuration, Kafka consumer group behavior, or the interaction between <code class="highlighter-rouge">unmarshal().json()</code> and the downstream <code class="highlighter-rouge">marshal().json()</code>.
+The integration test catches all of these.</p>
+
+<h2 id="key-takeaways">Key takeaways</h2>
+
+<ul>
+  <li>
+<strong>Template pairs are the natural test artifact for translators.</strong> Define the input format in one template and the expected output in another. Shared Citrus variables ensure that values are preserved across the mapping while field names change.</li>
+  <li>
+<strong><code class="highlighter-rouge">fork=true</code> on the <code class="highlighter-rouge">send</code> handles multi-hop async processing.</strong> The translator processes messages asynchronously. Rather than inserting fixed sleeps, Citrus initializes the <code class="highlighter-rouge">receive</code> immediately until the translated message appears. The non-blocking send operation gives the full pipeline time to complete and the Kafka consumer time to initialize without any racing conditions.</li>
+  <li>
+<strong><code class="highlighter-rouge">waitForCamelRouteStarted</code> prevents lost messages.</strong> Messages sent before the Camel route is consuming from Kafka are lost. The Control Bus check ensures the route is ready before the test sends anything.</li>
+  <li>
+<strong>Two runtimes, one test pattern.</strong> The test logic is identical across Quarkus and Spring Boot. Only the bootstrap annotations and dependency injection mechanism differ — the given-when-then structure, the template files, and the Kafka endpoints stay the same.</li>
+  <li>
+<strong>Integration tests catch what unit tests miss.</strong> Serialization mismatches, consumer group configuration, and end-to-end data flow are only visible when the test runs against real infrastructure.</li>
+</ul>
+
+  </div>
+</article>
+
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <h4>Samples</h4>
+    <ul>
+      <li class="">
+        <a href="/samples/">Overview</a>
+      </li>
+      <li class="">
+        <a href="/samples/todo-app">TodoList App</a>
+      </li>
+      <li class="">
+        <a href="/samples/run">Running</a>
+      </li>
+    </ul>
+    <h4>Configuration</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+
+      
+      
+      <li class="">
+        <a href="/samples/javaconfig/">sample-javaconfig</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/annotation-config/">sample-annotation-config</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/reporting/">sample-reporting</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>CONNECTORS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/kubernetes/">sample-kubernetes</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/docker/">sample-docker</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>DEMO</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus/">sample-quarkus</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jbang/">sample-jbang</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/cucumber/">sample-cucumber</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/apache-camel/">sample-camel-context</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>EIP</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/content-based-router/">content-based-router</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/message-filter/">message-filter</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/message-reliability/">message-reliability</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/messaging-bridge/">messaging-bridge</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/splitter/">splitter</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/load-balancer/">load-balancer</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/routing-slip/">routing-slip</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/wire-tap/">wire-tap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/content-enricher/">content-enricher</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/content-filter/">content-filter</a>
+      </li>
+      
+      
+      <li class="current">
+        <a href="/samples/camel-eip/message-translator/">message-translator</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/resequencer/">resequencer</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>ENDPOINTS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/soap-wssecurity/">sample-soap-wssecurity</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/ftp/">sample-ftp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-static-response/">sample-http-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-static-response/">sample-soap-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-wsaddressing/">sample-soap-wsaddressing</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/rmi/">sample-rmi</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-ssl/">sample-soap-ssl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap/">sample-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/mail/">sample-mail</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jms/">sample-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/kafka/">sample-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/wsdl/">sample-wsdl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/openapi/">sample-swagger</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jdbc/">sample-jdbc</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-mtom/">sample-soap-mtom</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-attachment/">sample-soap-attachment</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/sftp/">sample-sftp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/https/">sample-https</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/scp/">sample-scp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http/">sample-http</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dynamic-endpoints/">sample-dynamic-endpoints</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-basic-auth/">sample-http-basic-auth</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-loadtest/">sample-http-loadtest</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>MISCELLANEOUS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/gradle/">sample-gradle</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/message-store/">sample-message-store</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/behavior/">sample-behavior</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dictionaries/">sample-dictionaries</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>QUARKUS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-kafka/">camel-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-knative/">camel-knative</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-knative-ssl/">camel-knative-ssl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-rest-to-soap/">camel-rest-to-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-rest-dsl/">camel-rest-dsl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus-event-driven-kafka/">event-driven-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus-event-driven-jms/">event-driven-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-postgresql/">camel-postgresql</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-aws-s3-kafka/">camel-aws-s3-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-cxf-soap-client/">camel-cxf-soap-client</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-cxf-soap/">camel-cxf-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-direct-http/">camel-direct-http</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-direct/">camel-direct</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-openapi-server/">camel-openapi-server</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-mqtt/">camel-mqtt</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-jms/">camel-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-file-inbox/">camel-file-inbox</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-file-outbox/">camel-file-outbox</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>RUNTIMES</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/testng/">sample-testng</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dataprovider/">sample-dataprovider</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/junit5/">sample-junit5</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/junit/">sample-junit</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>VALIDATION</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/hamcrest/">sample-hamcrest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/sql/">sample-sql</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-form-data/">sample-http-form-data</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/oxm/">sample-oxm</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/json/">sample-json</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/databind/">sample-databind</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xml/">sample-xml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xhtml/">sample-xhtml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/binary/">sample-binary</a>
+      </li>
+      
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/citrusframework/citrus/blob/master/LICENSE">MIT License</a>.</p>
+      <br>
+      <p>© 2026 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p> </p>
+      <br>
+      <br>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>

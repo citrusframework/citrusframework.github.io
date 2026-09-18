@@ -1,0 +1,1488 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 5.0.1">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus main branch" href="https://github.com/citrusframework/citrus/commits/main.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="stylesheet" href="/css/tabbed.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/atom-one-light.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+  <script src="/js/tabbed.js"></script>
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="samples">
+    <div class="grid">
+
+      <div class="samples-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the samples…</option>
+    <option value="/samples/">Overview</option>
+    <option value="/samples/todo-app/">TodoList App</option>
+    <option value="/samples/run/">Running</option>
+    
+    
+    <option value="/samples/javaconfig/">sample-javaconfig</option>
+    
+    <option value="/samples/annotation-config/">sample-annotation-config</option>
+    
+    <option value="/samples/reporting/">sample-reporting</option>
+    
+    <option value="/samples/kubernetes/">sample-kubernetes</option>
+    
+    <option value="/samples/docker/">sample-docker</option>
+    
+    <option value="/samples/selenium/">sample-selenium</option>
+    
+    <option value="/samples/quarkus/">sample-quarkus</option>
+    
+    <option value="/samples/jbang/">sample-jbang</option>
+    
+    <option value="/samples/cucumber/">sample-cucumber</option>
+    
+    <option value="/samples/apache-camel/">sample-camel-context</option>
+    
+    <option value="/samples/camel-eip/content-based-router/">content-based-router</option>
+    
+    <option value="/samples/camel-eip/message-filter/">message-filter</option>
+    
+    <option value="/samples/camel-eip/message-reliability/">message-reliability</option>
+    
+    <option value="/samples/camel-eip/messaging-bridge/">messaging-bridge</option>
+    
+    <option value="/samples/camel-eip/splitter/">splitter</option>
+    
+    <option value="/samples/camel-eip/load-balancer/">load-balancer</option>
+    
+    <option value="/samples/camel-eip/routing-slip/">routing-slip</option>
+    
+    <option value="/samples/camel-eip/wire-tap/">wire-tap</option>
+    
+    <option value="/samples/camel-eip/content-enricher/">content-enricher</option>
+    
+    <option value="/samples/camel-eip/content-filter/">content-filter</option>
+    
+    <option value="/samples/camel-eip/message-translator/">message-translator</option>
+    
+    <option value="/samples/camel-eip/resequencer/">resequencer</option>
+    
+    <option value="/samples/soap-wssecurity/">sample-soap-wssecurity</option>
+    
+    <option value="/samples/ftp/">sample-ftp</option>
+    
+    <option value="/samples/http-static-response/">sample-http-static-response</option>
+    
+    <option value="/samples/soap-static-response/">sample-soap-static-response</option>
+    
+    <option value="/samples/soap-wsaddressing/">sample-soap-wsaddressing</option>
+    
+    <option value="/samples/rmi/">sample-rmi</option>
+    
+    <option value="/samples/soap-ssl/">sample-soap-ssl</option>
+    
+    <option value="/samples/soap/">sample-soap</option>
+    
+    <option value="/samples/mail/">sample-mail</option>
+    
+    <option value="/samples/jms/">sample-jms</option>
+    
+    <option value="/samples/kafka/">sample-kafka</option>
+    
+    <option value="/samples/wsdl/">sample-wsdl</option>
+    
+    <option value="/samples/openapi/">sample-swagger</option>
+    
+    <option value="/samples/jdbc/">sample-jdbc</option>
+    
+    <option value="/samples/soap-mtom/">sample-soap-mtom</option>
+    
+    <option value="/samples/soap-attachment/">sample-soap-attachment</option>
+    
+    <option value="/samples/sftp/">sample-sftp</option>
+    
+    <option value="/samples/https/">sample-https</option>
+    
+    <option value="/samples/scp/">sample-scp</option>
+    
+    <option value="/samples/http/">sample-http</option>
+    
+    <option value="/samples/dynamic-endpoints/">sample-dynamic-endpoints</option>
+    
+    <option value="/samples/http-basic-auth/">sample-http-basic-auth</option>
+    
+    <option value="/samples/http-loadtest/">sample-http-loadtest</option>
+    
+    <option value="/samples/gradle/">sample-gradle</option>
+    
+    <option value="/samples/message-store/">sample-message-store</option>
+    
+    <option value="/samples/behavior/">sample-behavior</option>
+    
+    <option value="/samples/dictionaries/">sample-dictionaries</option>
+    
+    <option value="/samples/camel-quarkus-kafka/">camel-kafka</option>
+    
+    <option value="/samples/camel-quarkus-knative/">camel-knative</option>
+    
+    <option value="/samples/camel-quarkus-knative-ssl/">camel-knative-ssl</option>
+    
+    <option value="/samples/camel-quarkus-rest-to-soap/">camel-rest-to-soap</option>
+    
+    <option value="/samples/camel-quarkus-rest-dsl/">camel-rest-dsl</option>
+    
+    <option value="/samples/quarkus-event-driven-kafka/">event-driven-kafka</option>
+    
+    <option value="/samples/quarkus-event-driven-jms/">event-driven-jms</option>
+    
+    <option value="/samples/camel-quarkus-postgresql/">camel-postgresql</option>
+    
+    <option value="/samples/camel-quarkus-aws-s3-kafka/">camel-aws-s3-kafka</option>
+    
+    <option value="/samples/camel-quarkus-cxf-soap-client/">camel-cxf-soap-client</option>
+    
+    <option value="/samples/camel-quarkus-cxf-soap/">camel-cxf-soap</option>
+    
+    <option value="/samples/camel-quarkus-direct-http/">camel-direct-http</option>
+    
+    <option value="/samples/camel-quarkus-direct/">camel-direct</option>
+    
+    <option value="/samples/camel-quarkus-openapi-server/">camel-openapi-server</option>
+    
+    <option value="/samples/camel-quarkus-mqtt/">camel-mqtt</option>
+    
+    <option value="/samples/camel-quarkus-jms/">camel-jms</option>
+    
+    <option value="/samples/camel-quarkus-file-inbox/">camel-file-inbox</option>
+    
+    <option value="/samples/camel-quarkus-file-outbox/">camel-file-outbox</option>
+    
+    <option value="/samples/testng/">sample-testng</option>
+    
+    <option value="/samples/dataprovider/">sample-dataprovider</option>
+    
+    <option value="/samples/junit5/">sample-junit5</option>
+    
+    <option value="/samples/junit/">sample-junit</option>
+    
+    <option value="/samples/hamcrest/">sample-hamcrest</option>
+    
+    <option value="/samples/sql/">sample-sql</option>
+    
+    <option value="/samples/http-form-data/">sample-http-form-data</option>
+    
+    <option value="/samples/oxm/">sample-oxm</option>
+    
+    <option value="/samples/json/">sample-json</option>
+    
+    <option value="/samples/databind/">sample-databind</option>
+    
+    <option value="/samples/xml/">sample-xml</option>
+    
+    <option value="/samples/xhtml/">sample-xhtml</option>
+    
+    <option value="/samples/binary/">sample-binary</option>
+    
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+  <h2>
+    
+    
+    <img src="/img/icons/camel.png" style="width: 1em;height: 1em;" alt="">
+    
+    Testing the Content Enricher Pattern with Citrus
+    <a href="/samples/camel-eip/content-enricher/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <div class="right">
+    
+    <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/master/examples/content-enricher" target="_blank">
+      <i class="fa fa-pencil"></i> View source code
+    </a>
+    
+    
+  </div>
+  <span class="post-category">
+    <span class="label">
+      samples
+    </span>
+  </span>
+  <div class="post-content">
+    <p>A message usually carries all the data that the sender knows.
+But the receiving service may require even more data to properly process the message.</p>
+
+<p>Imagine an order event that arrives on a Kafka topic. 
+The order carries a product SKU, a quantity, and a total amount.
+That is everything the order service as a sender knows.
+The downstream shipping service, however, needs the product’s weight, its shipping zone, and its category to calculate delivery costs and select a carrier.
+The order service does not have this data — it lives in a product catalog backed by Redis.</p>
+
+<p>You could make the order service look up all required product data before publishing the event.
+But that couples the order service to the product catalog, adds latency to the order flow, and means every new consumer with different data needs forces a change to the producer.
+The better approach is to let the consumer enrich the message itself, pulling in the additional data from the source that has it.</p>
+
+<p>The <a href="https://www.enterpriseintegrationpatterns.com/patterns/messaging/DataEnricher.html">Content Enricher</a> pattern, described by Hohpe and Woolf, solves exactly this problem.
+It receives a message, looks up supplementary data from an external source — a database, a cache, an API — and merges the result into the original message before passing it along.</p>
+
+<p><a href="https://camel.apache.org">Apache Camel</a> implements this with the <code class="highlighter-rouge">enrich()</code> EIP, which calls an external resource and combines the response with the original message using an <code class="highlighter-rouge">AggregationStrategy</code>.
+The original message and the enrichment response meet inside the strategy, where you decide which fields to keep, add, or overwrite.</p>
+
+<p>Testing a content enricher is more involved than testing a stateless translator or router.
+The enricher depends on an external data source — in our case, Redis — which means the test must ensure that the data source contains the expected data before sending any messages.
+An integration test with <a href="https://citrusframework.org">Citrus</a> proves that the entire pipeline works: Kafka consumption, Redis lookup, field merging, and Kafka production — all against real infrastructure.</p>
+
+<h2 id="the-scenario">The scenario</h2>
+
+<p>Orders arrive on the <code class="highlighter-rouge">eip.orders.placed</code> topic in a canonical format: <code class="highlighter-rouge">order_id</code>, <code class="highlighter-rouge">customer_id</code>, <code class="highlighter-rouge">item_sku</code>, <code class="highlighter-rouge">quantity</code>, <code class="highlighter-rouge">amount</code>, and a few other fields.
+The content enricher route reads each order, looks up the product’s details from a Redis-backed catalog using the <code class="highlighter-rouge">item_sku</code>, merges four additional fields into the order (<code class="highlighter-rouge">product_name</code>, <code class="highlighter-rouge">product_category</code>, <code class="highlighter-rouge">weight_kg</code>, <code class="highlighter-rouge">shipping_zone</code>), and publishes the enriched order to <code class="highlighter-rouge">eip.orders.enriched</code>.</p>
+
+<h2 id="the-product-catalog">The product catalog</h2>
+
+<p>Before looking at the route, it is worth understanding the data source.
+The <code class="highlighter-rouge">RedisProductCatalog</code> is a simple service that stores product metadata in Redis hashes and provides a <code class="highlighter-rouge">lookup(sku)</code> method.</p>
+
+<h3 id="quarkus">Quarkus</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ApplicationScoped</span>
+<span class="nd">@Startup</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">RedisProductCatalog</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">HashCommands</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">hash</span><span class="o">;</span>
+
+    <span class="nd">@Inject</span>
+    <span class="kd">public</span> <span class="nf">RedisProductCatalog</span><span class="o">(</span><span class="n">RedisDataSource</span> <span class="n">ds</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">hash</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="na">hash</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="n">seedCatalog</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">seedCatalog</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">addProduct</span><span class="o">(</span><span class="s">"SKU-ABC-42"</span><span class="o">,</span> <span class="s">"Wireless Headphones"</span><span class="o">,</span> <span class="s">"29.99"</span><span class="o">,</span>
+                   <span class="s">"Electronics"</span><span class="o">,</span> <span class="s">"0.3"</span><span class="o">,</span> <span class="s">"ZONE-1"</span><span class="o">);</span>
+        <span class="n">addProduct</span><span class="o">(</span><span class="s">"SKU-DEF-77"</span><span class="o">,</span> <span class="s">"Running Shoes"</span><span class="o">,</span> <span class="s">"89.99"</span><span class="o">,</span>
+                   <span class="s">"Footwear"</span><span class="o">,</span> <span class="s">"1.2"</span><span class="o">,</span> <span class="s">"ZONE-2"</span><span class="o">);</span>
+        <span class="n">addProduct</span><span class="o">(</span><span class="s">"SKU-GHI-13"</span><span class="o">,</span> <span class="s">"Coffee Maker"</span><span class="o">,</span> <span class="s">"149.99"</span><span class="o">,</span>
+                   <span class="s">"Appliances"</span><span class="o">,</span> <span class="s">"4.5"</span><span class="o">,</span> <span class="s">"ZONE-3"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="nf">lookup</span><span class="o">(</span><span class="n">String</span> <span class="n">sku</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">product</span> <span class="o">=</span> <span class="n">hash</span><span class="o">.</span><span class="na">hgetall</span><span class="o">(</span><span class="s">"product:"</span> <span class="o">+</span> <span class="n">sku</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">product</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">product</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">Map</span><span class="o">.</span><span class="na">of</span><span class="o">(</span>
+                <span class="s">"name"</span><span class="o">,</span> <span class="s">"Unknown Product"</span><span class="o">,</span>
+                <span class="s">"category"</span><span class="o">,</span> <span class="s">"General"</span><span class="o">,</span>
+                <span class="s">"weight_kg"</span><span class="o">,</span> <span class="s">"1.0"</span><span class="o">,</span>
+                <span class="s">"shipping_zone"</span><span class="o">,</span> <span class="s">"ZONE-1"</span>
+            <span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">product</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="spring-boot">Spring Boot</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">RedisProductCatalog</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">HashOperations</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">hash</span><span class="o">;</span>
+
+    <span class="nd">@Value</span><span class="o">(</span><span class="s">"${redis.catalog.seed:true}"</span><span class="o">)</span>
+    <span class="kt">boolean</span> <span class="n">seedEnabled</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">RedisProductCatalog</span><span class="o">(</span><span class="n">StringRedisTemplate</span> <span class="n">redisTemplate</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">hash</span> <span class="o">=</span> <span class="n">redisTemplate</span><span class="o">.</span><span class="na">opsForHash</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@PostConstruct</span>
+    <span class="kt">void</span> <span class="nf">init</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">seedEnabled</span><span class="o">)</span> <span class="n">seedCatalog</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">seedCatalog</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">addProduct</span><span class="o">(</span><span class="s">"SKU-ABC-42"</span><span class="o">,</span> <span class="s">"Wireless Headphones"</span><span class="o">,</span> <span class="s">"29.99"</span><span class="o">,</span>
+                   <span class="s">"Electronics"</span><span class="o">,</span> <span class="s">"0.3"</span><span class="o">,</span> <span class="s">"ZONE-1"</span><span class="o">);</span>
+        <span class="n">addProduct</span><span class="o">(</span><span class="s">"SKU-DEF-77"</span><span class="o">,</span> <span class="s">"Running Shoes"</span><span class="o">,</span> <span class="s">"89.99"</span><span class="o">,</span>
+                   <span class="s">"Footwear"</span><span class="o">,</span> <span class="s">"1.2"</span><span class="o">,</span> <span class="s">"ZONE-2"</span><span class="o">);</span>
+        <span class="n">addProduct</span><span class="o">(</span><span class="s">"SKU-GHI-13"</span><span class="o">,</span> <span class="s">"Coffee Maker"</span><span class="o">,</span> <span class="s">"149.99"</span><span class="o">,</span>
+                   <span class="s">"Appliances"</span><span class="o">,</span> <span class="s">"4.5"</span><span class="o">,</span> <span class="s">"ZONE-3"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="nf">lookup</span><span class="o">(</span><span class="n">String</span> <span class="n">sku</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">product</span> <span class="o">=</span> <span class="n">hash</span><span class="o">.</span><span class="na">entries</span><span class="o">(</span><span class="s">"product:"</span> <span class="o">+</span> <span class="n">sku</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">product</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">product</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">Map</span><span class="o">.</span><span class="na">of</span><span class="o">(</span>
+                <span class="s">"name"</span><span class="o">,</span> <span class="s">"Unknown Product"</span><span class="o">,</span>
+                <span class="s">"category"</span><span class="o">,</span> <span class="s">"General"</span><span class="o">,</span>
+                <span class="s">"weight_kg"</span><span class="o">,</span> <span class="s">"1.0"</span><span class="o">,</span>
+                <span class="s">"shipping_zone"</span><span class="o">,</span> <span class="s">"ZONE-1"</span>
+            <span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">product</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Both implementations seed the catalog with known products at startup and provide a fallback for unknown SKUs.
+The Quarkus variant uses Quarkus Redis extensions (<code class="highlighter-rouge">RedisDataSource</code>), while Spring Boot uses <code class="highlighter-rouge">StringRedisTemplate</code> — the lookup logic is the same.</p>
+
+<p>Notice the fallback in <code class="highlighter-rouge">lookup()</code>: when a SKU is not found, the method returns a default product rather than null or an exception.
+This is a deliberate design choice that affects testing — it means the enricher will always produce a complete output, even for unknown SKUs.
+A test could verify this fallback behavior by sending an order with an unrecognized SKU and asserting that the enriched fields contain the defaults.</p>
+
+<h2 id="the-camel-route">The Camel route</h2>
+
+<h3 id="quarkus-1">Quarkus</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ApplicationScoped</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContentEnricherRoute</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@Inject</span>
+    <span class="n">RedisProductCatalog</span> <span class="n">productCatalog</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">from</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed?brokers={{kafka.brokers}}&amp;groupId=enricher-demo"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"content-enricher"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">unmarshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Enriching order ${body[order_id]}"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">enrich</span><span class="o">(</span><span class="s">"direct:redis-product-lookup"</span><span class="o">,</span> <span class="o">(</span><span class="n">oldExchange</span><span class="o">,</span> <span class="n">newExchange</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                <span class="kt">var</span> <span class="n">order</span> <span class="o">=</span> <span class="n">oldExchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">getBody</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+                <span class="kt">var</span> <span class="n">product</span> <span class="o">=</span> <span class="n">newExchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">getBody</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+                <span class="kt">var</span> <span class="n">enriched</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedHashMap</span><span class="o">&lt;&gt;(</span><span class="n">order</span><span class="o">);</span>
+                <span class="n">enriched</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"product_name"</span><span class="o">,</span> <span class="n">product</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"name"</span><span class="o">));</span>
+                <span class="n">enriched</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"product_category"</span><span class="o">,</span> <span class="n">product</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"category"</span><span class="o">));</span>
+                <span class="n">enriched</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"weight_kg"</span><span class="o">,</span> <span class="n">product</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"weight_kg"</span><span class="o">));</span>
+                <span class="n">enriched</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"shipping_zone"</span><span class="o">,</span> <span class="n">product</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"shipping_zone"</span><span class="o">));</span>
+                <span class="n">oldExchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">setBody</span><span class="o">(</span><span class="n">enriched</span><span class="o">);</span>
+                <span class="k">return</span> <span class="n">oldExchange</span><span class="o">;</span>
+            <span class="o">})</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Enriched from Redis: ${body[item_sku]} → ${body[product_name]} (${body[shipping_zone]})"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">marshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"kafka:eip.orders.enriched?brokers={{kafka.brokers}}"</span><span class="o">);</span>
+
+        <span class="n">from</span><span class="o">(</span><span class="s">"direct:redis-product-lookup"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"redis-product-lookup"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">exchange</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                <span class="kt">var</span> <span class="n">order</span> <span class="o">=</span> <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">getBody</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+                <span class="n">String</span> <span class="n">sku</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span> <span class="n">order</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"item_sku"</span><span class="o">);</span>
+                <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">product</span> <span class="o">=</span> <span class="n">productCatalog</span><span class="o">.</span><span class="na">lookup</span><span class="o">(</span><span class="n">sku</span><span class="o">);</span>
+                <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">setBody</span><span class="o">(</span><span class="n">product</span><span class="o">);</span>
+            <span class="o">});</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The route defines two interconnected pieces:</p>
+
+<p><strong>The main route</strong> (<code class="highlighter-rouge">content-enricher</code>) reads from the Kafka input topic, deserializes the JSON order, and calls <code class="highlighter-rouge">enrich("direct:redis-product-lookup", ...)</code>.
+The <code class="highlighter-rouge">enrich()</code> EIP sends a copy of the current exchange to the specified endpoint and then invokes the <code class="highlighter-rouge">AggregationStrategy</code> with two exchanges: the original message (<code class="highlighter-rouge">oldExchange</code>) and the enrichment result (<code class="highlighter-rouge">newExchange</code>).
+Inside the strategy, the code creates a new map that contains all the original order fields plus the four product fields from Redis.</p>
+
+<p><strong>The lookup route</strong> (<code class="highlighter-rouge">redis-product-lookup</code>) is a <code class="highlighter-rouge">direct:</code> route that extracts the SKU from the order body and calls <code class="highlighter-rouge">productCatalog.lookup(sku)</code>.
+Separating the lookup into its own route keeps the main route focused on the enrichment logic and makes the lookup independently testable.</p>
+
+<h3 id="spring-boot-1">Spring Boot</h3>
+
+<p>The Spring Boot variant is identical except for the annotations:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContentEnricherRoute</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="n">RedisProductCatalog</span> <span class="n">productCatalog</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">from</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed?brokers={{kafka.brokers}}&amp;groupId=enricher-demo"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"content-enricher"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">unmarshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Enriching order ${body[order_id]}"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">enrich</span><span class="o">(</span><span class="s">"direct:redis-product-lookup"</span><span class="o">,</span> <span class="o">(</span><span class="n">oldExchange</span><span class="o">,</span> <span class="n">newExchange</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                <span class="kt">var</span> <span class="n">order</span> <span class="o">=</span> <span class="n">oldExchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">getBody</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+                <span class="kt">var</span> <span class="n">product</span> <span class="o">=</span> <span class="n">newExchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">getBody</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+                <span class="kt">var</span> <span class="n">enriched</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedHashMap</span><span class="o">&lt;&gt;(</span><span class="n">order</span><span class="o">);</span>
+                <span class="n">enriched</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"product_name"</span><span class="o">,</span> <span class="n">product</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"name"</span><span class="o">));</span>
+                <span class="n">enriched</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"product_category"</span><span class="o">,</span> <span class="n">product</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"category"</span><span class="o">));</span>
+                <span class="n">enriched</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"weight_kg"</span><span class="o">,</span> <span class="n">product</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"weight_kg"</span><span class="o">));</span>
+                <span class="n">enriched</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"shipping_zone"</span><span class="o">,</span> <span class="n">product</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"shipping_zone"</span><span class="o">));</span>
+                <span class="n">oldExchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">setBody</span><span class="o">(</span><span class="n">enriched</span><span class="o">);</span>
+                <span class="k">return</span> <span class="n">oldExchange</span><span class="o">;</span>
+            <span class="o">})</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Enriched from Redis: ${body[item_sku]} → ${body[product_name]} (${body[shipping_zone]})"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">marshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"kafka:eip.orders.enriched?brokers={{kafka.brokers}}"</span><span class="o">);</span>
+
+        <span class="n">from</span><span class="o">(</span><span class="s">"direct:redis-product-lookup"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"redis-product-lookup"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">exchange</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                <span class="kt">var</span> <span class="n">order</span> <span class="o">=</span> <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">getBody</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+                <span class="n">String</span> <span class="n">sku</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span> <span class="n">order</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"item_sku"</span><span class="o">);</span>
+                <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">product</span> <span class="o">=</span> <span class="n">productCatalog</span><span class="o">.</span><span class="na">lookup</span><span class="o">(</span><span class="n">sku</span><span class="o">);</span>
+                <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">setBody</span><span class="o">(</span><span class="n">product</span><span class="o">);</span>
+            <span class="o">});</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">@Component</code> and <code class="highlighter-rouge">@Autowired</code> replace <code class="highlighter-rouge">@ApplicationScoped</code> and <code class="highlighter-rouge">@Inject</code> — the route logic stays the same.</p>
+
+<h2 id="why-enricher-tests-need-real-infrastructure">Why enricher tests need real infrastructure</h2>
+
+<p>A content enricher has a dependency that most routing patterns do not: an external data source.
+This creates a testing challenge.</p>
+
+<p>You could mock the Redis lookup and test the <code class="highlighter-rouge">AggregationStrategy</code> in isolation.
+That would verify the merging logic — the four <code class="highlighter-rouge">put()</code> calls that add product fields to the order.
+But it would not verify that the <code class="highlighter-rouge">productCatalog.lookup()</code> method actually retrieves the correct data from Redis, that the Redis connection is configured properly, or that the seeded product data matches what the test expects.</p>
+
+<p>An integration test with real Kafka and real Redis catches issues at every layer: Kafka deserialization, the <code class="highlighter-rouge">enrich()</code> EIP invocation, the <code class="highlighter-rouge">direct:</code> route dispatch, the Redis hash lookup, the aggregation strategy, and Kafka serialization of the enriched result.</p>
+
+<h2 id="test-templates">Test templates</h2>
+
+<p>The test uses two JSON templates.
+The input template represents a canonical order (the format produced by the message translator):</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ORD-org.citrusframework:citrus-website:pom:1.1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CLIENT-org.citrusframework:citrus-website:pom:1.1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"item_sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${sku}"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="p">{</span><span class="err">quantity</span><span class="p">},</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="p">{</span><span class="err">amount</span><span class="p">},</span><span class="w">
+  </span><span class="s2">"destination_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${country}"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"contains_hazmat"</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="p">{</span><span class="err">hazardous</span><span class="p">},</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NEW"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The expected output template adds the four enrichment fields:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ORD-org.citrusframework:citrus-website:pom:1.1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CLIENT-org.citrusframework:citrus-website:pom:1.1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"item_sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${sku}"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="p">{</span><span class="err">quantity</span><span class="p">},</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="p">{</span><span class="err">amount</span><span class="p">},</span><span class="w">
+  </span><span class="s2">"destination_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${country}"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"contains_hazmat"</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="p">{</span><span class="err">hazardous</span><span class="p">},</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NEW"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"product_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${productName}"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"product_category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${productCategory}"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"weight_kg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${weightKg}"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"shipping_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${shippingZone}"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The enrichment fields use their own Citrus variables (<code class="highlighter-rouge">${productName}</code>, <code class="highlighter-rouge">${productCategory}</code>, <code class="highlighter-rouge">${weightKg}</code>, <code class="highlighter-rouge">${shippingZone}</code>).
+These values must match what is seeded in the Redis product catalog for the given SKU.
+This tight coupling between the test variables and the seeded data is intentional — it is the assertion that the enricher looked up the right product and merged the right fields.</p>
+
+<h2 id="test-infrastructure">Test infrastructure</h2>
+
+<p>The Docker Compose stack for this example includes both Kafka and Redis:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
+  <span class="na">kafka</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">docker.io/apache/kafka:4.3.1</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">9092:9092"</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">9094:9094"</span>
+    <span class="c1"># ... Kafka configuration ...</span>
+
+  <span class="na">kafka-ui</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">docker.io/provectuslabs/kafka-ui:v0.7.2</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">8090:8080"</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+      <span class="na">kafka</span><span class="pi">:</span>
+        <span class="na">condition</span><span class="pi">:</span> <span class="s">service_healthy</span>
+
+  <span class="na">redis</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">docker.io/library/redis:8.10.1-alpine</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">6379:6379"</span>
+    <span class="na">healthcheck</span><span class="pi">:</span>
+      <span class="na">test</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">CMD-SHELL"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">redis-cli</span><span class="nv"> </span><span class="s">ping</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">grep</span><span class="nv"> </span><span class="s">PONG"</span><span class="pi">]</span>
+</code></pre></div></div>
+
+<p>Redis is the enrichment source.
+The <code class="highlighter-rouge">BeforeSuite</code> brings up the full compose stack; the <code class="highlighter-rouge">AfterSuite</code> tears it down.</p>
+
+<h3 id="quarkus-infrastructure-setup">Quarkus infrastructure setup</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@CitrusConfiguration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EipInfraSetup</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
+
+    <span class="nd">@BindToRegistry</span>
+    <span class="kd">public</span> <span class="n">BeforeSuite</span> <span class="nf">startInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">beforeSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">up</span><span class="o">(</span><span class="s">"_infra/compose.yaml"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">autoRemove</span><span class="o">(</span><span class="kc">false</span><span class="o">),</span>
+                    <span class="n">waitFor</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">http</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://localhost:8090"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">25</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@BindToRegistry</span>
+    <span class="kd">public</span> <span class="n">AfterSuite</span> <span class="nf">stopInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">afterSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">().</span><span class="na">stop</span><span class="o">(),</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">down</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="spring-boot-infrastructure-setup">Spring Boot infrastructure setup</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EipInfraSetup</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">BeforeSuite</span> <span class="nf">startInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">beforeSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">up</span><span class="o">(</span><span class="s">"_infra/compose.yaml"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">autoRemove</span><span class="o">(</span><span class="kc">false</span><span class="o">),</span>
+                    <span class="n">waitFor</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">http</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://localhost:8090"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">25</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">AfterSuite</span> <span class="nf">stopInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">afterSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">().</span><span class="na">stop</span><span class="o">(),</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">down</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">waitFor().http().url("http://localhost:8090")</code> call blocks until the Kafka UI is reachable — a reliable proxy for the Kafka broker and Redis both being ready, since the UI depends on Kafka and both containers are part of the same compose stack.</p>
+
+<h2 id="the-content-enricher-test">The content enricher test</h2>
+
+<h3 id="quarkus-test">Quarkus test</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@QuarkusTest</span>
+<span class="nd">@CitrusSupport</span>
+<span class="kd">class</span> <span class="nc">EipTests</span> <span class="kd">implements</span> <span class="n">EipTestSupport</span> <span class="o">{</span>
+
+    <span class="nd">@CitrusResource</span>
+    <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
+
+    <span class="nd">@Inject</span>
+    <span class="nd">@BindToRegistry</span>
+    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="nd">@Nested</span>
+    <span class="kd">class</span> <span class="nc">ContentEnricherTest</span> <span class="o">{</span>
+
+        <span class="nd">@Test</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldEnrichOrderWithProductCatalogData</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+                <span class="n">createVariables</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"sku"</span><span class="o">,</span> <span class="s">"SKU-ABC-42"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"quantity"</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mf">89.97</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"country"</span><span class="o">,</span> <span class="s">"DE"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"hazardous"</span><span class="o">,</span> <span class="kc">false</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"productName"</span><span class="o">,</span> <span class="s">"Wireless Headphones"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"productCategory"</span><span class="o">,</span> <span class="s">"Electronics"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"weightKg"</span><span class="o">,</span> <span class="s">"0.3"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"shippingZone"</span><span class="o">,</span> <span class="s">"ZONE-1"</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"content-enricher"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+                <span class="n">send</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">fork</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/canonical-order.json"</span><span class="o">))</span>
+                    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+                <span class="n">receive</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.enriched?consumerGroup=citrus-enriched-group"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/enriched-order.json"</span><span class="o">))</span>
+            <span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Let’s walk through this test carefully, because the variable setup reveals how the enrichment assertion works.</p>
+
+<p><strong>Given — set up variables and wait for the route.</strong></p>
+
+<p>The test defines ten variables split into two logical groups.
+The first six (<code class="highlighter-rouge">id</code>, <code class="highlighter-rouge">sku</code>, <code class="highlighter-rouge">quantity</code>, <code class="highlighter-rouge">amount</code>, <code class="highlighter-rouge">country</code>, <code class="highlighter-rouge">hazardous</code>) populate the input template — they describe the order as it arrives on the Kafka topic.
+The last four (<code class="highlighter-rouge">productName</code>, <code class="highlighter-rouge">productCategory</code>, <code class="highlighter-rouge">weightKg</code>, <code class="highlighter-rouge">shippingZone</code>) populate the <em>expected enrichment fields</em> in the output template.</p>
+
+<p>These enrichment variables are set to values that match what the <code class="highlighter-rouge">RedisProductCatalog</code> seeds for SKU <code class="highlighter-rouge">SKU-ABC-42</code>: “Wireless Headphones”, “Electronics”, “0.3”, “ZONE-1”.
+If the Redis catalog contained different data for this SKU, or if the enricher looked up the wrong SKU, or if the aggregation strategy mapped the fields incorrectly, the receive assertion would fail.</p>
+
+<p>This is the critical design decision in the test: the enrichment variables are <em>not</em> arbitrary — they are the expected result of the Redis lookup for the given SKU.
+The test author must know what data the catalog contains for <code class="highlighter-rouge">SKU-ABC-42</code> and set the variables accordingly.</p>
+
+<p><strong>When — send the canonical order.</strong></p>
+
+<p>A single message goes to <code class="highlighter-rouge">kafka:eip.orders.placed</code> using the canonical order template.
+The body contains the six order fields; the four enrichment fields are not yet present.</p>
+
+<p><strong>Then — receive and validate the enriched order.</strong></p>
+
+<p>The test consumes from <code class="highlighter-rouge">kafka:eip.orders.enriched</code> and validates the body against the enriched order template.
+This template contains all ten fields — the original six plus the four enrichment fields.
+Citrus resolves all variables and performs a structural comparison.</p>
+
+<p>The <code class="highlighter-rouge">fork=true</code> option on the send operation avoids a blocking situation and handles the asynchronous processing: 
+the enricher needs time to consume the message, call the Redis lookup route, merge the results, and publish the enriched order. 
+While all of that is done the receiving operation initializes the Kafka consumer with a proper offset. 
+There is no racing condition between the order processing and the consumer initialization.</p>
+
+<h3 id="spring-boot-test">Spring Boot test</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@SpringBootTest</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="n">TransformationApplication</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="nd">@CamelSpringBootTest</span>
+<span class="nd">@CitrusSpringSupport</span>
+<span class="nd">@ContextConfiguration</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="o">{</span> <span class="n">EipInfraSetup</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">CitrusSpringConfig</span><span class="o">.</span><span class="na">class</span> <span class="o">})</span>
+<span class="kd">class</span> <span class="nc">EipTests</span> <span class="kd">implements</span> <span class="n">EipTestSupport</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="n">RedisProductCatalog</span> <span class="n">redisProductCatalog</span><span class="o">;</span>
+
+    <span class="nd">@Nested</span>
+    <span class="kd">class</span> <span class="nc">ContentEnricherTest</span> <span class="o">{</span>
+
+        <span class="nd">@CitrusResource</span>
+        <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
+
+        <span class="nd">@Test</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldEnrichOrderWithProductCatalogData</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">redisProductCatalog</span><span class="o">.</span><span class="na">seedCatalog</span><span class="o">();</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+                <span class="n">createVariables</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"sku"</span><span class="o">,</span> <span class="s">"SKU-ABC-42"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"quantity"</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mf">89.97</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"country"</span><span class="o">,</span> <span class="s">"DE"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"hazardous"</span><span class="o">,</span> <span class="kc">false</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"productName"</span><span class="o">,</span> <span class="s">"Wireless Headphones"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"productCategory"</span><span class="o">,</span> <span class="s">"Electronics"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"weightKg"</span><span class="o">,</span> <span class="s">"0.3"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"shippingZone"</span><span class="o">,</span> <span class="s">"ZONE-1"</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"content-enricher"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+                <span class="n">send</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">fork</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/canonical-order.json"</span><span class="o">))</span>
+                    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+                <span class="n">receive</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.enriched?consumerGroup=citrus-enriched-group"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/enriched-order.json"</span><span class="o">))</span>
+            <span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The Spring Boot test has one notable addition: the explicit <code class="highlighter-rouge">redisProductCatalog.seedCatalog()</code> call at the start of the test method.</p>
+
+<p>In the Quarkus variant, <code class="highlighter-rouge">RedisProductCatalog</code> is annotated with <code class="highlighter-rouge">@Startup</code> and seeds the catalog in its constructor — the data is always present by the time the test runs.
+In Spring Boot, the <code class="highlighter-rouge">@PostConstruct</code> method checks a configuration flag (<code class="highlighter-rouge">redis.catalog.seed</code>), and the test explicitly calls <code class="highlighter-rouge">seedCatalog()</code> to guarantee the data is present regardless of configuration.
+This is a small but important difference: it ensures the test is self-contained and does not depend on application startup order.</p>
+
+<p>The rest of the test is identical — same variables, same templates, same given-when-then structure.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Concern</th>
+      <th>Quarkus</th>
+      <th>Spring Boot</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Test bootstrap</td>
+      <td><code class="highlighter-rouge">@QuarkusTest</code></td>
+      <td>
+<code class="highlighter-rouge">@SpringBootTest</code> + <code class="highlighter-rouge">@CamelSpringBootTest</code>
+</td>
+    </tr>
+    <tr>
+      <td>Citrus integration</td>
+      <td><code class="highlighter-rouge">@CitrusSupport</code></td>
+      <td><code class="highlighter-rouge">@CitrusSpringSupport</code></td>
+    </tr>
+    <tr>
+      <td>CamelContext injection</td>
+      <td>
+<code class="highlighter-rouge">@Inject</code> + <code class="highlighter-rouge">@BindToRegistry</code>
+</td>
+      <td><code class="highlighter-rouge">@Autowired</code></td>
+    </tr>
+    <tr>
+      <td>TestCaseRunner scope</td>
+      <td>Class-level field</td>
+      <td>Nested class field with <code class="highlighter-rouge">@CitrusResource</code>
+</td>
+    </tr>
+    <tr>
+      <td>Redis seeding</td>
+      <td>Automatic via <code class="highlighter-rouge">@Startup</code>
+</td>
+      <td>Explicit <code class="highlighter-rouge">seedCatalog()</code> call</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="the-aggregation-strategy-under-the-lens">The aggregation strategy under the lens</h2>
+
+<p>The <code class="highlighter-rouge">AggregationStrategy</code> inside the <code class="highlighter-rouge">enrich()</code> call is the heart of the content enricher pattern.
+It is worth understanding what the test actually asserts about it.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="na">enrich</span><span class="o">(</span><span class="s">"direct:redis-product-lookup"</span><span class="o">,</span> <span class="o">(</span><span class="n">oldExchange</span><span class="o">,</span> <span class="n">newExchange</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+    <span class="kt">var</span> <span class="n">order</span> <span class="o">=</span> <span class="n">oldExchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">getBody</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="kt">var</span> <span class="n">product</span> <span class="o">=</span> <span class="n">newExchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">getBody</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="kt">var</span> <span class="n">enriched</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedHashMap</span><span class="o">&lt;&gt;(</span><span class="n">order</span><span class="o">);</span>
+    <span class="n">enriched</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"product_name"</span><span class="o">,</span> <span class="n">product</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"name"</span><span class="o">));</span>
+    <span class="n">enriched</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"product_category"</span><span class="o">,</span> <span class="n">product</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"category"</span><span class="o">));</span>
+    <span class="n">enriched</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"weight_kg"</span><span class="o">,</span> <span class="n">product</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"weight_kg"</span><span class="o">));</span>
+    <span class="n">enriched</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"shipping_zone"</span><span class="o">,</span> <span class="n">product</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"shipping_zone"</span><span class="o">));</span>
+    <span class="n">oldExchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">setBody</span><span class="o">(</span><span class="n">enriched</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">oldExchange</span><span class="o">;</span>
+<span class="o">})</span>
+</code></pre></div></div>
+
+<p>The strategy creates a <em>new</em> map from the original order (preserving all existing fields) and adds four fields from the Redis lookup result.
+The test validates every aspect of this logic:</p>
+
+<ul>
+  <li>
+<strong>All original fields are preserved.</strong> The enriched template contains <code class="highlighter-rouge">order_id</code>, <code class="highlighter-rouge">customer_id</code>, <code class="highlighter-rouge">item_sku</code>, <code class="highlighter-rouge">quantity</code>, <code class="highlighter-rouge">amount</code>, <code class="highlighter-rouge">destination_country</code>, <code class="highlighter-rouge">contains_hazmat</code>, and <code class="highlighter-rouge">status</code> — all carried forward from the input. If <code class="highlighter-rouge">new LinkedHashMap&lt;&gt;(order)</code> were accidentally replaced with <code class="highlighter-rouge">new LinkedHashMap&lt;&gt;()</code>, the receive assertion would fail because the original fields would be missing.</li>
+  <li>
+<strong>The correct product fields are added.</strong> The template expects <code class="highlighter-rouge">product_name</code>, <code class="highlighter-rouge">product_category</code>, <code class="highlighter-rouge">weight_kg</code>, and <code class="highlighter-rouge">shipping_zone</code> with values matching the Redis seed data. If the strategy mapped <code class="highlighter-rouge">product.get("name")</code> to a wrong key (say, <code class="highlighter-rouge">"product_title"</code> instead of <code class="highlighter-rouge">"product_name"</code>), the assertion would catch it.</li>
+  <li>
+<strong>The lookup uses the right key.</strong> The Redis lookup extracts <code class="highlighter-rouge">item_sku</code> from the order body. If it used the wrong field (say, <code class="highlighter-rouge">order_id</code>), the lookup would return the fallback defaults (“Unknown Product”, “General”), and the enrichment variables would not match.</li>
+</ul>
+
+<h2 id="what-the-test-proves">What the test proves</h2>
+
+<p>This single test exercises a pipeline that spans two Camel routes, two infrastructure services, and a CDI/Spring-managed bean:</p>
+
+<ol>
+  <li>
+<strong>Kafka consumer</strong> — reads the order from <code class="highlighter-rouge">eip.orders.placed</code>.</li>
+  <li>
+<strong>JSON deserialization</strong> — <code class="highlighter-rouge">unmarshal().json()</code> converts bytes to a map.</li>
+  <li>
+<strong>Enrich EIP dispatch</strong> — the <code class="highlighter-rouge">enrich()</code> call sends the exchange to <code class="highlighter-rouge">direct:redis-product-lookup</code>.</li>
+  <li>
+<strong>Redis lookup</strong> — <code class="highlighter-rouge">productCatalog.lookup(sku)</code> queries Redis using the SKU as the key.</li>
+  <li>
+<strong>Aggregation</strong> — the strategy merges the product fields into the order map.</li>
+  <li>
+<strong>JSON serialization</strong> — <code class="highlighter-rouge">marshal().json()</code> converts the enriched map back to bytes.</li>
+  <li>
+<strong>Kafka producer</strong> — writes the enriched order to <code class="highlighter-rouge">eip.orders.enriched</code>.</li>
+</ol>
+
+<p>A unit test could verify step 5 (the aggregation strategy) in isolation.
+But steps 1–4 and 6–7 involve real infrastructure — Kafka serialization, Camel’s <code class="highlighter-rouge">enrich()</code> EIP mechanics, the <code class="highlighter-rouge">direct:</code> route dispatch, and the Redis connection.
+The integration test catches misconfiguration at any of these layers.</p>
+
+<h2 id="key-takeaways">Key takeaways</h2>
+
+<ul>
+  <li>
+<strong>Enricher tests must seed the external data source.</strong> The test variables for the enrichment fields must match the data that the external source returns. If the source is Redis, the catalog must be seeded with known products before the test runs.</li>
+  <li>
+<strong>Template pairs assert both preservation and addition.</strong> The input template defines what the enricher receives; the output template defines what it must produce. The test implicitly verifies that original fields survive the merge <em>and</em> that enrichment fields are added correctly.</li>
+  <li>
+<strong><code class="highlighter-rouge">fork=true</code> on the <code class="highlighter-rouge">send</code> handles multi-hop async processing.</strong> The enricher involves two Camel routes (the main route and the lookup route) and a Redis call — all happening asynchronously. The non-blocking send operation gives the full pipeline time to complete and the Kafka consumer time to initialize without any racing conditions.</li>
+  <li>
+<strong>Two runtimes, one test pattern.</strong> The test logic is identical across Quarkus and Spring Boot. The only meaningful difference is how Redis catalog seeding is triggered — automatically in Quarkus, explicitly in Spring Boot.</li>
+  <li>
+<strong>Real infrastructure catches real problems.</strong> Connection timeouts, serialization mismatches, Redis key format issues, and Kafka consumer group configuration all surface in an integration test but are invisible in a unit test with mocked dependencies.</li>
+</ul>
+
+  </div>
+</article>
+
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <h4>Samples</h4>
+    <ul>
+      <li class="">
+        <a href="/samples/">Overview</a>
+      </li>
+      <li class="">
+        <a href="/samples/todo-app">TodoList App</a>
+      </li>
+      <li class="">
+        <a href="/samples/run">Running</a>
+      </li>
+    </ul>
+    <h4>Configuration</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+
+      
+      
+      <li class="">
+        <a href="/samples/javaconfig/">sample-javaconfig</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/annotation-config/">sample-annotation-config</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/reporting/">sample-reporting</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>CONNECTORS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/kubernetes/">sample-kubernetes</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/docker/">sample-docker</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>DEMO</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus/">sample-quarkus</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jbang/">sample-jbang</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/cucumber/">sample-cucumber</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/apache-camel/">sample-camel-context</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>EIP</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/content-based-router/">content-based-router</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/message-filter/">message-filter</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/message-reliability/">message-reliability</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/messaging-bridge/">messaging-bridge</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/splitter/">splitter</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/load-balancer/">load-balancer</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/routing-slip/">routing-slip</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/wire-tap/">wire-tap</a>
+      </li>
+      
+      
+      <li class="current">
+        <a href="/samples/camel-eip/content-enricher/">content-enricher</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/content-filter/">content-filter</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/message-translator/">message-translator</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/resequencer/">resequencer</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>ENDPOINTS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/soap-wssecurity/">sample-soap-wssecurity</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/ftp/">sample-ftp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-static-response/">sample-http-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-static-response/">sample-soap-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-wsaddressing/">sample-soap-wsaddressing</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/rmi/">sample-rmi</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-ssl/">sample-soap-ssl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap/">sample-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/mail/">sample-mail</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jms/">sample-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/kafka/">sample-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/wsdl/">sample-wsdl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/openapi/">sample-swagger</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jdbc/">sample-jdbc</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-mtom/">sample-soap-mtom</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-attachment/">sample-soap-attachment</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/sftp/">sample-sftp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/https/">sample-https</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/scp/">sample-scp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http/">sample-http</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dynamic-endpoints/">sample-dynamic-endpoints</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-basic-auth/">sample-http-basic-auth</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-loadtest/">sample-http-loadtest</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>MISCELLANEOUS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/gradle/">sample-gradle</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/message-store/">sample-message-store</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/behavior/">sample-behavior</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dictionaries/">sample-dictionaries</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>QUARKUS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-kafka/">camel-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-knative/">camel-knative</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-knative-ssl/">camel-knative-ssl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-rest-to-soap/">camel-rest-to-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-rest-dsl/">camel-rest-dsl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus-event-driven-kafka/">event-driven-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus-event-driven-jms/">event-driven-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-postgresql/">camel-postgresql</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-aws-s3-kafka/">camel-aws-s3-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-cxf-soap-client/">camel-cxf-soap-client</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-cxf-soap/">camel-cxf-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-direct-http/">camel-direct-http</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-direct/">camel-direct</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-openapi-server/">camel-openapi-server</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-mqtt/">camel-mqtt</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-jms/">camel-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-file-inbox/">camel-file-inbox</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-file-outbox/">camel-file-outbox</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>RUNTIMES</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/testng/">sample-testng</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dataprovider/">sample-dataprovider</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/junit5/">sample-junit5</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/junit/">sample-junit</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>VALIDATION</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/hamcrest/">sample-hamcrest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/sql/">sample-sql</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-form-data/">sample-http-form-data</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/oxm/">sample-oxm</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/json/">sample-json</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/databind/">sample-databind</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xml/">sample-xml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xhtml/">sample-xhtml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/binary/">sample-binary</a>
+      </li>
+      
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/citrusframework/citrus/blob/master/LICENSE">MIT License</a>.</p>
+      <br>
+      <p>© 2026 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p> </p>
+      <br>
+      <br>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>

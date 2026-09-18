@@ -1,0 +1,1339 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 5.0.1">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus main branch" href="https://github.com/citrusframework/citrus/commits/main.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="stylesheet" href="/css/tabbed.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/atom-one-light.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+  <script src="/js/tabbed.js"></script>
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="samples">
+    <div class="grid">
+
+      <div class="samples-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the samples…</option>
+    <option value="/samples/">Overview</option>
+    <option value="/samples/todo-app/">TodoList App</option>
+    <option value="/samples/run/">Running</option>
+    
+    
+    <option value="/samples/javaconfig/">sample-javaconfig</option>
+    
+    <option value="/samples/annotation-config/">sample-annotation-config</option>
+    
+    <option value="/samples/reporting/">sample-reporting</option>
+    
+    <option value="/samples/kubernetes/">sample-kubernetes</option>
+    
+    <option value="/samples/docker/">sample-docker</option>
+    
+    <option value="/samples/selenium/">sample-selenium</option>
+    
+    <option value="/samples/quarkus/">sample-quarkus</option>
+    
+    <option value="/samples/jbang/">sample-jbang</option>
+    
+    <option value="/samples/cucumber/">sample-cucumber</option>
+    
+    <option value="/samples/apache-camel/">sample-camel-context</option>
+    
+    <option value="/samples/camel-eip/content-based-router/">content-based-router</option>
+    
+    <option value="/samples/camel-eip/message-filter/">message-filter</option>
+    
+    <option value="/samples/camel-eip/message-reliability/">message-reliability</option>
+    
+    <option value="/samples/camel-eip/messaging-bridge/">messaging-bridge</option>
+    
+    <option value="/samples/camel-eip/splitter/">splitter</option>
+    
+    <option value="/samples/camel-eip/load-balancer/">load-balancer</option>
+    
+    <option value="/samples/camel-eip/routing-slip/">routing-slip</option>
+    
+    <option value="/samples/camel-eip/wire-tap/">wire-tap</option>
+    
+    <option value="/samples/camel-eip/content-enricher/">content-enricher</option>
+    
+    <option value="/samples/camel-eip/content-filter/">content-filter</option>
+    
+    <option value="/samples/camel-eip/message-translator/">message-translator</option>
+    
+    <option value="/samples/camel-eip/resequencer/">resequencer</option>
+    
+    <option value="/samples/soap-wssecurity/">sample-soap-wssecurity</option>
+    
+    <option value="/samples/ftp/">sample-ftp</option>
+    
+    <option value="/samples/http-static-response/">sample-http-static-response</option>
+    
+    <option value="/samples/soap-static-response/">sample-soap-static-response</option>
+    
+    <option value="/samples/soap-wsaddressing/">sample-soap-wsaddressing</option>
+    
+    <option value="/samples/rmi/">sample-rmi</option>
+    
+    <option value="/samples/soap-ssl/">sample-soap-ssl</option>
+    
+    <option value="/samples/soap/">sample-soap</option>
+    
+    <option value="/samples/mail/">sample-mail</option>
+    
+    <option value="/samples/jms/">sample-jms</option>
+    
+    <option value="/samples/kafka/">sample-kafka</option>
+    
+    <option value="/samples/wsdl/">sample-wsdl</option>
+    
+    <option value="/samples/openapi/">sample-swagger</option>
+    
+    <option value="/samples/jdbc/">sample-jdbc</option>
+    
+    <option value="/samples/soap-mtom/">sample-soap-mtom</option>
+    
+    <option value="/samples/soap-attachment/">sample-soap-attachment</option>
+    
+    <option value="/samples/sftp/">sample-sftp</option>
+    
+    <option value="/samples/https/">sample-https</option>
+    
+    <option value="/samples/scp/">sample-scp</option>
+    
+    <option value="/samples/http/">sample-http</option>
+    
+    <option value="/samples/dynamic-endpoints/">sample-dynamic-endpoints</option>
+    
+    <option value="/samples/http-basic-auth/">sample-http-basic-auth</option>
+    
+    <option value="/samples/http-loadtest/">sample-http-loadtest</option>
+    
+    <option value="/samples/gradle/">sample-gradle</option>
+    
+    <option value="/samples/message-store/">sample-message-store</option>
+    
+    <option value="/samples/behavior/">sample-behavior</option>
+    
+    <option value="/samples/dictionaries/">sample-dictionaries</option>
+    
+    <option value="/samples/camel-quarkus-kafka/">camel-kafka</option>
+    
+    <option value="/samples/camel-quarkus-knative/">camel-knative</option>
+    
+    <option value="/samples/camel-quarkus-knative-ssl/">camel-knative-ssl</option>
+    
+    <option value="/samples/camel-quarkus-rest-to-soap/">camel-rest-to-soap</option>
+    
+    <option value="/samples/camel-quarkus-rest-dsl/">camel-rest-dsl</option>
+    
+    <option value="/samples/quarkus-event-driven-kafka/">event-driven-kafka</option>
+    
+    <option value="/samples/quarkus-event-driven-jms/">event-driven-jms</option>
+    
+    <option value="/samples/camel-quarkus-postgresql/">camel-postgresql</option>
+    
+    <option value="/samples/camel-quarkus-aws-s3-kafka/">camel-aws-s3-kafka</option>
+    
+    <option value="/samples/camel-quarkus-cxf-soap-client/">camel-cxf-soap-client</option>
+    
+    <option value="/samples/camel-quarkus-cxf-soap/">camel-cxf-soap</option>
+    
+    <option value="/samples/camel-quarkus-direct-http/">camel-direct-http</option>
+    
+    <option value="/samples/camel-quarkus-direct/">camel-direct</option>
+    
+    <option value="/samples/camel-quarkus-openapi-server/">camel-openapi-server</option>
+    
+    <option value="/samples/camel-quarkus-mqtt/">camel-mqtt</option>
+    
+    <option value="/samples/camel-quarkus-jms/">camel-jms</option>
+    
+    <option value="/samples/camel-quarkus-file-inbox/">camel-file-inbox</option>
+    
+    <option value="/samples/camel-quarkus-file-outbox/">camel-file-outbox</option>
+    
+    <option value="/samples/testng/">sample-testng</option>
+    
+    <option value="/samples/dataprovider/">sample-dataprovider</option>
+    
+    <option value="/samples/junit5/">sample-junit5</option>
+    
+    <option value="/samples/junit/">sample-junit</option>
+    
+    <option value="/samples/hamcrest/">sample-hamcrest</option>
+    
+    <option value="/samples/sql/">sample-sql</option>
+    
+    <option value="/samples/http-form-data/">sample-http-form-data</option>
+    
+    <option value="/samples/oxm/">sample-oxm</option>
+    
+    <option value="/samples/json/">sample-json</option>
+    
+    <option value="/samples/databind/">sample-databind</option>
+    
+    <option value="/samples/xml/">sample-xml</option>
+    
+    <option value="/samples/xhtml/">sample-xhtml</option>
+    
+    <option value="/samples/binary/">sample-binary</option>
+    
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+  <h2>
+    
+    
+    <img src="/img/icons/camel.png" style="width: 1em;height: 1em;" alt="">
+    
+    Testing the Resequencer Pattern with Citrus
+    <a href="/samples/camel-eip/resequencer/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <div class="right">
+    
+    <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/master/examples/resequencer" target="_blank">
+      <i class="fa fa-pencil"></i> View source code
+    </a>
+    
+    
+  </div>
+  <span class="post-category">
+    <span class="label">
+      samples
+    </span>
+  </span>
+  <div class="post-content">
+    <p>Messages arrive in order.
+Or at least, that is the assumption most developers carry into their first integration project.
+In practice, distributed systems rarely guarantee ordering.
+Network retries, parallel consumers, partitioned queues, and upstream fan-out/fan-in patterns all conspire to deliver messages out of sequence.</p>
+
+<p>Consider an order processing system that receives shipping instructions from multiple upstream services.
+Each instruction carries a sequence number — 1 for the first step, 2 for the second, and so on.
+A downstream fulfillment service expects these instructions in order so it can apply them incrementally.
+When message 3 arrives before message 1, the fulfillment logic breaks.</p>
+
+<p>The <a href="https://www.enterpriseintegrationpatterns.com/patterns/messaging/Resequencer.html">Resequencer</a> pattern, described by Hohpe and Woolf, solves this by collecting messages in a buffer and re-emitting them in sequence order.
+<a href="https://camel.apache.org">Apache Camel</a> implements two variants: a <em>batch resequencer</em> that collects up to N messages (or waits a timeout) and then sorts the batch, and a <em>stream resequencer</em> that emits messages as soon as the next expected sequence number arrives.</p>
+
+<p>Testing a resequencer is fundamentally different from testing stateless routing patterns like a content-based router or a message filter.
+Those patterns make an immediate routing decision per message.
+A resequencer, by contrast, <em>holds</em> messages — it accumulates a batch, waits for a timeout, and only then produces output.
+This time-dependent, stateful behavior makes it a compelling candidate for automated integration testing with <a href="https://citrusframework.org">Citrus</a>.</p>
+
+<h2 id="the-camel-route">The Camel route</h2>
+
+<p>The example uses a batch resequencer that reads orders from a Kafka topic, collects them in a batch window, and re-emits them sorted by a <code class="highlighter-rouge">sequenceNumber</code> header.</p>
+
+<h3 id="quarkus">Quarkus</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ApplicationScoped</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ResequencerRoute</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">from</span><span class="o">(</span><span class="s">"kafka:eip.orders.sequenced?brokers={{kafka.brokers}}&amp;groupId=resequencer-demo"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"batch-resequencer"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">unmarshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Received out-of-order message seq=${header.sequenceNumber}"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">resequence</span><span class="o">(</span><span class="n">header</span><span class="o">(</span><span class="s">"sequenceNumber"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">batch</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">size</span><span class="o">(</span><span class="mi">10</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">timeout</span><span class="o">(</span><span class="mi">5000</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Resequenced message seq=${header.sequenceNumber}, order ${body[order_id]}"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">marshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"kafka:eip.orders.resequenced?brokers={{kafka.brokers}}"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The route unmarshals each incoming JSON message, then feeds it into the <code class="highlighter-rouge">resequence()</code> EIP using <code class="highlighter-rouge">header("sequenceNumber")</code> as the sort key.
+The <code class="highlighter-rouge">.batch()</code> configuration tells Camel to collect up to 10 messages or wait 5 seconds (whichever comes first), sort the batch by the sequence number, and then forward each message in order to the output topic.</p>
+
+<h3 id="spring-boot">Spring Boot</h3>
+
+<p>The Spring Boot variant is identical except for the CDI annotation:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ResequencerRoute</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">from</span><span class="o">(</span><span class="s">"kafka:eip.orders.sequenced?brokers={{kafka.brokers}}&amp;groupId=resequencer-demo"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"batch-resequencer"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">unmarshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Received out-of-order message seq=${header.sequenceNumber}"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">resequence</span><span class="o">(</span><span class="n">header</span><span class="o">(</span><span class="s">"sequenceNumber"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">batch</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">size</span><span class="o">(</span><span class="mi">10</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">timeout</span><span class="o">(</span><span class="mi">5000</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Resequenced message seq=${header.sequenceNumber}, order ${body[order_id]}"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">marshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"kafka:eip.orders.resequenced?brokers={{kafka.brokers}}"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">@Component</code> replaces <code class="highlighter-rouge">@ApplicationScoped</code> — the route logic stays the same across both runtimes.</p>
+
+<h2 id="batch-size-timeout-and-why-they-matter-for-testing">Batch size, timeout, and why they matter for testing</h2>
+
+<p>The batch resequencer’s two configuration knobs — <code class="highlighter-rouge">size</code> and <code class="highlighter-rouge">timeout</code> — directly affect how you design tests.</p>
+
+<p><strong>Batch size</strong> defines how many messages the resequencer collects before sorting and flushing.
+In our example, the batch size is 10.
+If you send exactly 3 messages in your test, the resequencer will <em>not</em> flush based on batch size alone — it will wait for the timeout.</p>
+
+<p><strong>Timeout</strong> is the safety net.
+When the batch window expires (5000ms in our example), the resequencer flushes whatever it has collected, even if the batch is not full.
+This means test execution time is bounded by this timeout — your test must be prepared to wait at least 5 seconds for output to appear.</p>
+
+<p>This interaction between batch size and timeout is exactly the kind of behavior that unit tests with mocked endpoints cannot capture.
+An integration test with real Kafka infrastructure surfaces the actual timing behavior and proves that the resequencer works end-to-end.</p>
+
+<h2 id="test-infrastructure">Test infrastructure</h2>
+
+<p>Before diving into the test code, here is how the test infrastructure is set up.
+Both runtimes use a shared pattern: a <code class="highlighter-rouge">BeforeSuite</code> action starts a Kafka broker via Testcontainers Docker Compose, and an <code class="highlighter-rouge">AfterSuite</code> action tears it down.</p>
+
+<h3 id="quarkus-infrastructure-setup">Quarkus infrastructure setup</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@CitrusConfiguration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EipInfraSetup</span> <span class="o">{</span>
+
+    <span class="nd">@BindToRegistry</span>
+    <span class="kd">public</span> <span class="n">BeforeSuite</span> <span class="nf">beforeSuite</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">TestDesigner</span><span class="o">().</span><span class="na">beforeSuite</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                <span class="n">testcontainers</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">compose</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">up</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">file</span><span class="o">(</span><span class="s">"_infra/compose.yaml"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">waitFor</span><span class="o">(</span><span class="s">"kafka"</span><span class="o">,</span> <span class="n">HttpWaitStrategy</span><span class="o">.</span><span class="na">newInstance</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://localhost:8090/"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">timeout</span><span class="o">(</span><span class="mi">60000L</span><span class="o">))</span>
+            <span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@BindToRegistry</span>
+    <span class="kd">public</span> <span class="n">AfterSuite</span> <span class="nf">afterSuite</span><span class="o">(</span><span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">TestDesigner</span><span class="o">().</span><span class="na">afterSuite</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">(</span><span class="n">camelContext</span><span class="o">).</span><span class="na">stop</span><span class="o">(),</span>
+                <span class="n">testcontainers</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">compose</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">down</span><span class="o">()</span>
+            <span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="spring-boot-infrastructure-setup">Spring Boot infrastructure setup</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EipInfraSetup</span> <span class="o">{</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">BeforeSuite</span> <span class="nf">beforeSuite</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">TestDesigner</span><span class="o">().</span><span class="na">beforeSuite</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                <span class="n">testcontainers</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">compose</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">up</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">file</span><span class="o">(</span><span class="s">"_infra/compose.yaml"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">waitFor</span><span class="o">(</span><span class="s">"kafka"</span><span class="o">,</span> <span class="n">HttpWaitStrategy</span><span class="o">.</span><span class="na">newInstance</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://localhost:8090/"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">timeout</span><span class="o">(</span><span class="mi">60000L</span><span class="o">))</span>
+            <span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">AfterSuite</span> <span class="nf">afterSuite</span><span class="o">(</span><span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">TestDesigner</span><span class="o">().</span><span class="na">afterSuite</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">(</span><span class="n">camelContext</span><span class="o">).</span><span class="na">stop</span><span class="o">(),</span>
+                <span class="n">testcontainers</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">compose</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">down</span><span class="o">()</span>
+            <span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The difference is purely in the annotation style: <code class="highlighter-rouge">@CitrusConfiguration</code> with <code class="highlighter-rouge">@BindToRegistry</code> for Quarkus CDI, versus <code class="highlighter-rouge">@Configuration</code> with <code class="highlighter-rouge">@Bean</code> for Spring’s application context.
+The infrastructure lifecycle — start Kafka, wait for readiness, run tests, stop Camel, tear down containers — is identical.</p>
+
+<h2 id="the-resequencer-test">The resequencer test</h2>
+
+<p>The test scenario is straightforward: send three messages with out-of-order sequence numbers (3, 1, 2), then verify that the resequencer produces output on the resequenced topic.</p>
+
+<h3 id="a-shared-test-utility">A shared test utility</h3>
+
+<p>Both runtimes implement the <code class="highlighter-rouge">EipTestSupport</code> interface, which provides a reusable <code class="highlighter-rouge">waitForCamelRouteStarted</code> method:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">EipTestSupport</span> <span class="kd">extends</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
+
+    <span class="k">default</span> <span class="n">TestActionBuilder</span><span class="o">&lt;?&gt;</span> <span class="n">waitForCamelRouteStarted</span><span class="o">(</span>
+            <span class="n">String</span> <span class="n">routeId</span><span class="o">,</span> <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">repeatOnError</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">(</span><span class="n">camelContext</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">controlBus</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">route</span><span class="o">(</span><span class="n">routeId</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">status</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">result</span><span class="o">(</span><span class="n">ServiceStatus</span><span class="o">.</span><span class="na">Started</span><span class="o">),</span>
+                    <span class="n">sleep</span><span class="o">().</span><span class="na">seconds</span><span class="o">(</span><span class="mi">5</span><span class="o">)</span>
+                <span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This utility uses Camel’s Control Bus to poll the route status every second, up to 20 retries.
+It ensures the <code class="highlighter-rouge">batch-resequencer</code> route is fully started and consuming from Kafka before the test sends any messages.
+Without this guard, messages sent before the route is ready would be lost.</p>
+
+<h3 id="message-template">Message template</h3>
+
+<p>All three messages use the same JSON template, with Citrus variable placeholders for dynamic values:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="err">org.citrusframework</span><span class="p">:</span><span class="err">citrus-website</span><span class="p">:</span><span class="err">pom</span><span class="p">:</span><span class="mf">1.1</span><span class="err">.</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUST-00org.citrusframework:citrus-website:pom:1.1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"item_sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SKU-TEST-org.citrusframework:citrus-website:pom:1.1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="p">{</span><span class="err">amount</span><span class="p">},</span><span class="w">
+  </span><span class="s2">"destination_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${country}"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"shipping_priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${priority}"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The template keeps the message body consistent while allowing each test run to use unique identifiers.</p>
+
+<h3 id="quarkus-test">Quarkus test</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@QuarkusTest</span>
+<span class="nd">@CitrusSupport</span>
+<span class="kd">class</span> <span class="nc">EipTests</span> <span class="kd">implements</span> <span class="n">EipTestSupport</span> <span class="o">{</span>
+
+    <span class="nd">@CitrusResource</span>
+    <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
+
+    <span class="nd">@Inject</span>
+    <span class="nd">@BindToRegistry</span>
+    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="nd">@Nested</span>
+    <span class="kd">class</span> <span class="nc">ResequencerTest</span> <span class="o">{</span>
+
+        <span class="nd">@Test</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldResequenceOutOfOrderMessages</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+                <span class="n">createVariables</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="s">"50.00"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"country"</span><span class="o">,</span> <span class="s">"US"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"priority"</span><span class="o">,</span> <span class="s">"STANDARD"</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"batch-resequencer"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+                <span class="n">print</span><span class="o">().</span><span class="na">message</span><span class="o">(</span><span class="s">"Sending 3 messages with out-of-order sequence numbers: 3, 1, 2"</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+                <span class="n">sequential</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                        <span class="n">send</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.sequenced"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"order-id"</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"sequenceNumber"</span><span class="o">,</span> <span class="mi">3</span><span class="o">),</span>
+                        <span class="n">send</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.sequenced"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"order-id"</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"sequenceNumber"</span><span class="o">,</span> <span class="mi">1</span><span class="o">),</span>
+                        <span class="n">send</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.sequenced"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"order-id"</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"sequenceNumber"</span><span class="o">,</span> <span class="mi">2</span><span class="o">)</span>
+                    <span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+                <span class="n">repeatOnError</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+                    <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                        <span class="n">sequential</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                                <span class="n">receive</span><span class="o">()</span>
+                                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.resequenced?consumerGroup=citrus-resequenced-group"</span><span class="o">)</span>
+                                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                                    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"sequenceNumber"</span><span class="o">,</span> <span class="mi">1</span><span class="o">),</span>
+                                <span class="n">receive</span><span class="o">()</span>
+                                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.resequenced?consumerGroup=citrus-resequenced-group"</span><span class="o">)</span>
+                                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                                    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"sequenceNumber"</span><span class="o">,</span> <span class="mi">2</span><span class="o">),</span>
+                                <span class="n">receive</span><span class="o">()</span>
+                                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.resequenced?consumerGroup=citrus-resequenced-group"</span><span class="o">)</span>
+                                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                                    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"sequenceNumber"</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
+                            <span class="o">)</span>
+                    <span class="o">)</span>
+            <span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Let’s walk through the test structure.</p>
+
+<p><strong>Given — set up variables and wait for the route.</strong>
+The test generates a random 4-digit order ID and defines the order attributes.
+It then waits for the <code class="highlighter-rouge">batch-resequencer</code> route to reach <code class="highlighter-rouge">Started</code> status via the Control Bus utility.</p>
+
+<p><strong>When — send three out-of-order messages.</strong>
+Three messages go to the <code class="highlighter-rouge">eip.orders.sequenced</code> Kafka topic, each with the same order body but different <code class="highlighter-rouge">sequenceNumber</code> headers: 3, then 1, then 2.
+All three share the same <code class="highlighter-rouge">order-id</code> and Kafka message key, simulating a single order’s instructions arriving out of sequence.</p>
+
+<p><strong>Then — verify resequenced output.</strong>
+The test receives the three output message from the <code class="highlighter-rouge">eip.orders.resequenced</code> topic and validates its body against the same template.
+The <code class="highlighter-rouge">sequenceNumber</code> header validation ensures that the messages have been resequenced properly as expected.
+The <code class="highlighter-rouge">repeatOnError()</code> block retries up to 10 times with 1-second intervals, giving the batch resequencer enough time to collect the messages, wait for its timeout window, sort the batch, and produce output.</p>
+
+<h3 id="spring-boot-test">Spring Boot test</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@SpringBootTest</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="n">AdvancedRoutingApplication</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="nd">@CamelSpringBootTest</span>
+<span class="nd">@CitrusSpringSupport</span>
+<span class="nd">@ContextConfiguration</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="o">{</span> <span class="n">EipInfraSetup</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">CitrusSpringConfig</span><span class="o">.</span><span class="na">class</span> <span class="o">})</span>
+<span class="kd">class</span> <span class="nc">EipTests</span> <span class="kd">implements</span> <span class="n">EipTestSupport</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="nd">@Nested</span>
+    <span class="kd">class</span> <span class="nc">ResequencerTest</span> <span class="o">{</span>
+
+        <span class="nd">@CitrusResource</span>
+        <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
+
+        <span class="nd">@Test</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldResequenceOutOfOrderMessages</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+                <span class="n">createVariables</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="s">"50.00"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"country"</span><span class="o">,</span> <span class="s">"US"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"priority"</span><span class="o">,</span> <span class="s">"STANDARD"</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"batch-resequencer"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+                <span class="n">print</span><span class="o">().</span><span class="na">message</span><span class="o">(</span><span class="s">"Sending 3 messages with out-of-order sequence numbers: 3, 1, 2"</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+                <span class="n">sequential</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                        <span class="n">send</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.sequenced"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"order-id"</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"sequenceNumber"</span><span class="o">,</span> <span class="mi">3</span><span class="o">),</span>
+                        <span class="n">send</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.sequenced"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"order-id"</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"sequenceNumber"</span><span class="o">,</span> <span class="mi">1</span><span class="o">),</span>
+                        <span class="n">send</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.sequenced"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"order-id"</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"sequenceNumber"</span><span class="o">,</span> <span class="mi">2</span><span class="o">)</span>
+                    <span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+                <span class="n">repeatOnError</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+                    <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                        <span class="n">sequential</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                                <span class="n">receive</span><span class="o">()</span>
+                                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.resequenced?consumerGroup=citrus-resequenced-group"</span><span class="o">)</span>
+                                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                                    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"sequenceNumber"</span><span class="o">,</span> <span class="mi">1</span><span class="o">),</span>
+                                <span class="n">receive</span><span class="o">()</span>
+                                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.resequenced?consumerGroup=citrus-resequenced-group"</span><span class="o">)</span>
+                                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                                    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"sequenceNumber"</span><span class="o">,</span> <span class="mi">2</span><span class="o">),</span>
+                                <span class="n">receive</span><span class="o">()</span>
+                                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.resequenced?consumerGroup=citrus-resequenced-group"</span><span class="o">)</span>
+                                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                                    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"sequenceNumber"</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
+                            <span class="o">)</span>
+                    <span class="o">)</span>
+            <span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The test logic is identical.
+The differences live entirely in the test class annotations and dependency injection:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Concern</th>
+      <th>Quarkus</th>
+      <th>Spring Boot</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Test bootstrap</td>
+      <td><code class="highlighter-rouge">@QuarkusTest</code></td>
+      <td>
+<code class="highlighter-rouge">@SpringBootTest</code> + <code class="highlighter-rouge">@CamelSpringBootTest</code>
+</td>
+    </tr>
+    <tr>
+      <td>Citrus integration</td>
+      <td><code class="highlighter-rouge">@CitrusSupport</code></td>
+      <td><code class="highlighter-rouge">@CitrusSpringSupport</code></td>
+    </tr>
+    <tr>
+      <td>CamelContext injection</td>
+      <td>
+<code class="highlighter-rouge">@Inject</code> + <code class="highlighter-rouge">@BindToRegistry</code>
+</td>
+      <td><code class="highlighter-rouge">@Autowired</code></td>
+    </tr>
+    <tr>
+      <td>TestCaseRunner scope</td>
+      <td>Class-level field</td>
+      <td>Nested class field with <code class="highlighter-rouge">@CitrusResource</code>
+</td>
+    </tr>
+    <tr>
+      <td>Infrastructure config</td>
+      <td>
+<code class="highlighter-rouge">@CitrusConfiguration</code> auto-discovered</td>
+      <td>
+<code class="highlighter-rouge">@ContextConfiguration</code> explicit</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="why-resequencer-tests-need-patience">Why resequencer tests need patience</h2>
+
+<p>Unlike a content-based router or a wire tap, where the output appears almost immediately after the input, a batch resequencer deliberately introduces delay.
+The resequencer holds messages until either the batch fills up or the timeout expires.</p>
+
+<p>This has two implications for test design:</p>
+
+<p><strong>1. The retry window must exceed the batch timeout.</strong>
+Our route uses a 5-second batch timeout.
+The test’s <code class="highlighter-rouge">repeatOnError()</code> retries up to 10 times with 1-second sleep intervals, giving the resequencer up to 10 seconds to produce output — comfortably longer than the 5-second timeout.
+If the retry window were shorter than the batch timeout, the test would fail intermittently.</p>
+
+<p><strong>2. Sending fewer messages than the batch size is intentional.</strong>
+The batch size is 10, but the test sends only 3 messages.
+This forces the resequencer to rely on the timeout rather than the batch size to flush.
+It is a deliberate test design choice: it verifies that the timeout mechanism works correctly, which is the more common production scenario (batches rarely fill to capacity under real workloads).</p>
+
+<h2 id="key-takeaways">Key takeaways</h2>
+
+<ul>
+  <li>
+<strong>Batch resequencers are stateful and time-dependent.</strong> Unlike stateless routing patterns, they accumulate messages before producing output. Integration tests must account for this delay.</li>
+  <li>
+<strong><code class="highlighter-rouge">repeatOnError()</code> handles async verification gracefully.</strong> Rather than inserting fixed sleeps, Citrus retries the receive action until it succeeds or the retry limit is reached — making tests both reliable and as fast as possible.</li>
+  <li>
+<strong><code class="highlighter-rouge">waitForCamelRouteStarted</code> prevents message loss.</strong> In a real Kafka environment, messages sent before the consumer route is ready are lost. The Control Bus check ensures the route is consuming before the test produces messages.</li>
+  <li>
+<strong>Three runtimes, one test pattern.</strong> Whether you run on Quarkus, Spring Boot, or via Camel JBang with YAML DSL, the test structure — send out-of-order, wait for the batch window, verify resequenced output — stays the same. Only the bootstrap annotations and infrastructure wiring change.</li>
+  <li>
+<strong>Test the timeout path, not just the happy path.</strong> Sending fewer messages than the batch size forces the timeout to trigger, exercising the code path that matters most in production.</li>
+</ul>
+
+  </div>
+</article>
+
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <h4>Samples</h4>
+    <ul>
+      <li class="">
+        <a href="/samples/">Overview</a>
+      </li>
+      <li class="">
+        <a href="/samples/todo-app">TodoList App</a>
+      </li>
+      <li class="">
+        <a href="/samples/run">Running</a>
+      </li>
+    </ul>
+    <h4>Configuration</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+
+      
+      
+      <li class="">
+        <a href="/samples/javaconfig/">sample-javaconfig</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/annotation-config/">sample-annotation-config</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/reporting/">sample-reporting</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>CONNECTORS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/kubernetes/">sample-kubernetes</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/docker/">sample-docker</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>DEMO</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus/">sample-quarkus</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jbang/">sample-jbang</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/cucumber/">sample-cucumber</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/apache-camel/">sample-camel-context</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>EIP</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/content-based-router/">content-based-router</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/message-filter/">message-filter</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/message-reliability/">message-reliability</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/messaging-bridge/">messaging-bridge</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/splitter/">splitter</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/load-balancer/">load-balancer</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/routing-slip/">routing-slip</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/wire-tap/">wire-tap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/content-enricher/">content-enricher</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/content-filter/">content-filter</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/message-translator/">message-translator</a>
+      </li>
+      
+      
+      <li class="current">
+        <a href="/samples/camel-eip/resequencer/">resequencer</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>ENDPOINTS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/soap-wssecurity/">sample-soap-wssecurity</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/ftp/">sample-ftp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-static-response/">sample-http-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-static-response/">sample-soap-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-wsaddressing/">sample-soap-wsaddressing</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/rmi/">sample-rmi</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-ssl/">sample-soap-ssl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap/">sample-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/mail/">sample-mail</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jms/">sample-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/kafka/">sample-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/wsdl/">sample-wsdl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/openapi/">sample-swagger</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jdbc/">sample-jdbc</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-mtom/">sample-soap-mtom</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-attachment/">sample-soap-attachment</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/sftp/">sample-sftp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/https/">sample-https</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/scp/">sample-scp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http/">sample-http</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dynamic-endpoints/">sample-dynamic-endpoints</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-basic-auth/">sample-http-basic-auth</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-loadtest/">sample-http-loadtest</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>MISCELLANEOUS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/gradle/">sample-gradle</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/message-store/">sample-message-store</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/behavior/">sample-behavior</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dictionaries/">sample-dictionaries</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>QUARKUS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-kafka/">camel-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-knative/">camel-knative</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-knative-ssl/">camel-knative-ssl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-rest-to-soap/">camel-rest-to-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-rest-dsl/">camel-rest-dsl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus-event-driven-kafka/">event-driven-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus-event-driven-jms/">event-driven-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-postgresql/">camel-postgresql</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-aws-s3-kafka/">camel-aws-s3-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-cxf-soap-client/">camel-cxf-soap-client</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-cxf-soap/">camel-cxf-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-direct-http/">camel-direct-http</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-direct/">camel-direct</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-openapi-server/">camel-openapi-server</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-mqtt/">camel-mqtt</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-jms/">camel-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-file-inbox/">camel-file-inbox</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-file-outbox/">camel-file-outbox</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>RUNTIMES</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/testng/">sample-testng</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dataprovider/">sample-dataprovider</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/junit5/">sample-junit5</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/junit/">sample-junit</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>VALIDATION</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/hamcrest/">sample-hamcrest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/sql/">sample-sql</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-form-data/">sample-http-form-data</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/oxm/">sample-oxm</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/json/">sample-json</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/databind/">sample-databind</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xml/">sample-xml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xhtml/">sample-xhtml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/binary/">sample-binary</a>
+      </li>
+      
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/citrusframework/citrus/blob/master/LICENSE">MIT License</a>.</p>
+      <br>
+      <p>© 2026 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p> </p>
+      <br>
+      <br>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>
