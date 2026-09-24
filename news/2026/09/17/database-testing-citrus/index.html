@@ -353,8 +353,7 @@ Here is the route:</p>
 
         <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
             <span class="n">repeatOnError</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">15</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">15</span><span class="o">)</span>
                 <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
                     <span class="n">receive</span><span class="o">()</span>
                         <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed?consumerGroup=citrus-placed-group"</span><span class="o">)</span>
@@ -401,8 +400,7 @@ Here is the route:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
     <span class="n">repeatOnError</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">15</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">15</span><span class="o">)</span>
         <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
             <span class="n">receive</span><span class="o">()</span>
                 <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed?consumerGroup=citrus-placed-group"</span><span class="o">)</span>
@@ -541,8 +539,7 @@ In the sections before we have been using Java DSL that can be combined with arb
 
   <span class="c1"># Receive from Kafka and capture the generated ID</span>
   <span class="pi">-</span> <span class="na">repeatOnError</span><span class="pi">:</span>
-      <span class="na">until</span><span class="pi">:</span> <span class="s">i &gt;= 15</span>
-      <span class="na">autoSleep</span><span class="pi">:</span> <span class="s">1000</span>
+      <span class="na">times</span><span class="pi">:</span> <span class="s">15</span>
       <span class="na">actions</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="na">receive</span><span class="pi">:</span>
           <span class="na">endpoint</span><span class="pi">:</span> <span class="pi">&gt;-</span>
@@ -636,8 +633,7 @@ The route consumes a payment request from Kafka, writes a payment record and an 
         <span class="c1">// Verify the payment row was written</span>
         <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
             <span class="n">repeatOnError</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">15</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">15</span><span class="o">)</span>
                 <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
                     <span class="n">sql</span><span class="o">(</span><span class="n">dataSource</span><span class="o">)</span>
                         <span class="o">.</span><span class="na">query</span><span class="o">()</span>
@@ -651,7 +647,7 @@ The route consumes a payment request from Kafka, writes a payment record and an 
         <span class="c1">// Verify the outbox event was published to Kafka</span>
         <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
             <span class="n">repeatOnError</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">20</span><span class="o">)</span>
                 <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">2</span><span class="o">))</span>
                 <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
                     <span class="n">receive</span><span class="o">()</span>
@@ -670,8 +666,7 @@ The route consumes a payment request from Kafka, writes a payment record and an 
         <span class="c1">// Verify the outbox row was marked as published</span>
         <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
             <span class="n">repeatOnError</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">15</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">15</span><span class="o">)</span>
                 <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
                     <span class="n">sql</span><span class="o">(</span><span class="n">dataSource</span><span class="o">)</span>
                         <span class="o">.</span><span class="na">query</span><span class="o">()</span>
@@ -726,7 +721,7 @@ This is more reliable than relying on the application’s auto-DDL, which might 
   <li>
 <strong>YAML DSL database test</strong>: <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/14-consumer-patterns/yaml-dsl/test/sql-polling-consumer.citrus.it.yaml">sql-polling-consumer.citrus.it.yaml</a> with DataSource bean configuration.</li>
   <li>
-<strong>EipTestSupport</strong>: <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/14-consumer-patterns/quarkus/src/test/java/com/example/eip/consumers/EipTestSupport.java">EipTestSupport.java</a> with <code class="highlighter-rouge">assertProcessedExchanges</code> and <code class="highlighter-rouge">waitForCamelRouteStarted</code> helpers.</li>
+<strong>EipTestSupport</strong>: <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/14-consumer-patterns/quarkus/src/test/java/com/example/eip/consumers/EipTestSupport.java">EipTestSupport.java</a> with <code class="highlighter-rouge">waitForCamelRouteStarted</code> helpers.</li>
 </ul>
 
 <p>Give it a try, and let us know what you think!</p>

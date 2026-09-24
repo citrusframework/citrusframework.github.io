@@ -137,21 +137,21 @@
     
     <option value="/samples/apache-camel/">sample-camel-context</option>
     
-    <option value="/samples/camel-eip/message-filter/">message-filter</option>
-    
-    <option value="/samples/camel-eip/message-reliability/">message-reliability</option>
-    
     <option value="/samples/camel-eip/messaging-bridge/">messaging-bridge</option>
-    
-    <option value="/samples/camel-eip/content-based-router/">content-based-router</option>
-    
-    <option value="/samples/camel-eip/splitter/">splitter</option>
-    
-    <option value="/samples/camel-eip/load-balancer/">load-balancer</option>
     
     <option value="/samples/camel-eip/routing-slip/">routing-slip</option>
     
+    <option value="/samples/camel-eip/load-balancer/">load-balancer</option>
+    
+    <option value="/samples/camel-eip/splitter/">splitter</option>
+    
     <option value="/samples/camel-eip/wire-tap/">wire-tap</option>
+    
+    <option value="/samples/camel-eip/message-reliability/">message-reliability</option>
+    
+    <option value="/samples/camel-eip/message-filter/">message-filter</option>
+    
+    <option value="/samples/camel-eip/content-based-router/">content-based-router</option>
     
     <option value="/samples/camel-eip/content-enricher/">content-enricher</option>
     
@@ -165,13 +165,21 @@
     
     <option value="/samples/camel-eip/normalizer/">normalizer</option>
     
-    <option value="/samples/soap/">sample-soap</option>
+    <option value="/samples/camel-eip/message-dispatcher/">message-dispatcher</option>
+    
+    <option value="/samples/camel-eip/polling-consumer/">polling-consumer</option>
+    
+    <option value="/samples/camel-eip/idempotent-receiver/">idempotent-receiver</option>
+    
+    <option value="/samples/camel-eip/outbox-pattern/">outbox-pattern</option>
+    
+    <option value="/samples/jms/">sample-jms</option>
     
     <option value="/samples/http-loadtest/">sample-http-loadtest</option>
     
-    <option value="/samples/ftp/">sample-ftp</option>
+    <option value="/samples/http-static-response/">sample-http-static-response</option>
     
-    <option value="/samples/soap-static-response/">sample-soap-static-response</option>
+    <option value="/samples/ftp/">sample-ftp</option>
     
     <option value="/samples/soap-wsaddressing/">sample-soap-wsaddressing</option>
     
@@ -179,11 +187,11 @@
     
     <option value="/samples/soap-ssl/">sample-soap-ssl</option>
     
-    <option value="/samples/soap-wssecurity/">sample-soap-wssecurity</option>
+    <option value="/samples/soap/">sample-soap</option>
     
     <option value="/samples/mail/">sample-mail</option>
     
-    <option value="/samples/jms/">sample-jms</option>
+    <option value="/samples/soap-wssecurity/">sample-soap-wssecurity</option>
     
     <option value="/samples/kafka/">sample-kafka</option>
     
@@ -209,7 +217,7 @@
     
     <option value="/samples/http-basic-auth/">sample-http-basic-auth</option>
     
-    <option value="/samples/http-static-response/">sample-http-static-response</option>
+    <option value="/samples/soap-static-response/">sample-soap-static-response</option>
     
     <option value="/samples/gradle/">sample-gradle</option>
     
@@ -530,6 +538,9 @@ Here is the test on Quarkus:</p>
         <span class="o">);</span>
 
         <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"load-balancer-demo"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+        <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">resetRouteStats</span><span class="o">(</span><span class="n">camelContext</span><span class="o">,</span> <span class="s">"load-balancer-demo"</span><span class="o">,</span>
+                <span class="s">"fulfillment-center-east"</span><span class="o">,</span> <span class="s">"fulfillment-center-central"</span><span class="o">,</span>
+                <span class="s">"fulfillment-center-west"</span><span class="o">));</span>
 
         <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
             <span class="n">iterate</span><span class="o">()</span>
@@ -544,10 +555,10 @@ Here is the test on Quarkus:</p>
                 <span class="o">)</span>
         <span class="o">);</span>
 
-        <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">assertProcessedExchanges</span><span class="o">(</span><span class="s">"load-balancer-demo"</span><span class="o">,</span> <span class="n">it</span> <span class="o">-&gt;</span> <span class="n">it</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
-        <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">assertProcessedExchanges</span><span class="o">(</span><span class="s">"fulfillment-center-east"</span><span class="o">,</span> <span class="n">it</span> <span class="o">-&gt;</span> <span class="n">it</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
-        <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">assertProcessedExchanges</span><span class="o">(</span><span class="s">"fulfillment-center-central"</span><span class="o">,</span> <span class="n">it</span> <span class="o">-&gt;</span> <span class="n">it</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
-        <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">assertProcessedExchanges</span><span class="o">(</span><span class="s">"fulfillment-center-west"</span><span class="o">,</span> <span class="n">it</span> <span class="o">-&gt;</span> <span class="n">it</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+        <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">verifyCompletedExchanges</span><span class="o">(</span><span class="s">"load-balancer-demo"</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+        <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">verifyCompletedExchanges</span><span class="o">(</span><span class="s">"fulfillment-center-east"</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+        <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">verifyCompletedExchanges</span><span class="o">(</span><span class="s">"fulfillment-center-central"</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+        <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">verifyCompletedExchanges</span><span class="o">(</span><span class="s">"fulfillment-center-west"</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
@@ -573,72 +584,47 @@ Sending exactly three, with round-robin, guarantees that each fulfillment center
 <h2 id="the-then-phase--verifying-distribution">The then phase — verifying distribution</h2>
 
 <p>The <code class="highlighter-rouge">then</code> phase is where the load-balancer-specific verification happens.
-It consists of four <code class="highlighter-rouge">assertProcessedExchanges</code> calls:</p>
+It consists of four <code class="highlighter-rouge">verifyCompletedExchanges</code> calls:</p>
 
 <ol>
   <li>
-<code class="highlighter-rouge">load-balancer-demo</code> must have processed at least 3 exchanges — confirming all three messages were consumed from Kafka and routed.</li>
+<code class="highlighter-rouge">load-balancer-demo</code> must have completed exactly 3 exchanges — confirming all three messages were consumed from Kafka and routed.</li>
   <li>
-<code class="highlighter-rouge">fulfillment-center-east</code> must have processed at least 1 exchange.</li>
+<code class="highlighter-rouge">fulfillment-center-east</code> must have completed exactly 1 exchange.</li>
   <li>
-<code class="highlighter-rouge">fulfillment-center-central</code> must have processed at least 1 exchange.</li>
+<code class="highlighter-rouge">fulfillment-center-central</code> must have completed exactly 1 exchange.</li>
   <li>
-<code class="highlighter-rouge">fulfillment-center-west</code> must have processed at least 1 exchange.</li>
+<code class="highlighter-rouge">fulfillment-center-west</code> must have completed exactly 1 exchange.</li>
 </ol>
 
-<p>The use of <code class="highlighter-rouge">it -&gt; it &gt;= 1</code> rather than <code class="highlighter-rouge">it -&gt; it == 1</code> is deliberate.
-While round-robin guarantees exactly one message per center when sending three, previous test runs in the same JVM (other test classes also send to the load-balanced topic) may have already incremented the counters.
-Using <code class="highlighter-rouge">&gt;= 1</code> makes the assertion resilient to execution order within the test suite.</p>
+<p>The <code class="highlighter-rouge">resetRouteStats</code> call in the <code class="highlighter-rouge">given</code> phase zeroes out exchange counters before the test runs, enabling exact-count assertions.
+Round-robin guarantees exactly one message per center when sending three, and the reset ensures counters from earlier tests in the suite do not pollute the assertions.</p>
 
 <p>If any of the four assertions fail — for example, if a bug in the route configuration accidentally sent all three messages to East — the test catches it immediately.</p>
 
 <h1 id="verifying-route-execution-with-camels-management-api">Verifying route execution with Camel’s management API</h1>
 
-<p>The <code class="highlighter-rouge">assertProcessedExchanges</code> utility is the core verification mechanism for the load balancer test.
-It inspects Camel’s internal route statistics through the JMX management API:</p>
+<p>The <code class="highlighter-rouge">verifyCompletedExchanges</code> utility is the core verification mechanism for the load balancer test.
+It uses Citrus’s built-in Camel route statistics verification DSL:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">EipTestSupport</span> <span class="kd">extends</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
 
-    <span class="k">default</span> <span class="n">TestActionBuilder</span><span class="o">&lt;?&gt;</span> <span class="n">assertProcessedExchanges</span><span class="o">(</span>
-            <span class="n">String</span> <span class="n">routeId</span><span class="o">,</span> <span class="n">Predicate</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span> <span class="n">check</span><span class="o">,</span> <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">default</span> <span class="n">TestActionBuilder</span><span class="o">&lt;?&gt;</span> <span class="n">verifyCompletedExchanges</span><span class="o">(</span>
+            <span class="n">String</span> <span class="n">routeId</span><span class="o">,</span> <span class="kt">long</span> <span class="n">count</span><span class="o">,</span> <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">return</span> <span class="nf">repeatOnError</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">20</span><span class="o">)</span>
                 <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
-                    <span class="n">context</span> <span class="o">-&gt;</span> <span class="o">{</span>
-                        <span class="n">ManagedCamelContext</span> <span class="n">managedContext</span> <span class="o">=</span> <span class="n">camelContext</span>
-                                <span class="o">.</span><span class="na">getCamelContextExtension</span><span class="o">()</span>
-                                <span class="o">.</span><span class="na">getContextPlugin</span><span class="o">(</span><span class="n">ManagedCamelContext</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-                        <span class="n">ManagedRouteMBean</span> <span class="n">routeMBean</span> <span class="o">=</span>
-                                <span class="n">managedContext</span><span class="o">.</span><span class="na">getManagedRoute</span><span class="o">(</span><span class="n">routeId</span><span class="o">);</span>
-
-                        <span class="k">if</span> <span class="o">(</span><span class="n">routeMBean</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-                            <span class="kt">long</span> <span class="n">failed</span> <span class="o">=</span> <span class="n">routeMBean</span><span class="o">.</span><span class="na">getExchangesFailed</span><span class="o">();</span>
-                            <span class="k">if</span> <span class="o">(</span><span class="n">failed</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-                                <span class="k">throw</span> <span class="k">new</span> <span class="nf">ValidationException</span><span class="o">(</span>
-                                    <span class="s">"Route '%s' has %d failed exchanges"</span>
-                                        <span class="o">.</span><span class="na">formatted</span><span class="o">(</span><span class="n">routeId</span><span class="o">,</span> <span class="n">failed</span><span class="o">));</span>
-                            <span class="o">}</span>
-                            <span class="kt">long</span> <span class="n">completed</span> <span class="o">=</span> <span class="n">routeMBean</span><span class="o">.</span><span class="na">getExchangesCompleted</span><span class="o">();</span>
-                            <span class="k">if</span> <span class="o">(!</span><span class="n">check</span><span class="o">.</span><span class="na">test</span><span class="o">(</span><span class="n">completed</span><span class="o">))</span> <span class="o">{</span>
-                                <span class="k">throw</span> <span class="k">new</span> <span class="nf">ValidationException</span><span class="o">(</span>
-                                    <span class="s">"Route '%s' has %d completed exchanges"</span>
-                                        <span class="o">.</span><span class="na">formatted</span><span class="o">(</span><span class="n">routeId</span><span class="o">,</span> <span class="n">completed</span><span class="o">));</span>
-                            <span class="o">}</span>
-                        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-                            <span class="k">throw</span> <span class="k">new</span> <span class="nf">CitrusRuntimeException</span><span class="o">(</span>
-                                <span class="s">"No managed route for routeId '%s'"</span>
-                                    <span class="o">.</span><span class="na">formatted</span><span class="o">(</span><span class="n">routeId</span><span class="o">));</span>
-                        <span class="o">}</span>
-                    <span class="o">}</span>
+                    <span class="n">camel</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">camelContext</span><span class="o">(</span><span class="n">camelContext</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">route</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">verifyRouteStats</span><span class="o">(</span><span class="n">routeId</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">completed</span><span class="o">(</span><span class="n">count</span><span class="o">)</span>
                 <span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The utility retrieves the <code class="highlighter-rouge">ManagedRouteMBean</code> for the given route ID and checks two counters.
-First, it verifies that no exchanges failed — a load balancer that silently drops a message to a failing endpoint should not pass the test.
-Then it verifies the completed count against the provided predicate.</p>
+<p>The <code class="highlighter-rouge">camel().route().verifyRouteStats(routeId).completed(count)</code> call checks that the route completed exactly the specified number of exchanges.</p>
 
 <p>The <code class="highlighter-rouge">repeatOnError</code> wrapper retries up to 20 times with one-second pauses.
 This accommodates the asynchronous nature of Kafka-based processing: after sending three messages, there is a delay before all three have been consumed, routed through the load balancer, and fully processed by the downstream centers.
@@ -659,8 +645,7 @@ If the test sends messages before the route’s consumer is ready, the messages 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">default</span> <span class="n">TestActionBuilder</span><span class="o">&lt;?&gt;</span> <span class="n">waitForCamelRouteStarted</span><span class="o">(</span>
         <span class="n">String</span> <span class="n">routeId</span><span class="o">,</span> <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">return</span> <span class="nf">repeatOnError</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">20</span><span class="o">)</span>
             <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
                 <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">(</span><span class="n">camelContext</span><span class="o">)</span>
                         <span class="o">.</span><span class="na">controlBus</span><span class="o">()</span>
@@ -839,7 +824,7 @@ The runtime adapter is the only difference — <code class="highlighter-rouge">c
 <span class="nt">&lt;/dependency&gt;</span>
 </code></pre></div></div>
 
-<p>The <code class="highlighter-rouge">citrus-camel</code> module provides the Control Bus integration used in <code class="highlighter-rouge">waitForCamelRouteStarted</code> and the managed route bean access in <code class="highlighter-rouge">assertProcessedExchanges</code>.
+<p>The <code class="highlighter-rouge">citrus-camel</code> module provides the Control Bus integration used in <code class="highlighter-rouge">waitForCamelRouteStarted</code> and the route statistics verification in <code class="highlighter-rouge">verifyCompletedExchanges</code>.
 The <code class="highlighter-rouge">citrus-kafka</code> module provides the Kafka send actions.
 The <code class="highlighter-rouge">citrus-testcontainers</code> module manages the Docker Compose lifecycle for the Kafka broker.</p>
 
@@ -869,9 +854,9 @@ Unlike content-based routing where a single message reveals the routing decision
   <li>
 <strong>Multi-message send with a loop</strong> — A <code class="highlighter-rouge">for</code> loop sends three messages, one for each downstream endpoint in the round-robin cycle. Each message gets a fresh <code class="highlighter-rouge">id</code> via <code class="highlighter-rouge">citrus:randomNumber(4)</code>, ensuring unique order identities.</li>
   <li>
-<strong>Route-level exchange assertions</strong> — Four <code class="highlighter-rouge">assertProcessedExchanges</code> calls verify the distribution: the load balancer route processed all three messages, and each fulfillment center received at least one. This proves the round-robin strategy is working.</li>
+<strong>Route-level exchange verification</strong> — Four <code class="highlighter-rouge">verifyCompletedExchanges</code> calls verify the distribution: the load balancer route processed all three messages, and each fulfillment center received exactly one. Combined with <code class="highlighter-rouge">resetRouteStats</code>, this proves the round-robin strategy is working with exact counts.</li>
   <li>
-<strong>Failure detection</strong> — The <code class="highlighter-rouge">assertProcessedExchanges</code> utility checks for failed exchanges before checking completed counts. If a downstream center threw an exception, the test fails immediately with a clear error — not a silent miscount.</li>
+<strong>Failure detection</strong> — The <code class="highlighter-rouge">verifyCompletedExchanges</code> utility uses Citrus’s route statistics verification, which checks for failed exchanges before checking completed counts. If a downstream center threw an exception, the test fails immediately with a clear error — not a silent miscount.</li>
   <li>
 <strong>Retry-tolerant verification</strong> — The <code class="highlighter-rouge">repeatOnError</code> wrapper accommodates the delay between sending Kafka messages and the route completing its processing, retrying assertions until the counters stabilize.</li>
   <li>
@@ -982,27 +967,12 @@ Unlike content-based routing where a single message reveals the routing decision
       
       
       <li class="">
-        <a href="/samples/camel-eip/message-filter/">message-filter</a>
-      </li>
-      
-      
-      <li class="">
-        <a href="/samples/camel-eip/message-reliability/">message-reliability</a>
-      </li>
-      
-      
-      <li class="">
         <a href="/samples/camel-eip/messaging-bridge/">messaging-bridge</a>
       </li>
       
       
       <li class="">
-        <a href="/samples/camel-eip/content-based-router/">content-based-router</a>
-      </li>
-      
-      
-      <li class="">
-        <a href="/samples/camel-eip/splitter/">splitter</a>
+        <a href="/samples/camel-eip/routing-slip/">routing-slip</a>
       </li>
       
       
@@ -1012,12 +982,27 @@ Unlike content-based routing where a single message reveals the routing decision
       
       
       <li class="">
-        <a href="/samples/camel-eip/routing-slip/">routing-slip</a>
+        <a href="/samples/camel-eip/splitter/">splitter</a>
       </li>
       
       
       <li class="">
         <a href="/samples/camel-eip/wire-tap/">wire-tap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/message-reliability/">message-reliability</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/message-filter/">message-filter</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/content-based-router/">content-based-router</a>
       </li>
       
       
@@ -1051,6 +1036,26 @@ Unlike content-based routing where a single message reveals the routing decision
       </li>
       
       
+      <li class="">
+        <a href="/samples/camel-eip/message-dispatcher/">message-dispatcher</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/polling-consumer/">polling-consumer</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/idempotent-receiver/">idempotent-receiver</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/outbox-pattern/">outbox-pattern</a>
+      </li>
+      
+      
     </ul>
 
     <h4>ENDPOINTS</h4>
@@ -1058,7 +1063,7 @@ Unlike content-based routing where a single message reveals the routing decision
       
       
       <li class="">
-        <a href="/samples/soap/">sample-soap</a>
+        <a href="/samples/jms/">sample-jms</a>
       </li>
       
       
@@ -1068,12 +1073,12 @@ Unlike content-based routing where a single message reveals the routing decision
       
       
       <li class="">
-        <a href="/samples/ftp/">sample-ftp</a>
+        <a href="/samples/http-static-response/">sample-http-static-response</a>
       </li>
       
       
       <li class="">
-        <a href="/samples/soap-static-response/">sample-soap-static-response</a>
+        <a href="/samples/ftp/">sample-ftp</a>
       </li>
       
       
@@ -1093,7 +1098,7 @@ Unlike content-based routing where a single message reveals the routing decision
       
       
       <li class="">
-        <a href="/samples/soap-wssecurity/">sample-soap-wssecurity</a>
+        <a href="/samples/soap/">sample-soap</a>
       </li>
       
       
@@ -1103,7 +1108,7 @@ Unlike content-based routing where a single message reveals the routing decision
       
       
       <li class="">
-        <a href="/samples/jms/">sample-jms</a>
+        <a href="/samples/soap-wssecurity/">sample-soap-wssecurity</a>
       </li>
       
       
@@ -1168,7 +1173,7 @@ Unlike content-based routing where a single message reveals the routing decision
       
       
       <li class="">
-        <a href="/samples/http-static-response/">sample-http-static-response</a>
+        <a href="/samples/soap-static-response/">sample-soap-static-response</a>
       </li>
       
       

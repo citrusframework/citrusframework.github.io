@@ -1,0 +1,1634 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 5.0.1">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus main branch" href="https://github.com/citrusframework/citrus/commits/main.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="stylesheet" href="/css/tabbed.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/atom-one-light.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+  <script src="/js/tabbed.js"></script>
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="samples">
+    <div class="grid">
+
+      <div class="samples-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the samples…</option>
+    <option value="/samples/">Overview</option>
+    <option value="/samples/todo-app/">TodoList App</option>
+    <option value="/samples/run/">Running</option>
+    
+    
+    <option value="/samples/javaconfig/">sample-javaconfig</option>
+    
+    <option value="/samples/annotation-config/">sample-annotation-config</option>
+    
+    <option value="/samples/reporting/">sample-reporting</option>
+    
+    <option value="/samples/kubernetes/">sample-kubernetes</option>
+    
+    <option value="/samples/docker/">sample-docker</option>
+    
+    <option value="/samples/selenium/">sample-selenium</option>
+    
+    <option value="/samples/quarkus/">sample-quarkus</option>
+    
+    <option value="/samples/jbang/">sample-jbang</option>
+    
+    <option value="/samples/cucumber/">sample-cucumber</option>
+    
+    <option value="/samples/apache-camel/">sample-camel-context</option>
+    
+    <option value="/samples/camel-eip/messaging-bridge/">messaging-bridge</option>
+    
+    <option value="/samples/camel-eip/routing-slip/">routing-slip</option>
+    
+    <option value="/samples/camel-eip/load-balancer/">load-balancer</option>
+    
+    <option value="/samples/camel-eip/splitter/">splitter</option>
+    
+    <option value="/samples/camel-eip/wire-tap/">wire-tap</option>
+    
+    <option value="/samples/camel-eip/message-reliability/">message-reliability</option>
+    
+    <option value="/samples/camel-eip/message-filter/">message-filter</option>
+    
+    <option value="/samples/camel-eip/content-based-router/">content-based-router</option>
+    
+    <option value="/samples/camel-eip/content-enricher/">content-enricher</option>
+    
+    <option value="/samples/camel-eip/content-filter/">content-filter</option>
+    
+    <option value="/samples/camel-eip/message-translator/">message-translator</option>
+    
+    <option value="/samples/camel-eip/resequencer/">resequencer</option>
+    
+    <option value="/samples/camel-eip/aggregator/">aggregator</option>
+    
+    <option value="/samples/camel-eip/normalizer/">normalizer</option>
+    
+    <option value="/samples/camel-eip/message-dispatcher/">message-dispatcher</option>
+    
+    <option value="/samples/camel-eip/polling-consumer/">polling-consumer</option>
+    
+    <option value="/samples/camel-eip/idempotent-receiver/">idempotent-receiver</option>
+    
+    <option value="/samples/camel-eip/outbox-pattern/">outbox-pattern</option>
+    
+    <option value="/samples/jms/">sample-jms</option>
+    
+    <option value="/samples/http-loadtest/">sample-http-loadtest</option>
+    
+    <option value="/samples/http-static-response/">sample-http-static-response</option>
+    
+    <option value="/samples/ftp/">sample-ftp</option>
+    
+    <option value="/samples/soap-wsaddressing/">sample-soap-wsaddressing</option>
+    
+    <option value="/samples/rmi/">sample-rmi</option>
+    
+    <option value="/samples/soap-ssl/">sample-soap-ssl</option>
+    
+    <option value="/samples/soap/">sample-soap</option>
+    
+    <option value="/samples/mail/">sample-mail</option>
+    
+    <option value="/samples/soap-wssecurity/">sample-soap-wssecurity</option>
+    
+    <option value="/samples/kafka/">sample-kafka</option>
+    
+    <option value="/samples/wsdl/">sample-wsdl</option>
+    
+    <option value="/samples/openapi/">sample-swagger</option>
+    
+    <option value="/samples/jdbc/">sample-jdbc</option>
+    
+    <option value="/samples/soap-mtom/">sample-soap-mtom</option>
+    
+    <option value="/samples/soap-attachment/">sample-soap-attachment</option>
+    
+    <option value="/samples/sftp/">sample-sftp</option>
+    
+    <option value="/samples/https/">sample-https</option>
+    
+    <option value="/samples/scp/">sample-scp</option>
+    
+    <option value="/samples/http/">sample-http</option>
+    
+    <option value="/samples/dynamic-endpoints/">sample-dynamic-endpoints</option>
+    
+    <option value="/samples/http-basic-auth/">sample-http-basic-auth</option>
+    
+    <option value="/samples/soap-static-response/">sample-soap-static-response</option>
+    
+    <option value="/samples/gradle/">sample-gradle</option>
+    
+    <option value="/samples/message-store/">sample-message-store</option>
+    
+    <option value="/samples/behavior/">sample-behavior</option>
+    
+    <option value="/samples/dictionaries/">sample-dictionaries</option>
+    
+    <option value="/samples/camel-quarkus-kafka/">camel-kafka</option>
+    
+    <option value="/samples/camel-quarkus-knative/">camel-knative</option>
+    
+    <option value="/samples/camel-quarkus-knative-ssl/">camel-knative-ssl</option>
+    
+    <option value="/samples/camel-quarkus-rest-to-soap/">camel-rest-to-soap</option>
+    
+    <option value="/samples/camel-quarkus-rest-dsl/">camel-rest-dsl</option>
+    
+    <option value="/samples/quarkus-event-driven-kafka/">event-driven-kafka</option>
+    
+    <option value="/samples/quarkus-event-driven-jms/">event-driven-jms</option>
+    
+    <option value="/samples/camel-quarkus-postgresql/">camel-postgresql</option>
+    
+    <option value="/samples/camel-quarkus-aws-s3-kafka/">camel-aws-s3-kafka</option>
+    
+    <option value="/samples/camel-quarkus-cxf-soap-client/">camel-cxf-soap-client</option>
+    
+    <option value="/samples/camel-quarkus-cxf-soap/">camel-cxf-soap</option>
+    
+    <option value="/samples/camel-quarkus-direct-http/">camel-direct-http</option>
+    
+    <option value="/samples/camel-quarkus-direct/">camel-direct</option>
+    
+    <option value="/samples/camel-quarkus-openapi-server/">camel-openapi-server</option>
+    
+    <option value="/samples/camel-quarkus-mqtt/">camel-mqtt</option>
+    
+    <option value="/samples/camel-quarkus-jms/">camel-jms</option>
+    
+    <option value="/samples/camel-quarkus-file-inbox/">camel-file-inbox</option>
+    
+    <option value="/samples/camel-quarkus-file-outbox/">camel-file-outbox</option>
+    
+    <option value="/samples/testng/">sample-testng</option>
+    
+    <option value="/samples/dataprovider/">sample-dataprovider</option>
+    
+    <option value="/samples/junit5/">sample-junit5</option>
+    
+    <option value="/samples/junit/">sample-junit</option>
+    
+    <option value="/samples/hamcrest/">sample-hamcrest</option>
+    
+    <option value="/samples/sql/">sample-sql</option>
+    
+    <option value="/samples/http-form-data/">sample-http-form-data</option>
+    
+    <option value="/samples/oxm/">sample-oxm</option>
+    
+    <option value="/samples/json/">sample-json</option>
+    
+    <option value="/samples/databind/">sample-databind</option>
+    
+    <option value="/samples/xml/">sample-xml</option>
+    
+    <option value="/samples/xhtml/">sample-xhtml</option>
+    
+    <option value="/samples/binary/">sample-binary</option>
+    
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+  <h2>
+    
+    
+    <img src="/img/icons/camel.png" style="width: 1em;height: 1em;" alt="">
+    
+    Testing the Polling Consumer Pattern with Citrus
+    <a href="/samples/camel-eip/polling-consumer/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <div class="right">
+    
+    <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/master/examples/polling-consumer" target="_blank">
+      <i class="fa fa-pencil"></i> View source code
+    </a>
+    
+    
+  </div>
+  <span class="post-category">
+    <span class="label">
+      samples
+    </span>
+  </span>
+  <div class="post-content">
+    <p>Most messaging patterns covered so far — content-based routers, splitters, message filters — are event-driven.
+A message arrives, the route processes it, and an output appears almost immediately.
+But not every data source can push messages to your application.
+Files land in a directory at unpredictable intervals.
+Database tables receive new rows from legacy systems that have no event notification mechanism.
+FTP servers accumulate uploads silently.
+In all these cases, the only way to detect new data is to <em>ask</em> for it — repeatedly, on a schedule.</p>
+
+<p>The <a href="https://www.enterpriseintegrationpatterns.com/patterns/messaging/PollingConsumer.html">Polling Consumer</a> pattern, described by Hohpe and Woolf, addresses this.
+A polling consumer actively checks a channel for new messages at regular intervals.
+It initiates the receive operation — the messaging system does not push messages to it.
+This is the “pull” model, and it is the natural fit for sources that cannot push: file systems, databases, FTP servers, and scheduled batch jobs.</p>
+
+<p><a href="https://camel.apache.org">Apache Camel</a> implements the polling consumer in two ways.
+Many components — <code class="highlighter-rouge">file</code>, <code class="highlighter-rouge">ftp</code>, <code class="highlighter-rouge">sql</code>, <code class="highlighter-rouge">timer</code> — are polling consumers by nature: the <code class="highlighter-rouge">from()</code> endpoint polls its source on a configurable schedule.
+For event-driven routes that occasionally need to pull a message on demand, Camel provides <code class="highlighter-rouge">pollEnrich()</code>, which combines a timer trigger with an explicit poll from a second endpoint.</p>
+
+<p>Testing a polling consumer introduces a timing challenge that event-driven patterns do not have.
+The test cannot simply send a message and expect an immediate response.
+It must account for the poll interval: the message might sit in the source for seconds before the consumer picks it up.
+Integration tests with <a href="https://citrusframework.org">Citrus</a> handle this gracefully — retry-based assertions naturally accommodate the poll delay without resorting to brittle fixed sleeps.</p>
+
+<p>This post covers two variants of the polling consumer: a timer-driven poll from Kafka using <code class="highlighter-rouge">pollEnrich()</code>, and a SQL polling consumer that reads rows from PostgreSQL and publishes them to Kafka.
+The SQL variant is the more realistic and interesting case — it demonstrates database-to-messaging integration with automatic row status updates, and the Citrus test exercises both the database and Kafka sides of the pipeline.</p>
+
+<h2 id="the-scenario">The scenario</h2>
+
+<h3 id="timer-based-polling-consumer">Timer-based polling consumer</h3>
+
+<p>A timer fires every 10 seconds.
+On each tick, the route uses <code class="highlighter-rouge">pollEnrich()</code> to check a Kafka topic for a waiting message.
+If a message is available, it is consumed and logged.
+If no message arrives within a 5-second timeout, the route logs that the poll cycle was empty.
+This is the simplest form of polling consumer — useful when you want explicit control over <em>when</em> messages are consumed, rather than letting the Kafka client manage the fetch loop.</p>
+
+<h3 id="sql-polling-consumer">SQL polling consumer</h3>
+
+<p>A more common real-world scenario: a database table receives new order rows from a legacy system.
+There is no event notification — the Camel route polls the <code class="highlighter-rouge">orders.orders</code> table every 30 seconds, looking for rows with <code class="highlighter-rouge">status = 'PLACED'</code>.
+Each row is read, marshalled to JSON, and published to a Kafka topic.
+After successful processing, the <code class="highlighter-rouge">onConsume</code> query updates the row’s status to <code class="highlighter-rouge">'PROCESSING'</code>, preventing it from being picked up again on the next poll.</p>
+
+<p>This two-phase behavior — read then update — is exactly what makes the SQL polling consumer worth testing end-to-end.
+A unit test could verify the SQL query syntax, but only an integration test proves that the row is actually read, the Kafka message is published, and the status update takes effect.</p>
+
+<h2 id="the-camel-routes">The Camel routes</h2>
+
+<h3 id="timer-based-polling-consumer-1">Timer-based polling consumer</h3>
+
+<h4 id="quarkus">Quarkus</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ApplicationScoped</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PollingConsumerRoute</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">from</span><span class="o">(</span><span class="s">"timer:poll-trigger?period=10000&amp;delay=5000"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"polling-consumer"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Polling consumer triggered — checking for messages …"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">pollEnrich</span><span class="o">(</span><span class="s">"kafka:eip.consumer.poll?brokers={{kafka.brokers}}"</span>
+                <span class="o">+</span> <span class="s">"&amp;groupId=polling-consumer&amp;autoOffsetReset=earliest"</span><span class="o">,</span> <span class="mi">5000</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">choice</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">body</span><span class="o">().</span><span class="na">isNull</span><span class="o">())</span>
+                    <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"No message available during this poll cycle"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">otherwise</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">unmarshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Polled message: order ${body[order_id]}, type=${body[event_type]}"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">end</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The route starts from a <code class="highlighter-rouge">timer</code>, not from Kafka directly.
+Every 10 seconds, the timer fires and <code class="highlighter-rouge">pollEnrich()</code> attempts to pull one message from the <code class="highlighter-rouge">eip.consumer.poll</code> topic with a 5-second timeout.
+The <code class="highlighter-rouge">choice()</code> block handles the two outcomes: a null body means no message was available; otherwise, the message is deserialized and logged.</p>
+
+<p>This is fundamentally different from a standard <code class="highlighter-rouge">from("kafka:...")</code> consumer.
+A Kafka <code class="highlighter-rouge">from()</code> consumer is event-driven — Camel manages the poll loop internally and your route logic runs whenever messages arrive.
+With <code class="highlighter-rouge">pollEnrich()</code>, <em>you</em> control the timing: the poll happens exactly when the timer fires, and at most one message is consumed per cycle.</p>
+
+<h4 id="spring-boot">Spring Boot</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PollingConsumerRoute</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">from</span><span class="o">(</span><span class="s">"timer:poll-trigger?period=10000&amp;delay=5000"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"polling-consumer"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Polling consumer triggered — checking for messages …"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">pollEnrich</span><span class="o">(</span><span class="s">"kafka:eip.consumer.poll?brokers={{kafka.brokers}}"</span>
+                <span class="o">+</span> <span class="s">"&amp;groupId=polling-consumer&amp;autoOffsetReset=earliest"</span><span class="o">,</span> <span class="mi">5000</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">choice</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">body</span><span class="o">().</span><span class="na">isNull</span><span class="o">())</span>
+                    <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"No message available during this poll cycle"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">otherwise</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">unmarshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Polled message: order ${body[order_id]}, type=${body[event_type]}"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">end</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">@Component</code> replaces <code class="highlighter-rouge">@ApplicationScoped</code> — the route logic is identical.</p>
+
+<h3 id="sql-polling-consumer-1">SQL polling consumer</h3>
+
+<p>The SQL polling consumer is more interesting because it bridges two infrastructure systems: PostgreSQL as the source and Kafka as the destination.</p>
+
+<h4 id="quarkus-1">Quarkus</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ApplicationScoped</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SqlPollingConsumerRoute</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">from</span><span class="o">(</span><span class="s">"sql:SELECT * FROM orders.orders WHERE status = 'PLACED' "</span>
+                <span class="o">+</span> <span class="s">"ORDER BY created_at LIMIT 10"</span>
+                <span class="o">+</span> <span class="s">"?delay=30000"</span>
+                <span class="o">+</span> <span class="s">"&amp;onConsume=UPDATE orders.orders SET status = 'PROCESSING' WHERE id = :#id"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"polling-consumer-sql"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"SQL Polling Consumer — processing order from DB: "</span>
+                <span class="o">+</span> <span class="s">"id=${body[id]}, customer=${body[customer_id]}, sku=${body[item_sku]}"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">marshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed?brokers={{kafka.brokers}}"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">from("sql:...")</code> component is a natural polling consumer.
+Every 30 seconds (controlled by <code class="highlighter-rouge">delay=30000</code>), Camel executes the SELECT query and creates one exchange per row.
+The query selects at most 10 rows ordered by creation time — this is the backpressure mechanism, preventing the consumer from overwhelming the downstream Kafka topic during a burst of new orders.</p>
+
+<p>The <code class="highlighter-rouge">onConsume</code> parameter is the key to reliable processing.
+After each row is <em>successfully</em> processed (marshalled to JSON and published to Kafka), Camel executes the UPDATE statement, setting the row’s status from <code class="highlighter-rouge">'PLACED'</code> to <code class="highlighter-rouge">'PROCESSING'</code>.
+The <code class="highlighter-rouge">:#id</code> syntax is a named parameter that Camel resolves from the current exchange body — it refers to the <code class="highlighter-rouge">id</code> column of the row being processed.
+On the next poll cycle, the WHERE clause <code class="highlighter-rouge">status = 'PLACED'</code> naturally excludes already-processed rows.</p>
+
+<h4 id="spring-boot-1">Spring Boot</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SqlPollingConsumerRoute</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">from</span><span class="o">(</span><span class="s">"sql:SELECT * FROM orders.orders WHERE status = 'PLACED' "</span>
+                <span class="o">+</span> <span class="s">"ORDER BY created_at LIMIT 10"</span>
+                <span class="o">+</span> <span class="s">"?delay=30000"</span>
+                <span class="o">+</span> <span class="s">"&amp;onConsume=UPDATE orders.orders SET status = 'PROCESSING' WHERE id = :#id"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"polling-consumer-sql"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"SQL Polling Consumer — processing order from DB: "</span>
+                <span class="o">+</span> <span class="s">"id=${body[id]}, customer=${body[customer_id]}, sku=${body[item_sku]}"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">marshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed?brokers={{kafka.brokers}}"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="yaml-dsl">YAML DSL</h4>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">route</span><span class="pi">:</span>
+    <span class="na">id</span><span class="pi">:</span> <span class="s">polling-consumer-sql</span>
+    <span class="na">from</span><span class="pi">:</span>
+      <span class="na">uri</span><span class="pi">:</span> <span class="s2">"</span><span class="s">sql:SELECT</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">FROM</span><span class="nv"> </span><span class="s">orders.orders</span><span class="nv"> </span><span class="s">WHERE</span><span class="nv"> </span><span class="s">status</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">'PLACED'</span><span class="nv"> </span><span class="s">ORDER</span><span class="nv"> </span><span class="s">BY</span><span class="nv"> </span><span class="s">created_at</span><span class="nv"> </span><span class="s">LIMIT</span><span class="nv"> </span><span class="s">10"</span>
+      <span class="na">parameters</span><span class="pi">:</span>
+        <span class="na">delay</span><span class="pi">:</span> <span class="s">30000</span>
+        <span class="na">onConsume</span><span class="pi">:</span> <span class="s2">"</span><span class="s">UPDATE</span><span class="nv"> </span><span class="s">orders.orders</span><span class="nv"> </span><span class="s">SET</span><span class="nv"> </span><span class="s">status</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">'PROCESSING'</span><span class="nv"> </span><span class="s">WHERE</span><span class="nv"> </span><span class="s">id</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">:#id"</span>
+      <span class="na">steps</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">log</span><span class="pi">:</span> <span class="s2">"</span><span class="s">SQL</span><span class="nv"> </span><span class="s">Polling</span><span class="nv"> </span><span class="s">Consumer</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">processing</span><span class="nv"> </span><span class="s">order</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">DB:</span><span class="nv"> </span><span class="s">id=${body[id]},</span><span class="nv"> </span><span class="s">customer=${body[customer_id]},</span><span class="nv"> </span><span class="s">sku=${body[item_sku]}"</span>
+        <span class="pi">-</span> <span class="na">marshal</span><span class="pi">:</span>
+            <span class="na">json</span><span class="pi">:</span>
+              <span class="na">library</span><span class="pi">:</span> <span class="s">Jackson</span>
+        <span class="pi">-</span> <span class="na">to</span><span class="pi">:</span>
+            <span class="na">uri</span><span class="pi">:</span> <span class="s2">"</span><span class="s">kafka:eip.orders.placed"</span>
+            <span class="na">parameters</span><span class="pi">:</span>
+              <span class="na">brokers</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{kafka.brokers}}"</span>
+</code></pre></div></div>
+
+<h3 id="polling-parameters">Polling parameters</h3>
+
+<p>Camel’s polling consumers share a common set of scheduling parameters:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">delay</code></td>
+      <td>Milliseconds between polls</td>
+      <td>500</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">maxMessagesPerPoll</code></td>
+      <td>Maximum messages to process per poll cycle</td>
+      <td>0 (unlimited)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">greedy</code></td>
+      <td>Poll again immediately if messages were found</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">sendEmptyMessageWhenIdle</code></td>
+      <td>Send an empty exchange if no messages found</td>
+      <td>false</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The <code class="highlighter-rouge">greedy</code> option is particularly useful for database polling.
+With <code class="highlighter-rouge">greedy=true</code> and a high <code class="highlighter-rouge">delay</code>, the consumer polls rapidly when rows are available but backs off to the long interval when the table is empty.
+This avoids the wasted CPU and database connections that come from aggressive short-interval polling on an empty table.</p>
+
+<h2 id="test-infrastructure">Test infrastructure</h2>
+
+<p>Both the timer-based and SQL polling consumers require Kafka.
+The SQL variant additionally needs PostgreSQL with a pre-initialized schema.
+The Docker Compose stack provisions both:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
+  <span class="na">kafka</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">docker.io/apache/kafka:latest</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">9092:9092"</span>
+    <span class="c1"># ... KRaft configuration ...</span>
+
+  <span class="na">kafka-ui</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">docker.io/provectuslabs/kafka-ui:latest</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">8090:8080"</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+      <span class="na">kafka</span><span class="pi">:</span>
+        <span class="na">condition</span><span class="pi">:</span> <span class="s">service_healthy</span>
+
+  <span class="na">postgres</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">docker.io/library/postgres:16-alpine</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">5432:5432"</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">POSTGRES_DB=eip</span>
+      <span class="pi">-</span> <span class="s">POSTGRES_USER=eip</span>
+      <span class="pi">-</span> <span class="s">POSTGRES_PASSWORD=eip</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">./postgres/init-schemas.sql:/docker-entrypoint-initdb.d/01-init-schemas.sql:Z</span>
+</code></pre></div></div>
+
+<p>The PostgreSQL container mounts an init script that creates the <code class="highlighter-rouge">orders.orders</code> table:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">SCHEMA</span> <span class="n">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">orders</span><span class="p">;</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">orders</span><span class="p">.</span><span class="n">orders</span> <span class="p">(</span>
+    <span class="n">id</span>          <span class="n">SERIAL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">customer_id</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span>    <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">item_sku</span>    <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span>    <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">quantity</span>    <span class="n">INTEGER</span>        <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">amount</span>      <span class="n">DECIMAL</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">status</span>      <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>    <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">'PLACED'</span><span class="p">,</span>
+    <span class="n">created_at</span>  <span class="k">TIMESTAMP</span>      <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="n">NOW</span><span class="p">()</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">status</code> column defaults to <code class="highlighter-rouge">'PLACED'</code> — exactly what the SQL polling consumer’s WHERE clause looks for.
+New rows inserted during the test are immediately eligible for polling.</p>
+
+<p>A <code class="highlighter-rouge">BeforeSuite</code> action starts the compose stack and waits for readiness; an <code class="highlighter-rouge">AfterSuite</code> tears it down.</p>
+
+<h3 id="quarkus-infrastructure-setup">Quarkus infrastructure setup</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@CitrusConfiguration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EipInfraSetup</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
+
+    <span class="nd">@BindToRegistry</span>
+    <span class="kd">public</span> <span class="n">BeforeSuite</span> <span class="nf">startInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">beforeSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">up</span><span class="o">(</span><span class="s">"_infra/compose.yaml"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">autoRemove</span><span class="o">(</span><span class="kc">false</span><span class="o">),</span>
+                    <span class="n">waitFor</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">http</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://localhost:8090"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">25</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@BindToRegistry</span>
+    <span class="kd">public</span> <span class="n">AfterSuite</span> <span class="nf">stopInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">afterSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">().</span><span class="na">stop</span><span class="o">(),</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">down</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="spring-boot-infrastructure-setup">Spring Boot infrastructure setup</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EipInfraSetup</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">BeforeSuite</span> <span class="nf">startInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">beforeSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">up</span><span class="o">(</span><span class="s">"_infra/compose.yaml"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">autoRemove</span><span class="o">(</span><span class="kc">false</span><span class="o">),</span>
+                    <span class="n">waitFor</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">http</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://localhost:8090"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">25</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">AfterSuite</span> <span class="nf">stopInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">afterSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">().</span><span class="na">stop</span><span class="o">(),</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">down</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">waitFor().http()</code> blocks until the Kafka UI is reachable on port 8090 — a reliable proxy for both Kafka and PostgreSQL being ready, since the UI depends on Kafka and all containers share the same compose lifecycle.</p>
+
+<h2 id="shared-test-utilities">Shared test utilities</h2>
+
+<p>Both runtimes implement the <code class="highlighter-rouge">EipTestSupport</code> interface, which provides two reusable methods.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">EipTestSupport</span> <span class="kd">extends</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
+
+    <span class="k">default</span> <span class="n">TestActionBuilder</span><span class="o">&lt;?&gt;</span> <span class="n">waitForCamelRouteStarted</span><span class="o">(</span>
+            <span class="n">String</span> <span class="n">routeId</span><span class="o">,</span> <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">repeatOnError</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">20</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">(</span><span class="n">camelContext</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">controlBus</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">route</span><span class="o">(</span><span class="n">routeId</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">status</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">result</span><span class="o">(</span><span class="n">ServiceStatus</span><span class="o">.</span><span class="na">Started</span><span class="o">),</span>
+                    <span class="n">sleep</span><span class="o">().</span><span class="na">seconds</span><span class="o">(</span><span class="mi">5</span><span class="o">)</span>
+                <span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="k">default</span> <span class="n">TestActionBuilder</span><span class="o">&lt;?&gt;</span> <span class="n">verifyCompletedExchanges</span><span class="o">(</span>
+            <span class="n">String</span> <span class="n">routeId</span><span class="o">,</span> <span class="kt">long</span> <span class="n">count</span><span class="o">,</span> <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">repeatOnError</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">20</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">camel</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">camelContext</span><span class="o">(</span><span class="n">camelContext</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">route</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">verifyRouteStats</span><span class="o">(</span><span class="n">routeId</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">completed</span><span class="o">(</span><span class="n">count</span><span class="o">)</span>
+                <span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="k">default</span> <span class="n">TestActionBuilder</span><span class="o">&lt;?&gt;</span> <span class="n">verifyRouteStats</span><span class="o">(</span>
+            <span class="n">String</span> <span class="n">routeId</span><span class="o">,</span> <span class="n">String</span> <span class="n">stats</span><span class="o">,</span> <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">repeatOnError</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">20</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">camel</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">camelContext</span><span class="o">(</span><span class="n">camelContext</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">route</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">verifyRouteStats</span><span class="o">(</span><span class="n">routeId</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">stats</span><span class="o">(</span><span class="n">stats</span><span class="o">)</span>
+                <span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">waitForCamelRouteStarted</code> uses Camel’s Control Bus to poll the route status every second, up to 20 retries.
+It ensures the polling consumer route is fully started before the test produces any test data.
+Without this guard, an order inserted into PostgreSQL might be missed if the SQL consumer has not yet started polling.</p>
+
+<p><code class="highlighter-rouge">verifyCompletedExchanges</code> uses Citrus’s built-in Camel route statistics verification to check how many exchanges a route has completed.
+For more flexible assertions, <code class="highlighter-rouge">verifyRouteStats</code> accepts a JSON stats expression with Citrus validation matchers — for example, <code class="highlighter-rouge">@greaterThan(1)@</code> to verify that a route processed more than one exchange.
+This is particularly useful for polling consumer tests where there is no explicit output message to receive — the timer-based polling consumer logs the message but does not forward it to another endpoint.
+The assertion verifies that the route actually ran and successfully processed exchanges without errors.</p>
+
+<h2 id="the-polling-consumer-test">The polling consumer test</h2>
+
+<p>The timer-based polling consumer test is straightforward: send a message to Kafka, then wait for the poll cycle to pick it up.</p>
+
+<h3 id="quarkus-test">Quarkus test</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@QuarkusTest</span>
+<span class="nd">@CitrusSupport</span>
+<span class="kd">class</span> <span class="nc">EipTests</span> <span class="kd">implements</span> <span class="n">EipTestSupport</span> <span class="o">{</span>
+
+    <span class="nd">@CitrusResource</span>
+    <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
+
+    <span class="nd">@Inject</span>
+    <span class="nd">@BindToRegistry</span>
+    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="nd">@Nested</span>
+    <span class="kd">class</span> <span class="nc">PollingConsumerTest</span> <span class="o">{</span>
+
+        <span class="nd">@Test</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldPollMessageFromKafka</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+                <span class="n">createVariables</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"eventType"</span><span class="o">,</span> <span class="s">"order_placed"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mi">99</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"polling-consumer"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+                <span class="n">send</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.consumer.poll"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">verifyRouteStats</span><span class="o">(</span><span class="s">"polling-consumer"</span><span class="o">,</span> <span class="s">"""
+                    { "</span><span class="n">exchangesCompleted</span><span class="s">": "</span><span class="nd">@greaterThan</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span><span class="err">@</span><span class="s">" }
+                """</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Given — set up variables and wait for the route.</strong>
+The test generates a random order ID and sets up the event type and amount for the order template.
+It then waits for the <code class="highlighter-rouge">polling-consumer</code> route to reach <code class="highlighter-rouge">Started</code> status — important because the timer-driven route needs to be active and the <code class="highlighter-rouge">pollEnrich()</code> Kafka consumer group needs to be registered before a message can be consumed.</p>
+
+<p><strong>When — send an order to the polled topic.</strong>
+A single order message goes to <code class="highlighter-rouge">kafka:eip.consumer.poll</code> — the topic that the <code class="highlighter-rouge">pollEnrich()</code> call reads from.</p>
+
+<p><strong>Then — assert the route processed exchanges.</strong>
+The test does <em>not</em> try to receive the message from another Kafka topic, because the polling consumer route only logs the message — it does not forward it anywhere.
+Instead, it uses <code class="highlighter-rouge">verifyRouteStats</code> with a JSON stats expression <code class="highlighter-rouge">{ "exchangesCompleted": "@greaterThan(1)@" }</code>.
+The <code class="highlighter-rouge">@greaterThan(1)@</code> matcher checks that more than one exchange has completed on the <code class="highlighter-rouge">polling-consumer</code> route.
+Why more than one?
+Because the timer fires repeatedly, producing exchanges even when no message is available (the “no message” branch of the <code class="highlighter-rouge">choice()</code>).
+The assertion retries until the route has processed at least one exchange <em>with</em> the polled message.</p>
+
+<p>This is a key insight for testing polling consumers: when the consumer only logs or internally processes the message without producing output on a verifiable endpoint, Camel’s management API provides an alternative verification path.</p>
+
+<h3 id="spring-boot-test">Spring Boot test</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@SpringBootTest</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="n">ConsumerPatternsApplication</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="nd">@CamelSpringBootTest</span>
+<span class="nd">@CitrusSpringSupport</span>
+<span class="nd">@ContextConfiguration</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="o">{</span> <span class="n">EipInfraSetup</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">CitrusSpringConfig</span><span class="o">.</span><span class="na">class</span> <span class="o">})</span>
+<span class="kd">class</span> <span class="nc">EipTests</span> <span class="kd">implements</span> <span class="n">EipTestSupport</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="nd">@Nested</span>
+    <span class="kd">class</span> <span class="nc">PollingConsumerTest</span> <span class="o">{</span>
+
+        <span class="nd">@CitrusResource</span>
+        <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
+
+        <span class="nd">@Test</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldPollMessageFromKafka</span><span class="o">()</span> <span class="o">{</span>
+            <span class="c1">// Test logic is identical to the Quarkus variant</span>
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+                <span class="n">createVariables</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"eventType"</span><span class="o">,</span> <span class="s">"order_placed"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mi">99</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"polling-consumer"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+                <span class="n">send</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.consumer.poll"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">verifyRouteStats</span><span class="o">(</span><span class="s">"polling-consumer"</span><span class="o">,</span> <span class="s">"""
+                    { "</span><span class="n">exchangesCompleted</span><span class="s">": "</span><span class="nd">@greaterThan</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span><span class="err">@</span><span class="s">" }
+                """</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="the-sql-polling-consumer-test">The SQL polling consumer test</h2>
+
+<p>The SQL polling consumer test is richer than the timer-based variant because it exercises two infrastructure systems and verifies three things: a database row is consumed, a Kafka message is produced, and the database row is updated.</p>
+
+<h3 id="quarkus-test-1">Quarkus test</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@QuarkusTest</span>
+<span class="nd">@CitrusSupport</span>
+<span class="kd">class</span> <span class="nc">EipTests</span> <span class="kd">implements</span> <span class="n">EipTestSupport</span> <span class="o">{</span>
+
+    <span class="nd">@CitrusResource</span>
+    <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
+
+    <span class="nd">@Inject</span>
+    <span class="nd">@BindToRegistry</span>
+    <span class="n">DataSource</span> <span class="n">dataSource</span><span class="o">;</span>
+
+    <span class="nd">@Inject</span>
+    <span class="nd">@BindToRegistry</span>
+    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="nd">@Nested</span>
+    <span class="kd">class</span> <span class="nc">SqlPollingConsumerTest</span> <span class="o">{</span>
+
+        <span class="nd">@Test</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldHandleSqlPollingConsumer</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+                <span class="n">createVariables</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mi">40</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"polling-consumer-sql"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+                <span class="n">sql</span><span class="o">(</span><span class="n">dataSource</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">statement</span><span class="o">(</span><span class="s">"INSERT INTO orders.orders "</span>
+                        <span class="o">+</span> <span class="s">"(customer_id, item_sku, quantity, amount) "</span>
+                        <span class="o">+</span> <span class="s">"VALUES ('CUST-00org.citrusframework:citrus-website:pom:1.1.0', 'SKU-org.citrusframework:citrus-website:pom:1.1.0', '1', '${amount}')"</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+                <span class="n">repeatOnError</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">15</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                        <span class="n">receive</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed?consumerGroup=citrus-placed-group"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"""
+                            {
+                              "</span><span class="n">id</span><span class="s">": "</span><span class="nd">@variable</span><span class="o">(</span><span class="n">order_id</span><span class="o">)</span><span class="err">@</span><span class="s">",
+                              "</span><span class="n">customer_id</span><span class="s">": "</span><span class="n">CUST</span><span class="o">-</span><span class="mo">00</span><span class="n">org</span><span class="o">.</span><span class="na">citrusframework</span><span class="o">:</span><span class="n">citrus</span><span class="o">-</span><span class="nl">website:pom:</span><span class="mf">1.1</span><span class="o">.</span><span class="mi">0</span><span class="s">",
+                              "</span><span class="n">status</span><span class="s">": "</span><span class="n">PLACED</span><span class="s">",
+                              "</span><span class="n">amount</span><span class="s">": ${amount}.0,
+                              "</span><span class="n">item_sku</span><span class="s">": "</span><span class="n">SKU</span><span class="o">-</span><span class="n">org</span><span class="o">.</span><span class="na">citrusframework</span><span class="o">:</span><span class="n">citrus</span><span class="o">-</span><span class="nl">website:pom:</span><span class="mf">1.1</span><span class="o">.</span><span class="mi">0</span><span class="s">",
+                              "</span><span class="n">quantity</span><span class="s">": 1,
+                              "</span><span class="n">created_at</span><span class="s">": "</span><span class="nd">@ignore</span><span class="err">@</span><span class="s">"
+                            }
+                            """</span><span class="o">)</span>
+                    <span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+                <span class="n">sql</span><span class="o">(</span><span class="n">dataSource</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">query</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">statement</span><span class="o">(</span><span class="s">"SELECT status FROM orders.orders WHERE id = '${order_id}'"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"status"</span><span class="o">,</span> <span class="s">"PROCESSING"</span><span class="o">)</span>
+            <span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This test has four distinct phases that exercise the full polling consumer pipeline.</p>
+
+<p><strong>Given — set up variables and wait for the route.</strong>
+The test generates a random ID used to construct a unique <code class="highlighter-rouge">customer_id</code> and <code class="highlighter-rouge">item_sku</code>.
+It then waits for the <code class="highlighter-rouge">polling-consumer-sql</code> route to start.
+This is critical: if the INSERT happens before the route is polling, the row could sit in the database for an entire 30-second delay interval before being picked up.</p>
+
+<p><strong>When — insert a test row into PostgreSQL.</strong>
+Citrus’s <code class="highlighter-rouge">sql()</code> action inserts a new order row directly into the <code class="highlighter-rouge">orders.orders</code> table.
+The row is created with the default status <code class="highlighter-rouge">'PLACED'</code>, making it immediately eligible for the SQL consumer’s SELECT query.
+This is the test’s “stimulus” — instead of sending a message to a Kafka topic, the test writes directly to the database that the polling consumer reads from.</p>
+
+<p><strong>Then (first assertion) — verify the Kafka output.</strong>
+The test receives a message from <code class="highlighter-rouge">kafka:eip.orders.placed</code> — the topic that the SQL polling consumer publishes to.
+The <code class="highlighter-rouge">repeatOnError()</code> block retries up to 15 times with 1-second intervals, giving the poll cycle time to fire and process the row.</p>
+
+<p>The expected body is an inline JSON template that validates the row’s data.
+Two Citrus features are at work here:</p>
+
+<ul>
+  <li>
+<code class="highlighter-rouge">@variable(order_id)@</code> captures the database-generated <code class="highlighter-rouge">id</code> value into a Citrus variable named <code class="highlighter-rouge">order_id</code> rather than asserting a specific value. The ID is auto-generated by PostgreSQL’s <code class="highlighter-rouge">SERIAL</code> column, so the test cannot predict it in advance. By extracting it into a variable, the test can reference it in subsequent assertions.</li>
+  <li>
+<code class="highlighter-rouge">@ignore@</code> skips validation of the <code class="highlighter-rouge">created_at</code> timestamp, which depends on the database server’s clock.</li>
+</ul>
+
+<p><strong>Then (second assertion) — verify the database status update.</strong>
+The final <code class="highlighter-rouge">sql().query()</code> action reads the row back from PostgreSQL using the captured <code class="highlighter-rouge">${order_id}</code> and asserts that its status has changed from <code class="highlighter-rouge">'PLACED'</code> to <code class="highlighter-rouge">'PROCESSING'</code>.
+This verifies the <code class="highlighter-rouge">onConsume</code> query — the UPDATE that Camel executes after successfully processing each row.</p>
+
+<p>This second assertion is what makes the test truly end-to-end.
+Without it, you would know that the row was read and a Kafka message was produced, but you would not know whether the status update actually ran.
+A failure in the <code class="highlighter-rouge">onConsume</code> query would cause the same row to be processed again on the next poll cycle — a subtle bug that only an integration test covering both the read and the update can catch.</p>
+
+<h3 id="spring-boot-test-1">Spring Boot test</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@SpringBootTest</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="n">ConsumerPatternsApplication</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="nd">@CamelSpringBootTest</span>
+<span class="nd">@CitrusSpringSupport</span>
+<span class="nd">@ContextConfiguration</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="o">{</span> <span class="n">EipInfraSetup</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">CitrusSpringConfig</span><span class="o">.</span><span class="na">class</span> <span class="o">})</span>
+<span class="kd">class</span> <span class="nc">EipTests</span> <span class="kd">implements</span> <span class="n">EipTestSupport</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="n">DataSource</span> <span class="n">dataSource</span><span class="o">;</span>
+
+    <span class="nd">@Nested</span>
+    <span class="kd">class</span> <span class="nc">SqlPollingConsumerTest</span> <span class="o">{</span>
+
+        <span class="nd">@CitrusResource</span>
+        <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
+
+        <span class="nd">@Test</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldHandleSqlPollingConsumer</span><span class="o">()</span> <span class="o">{</span>
+            <span class="c1">// Test logic is identical to the Quarkus variant</span>
+            <span class="c1">// ...</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The test logic is identical.
+The differences are only in the test class annotations and dependency injection:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Concern</th>
+      <th>Quarkus</th>
+      <th>Spring Boot</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Test bootstrap</td>
+      <td><code class="highlighter-rouge">@QuarkusTest</code></td>
+      <td>
+<code class="highlighter-rouge">@SpringBootTest</code> + <code class="highlighter-rouge">@CamelSpringBootTest</code>
+</td>
+    </tr>
+    <tr>
+      <td>Citrus integration</td>
+      <td><code class="highlighter-rouge">@CitrusSupport</code></td>
+      <td><code class="highlighter-rouge">@CitrusSpringSupport</code></td>
+    </tr>
+    <tr>
+      <td>DataSource injection</td>
+      <td>
+<code class="highlighter-rouge">@Inject</code> + <code class="highlighter-rouge">@BindToRegistry</code>
+</td>
+      <td><code class="highlighter-rouge">@Autowired</code></td>
+    </tr>
+    <tr>
+      <td>CamelContext injection</td>
+      <td>
+<code class="highlighter-rouge">@Inject</code> + <code class="highlighter-rouge">@BindToRegistry</code>
+</td>
+      <td><code class="highlighter-rouge">@Autowired</code></td>
+    </tr>
+    <tr>
+      <td>TestCaseRunner scope</td>
+      <td>Class-level field</td>
+      <td>Nested class field with <code class="highlighter-rouge">@CitrusResource</code>
+</td>
+    </tr>
+    <tr>
+      <td>Infrastructure config</td>
+      <td>
+<code class="highlighter-rouge">@CitrusConfiguration</code> auto-discovered</td>
+      <td>
+<code class="highlighter-rouge">@ContextConfiguration</code> explicit</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="why-polling-consumer-tests-are-different">Why polling consumer tests are different</h2>
+
+<p>Polling consumer tests have characteristics that set them apart from event-driven pattern tests:</p>
+
+<p><strong>The poll interval is the test’s timing constraint.</strong>
+With an event-driven consumer, a message sent to Kafka is processed within milliseconds.
+With a polling consumer, the message sits in the source — a Kafka topic, a database table, a file directory — until the next poll cycle fires.
+The test must wait at least one full interval.
+Citrus’s <code class="highlighter-rouge">repeatOnError()</code> and <code class="highlighter-rouge">timeout</code> parameters handle this gracefully, retrying until the poll cycle picks up the test data.</p>
+
+<p><strong>The test produces input in a different medium than the route consumes.</strong>
+For the SQL polling consumer, the test does not send a Kafka message — it inserts a database row.
+The test and the route operate on different infrastructure: the test writes to PostgreSQL, the route reads from PostgreSQL and writes to Kafka, and the test verifies on Kafka.
+This cross-infrastructure flow is a natural fit for integration testing and would be impossible to verify with unit tests alone.</p>
+
+<p><strong>Side effects are first-class assertions.</strong>
+The <code class="highlighter-rouge">onConsume</code> status update is a side effect that is just as important as the Kafka output.
+The test verifies it explicitly with a SQL query after receiving the Kafka message.
+If the <code class="highlighter-rouge">onConsume</code> query fails silently, the row would be reprocessed on the next poll — a production bug that only a test covering both the output and the side effect can detect.</p>
+
+<p><strong><code class="highlighter-rouge">verifyRouteStats</code> provides a fallback verification path.</strong>
+When a polling consumer only logs messages internally (like the timer-based variant), there is no output endpoint to receive from.
+Citrus’s route statistics verification lets the test verify that the route processed exchanges without errors — a useful technique for any route that does not produce verifiable output on an external endpoint.</p>
+
+<h2 id="key-takeaways">Key takeaways</h2>
+
+<ul>
+  <li>
+<strong>Polling consumers are pull-based.</strong> They actively check for new data on a schedule, making them the right choice for sources that cannot push: databases, files, FTP, and scheduled batch jobs. The poll interval and <code class="highlighter-rouge">maxMessagesPerPoll</code> provide natural backpressure control.</li>
+  <li>
+<strong><code class="highlighter-rouge">pollEnrich()</code> turns any route into a polling consumer.</strong> A timer-triggered route with <code class="highlighter-rouge">pollEnrich()</code> gives you explicit control over <em>when</em> messages are consumed — useful when you need to decouple the consumption schedule from the source’s availability.</li>
+  <li>
+<strong>SQL polling with <code class="highlighter-rouge">onConsume</code> is a two-phase operation.</strong> The SELECT reads the row; the <code class="highlighter-rouge">onConsume</code> UPDATE marks it as processed. Both phases must be verified in the test — the Kafka output proves the read worked, and the SQL assertion proves the update ran.</li>
+  <li>
+<strong><code class="highlighter-rouge">@variable(name)@</code> captures dynamic values from the system under test.</strong> Database-generated IDs cannot be predicted by the test. Citrus’s variable extraction lets you capture these values from the first assertion and use them in subsequent verifications.</li>
+  <li>
+<strong><code class="highlighter-rouge">repeatOnError()</code> accommodates poll timing naturally.</strong> Rather than inserting fixed sleeps matching the poll interval, Citrus retries the assertion until it succeeds or the retry limit is reached — making tests both reliable and as fast as possible.</li>
+  <li>
+<strong><code class="highlighter-rouge">verifyRouteStats</code> verifies routes without external output.</strong> When a polling consumer only logs or internally processes messages, Citrus’s Camel route statistics verification provides exchange counts as an alternative verification mechanism, with support for flexible matchers like <code class="highlighter-rouge">@greaterThan()@</code>.</li>
+  <li>
+<strong>Three runtimes, one test pattern.</strong> Whether you run on Quarkus, Spring Boot, or YAML DSL with Camel JBang, the test structure — seed the source, wait for the poll, verify the output and side effects — stays the same. Only the bootstrap annotations and infrastructure wiring change.</li>
+</ul>
+
+  </div>
+</article>
+
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <h4>Samples</h4>
+    <ul>
+      <li class="">
+        <a href="/samples/">Overview</a>
+      </li>
+      <li class="">
+        <a href="/samples/todo-app">TodoList App</a>
+      </li>
+      <li class="">
+        <a href="/samples/run">Running</a>
+      </li>
+    </ul>
+    <h4>Configuration</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+
+      
+      
+      <li class="">
+        <a href="/samples/javaconfig/">sample-javaconfig</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/annotation-config/">sample-annotation-config</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/reporting/">sample-reporting</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>CONNECTORS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/kubernetes/">sample-kubernetes</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/docker/">sample-docker</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>DEMO</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus/">sample-quarkus</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jbang/">sample-jbang</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/cucumber/">sample-cucumber</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/apache-camel/">sample-camel-context</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>EIP</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/messaging-bridge/">messaging-bridge</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/routing-slip/">routing-slip</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/load-balancer/">load-balancer</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/splitter/">splitter</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/wire-tap/">wire-tap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/message-reliability/">message-reliability</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/message-filter/">message-filter</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/content-based-router/">content-based-router</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/content-enricher/">content-enricher</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/content-filter/">content-filter</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/message-translator/">message-translator</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/resequencer/">resequencer</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/aggregator/">aggregator</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/normalizer/">normalizer</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/message-dispatcher/">message-dispatcher</a>
+      </li>
+      
+      
+      <li class="current">
+        <a href="/samples/camel-eip/polling-consumer/">polling-consumer</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/idempotent-receiver/">idempotent-receiver</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/outbox-pattern/">outbox-pattern</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>ENDPOINTS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/jms/">sample-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-loadtest/">sample-http-loadtest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-static-response/">sample-http-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/ftp/">sample-ftp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-wsaddressing/">sample-soap-wsaddressing</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/rmi/">sample-rmi</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-ssl/">sample-soap-ssl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap/">sample-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/mail/">sample-mail</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-wssecurity/">sample-soap-wssecurity</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/kafka/">sample-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/wsdl/">sample-wsdl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/openapi/">sample-swagger</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jdbc/">sample-jdbc</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-mtom/">sample-soap-mtom</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-attachment/">sample-soap-attachment</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/sftp/">sample-sftp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/https/">sample-https</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/scp/">sample-scp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http/">sample-http</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dynamic-endpoints/">sample-dynamic-endpoints</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-basic-auth/">sample-http-basic-auth</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-static-response/">sample-soap-static-response</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>MISCELLANEOUS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/gradle/">sample-gradle</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/message-store/">sample-message-store</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/behavior/">sample-behavior</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dictionaries/">sample-dictionaries</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>QUARKUS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-kafka/">camel-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-knative/">camel-knative</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-knative-ssl/">camel-knative-ssl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-rest-to-soap/">camel-rest-to-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-rest-dsl/">camel-rest-dsl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus-event-driven-kafka/">event-driven-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus-event-driven-jms/">event-driven-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-postgresql/">camel-postgresql</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-aws-s3-kafka/">camel-aws-s3-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-cxf-soap-client/">camel-cxf-soap-client</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-cxf-soap/">camel-cxf-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-direct-http/">camel-direct-http</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-direct/">camel-direct</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-openapi-server/">camel-openapi-server</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-mqtt/">camel-mqtt</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-jms/">camel-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-file-inbox/">camel-file-inbox</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-file-outbox/">camel-file-outbox</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>RUNTIMES</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/testng/">sample-testng</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dataprovider/">sample-dataprovider</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/junit5/">sample-junit5</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/junit/">sample-junit</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>VALIDATION</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/hamcrest/">sample-hamcrest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/sql/">sample-sql</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-form-data/">sample-http-form-data</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/oxm/">sample-oxm</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/json/">sample-json</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/databind/">sample-databind</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xml/">sample-xml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xhtml/">sample-xhtml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/binary/">sample-binary</a>
+      </li>
+      
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/citrusframework/citrus/blob/master/LICENSE">MIT License</a>.</p>
+      <br>
+      <p>© 2026 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p> </p>
+      <br>
+      <br>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>

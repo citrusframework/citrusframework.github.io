@@ -890,8 +890,7 @@ Here is the route:</p>
 
         <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
             <span class="n">repeatOnError</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">15</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">15</span><span class="o">)</span>
                 <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
                     <span class="n">receive</span><span class="o">()</span>
                         <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed?consumerGroup=citrus-placed-group"</span><span class="o">)</span>
@@ -938,8 +937,7 @@ Here is the route:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
     <span class="n">repeatOnError</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">15</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">15</span><span class="o">)</span>
         <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
             <span class="n">receive</span><span class="o">()</span>
                 <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.placed?consumerGroup=citrus-placed-group"</span><span class="o">)</span>
@@ -1078,8 +1076,7 @@ In the sections before we have been using Java DSL that can be combined with arb
 
   <span class="c1"># Receive from Kafka and capture the generated ID</span>
   <span class="pi">-</span> <span class="na">repeatOnError</span><span class="pi">:</span>
-      <span class="na">until</span><span class="pi">:</span> <span class="s">i &gt;= 15</span>
-      <span class="na">autoSleep</span><span class="pi">:</span> <span class="s">1000</span>
+      <span class="na">times</span><span class="pi">:</span> <span class="s">15</span>
       <span class="na">actions</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="na">receive</span><span class="pi">:</span>
           <span class="na">endpoint</span><span class="pi">:</span> <span class="pi">&gt;-</span>
@@ -1173,8 +1170,7 @@ The route consumes a payment request from Kafka, writes a payment record and an 
         <span class="c1">// Verify the payment row was written</span>
         <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
             <span class="n">repeatOnError</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">15</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">15</span><span class="o">)</span>
                 <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
                     <span class="n">sql</span><span class="o">(</span><span class="n">dataSource</span><span class="o">)</span>
                         <span class="o">.</span><span class="na">query</span><span class="o">()</span>
@@ -1188,7 +1184,7 @@ The route consumes a payment request from Kafka, writes a payment record and an 
         <span class="c1">// Verify the outbox event was published to Kafka</span>
         <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
             <span class="n">repeatOnError</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">20</span><span class="o">)</span>
                 <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">2</span><span class="o">))</span>
                 <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
                     <span class="n">receive</span><span class="o">()</span>
@@ -1207,8 +1203,7 @@ The route consumes a payment request from Kafka, writes a payment record and an 
         <span class="c1">// Verify the outbox row was marked as published</span>
         <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
             <span class="n">repeatOnError</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">15</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">15</span><span class="o">)</span>
                 <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
                     <span class="n">sql</span><span class="o">(</span><span class="n">dataSource</span><span class="o">)</span>
                         <span class="o">.</span><span class="na">query</span><span class="o">()</span>
@@ -1263,7 +1258,7 @@ This is more reliable than relying on the application’s auto-DDL, which might 
   <li>
 <strong>YAML DSL database test</strong>: <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/14-consumer-patterns/yaml-dsl/test/sql-polling-consumer.citrus.it.yaml">sql-polling-consumer.citrus.it.yaml</a> with DataSource bean configuration.</li>
   <li>
-<strong>EipTestSupport</strong>: <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/14-consumer-patterns/quarkus/src/test/java/com/example/eip/consumers/EipTestSupport.java">EipTestSupport.java</a> with <code class="highlighter-rouge">assertProcessedExchanges</code> and <code class="highlighter-rouge">waitForCamelRouteStarted</code> helpers.</li>
+<strong>EipTestSupport</strong>: <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/examples/14-consumer-patterns/quarkus/src/test/java/com/example/eip/consumers/EipTestSupport.java">EipTestSupport.java</a> with <code class="highlighter-rouge">waitForCamelRouteStarted</code> helpers.</li>
 </ul>
 
 <p>Give it a try, and let us know what you think!</p>
@@ -1371,8 +1366,7 @@ Depending on the underlying framework our tests need runtime-specific wiring: di
     <span class="k">default</span> <span class="n">TestActionBuilder</span><span class="o">&lt;?&gt;</span> <span class="n">waitForCamelRouteStarted</span><span class="o">(</span>
             <span class="n">String</span> <span class="n">routeId</span><span class="o">,</span> <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">return</span> <span class="nf">repeatOnError</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">20</span><span class="o">)</span>
                 <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
                     <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">(</span><span class="n">camelContext</span><span class="o">)</span>
                             <span class="o">.</span><span class="na">controlBus</span><span class="o">()</span>
@@ -3392,7 +3386,7 @@ But there is an uncomfortable truth: if you only test the happy path, you have n
 How do you send a message that triggers a Dead Letter Channel? How do you verify that a duplicate was silently dropped? How do you assert on a route that logs an error but produces no output message? 
 These questions matter because reliability patterns are invisible until something breaks — and production is the worst place to discover they are misconfigured.</p>
 
-<p><a href="https://citrusframework.org">Citrus</a> provides the tools to test all of these scenarios: <code class="highlighter-rouge">repeatOnError</code> for polling DLQ topics, <code class="highlighter-rouge">assertProcessedExchanges</code> for verifying routes with no output topic, deterministic test data for triggering specific failure conditions, and ordered test methods for building stateful test sequences like deduplication.</p>
+<p><a href="https://citrusframework.org">Citrus</a> provides the tools to test all of these scenarios: <code class="highlighter-rouge">repeatOnError</code> for polling DLQ topics, <code class="highlighter-rouge">camel().route().verifyRouteStats()</code> for verifying routes with no output topic, deterministic test data for triggering specific failure conditions, and ordered test methods for building stateful test sequences like deduplication.</p>
 
 <p><img src="/img/assets/testing-reliability-patterns/featured.png" alt="Citrus" width="700px" class="center-image">
 <em>AI generated with Google Gemini</em></p>
@@ -3498,8 +3492,7 @@ This can lead to flaky tests where the timing condition may succeed or fail in a
 
     <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
         <span class="n">repeatOnError</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">10</span><span class="o">)</span>
             <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
                 <span class="n">receive</span><span class="o">()</span>
                     <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.dlq?consumerGroup=citrus-dlq-group"</span><span class="o">)</span>
@@ -3799,9 +3792,9 @@ You do not need to send enough failing messages to trip the circuit first.</p>
 
 <ul>
   <li>
-<strong>Dead Letter Channels</strong>: use deterministic IDs that trigger exceptions, <code class="highlighter-rouge">repeatOnError</code> to poll the DLQ, and assert only on original message fields.</li>
+<strong>Dead Letter Channels</strong>: use deterministic IDs that trigger exceptions, <code class="highlighter-rouge">repeatOnError()</code> to poll the DLQ, and assert only on original message fields.</li>
   <li>
-<strong>Idempotent Receivers</strong>: use ordered tests to seed and re-send the same event, and <code class="highlighter-rouge">assertProcessedExchanges</code> to verify the duplicate handler.</li>
+<strong>Idempotent Receivers</strong>: use ordered tests to seed and re-send the same event, and <code class="highlighter-rouge">camel().route().verifyRouteStats()</code> to verify the duplicate handler.</li>
   <li>
 <strong>Circuit Breakers</strong>: use deterministic IDs that trigger fallback paths, and verify that the fallback output matches the pre-failure message.</li>
   <li>
@@ -3942,8 +3935,7 @@ This prevents unstable tests where consumer startup timing conditions play a rol
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">default</span> <span class="n">TestActionBuilder</span><span class="o">&lt;?&gt;</span> <span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="n">String</span> <span class="n">routeId</span><span class="o">,</span> <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">return</span> <span class="nf">repeatOnError</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">20</span><span class="o">)</span>
             <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
                 <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">(</span><span class="n">camelContext</span><span class="o">)</span>
                         <span class="o">.</span><span class="na">controlBus</span><span class="o">()</span>

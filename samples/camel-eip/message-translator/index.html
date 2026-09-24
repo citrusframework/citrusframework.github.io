@@ -137,21 +137,21 @@
     
     <option value="/samples/apache-camel/">sample-camel-context</option>
     
-    <option value="/samples/camel-eip/message-filter/">message-filter</option>
-    
-    <option value="/samples/camel-eip/message-reliability/">message-reliability</option>
-    
     <option value="/samples/camel-eip/messaging-bridge/">messaging-bridge</option>
-    
-    <option value="/samples/camel-eip/content-based-router/">content-based-router</option>
-    
-    <option value="/samples/camel-eip/splitter/">splitter</option>
-    
-    <option value="/samples/camel-eip/load-balancer/">load-balancer</option>
     
     <option value="/samples/camel-eip/routing-slip/">routing-slip</option>
     
+    <option value="/samples/camel-eip/load-balancer/">load-balancer</option>
+    
+    <option value="/samples/camel-eip/splitter/">splitter</option>
+    
     <option value="/samples/camel-eip/wire-tap/">wire-tap</option>
+    
+    <option value="/samples/camel-eip/message-reliability/">message-reliability</option>
+    
+    <option value="/samples/camel-eip/message-filter/">message-filter</option>
+    
+    <option value="/samples/camel-eip/content-based-router/">content-based-router</option>
     
     <option value="/samples/camel-eip/content-enricher/">content-enricher</option>
     
@@ -165,13 +165,21 @@
     
     <option value="/samples/camel-eip/normalizer/">normalizer</option>
     
-    <option value="/samples/soap/">sample-soap</option>
+    <option value="/samples/camel-eip/message-dispatcher/">message-dispatcher</option>
+    
+    <option value="/samples/camel-eip/polling-consumer/">polling-consumer</option>
+    
+    <option value="/samples/camel-eip/idempotent-receiver/">idempotent-receiver</option>
+    
+    <option value="/samples/camel-eip/outbox-pattern/">outbox-pattern</option>
+    
+    <option value="/samples/jms/">sample-jms</option>
     
     <option value="/samples/http-loadtest/">sample-http-loadtest</option>
     
-    <option value="/samples/ftp/">sample-ftp</option>
+    <option value="/samples/http-static-response/">sample-http-static-response</option>
     
-    <option value="/samples/soap-static-response/">sample-soap-static-response</option>
+    <option value="/samples/ftp/">sample-ftp</option>
     
     <option value="/samples/soap-wsaddressing/">sample-soap-wsaddressing</option>
     
@@ -179,11 +187,11 @@
     
     <option value="/samples/soap-ssl/">sample-soap-ssl</option>
     
-    <option value="/samples/soap-wssecurity/">sample-soap-wssecurity</option>
+    <option value="/samples/soap/">sample-soap</option>
     
     <option value="/samples/mail/">sample-mail</option>
     
-    <option value="/samples/jms/">sample-jms</option>
+    <option value="/samples/soap-wssecurity/">sample-soap-wssecurity</option>
     
     <option value="/samples/kafka/">sample-kafka</option>
     
@@ -209,7 +217,7 @@
     
     <option value="/samples/http-basic-auth/">sample-http-basic-auth</option>
     
-    <option value="/samples/http-static-response/">sample-http-static-response</option>
+    <option value="/samples/soap-static-response/">sample-soap-static-response</option>
     
     <option value="/samples/gradle/">sample-gradle</option>
     
@@ -548,8 +556,7 @@ The <code class="highlighter-rouge">afterSuite</code> stops the Camel context fi
     <span class="k">default</span> <span class="n">TestActionBuilder</span><span class="o">&lt;?&gt;</span> <span class="n">waitForCamelRouteStarted</span><span class="o">(</span>
             <span class="n">String</span> <span class="n">routeId</span><span class="o">,</span> <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">return</span> <span class="nf">repeatOnError</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">20</span><span class="o">)</span>
                 <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
                     <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">(</span><span class="n">camelContext</span><span class="o">)</span>
                             <span class="o">.</span><span class="na">controlBus</span><span class="o">()</span>
@@ -896,32 +903,7 @@ The integration test catches all of these.</p>
       
       
       <li class="">
-        <a href="/samples/camel-eip/message-filter/">message-filter</a>
-      </li>
-      
-      
-      <li class="">
-        <a href="/samples/camel-eip/message-reliability/">message-reliability</a>
-      </li>
-      
-      
-      <li class="">
         <a href="/samples/camel-eip/messaging-bridge/">messaging-bridge</a>
-      </li>
-      
-      
-      <li class="">
-        <a href="/samples/camel-eip/content-based-router/">content-based-router</a>
-      </li>
-      
-      
-      <li class="">
-        <a href="/samples/camel-eip/splitter/">splitter</a>
-      </li>
-      
-      
-      <li class="">
-        <a href="/samples/camel-eip/load-balancer/">load-balancer</a>
       </li>
       
       
@@ -931,7 +913,32 @@ The integration test catches all of these.</p>
       
       
       <li class="">
+        <a href="/samples/camel-eip/load-balancer/">load-balancer</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/splitter/">splitter</a>
+      </li>
+      
+      
+      <li class="">
         <a href="/samples/camel-eip/wire-tap/">wire-tap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/message-reliability/">message-reliability</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/message-filter/">message-filter</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/content-based-router/">content-based-router</a>
       </li>
       
       
@@ -965,6 +972,26 @@ The integration test catches all of these.</p>
       </li>
       
       
+      <li class="">
+        <a href="/samples/camel-eip/message-dispatcher/">message-dispatcher</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/polling-consumer/">polling-consumer</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/idempotent-receiver/">idempotent-receiver</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/outbox-pattern/">outbox-pattern</a>
+      </li>
+      
+      
     </ul>
 
     <h4>ENDPOINTS</h4>
@@ -972,7 +999,7 @@ The integration test catches all of these.</p>
       
       
       <li class="">
-        <a href="/samples/soap/">sample-soap</a>
+        <a href="/samples/jms/">sample-jms</a>
       </li>
       
       
@@ -982,12 +1009,12 @@ The integration test catches all of these.</p>
       
       
       <li class="">
-        <a href="/samples/ftp/">sample-ftp</a>
+        <a href="/samples/http-static-response/">sample-http-static-response</a>
       </li>
       
       
       <li class="">
-        <a href="/samples/soap-static-response/">sample-soap-static-response</a>
+        <a href="/samples/ftp/">sample-ftp</a>
       </li>
       
       
@@ -1007,7 +1034,7 @@ The integration test catches all of these.</p>
       
       
       <li class="">
-        <a href="/samples/soap-wssecurity/">sample-soap-wssecurity</a>
+        <a href="/samples/soap/">sample-soap</a>
       </li>
       
       
@@ -1017,7 +1044,7 @@ The integration test catches all of these.</p>
       
       
       <li class="">
-        <a href="/samples/jms/">sample-jms</a>
+        <a href="/samples/soap-wssecurity/">sample-soap-wssecurity</a>
       </li>
       
       
@@ -1082,7 +1109,7 @@ The integration test catches all of these.</p>
       
       
       <li class="">
-        <a href="/samples/http-static-response/">sample-http-static-response</a>
+        <a href="/samples/soap-static-response/">sample-soap-static-response</a>
       </li>
       
       

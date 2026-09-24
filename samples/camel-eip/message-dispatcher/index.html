@@ -1,0 +1,1589 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 5.0.1">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus main branch" href="https://github.com/citrusframework/citrus/commits/main.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="stylesheet" href="/css/tabbed.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/atom-one-light.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+  <script src="/js/tabbed.js"></script>
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="samples">
+    <div class="grid">
+
+      <div class="samples-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the samples…</option>
+    <option value="/samples/">Overview</option>
+    <option value="/samples/todo-app/">TodoList App</option>
+    <option value="/samples/run/">Running</option>
+    
+    
+    <option value="/samples/javaconfig/">sample-javaconfig</option>
+    
+    <option value="/samples/annotation-config/">sample-annotation-config</option>
+    
+    <option value="/samples/reporting/">sample-reporting</option>
+    
+    <option value="/samples/kubernetes/">sample-kubernetes</option>
+    
+    <option value="/samples/docker/">sample-docker</option>
+    
+    <option value="/samples/selenium/">sample-selenium</option>
+    
+    <option value="/samples/quarkus/">sample-quarkus</option>
+    
+    <option value="/samples/jbang/">sample-jbang</option>
+    
+    <option value="/samples/cucumber/">sample-cucumber</option>
+    
+    <option value="/samples/apache-camel/">sample-camel-context</option>
+    
+    <option value="/samples/camel-eip/messaging-bridge/">messaging-bridge</option>
+    
+    <option value="/samples/camel-eip/routing-slip/">routing-slip</option>
+    
+    <option value="/samples/camel-eip/load-balancer/">load-balancer</option>
+    
+    <option value="/samples/camel-eip/splitter/">splitter</option>
+    
+    <option value="/samples/camel-eip/wire-tap/">wire-tap</option>
+    
+    <option value="/samples/camel-eip/message-reliability/">message-reliability</option>
+    
+    <option value="/samples/camel-eip/message-filter/">message-filter</option>
+    
+    <option value="/samples/camel-eip/content-based-router/">content-based-router</option>
+    
+    <option value="/samples/camel-eip/content-enricher/">content-enricher</option>
+    
+    <option value="/samples/camel-eip/content-filter/">content-filter</option>
+    
+    <option value="/samples/camel-eip/message-translator/">message-translator</option>
+    
+    <option value="/samples/camel-eip/resequencer/">resequencer</option>
+    
+    <option value="/samples/camel-eip/aggregator/">aggregator</option>
+    
+    <option value="/samples/camel-eip/normalizer/">normalizer</option>
+    
+    <option value="/samples/camel-eip/message-dispatcher/">message-dispatcher</option>
+    
+    <option value="/samples/camel-eip/polling-consumer/">polling-consumer</option>
+    
+    <option value="/samples/camel-eip/idempotent-receiver/">idempotent-receiver</option>
+    
+    <option value="/samples/camel-eip/outbox-pattern/">outbox-pattern</option>
+    
+    <option value="/samples/jms/">sample-jms</option>
+    
+    <option value="/samples/http-loadtest/">sample-http-loadtest</option>
+    
+    <option value="/samples/http-static-response/">sample-http-static-response</option>
+    
+    <option value="/samples/ftp/">sample-ftp</option>
+    
+    <option value="/samples/soap-wsaddressing/">sample-soap-wsaddressing</option>
+    
+    <option value="/samples/rmi/">sample-rmi</option>
+    
+    <option value="/samples/soap-ssl/">sample-soap-ssl</option>
+    
+    <option value="/samples/soap/">sample-soap</option>
+    
+    <option value="/samples/mail/">sample-mail</option>
+    
+    <option value="/samples/soap-wssecurity/">sample-soap-wssecurity</option>
+    
+    <option value="/samples/kafka/">sample-kafka</option>
+    
+    <option value="/samples/wsdl/">sample-wsdl</option>
+    
+    <option value="/samples/openapi/">sample-swagger</option>
+    
+    <option value="/samples/jdbc/">sample-jdbc</option>
+    
+    <option value="/samples/soap-mtom/">sample-soap-mtom</option>
+    
+    <option value="/samples/soap-attachment/">sample-soap-attachment</option>
+    
+    <option value="/samples/sftp/">sample-sftp</option>
+    
+    <option value="/samples/https/">sample-https</option>
+    
+    <option value="/samples/scp/">sample-scp</option>
+    
+    <option value="/samples/http/">sample-http</option>
+    
+    <option value="/samples/dynamic-endpoints/">sample-dynamic-endpoints</option>
+    
+    <option value="/samples/http-basic-auth/">sample-http-basic-auth</option>
+    
+    <option value="/samples/soap-static-response/">sample-soap-static-response</option>
+    
+    <option value="/samples/gradle/">sample-gradle</option>
+    
+    <option value="/samples/message-store/">sample-message-store</option>
+    
+    <option value="/samples/behavior/">sample-behavior</option>
+    
+    <option value="/samples/dictionaries/">sample-dictionaries</option>
+    
+    <option value="/samples/camel-quarkus-kafka/">camel-kafka</option>
+    
+    <option value="/samples/camel-quarkus-knative/">camel-knative</option>
+    
+    <option value="/samples/camel-quarkus-knative-ssl/">camel-knative-ssl</option>
+    
+    <option value="/samples/camel-quarkus-rest-to-soap/">camel-rest-to-soap</option>
+    
+    <option value="/samples/camel-quarkus-rest-dsl/">camel-rest-dsl</option>
+    
+    <option value="/samples/quarkus-event-driven-kafka/">event-driven-kafka</option>
+    
+    <option value="/samples/quarkus-event-driven-jms/">event-driven-jms</option>
+    
+    <option value="/samples/camel-quarkus-postgresql/">camel-postgresql</option>
+    
+    <option value="/samples/camel-quarkus-aws-s3-kafka/">camel-aws-s3-kafka</option>
+    
+    <option value="/samples/camel-quarkus-cxf-soap-client/">camel-cxf-soap-client</option>
+    
+    <option value="/samples/camel-quarkus-cxf-soap/">camel-cxf-soap</option>
+    
+    <option value="/samples/camel-quarkus-direct-http/">camel-direct-http</option>
+    
+    <option value="/samples/camel-quarkus-direct/">camel-direct</option>
+    
+    <option value="/samples/camel-quarkus-openapi-server/">camel-openapi-server</option>
+    
+    <option value="/samples/camel-quarkus-mqtt/">camel-mqtt</option>
+    
+    <option value="/samples/camel-quarkus-jms/">camel-jms</option>
+    
+    <option value="/samples/camel-quarkus-file-inbox/">camel-file-inbox</option>
+    
+    <option value="/samples/camel-quarkus-file-outbox/">camel-file-outbox</option>
+    
+    <option value="/samples/testng/">sample-testng</option>
+    
+    <option value="/samples/dataprovider/">sample-dataprovider</option>
+    
+    <option value="/samples/junit5/">sample-junit5</option>
+    
+    <option value="/samples/junit/">sample-junit</option>
+    
+    <option value="/samples/hamcrest/">sample-hamcrest</option>
+    
+    <option value="/samples/sql/">sample-sql</option>
+    
+    <option value="/samples/http-form-data/">sample-http-form-data</option>
+    
+    <option value="/samples/oxm/">sample-oxm</option>
+    
+    <option value="/samples/json/">sample-json</option>
+    
+    <option value="/samples/databind/">sample-databind</option>
+    
+    <option value="/samples/xml/">sample-xml</option>
+    
+    <option value="/samples/xhtml/">sample-xhtml</option>
+    
+    <option value="/samples/binary/">sample-binary</option>
+    
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+  <h2>
+    
+    
+    <img src="/img/icons/camel.png" style="width: 1em;height: 1em;" alt="">
+    
+    Testing the Message Dispatcher Pattern with Citrus
+    <a href="/samples/camel-eip/message-dispatcher/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <div class="right">
+    
+    <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/master/examples/message-dispatcher" target="_blank">
+      <i class="fa fa-pencil"></i> View source code
+    </a>
+    
+    
+  </div>
+  <span class="post-category">
+    <span class="label">
+      samples
+    </span>
+  </span>
+  <div class="post-content">
+    <p>As the number of event types flowing through a system grows, a common pattern emerges: a single Kafka topic carries messages of different types — orders placed, orders cancelled, orders refunded — and each type requires different processing logic.
+You could duplicate a content-based router in every consuming service, but that scatters the routing logic across the codebase and makes it hard to see which types are handled where.</p>
+
+<p>The <a href="https://www.enterpriseintegrationpatterns.com/patterns/messaging/MessageDispatcher.html">Message Dispatcher</a> pattern, described by Hohpe and Woolf, centralizes this fan-out.
+A single consumer reads from a channel and distributes each message to a type-specific handler based on a field in the message body.
+The dispatcher is the only component that knows about the type-to-handler mapping — the handlers themselves are simple, focused routes that process one event type each.</p>
+
+<p><a href="https://camel.apache.org">Apache Camel</a> implements this with <code class="highlighter-rouge">toD()</code> (dynamic to), which resolves the target endpoint URI at runtime from the message content.
+Combined with <code class="highlighter-rouge">direct:</code> routes as handler endpoints, <code class="highlighter-rouge">toD()</code> creates a clean dispatcher-handler architecture — one Kafka consumer, N handler routes, and a single routing expression that ties them together.</p>
+
+<p>This pattern is closely related to the content-based router but differs in intent and structure.
+A content-based router decides <em>where</em> a message goes (which channel, which queue).
+A message dispatcher decides <em>who</em> handles it (which handler route within the same application).
+The router is about external routing; the dispatcher is about internal fan-out.</p>
+
+<p>Testing a message dispatcher requires a different approach than testing patterns that produce output on a Kafka topic.
+The dispatcher’s handlers typically log, persist, or call internal services — they do not always publish to an external endpoint that the test can consume from.
+Integration tests with <a href="https://citrusframework.org">Citrus</a> handle this by leveraging Camel’s management API to verify that the correct handler route processed each message, including the edge case of unknown event types that no handler should accept.</p>
+
+<h2 id="the-scenario">The scenario</h2>
+
+<p>Order events arrive on the <code class="highlighter-rouge">eip.consumer.dispatch</code> Kafka topic.
+Each message carries an <code class="highlighter-rouge">event_type</code> field that determines which handler processes it:</p>
+
+<ul>
+  <li>
+<code class="highlighter-rouge">order_placed</code> events go to the order creation handler</li>
+  <li>
+<code class="highlighter-rouge">order_cancelled</code> events go to the cancellation handler</li>
+  <li>
+<code class="highlighter-rouge">order_refunded</code> events go to the refund handler</li>
+  <li>Unknown event types are caught by a fallback handler that logs and drops the message</li>
+</ul>
+
+<p>The dispatcher validates the event type against a whitelist before routing.
+This is a deliberate security measure — without validation, a malicious or malformed <code class="highlighter-rouge">event_type</code> value could cause <code class="highlighter-rouge">toD()</code> to resolve to an unexpected endpoint, since the endpoint URI is constructed from user-controlled data.</p>
+
+<h2 id="the-camel-route">The Camel route</h2>
+
+<h3 id="quarkus">Quarkus</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ApplicationScoped</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MessageDispatcherRoute</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">ALLOWED_EVENT_TYPES</span> <span class="o">=</span> <span class="n">Set</span><span class="o">.</span><span class="na">of</span><span class="o">(</span>
+        <span class="s">"order_placed"</span><span class="o">,</span> <span class="s">"order_cancelled"</span><span class="o">,</span> <span class="s">"order_refunded"</span>
+    <span class="o">);</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">from</span><span class="o">(</span><span class="s">"kafka:eip.consumer.dispatch?brokers={{kafka.brokers}}"</span>
+                <span class="o">+</span> <span class="s">"&amp;groupId=message-dispatcher&amp;autoOffsetReset=earliest"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"message-dispatcher"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">unmarshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Dispatcher received: order ${body[order_id]}, type=${body[event_type]}"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">choice</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">exchange</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                    <span class="kt">var</span> <span class="n">body</span> <span class="o">=</span> <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">getBody</span><span class="o">(</span><span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Map</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+                    <span class="n">String</span> <span class="n">eventType</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span> <span class="n">body</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"event_type"</span><span class="o">);</span>
+                    <span class="k">return</span> <span class="n">eventType</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">ALLOWED_EVENT_TYPES</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">eventType</span><span class="o">);</span>
+                <span class="o">})</span>
+                    <span class="o">.</span><span class="na">toD</span><span class="o">(</span><span class="s">"direct:handle-${body[event_type]}"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">otherwise</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"direct:handle-order_unknown"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">end</span><span class="o">();</span>
+
+        <span class="n">from</span><span class="o">(</span><span class="s">"direct:handle-order_placed"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"handle-order-placed"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Handling ORDER PLACED: order ${body[order_id]}, "</span>
+                <span class="o">+</span> <span class="s">"amount=${body[amount]}, sku=${body[item_sku]}"</span><span class="o">);</span>
+
+        <span class="n">from</span><span class="o">(</span><span class="s">"direct:handle-order_cancelled"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"handle-order-cancelled"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Handling ORDER CANCELLED: order ${body[order_id]}, "</span>
+                <span class="o">+</span> <span class="s">"refund pending for amount=${body[amount]}"</span><span class="o">);</span>
+
+        <span class="n">from</span><span class="o">(</span><span class="s">"direct:handle-order_refunded"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"handle-order-refunded"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Handling ORDER REFUNDED: order ${body[order_id]}, "</span>
+                <span class="o">+</span> <span class="s">"amount=${body[amount]} returned to customer ${body[customer_id]}"</span><span class="o">);</span>
+
+        <span class="n">from</span><span class="o">(</span><span class="s">"direct:handle-order_unknown"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"handle-order-unknown"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Unknown event_type '${body[event_type]}' — skipping"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>There are five routes in a single <code class="highlighter-rouge">RouteBuilder</code>, and understanding their relationship is the key to understanding the pattern.</p>
+
+<p><strong>The dispatcher route</strong> (<code class="highlighter-rouge">message-dispatcher</code>) is the only route that consumes from Kafka.
+It deserializes the JSON message and immediately enters a <code class="highlighter-rouge">choice()</code> block.
+The <code class="highlighter-rouge">when()</code> predicate checks whether the <code class="highlighter-rouge">event_type</code> field is present and belongs to the <code class="highlighter-rouge">ALLOWED_EVENT_TYPES</code> set.
+If the type is valid, <code class="highlighter-rouge">toD("direct:handle-${body[event_type]}")</code> dynamically resolves the handler endpoint — for example, an <code class="highlighter-rouge">event_type</code> of <code class="highlighter-rouge">order_placed</code> routes to <code class="highlighter-rouge">direct:handle-order_placed</code>.
+If the type is invalid or missing, the <code class="highlighter-rouge">otherwise()</code> branch routes to <code class="highlighter-rouge">direct:handle-order_unknown</code>.</p>
+
+<p><strong>The handler routes</strong> each consume from a <code class="highlighter-rouge">direct:</code> endpoint and perform type-specific processing.
+In this example, the handlers only log — in a production system, they would call services, write to databases, or publish to other topics.
+Each handler has its own <code class="highlighter-rouge">routeId</code>, which is what makes them individually verifiable in the tests.</p>
+
+<p>The <code class="highlighter-rouge">toD()</code> call is the most powerful and the most dangerous part of this pattern.
+It constructs an endpoint URI from the message body at runtime.
+Without the <code class="highlighter-rouge">ALLOWED_EVENT_TYPES</code> validation, a message with <code class="highlighter-rouge">event_type: "../../admin"</code> would cause Camel to attempt resolving <code class="highlighter-rouge">direct:handle-../../admin</code> as an endpoint — which would fail with a <code class="highlighter-rouge">ResolveEndpointFailedException</code>, but the attempt itself is a code smell.
+The whitelist approach ensures that only known, expected endpoints are ever resolved.</p>
+
+<h3 id="spring-boot">Spring Boot</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MessageDispatcherRoute</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">ALLOWED_EVENT_TYPES</span> <span class="o">=</span> <span class="n">Set</span><span class="o">.</span><span class="na">of</span><span class="o">(</span>
+        <span class="s">"order_placed"</span><span class="o">,</span> <span class="s">"order_cancelled"</span><span class="o">,</span> <span class="s">"order_refunded"</span>
+    <span class="o">);</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">from</span><span class="o">(</span><span class="s">"kafka:eip.consumer.dispatch?brokers={{kafka.brokers}}"</span>
+                <span class="o">+</span> <span class="s">"&amp;groupId=message-dispatcher&amp;autoOffsetReset=earliest"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"message-dispatcher"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">unmarshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Dispatcher received: order ${body[order_id]}, type=${body[event_type]}"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">choice</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">exchange</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                    <span class="kt">var</span> <span class="n">body</span> <span class="o">=</span> <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">getBody</span><span class="o">(</span><span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Map</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+                    <span class="n">String</span> <span class="n">eventType</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span> <span class="n">body</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"event_type"</span><span class="o">);</span>
+                    <span class="k">return</span> <span class="n">eventType</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">ALLOWED_EVENT_TYPES</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">eventType</span><span class="o">);</span>
+                <span class="o">})</span>
+                    <span class="o">.</span><span class="na">toD</span><span class="o">(</span><span class="s">"direct:handle-${body[event_type]}"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">otherwise</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"direct:handle-order_unknown"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">end</span><span class="o">();</span>
+
+        <span class="n">from</span><span class="o">(</span><span class="s">"direct:handle-order_placed"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"handle-order-placed"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Handling ORDER PLACED: order ${body[order_id]}, "</span>
+                <span class="o">+</span> <span class="s">"amount=${body[amount]}, sku=${body[item_sku]}"</span><span class="o">);</span>
+
+        <span class="n">from</span><span class="o">(</span><span class="s">"direct:handle-order_cancelled"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"handle-order-cancelled"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Handling ORDER CANCELLED: order ${body[order_id]}, "</span>
+                <span class="o">+</span> <span class="s">"refund pending for amount=${body[amount]}"</span><span class="o">);</span>
+
+        <span class="n">from</span><span class="o">(</span><span class="s">"direct:handle-order_refunded"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"handle-order-refunded"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Handling ORDER REFUNDED: order ${body[order_id]}, "</span>
+                <span class="o">+</span> <span class="s">"amount=${body[amount]} returned to customer ${body[customer_id]}"</span><span class="o">);</span>
+
+        <span class="n">from</span><span class="o">(</span><span class="s">"direct:handle-order_unknown"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"handle-order-unknown"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Unknown event_type '${body[event_type]}' — skipping"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">@Component</code> replaces <code class="highlighter-rouge">@ApplicationScoped</code> — the route logic is identical across both runtimes.</p>
+
+<h2 id="dispatcher-vs-content-based-router">Dispatcher vs. content-based router</h2>
+
+<p>The message dispatcher looks similar to a content-based router, and the two patterns are often confused.
+The distinction matters for testing:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Aspect</th>
+      <th>Content-Based Router</th>
+      <th>Message Dispatcher</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Purpose</strong></td>
+      <td>Route to different <em>channels</em>
+</td>
+      <td>Dispatch to different <em>handlers</em>
+</td>
+    </tr>
+    <tr>
+      <td><strong>Output</strong></td>
+      <td>External endpoints (Kafka topics, queues)</td>
+      <td>Internal <code class="highlighter-rouge">direct:</code> routes</td>
+    </tr>
+    <tr>
+      <td><strong>Test verification</strong></td>
+      <td>Receive from the output channel</td>
+      <td>Check which handler route ran</td>
+    </tr>
+    <tr>
+      <td><strong>Routing expression</strong></td>
+      <td>Static (<code class="highlighter-rouge">to()</code>) or dynamic (<code class="highlighter-rouge">toD()</code>)</td>
+      <td>Typically dynamic (<code class="highlighter-rouge">toD()</code>)</td>
+    </tr>
+    <tr>
+      <td><strong>Scope</strong></td>
+      <td>Inter-service routing</td>
+      <td>Intra-service fan-out</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>A content-based router test sends a message and receives it from the correct output topic — a 1:1 input-to-output verification.
+A message dispatcher test sends a message and verifies that the correct <em>handler route</em> processed it — a verification against Camel’s internal route management, not an external channel.</p>
+
+<h2 id="test-infrastructure">Test infrastructure</h2>
+
+<p>The dispatcher requires only Kafka — no databases, caches, or external services.
+A Docker Compose stack provisions a Kafka broker and a Kafka UI for monitoring:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
+  <span class="na">kafka</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">docker.io/apache/kafka:latest</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">9092:9092"</span>
+    <span class="c1"># ... KRaft configuration ...</span>
+
+  <span class="na">kafka-ui</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">docker.io/provectuslabs/kafka-ui:latest</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">8090:8080"</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+      <span class="na">kafka</span><span class="pi">:</span>
+        <span class="na">condition</span><span class="pi">:</span> <span class="s">service_healthy</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">BeforeSuite</code> starts the compose stack and waits for the Kafka UI to become reachable; the <code class="highlighter-rouge">AfterSuite</code> stops the Camel context and tears down the containers.</p>
+
+<h3 id="quarkus-infrastructure-setup">Quarkus infrastructure setup</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@CitrusConfiguration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EipInfraSetup</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
+
+    <span class="nd">@BindToRegistry</span>
+    <span class="kd">public</span> <span class="n">BeforeSuite</span> <span class="nf">startInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">beforeSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">up</span><span class="o">(</span><span class="s">"_infra/compose.yaml"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">autoRemove</span><span class="o">(</span><span class="kc">false</span><span class="o">),</span>
+                    <span class="n">waitFor</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">http</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://localhost:8090"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">25</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@BindToRegistry</span>
+    <span class="kd">public</span> <span class="n">AfterSuite</span> <span class="nf">stopInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">afterSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">().</span><span class="na">stop</span><span class="o">(),</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">down</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="spring-boot-infrastructure-setup">Spring Boot infrastructure setup</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EipInfraSetup</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">BeforeSuite</span> <span class="nf">startInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">beforeSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">up</span><span class="o">(</span><span class="s">"_infra/compose.yaml"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">autoRemove</span><span class="o">(</span><span class="kc">false</span><span class="o">),</span>
+                    <span class="n">waitFor</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">http</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://localhost:8090"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">25</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">AfterSuite</span> <span class="nf">stopInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">afterSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">().</span><span class="na">stop</span><span class="o">(),</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">down</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="shared-test-utilities">Shared test utilities</h2>
+
+<p>Both runtimes implement the <code class="highlighter-rouge">EipTestSupport</code> interface with two methods that are particularly useful for dispatcher tests.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">EipTestSupport</span> <span class="kd">extends</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
+
+    <span class="k">default</span> <span class="n">TestActionBuilder</span><span class="o">&lt;?&gt;</span> <span class="n">waitForCamelRouteStarted</span><span class="o">(</span>
+            <span class="n">String</span> <span class="n">routeId</span><span class="o">,</span> <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">repeatOnError</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">20</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">(</span><span class="n">camelContext</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">controlBus</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">route</span><span class="o">(</span><span class="n">routeId</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">status</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">result</span><span class="o">(</span><span class="n">ServiceStatus</span><span class="o">.</span><span class="na">Started</span><span class="o">),</span>
+                    <span class="n">sleep</span><span class="o">().</span><span class="na">seconds</span><span class="o">(</span><span class="mi">5</span><span class="o">)</span>
+                <span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="k">default</span> <span class="n">TestActionBuilder</span><span class="o">&lt;?&gt;</span> <span class="n">verifyCompletedExchanges</span><span class="o">(</span>
+            <span class="n">String</span> <span class="n">routeId</span><span class="o">,</span> <span class="kt">long</span> <span class="n">count</span><span class="o">,</span> <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">repeatOnError</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">20</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">camel</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">camelContext</span><span class="o">(</span><span class="n">camelContext</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">route</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">verifyRouteStats</span><span class="o">(</span><span class="n">routeId</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">completed</span><span class="o">(</span><span class="n">count</span><span class="o">)</span>
+                <span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">waitForCamelRouteStarted</code> uses Camel’s Control Bus to poll the dispatcher route’s status.
+The dispatcher must be fully started — consuming from Kafka and ready to dispatch — before the test sends any events.</p>
+
+<p><code class="highlighter-rouge">verifyCompletedExchanges</code> is the core verification mechanism for dispatcher tests.
+Since the handler routes only log messages internally (they do not publish to external endpoints), there is no output topic to receive from.
+Instead, the test uses Citrus’s built-in Camel route statistics verification: how many exchanges has a specific handler route completed?
+The call <code class="highlighter-rouge">verifyCompletedExchanges(routeId, 1, camelContext)</code> checks that exactly one exchange was completed — the natural assertion for “this handler was invoked exactly once.”</p>
+
+<p>This approach makes the test independent of the handler’s internal behavior.
+Whether the handler logs, writes to a database, or calls an API, the test verifies the <em>routing decision</em> — which handler was selected — not the handler’s output.</p>
+
+<h2 id="message-template">Message template</h2>
+
+<p>The tests use a JSON template with Citrus variable placeholders:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="err">org.citrusframework</span><span class="p">:</span><span class="err">citrus-website</span><span class="p">:</span><span class="err">pom</span><span class="p">:</span><span class="mf">1.1</span><span class="err">.</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUST-00org.citrusframework:citrus-website:pom:1.1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"event_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${eventType}"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="p">{</span><span class="err">amount</span><span class="p">},</span><span class="w">
+  </span><span class="s2">"item_sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SKU-org.citrusframework:citrus-website:pom:1.1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">event_type</code> field is the dispatch key — the variable <code class="highlighter-rouge">${eventType}</code> is set differently in each test to exercise different handler routes.
+The same template is reused across all four test cases; only the variables change.</p>
+
+<h2 id="the-dispatcher-tests">The dispatcher tests</h2>
+
+<p>The message dispatcher requires four test cases — one for each known event type plus one for the unknown type fallback.
+Each test sends a single message with a specific <code class="highlighter-rouge">event_type</code> and verifies that the corresponding handler route processed it.</p>
+
+<h3 id="quarkus-tests">Quarkus tests</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@QuarkusTest</span>
+<span class="nd">@CitrusSupport</span>
+<span class="kd">class</span> <span class="nc">EipTests</span> <span class="kd">implements</span> <span class="n">EipTestSupport</span> <span class="o">{</span>
+
+    <span class="nd">@CitrusResource</span>
+    <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
+
+    <span class="nd">@Inject</span>
+    <span class="nd">@BindToRegistry</span>
+    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="nd">@Nested</span>
+    <span class="kd">class</span> <span class="nc">MessageDispatcherTest</span> <span class="o">{</span>
+
+        <span class="nd">@Test</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldDispatchOrderPlacedEvent</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+                <span class="n">createVariables</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"eventType"</span><span class="o">,</span> <span class="s">"order_placed"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mi">120</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"message-dispatcher"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+                <span class="n">send</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.consumer.dispatch"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">verifyCompletedExchanges</span><span class="o">(</span><span class="s">"handle-order-placed"</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+        <span class="o">}</span>
+
+        <span class="nd">@Test</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldDispatchOrderCancelledEvent</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+                <span class="n">createVariables</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"eventType"</span><span class="o">,</span> <span class="s">"order_cancelled"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mi">80</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"message-dispatcher"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+                <span class="n">send</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.consumer.dispatch"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">verifyCompletedExchanges</span><span class="o">(</span><span class="s">"handle-order-cancelled"</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+        <span class="o">}</span>
+
+        <span class="nd">@Test</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldDispatchOrderRefundedEvent</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+                <span class="n">createVariables</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"eventType"</span><span class="o">,</span> <span class="s">"order_refunded"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mi">55</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"message-dispatcher"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+                <span class="n">send</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.consumer.dispatch"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">verifyCompletedExchanges</span><span class="o">(</span><span class="s">"handle-order-refunded"</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+        <span class="o">}</span>
+
+        <span class="nd">@Test</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldSkipUnknownEventType</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+                <span class="n">createVariables</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"eventType"</span><span class="o">,</span> <span class="s">"order_unknown"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mi">40</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"message-dispatcher"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+                <span class="n">send</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.consumer.dispatch"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">verifyCompletedExchanges</span><span class="o">(</span><span class="s">"handle-order-unknown"</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>All four tests follow the same given-when-then structure.
+The only thing that changes between them is the <code class="highlighter-rouge">eventType</code> variable and the handler route ID passed to <code class="highlighter-rouge">verifyCompletedExchanges</code>.</p>
+
+<p><strong>Given — set up variables and wait for the dispatcher.</strong>
+Each test generates a random order ID and sets the <code class="highlighter-rouge">eventType</code> to the value that should trigger a specific handler.
+The test then waits for the <code class="highlighter-rouge">message-dispatcher</code> route to reach <code class="highlighter-rouge">Started</code> status.</p>
+
+<p><strong>When — send an event to the dispatch topic.</strong>
+A single message goes to <code class="highlighter-rouge">kafka:eip.consumer.dispatch</code> using the shared <code class="highlighter-rouge">order.json</code> template.
+The <code class="highlighter-rouge">eventType</code> variable is resolved into the <code class="highlighter-rouge">event_type</code> field of the JSON body.</p>
+
+<p><strong>Then — verify the correct handler processed the message.</strong>
+<code class="highlighter-rouge">verifyCompletedExchanges</code> checks that the expected handler route completed exactly one exchange.
+For <code class="highlighter-rouge">shouldDispatchOrderPlacedEvent</code>, it asserts against <code class="highlighter-rouge">handle-order-placed</code>.
+For <code class="highlighter-rouge">shouldSkipUnknownEventType</code>, it asserts against <code class="highlighter-rouge">handle-order-unknown</code>.</p>
+
+<h3 id="the-unknown-event-type-test">The unknown event type test</h3>
+
+<p>The <code class="highlighter-rouge">shouldSkipUnknownEventType</code> test deserves special attention because it verifies the dispatcher’s safety behavior.</p>
+
+<p>The test sets <code class="highlighter-rouge">eventType</code> to <code class="highlighter-rouge">"order_unknown"</code> — a value that is <em>not</em> in the <code class="highlighter-rouge">ALLOWED_EVENT_TYPES</code> set.
+When the dispatcher receives this message, the <code class="highlighter-rouge">choice()</code> predicate returns <code class="highlighter-rouge">false</code>, and the <code class="highlighter-rouge">otherwise()</code> branch routes the message to <code class="highlighter-rouge">direct:handle-order_unknown</code>.</p>
+
+<p>This test proves two things:</p>
+
+<ol>
+  <li>
+    <p><strong>The whitelist works.</strong> An unknown event type does not reach <code class="highlighter-rouge">toD()</code> — it is caught by the <code class="highlighter-rouge">choice()</code> and routed to the fallback handler instead. Without this test, a code change that accidentally removes the whitelist check would go undetected.</p>
+  </li>
+  <li>
+    <p><strong>The fallback handler exists and processes successfully.</strong> If the <code class="highlighter-rouge">direct:handle-order_unknown</code> route were missing, the test would fail with a <code class="highlighter-rouge">NoSuchEndpointException</code>. The <code class="highlighter-rouge">verifyCompletedExchanges</code> check also verifies that the fallback handler completed without errors.</p>
+  </li>
+</ol>
+
+<p>This is a test that cannot be reasonably written with mocked endpoints.
+The <code class="highlighter-rouge">toD()</code> resolution, the <code class="highlighter-rouge">choice()</code> predicate evaluation, and the <code class="highlighter-rouge">direct:</code> endpoint dispatch all happen inside Camel’s routing engine — mocking any of these would bypass the exact logic being tested.</p>
+
+<h3 id="spring-boot-tests">Spring Boot tests</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@SpringBootTest</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="n">ConsumerPatternsApplication</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="nd">@CamelSpringBootTest</span>
+<span class="nd">@CitrusSpringSupport</span>
+<span class="nd">@ContextConfiguration</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="o">{</span> <span class="n">EipInfraSetup</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">CitrusSpringConfig</span><span class="o">.</span><span class="na">class</span> <span class="o">})</span>
+<span class="kd">class</span> <span class="nc">EipTests</span> <span class="kd">implements</span> <span class="n">EipTestSupport</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="nd">@Nested</span>
+    <span class="kd">class</span> <span class="nc">MessageDispatcherTest</span> <span class="o">{</span>
+
+        <span class="nd">@CitrusResource</span>
+        <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
+
+        <span class="nd">@Test</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldDispatchOrderPlacedEvent</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+                <span class="n">createVariables</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"eventType"</span><span class="o">,</span> <span class="s">"order_placed"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mi">120</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"message-dispatcher"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+                <span class="n">send</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.consumer.dispatch"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">verifyCompletedExchanges</span><span class="o">(</span><span class="s">"handle-order-placed"</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+        <span class="o">}</span>
+
+        <span class="nd">@Test</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldDispatchOrderCancelledEvent</span><span class="o">()</span> <span class="o">{</span>
+            <span class="c1">// Same structure — eventType="order_cancelled",</span>
+            <span class="c1">// asserts against "handle-order-cancelled"</span>
+            <span class="c1">// ...</span>
+        <span class="o">}</span>
+
+        <span class="nd">@Test</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldDispatchOrderRefundedEvent</span><span class="o">()</span> <span class="o">{</span>
+            <span class="c1">// Same structure — eventType="order_refunded",</span>
+            <span class="c1">// asserts against "handle-order-refunded"</span>
+            <span class="c1">// ...</span>
+        <span class="o">}</span>
+
+        <span class="nd">@Test</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldSkipUnknownEventType</span><span class="o">()</span> <span class="o">{</span>
+            <span class="c1">// Same structure — eventType="order_unknown",</span>
+            <span class="c1">// asserts against "handle-order-unknown"</span>
+            <span class="c1">// ...</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The test logic is identical across both runtimes.
+The differences are limited to the class-level annotations and dependency injection:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Concern</th>
+      <th>Quarkus</th>
+      <th>Spring Boot</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Test bootstrap</td>
+      <td><code class="highlighter-rouge">@QuarkusTest</code></td>
+      <td>
+<code class="highlighter-rouge">@SpringBootTest</code> + <code class="highlighter-rouge">@CamelSpringBootTest</code>
+</td>
+    </tr>
+    <tr>
+      <td>Citrus integration</td>
+      <td><code class="highlighter-rouge">@CitrusSupport</code></td>
+      <td><code class="highlighter-rouge">@CitrusSpringSupport</code></td>
+    </tr>
+    <tr>
+      <td>CamelContext injection</td>
+      <td>
+<code class="highlighter-rouge">@Inject</code> + <code class="highlighter-rouge">@BindToRegistry</code>
+</td>
+      <td><code class="highlighter-rouge">@Autowired</code></td>
+    </tr>
+    <tr>
+      <td>TestCaseRunner scope</td>
+      <td>Class-level field</td>
+      <td>Nested class field with <code class="highlighter-rouge">@CitrusResource</code>
+</td>
+    </tr>
+    <tr>
+      <td>Infrastructure config</td>
+      <td>
+<code class="highlighter-rouge">@CitrusConfiguration</code> auto-discovered</td>
+      <td>
+<code class="highlighter-rouge">@ContextConfiguration</code> explicit</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="what-the-tests-prove">What the tests prove</h2>
+
+<p>The four tests together form a complete coverage of the dispatcher’s routing logic:</p>
+
+<p><strong>Positive dispatch tests</strong> (<code class="highlighter-rouge">shouldDispatchOrderPlacedEvent</code>, <code class="highlighter-rouge">shouldDispatchOrderCancelledEvent</code>, <code class="highlighter-rouge">shouldDispatchOrderRefundedEvent</code>) verify that each known event type reaches its designated handler.
+They exercise the <code class="highlighter-rouge">toD()</code> resolution with three different dynamic endpoint URIs:</p>
+
+<ul>
+  <li>
+<code class="highlighter-rouge">event_type=order_placed</code> → <code class="highlighter-rouge">toD("direct:handle-order_placed")</code> → route <code class="highlighter-rouge">handle-order-placed</code>
+</li>
+  <li>
+<code class="highlighter-rouge">event_type=order_cancelled</code> → <code class="highlighter-rouge">toD("direct:handle-order_cancelled")</code> → route <code class="highlighter-rouge">handle-order-cancelled</code>
+</li>
+  <li>
+<code class="highlighter-rouge">event_type=order_refunded</code> → <code class="highlighter-rouge">toD("direct:handle-order_refunded")</code> → route <code class="highlighter-rouge">handle-order-refunded</code>
+</li>
+</ul>
+
+<p><strong>Negative dispatch test</strong> (<code class="highlighter-rouge">shouldSkipUnknownEventType</code>) verifies that the whitelist rejects unknown types and routes them to the fallback handler.
+This is the security-relevant test — it proves that arbitrary <code class="highlighter-rouge">event_type</code> values cannot reach <code class="highlighter-rouge">toD()</code>.</p>
+
+<p>Together, these tests verify the full routing table.
+If a new event type is added to the application but not to the <code class="highlighter-rouge">ALLOWED_EVENT_TYPES</code> set, it will be routed to the unknown handler — and a corresponding test should be added to cover the new type.</p>
+
+<h2 id="the-test-design-pattern">The test design pattern</h2>
+
+<p>The message dispatcher test suite demonstrates a repeatable pattern for testing internal fan-out:</p>
+
+<ol>
+  <li>
+    <p><strong>One test per dispatch target.</strong> Each handler route gets its own test case with the corresponding input. This makes failures immediately diagnosable — if <code class="highlighter-rouge">shouldDispatchOrderRefundedEvent</code> fails, you know exactly which path is broken.</p>
+  </li>
+  <li>
+    <p><strong>The dispatch key is the only variable that changes.</strong> All four tests use the same template, the same topic, and the same given-when-then structure. Only <code class="highlighter-rouge">eventType</code> and the assertion target differ. This minimizes the surface area for test bugs.</p>
+  </li>
+  <li>
+    <p><strong>Verification targets the handler route, not the dispatcher.</strong> The test does not assert against the <code class="highlighter-rouge">message-dispatcher</code> route — it asserts against the <em>handler</em> route that should have been invoked. This is deliberate: verifying the handler’s exchange count proves that the dispatcher made the correct routing decision <em>and</em> that the <code class="highlighter-rouge">direct:</code> dispatch succeeded.</p>
+  </li>
+  <li>
+    <p><strong>Always test the fallback path.</strong> The unknown event type test is not an afterthought — it verifies the dispatcher’s safety net. In production systems, unknown event types can appear due to schema evolution, message corruption, or cross-version compatibility issues. The fallback handler and its test ensure the dispatcher does not throw exceptions or route to unexpected endpoints when this happens.</p>
+  </li>
+</ol>
+
+<h2 id="why-verifycompletedexchanges-is-the-right-tool-here">Why <code class="highlighter-rouge">verifyCompletedExchanges</code> is the right tool here</h2>
+
+<p>For patterns that produce output on a Kafka topic, the natural Citrus assertion is <code class="highlighter-rouge">receive()</code> — consume from the output topic and validate the message body.
+The message dispatcher’s handlers do not produce external output, so <code class="highlighter-rouge">receive()</code> has nothing to consume.</p>
+
+<p><code class="highlighter-rouge">verifyCompletedExchanges</code> solves this by using Citrus’s built-in Camel route statistics verification:</p>
+
+<ul>
+  <li>
+<strong>Exchange count.</strong> Has the handler route completed exactly the expected number of exchanges? For a dispatcher test that sends one message, the expected count is 1.</li>
+  <li>
+<strong>Error detection.</strong> The route statistics verification checks for failed exchanges automatically. A <code class="highlighter-rouge">ResolveEndpointFailedException</code> from a bad <code class="highlighter-rouge">toD()</code> target, a serialization error in the handler, or any other exception is detected, providing a clear signal.</li>
+  <li>
+<strong>Retry tolerance.</strong> The <code class="highlighter-rouge">repeatOnError()</code> wrapper retries up to 20 times with 1-second intervals. This accommodates Kafka consumer lag — the dispatcher route might not have consumed and dispatched the message by the time the assertion first runs.</li>
+</ul>
+
+<p>This pattern applies to any route that processes messages internally without producing verifiable output on an external channel: logging routes, metric-emitting routes, routes that call internal services, and — as in this case — dispatcher handler routes.</p>
+
+<h2 id="key-takeaways">Key takeaways</h2>
+
+<ul>
+  <li>
+<strong>Message dispatchers centralize type-based routing.</strong> A single Kafka consumer with <code class="highlighter-rouge">toD()</code> fans out to N handler routes, keeping the routing logic in one place rather than scattered across consuming services.</li>
+  <li>
+<strong>Whitelist validation is essential with <code class="highlighter-rouge">toD()</code>.</strong> Because <code class="highlighter-rouge">toD()</code> constructs endpoint URIs from message content, untrusted values must be validated against a known set before reaching the dynamic expression. The <code class="highlighter-rouge">ALLOWED_EVENT_TYPES</code> set and the <code class="highlighter-rouge">choice()</code> guard implement this pattern.</li>
+  <li>
+<strong>Test every dispatch target, including the fallback.</strong> One test per handler route ensures complete coverage of the routing table. The unknown event type test verifies that the safety net works — it is not optional.</li>
+  <li>
+<strong><code class="highlighter-rouge">verifyCompletedExchanges</code> verifies internal routing decisions.</strong> When handler routes do not produce external output, Citrus’s Camel route statistics verification provides exchange counts as an alternative verification mechanism. This makes the test independent of what the handler actually does.</li>
+  <li>
+<strong>One template, N tests.</strong> The same message template serves all four test cases. Only the <code class="highlighter-rouge">eventType</code> variable and the assertion target change — this keeps the test suite focused on the routing decision, not the message structure.</li>
+  <li>
+<strong>Two runtimes, one test pattern.</strong> The test logic is identical across Quarkus and Spring Boot. Only the bootstrap annotations and dependency injection differ — the given-when-then flow, the template, and the assertions stay the same.</li>
+</ul>
+
+  </div>
+</article>
+
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <h4>Samples</h4>
+    <ul>
+      <li class="">
+        <a href="/samples/">Overview</a>
+      </li>
+      <li class="">
+        <a href="/samples/todo-app">TodoList App</a>
+      </li>
+      <li class="">
+        <a href="/samples/run">Running</a>
+      </li>
+    </ul>
+    <h4>Configuration</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+
+      
+      
+      <li class="">
+        <a href="/samples/javaconfig/">sample-javaconfig</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/annotation-config/">sample-annotation-config</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/reporting/">sample-reporting</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>CONNECTORS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/kubernetes/">sample-kubernetes</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/docker/">sample-docker</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>DEMO</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus/">sample-quarkus</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jbang/">sample-jbang</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/cucumber/">sample-cucumber</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/apache-camel/">sample-camel-context</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>EIP</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/messaging-bridge/">messaging-bridge</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/routing-slip/">routing-slip</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/load-balancer/">load-balancer</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/splitter/">splitter</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/wire-tap/">wire-tap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/message-reliability/">message-reliability</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/message-filter/">message-filter</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/content-based-router/">content-based-router</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/content-enricher/">content-enricher</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/content-filter/">content-filter</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/message-translator/">message-translator</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/resequencer/">resequencer</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/aggregator/">aggregator</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/normalizer/">normalizer</a>
+      </li>
+      
+      
+      <li class="current">
+        <a href="/samples/camel-eip/message-dispatcher/">message-dispatcher</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/polling-consumer/">polling-consumer</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/idempotent-receiver/">idempotent-receiver</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/outbox-pattern/">outbox-pattern</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>ENDPOINTS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/jms/">sample-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-loadtest/">sample-http-loadtest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-static-response/">sample-http-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/ftp/">sample-ftp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-wsaddressing/">sample-soap-wsaddressing</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/rmi/">sample-rmi</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-ssl/">sample-soap-ssl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap/">sample-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/mail/">sample-mail</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-wssecurity/">sample-soap-wssecurity</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/kafka/">sample-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/wsdl/">sample-wsdl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/openapi/">sample-swagger</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jdbc/">sample-jdbc</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-mtom/">sample-soap-mtom</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-attachment/">sample-soap-attachment</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/sftp/">sample-sftp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/https/">sample-https</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/scp/">sample-scp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http/">sample-http</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dynamic-endpoints/">sample-dynamic-endpoints</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-basic-auth/">sample-http-basic-auth</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-static-response/">sample-soap-static-response</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>MISCELLANEOUS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/gradle/">sample-gradle</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/message-store/">sample-message-store</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/behavior/">sample-behavior</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dictionaries/">sample-dictionaries</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>QUARKUS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-kafka/">camel-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-knative/">camel-knative</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-knative-ssl/">camel-knative-ssl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-rest-to-soap/">camel-rest-to-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-rest-dsl/">camel-rest-dsl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus-event-driven-kafka/">event-driven-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus-event-driven-jms/">event-driven-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-postgresql/">camel-postgresql</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-aws-s3-kafka/">camel-aws-s3-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-cxf-soap-client/">camel-cxf-soap-client</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-cxf-soap/">camel-cxf-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-direct-http/">camel-direct-http</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-direct/">camel-direct</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-openapi-server/">camel-openapi-server</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-mqtt/">camel-mqtt</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-jms/">camel-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-file-inbox/">camel-file-inbox</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-file-outbox/">camel-file-outbox</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>RUNTIMES</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/testng/">sample-testng</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dataprovider/">sample-dataprovider</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/junit5/">sample-junit5</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/junit/">sample-junit</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>VALIDATION</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/hamcrest/">sample-hamcrest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/sql/">sample-sql</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-form-data/">sample-http-form-data</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/oxm/">sample-oxm</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/json/">sample-json</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/databind/">sample-databind</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xml/">sample-xml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xhtml/">sample-xhtml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/binary/">sample-binary</a>
+      </li>
+      
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/citrusframework/citrus/blob/master/LICENSE">MIT License</a>.</p>
+      <br>
+      <p>© 2026 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p> </p>
+      <br>
+      <br>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>

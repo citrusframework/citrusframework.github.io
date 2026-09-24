@@ -1,0 +1,1536 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Citrus Framework</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Citrus 5.0.1">
+  <meta name="description" content="Citrus Framework Website"/>
+  <meta name="author" content="ConSol Software GmbH"/>
+  <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Citrus main branch" href="https://github.com/citrusframework/citrus/commits/main.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="stylesheet" href="/css/tabbed.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/atom-one-light.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+  <script src="/js/tabbed.js"></script>
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <nav class="main-nav whole hide-on-mobiles">
+      <ul>
+  <li class="hide-on-mobiles">
+    <img src="/img/brand-logo.png" alt="Citrus"><span class="brand">Citrus</span>
+  </li>
+  <li class="">
+    <a href="/"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="">
+    <a href="/projects/">Projects</a>
+  </li>
+  <li class="">
+    <a href="/quickstart/">Quickstart</a>
+  </li>
+  <li class="">
+    <a href="/endpoints/">Endpoints</a>
+  </li>
+  <li class="">
+    <a href="/runtimes/">Runtimes</a>
+  </li>
+  <li class="">
+    <a href="/docs/documentation/">Doc<span class="hide-on-mobiles">umentation</span><span class="show-on-mobiles">s</span></a>
+  </li>
+  <li class="current">
+    <a href="/samples/">Samples</a>
+  </li>
+  <li class="">
+    <a href="/news/">News<span class="hide-on-mobiles"> &amp; Blog</span></a>
+  </li>
+  <li class="hide-on-mobiles">
+    <a href="https://github.com/citrusframework/citrus" target="_blank"><i class="fa fa-github"></i>  GitHub</a>
+  </li>
+  <li class="">
+    <a href="/help/"><i class="fa fa-help"></i></a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="samples">
+    <div class="grid">
+
+      <div class="samples-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the samples…</option>
+    <option value="/samples/">Overview</option>
+    <option value="/samples/todo-app/">TodoList App</option>
+    <option value="/samples/run/">Running</option>
+    
+    
+    <option value="/samples/javaconfig/">sample-javaconfig</option>
+    
+    <option value="/samples/annotation-config/">sample-annotation-config</option>
+    
+    <option value="/samples/reporting/">sample-reporting</option>
+    
+    <option value="/samples/kubernetes/">sample-kubernetes</option>
+    
+    <option value="/samples/docker/">sample-docker</option>
+    
+    <option value="/samples/selenium/">sample-selenium</option>
+    
+    <option value="/samples/quarkus/">sample-quarkus</option>
+    
+    <option value="/samples/jbang/">sample-jbang</option>
+    
+    <option value="/samples/cucumber/">sample-cucumber</option>
+    
+    <option value="/samples/apache-camel/">sample-camel-context</option>
+    
+    <option value="/samples/camel-eip/messaging-bridge/">messaging-bridge</option>
+    
+    <option value="/samples/camel-eip/routing-slip/">routing-slip</option>
+    
+    <option value="/samples/camel-eip/load-balancer/">load-balancer</option>
+    
+    <option value="/samples/camel-eip/splitter/">splitter</option>
+    
+    <option value="/samples/camel-eip/wire-tap/">wire-tap</option>
+    
+    <option value="/samples/camel-eip/message-reliability/">message-reliability</option>
+    
+    <option value="/samples/camel-eip/message-filter/">message-filter</option>
+    
+    <option value="/samples/camel-eip/content-based-router/">content-based-router</option>
+    
+    <option value="/samples/camel-eip/content-enricher/">content-enricher</option>
+    
+    <option value="/samples/camel-eip/content-filter/">content-filter</option>
+    
+    <option value="/samples/camel-eip/message-translator/">message-translator</option>
+    
+    <option value="/samples/camel-eip/resequencer/">resequencer</option>
+    
+    <option value="/samples/camel-eip/aggregator/">aggregator</option>
+    
+    <option value="/samples/camel-eip/normalizer/">normalizer</option>
+    
+    <option value="/samples/camel-eip/message-dispatcher/">message-dispatcher</option>
+    
+    <option value="/samples/camel-eip/polling-consumer/">polling-consumer</option>
+    
+    <option value="/samples/camel-eip/idempotent-receiver/">idempotent-receiver</option>
+    
+    <option value="/samples/camel-eip/outbox-pattern/">outbox-pattern</option>
+    
+    <option value="/samples/jms/">sample-jms</option>
+    
+    <option value="/samples/http-loadtest/">sample-http-loadtest</option>
+    
+    <option value="/samples/http-static-response/">sample-http-static-response</option>
+    
+    <option value="/samples/ftp/">sample-ftp</option>
+    
+    <option value="/samples/soap-wsaddressing/">sample-soap-wsaddressing</option>
+    
+    <option value="/samples/rmi/">sample-rmi</option>
+    
+    <option value="/samples/soap-ssl/">sample-soap-ssl</option>
+    
+    <option value="/samples/soap/">sample-soap</option>
+    
+    <option value="/samples/mail/">sample-mail</option>
+    
+    <option value="/samples/soap-wssecurity/">sample-soap-wssecurity</option>
+    
+    <option value="/samples/kafka/">sample-kafka</option>
+    
+    <option value="/samples/wsdl/">sample-wsdl</option>
+    
+    <option value="/samples/openapi/">sample-swagger</option>
+    
+    <option value="/samples/jdbc/">sample-jdbc</option>
+    
+    <option value="/samples/soap-mtom/">sample-soap-mtom</option>
+    
+    <option value="/samples/soap-attachment/">sample-soap-attachment</option>
+    
+    <option value="/samples/sftp/">sample-sftp</option>
+    
+    <option value="/samples/https/">sample-https</option>
+    
+    <option value="/samples/scp/">sample-scp</option>
+    
+    <option value="/samples/http/">sample-http</option>
+    
+    <option value="/samples/dynamic-endpoints/">sample-dynamic-endpoints</option>
+    
+    <option value="/samples/http-basic-auth/">sample-http-basic-auth</option>
+    
+    <option value="/samples/soap-static-response/">sample-soap-static-response</option>
+    
+    <option value="/samples/gradle/">sample-gradle</option>
+    
+    <option value="/samples/message-store/">sample-message-store</option>
+    
+    <option value="/samples/behavior/">sample-behavior</option>
+    
+    <option value="/samples/dictionaries/">sample-dictionaries</option>
+    
+    <option value="/samples/camel-quarkus-kafka/">camel-kafka</option>
+    
+    <option value="/samples/camel-quarkus-knative/">camel-knative</option>
+    
+    <option value="/samples/camel-quarkus-knative-ssl/">camel-knative-ssl</option>
+    
+    <option value="/samples/camel-quarkus-rest-to-soap/">camel-rest-to-soap</option>
+    
+    <option value="/samples/camel-quarkus-rest-dsl/">camel-rest-dsl</option>
+    
+    <option value="/samples/quarkus-event-driven-kafka/">event-driven-kafka</option>
+    
+    <option value="/samples/quarkus-event-driven-jms/">event-driven-jms</option>
+    
+    <option value="/samples/camel-quarkus-postgresql/">camel-postgresql</option>
+    
+    <option value="/samples/camel-quarkus-aws-s3-kafka/">camel-aws-s3-kafka</option>
+    
+    <option value="/samples/camel-quarkus-cxf-soap-client/">camel-cxf-soap-client</option>
+    
+    <option value="/samples/camel-quarkus-cxf-soap/">camel-cxf-soap</option>
+    
+    <option value="/samples/camel-quarkus-direct-http/">camel-direct-http</option>
+    
+    <option value="/samples/camel-quarkus-direct/">camel-direct</option>
+    
+    <option value="/samples/camel-quarkus-openapi-server/">camel-openapi-server</option>
+    
+    <option value="/samples/camel-quarkus-mqtt/">camel-mqtt</option>
+    
+    <option value="/samples/camel-quarkus-jms/">camel-jms</option>
+    
+    <option value="/samples/camel-quarkus-file-inbox/">camel-file-inbox</option>
+    
+    <option value="/samples/camel-quarkus-file-outbox/">camel-file-outbox</option>
+    
+    <option value="/samples/testng/">sample-testng</option>
+    
+    <option value="/samples/dataprovider/">sample-dataprovider</option>
+    
+    <option value="/samples/junit5/">sample-junit5</option>
+    
+    <option value="/samples/junit/">sample-junit</option>
+    
+    <option value="/samples/hamcrest/">sample-hamcrest</option>
+    
+    <option value="/samples/sql/">sample-sql</option>
+    
+    <option value="/samples/http-form-data/">sample-http-form-data</option>
+    
+    <option value="/samples/oxm/">sample-oxm</option>
+    
+    <option value="/samples/json/">sample-json</option>
+    
+    <option value="/samples/databind/">sample-databind</option>
+    
+    <option value="/samples/xml/">sample-xml</option>
+    
+    <option value="/samples/xhtml/">sample-xhtml</option>
+    
+    <option value="/samples/binary/">sample-binary</option>
+    
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        <article>
+  <h2>
+    
+    
+    <img src="/img/icons/camel.png" style="width: 1em;height: 1em;" alt="">
+    
+    Testing the Outbox Pattern with Citrus
+    <a href="/samples/camel-eip/outbox-pattern/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <div class="right">
+    
+    <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/master/examples/outbox-pattern" target="_blank">
+      <i class="fa fa-pencil"></i> View source code
+    </a>
+    
+    
+  </div>
+  <span class="post-category">
+    <span class="label">
+      samples
+    </span>
+  </span>
+  <div class="post-content">
+    <p>Some of the most dangerous bugs in distributed systems live at the boundary between a database and a message broker.
+Consider a payment service that must do two things when it processes an order: insert a payment record into PostgreSQL and publish a <code class="highlighter-rouge">PaymentProcessed</code> event to Kafka.
+If the database insert succeeds but the Kafka publish fails, the payment is recorded but no downstream service ever learns about it — the order sits in limbo.
+If the Kafka publish succeeds but the application crashes before the database commit, an event announces a payment that never actually happened.</p>
+
+<p>You need both operations to succeed or both to fail.
+True distributed transactions (XA/two-phase commit) would solve this, but Kafka does not support XA, and even databases that do pay a steep performance penalty.
+The practical solution is the <strong>Outbox Pattern</strong>: write both the business record and the event into the <em>same</em> database transaction, then publish the event to Kafka asynchronously from the outbox table.</p>
+
+<p>The <a href="https://www.enterpriseintegrationpatterns.com/patterns/messaging/TransactionalClient.html">Transactional Client</a> pattern described by Hohpe and Woolf captures the broader concept — making messaging operations part of a transaction.
+The outbox pattern is its most widely adopted implementation.</p>
+
+<p><a href="https://camel.apache.org">Apache Camel</a> models this with two cooperating routes: a transactional route that writes the payment and the outbox event atomically, and a polling route that reads unpublished events from the outbox table and publishes them to Kafka.
+The <code class="highlighter-rouge">transacted()</code> DSL ensures the two SQL inserts share a single database transaction, while the polling route’s <code class="highlighter-rouge">onConsume</code> query marks each event as published after it has been successfully sent.</p>
+
+<p>Testing the outbox pattern end-to-end is where the real challenge lies.
+A unit test can verify that the SQL statements are syntactically correct, but only an integration test can prove that the payment record and the outbox event are committed atomically, that the polling route picks up the event and publishes it to Kafka, and that the outbox row is marked as published afterward.
+This is a three-phase verification across two infrastructure systems — exactly the kind of scenario where <a href="https://citrusframework.org">Citrus</a> shines.</p>
+
+<h2 id="the-scenario">The scenario</h2>
+
+<p>A payment service consumes order events from a Kafka topic <code class="highlighter-rouge">eip.payments.required</code>.
+For each order, the service must:</p>
+
+<ol>
+  <li>Insert a payment record into the <code class="highlighter-rouge">payments.payments</code> table with status <code class="highlighter-rouge">PROCESSED</code>.</li>
+  <li>Write an outbox event into the <code class="highlighter-rouge">payments.outbox</code> table with the payment details and a unique <code class="highlighter-rouge">event_id</code>.</li>
+  <li>Both writes happen in a single database transaction — if either fails, both are rolled back.</li>
+</ol>
+
+<p>A separate polling route runs every 5 seconds, reading unpublished rows from <code class="highlighter-rouge">payments.outbox</code>, publishing each event’s payload to <code class="highlighter-rouge">kafka:eip.payments.processed</code>, and marking the row as <code class="highlighter-rouge">published = true</code>.</p>
+
+<p>The test must verify all three phases: the payment record exists, the Kafka message was published with the correct payload, and the outbox row was marked as published.</p>
+
+<h2 id="the-camel-routes">The Camel routes</h2>
+
+<p>The outbox pattern is implemented as two routes in a single <code class="highlighter-rouge">RouteBuilder</code>.
+The first route handles the transactional write; the second handles the asynchronous publish.</p>
+
+<h3 id="quarkus">Quarkus</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ApplicationScoped</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">OutboxPatternRoute</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">from</span><span class="o">(</span><span class="s">"kafka:eip.payments.required?brokers={{kafka.brokers}}&amp;groupId=payment-outbox"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"transactional-client"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">unmarshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Transactional Client — processing payment for order ${body[order_id]}"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">transacted</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"sql:INSERT INTO payments.payments (order_id, amount, status) "</span>
+                <span class="o">+</span> <span class="s">"VALUES (:#${body[order_id]}, :#${body[amount]}, 'PROCESSED')"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">exchange</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">order</span> <span class="o">=</span> <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">getBody</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+                <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">event</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedHashMap</span><span class="o">&lt;&gt;();</span>
+                <span class="n">String</span> <span class="n">eventId</span> <span class="o">=</span> <span class="n">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">().</span><span class="na">toString</span><span class="o">();</span>
+                <span class="n">event</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"event_id"</span><span class="o">,</span> <span class="n">eventId</span><span class="o">);</span>
+                <span class="n">event</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"event_type"</span><span class="o">,</span> <span class="s">"PaymentProcessed"</span><span class="o">);</span>
+                <span class="n">event</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"aggregate_id"</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">order</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"order_id"</span><span class="o">)));</span>
+                <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">payload</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedHashMap</span><span class="o">&lt;&gt;();</span>
+                <span class="n">payload</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"order_id"</span><span class="o">,</span> <span class="n">order</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"order_id"</span><span class="o">));</span>
+                <span class="n">payload</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="n">order</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"amount"</span><span class="o">));</span>
+                <span class="n">payload</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"status"</span><span class="o">,</span> <span class="s">"PROCESSED"</span><span class="o">);</span>
+                <span class="n">event</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"payload"</span><span class="o">,</span> <span class="k">new</span> <span class="n">ObjectMapper</span><span class="o">().</span><span class="na">writeValueAsString</span><span class="o">(</span><span class="n">payload</span><span class="o">));</span>
+                <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">setBody</span><span class="o">(</span><span class="n">event</span><span class="o">);</span>
+            <span class="o">})</span>
+            <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"sql:INSERT INTO payments.outbox (event_id, event_type, aggregate_id, payload) "</span>
+                <span class="o">+</span> <span class="s">"VALUES (:#${body[event_id]}, :#${body[event_type]}, "</span>
+                <span class="o">+</span> <span class="s">":#${body[aggregate_id]}, :#${body[payload]})"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Transactional Client — payment and outbox event committed"</span><span class="o">);</span>
+
+        <span class="n">from</span><span class="o">(</span><span class="s">"sql:SELECT * FROM payments.outbox WHERE published = false "</span>
+                <span class="o">+</span> <span class="s">"ORDER BY created_at LIMIT 100"</span>
+                <span class="o">+</span> <span class="s">"?delay=5000"</span>
+                <span class="o">+</span> <span class="s">"&amp;onConsume=UPDATE payments.outbox SET published = true "</span>
+                <span class="o">+</span> <span class="s">"WHERE event_id = :#event_id"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"outbox-publisher"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Outbox Publisher — publishing event ${body[event_id]} to Kafka"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">setBody</span><span class="o">(</span><span class="n">simple</span><span class="o">(</span><span class="s">"${body[payload]}"</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"kafka:eip.payments.processed?brokers={{kafka.brokers}}"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The first route — <code class="highlighter-rouge">transactional-client</code> — does the heavy lifting.
+It consumes an order from Kafka, deserializes the JSON body, and enters a transaction with <code class="highlighter-rouge">.transacted()</code>.
+Inside the transaction, two SQL inserts execute in sequence: one writes the payment record to <code class="highlighter-rouge">payments.payments</code>, and a processor builds the outbox event and writes it to <code class="highlighter-rouge">payments.outbox</code>.
+Because both inserts share the same transaction, either both are committed or both are rolled back — the database guarantees atomicity.</p>
+
+<p>The processor between the two inserts constructs the outbox event as a <code class="highlighter-rouge">Map</code>.
+It generates a random UUID as the <code class="highlighter-rouge">event_id</code>, sets the <code class="highlighter-rouge">event_type</code> to <code class="highlighter-rouge">PaymentProcessed</code>, and serializes the payment payload as a JSON string.
+The <code class="highlighter-rouge">aggregate_id</code> is set to the <code class="highlighter-rouge">order_id</code>, which downstream consumers can use for partitioning or correlation.</p>
+
+<p>The second route — <code class="highlighter-rouge">outbox-publisher</code> — is a SQL polling consumer.
+Every 5 seconds, it selects up to 100 unpublished rows from <code class="highlighter-rouge">payments.outbox</code> ordered by creation time.
+For each row, it extracts the <code class="highlighter-rouge">payload</code> field, sends it to <code class="highlighter-rouge">kafka:eip.payments.processed</code>, and the <code class="highlighter-rouge">onConsume</code> query marks the row as <code class="highlighter-rouge">published = true</code>.
+The <code class="highlighter-rouge">ORDER BY created_at</code> preserves the temporal ordering of business events, and the <code class="highlighter-rouge">LIMIT 100</code> provides backpressure during bursts.</p>
+
+<h3 id="spring-boot">Spring Boot</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">OutboxPatternRoute</span> <span class="kd">extends</span> <span class="n">RouteBuilder</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">from</span><span class="o">(</span><span class="s">"kafka:eip.payments.required?brokers={{kafka.brokers}}&amp;groupId=payment-outbox"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"transactional-client"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">unmarshal</span><span class="o">().</span><span class="na">json</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Transactional Client — processing payment for order ${body[order_id]}"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">transacted</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"sql:INSERT INTO payments.payments (order_id, amount, status) "</span>
+                <span class="o">+</span> <span class="s">"VALUES (:#${body[order_id]}, :#${body[amount]}, 'PROCESSED')"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">exchange</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">order</span> <span class="o">=</span> <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">getBody</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+                <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">event</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedHashMap</span><span class="o">&lt;&gt;();</span>
+                <span class="n">String</span> <span class="n">eventId</span> <span class="o">=</span> <span class="n">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">().</span><span class="na">toString</span><span class="o">();</span>
+                <span class="n">event</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"event_id"</span><span class="o">,</span> <span class="n">eventId</span><span class="o">);</span>
+                <span class="n">event</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"event_type"</span><span class="o">,</span> <span class="s">"PaymentProcessed"</span><span class="o">);</span>
+                <span class="n">event</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"aggregate_id"</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">order</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"order_id"</span><span class="o">)));</span>
+                <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">payload</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedHashMap</span><span class="o">&lt;&gt;();</span>
+                <span class="n">payload</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"order_id"</span><span class="o">,</span> <span class="n">order</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"order_id"</span><span class="o">));</span>
+                <span class="n">payload</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="n">order</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"amount"</span><span class="o">));</span>
+                <span class="n">payload</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"status"</span><span class="o">,</span> <span class="s">"PROCESSED"</span><span class="o">);</span>
+                <span class="n">event</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"payload"</span><span class="o">,</span> <span class="k">new</span> <span class="n">ObjectMapper</span><span class="o">().</span><span class="na">writeValueAsString</span><span class="o">(</span><span class="n">payload</span><span class="o">));</span>
+                <span class="n">exchange</span><span class="o">.</span><span class="na">getIn</span><span class="o">().</span><span class="na">setBody</span><span class="o">(</span><span class="n">event</span><span class="o">);</span>
+            <span class="o">})</span>
+            <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"sql:INSERT INTO payments.outbox (event_id, event_type, aggregate_id, payload) "</span>
+                <span class="o">+</span> <span class="s">"VALUES (:#${body[event_id]}, :#${body[event_type]}, "</span>
+                <span class="o">+</span> <span class="s">":#${body[aggregate_id]}, :#${body[payload]})"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Transactional Client — payment and outbox event committed"</span><span class="o">);</span>
+
+        <span class="n">from</span><span class="o">(</span><span class="s">"sql:SELECT * FROM payments.outbox WHERE published = false "</span>
+                <span class="o">+</span> <span class="s">"ORDER BY created_at LIMIT 100"</span>
+                <span class="o">+</span> <span class="s">"?delay=5000"</span>
+                <span class="o">+</span> <span class="s">"&amp;onConsume=UPDATE payments.outbox SET published = true "</span>
+                <span class="o">+</span> <span class="s">"WHERE event_id = :#event_id"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">routeId</span><span class="o">(</span><span class="s">"outbox-publisher"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"Outbox Publisher — publishing event ${body[event_id]} to Kafka"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">setBody</span><span class="o">(</span><span class="n">simple</span><span class="o">(</span><span class="s">"${body[payload]}"</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">"kafka:eip.payments.processed?brokers={{kafka.brokers}}"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">@Component</code> replaces <code class="highlighter-rouge">@ApplicationScoped</code> — the route logic is identical between runtimes.</p>
+
+<h3 id="the-outbox-guarantees">The outbox guarantees</h3>
+
+<p>The two-route design provides three properties that a single route with a direct Kafka write cannot:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>How it works</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Atomicity</strong></td>
+      <td>The payment record and the outbox event are written in the same database transaction. Either both exist or neither does.</td>
+    </tr>
+    <tr>
+      <td><strong>Eventual consistency</strong></td>
+      <td>The outbox publisher polls the table and publishes to Kafka. If it crashes, it retries on restart — events are published at-least-once.</td>
+    </tr>
+    <tr>
+      <td><strong>Ordering</strong></td>
+      <td>Events are published in <code class="highlighter-rouge">created_at</code> order, preserving the temporal ordering of business operations.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Combined with an idempotent receiver on the consumer side, the outbox pattern achieves effectively-once processing across the database-to-Kafka boundary.</p>
+
+<h2 id="the-database-schema">The database schema</h2>
+
+<p>The outbox pattern requires two tables — one for the business data, one for the outbox events.
+Both are created by an init script mounted into the PostgreSQL container:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">SCHEMA</span> <span class="n">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">payments</span><span class="p">;</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">payments</span><span class="p">.</span><span class="n">payments</span> <span class="p">(</span>
+    <span class="n">id</span>         <span class="n">SERIAL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">order_id</span>   <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span>    <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">amount</span>     <span class="n">DECIMAL</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">status</span>     <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>    <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">'PENDING'</span><span class="p">,</span>
+    <span class="n">created_at</span> <span class="k">TIMESTAMP</span>      <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="n">NOW</span><span class="p">()</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">payments</span><span class="p">.</span><span class="n">outbox</span> <span class="p">(</span>
+    <span class="n">event_id</span>     <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">event_type</span>   <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">aggregate_id</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">payload</span>      <span class="n">TEXT</span>         <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">published</span>    <span class="n">BOOLEAN</span>      <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="k">false</span><span class="p">,</span>
+    <span class="n">created_at</span>   <span class="k">TIMESTAMP</span>    <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="n">NOW</span><span class="p">()</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span> <span class="k">INDEX</span> <span class="n">idx_outbox_unpublished</span>
+    <span class="k">ON</span> <span class="n">payments</span><span class="p">.</span><span class="n">outbox</span> <span class="p">(</span><span class="n">created_at</span><span class="p">)</span>
+    <span class="k">WHERE</span> <span class="n">published</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">payments.payments</code> table stores the business record.
+The <code class="highlighter-rouge">payments.outbox</code> table stores the events waiting to be published.
+The <code class="highlighter-rouge">published</code> column defaults to <code class="highlighter-rouge">false</code> — the outbox publisher’s SELECT query filters on this column, and its <code class="highlighter-rouge">onConsume</code> UPDATE flips it to <code class="highlighter-rouge">true</code> after successful publication.</p>
+
+<p>The partial index <code class="highlighter-rouge">idx_outbox_unpublished</code> is a performance optimization: it covers only rows with <code class="highlighter-rouge">published = false</code>, so the polling query’s execution plan remains efficient even as the table grows with millions of published rows.</p>
+
+<h2 id="test-infrastructure">Test infrastructure</h2>
+
+<p>The tests require Kafka for message transport and PostgreSQL for the transactional writes and the outbox table.
+A Docker Compose stack provisions both:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
+  <span class="na">kafka</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">docker.io/apache/kafka:latest</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">9092:9092"</span>
+    <span class="c1"># ... KRaft configuration ...</span>
+
+  <span class="na">kafka-ui</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">docker.io/provectuslabs/kafka-ui:latest</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">8090:8080"</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+      <span class="na">kafka</span><span class="pi">:</span>
+        <span class="na">condition</span><span class="pi">:</span> <span class="s">service_healthy</span>
+
+  <span class="na">postgres</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">docker.io/library/postgres:16-alpine</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">5432:5432"</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">POSTGRES_DB=eipdb</span>
+      <span class="pi">-</span> <span class="s">POSTGRES_USER=eipuser</span>
+      <span class="pi">-</span> <span class="s">POSTGRES_PASSWORD=eippass</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">./postgres/init-schemas.sql:/docker-entrypoint-initdb.d/01-init-schemas.sql:Z</span>
+</code></pre></div></div>
+
+<p>The PostgreSQL container mounts the init script that creates the <code class="highlighter-rouge">payments</code> schema and both tables at startup.
+A <code class="highlighter-rouge">BeforeSuite</code> action starts the compose stack and waits for readiness; an <code class="highlighter-rouge">AfterSuite</code> tears it down.</p>
+
+<h3 id="quarkus-infrastructure-setup">Quarkus infrastructure setup</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@CitrusConfiguration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EipInfraSetup</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
+
+    <span class="nd">@BindToRegistry</span>
+    <span class="kd">public</span> <span class="n">BeforeSuite</span> <span class="nf">startInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">beforeSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">up</span><span class="o">(</span><span class="s">"_infra/compose.yaml"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">autoRemove</span><span class="o">(</span><span class="kc">false</span><span class="o">),</span>
+                    <span class="n">waitFor</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">http</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://localhost:8090"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">25</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@BindToRegistry</span>
+    <span class="kd">public</span> <span class="n">AfterSuite</span> <span class="nf">stopInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">afterSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">().</span><span class="na">stop</span><span class="o">(),</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">down</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="spring-boot-infrastructure-setup">Spring Boot infrastructure setup</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EipInfraSetup</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">BeforeSuite</span> <span class="nf">startInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">beforeSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">up</span><span class="o">(</span><span class="s">"_infra/compose.yaml"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">autoRemove</span><span class="o">(</span><span class="kc">false</span><span class="o">),</span>
+                    <span class="n">waitFor</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">http</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://localhost:8090"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">25</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">AfterSuite</span> <span class="nf">stopInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">afterSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">().</span><span class="na">stop</span><span class="o">(),</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">down</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">waitFor().http()</code> call blocks until the Kafka UI is reachable on port 8090.
+Since the UI depends on Kafka and all containers share the same compose lifecycle, this is a reliable proxy for the entire stack being ready — including PostgreSQL, which starts faster than Kafka.</p>
+
+<h2 id="shared-test-utilities">Shared test utilities</h2>
+
+<p>Both runtimes use a shared <code class="highlighter-rouge">EipTestSupport</code> interface that provides reusable helper methods for waiting on route startup and verifying exchange counts.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">EipTestSupport</span> <span class="kd">extends</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
+
+    <span class="k">default</span> <span class="n">TestActionBuilder</span><span class="o">&lt;?&gt;</span> <span class="n">waitForCamelRouteStarted</span><span class="o">(</span>
+            <span class="n">String</span> <span class="n">routeId</span><span class="o">,</span> <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">repeatOnError</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">20</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">(</span><span class="n">camelContext</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">controlBus</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">route</span><span class="o">(</span><span class="n">routeId</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">status</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">result</span><span class="o">(</span><span class="n">ServiceStatus</span><span class="o">.</span><span class="na">Started</span><span class="o">),</span>
+                    <span class="n">sleep</span><span class="o">().</span><span class="na">seconds</span><span class="o">(</span><span class="mi">5</span><span class="o">)</span>
+                <span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">waitForCamelRouteStarted</code> uses Camel’s Control Bus to poll the route status every second, up to 20 retries.
+The outbox test waits for <em>two</em> routes — <code class="highlighter-rouge">transactional-client</code> and <code class="highlighter-rouge">outbox-publisher</code> — because both must be running before the test sends a payment request.
+If the transactional route has not started, the Kafka message sits unprocessed.
+If the outbox publisher has not started, the event sits in the outbox table and never reaches Kafka.</p>
+
+<h2 id="the-outbox-pattern-test">The outbox pattern test</h2>
+
+<p>The test exercises the full pipeline: send a payment request to Kafka, verify the payment record in PostgreSQL, verify the event on the downstream Kafka topic, and confirm the outbox row was marked as published.</p>
+
+<h3 id="quarkus-1">Quarkus</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@QuarkusTest</span>
+<span class="nd">@CitrusSupport</span>
+<span class="kd">class</span> <span class="nc">EipTests</span> <span class="kd">implements</span> <span class="n">EipTestSupport</span> <span class="o">{</span>
+
+    <span class="nd">@CitrusResource</span>
+    <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
+
+    <span class="nd">@Inject</span>
+    <span class="nd">@BindToRegistry</span>
+    <span class="n">DataSource</span> <span class="n">dataSource</span><span class="o">;</span>
+
+    <span class="nd">@Inject</span>
+    <span class="nd">@BindToRegistry</span>
+    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="nd">@Nested</span>
+    <span class="kd">class</span> <span class="nc">TransactionalOutboxTest</span> <span class="o">{</span>
+
+        <span class="nd">@Test</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldProcessPaymentAndPublishViaOutbox</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
+                <span class="n">createVariables</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mi">500</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"transactional-client"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"outbox-publisher"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
+                <span class="n">send</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.payments.required"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/order.json"</span><span class="o">))</span>
+                    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+                <span class="n">repeatOnError</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">15</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                        <span class="n">sql</span><span class="o">(</span><span class="n">dataSource</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">query</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">statement</span><span class="o">(</span><span class="s">"SELECT order_id, status FROM payments.payments "</span>
+                                <span class="o">+</span> <span class="s">"WHERE order_id = 'org.citrusframework:citrus-website:pom:1.1.0'"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"order_id"</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"status"</span><span class="o">,</span> <span class="s">"PROCESSED"</span><span class="o">)</span>
+                    <span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+                <span class="n">repeatOnError</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">20</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">2</span><span class="o">))</span>
+                    <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                        <span class="n">receive</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.payments.processed"</span>
+                                <span class="o">+</span> <span class="s">"?consumerGroup=citrus-payments-group"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"""
+                            {
+                              "</span><span class="n">order_id</span><span class="s">": org.citrusframework:citrus-website:pom:1.1.0,
+                              "</span><span class="n">amount</span><span class="s">": ${amount},
+                              "</span><span class="n">status</span><span class="s">": "</span><span class="n">PROCESSED</span><span class="s">"
+                            }
+                            """</span><span class="o">)</span>
+                    <span class="o">)</span>
+            <span class="o">);</span>
+
+            <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
+                <span class="n">repeatOnError</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">15</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
+                        <span class="n">sql</span><span class="o">(</span><span class="n">dataSource</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">query</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">statement</span><span class="o">(</span><span class="s">"SELECT published FROM payments.outbox "</span>
+                                <span class="o">+</span> <span class="s">"WHERE aggregate_id = 'org.citrusframework:citrus-website:pom:1.1.0'"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"published"</span><span class="o">,</span> <span class="s">"true"</span><span class="o">)</span>
+                    <span class="o">)</span>
+            <span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This test has four distinct phases, each verifying a different part of the outbox pipeline.</p>
+
+<p><strong>Given — set up variables and wait for both routes.</strong>
+The test generates a random 4-digit <code class="highlighter-rouge">id</code> used as the <code class="highlighter-rouge">order_id</code> and sets the <code class="highlighter-rouge">amount</code> to 500.
+It then waits for <em>both</em> the <code class="highlighter-rouge">transactional-client</code> and <code class="highlighter-rouge">outbox-publisher</code> routes to reach <code class="highlighter-rouge">Started</code> status.
+Waiting for both is critical — the transactional route must be ready to consume from Kafka and write to the database, and the outbox publisher must be polling the outbox table before the test expects the event to appear on the downstream Kafka topic.</p>
+
+<p><strong>When — send a payment request.</strong>
+A single order message goes to <code class="highlighter-rouge">kafka:eip.payments.required</code> using the shared order template.
+The template interpolates <code class="highlighter-rouge">org.citrusframework:citrus-website:pom:1.1.0</code> into the <code class="highlighter-rouge">order_id</code> field and <code class="highlighter-rouge">${amount}</code> into the <code class="highlighter-rouge">amount</code> field.
+This is the test’s stimulus — a payment request that triggers the entire outbox pipeline.</p>
+
+<p><strong>Then (first assertion) — verify the payment record in PostgreSQL.</strong>
+The test queries <code class="highlighter-rouge">payments.payments</code> to confirm the payment record was written.
+The <code class="highlighter-rouge">repeatOnError()</code> block retries up to 15 times with 1-second intervals, accommodating the time the transactional route needs to consume the Kafka message and execute the database transaction.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sql</span><span class="o">(</span><span class="n">dataSource</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">query</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">statement</span><span class="o">(</span><span class="s">"SELECT order_id, status FROM payments.payments WHERE order_id = 'org.citrusframework:citrus-website:pom:1.1.0'"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"order_id"</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"status"</span><span class="o">,</span> <span class="s">"PROCESSED"</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>This assertion verifies two things: the row exists (the query returns a result) and the status is <code class="highlighter-rouge">PROCESSED</code> (not the default <code class="highlighter-rouge">PENDING</code>).
+If the transaction rolled back, the row would not exist at all.
+If the insert succeeded but with wrong data, the validation would fail.</p>
+
+<p><strong>Then (second assertion) — verify the Kafka event.</strong>
+The test receives a message from <code class="highlighter-rouge">kafka:eip.payments.processed</code> — the topic that the outbox publisher writes to.
+This assertion has a longer retry window (20 retries with 2-second intervals) because it depends on two asynchronous steps: the transactional route writing the outbox event, and the outbox publisher polling the table and publishing to Kafka.
+The publisher polls every 5 seconds, so the event may take up to 5 seconds to appear after the transaction commits.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">receive</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.payments.processed?consumerGroup=citrus-payments-group"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"""
+    {
+      "</span><span class="n">order_id</span><span class="s">": org.citrusframework:citrus-website:pom:1.1.0,
+      "</span><span class="n">amount</span><span class="s">": ${amount},
+      "</span><span class="n">status</span><span class="s">": "</span><span class="n">PROCESSED</span><span class="s">"
+    }
+    """</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>The expected body is an inline JSON template.
+Citrus validates each field against the received message.
+The <code class="highlighter-rouge">order_id</code> and <code class="highlighter-rouge">amount</code> must match the values sent in the stimulus, and the <code class="highlighter-rouge">status</code> must be <code class="highlighter-rouge">PROCESSED</code> — confirming that the outbox event’s payload was correctly constructed by the processor and faithfully published by the outbox route.</p>
+
+<p><strong>Then (third assertion) — verify the outbox row was marked as published.</strong>
+The final assertion queries the <code class="highlighter-rouge">payments.outbox</code> table to confirm the row was updated.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sql</span><span class="o">(</span><span class="n">dataSource</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">query</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">statement</span><span class="o">(</span><span class="s">"SELECT published FROM payments.outbox WHERE aggregate_id = 'org.citrusframework:citrus-website:pom:1.1.0'"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"published"</span><span class="o">,</span> <span class="s">"true"</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>This is the assertion that most developers would skip — and the one that matters most.
+Without it, you would know the Kafka event was published, but you would not know whether the <code class="highlighter-rouge">onConsume</code> UPDATE actually ran.
+If the <code class="highlighter-rouge">onConsume</code> query fails silently (a typo in the column name, a constraint violation, a connection timeout), the row remains <code class="highlighter-rouge">published = false</code> and the outbox publisher would re-publish it on the next poll cycle — producing a duplicate event.</p>
+
+<p>By explicitly verifying <code class="highlighter-rouge">published = true</code>, the test proves the entire lifecycle: write, publish, and mark-as-published.</p>
+
+<h3 id="spring-boot-1">Spring Boot</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@SpringBootTest</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="n">EndpointsApplication</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="nd">@CamelSpringBootTest</span>
+<span class="nd">@CitrusSpringSupport</span>
+<span class="nd">@ContextConfiguration</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="o">{</span> <span class="n">EipInfraSetup</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">CitrusSpringConfig</span><span class="o">.</span><span class="na">class</span> <span class="o">})</span>
+<span class="kd">class</span> <span class="nc">EipTests</span> <span class="kd">implements</span> <span class="n">EipTestSupport</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="n">DataSource</span> <span class="n">dataSource</span><span class="o">;</span>
+
+    <span class="nd">@Nested</span>
+    <span class="kd">class</span> <span class="nc">TransactionalOutboxTest</span> <span class="o">{</span>
+
+        <span class="nd">@CitrusResource</span>
+        <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
+
+        <span class="nd">@Test</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldProcessPaymentAndPublishViaOutbox</span><span class="o">()</span> <span class="o">{</span>
+            <span class="c1">// Test logic is identical to the Quarkus variant</span>
+            <span class="c1">// ...</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The test logic is identical.
+The differences are only in the class-level annotations and dependency injection:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Concern</th>
+      <th>Quarkus</th>
+      <th>Spring Boot</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Test bootstrap</td>
+      <td><code class="highlighter-rouge">@QuarkusTest</code></td>
+      <td>
+<code class="highlighter-rouge">@SpringBootTest</code> + <code class="highlighter-rouge">@CamelSpringBootTest</code>
+</td>
+    </tr>
+    <tr>
+      <td>Citrus integration</td>
+      <td><code class="highlighter-rouge">@CitrusSupport</code></td>
+      <td><code class="highlighter-rouge">@CitrusSpringSupport</code></td>
+    </tr>
+    <tr>
+      <td>DataSource injection</td>
+      <td>
+<code class="highlighter-rouge">@Inject</code> + <code class="highlighter-rouge">@BindToRegistry</code>
+</td>
+      <td><code class="highlighter-rouge">@Autowired</code></td>
+    </tr>
+    <tr>
+      <td>CamelContext injection</td>
+      <td>
+<code class="highlighter-rouge">@Inject</code> + <code class="highlighter-rouge">@BindToRegistry</code>
+</td>
+      <td><code class="highlighter-rouge">@Autowired</code></td>
+    </tr>
+    <tr>
+      <td>TestCaseRunner scope</td>
+      <td>Class-level field</td>
+      <td>Nested class field with <code class="highlighter-rouge">@CitrusResource</code>
+</td>
+    </tr>
+    <tr>
+      <td>Infrastructure config</td>
+      <td>
+<code class="highlighter-rouge">@CitrusConfiguration</code> auto-discovered</td>
+      <td>
+<code class="highlighter-rouge">@ContextConfiguration</code> explicit</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="understanding-the-retry-strategies">Understanding the retry strategies</h2>
+
+<p>The three assertions use different retry configurations, and the differences are deliberate.</p>
+
+<p>The <strong>payment record assertion</strong> retries 15 times at 1-second intervals.
+The transactional route consumes the Kafka message, executes two SQL inserts, and commits — a fast operation that typically completes within a few seconds.
+A 15-second window is generous but avoids unnecessary waiting.</p>
+
+<p>The <strong>Kafka event assertion</strong> retries 20 times at 2-second intervals.
+This is the slowest step because it depends on the outbox publisher’s poll cycle.
+After the transactional route commits, the outbox row exists but is not yet published.
+The publisher polls every 5 seconds (<code class="highlighter-rouge">delay=5000</code> in the route), so the event may not appear on Kafka until up to 5 seconds after the commit.
+The wider retry window (40 seconds total) accounts for this latency plus any Kafka producer buffering.</p>
+
+<p>The <strong>outbox published assertion</strong> retries 15 times at 1-second intervals.
+By the time this assertion runs, the Kafka event has already been received — which means the outbox publisher already executed the <code class="highlighter-rouge">onConsume</code> UPDATE.
+The short retry window is a safety net for transactional propagation delays, not a wait for new asynchronous work.</p>
+
+<h2 id="why-outbox-pattern-tests-are-different">Why outbox pattern tests are different</h2>
+
+<p>Testing the outbox pattern introduces challenges that set it apart from other EIP tests.</p>
+
+<p><strong>The test verifies three separate state changes across two systems.</strong>
+Most EIP tests have a simple shape: send a message, verify the output.
+The outbox test must verify a database record (payment), a Kafka message (event), and a database flag (published).
+Each verification depends on the previous one succeeding, creating a three-step assertion chain.
+Citrus’s <code class="highlighter-rouge">sql()</code> and <code class="highlighter-rouge">receive()</code> actions can be freely mixed within the same test, making this cross-infrastructure verification natural.</p>
+
+<p><strong>Timing depends on a polling interval, not event delivery.</strong>
+The gap between the transaction commit and the Kafka event is governed by the outbox publisher’s 5-second poll delay — not by Kafka’s millisecond-scale delivery latency.
+The test must wait for a full poll cycle, which is why the Kafka assertion uses a wider retry window than the database assertions.
+Using <code class="highlighter-rouge">repeatOnError()</code> instead of a fixed sleep makes the test both reliable (it waits long enough) and fast (it succeeds as soon as the message appears, not after a worst-case delay).</p>
+
+<p><strong>The final assertion catches a class of bugs that no other check reveals.</strong>
+The <code class="highlighter-rouge">published = true</code> assertion specifically targets failures in the <code class="highlighter-rouge">onConsume</code> query.
+Without it, a broken <code class="highlighter-rouge">onConsume</code> (wrong column name, missing WHERE clause, connection pool exhaustion) would go undetected: the event reaches Kafka, the test passes, but the row remains <code class="highlighter-rouge">published = false</code>.
+On the next poll cycle, the publisher re-sends the event — a duplicate that violates the pattern’s at-most-once publication guarantee.
+This is the kind of subtle, asynchronous bug that only an end-to-end integration test can catch.</p>
+
+<p><strong>Two routes must be running before the test starts.</strong>
+Unlike most EIP tests that wait for a single route, the outbox test must wait for both <code class="highlighter-rouge">transactional-client</code> and <code class="highlighter-rouge">outbox-publisher</code>.
+Omitting the wait for either route produces different failure modes: a missing transactional route means the Kafka message is never consumed; a missing outbox publisher means the event is written to the database but never published.
+The separate <code class="highlighter-rouge">waitForCamelRouteStarted</code> calls for each route make the test’s dependencies explicit.</p>
+
+<h2 id="key-takeaways">Key takeaways</h2>
+
+<ul>
+  <li>
+<strong>The outbox pattern ensures atomicity without distributed transactions.</strong> By writing both the business record and the event to the same database in a single transaction, the pattern avoids the complexity of XA/two-phase commit while guaranteeing that either both writes succeed or both are rolled back.</li>
+  <li>
+<strong>Test all three state changes, not just the Kafka event.</strong> The payment record, the Kafka message, and the outbox <code class="highlighter-rouge">published</code> flag are all part of the pattern’s correctness contract. Skipping the database assertions — especially the <code class="highlighter-rouge">published = true</code> check — leaves a class of <code class="highlighter-rouge">onConsume</code> bugs undetected.</li>
+  <li>
+<strong>Match retry strategies to the asynchronous step they are waiting for.</strong> Database assertions after a fast transaction need short retries. Kafka assertions after a polling delay need wider retries. Citrus’s <code class="highlighter-rouge">repeatOnError()</code> makes this explicit: you set the retry count, the sleep interval, and the assertions — no guesswork about timing.</li>
+  <li>
+<strong>Wait for all cooperating routes before sending the stimulus.</strong> The outbox pattern uses two routes that must both be running. Missing a <code class="highlighter-rouge">waitForCamelRouteStarted</code> call produces intermittent failures that are difficult to diagnose — the test works when the route starts quickly and fails when it does not.</li>
+  <li>
+<strong>Citrus’s <code class="highlighter-rouge">sql()</code> action bridges database and messaging assertions.</strong> The same test that receives a Kafka message can query PostgreSQL to verify side effects. This cross-infrastructure verification is the outbox test’s defining characteristic and the reason an integration test framework is essential.</li>
+  <li>
+<strong>Two runtimes, one test pattern.</strong> Whether you run on Quarkus or Spring Boot, the test structure — send a payment request, verify the database record, receive the Kafka event, check the outbox flag — stays the same. Only the bootstrap annotations and dependency injection differ.</li>
+</ul>
+
+  </div>
+</article>
+
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <h4>Samples</h4>
+    <ul>
+      <li class="">
+        <a href="/samples/">Overview</a>
+      </li>
+      <li class="">
+        <a href="/samples/todo-app">TodoList App</a>
+      </li>
+      <li class="">
+        <a href="/samples/run">Running</a>
+      </li>
+    </ul>
+    <h4>Configuration</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+
+      
+      
+      <li class="">
+        <a href="/samples/javaconfig/">sample-javaconfig</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/annotation-config/">sample-annotation-config</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/reporting/">sample-reporting</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>CONNECTORS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/kubernetes/">sample-kubernetes</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/docker/">sample-docker</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>DEMO</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/selenium/">sample-selenium</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus/">sample-quarkus</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jbang/">sample-jbang</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/cucumber/">sample-cucumber</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/apache-camel/">sample-camel-context</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>EIP</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/messaging-bridge/">messaging-bridge</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/routing-slip/">routing-slip</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/load-balancer/">load-balancer</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/splitter/">splitter</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/wire-tap/">wire-tap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/message-reliability/">message-reliability</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/message-filter/">message-filter</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/content-based-router/">content-based-router</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/content-enricher/">content-enricher</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/content-filter/">content-filter</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/message-translator/">message-translator</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/resequencer/">resequencer</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/aggregator/">aggregator</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/normalizer/">normalizer</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/message-dispatcher/">message-dispatcher</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/polling-consumer/">polling-consumer</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-eip/idempotent-receiver/">idempotent-receiver</a>
+      </li>
+      
+      
+      <li class="current">
+        <a href="/samples/camel-eip/outbox-pattern/">outbox-pattern</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>ENDPOINTS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/jms/">sample-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-loadtest/">sample-http-loadtest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-static-response/">sample-http-static-response</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/ftp/">sample-ftp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-wsaddressing/">sample-soap-wsaddressing</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/rmi/">sample-rmi</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-ssl/">sample-soap-ssl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap/">sample-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/mail/">sample-mail</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-wssecurity/">sample-soap-wssecurity</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/kafka/">sample-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/wsdl/">sample-wsdl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/openapi/">sample-swagger</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/jdbc/">sample-jdbc</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-mtom/">sample-soap-mtom</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-attachment/">sample-soap-attachment</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/sftp/">sample-sftp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/https/">sample-https</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/scp/">sample-scp</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http/">sample-http</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dynamic-endpoints/">sample-dynamic-endpoints</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-basic-auth/">sample-http-basic-auth</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/soap-static-response/">sample-soap-static-response</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>MISCELLANEOUS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/gradle/">sample-gradle</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/message-store/">sample-message-store</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/behavior/">sample-behavior</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dictionaries/">sample-dictionaries</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>QUARKUS</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-kafka/">camel-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-knative/">camel-knative</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-knative-ssl/">camel-knative-ssl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-rest-to-soap/">camel-rest-to-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-rest-dsl/">camel-rest-dsl</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus-event-driven-kafka/">event-driven-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/quarkus-event-driven-jms/">event-driven-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-postgresql/">camel-postgresql</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-aws-s3-kafka/">camel-aws-s3-kafka</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-cxf-soap-client/">camel-cxf-soap-client</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-cxf-soap/">camel-cxf-soap</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-direct-http/">camel-direct-http</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-direct/">camel-direct</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-openapi-server/">camel-openapi-server</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-mqtt/">camel-mqtt</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-jms/">camel-jms</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-file-inbox/">camel-file-inbox</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/camel-quarkus-file-outbox/">camel-file-outbox</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>RUNTIMES</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/testng/">sample-testng</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/dataprovider/">sample-dataprovider</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/junit5/">sample-junit5</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/junit/">sample-junit</a>
+      </li>
+      
+      
+    </ul>
+
+    <h4>VALIDATION</h4>
+    <ul style="margin-top: 5px;">
+      
+      
+      <li class="">
+        <a href="/samples/hamcrest/">sample-hamcrest</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/sql/">sample-sql</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/http-form-data/">sample-http-form-data</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/oxm/">sample-oxm</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/json/">sample-json</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/databind/">sample-databind</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xml/">sample-xml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/xhtml/">sample-xhtml</a>
+      </li>
+      
+      
+      <li class="">
+        <a href="/samples/binary/">sample-binary</a>
+      </li>
+      
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <p>Citrus is open source and licensed under <br><a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
+      <p>This website is licensed under <br><a href="https://github.com/citrusframework/citrus/blob/master/LICENSE">MIT License</a>.</p>
+      <br>
+      <p>© 2026 ConSol Software GmbH</p>
+    </div>
+    <div class="unit one-third align-center center-on-mobiles">
+      <p>
+        <img src="/img/bmi_logo_eng.png" alt="Federal Ministry for Economic Affairs and Energy">
+      </p>
+    </div>
+    <div class="unit one-third align-right center-on-mobiles">
+      <p>
+        Hosted by<br>
+        <a href="http://www.consol.de">
+          <img src="/img/sponsor-logo.png" alt="ConSol">
+        </a>
+      </p>
+      <p> </p>
+      <br>
+      <br>
+      <p>
+        <a href="http://www.consol.com/legal-notice/">Legal notice</a> | <a href="https://www.consol.com/data-privacy/">Data privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("samples")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+
+</body>
+</html>

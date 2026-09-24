@@ -213,7 +213,7 @@ But there is an uncomfortable truth: if you only test the happy path, you have n
 How do you send a message that triggers a Dead Letter Channel? How do you verify that a duplicate was silently dropped? How do you assert on a route that logs an error but produces no output message? 
 These questions matter because reliability patterns are invisible until something breaks — and production is the worst place to discover they are misconfigured.</p>
 
-<p><a href="https://citrusframework.org">Citrus</a> provides the tools to test all of these scenarios: <code class="highlighter-rouge">repeatOnError</code> for polling DLQ topics, <code class="highlighter-rouge">assertProcessedExchanges</code> for verifying routes with no output topic, deterministic test data for triggering specific failure conditions, and ordered test methods for building stateful test sequences like deduplication.</p>
+<p><a href="https://citrusframework.org">Citrus</a> provides the tools to test all of these scenarios: <code class="highlighter-rouge">repeatOnError</code> for polling DLQ topics, <code class="highlighter-rouge">camel().route().verifyRouteStats()</code> for verifying routes with no output topic, deterministic test data for triggering specific failure conditions, and ordered test methods for building stateful test sequences like deduplication.</p>
 
 <p><img src="/img/assets/testing-reliability-patterns/featured.png" alt="Citrus" width="700px" class="center-image">
 <em>AI generated with Google Gemini</em></p>
@@ -319,8 +319,7 @@ This can lead to flaky tests where the timing condition may succeed or fail in a
 
     <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
         <span class="n">repeatOnError</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">until</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">autoSleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">10</span><span class="o">)</span>
             <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
                 <span class="n">receive</span><span class="o">()</span>
                     <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.dlq?consumerGroup=citrus-dlq-group"</span><span class="o">)</span>
@@ -620,9 +619,9 @@ You do not need to send enough failing messages to trip the circuit first.</p>
 
 <ul>
   <li>
-<strong>Dead Letter Channels</strong>: use deterministic IDs that trigger exceptions, <code class="highlighter-rouge">repeatOnError</code> to poll the DLQ, and assert only on original message fields.</li>
+<strong>Dead Letter Channels</strong>: use deterministic IDs that trigger exceptions, <code class="highlighter-rouge">repeatOnError()</code> to poll the DLQ, and assert only on original message fields.</li>
   <li>
-<strong>Idempotent Receivers</strong>: use ordered tests to seed and re-send the same event, and <code class="highlighter-rouge">assertProcessedExchanges</code> to verify the duplicate handler.</li>
+<strong>Idempotent Receivers</strong>: use ordered tests to seed and re-send the same event, and <code class="highlighter-rouge">camel().route().verifyRouteStats()</code> to verify the duplicate handler.</li>
   <li>
 <strong>Circuit Breakers</strong>: use deterministic IDs that trigger fallback paths, and verify that the fallback output matches the pre-failure message.</li>
   <li>
