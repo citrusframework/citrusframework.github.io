@@ -114,7 +114,7 @@
     <option value="">Navigate the samples…</option>
     <option value="/samples/">Overview</option>
     <option value="/samples/todo-app/">TodoList App</option>
-    <option value="/samples/run/">Running</option>
+    <option value="/samples/camel-eip/">Camel EIP</option>
     
     
     <option value="/samples/javaconfig/">sample-javaconfig</option>
@@ -468,117 +468,6 @@ The Citrus framework must support both protocols in the same test case, with end
 Pulsar and Kafka have different header/property models, different serialization defaults, and different metadata.
 The bridge must preserve the application payload even though the envelope changes.</p>
 
-<h1 id="the-test-infrastructure">The test infrastructure</h1>
-
-<p>The bridge test requires both a Kafka broker and a Pulsar broker.
-The Docker Compose file provisions both alongside a Kafka UI for visual debugging:</p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
-  <span class="na">kafka</span><span class="pi">:</span>
-    <span class="na">image</span><span class="pi">:</span> <span class="s">docker.io/apache/kafka:4.3.1</span>
-    <span class="na">ports</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="s2">"</span><span class="s">9092:9092"</span>
-    <span class="na">environment</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="s">KAFKA_NODE_ID=1</span>
-      <span class="pi">-</span> <span class="s">KAFKA_PROCESS_ROLES=broker,controller</span>
-      <span class="pi">-</span> <span class="s">KAFKA_CONTROLLER_QUORUM_VOTERS=1@kafka:9093</span>
-      <span class="pi">-</span> <span class="s">KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093</span>
-      <span class="pi">-</span> <span class="s">KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092</span>
-      <span class="pi">-</span> <span class="s">KAFKA_AUTO_CREATE_TOPICS_ENABLE=true</span>
-    <span class="na">healthcheck</span><span class="pi">:</span>
-      <span class="na">test</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">CMD-SHELL"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">nc</span><span class="nv"> </span><span class="s">-z</span><span class="nv"> </span><span class="s">localhost</span><span class="nv"> </span><span class="s">9092"</span><span class="pi">]</span>
-      <span class="na">interval</span><span class="pi">:</span> <span class="s">5s</span>
-      <span class="na">timeout</span><span class="pi">:</span> <span class="s">5s</span>
-      <span class="na">retries</span><span class="pi">:</span> <span class="s">12</span>
-      <span class="na">start_period</span><span class="pi">:</span> <span class="s">30s</span>
-
-  <span class="na">pulsar</span><span class="pi">:</span>
-    <span class="na">image</span><span class="pi">:</span> <span class="s">docker.io/apachepulsar/pulsar:4.2.4</span>
-    <span class="na">command</span><span class="pi">:</span> <span class="s">bin/pulsar standalone --advertised-address localhost</span>
-    <span class="na">ports</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="s2">"</span><span class="s">6650:6650"</span>
-      <span class="pi">-</span> <span class="s2">"</span><span class="s">8080:8080"</span>
-    <span class="na">environment</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="s">PULSAR_MEM=-Xms512m -Xmx1024m -XX:MaxDirectMemorySize=512m</span>
-      <span class="pi">-</span> <span class="s">PULSAR_STANDALONE_USE_ZOOKEEPER=0</span>
-    <span class="na">healthcheck</span><span class="pi">:</span>
-      <span class="na">test</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">CMD-SHELL"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">bin/pulsar-admin</span><span class="nv"> </span><span class="s">brokers</span><span class="nv"> </span><span class="s">healthcheck"</span><span class="pi">]</span>
-      <span class="na">interval</span><span class="pi">:</span> <span class="s">10s</span>
-      <span class="na">timeout</span><span class="pi">:</span> <span class="s">5s</span>
-      <span class="na">retries</span><span class="pi">:</span> <span class="s">15</span>
-      <span class="na">start_period</span><span class="pi">:</span> <span class="s">60s</span>
-</code></pre></div></div>
-
-<p>Note that Pulsar’s startup is significantly slower than Kafka’s — its health check uses a 60-second <code class="highlighter-rouge">start_period</code> with up to 15 retries.
-This affects how the test infrastructure setup waits for readiness, which we will see in the Citrus configuration below.</p>
-
-<p>Citrus manages the lifecycle of these containers with Testcontainers.
-On Quarkus, the setup uses <code class="highlighter-rouge">@CitrusConfiguration</code> with <code class="highlighter-rouge">@BindToRegistry</code>:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@CitrusConfiguration</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EipInfraSetup</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
-
-    <span class="nd">@BindToRegistry</span>
-    <span class="kd">public</span> <span class="n">BeforeSuite</span> <span class="nf">startInfra</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="nf">beforeSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
-                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">up</span><span class="o">(</span><span class="s">"_infra/compose.yaml"</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">autoRemove</span><span class="o">(</span><span class="kc">false</span><span class="o">),</span>
-                    <span class="n">waitFor</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">http</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://localhost:8090"</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">25</span><span class="o">)</span>
-                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
-    <span class="o">}</span>
-
-    <span class="nd">@BindToRegistry</span>
-    <span class="kd">public</span> <span class="n">AfterSuite</span> <span class="nf">stopInfra</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="nf">afterSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
-                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">().</span><span class="na">stop</span><span class="o">(),</span>
-                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">down</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
-                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>On Spring Boot, the same logic uses <code class="highlighter-rouge">@Configuration</code> and <code class="highlighter-rouge">@Bean</code>:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EipInfraSetup</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
-
-    <span class="nd">@Bean</span>
-    <span class="kd">public</span> <span class="n">BeforeSuite</span> <span class="nf">startInfra</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="nf">beforeSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
-                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">up</span><span class="o">(</span><span class="s">"_infra/compose.yaml"</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">autoRemove</span><span class="o">(</span><span class="kc">false</span><span class="o">),</span>
-                    <span class="n">waitFor</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">http</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://localhost:8090"</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">25</span><span class="o">)</span>
-                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Bean</span>
-    <span class="kd">public</span> <span class="n">AfterSuite</span> <span class="nf">stopInfra</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="nf">afterSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
-                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">().</span><span class="na">stop</span><span class="o">(),</span>
-                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">down</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
-                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>The <code class="highlighter-rouge">waitFor().http()</code> action probes the Kafka UI at port 8090, which only becomes available after Kafka is healthy.
-This provides a readiness gate for the Kafka side.
-The Pulsar readiness is handled implicitly — the Camel route’s Pulsar consumer will retry its connection until the broker is available, and the <code class="highlighter-rouge">waitForCamelRouteStarted</code> utility (used in each test) ensures the route is fully connected before the test proceeds.</p>
-
 <h1 id="the-message-template">The message template</h1>
 
 <p>All bridge tests use a shared JSON template stored in <code class="highlighter-rouge">src/test/resources/templates/order.json</code>:</p>
@@ -672,84 +561,6 @@ The receive action uses a dedicated consumer group (<code class="highlighter-rou
 <p>The validation uses the same <code class="highlighter-rouge">order.json</code> template with the same variables that were used for sending.
 This proves that the message content survived the Pulsar-to-Kafka bridge intact — the order ID, amount, status, and all other fields match exactly what was sent to Pulsar.</p>
 
-<h1 id="waiting-for-the-camel-route">Waiting for the Camel route</h1>
-
-<p>Bridge routes connect to two brokers, so the startup wait is especially important.
-The <code class="highlighter-rouge">waitForCamelRouteStarted</code> utility uses Camel’s Control Bus to poll the route status:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">EipTestSupport</span> <span class="kd">extends</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
-
-    <span class="k">default</span> <span class="n">TestActionBuilder</span><span class="o">&lt;?&gt;</span> <span class="n">waitForCamelRouteStarted</span><span class="o">(</span>
-            <span class="n">String</span> <span class="n">routeId</span><span class="o">,</span> <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="nf">repeatOnError</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">20</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
-                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">(</span><span class="n">camelContext</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">controlBus</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">route</span><span class="o">(</span><span class="n">routeId</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">status</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">result</span><span class="o">(</span><span class="n">ServiceStatus</span><span class="o">.</span><span class="na">Started</span><span class="o">),</span>
-                    <span class="n">sleep</span><span class="o">().</span><span class="na">seconds</span><span class="o">(</span><span class="mi">5</span><span class="o">)</span>
-                <span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>This polls the Camel context up to 20 times with one-second pauses.
-Once the route reports <code class="highlighter-rouge">Started</code>, it waits an additional five seconds for both the Pulsar subscription and the Kafka consumer to fully connect.
-The 20-retry count and 5-second post-start sleep are more generous than what a single-broker test would need — the bridge route can’t report <code class="highlighter-rouge">Started</code> until both its source consumer and destination producer are initialized, and the Pulsar consumer in particular can take several seconds to establish its exclusive subscription.</p>
-
-<h1 id="running-on-quarkus-and-spring-boot">Running on Quarkus and Spring Boot</h1>
-
-<p>The Camel route logic is identical across both runtimes.
-The test code differences are limited to the wiring annotations.</p>
-
-<p>On Quarkus, the test class uses <code class="highlighter-rouge">@CitrusSupport</code> alongside <code class="highlighter-rouge">@QuarkusTest</code>, and the <code class="highlighter-rouge">CamelContext</code> is injected with CDI:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@QuarkusTest</span>
-<span class="nd">@CitrusSupport</span>
-<span class="kd">class</span> <span class="nc">EipTests</span> <span class="kd">implements</span> <span class="n">EipTestSupport</span> <span class="o">{</span>
-
-    <span class="nd">@CitrusResource</span>
-    <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
-
-    <span class="nd">@Inject</span>
-    <span class="nd">@BindToRegistry</span>
-    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
-
-    <span class="nd">@Nested</span>
-    <span class="kd">class</span> <span class="nc">MessagingBridgePulsarToKafkaTest</span> <span class="o">{</span>
-        <span class="c1">// ... test methods</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>On Spring Boot, the test uses <code class="highlighter-rouge">@CitrusSpringSupport</code> alongside Spring Boot and Camel test annotations:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@SpringBootTest</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="n">ChannelInfraApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
-    <span class="n">webEnvironment</span> <span class="o">=</span> <span class="n">SpringBootTest</span><span class="o">.</span><span class="na">WebEnvironment</span><span class="o">.</span><span class="na">DEFINED_PORT</span><span class="o">)</span>
-<span class="nd">@CamelSpringBootTest</span>
-<span class="nd">@CitrusSpringSupport</span>
-<span class="nd">@ContextConfiguration</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="o">{</span> <span class="n">EipInfraSetup</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">CitrusSpringConfig</span><span class="o">.</span><span class="na">class</span> <span class="o">})</span>
-<span class="kd">class</span> <span class="nc">EipTests</span> <span class="kd">implements</span> <span class="n">EipTestSupport</span> <span class="o">{</span>
-
-    <span class="nd">@Autowired</span>
-    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
-
-    <span class="nd">@Nested</span>
-    <span class="kd">class</span> <span class="nc">MessagingBridgePulsarToKafkaTest</span> <span class="o">{</span>
-
-        <span class="nd">@CitrusResource</span>
-        <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
-
-        <span class="c1">// ... test methods</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>On Spring Boot, the <code class="highlighter-rouge">TestCaseRunner</code> is declared in the <code class="highlighter-rouge">@Nested</code> inner class, while on Quarkus it lives at the outer class level — a structural difference driven by how each test framework manages injection scopes.
-The actual test methods are identical on both runtimes.</p>
-
 <h1 id="testing-with-the-yaml-dsl">Testing with the YAML DSL</h1>
 
 <p>The Camel CLI supports running routes from YAML files and testing them with Citrus YAML test definitions.
@@ -838,81 +649,7 @@ The verify action waits until the log message appears, serving as both a synchro
 <p>The Kafka-to-Pulsar test creates fresh variables (a new order ID with status <code class="highlighter-rouge">shipped</code>), sends to the Kafka topic, and verifies the bridge log output for the reverse direction.
 Notice that the YAML test uses <code class="highlighter-rouge">camel:jbang:verify</code> on the log output rather than consuming from the Pulsar output topic — this avoids the complexity of setting up a Pulsar consumer subscription in the test itself while still confirming the bridge processed the message end-to-end.</p>
 
-<h1 id="test-dependencies">Test dependencies</h1>
-
-<p>Both runtime variants share the same core Citrus dependencies.
-The runtime adapter is the only difference — <code class="highlighter-rouge">citrus-quarkus</code> for Quarkus, <code class="highlighter-rouge">citrus-spring</code> for Spring Boot:</p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- Quarkus runtime adapter --&gt;</span>
-<span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>citrus-quarkus<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
-    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-
-<span class="c">&lt;!-- OR Spring Boot runtime adapter --&gt;</span>
-<span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>citrus-spring<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
-    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-</code></pre></div></div>
-
-<p>Both runtimes share these common dependencies:</p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>citrus-camel<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
-    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-<span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>citrus-kafka<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
-    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-<span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>citrus-testcontainers<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
-    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-<span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>citrus-validation-json<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
-    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-</code></pre></div></div>
-
-<p>The <code class="highlighter-rouge">citrus-camel</code> module is especially important for the bridge test.
-It provides both the Camel Control Bus integration used in <code class="highlighter-rouge">waitForCamelRouteStarted</code> and the <code class="highlighter-rouge">CamelSupport.camel().endpoints().pulsar(...)</code> builder used to construct the Pulsar send endpoint.
-This means the test does not need a separate Pulsar client library — it leverages Camel’s own Pulsar component through the Citrus-Camel integration to produce test messages.</p>
-
-<h1 id="running-the-tests">Running the tests</h1>
-
-<p>Make sure Docker (or Podman) is running, then execute:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Quarkus</span>
-<span class="nb">cd </span>examples/06-channel-infra/quarkus
-mvn verify
-
-<span class="c"># Spring Boot</span>
-<span class="nb">cd </span>examples/06-channel-infra/spring-boot
-mvn verify
-</code></pre></div></div>
-
-<p>The test suite starts Kafka, Pulsar, and PostgreSQL via Testcontainers, boots the Camel application, runs the bridge test, and tears everything down.
-The Pulsar broker takes longer to start than Kafka — expect 60 to 90 seconds for the infrastructure to become fully ready before the first test sends a message.</p>
-
-<p>For the YAML DSL variant, install the <a href="https://camel.apache.org/manual/camel-jbang.html">Camel CLI</a> and run:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>examples/06-channel-infra/yaml-dsl
-camel <span class="nb">test test</span>/messaging-bridge.citrus.it.yaml
-</code></pre></div></div>
+<p>For the test infrastructure setup, shared test utilities, runtime wiring, dependencies, and how to run the tests, see the <a href="/samples/camel-eip/">Camel EIP examples</a> overview page.</p>
 
 <h1 id="key-takeaways">Key takeaways</h1>
 
@@ -964,7 +701,7 @@ Unlike single-broker tests, a bridge test must manage multi-broker infrastructur
         <a href="/samples/todo-app">TodoList App</a>
       </li>
       <li class="">
-        <a href="/samples/run">Running</a>
+        <a href="/samples/camel-eip">Camel EIP</a>
       </li>
     </ul>
     <h4>Configuration</h4>

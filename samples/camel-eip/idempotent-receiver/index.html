@@ -114,7 +114,7 @@
     <option value="">Navigate the samples…</option>
     <option value="/samples/">Overview</option>
     <option value="/samples/todo-app/">TodoList App</option>
-    <option value="/samples/run/">Running</option>
+    <option value="/samples/camel-eip/">Camel EIP</option>
     
     
     <option value="/samples/javaconfig/">sample-javaconfig</option>
@@ -465,148 +465,6 @@ The repository needs a table to store processed message IDs:</p>
 <p>The composite primary key <code class="highlighter-rouge">(processorName, messageId)</code> ensures that each processor instance has its own namespace.
 Multiple routes using the same table can each track their own set of processed IDs independently by choosing different processor names.</p>
 
-<h2 id="test-infrastructure">Test infrastructure</h2>
-
-<p>The tests need Kafka for message transport and PostgreSQL for the JDBC idempotent repository.
-A Docker Compose stack provisions both services:</p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
-  <span class="na">kafka</span><span class="pi">:</span>
-    <span class="na">image</span><span class="pi">:</span> <span class="s">docker.io/apache/kafka:latest</span>
-    <span class="na">ports</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="s2">"</span><span class="s">9092:9092"</span>
-    <span class="c1"># ... KRaft configuration ...</span>
-
-  <span class="na">kafka-ui</span><span class="pi">:</span>
-    <span class="na">image</span><span class="pi">:</span> <span class="s">docker.io/provectuslabs/kafka-ui:latest</span>
-    <span class="na">ports</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="s2">"</span><span class="s">8090:8080"</span>
-    <span class="na">depends_on</span><span class="pi">:</span>
-      <span class="na">kafka</span><span class="pi">:</span>
-        <span class="na">condition</span><span class="pi">:</span> <span class="s">service_healthy</span>
-
-  <span class="na">postgres</span><span class="pi">:</span>
-    <span class="na">image</span><span class="pi">:</span> <span class="s">docker.io/library/postgres:16-alpine</span>
-    <span class="na">ports</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="s2">"</span><span class="s">5432:5432"</span>
-    <span class="na">environment</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="s">POSTGRES_DB=eipdb</span>
-      <span class="pi">-</span> <span class="s">POSTGRES_USER=eipuser</span>
-      <span class="pi">-</span> <span class="s">POSTGRES_PASSWORD=eippass</span>
-    <span class="na">volumes</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="s">./postgres/init-schemas.sql:/docker-entrypoint-initdb.d/01-init-schemas.sql:Z</span>
-</code></pre></div></div>
-
-<p>The PostgreSQL container mounts an init script that creates the <code class="highlighter-rouge">camel_messageprocessed</code> table automatically at startup.
-A <code class="highlighter-rouge">BeforeSuite</code> action starts the compose stack and waits for the Kafka UI to become healthy.</p>
-
-<h3 id="quarkus-infrastructure-setup">Quarkus infrastructure setup</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@CitrusConfiguration</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EipInfraSetup</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
-
-    <span class="nd">@BindToRegistry</span>
-    <span class="kd">public</span> <span class="n">BeforeSuite</span> <span class="nf">startInfra</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="nf">beforeSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
-                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">up</span><span class="o">(</span><span class="s">"_infra/compose.yaml"</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">autoRemove</span><span class="o">(</span><span class="kc">false</span><span class="o">),</span>
-                    <span class="n">waitFor</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">http</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://localhost:8090"</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">25</span><span class="o">)</span>
-                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
-    <span class="o">}</span>
-
-    <span class="nd">@BindToRegistry</span>
-    <span class="kd">public</span> <span class="n">AfterSuite</span> <span class="nf">stopInfra</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="nf">afterSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
-                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">().</span><span class="na">stop</span><span class="o">(),</span>
-                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">down</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
-                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h3 id="spring-boot-infrastructure-setup">Spring Boot infrastructure setup</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EipInfraSetup</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
-
-    <span class="nd">@Bean</span>
-    <span class="kd">public</span> <span class="n">BeforeSuite</span> <span class="nf">startInfra</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="nf">beforeSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
-                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">up</span><span class="o">(</span><span class="s">"_infra/compose.yaml"</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">autoRemove</span><span class="o">(</span><span class="kc">false</span><span class="o">),</span>
-                    <span class="n">waitFor</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">http</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://localhost:8090"</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">25</span><span class="o">)</span>
-                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Bean</span>
-    <span class="kd">public</span> <span class="n">AfterSuite</span> <span class="nf">stopInfra</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="nf">afterSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
-                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">().</span><span class="na">stop</span><span class="o">(),</span>
-                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">down</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
-                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>The <code class="highlighter-rouge">waitFor().http()</code> call blocks until the Kafka UI is reachable on port 8090.
-Since the UI depends on Kafka and all containers share the same compose lifecycle, this is a reliable proxy for the entire stack being ready.</p>
-
-<h2 id="shared-test-utilities">Shared test utilities</h2>
-
-<p>Both runtime variants use a shared <code class="highlighter-rouge">EipTestSupport</code> interface that provides reusable helper methods.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">EipTestSupport</span> <span class="kd">extends</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
-
-    <span class="k">default</span> <span class="n">TestActionBuilder</span><span class="o">&lt;?&gt;</span> <span class="n">waitForCamelRouteStarted</span><span class="o">(</span>
-            <span class="n">String</span> <span class="n">routeId</span><span class="o">,</span> <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="nf">repeatOnError</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">20</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
-                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">(</span><span class="n">camelContext</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">controlBus</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">route</span><span class="o">(</span><span class="n">routeId</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">status</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">result</span><span class="o">(</span><span class="n">ServiceStatus</span><span class="o">.</span><span class="na">Started</span><span class="o">),</span>
-                    <span class="n">sleep</span><span class="o">().</span><span class="na">seconds</span><span class="o">(</span><span class="mi">5</span><span class="o">)</span>
-                <span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="k">default</span> <span class="n">TestActionBuilder</span><span class="o">&lt;?&gt;</span> <span class="n">verifyCompletedExchanges</span><span class="o">(</span>
-            <span class="n">String</span> <span class="n">routeId</span><span class="o">,</span> <span class="kt">long</span> <span class="n">count</span><span class="o">,</span> <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="nf">repeatOnError</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">20</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
-                    <span class="n">camel</span><span class="o">()</span>
-                        <span class="o">.</span><span class="na">camelContext</span><span class="o">(</span><span class="n">camelContext</span><span class="o">)</span>
-                        <span class="o">.</span><span class="na">route</span><span class="o">()</span>
-                        <span class="o">.</span><span class="na">verifyRouteStats</span><span class="o">(</span><span class="n">routeId</span><span class="o">)</span>
-                        <span class="o">.</span><span class="na">completed</span><span class="o">(</span><span class="n">count</span><span class="o">)</span>
-                <span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p><code class="highlighter-rouge">waitForCamelRouteStarted</code> uses Camel’s Control Bus to poll the route status every second, up to 20 retries.
-This ensures the idempotent receiver route is fully started — including its Kafka consumer group registration and JDBC repository initialization — before the test sends any messages.</p>
-
-<p><code class="highlighter-rouge">verifyCompletedExchanges</code> uses Citrus’s built-in Camel route statistics verification to check how many exchanges a route has completed.
-For the idempotent receiver, this is particularly useful: the route receives <em>both</em> messages (the unique one and the duplicate), but only forwards the unique one.
-The route statistics verification confirms that both exchanges were consumed from Kafka and processed by the route — even though only one produced output on the downstream topic.</p>
-
 <h2 id="the-idempotent-receiver-tests">The idempotent receiver tests</h2>
 
 <p>The test methods cover the pattern’s two complementary behaviors: deduplication of identical messages, and pass-through of unique messages.</p>
@@ -702,79 +560,6 @@ Proving a negative — that something did <em>not</em> happen — requires a tim
 This is an important distinction: the route processed two exchanges, but the <code class="highlighter-rouge">idempotentConsumer()</code> EIP filtered one of them before the downstream <code class="highlighter-rouge">to()</code> step.
 The exchange count of 2 proves that the duplicate was not lost or rejected at the Kafka level — it was consumed and deliberately skipped by the idempotent logic.</p>
 
-<h4 id="spring-boot-1">Spring Boot</h4>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@SpringBootTest</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="n">EndpointsApplication</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-<span class="nd">@CamelSpringBootTest</span>
-<span class="nd">@CitrusSpringSupport</span>
-<span class="nd">@ContextConfiguration</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="o">{</span> <span class="n">EipInfraSetup</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">CitrusSpringConfig</span><span class="o">.</span><span class="na">class</span> <span class="o">})</span>
-<span class="kd">class</span> <span class="nc">EipTests</span> <span class="kd">implements</span> <span class="n">EipTestSupport</span> <span class="o">{</span>
-
-    <span class="nd">@Autowired</span>
-    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
-
-    <span class="nd">@Nested</span>
-    <span class="kd">class</span> <span class="nc">IdempotentReceiverTest</span> <span class="o">{</span>
-
-        <span class="nd">@CitrusResource</span>
-        <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
-
-        <span class="nd">@Test</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldDeduplicateIdenticalOrders</span><span class="o">()</span> <span class="o">{</span>
-            <span class="c1">// Test logic is identical to the Quarkus variant</span>
-            <span class="c1">// ...</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>The test logic is identical.
-The differences are in the class-level annotations and dependency injection:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Concern</th>
-      <th>Quarkus</th>
-      <th>Spring Boot</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Test bootstrap</td>
-      <td><code class="highlighter-rouge">@QuarkusTest</code></td>
-      <td>
-<code class="highlighter-rouge">@SpringBootTest</code> + <code class="highlighter-rouge">@CamelSpringBootTest</code>
-</td>
-    </tr>
-    <tr>
-      <td>Citrus integration</td>
-      <td><code class="highlighter-rouge">@CitrusSupport</code></td>
-      <td><code class="highlighter-rouge">@CitrusSpringSupport</code></td>
-    </tr>
-    <tr>
-      <td>CamelContext injection</td>
-      <td>
-<code class="highlighter-rouge">@Inject</code> + <code class="highlighter-rouge">@BindToRegistry</code>
-</td>
-      <td><code class="highlighter-rouge">@Autowired</code></td>
-    </tr>
-    <tr>
-      <td>TestCaseRunner scope</td>
-      <td>Class-level field</td>
-      <td>Nested class field with <code class="highlighter-rouge">@CitrusResource</code>
-</td>
-    </tr>
-    <tr>
-      <td>Infrastructure config</td>
-      <td>
-<code class="highlighter-rouge">@CitrusConfiguration</code> auto-discovered</td>
-      <td>
-<code class="highlighter-rouge">@ContextConfiguration</code> explicit</td>
-    </tr>
-  </tbody>
-</table>
-
 <h2 id="the-order-template">The order template</h2>
 
 <p>The tests use a shared JSON template that Citrus resolves at runtime:</p>
@@ -816,6 +601,8 @@ The JDBC repository persists <code class="highlighter-rouge">order_id</code> val
 If the deduplication test runs before the pass-through test with the same <code class="highlighter-rouge">order_id</code>, the pass-through test would fail because the ID is already in the repository.
 The random <code class="highlighter-rouge">id</code> variable generated by <code class="highlighter-rouge">citrus:randomNumber(4)</code> ensures each test run uses a unique <code class="highlighter-rouge">order_id</code>, avoiding cross-test contamination.</p>
 
+<p>For the test infrastructure setup, shared test utilities, runtime wiring, dependencies, and how to run the tests, see the <a href="/samples/camel-eip/">Camel EIP examples</a> overview page.</p>
+
 <h2 id="key-takeaways">Key takeaways</h2>
 
 <ul>
@@ -849,7 +636,7 @@ The random <code class="highlighter-rouge">id</code> variable generated by <code
         <a href="/samples/todo-app">TodoList App</a>
       </li>
       <li class="">
-        <a href="/samples/run">Running</a>
+        <a href="/samples/camel-eip">Camel EIP</a>
       </li>
     </ul>
     <h4>Configuration</h4>

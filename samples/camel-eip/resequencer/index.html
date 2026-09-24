@@ -114,7 +114,7 @@
     <option value="">Navigate the samples…</option>
     <option value="/samples/">Overview</option>
     <option value="/samples/todo-app/">TodoList App</option>
-    <option value="/samples/run/">Running</option>
+    <option value="/samples/camel-eip/">Camel EIP</option>
     
     
     <option value="/samples/javaconfig/">sample-javaconfig</option>
@@ -405,107 +405,9 @@ This means test execution time is bounded by this timeout — your test must be 
 <p>This interaction between batch size and timeout is exactly the kind of behavior that unit tests with mocked endpoints cannot capture.
 An integration test with real Kafka infrastructure surfaces the actual timing behavior and proves that the resequencer works end-to-end.</p>
 
-<h2 id="test-infrastructure">Test infrastructure</h2>
-
-<p>Before diving into the test code, here is how the test infrastructure is set up.
-Both runtimes use a shared pattern: a <code class="highlighter-rouge">BeforeSuite</code> action starts a Kafka broker via Testcontainers Docker Compose, and an <code class="highlighter-rouge">AfterSuite</code> action tears it down.</p>
-
-<h3 id="quarkus-infrastructure-setup">Quarkus infrastructure setup</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@CitrusConfiguration</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EipInfraSetup</span> <span class="o">{</span>
-
-    <span class="nd">@BindToRegistry</span>
-    <span class="kd">public</span> <span class="n">BeforeSuite</span> <span class="nf">beforeSuite</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">TestDesigner</span><span class="o">().</span><span class="na">beforeSuite</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
-                <span class="n">testcontainers</span><span class="o">()</span>
-                    <span class="o">.</span><span class="na">compose</span><span class="o">()</span>
-                    <span class="o">.</span><span class="na">up</span><span class="o">()</span>
-                    <span class="o">.</span><span class="na">file</span><span class="o">(</span><span class="s">"_infra/compose.yaml"</span><span class="o">)</span>
-                    <span class="o">.</span><span class="na">waitFor</span><span class="o">(</span><span class="s">"kafka"</span><span class="o">,</span> <span class="n">HttpWaitStrategy</span><span class="o">.</span><span class="na">newInstance</span><span class="o">()</span>
-                        <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://localhost:8090/"</span><span class="o">)</span>
-                        <span class="o">.</span><span class="na">timeout</span><span class="o">(</span><span class="mi">60000L</span><span class="o">))</span>
-            <span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="nd">@BindToRegistry</span>
-    <span class="kd">public</span> <span class="n">AfterSuite</span> <span class="nf">afterSuite</span><span class="o">(</span><span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">TestDesigner</span><span class="o">().</span><span class="na">afterSuite</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
-                <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">(</span><span class="n">camelContext</span><span class="o">).</span><span class="na">stop</span><span class="o">(),</span>
-                <span class="n">testcontainers</span><span class="o">()</span>
-                    <span class="o">.</span><span class="na">compose</span><span class="o">()</span>
-                    <span class="o">.</span><span class="na">down</span><span class="o">()</span>
-            <span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h3 id="spring-boot-infrastructure-setup">Spring Boot infrastructure setup</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EipInfraSetup</span> <span class="o">{</span>
-
-    <span class="nd">@Bean</span>
-    <span class="kd">public</span> <span class="n">BeforeSuite</span> <span class="nf">beforeSuite</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">TestDesigner</span><span class="o">().</span><span class="na">beforeSuite</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
-                <span class="n">testcontainers</span><span class="o">()</span>
-                    <span class="o">.</span><span class="na">compose</span><span class="o">()</span>
-                    <span class="o">.</span><span class="na">up</span><span class="o">()</span>
-                    <span class="o">.</span><span class="na">file</span><span class="o">(</span><span class="s">"_infra/compose.yaml"</span><span class="o">)</span>
-                    <span class="o">.</span><span class="na">waitFor</span><span class="o">(</span><span class="s">"kafka"</span><span class="o">,</span> <span class="n">HttpWaitStrategy</span><span class="o">.</span><span class="na">newInstance</span><span class="o">()</span>
-                        <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://localhost:8090/"</span><span class="o">)</span>
-                        <span class="o">.</span><span class="na">timeout</span><span class="o">(</span><span class="mi">60000L</span><span class="o">))</span>
-            <span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Bean</span>
-    <span class="kd">public</span> <span class="n">AfterSuite</span> <span class="nf">afterSuite</span><span class="o">(</span><span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">TestDesigner</span><span class="o">().</span><span class="na">afterSuite</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
-                <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">(</span><span class="n">camelContext</span><span class="o">).</span><span class="na">stop</span><span class="o">(),</span>
-                <span class="n">testcontainers</span><span class="o">()</span>
-                    <span class="o">.</span><span class="na">compose</span><span class="o">()</span>
-                    <span class="o">.</span><span class="na">down</span><span class="o">()</span>
-            <span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>The difference is purely in the annotation style: <code class="highlighter-rouge">@CitrusConfiguration</code> with <code class="highlighter-rouge">@BindToRegistry</code> for Quarkus CDI, versus <code class="highlighter-rouge">@Configuration</code> with <code class="highlighter-rouge">@Bean</code> for Spring’s application context.
-The infrastructure lifecycle — start Kafka, wait for readiness, run tests, stop Camel, tear down containers — is identical.</p>
-
 <h2 id="the-resequencer-test">The resequencer test</h2>
 
 <p>The test scenario is straightforward: send three messages with out-of-order sequence numbers (3, 1, 2), then verify that the resequencer produces output on the resequenced topic.</p>
-
-<h3 id="a-shared-test-utility">A shared test utility</h3>
-
-<p>Both runtimes implement the <code class="highlighter-rouge">EipTestSupport</code> interface, which provides a reusable <code class="highlighter-rouge">waitForCamelRouteStarted</code> method:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">EipTestSupport</span> <span class="kd">extends</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
-
-    <span class="k">default</span> <span class="n">TestActionBuilder</span><span class="o">&lt;?&gt;</span> <span class="n">waitForCamelRouteStarted</span><span class="o">(</span>
-            <span class="n">String</span> <span class="n">routeId</span><span class="o">,</span> <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="nf">repeatOnError</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">20</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
-                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">(</span><span class="n">camelContext</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">controlBus</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">route</span><span class="o">(</span><span class="n">routeId</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">status</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">result</span><span class="o">(</span><span class="n">ServiceStatus</span><span class="o">.</span><span class="na">Started</span><span class="o">),</span>
-                    <span class="n">sleep</span><span class="o">().</span><span class="na">seconds</span><span class="o">(</span><span class="mi">5</span><span class="o">)</span>
-                <span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>This utility uses Camel’s Control Bus to poll the route status every second, up to 20 retries.
-It ensures the <code class="highlighter-rouge">batch-resequencer</code> route is fully started and consuming from Kafka before the test sends any messages.
-Without this guard, messages sent before the route is ready would be lost.</p>
 
 <h3 id="message-template">Message template</h3>
 
@@ -716,53 +618,6 @@ The <code class="highlighter-rouge">repeatOnError()</code> block retries up to 1
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The test logic is identical.
-The differences live entirely in the test class annotations and dependency injection:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Concern</th>
-      <th>Quarkus</th>
-      <th>Spring Boot</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Test bootstrap</td>
-      <td><code class="highlighter-rouge">@QuarkusTest</code></td>
-      <td>
-<code class="highlighter-rouge">@SpringBootTest</code> + <code class="highlighter-rouge">@CamelSpringBootTest</code>
-</td>
-    </tr>
-    <tr>
-      <td>Citrus integration</td>
-      <td><code class="highlighter-rouge">@CitrusSupport</code></td>
-      <td><code class="highlighter-rouge">@CitrusSpringSupport</code></td>
-    </tr>
-    <tr>
-      <td>CamelContext injection</td>
-      <td>
-<code class="highlighter-rouge">@Inject</code> + <code class="highlighter-rouge">@BindToRegistry</code>
-</td>
-      <td><code class="highlighter-rouge">@Autowired</code></td>
-    </tr>
-    <tr>
-      <td>TestCaseRunner scope</td>
-      <td>Class-level field</td>
-      <td>Nested class field with <code class="highlighter-rouge">@CitrusResource</code>
-</td>
-    </tr>
-    <tr>
-      <td>Infrastructure config</td>
-      <td>
-<code class="highlighter-rouge">@CitrusConfiguration</code> auto-discovered</td>
-      <td>
-<code class="highlighter-rouge">@ContextConfiguration</code> explicit</td>
-    </tr>
-  </tbody>
-</table>
-
 <h2 id="why-resequencer-tests-need-patience">Why resequencer tests need patience</h2>
 
 <p>Unlike a content-based router or a wire tap, where the output appears almost immediately after the input, a batch resequencer deliberately introduces delay.
@@ -779,6 +634,8 @@ If the retry window were shorter than the batch timeout, the test would fail int
 The batch size is 10, but the test sends only 3 messages.
 This forces the resequencer to rely on the timeout rather than the batch size to flush.
 It is a deliberate test design choice: it verifies that the timeout mechanism works correctly, which is the more common production scenario (batches rarely fill to capacity under real workloads).</p>
+
+<p>For the test infrastructure setup, shared test utilities, runtime wiring, dependencies, and how to run the tests, see the <a href="/samples/camel-eip/">Camel EIP examples</a> overview page.</p>
 
 <h2 id="key-takeaways">Key takeaways</h2>
 
@@ -811,7 +668,7 @@ It is a deliberate test design choice: it verifies that the timeout mechanism wo
         <a href="/samples/todo-app">TodoList App</a>
       </li>
       <li class="">
-        <a href="/samples/run">Running</a>
+        <a href="/samples/camel-eip">Camel EIP</a>
       </li>
     </ul>
     <h4>Configuration</h4>

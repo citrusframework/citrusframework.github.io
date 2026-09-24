@@ -114,7 +114,7 @@
     <option value="">Navigate the samples…</option>
     <option value="/samples/">Overview</option>
     <option value="/samples/todo-app/">TodoList App</option>
-    <option value="/samples/run/">Running</option>
+    <option value="/samples/camel-eip/">Camel EIP</option>
     
     
     <option value="/samples/javaconfig/">sample-javaconfig</option>
@@ -317,6 +317,20 @@
     <p>The todo-list sample application should be both simple but yet capable to act as service in a fully qualified integration test
     scenario. The application provides a REST API for accessing the todo entries via Http.</p>
 
+    <h3>Code repository</h3>
+
+    <p>The Citrus samples are available at <b>GitHub</b> in several repositories.
+        You can navigate to these repositories and use <i>git</i> to clone the code to your local machine.
+        After that you can build and execute the samples on your local machine.</p>
+
+    <ul>
+      <li><a href="https://github.com/citrusframework/citrus-samples" target="_blank">citrus-samples</a></li>
+      <li><a href="https://github.com/citrusframework/citrus-quarkus-examples" target="_blank">citrus-quarkus-examples</a></li>
+      <li><a href="https://github.com/citrusframework/citrus-camel-eip-examples" target="_blank">citrus-camel-eip-examples</a></li>
+      <li><a href="https://github.com/christophd/citrus-camel-jbang-demo" target="_blank">citrus-camel-jbang-demo</a></li>
+      <li><a href="https://github.com/apache/camel-jbang-examples" target="_blank">camel-jbang-examples</a></li>
+    </ul>
+
     <h3>Build</h3>
 
     <p>The sample application uses Maven as build tool. So you can compile, package and test the
@@ -334,7 +348,7 @@
     <p>The application is a Spring Boot web application that you can deploy on any web container. Of course Spring Boot provides many other fantastic
     ways of starting the application.</p>
 
-    <p>On of these possibilities is the Spring Boot Maven Plugin. You can start the sample todo list application with this command.</p>
+    <p>One of these possibilities is the Spring Boot Maven Plugin. You can start the sample todo list application with this command.</p>
 
     <figure class="highlight">
       <pre>mvn spring-boot:run</pre>
@@ -348,8 +362,74 @@
 
     <p>You will see the web UI of the todo list. Now add some new todo entries manually and you are ready to go.</p>
 
-    <p>Now we are ready to execute some Citrus tests. Choose one of the Citrus <b><a href="/samples/">samples</a></b> folders and read the instructions on how to interact with the
-    todo application.</p>
+    <h3>Sample applications</h3>
+
+    <p>The samples in Citrus represent small applications that are started as a system under test.
+    Usually the sample application is a web application implemented in one of the runtimes Quarkus, Spring Boot and Apache Camel.
+    All runtimes act in the same way. You can start the applications on your local machine as part of the test run.</p>
+
+    <p>No matter what sample application is used Citrus interacts with the applications as part of the integration tests in order to trigger
+        certain business logic and to verify its outcome.</p>
+
+    <p>Embedding the system under test into the Maven build lifecycle so the application is run and stopped automatically is a good approach
+        when running automated tests in a continuous build.</p>
+
+    <p>In some other cases you may want to start the sample application manually before the tests so the application is still alive when the tests and the Maven build is finished.
+      You can start the sample applications in Maven as a standalone process that keeps running on your local machine.
+      Depending on the runtime Quarkus or Spring Boot the command look like this:</p>
+
+    <figure class="highlight">
+      <pre>mvn quarkus:dev</pre>
+    </figure>
+
+    <figure class="highlight">
+      <pre>mvn spring-boot:run</pre>
+    </figure>
+
+    <p>This starts the application under test locally so you can open the web interface and point your browser to:</p>
+
+    <figure class="highlight">
+      <pre>http://localhost:8080/todolist/</pre>
+    </figure>
+
+    <p>For Quarkus use port <code>8081</code>. You will see the web UI of the application, in this case the todo list application.</p>
+
+    <h3>Running the Citrus tests</h3>
+
+    <p>Once the sample application is deployed and running you can execute the Citrus test cases.
+    Open a separate command line terminal and navigate to the sample folder.</p>
+
+    <p>Execute all Citrus tests by calling</p>
+
+    <figure class="highlight">
+      <pre>mvn verify</pre>
+    </figure>
+
+    <p>You can also pick a single test by calling</p>
+
+    <figure class="highlight">
+      <pre>mvn verify -Ptest=TodoListIT</pre>
+    </figure>
+
+    <p>You should see Citrus performing several tests with lots of debugging output in both terminals (sample application server
+    and Citrus test client). And of course green tests at the very end of the build.</p>
+
+    <p>Of course, you can also start the Citrus tests from your favorite Java IDE.
+    Just start the Citrus test using the integration for unit tests such as TestNG or JUnit Jupiter in IntelliJ, Eclipse or VSCode.</p>
+
+    <p>The Maven build automatically runs all Citrus test cases in the project.
+      During the build execution you will see Citrus performing the integration tests and printing log messages.
+      When the tests are done the embedded sample application under test is automatically stopped and the Maven test results
+      with successful and failed tests are presented to you.</p>
+
+    <p>Sometimes you may need to explicitly add a property <code>embedded</code> in order to enable the automatic provisioning of the application under test.</p>
+
+    <figure class="highlight">
+      <pre>mvn verify -Dembedded=true</pre>
+    </figure>
+
+    <p>The <i>embedded</i> option automatically starts the application under test before the integration test phase takes place.</p>
+
   </div>
 </article>
 
@@ -366,7 +446,7 @@
         <a href="/samples/todo-app">TodoList App</a>
       </li>
       <li class="">
-        <a href="/samples/run">Running</a>
+        <a href="/samples/camel-eip">Camel EIP</a>
       </li>
     </ul>
     <h4>Configuration</h4>

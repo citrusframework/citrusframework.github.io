@@ -296,265 +296,315 @@
       <div class="unit four-fifths">
         <article>
   <h2>
-    
-    
-    <img src="/img/icons/quarkus.png" style="width: 1em;height: 1em;" alt="">
-    
-    Quarkus - Event-Driven Kafka
-    <a href="/samples/quarkus-event-driven-kafka/" class="permalink" title="Permalink">∞</a>
+    Camel EIP Examples
   </h2>
   <div class="right">
-    
-    
-    <a href="https://github.com/citrusframework/citrus-quarkus-examples/blob/master/event-driven-kafka" target="_blank">
+    <a href="https://github.com/citrusframework/citrus-camel-eip-examples" target="_blank">
       <i class="fa fa-pencil"></i> View source code
     </a>
-    
   </div>
   <span class="post-category">
     <span class="label">
-      samples
+      Setup
     </span>
   </span>
   <div class="post-content">
-    <p>Event-driven architectures powered by Apache Kafka are everywhere. Microservices publish and consume events asynchronously, and the reactive nature of these systems makes them fast and scalable. But it also makes them harder to test. How do you verify that a message entering one Kafka topic produces the correct output on another? How do you write tests that are deterministic, readable, and run against a real broker instead of fragile mocks?</p>
 
-<p>This post walks you through testing an event-driven Quarkus application with the <a href="https://citrusframework.org">Citrus</a> integration testing framework. You will see how Citrus connects to Kafka topics, sends and receives messages, and validates the results with just a few lines of code. By the end you will have a clear recipe for adding Citrus to your own Quarkus project.</p>
+    <p>All Camel EIP samples share the same test infrastructure, utility classes, and build setup.
+This page documents the common pieces so the individual sample posts can focus on the EIP-specific test logic.</p>
 
-<h1 id="the-application-under-test">The application under test</h1>
+    <p>The source code for all EIP samples is on <a href="https://github.com/citrusframework/citrus-camel-eip-examples" target="_blank">GitHub</a>.</p>
 
-<p>The example application is intentionally simple so we can focus on the testing side. It is a Quarkus service that listens for incoming text messages on a Kafka topic, transforms them to uppercase, and publishes the result to an output topic.</p>
+    <h3 id="test-infrastructure">Test infrastructure</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Kafka Topic (words-in) --&gt; Transform to Uppercase --&gt; Kafka Topic (words-out)
-</code></pre></div></div>
+    <p>Every EIP sample runs a Kafka broker as the messaging backbone.
+The tests use Citrus Testcontainers Docker Compose lifecycle management to start the infrastructure before the test suite and tear it down afterwards.</p>
 
-<p>The implementation uses SmallRye Reactive Messaging, the MicroProfile standard that Quarkus adopts for event-driven communication. Two methods handle the entire flow:</p>
+    <p>The Docker Compose file provisions a single-node Kafka broker in KRaft mode (no ZooKeeper) alongside a Kafka UI for visual debugging:</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ApplicationScoped</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EventDrivenApplication</span> <span class="o">{</span>
+    <div class="language-yaml highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
+  <span class="na">kafka</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">docker.io/apache/kafka:4.3.1</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">9092:9092"</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">KAFKA_NODE_ID=1</span>
+      <span class="pi">-</span> <span class="s">KAFKA_PROCESS_ROLES=broker,controller</span>
+      <span class="pi">-</span> <span class="s">KAFKA_CONTROLLER_QUORUM_VOTERS=1@kafka:9093</span>
+      <span class="pi">-</span> <span class="s">KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093</span>
+      <span class="pi">-</span> <span class="s">KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092</span>
+      <span class="pi">-</span> <span class="s">KAFKA_AUTO_CREATE_TOPICS_ENABLE=true</span>
+    <span class="na">healthcheck</span><span class="pi">:</span>
+      <span class="na">test</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">CMD-SHELL"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">nc</span><span class="nv"> </span><span class="s">-z</span><span class="nv"> </span><span class="s">localhost</span><span class="nv"> </span><span class="s">9092"</span><span class="pi">]</span>
+      <span class="na">interval</span><span class="pi">:</span> <span class="s">5s</span>
+      <span class="na">timeout</span><span class="pi">:</span> <span class="s">5s</span>
+      <span class="na">retries</span><span class="pi">:</span> <span class="s">12</span>
+      <span class="na">start_period</span><span class="pi">:</span> <span class="s">30s</span>
 
-    <span class="nd">@Channel</span><span class="o">(</span><span class="s">"words-out"</span><span class="o">)</span>
-    <span class="n">Emitter</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">emitter</span><span class="o">;</span>
+  <span class="na">kafka-ui</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">docker.io/provectuslabs/kafka-ui:latest</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">8090:8080"</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+      <span class="na">kafka</span><span class="pi">:</span>
+        <span class="na">condition</span><span class="pi">:</span> <span class="s">service_healthy</span>
+</code></pre></div>    </div>
 
-    <span class="nd">@Incoming</span><span class="o">(</span><span class="s">"words-in"</span><span class="o">)</span>
-    <span class="nd">@Outgoing</span><span class="o">(</span><span class="s">"uppercase"</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">toUpperCase</span><span class="o">(</span><span class="n">String</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">message</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">();</span>
+    <p>Some EIP samples add additional services to the same Compose file depending on what the pattern requires:</p>
+
+    <ul>
+      <li>
+<strong>PostgreSQL</strong> — used by the Aggregator (persistent aggregation repository), Polling Consumer (SQL polling), Idempotent Receiver (JDBC deduplication repository), and Outbox Pattern (transactional writes). Each mounts an init script to create the required schema at startup:</li>
+    </ul>
+
+    <div class="language-yaml highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>  <span class="na">postgres</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">docker.io/library/postgres:16-alpine</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">5432:5432"</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">POSTGRES_DB=eipdb</span>
+      <span class="pi">-</span> <span class="s">POSTGRES_USER=eipuser</span>
+      <span class="pi">-</span> <span class="s">POSTGRES_PASSWORD=eippass</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">./postgres/init-schemas.sql:/docker-entrypoint-initdb.d/01-init-schemas.sql:Z</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li>
+<strong>Apache Pulsar</strong> — used by the Messaging Bridge (bidirectional Pulsar-Kafka bridging). Pulsar’s startup is significantly slower than Kafka’s — its health check uses a 60-second <code class="highlighter-rouge">start_period</code> with up to 15 retries:</li>
+    </ul>
+
+    <div class="language-yaml highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>  <span class="na">pulsar</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">docker.io/apachepulsar/pulsar:4.2.4</span>
+    <span class="na">command</span><span class="pi">:</span> <span class="s">bin/pulsar standalone --advertised-address localhost</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">6650:6650"</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">8080:8080"</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">PULSAR_MEM=-Xms512m -Xmx1024m -XX:MaxDirectMemorySize=512m</span>
+      <span class="pi">-</span> <span class="s">PULSAR_STANDALONE_USE_ZOOKEEPER=0</span>
+    <span class="na">healthcheck</span><span class="pi">:</span>
+      <span class="na">test</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">CMD-SHELL"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">bin/pulsar-admin</span><span class="nv"> </span><span class="s">brokers</span><span class="nv"> </span><span class="s">healthcheck"</span><span class="pi">]</span>
+      <span class="na">interval</span><span class="pi">:</span> <span class="s">10s</span>
+      <span class="na">timeout</span><span class="pi">:</span> <span class="s">5s</span>
+      <span class="na">retries</span><span class="pi">:</span> <span class="s">15</span>
+      <span class="na">start_period</span><span class="pi">:</span> <span class="s">60s</span>
+</code></pre></div>    </div>
+
+    <p>The <code class="highlighter-rouge">EipInfraSetup</code> class ties the Docker Compose lifecycle to the test suite.
+A <code class="highlighter-rouge">BeforeSuite</code> action starts the compose stack and waits for readiness; an <code class="highlighter-rouge">AfterSuite</code> tears it down.</p>
+
+    <p>On <strong>Quarkus</strong> this uses <code class="highlighter-rouge">@CitrusConfiguration</code> with <code class="highlighter-rouge">@BindToRegistry</code>:</p>
+
+    <div class="language-java highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nd">@CitrusConfiguration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EipInfraSetup</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
+
+    <span class="nd">@BindToRegistry</span>
+    <span class="kd">public</span> <span class="n">BeforeSuite</span> <span class="nf">startInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">beforeSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">up</span><span class="o">(</span><span class="s">"_infra/compose.yaml"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">autoRemove</span><span class="o">(</span><span class="kc">false</span><span class="o">),</span>
+                    <span class="n">waitFor</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">http</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://localhost:8090"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">25</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
     <span class="o">}</span>
 
-    <span class="nd">@Incoming</span><span class="o">(</span><span class="s">"uppercase"</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sink</span><span class="o">(</span><span class="n">String</span> <span class="n">word</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">emitter</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="s">"&gt;&gt; "</span> <span class="o">+</span> <span class="n">word</span><span class="o">);</span>
+    <span class="nd">@BindToRegistry</span>
+    <span class="kd">public</span> <span class="n">AfterSuite</span> <span class="nf">stopInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">afterSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">().</span><span class="na">stop</span><span class="o">(),</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">down</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div></div>
+</code></pre></div>    </div>
 
-<p>The <code class="highlighter-rouge">toUpperCase</code> method receives each message from the <code class="highlighter-rouge">words-in</code> channel and pushes the uppercased result to an internal channel called <code class="highlighter-rouge">uppercase</code>. The <code class="highlighter-rouge">sink</code> method picks it up, prepends <code class="highlighter-rouge">"&gt;&gt; "</code>, and emits the final string to the <code class="highlighter-rouge">words-out</code> channel. The channel-to-topic mapping lives in <code class="highlighter-rouge">application.properties</code>:</p>
+    <p>On <strong>Spring Boot</strong> the same logic uses <code class="highlighter-rouge">@Configuration</code> and <code class="highlighter-rouge">@Bean</code>:</p>
 
-<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">mp.messaging.incoming.words-in.auto.offset.reset</span><span class="p">=</span><span class="s">earliest</span>
-<span class="py">mp.messaging.incoming.words-in.topic</span><span class="p">=</span><span class="s">words-in</span>
-<span class="py">mp.messaging.outgoing.words-out.topic</span><span class="p">=</span><span class="s">words-out</span>
-</code></pre></div></div>
+    <div class="language-java highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EipInfraSetup</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
 
-<p>That is the entire production code. Now let’s verify it.</p>
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">BeforeSuite</span> <span class="nf">startInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">beforeSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">up</span><span class="o">(</span><span class="s">"_infra/compose.yaml"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">autoRemove</span><span class="o">(</span><span class="kc">false</span><span class="o">),</span>
+                    <span class="n">waitFor</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">http</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://localhost:8090"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">25</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
 
-<h1 id="adding-citrus-to-the-project">Adding Citrus to the project</h1>
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">AfterSuite</span> <span class="nf">stopInfra</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">afterSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
+                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">().</span><span class="na">stop</span><span class="o">(),</span>
+                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">down</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
+                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
 
-<p>Citrus is highly modular, so you only pull in the capabilities you actually need. For this Kafka scenario you add three test-scoped dependencies to the Maven POM:</p>
+    <p>The <code class="highlighter-rouge">waitFor().http()</code> action probes the Kafka UI at port 8090, which only becomes available after Kafka is healthy.
+This provides a readiness gate for the test suite.</p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <h3 id="shared-test-utility">Shared test utility</h3>
+
+    <p>All EIP test classes implement the <code class="highlighter-rouge">EipTestSupport</code> interface that provides three shared helper methods:</p>
+
+    <div class="language-java highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">EipTestSupport</span> <span class="o">{</span>
+
+    <span class="k">default</span> <span class="kt">void</span> <span class="nf">waitForCamelRouteStarted</span><span class="o">(</span><span class="n">TestContext</span> <span class="n">context</span><span class="o">,</span> <span class="n">String</span> <span class="n">routeId</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Wait for Camel route to be started</span>
+        <span class="n">await</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">atMost</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">30</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">pollInterval</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofMillis</span><span class="o">(</span><span class="mi">500</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">untilAsserted</span><span class="o">(()</span> <span class="o">-&gt;</span>
+                <span class="n">context</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">camel</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">jmx</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">route</span><span class="o">(</span><span class="n">routeId</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">verify</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">status</span><span class="o">(</span><span class="s">"Started"</span><span class="o">)</span>
+                <span class="o">)</span>
+            <span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="k">default</span> <span class="kt">void</span> <span class="nf">verifyCompletedExchanges</span><span class="o">(</span>
+            <span class="n">TestContext</span> <span class="n">context</span><span class="o">,</span> <span class="n">String</span> <span class="n">routeId</span><span class="o">,</span> <span class="kt">int</span> <span class="n">expected</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Verify number of completed exchanges on the route</span>
+        <span class="n">context</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">camel</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">jmx</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">route</span><span class="o">(</span><span class="n">routeId</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">verify</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">exchangeCompleted</span><span class="o">(</span><span class="n">expected</span><span class="o">)</span>
+        <span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="k">default</span> <span class="kt">void</span> <span class="nf">verifyRouteStats</span><span class="o">(</span>
+            <span class="n">TestContext</span> <span class="n">context</span><span class="o">,</span> <span class="n">String</span> <span class="n">routeId</span><span class="o">,</span>
+            <span class="kt">int</span> <span class="n">completed</span><span class="o">,</span> <span class="kt">int</span> <span class="n">failed</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Verify route completion and failure counts</span>
+        <span class="n">context</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">camel</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">jmx</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">route</span><span class="o">(</span><span class="n">routeId</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">verify</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">exchangeCompleted</span><span class="o">(</span><span class="n">completed</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">exchangeFailed</span><span class="o">(</span><span class="n">failed</span><span class="o">)</span>
+        <span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+
+    <p>The <code class="highlighter-rouge">waitForCamelRouteStarted</code> method uses Awaitility to poll until the named Camel route is in <code class="highlighter-rouge">Started</code> state — essential because there is a startup delay between the Kafka broker becoming available and the Camel route fully initializing.</p>
+
+    <p>The <code class="highlighter-rouge">verifyCompletedExchanges</code> and <code class="highlighter-rouge">verifyRouteStats</code> methods use Citrus Camel JMX actions to assert how many exchanges a route has processed (and optionally how many failed).</p>
+
+    <h3 id="test-class-wiring">Test class wiring</h3>
+
+    <p>Each EIP test class implements <code class="highlighter-rouge">EipTestSupport</code> and uses the annotations for its target runtime:</p>
+
+    <p>On <strong>Quarkus</strong>:</p>
+
+    <div class="language-java highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nd">@QuarkusTest</span>
+<span class="nd">@CitrusSupport</span>
+<span class="nd">@CitrusConfiguration</span><span class="o">(</span>
+    <span class="n">classes</span> <span class="o">=</span> <span class="o">{</span> <span class="n">KafkaEndpointConfig</span><span class="o">.</span><span class="na">class</span> <span class="o">}</span>
+<span class="o">)</span>
+<span class="kd">class</span> <span class="nc">EipTests</span> <span class="kd">implements</span> <span class="n">EipTestSupport</span> <span class="o">{</span>
+    <span class="c1">// ...</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+
+    <p>On <strong>Spring Boot</strong>:</p>
+
+    <div class="language-java highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nd">@SpringBootTest</span><span class="o">(</span>
+    <span class="n">classes</span> <span class="o">=</span> <span class="o">{</span> <span class="n">YourApplication</span><span class="o">.</span><span class="na">class</span> <span class="o">}</span>
+<span class="o">)</span>
+<span class="nd">@CitrusSupport</span>
+<span class="nd">@CitrusConfiguration</span><span class="o">(</span>
+    <span class="n">classes</span> <span class="o">=</span> <span class="o">{</span> <span class="n">KafkaEndpointConfig</span><span class="o">.</span><span class="na">class</span> <span class="o">}</span>
+<span class="o">)</span>
+<span class="kd">class</span> <span class="nc">EipTests</span> <span class="kd">implements</span> <span class="n">EipTestSupport</span> <span class="o">{</span>
+    <span class="c1">// ...</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+
+    <p>The <code class="highlighter-rouge">KafkaEndpointConfig</code> class provides the Citrus Kafka endpoints used in each test.</p>
+
+    <h3 id="test-dependencies">Test dependencies</h3>
+
+    <p>The common Maven dependencies for all EIP samples:</p>
+
+    <div class="language-xml highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
     <span class="nt">&lt;artifactId&gt;</span>citrus-quarkus<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
+    <span class="c">&lt;!-- or citrus-spring for Spring Boot --&gt;</span>
     <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 <span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
     <span class="nt">&lt;artifactId&gt;</span>citrus-kafka<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
     <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 <span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>citrus-junit-jupiter<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-camel<span class="nt">&lt;/artifactId&gt;</span>
     <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
-</code></pre></div></div>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-testcontainers<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>    </div>
 
-<p>Here is what each module brings to the table:</p>
+    <p>All versions are managed by the Citrus BOM — see the sample <a href="https://github.com/citrusframework/citrus-camel-eip-examples/blob/main/pom.xml" target="_blank">pom.xml</a> for the complete setup.</p>
 
-<ul>
-  <li>
-<strong>citrus-quarkus</strong> integrates Citrus with the Quarkus test lifecycle. It hooks into <code class="highlighter-rouge">@QuarkusTest</code> so that Citrus endpoints and test runners are available without any extra configuration.</li>
-  <li>
-<strong>citrus-kafka</strong> provides Kafka endpoint implementations with built-in producer and consumer capabilities, message serialization, and topic configuration.</li>
-  <li>
-<strong>citrus-junit-jupiter</strong> connects Citrus to JUnit 5, the test engine that Quarkus uses under the hood.</li>
-</ul>
+    <h3 id="running-the-tests">Running the tests</h3>
 
-<p>No additional infrastructure setup is required. Quarkus dev services will automatically start a Kafka broker via Testcontainers when the tests run. Citrus connects to that same broker, which means your tests hit a real Kafka instance, not a mock.</p>
+    <p>Execute all tests for a given runtime:</p>
 
-<h1 id="enabling-citrus-in-a-quarkus-test">Enabling Citrus in a Quarkus test</h1>
+    <div class="highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>mvn verify -pl :quarkus-eip
+</code></pre></div>    </div>
 
-<p>The bridge between Quarkus and Citrus is a single annotation. Add <code class="highlighter-rouge">@CitrusSupport</code> next to <code class="highlighter-rouge">@QuarkusTest</code> and the framework takes care of the rest:</p>
+    <div class="highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>mvn verify -pl :spring-boot-eip
+</code></pre></div>    </div>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@QuarkusTest</span>
-<span class="nd">@CitrusSupport</span>
-<span class="kd">class</span> <span class="nc">EventDrivenApplicationTest</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
+    <p>For YAML DSL tests using Camel JBang:</p>
 
-    <span class="nd">@CitrusResource</span>
-    <span class="n">GherkinTestActionRunner</span> <span class="n">runner</span><span class="o">;</span>
+    <div class="highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>camel test *
+</code></pre></div>    </div>
 
-    <span class="c1">// endpoint configurations and test methods</span>
-<span class="o">}</span>
-</code></pre></div></div>
+    <p>Run a single YAML test:</p>
 
-<p>A few things are worth noting here.</p>
+    <div class="highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>camel test content-based-router-test.yaml
+</code></pre></div>    </div>
 
-<p><code class="highlighter-rouge">@QuarkusTest</code> starts the application in test mode and activates dev services. This is where the Kafka Testcontainer gets launched. <code class="highlighter-rouge">@CitrusSupport</code> layers Citrus on top of that lifecycle so you can inject Citrus-specific resources into the test class.</p>
-
-<p>The <code class="highlighter-rouge">GherkinTestActionRunner</code> is the entry point for all Citrus test actions. It provides a fluent API with Given-When-Then semantics that makes tests read almost like specifications. You inject it with the <code class="highlighter-rouge">@CitrusResource</code> annotation.</p>
-
-<p>The <code class="highlighter-rouge">TestActionSupport</code> interface is a convenience that gives you static access to test actions like <code class="highlighter-rouge">send()</code> and <code class="highlighter-rouge">receive()</code> without extra imports. It keeps the test code clean and focused on the intent.</p>
-
-<h1 id="configuring-kafka-endpoints">Configuring Kafka endpoints</h1>
-
-<p>Before you can send and receive messages in a test, you need to tell Citrus which Kafka topics to use and how to connect. Citrus offers a declarative annotation-based approach that fits naturally into the test class:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@CitrusEndpoint</span>
-<span class="nd">@KafkaEndpointConfig</span><span class="o">(</span><span class="n">topic</span> <span class="o">=</span> <span class="s">"words-in"</span><span class="o">,</span>
-        <span class="n">server</span> <span class="o">=</span> <span class="s">"${kafka.bootstrap.servers}"</span><span class="o">)</span>
-<span class="n">KafkaEndpoint</span> <span class="n">wordsIn</span><span class="o">;</span>
-
-<span class="nd">@CitrusEndpoint</span>
-<span class="nd">@KafkaEndpointConfig</span><span class="o">(</span><span class="n">topic</span> <span class="o">=</span> <span class="s">"words-out"</span><span class="o">,</span>
-        <span class="n">server</span> <span class="o">=</span> <span class="s">"${kafka.bootstrap.servers}"</span><span class="o">)</span>
-<span class="n">KafkaEndpoint</span> <span class="n">wordsOut</span><span class="o">;</span>
-</code></pre></div></div>
-
-<p>Each field annotated with <code class="highlighter-rouge">@CitrusEndpoint</code> becomes a fully configured Kafka endpoint. The <code class="highlighter-rouge">@KafkaEndpointConfig</code> annotation specifies the topic name and the broker address.</p>
-
-<p>The <code class="highlighter-rouge">${kafka.bootstrap.servers}</code> property is the key to the seamless integration with Quarkus dev services. When Quarkus starts the Kafka Testcontainer, it publishes the broker address under this property. Citrus picks it up automatically, so both the application and the test connect to the exact same Kafka instance. No hardcoded ports, no environment-specific configuration files, no manual container management.</p>
-
-<h1 id="writing-the-test">Writing the test</h1>
-
-<p>With the endpoints in place, the actual test is remarkably concise:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
-<span class="kt">void</span> <span class="nf">shouldHandleEvents</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">runner</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
-        <span class="n">send</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="n">wordsIn</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Hi"</span><span class="o">)</span>
-    <span class="o">);</span>
-
-    <span class="n">runner</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
-        <span class="n">receive</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="n">wordsOut</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">message</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"&gt;&gt; HI"</span><span class="o">)</span>
-    <span class="o">);</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>The test sends the string <code class="highlighter-rouge">"Hi"</code> to the <code class="highlighter-rouge">words-in</code> topic and then verifies that the <code class="highlighter-rouge">words-out</code> topic receives <code class="highlighter-rouge">"&gt;&gt; HI"</code>. That single assertion covers the entire processing pipeline: Kafka consumption, the uppercase transformation, the prefix formatting, and the Kafka production on the output side.</p>
-
-<p>The Gherkin-style <code class="highlighter-rouge">when</code> and <code class="highlighter-rouge">then</code> methods are not just syntactic sugar. They clearly communicate intent. The <strong>when</strong> block describes the stimulus, the action that triggers the application behavior. The <strong>then</strong> block describes the expected outcome. If the received message does not match the expected body, Citrus fails the test with a clear diff showing exactly what went wrong.</p>
-
-<h1 id="how-it-all-fits-together">How it all fits together</h1>
-
-<p>When you run the test with <code class="highlighter-rouge">./mvnw clean test</code>, here is the sequence of events that unfolds behind the scenes:</p>
-
-<ol>
-  <li>
-<strong>Quarkus starts</strong> the application in test mode and activates dev services.</li>
-  <li>
-<strong>Dev services launches</strong> a Kafka container via Testcontainers and publishes the broker address as <code class="highlighter-rouge">kafka.bootstrap.servers</code>.</li>
-  <li>
-<strong>Citrus initializes</strong> the <code class="highlighter-rouge">wordsIn</code> and <code class="highlighter-rouge">wordsOut</code> endpoints using the broker address from the property.</li>
-  <li>
-<strong>The test sends</strong> <code class="highlighter-rouge">"Hi"</code> to the <code class="highlighter-rouge">words-in</code> topic through the <code class="highlighter-rouge">wordsIn</code> endpoint.</li>
-  <li>
-<strong>The application consumes</strong> the message, transforms it to <code class="highlighter-rouge">"HI"</code>, prefixes it with <code class="highlighter-rouge">"&gt;&gt; "</code>, and publishes <code class="highlighter-rouge">"&gt;&gt; HI"</code> to the <code class="highlighter-rouge">words-out</code> topic.</li>
-  <li>
-<strong>Citrus receives</strong> the message from the <code class="highlighter-rouge">words-out</code> topic through the <code class="highlighter-rouge">wordsOut</code> endpoint and validates it against the expected body.</li>
-  <li>
-<strong>The test completes</strong> and Quarkus tears down the Kafka container automatically.</li>
-</ol>
-
-<p>No manual Kafka setup, no Docker Compose files to maintain, no cleanup scripts. The entire infrastructure lifecycle is managed for you.</p>
-
-<p>There is one small piece of test configuration worth mentioning. Because Citrus and Quarkus share the same classpath, you need to tell Quarkus CDI to allow split packages from the Citrus framework. This is done in <code class="highlighter-rouge">src/test/resources/application.properties</code>:</p>
-
-<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">quarkus.arc.ignored-split-packages</span><span class="p">=</span><span class="s">org.citrusframework.*</span>
-</code></pre></div></div>
-
-<p>This avoids CDI bean discovery conflicts and is a one-line addition that you set once and forget.</p>
-
-<h1 id="the-complete-test-class">The complete test class</h1>
-
-<p>Here is the full test in one place for easy reference:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@QuarkusTest</span>
-<span class="nd">@CitrusSupport</span>
-<span class="kd">class</span> <span class="nc">EventDrivenApplicationTest</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
-
-    <span class="nd">@CitrusEndpoint</span>
-    <span class="nd">@KafkaEndpointConfig</span><span class="o">(</span><span class="n">topic</span> <span class="o">=</span> <span class="s">"words-in"</span><span class="o">,</span>
-            <span class="n">server</span> <span class="o">=</span> <span class="s">"${kafka.bootstrap.servers}"</span><span class="o">)</span>
-    <span class="n">KafkaEndpoint</span> <span class="n">wordsIn</span><span class="o">;</span>
-
-    <span class="nd">@CitrusEndpoint</span>
-    <span class="nd">@KafkaEndpointConfig</span><span class="o">(</span><span class="n">topic</span> <span class="o">=</span> <span class="s">"words-out"</span><span class="o">,</span>
-            <span class="n">server</span> <span class="o">=</span> <span class="s">"${kafka.bootstrap.servers}"</span><span class="o">)</span>
-    <span class="n">KafkaEndpoint</span> <span class="n">wordsOut</span><span class="o">;</span>
-
-    <span class="nd">@CitrusResource</span>
-    <span class="n">GherkinTestActionRunner</span> <span class="n">runner</span><span class="o">;</span>
-
-    <span class="nd">@Test</span>
-    <span class="kt">void</span> <span class="nf">shouldHandleEvents</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">runner</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
-            <span class="n">send</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="n">wordsIn</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">message</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"Hi"</span><span class="o">)</span>
-        <span class="o">);</span>
-
-        <span class="n">runner</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
-            <span class="n">receive</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="n">wordsOut</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">message</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"&gt;&gt; HI"</span><span class="o">)</span>
-        <span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Under 50 lines of code for a complete integration test that sends a message to Kafka, waits for the application to process it, receives the result from a different topic, and validates the output. That is the power of Citrus combined with Quarkus dev services.</p>
-
-<h1 id="where-to-go-from-here">Where to go from here</h1>
-
-<p>This example covers the fundamentals, but Citrus has much more to offer for Kafka testing scenarios:</p>
-
-<ul>
-  <li>
-<strong>Message headers</strong>: Kafka records carry headers and message keys alongside the payload. Citrus lets you set and verify both in your send and receive actions.</li>
-  <li>
-<strong>JSON validation</strong>: Add the <code class="highlighter-rouge">citrus-validation-json</code> module and Citrus will compare received JSON payloads field by field, supporting ignore patterns, validation matchers, and flexible element ordering.</li>
-  <li>
-<strong>Multiple topics and complex flows</strong>: Real applications often consume from several topics and produce to several others. You can define as many endpoints as you need and orchestrate multi-step test scenarios.</li>
-  <li>
-<strong>Error scenarios</strong>: Test what happens when the application receives malformed input or when downstream services are unavailable. Citrus gives you full control over the messages you send, making negative testing straightforward.</li>
-  <li>
-<strong>Endpoint configuration classes</strong>: When your test suite grows, you can extract endpoint definitions into shared <code class="highlighter-rouge">@CitrusConfiguration</code> classes and reuse them across multiple tests. The <a href="/samples/quarkus/">Quarkus sample</a> on this site demonstrates this pattern in detail.</li>
-</ul>
-
-<p>To explore the full example project including the source code, head over to the <a href="https://github.com/citrusframework/citrus-quarkus-examples">citrus-quarkus-examples</a> repository on GitHub.</p>
-
-<p>For deeper dives into Citrus capabilities, the <a href="https://citrusframework.org/citrus/reference/html/">reference guide</a> covers Kafka endpoints, Quarkus integration, and the many other messaging transports that Citrus supports.</p>
+    <p>See the individual sample posts for the EIP-specific test logic and scenarios.</p>
 
   </div>
 </article>
@@ -571,7 +621,7 @@
       <li class="">
         <a href="/samples/todo-app">TodoList App</a>
       </li>
-      <li class="">
+      <li class="current">
         <a href="/samples/camel-eip">Camel EIP</a>
       </li>
     </ul>
@@ -918,7 +968,7 @@
       </li>
       
       
-      <li class="current">
+      <li class="">
         <a href="/samples/quarkus-event-driven-kafka/">event-driven-kafka</a>
       </li>
       

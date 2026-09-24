@@ -114,7 +114,7 @@
     <option value="">Navigate the samples…</option>
     <option value="/samples/">Overview</option>
     <option value="/samples/todo-app/">TodoList App</option>
-    <option value="/samples/run/">Running</option>
+    <option value="/samples/camel-eip/">Camel EIP</option>
     
     
     <option value="/samples/javaconfig/">sample-javaconfig</option>
@@ -518,74 +518,6 @@ This makes the template a structural contract: everything in the template must b
 
 <p>For a content filter — especially one whose purpose is security or privacy — proving what is absent is more important than proving what is present.</p>
 
-<h2 id="test-infrastructure">Test infrastructure</h2>
-
-<p>The Docker Compose stack includes Kafka and Redis (Redis is used by the content enricher in the same example project; the content filter test only needs Kafka).</p>
-
-<h3 id="quarkus-infrastructure-setup">Quarkus infrastructure setup</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@CitrusConfiguration</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EipInfraSetup</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
-
-    <span class="nd">@BindToRegistry</span>
-    <span class="kd">public</span> <span class="n">BeforeSuite</span> <span class="nf">startInfra</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="nf">beforeSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
-                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">up</span><span class="o">(</span><span class="s">"_infra/compose.yaml"</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">autoRemove</span><span class="o">(</span><span class="kc">false</span><span class="o">),</span>
-                    <span class="n">waitFor</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">http</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://localhost:8090"</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">25</span><span class="o">)</span>
-                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
-    <span class="o">}</span>
-
-    <span class="nd">@BindToRegistry</span>
-    <span class="kd">public</span> <span class="n">AfterSuite</span> <span class="nf">stopInfra</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="nf">afterSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
-                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">().</span><span class="na">stop</span><span class="o">(),</span>
-                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">down</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
-                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h3 id="spring-boot-infrastructure-setup">Spring Boot infrastructure setup</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EipInfraSetup</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
-
-    <span class="nd">@Bean</span>
-    <span class="kd">public</span> <span class="n">BeforeSuite</span> <span class="nf">startInfra</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="nf">beforeSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
-                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">up</span><span class="o">(</span><span class="s">"_infra/compose.yaml"</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">autoRemove</span><span class="o">(</span><span class="kc">false</span><span class="o">),</span>
-                    <span class="n">waitFor</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">http</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://localhost:8090"</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">25</span><span class="o">)</span>
-                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Bean</span>
-    <span class="kd">public</span> <span class="n">AfterSuite</span> <span class="nf">stopInfra</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="nf">afterSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
-                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">().</span><span class="na">stop</span><span class="o">(),</span>
-                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">down</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
-                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>The lifecycle pattern is the same as in the other transformation examples: Citrus’s <code class="highlighter-rouge">testcontainers()</code> DSL brings up the Docker Compose stack, <code class="highlighter-rouge">waitFor().http()</code> blocks until the infrastructure is ready, and <code class="highlighter-rouge">afterSuite</code> tears everything down after the tests complete.</p>
-
 <h2 id="the-content-filter-test">The content filter test</h2>
 
 <h3 id="quarkus-test">Quarkus test</h3>
@@ -673,108 +605,6 @@ the enricher needs time to consume the message, call the Redis lookup route, mer
 While all of that is done the receiving operation initializes the Kafka consumer with a proper offset.
 There is no racing condition between the order processing and the consumer initialization.</p>
 
-<h3 id="spring-boot-test">Spring Boot test</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@SpringBootTest</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="n">TransformationApplication</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-<span class="nd">@CamelSpringBootTest</span>
-<span class="nd">@CitrusSpringSupport</span>
-<span class="nd">@ContextConfiguration</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="o">{</span> <span class="n">EipInfraSetup</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">CitrusSpringConfig</span><span class="o">.</span><span class="na">class</span> <span class="o">})</span>
-<span class="kd">class</span> <span class="nc">EipTests</span> <span class="kd">implements</span> <span class="n">EipTestSupport</span> <span class="o">{</span>
-
-    <span class="nd">@Autowired</span>
-    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
-
-    <span class="nd">@Nested</span>
-    <span class="kd">class</span> <span class="nc">ContentFilterTest</span> <span class="o">{</span>
-
-        <span class="nd">@CitrusResource</span>
-        <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
-
-        <span class="nd">@Test</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldStripNonAllowedFieldsFromOrder</span><span class="o">()</span> <span class="o">{</span>
-            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span>
-                <span class="n">createVariables</span><span class="o">()</span>
-                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"citrus:randomNumber(4)"</span><span class="o">)</span>
-                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"sku"</span><span class="o">,</span> <span class="s">"SKU-DEF-77"</span><span class="o">)</span>
-                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"quantity"</span><span class="o">,</span> <span class="mi">1</span><span class="o">)</span>
-                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="mf">89.99</span><span class="o">)</span>
-                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"country"</span><span class="o">,</span> <span class="s">"GB"</span><span class="o">)</span>
-                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"hazardous"</span><span class="o">,</span> <span class="kc">false</span><span class="o">)</span>
-                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"productName"</span><span class="o">,</span> <span class="s">"Running Shoes"</span><span class="o">)</span>
-                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"productCategory"</span><span class="o">,</span> <span class="s">"Footwear"</span><span class="o">)</span>
-                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"weightKg"</span><span class="o">,</span> <span class="s">"1.2"</span><span class="o">)</span>
-                    <span class="o">.</span><span class="na">variable</span><span class="o">(</span><span class="s">"shippingZone"</span><span class="o">,</span> <span class="s">"ZONE-2"</span><span class="o">)</span>
-            <span class="o">);</span>
-
-            <span class="n">t</span><span class="o">.</span><span class="na">given</span><span class="o">(</span><span class="n">waitForCamelRouteStarted</span><span class="o">(</span><span class="s">"content-filter"</span><span class="o">,</span> <span class="n">camelContext</span><span class="o">));</span>
-
-            <span class="n">t</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
-                <span class="n">send</span><span class="o">()</span>
-                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.enriched"</span><span class="o">)</span>
-                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
-                    <span class="o">.</span><span class="na">fork</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
-                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/enriched-order.json"</span><span class="o">))</span>
-                    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">KafkaMessageHeaders</span><span class="o">.</span><span class="na">MESSAGE_KEY</span><span class="o">,</span> <span class="s">"org.citrusframework:citrus-website:pom:1.1.0"</span><span class="o">)</span>
-            <span class="o">);</span>
-
-            <span class="n">t</span><span class="o">.</span><span class="na">then</span><span class="o">(</span>
-                <span class="n">receive</span><span class="o">()</span>
-                    <span class="o">.</span><span class="na">endpoint</span><span class="o">(</span><span class="s">"kafka:eip.orders.analytics?consumerGroup=citrus-analytics-group"</span><span class="o">)</span>
-                    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
-                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"templates/filtered-order.json"</span><span class="o">))</span>
-            <span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>The test logic is identical.
-The differences are confined to the framework annotations:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Concern</th>
-      <th>Quarkus</th>
-      <th>Spring Boot</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Test bootstrap</td>
-      <td><code class="highlighter-rouge">@QuarkusTest</code></td>
-      <td>
-<code class="highlighter-rouge">@SpringBootTest</code> + <code class="highlighter-rouge">@CamelSpringBootTest</code>
-</td>
-    </tr>
-    <tr>
-      <td>Citrus integration</td>
-      <td><code class="highlighter-rouge">@CitrusSupport</code></td>
-      <td><code class="highlighter-rouge">@CitrusSpringSupport</code></td>
-    </tr>
-    <tr>
-      <td>CamelContext injection</td>
-      <td>
-<code class="highlighter-rouge">@Inject</code> + <code class="highlighter-rouge">@BindToRegistry</code>
-</td>
-      <td><code class="highlighter-rouge">@Autowired</code></td>
-    </tr>
-    <tr>
-      <td>TestCaseRunner scope</td>
-      <td>Class-level field</td>
-      <td>Nested class field with <code class="highlighter-rouge">@CitrusResource</code>
-</td>
-    </tr>
-    <tr>
-      <td>Infrastructure config</td>
-      <td>
-<code class="highlighter-rouge">@CitrusConfiguration</code> auto-discovered</td>
-      <td>
-<code class="highlighter-rouge">@ContextConfiguration</code> explicit</td>
-    </tr>
-  </tbody>
-</table>
-
 <h2 id="the-content-filter-in-the-transformation-pipeline">The content filter in the transformation pipeline</h2>
 
 <p>The content filter does not operate in isolation.
@@ -812,6 +642,8 @@ When you add <code class="highlighter-rouge">estimated_delivery</code> to the en
 <p>This is the advantage of an allowlist over a blocklist: new fields default to <em>excluded</em>, and you must explicitly opt in.
 With a blocklist, new fields default to <em>included</em>, and you must remember to add them to the exclusion list — a task that is easy to forget and whose failure is silent until someone audits the data flow.</p>
 
+<p>For the test infrastructure setup, shared test utilities, runtime wiring, dependencies, and how to run the tests, see the <a href="/samples/camel-eip/">Camel EIP examples</a> overview page.</p>
+
 <h2 id="key-takeaways">Key takeaways</h2>
 
 <ul>
@@ -843,7 +675,7 @@ With a blocklist, new fields default to <em>included</em>, and you must remember
         <a href="/samples/todo-app">TodoList App</a>
       </li>
       <li class="">
-        <a href="/samples/run">Running</a>
+        <a href="/samples/camel-eip">Camel EIP</a>
       </li>
     </ul>
     <h4>Configuration</h4>

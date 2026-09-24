@@ -114,7 +114,7 @@
     <option value="">Navigate the samples…</option>
     <option value="/samples/">Overview</option>
     <option value="/samples/todo-app/">TodoList App</option>
-    <option value="/samples/run/">Running</option>
+    <option value="/samples/camel-eip/">Camel EIP</option>
     
     
     <option value="/samples/javaconfig/">sample-javaconfig</option>
@@ -523,7 +523,7 @@ Here is the test on Quarkus:</p>
 <p>The test follows Citrus’s given-when-then structure.</p>
 
 <p>The <code class="highlighter-rouge">given</code> phase creates a random <code class="highlighter-rouge">id</code> variable and waits for the <code class="highlighter-rouge">order-splitter</code> route to be fully started and connected to Kafka.
-The <code class="highlighter-rouge">waitForCamelRouteStarted</code> utility (described below) uses Camel’s Control Bus to poll the route status, preventing the test from sending messages before the route’s consumer is ready.</p>
+The <code class="highlighter-rouge">waitForCamelRouteStarted</code> utility uses Camel’s Control Bus to poll the route status, preventing the test from sending messages before the route’s consumer is ready.</p>
 
 <p>The <code class="highlighter-rouge">when</code> phase sends the batch order to the <code class="highlighter-rouge">eip.orders.batch</code> input topic.
 The message body is loaded from the <code class="highlighter-rouge">batch-order.json</code> template, which Citrus resolves with the <code class="highlighter-rouge">org.citrusframework:citrus-website:pom:1.1.0</code> variable.
@@ -536,104 +536,6 @@ Both receives use the <strong>same consumer group</strong> (<code class="highlig
 <p>This structure is the key to testing a splitter: the number of <code class="highlighter-rouge">receive()</code> actions matches the expected number of split items.
 If the splitter produces only one message, the second <code class="highlighter-rouge">receive()</code> will time out and the test fails.
 If the splitter produces three messages, the test passes but leaves an unconsumed message — which could be caught by a more defensive test that adds an <code class="highlighter-rouge">expectTimeout</code> after the two receives.</p>
-
-<h1 id="setting-up-the-test-infrastructure">Setting up the test infrastructure</h1>
-
-<p>The route consumes from Kafka, so the test needs a running broker.
-Citrus manages this lifecycle with Testcontainers — a Docker Compose file defines the Kafka setup, and Citrus starts it before the test suite and tears it down after.</p>
-
-<p>On Quarkus, the infrastructure setup uses <code class="highlighter-rouge">@CitrusConfiguration</code> with <code class="highlighter-rouge">@BindToRegistry</code>:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@CitrusConfiguration</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EipInfraSetup</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
-
-    <span class="nd">@BindToRegistry</span>
-    <span class="kd">public</span> <span class="n">BeforeSuite</span> <span class="nf">startInfra</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="nf">beforeSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
-                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">up</span><span class="o">(</span><span class="s">"_infra/compose.yaml"</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">autoRemove</span><span class="o">(</span><span class="kc">false</span><span class="o">),</span>
-                    <span class="n">waitFor</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">http</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://localhost:8090"</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">25</span><span class="o">)</span>
-                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
-    <span class="o">}</span>
-
-    <span class="nd">@BindToRegistry</span>
-    <span class="kd">public</span> <span class="n">AfterSuite</span> <span class="nf">stopInfra</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="nf">afterSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
-                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">().</span><span class="na">stop</span><span class="o">(),</span>
-                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">down</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
-                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>On Spring Boot, the same logic uses <code class="highlighter-rouge">@Configuration</code> and <code class="highlighter-rouge">@Bean</code>:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EipInfraSetup</span> <span class="kd">implements</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
-
-    <span class="nd">@Bean</span>
-    <span class="kd">public</span> <span class="n">BeforeSuite</span> <span class="nf">startInfra</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="nf">beforeSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
-                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">up</span><span class="o">(</span><span class="s">"_infra/compose.yaml"</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">autoRemove</span><span class="o">(</span><span class="kc">false</span><span class="o">),</span>
-                    <span class="n">waitFor</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">http</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://localhost:8090"</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">25</span><span class="o">)</span>
-                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Bean</span>
-    <span class="kd">public</span> <span class="n">AfterSuite</span> <span class="nf">stopInfra</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="nf">afterSuite</span><span class="o">().</span><span class="na">actions</span><span class="o">(</span>
-                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">().</span><span class="na">stop</span><span class="o">(),</span>
-                    <span class="n">testcontainers</span><span class="o">().</span><span class="na">compose</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">down</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">containerName</span><span class="o">(</span><span class="s">"eip-infra"</span><span class="o">)</span>
-                <span class="o">).</span><span class="na">build</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>The test actions are identical — only the bean registration mechanism differs between the two runtimes.</p>
-
-<h1 id="waiting-for-the-camel-route">Waiting for the Camel route</h1>
-
-<p>Camel routes that consume from Kafka take a moment to start and subscribe to the broker.
-If the test sends a message before the route’s consumer is ready, the message sits unprocessed and the test times out.</p>
-
-<p>The example addresses this with a reusable utility interface that uses Camel’s Control Bus to poll the route status:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">EipTestSupport</span> <span class="kd">extends</span> <span class="n">TestActionSupport</span> <span class="o">{</span>
-
-    <span class="k">default</span> <span class="n">TestActionBuilder</span><span class="o">&lt;?&gt;</span> <span class="n">waitForCamelRouteStarted</span><span class="o">(</span>
-            <span class="n">String</span> <span class="n">routeId</span><span class="o">,</span> <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="nf">repeatOnError</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">20</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">actions</span><span class="o">(</span>
-                    <span class="n">camel</span><span class="o">().</span><span class="na">camelContext</span><span class="o">(</span><span class="n">camelContext</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">controlBus</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">route</span><span class="o">(</span><span class="n">routeId</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">status</span><span class="o">()</span>
-                            <span class="o">.</span><span class="na">result</span><span class="o">(</span><span class="n">ServiceStatus</span><span class="o">.</span><span class="na">Started</span><span class="o">),</span>
-                    <span class="n">sleep</span><span class="o">().</span><span class="na">seconds</span><span class="o">(</span><span class="mi">5</span><span class="o">)</span>
-                <span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>This polls the Camel context up to 20 times with one-second pauses.
-Once the route reports <code class="highlighter-rouge">Started</code>, it waits an additional five seconds for the Kafka consumer to fully connect.
-Every test class implements this interface and calls <code class="highlighter-rouge">waitForCamelRouteStarted(...)</code> in its <code class="highlighter-rouge">given</code> phase.</p>
 
 <h1 id="testing-with-the-yaml-dsl">Testing with the YAML DSL</h1>
 
@@ -712,131 +614,7 @@ The Splitter test in YAML DSL covers the same scenario — sending a batch and v
 These check the running integration’s log output for the expected processing messages — <code class="highlighter-rouge">"Processing item: PART-A1"</code> and <code class="highlighter-rouge">"Processing item: PART-B2"</code>.
 This serves as a secondary verification that the splitter actually processed both items, independent of what appears on the output topic.</p>
 
-<h1 id="running-on-quarkus-and-spring-boot">Running on Quarkus and Spring Boot</h1>
-
-<p>The Camel route logic is identical across both runtimes.
-The test code differences are limited to the wiring annotations.</p>
-
-<p>On Quarkus, the test class uses <code class="highlighter-rouge">@CitrusSupport</code> alongside <code class="highlighter-rouge">@QuarkusTest</code>, and the <code class="highlighter-rouge">CamelContext</code> is injected with CDI:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@QuarkusTest</span>
-<span class="nd">@CitrusSupport</span>
-<span class="kd">class</span> <span class="nc">EipTests</span> <span class="kd">implements</span> <span class="n">EipTestSupport</span> <span class="o">{</span>
-
-    <span class="nd">@CitrusResource</span>
-    <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
-
-    <span class="nd">@Inject</span>
-    <span class="nd">@BindToRegistry</span>
-    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
-
-    <span class="nd">@Nested</span>
-    <span class="kd">class</span> <span class="nc">SplitterTest</span> <span class="o">{</span>
-        <span class="c1">// ... test methods</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>On Spring Boot, the test uses <code class="highlighter-rouge">@CitrusSpringSupport</code> alongside Spring Boot and Camel test annotations:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@SpringBootTest</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="n">RoutingFundamentalsApplication</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-<span class="nd">@CamelSpringBootTest</span>
-<span class="nd">@CitrusSpringSupport</span>
-<span class="nd">@ContextConfiguration</span><span class="o">(</span><span class="n">classes</span> <span class="o">=</span> <span class="o">{</span> <span class="n">EipInfraSetup</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">CitrusSpringConfig</span><span class="o">.</span><span class="na">class</span> <span class="o">})</span>
-<span class="kd">class</span> <span class="nc">EipTests</span> <span class="kd">implements</span> <span class="n">EipTestSupport</span> <span class="o">{</span>
-
-    <span class="nd">@Autowired</span>
-    <span class="n">CamelContext</span> <span class="n">camelContext</span><span class="o">;</span>
-
-    <span class="nd">@Nested</span>
-    <span class="kd">class</span> <span class="nc">SplitterTest</span> <span class="o">{</span>
-
-        <span class="nd">@CitrusResource</span>
-        <span class="n">TestCaseRunner</span> <span class="n">t</span><span class="o">;</span>
-
-        <span class="c1">// ... test methods</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>On Spring Boot, the <code class="highlighter-rouge">TestCaseRunner</code> is declared in the <code class="highlighter-rouge">@Nested</code> inner class, while on Quarkus it lives at the outer class level — a structural difference driven by how each test framework manages injection scopes.
-The actual test methods inside <code class="highlighter-rouge">SplitterTest</code> are identical on both runtimes.</p>
-
-<h1 id="test-dependencies">Test dependencies</h1>
-
-<p>Both runtime variants share the same core Citrus dependencies.
-The runtime adapter is the only difference — <code class="highlighter-rouge">citrus-quarkus</code> for Quarkus, <code class="highlighter-rouge">citrus-spring</code> for Spring Boot:</p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- Quarkus runtime adapter --&gt;</span>
-<span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>citrus-quarkus<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
-    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-
-<span class="c">&lt;!-- OR Spring Boot runtime adapter --&gt;</span>
-<span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>citrus-spring<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
-    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-</code></pre></div></div>
-
-<p>Both runtimes share these common dependencies:</p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>citrus-camel<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
-    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-<span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>citrus-kafka<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
-    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-<span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>citrus-testcontainers<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
-    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-<span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>citrus-validation-json<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>5.0.1<span class="nt">&lt;/version&gt;</span>
-    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-</code></pre></div></div>
-
-<p>The <code class="highlighter-rouge">citrus-camel</code> module provides the Control Bus integration used in <code class="highlighter-rouge">waitForCamelRouteStarted</code>.
-The <code class="highlighter-rouge">citrus-kafka</code> module provides the Kafka send and receive actions.
-The <code class="highlighter-rouge">citrus-testcontainers</code> module manages the Docker Compose lifecycle.
-The <code class="highlighter-rouge">citrus-validation-json</code> module enables JSON message validation with the template-based assertions and <code class="highlighter-rouge">@ignore@</code> matchers.</p>
-
-<h1 id="running-the-tests">Running the tests</h1>
-
-<p>Make sure Docker (or Podman) is running, then execute:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Quarkus</span>
-<span class="nb">cd </span>examples/09-routing-fundamentals/quarkus
-mvn verify
-
-<span class="c"># Spring Boot</span>
-<span class="nb">cd </span>examples/09-routing-fundamentals/spring-boot
-mvn verify
-</code></pre></div></div>
-
-<p>The test suite starts the Kafka broker via Testcontainers, boots the Camel application, runs the splitter test, and tears everything down.</p>
-
-<p>For the YAML DSL variant, install the <a href="https://camel.apache.org/manual/camel-jbang.html">Camel CLI</a> and run:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>examples/09-routing-fundamentals/yaml-dsl
-camel <span class="nb">test test</span>/splitter.citrus.it.yaml
-</code></pre></div></div>
+<p>For the test infrastructure setup, shared test utilities, runtime wiring, dependencies, and how to run the tests, see the <a href="/samples/camel-eip/">Camel EIP examples</a> overview page.</p>
 
 <h1 id="key-takeaways">Key takeaways</h1>
 
@@ -884,7 +662,7 @@ Unlike single-message patterns where you check <em>which</em> output channel a m
         <a href="/samples/todo-app">TodoList App</a>
       </li>
       <li class="">
-        <a href="/samples/run">Running</a>
+        <a href="/samples/camel-eip">Camel EIP</a>
       </li>
     </ul>
     <h4>Configuration</h4>
