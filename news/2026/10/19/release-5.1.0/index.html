@@ -214,7 +214,7 @@ Here is a look at the highlights.</p>
 
 <h2 id="graphql-support">GraphQL support</h2>
 
-<p>Citrus 5.1.0 introduces a brand-new <strong>citrus-graphql</strong> module (<a href="https://github.com/citrusframework/citrus/issues/1797">#1797</a>) that adds first-class support for testing GraphQL APIs. You can send queries, mutations and subscriptions through a typed <code class="highlighter-rouge">graphql()</code> test action API, validate responses against SDL schemas, and simulate a GraphQL server for contract testing. The module builds on Spring GraphQL and supports Java, XML and YAML DSL out of the box.</p>
+<p>Citrus 5.1.0 introduces a brand-new <strong>citrus-graphql</strong> module (<a href="https://github.com/citrusframework/citrus/issues/1797">#1797</a>, <a href="https://citrusframework.org/citrus/reference/html#graphql">docs</a>) that adds first-class support for testing GraphQL APIs. You can send queries, mutations and subscriptions through a typed <code class="highlighter-rouge">graphql()</code> test action API, validate responses against SDL schemas, and simulate a GraphQL server for contract testing. The module builds on Spring GraphQL and supports Java, XML and YAML DSL out of the box.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">given</span><span class="o">(</span><span class="n">graphql</span><span class="o">().</span><span class="na">client</span><span class="o">(</span><span class="n">graphqlClient</span><span class="o">)</span>
     <span class="o">.</span><span class="na">send</span><span class="o">()</span>
@@ -227,11 +227,43 @@ Here is a look at the highlights.</p>
 
 <h2 id="assertj-validation">AssertJ validation</h2>
 
-<p>The new <strong>citrus-validation-assertj</strong> module (<a href="https://github.com/citrusframework/citrus/issues/1782">#1782</a>) lets you use AssertJ assertion chains directly in your Citrus validation. You can write <code class="highlighter-rouge">@assertj()@</code> expressions in expected message payloads or use the Java DSL with <code class="highlighter-rouge">AssertJCheck</code> and <code class="highlighter-rouge">satisfies()</code> factories. The module covers value assertions, header validation, container conditions and coexists seamlessly with existing Hamcrest matchers.</p>
+<p>The new <strong>citrus-validation-assertj</strong> module (<a href="https://github.com/citrusframework/citrus/issues/1782">#1782</a>, <a href="https://citrusframework.org/citrus/reference/html#assertj-message-validation">docs</a>) lets you use AssertJ assertion chains directly in your Citrus validation. You can write <code class="highlighter-rouge">@assertj()@</code> expressions in expected message payloads or use the Java DSL with <code class="highlighter-rouge">satisfies()</code> factories. The module covers value assertions, header validation, container conditions and coexists seamlessly with existing Hamcrest matchers.</p>
+
+<p>In the Java DSL, use <code class="highlighter-rouge">satisfies()</code> with AssertJ’s fluent API to validate JsonPath and XPath values or message headers:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span><span class="o">(</span><span class="n">receive</span><span class="o">(</span><span class="n">endpoint</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">message</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">type</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">JSON</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"count"</span><span class="o">,</span> <span class="n">satisfies</span><span class="o">(</span><span class="n">Integer</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
+            <span class="n">c</span> <span class="o">-&gt;</span> <span class="n">assertThat</span><span class="o">(</span><span class="n">c</span><span class="o">).</span><span class="na">isBetween</span><span class="o">(</span><span class="mi">40</span><span class="o">,</span> <span class="mi">50</span><span class="o">)))</span>
+    <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="n">validation</span><span class="o">().</span><span class="na">jsonPath</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">expression</span><span class="o">(</span><span class="s">"$.qty"</span><span class="o">,</span> <span class="n">satisfies</span><span class="o">(</span><span class="n">Integer</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
+                    <span class="n">q</span> <span class="o">-&gt;</span> <span class="n">assertThat</span><span class="o">(</span><span class="n">q</span><span class="o">).</span><span class="na">isGreaterThan</span><span class="o">(</span><span class="mi">5</span><span class="o">)))</span>
+            <span class="o">.</span><span class="na">expression</span><span class="o">(</span><span class="s">"$.status"</span><span class="o">,</span> <span class="n">satisfies</span><span class="o">(</span>
+                    <span class="n">s</span> <span class="o">-&gt;</span> <span class="n">assertThat</span><span class="o">(</span><span class="n">s</span><span class="o">).</span><span class="na">asString</span><span class="o">().</span><span class="na">startsWith</span><span class="o">(</span><span class="s">"OK"</span><span class="o">)))));</span>
+</code></pre></div></div>
+
+<p>In XML or YAML DSL, the <code class="highlighter-rouge">@assertj()@</code> validation matcher lets you chain assertions directly in the expected value:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;receive</span> <span class="na">endpoint=</span><span class="s">"myEndpoint"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;message</span> <span class="na">type=</span><span class="s">"json"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;validate&gt;</span>
+      <span class="nt">&lt;json-path</span> <span class="na">expression=</span><span class="s">"$.qty"</span>
+                 <span class="na">value=</span><span class="s">"@assertj(asInt().isBetween(1, 10))@"</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;json-path</span> <span class="na">expression=</span><span class="s">"$.tags"</span>
+                 <span class="na">value=</span><span class="s">"@assertj(asList().containsExactly('a', 'b'))@"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/validate&gt;</span>
+  <span class="nt">&lt;/message&gt;</span>
+  <span class="nt">&lt;header&gt;</span>
+    <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">"Operation"</span>
+             <span class="na">value=</span><span class="s">"@assertj(isIn('sayHello', 'sayHi'))@"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/header&gt;</span>
+<span class="nt">&lt;/receive&gt;</span>
+</code></pre></div></div>
 
 <h2 id="playwright-browser-automation">Playwright browser automation</h2>
 
-<p>Citrus 5.1.0 introduces <strong>citrus-playwright</strong> (<a href="https://github.com/citrusframework/citrus/issues/1714">#1714</a>), a new module for browser automation built on <a href="https://playwright.dev/">Playwright</a>. Playwright offers fast, reliable cross-browser testing with auto-waiting, network interception and multi-context isolation — and Citrus now wraps it in a familiar endpoint and action API that integrates naturally with your integration test scenarios.</p>
+<p>Citrus 5.1.0 introduces <strong>citrus-playwright</strong> (<a href="https://github.com/citrusframework/citrus/issues/1714">#1714</a>, <a href="https://citrusframework.org/citrus/reference/html#playwright">docs</a>), a new module for browser automation built on <a href="https://playwright.dev/">Playwright</a>. Playwright offers fast, reliable cross-browser testing with auto-waiting, network interception and multi-context isolation — and Citrus now wraps it in a familiar endpoint and action API that integrates naturally with your integration test scenarios.</p>
 
 <p>The module ships with Playwright 1.63.0 and a rich set of capabilities out of the box:</p>
 
@@ -250,7 +282,7 @@ Here is a look at the highlights.</p>
 
 <h2 id="selenium-improvements">Selenium improvements</h2>
 
-<p>Selenium-based browser testing has been modernized with a wave of new actions and quality-of-life fixes:</p>
+<p>Selenium-based browser testing (<a href="https://citrusframework.org/citrus/reference/html#selenium">docs</a>) has been modernized with a wave of new actions and quality-of-life fixes:</p>
 
 <ul>
   <li>
@@ -272,11 +304,11 @@ Here is a look at the highlights.</p>
   <li>
 <strong>Typed test results</strong> — ask a question in a test behavior and receive a typed answer back for downstream assertions (<a href="https://github.com/citrusframework/citrus/issues/1757">#1757</a>)</li>
   <li>
-<strong>Combinator validation matchers</strong> — <code class="highlighter-rouge">@allOf()@</code>, <code class="highlighter-rouge">@anyOf()@</code> and <code class="highlighter-rouge">@not()@</code> let you compose multiple validation matchers into a single expression (<a href="https://github.com/citrusframework/citrus/issues/1768">#1768</a>)</li>
+<strong>Combinator validation matchers</strong> — <code class="highlighter-rouge">@allOf()@</code>, <code class="highlighter-rouge">@anyOf()@</code> and <code class="highlighter-rouge">@not()@</code> let you compose multiple validation matchers into a single expression (<a href="https://github.com/citrusframework/citrus/issues/1768">#1768</a>, <a href="https://citrusframework.org/citrus/reference/html#matcher-allof">docs</a>)</li>
   <li>
-<strong>Comparison validation matchers</strong> — <code class="highlighter-rouge">@greaterThanOrEqualTo()@</code> and <code class="highlighter-rouge">@lowerThanOrEqualTo()@</code> complement the existing comparison set (<a href="https://github.com/citrusframework/citrus/issues/1767">#1767</a>)</li>
+<strong>Comparison validation matchers</strong> — <code class="highlighter-rouge">@greaterThanOrEqualTo()@</code> and <code class="highlighter-rouge">@lowerThanOrEqualTo()@</code> complement the existing comparison set (<a href="https://github.com/citrusframework/citrus/issues/1767">#1767</a>, <a href="https://citrusframework.org/citrus/reference/html#matcher-greaterthanorequalto">docs</a>)</li>
   <li>
-<strong>Plain-Java SQL result set validation</strong> — validate SQL query results with a typed <code class="highlighter-rouge">SqlResultSetValidator</code> callback and POJO row mapping instead of scripts (<a href="https://github.com/citrusframework/citrus/issues/619">#619</a>)</li>
+<strong>Plain-Java SQL result set validation</strong> — validate SQL query results with a typed <code class="highlighter-rouge">SqlResultSetValidator</code> callback and POJO row mapping instead of scripts (<a href="https://github.com/citrusframework/citrus/issues/619">#619</a>, <a href="https://citrusframework.org/citrus/reference/html#actions-sql">docs</a>)</li>
 </ul>
 
 <h2 id="notable-fixes">Notable fixes</h2>
@@ -292,7 +324,7 @@ Here is a look at the highlights.</p>
 <strong>Send action error handling</strong> — send actions inside <code class="highlighter-rouge">assertException</code> no longer hang when message creation fails (<a href="https://github.com/citrusframework/citrus/issues/1798">#1798</a>)</li>
 </ul>
 
-<p>For the full list of changes see the <a href="/news/releases/">release changelog</a>.</p>
+<p>For the full list of changes see the <a href="/docs/history/#v5.1.0">release changelog</a>.</p>
 
 <h2 id="update">Update</h2>
 
