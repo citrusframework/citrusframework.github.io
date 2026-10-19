@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Citrus Framework</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="generator" content="Citrus 5.0.2">
+  <meta name="generator" content="Citrus 5.1.0">
   <meta name="description" content="Citrus Framework Website"/>
   <meta name="author" content="ConSol Software GmbH"/>
   <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
@@ -117,6 +117,8 @@
     <optgroup label="Posts">
       
       
+      <option value="/news/2026/10/19/release-5.1.0/">Citrus 5.1.0</option>
+      
       <option value="/news/2026/09/18/camel-testing-strategies/">Camel Testing Strategies - From Unit to Integration Tests</option>
       
       <option value="/news/2026/09/17/database-testing-citrus/">Database Testing - SQL Polling Consumers and Data Verification</option>
@@ -186,6 +188,133 @@
 
       <div class="unit four-fifths">
         
+
+  <article>
+  <h2>
+    Citrus 5.1.0
+    <a href="/news/2026/10/19/release-5.1.0/" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      blog
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      19 Oct 2026
+    </span>
+    <a href="https://github.com/christophd" class="post-author">
+      
+      Christoph Deppisch
+    </a>
+  </div>
+  <div class="post-content">
+    <p>The Citrus community is happy to announce the release of <strong>Citrus 5.1.0</strong>! 
+This release brings three new modules, major improvements to browser-based testing with Selenium and a fresh set of validation capabilities with AssertJ.</p>
+
+<p>The release is packed with <strong>21 new features and enhancements</strong>, <strong>13 bug fixes</strong> and many <strong>dependency version updates</strong>.
+Here is a look at the highlights.</p>
+
+<h2 id="graphql-support">GraphQL support</h2>
+
+<p>Citrus 5.1.0 introduces a brand-new <strong>citrus-graphql</strong> module (<a href="https://github.com/citrusframework/citrus/issues/1797">#1797</a>) that adds first-class support for testing GraphQL APIs. You can send queries, mutations and subscriptions through a typed <code class="highlighter-rouge">graphql()</code> test action API, validate responses against SDL schemas, and simulate a GraphQL server for contract testing. The module builds on Spring GraphQL and supports Java, XML and YAML DSL out of the box.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">given</span><span class="o">(</span><span class="n">graphql</span><span class="o">().</span><span class="na">client</span><span class="o">(</span><span class="n">graphqlClient</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">send</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">query</span><span class="o">(</span><span class="s">"{ user(id: 1) { name email } }"</span><span class="o">));</span>
+
+<span class="n">then</span><span class="o">(</span><span class="n">graphql</span><span class="o">().</span><span class="na">client</span><span class="o">(</span><span class="n">graphqlClient</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">receive</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"$.data.user.name"</span><span class="o">,</span> <span class="s">"John"</span><span class="o">));</span>
+</code></pre></div></div>
+
+<h2 id="assertj-validation">AssertJ validation</h2>
+
+<p>The new <strong>citrus-validation-assertj</strong> module (<a href="https://github.com/citrusframework/citrus/issues/1782">#1782</a>) lets you use AssertJ assertion chains directly in your Citrus validation. You can write <code class="highlighter-rouge">@assertj()@</code> expressions in expected message payloads or use the Java DSL with <code class="highlighter-rouge">AssertJCheck</code> and <code class="highlighter-rouge">satisfies()</code> factories. The module covers value assertions, header validation, container conditions and coexists seamlessly with existing Hamcrest matchers.</p>
+
+<h2 id="playwright-browser-automation">Playwright browser automation</h2>
+
+<p>Citrus 5.1.0 introduces <strong>citrus-playwright</strong> (<a href="https://github.com/citrusframework/citrus/issues/1714">#1714</a>), a new module for browser automation built on <a href="https://playwright.dev/">Playwright</a>. Playwright offers fast, reliable cross-browser testing with auto-waiting, network interception and multi-context isolation — and Citrus now wraps it in a familiar endpoint and action API that integrates naturally with your integration test scenarios.</p>
+
+<p>The module ships with Playwright 1.63.0 and a rich set of capabilities out of the box:</p>
+
+<ul>
+  <li>
+<strong>Typed <code class="highlighter-rouge">playwright()</code> test actions</strong> for navigation, clicks, form fills, screenshots, tracing, aria snapshots, WebAuthn passkeys, screencast recording and more (<a href="https://github.com/citrusframework/citrus/issues/1737">#1737</a>)</li>
+  <li>
+<strong>XML and YAML DSL</strong> elements for all Playwright actions (<a href="https://github.com/citrusframework/citrus/issues/1745">#1745</a>)</li>
+  <li>
+<strong>Browser-session HTTP client</strong> that sends API requests carrying the browser’s cookies and auth state, bridging UI and API testing in a single scenario (<a href="https://github.com/citrusframework/citrus/issues/1751">#1751</a>)</li>
+  <li>
+<strong>Cucumber steps</strong> via a companion citrus-cucumber-playwright module for BDD-style browser tests (<a href="https://github.com/citrusframework/citrus/issues/1803">#1803</a>)</li>
+  <li>
+<strong>Endpoint catalog</strong> integration so AI-assisted coding and IDE completion discover the Playwright endpoint (<a href="https://github.com/citrusframework/citrus/issues/1775">#1775</a>)</li>
+</ul>
+
+<h2 id="selenium-improvements">Selenium improvements</h2>
+
+<p>Selenium-based browser testing has been modernized with a wave of new actions and quality-of-life fixes:</p>
+
+<ul>
+  <li>
+<strong>Interaction actions</strong> — double click, right click, drag and drop, press keys and extended dropdown select (<a href="https://github.com/citrusframework/citrus/issues/1819">#1819</a>)</li>
+  <li>
+<strong>Verify and extract actions</strong> with variable-aware XML/YAML locators to check page URL, title, element state and store values as test variables (<a href="https://github.com/citrusframework/citrus/issues/1821">#1821</a>)</li>
+  <li>
+<strong>Frame navigation, cookie management</strong> and JavaScript result variable support (<a href="https://github.com/citrusframework/citrus/issues/1830">#1830</a>)</li>
+  <li>
+<strong>Browser options</strong> — headless mode, arguments, window size and timeouts configurable on the endpoint (<a href="https://github.com/citrusframework/citrus/issues/1833">#1833</a>)</li>
+  <li>Several <strong>bug fixes</strong> covering start-page resolution, element lookup error handling, JS error collection and cache clearing (<a href="https://github.com/citrusframework/citrus/issues/1812">#1812</a>)</li>
+</ul>
+
+<h2 id="test-behavior-and-validation-improvements">Test behavior and validation improvements</h2>
+
+<ul>
+  <li>
+<strong>Named and composable test behaviors</strong> — behaviors can now carry a name, be nested and scoped, so they compose cleanly and appear with meaningful labels in reports (<a href="https://github.com/citrusframework/citrus/issues/1752">#1752</a>)</li>
+  <li>
+<strong>Typed test results</strong> — ask a question in a test behavior and receive a typed answer back for downstream assertions (<a href="https://github.com/citrusframework/citrus/issues/1757">#1757</a>)</li>
+  <li>
+<strong>Combinator validation matchers</strong> — <code class="highlighter-rouge">@allOf()@</code>, <code class="highlighter-rouge">@anyOf()@</code> and <code class="highlighter-rouge">@not()@</code> let you compose multiple validation matchers into a single expression (<a href="https://github.com/citrusframework/citrus/issues/1768">#1768</a>)</li>
+  <li>
+<strong>Comparison validation matchers</strong> — <code class="highlighter-rouge">@greaterThanOrEqualTo()@</code> and <code class="highlighter-rouge">@lowerThanOrEqualTo()@</code> complement the existing comparison set (<a href="https://github.com/citrusframework/citrus/issues/1767">#1767</a>)</li>
+  <li>
+<strong>Plain-Java SQL result set validation</strong> — validate SQL query results with a typed <code class="highlighter-rouge">SqlResultSetValidator</code> callback and POJO row mapping instead of scripts (<a href="https://github.com/citrusframework/citrus/issues/619">#619</a>)</li>
+</ul>
+
+<h2 id="notable-fixes">Notable fixes</h2>
+
+<ul>
+  <li>
+<strong>TestContext isolation</strong> — each dynamic test in <code class="highlighter-rouge">JUnitCitrusTest</code> now receives its own context, preventing final-action side effects across tests (<a href="https://github.com/citrusframework/citrus/issues/1816">#1816</a>)</li>
+  <li>
+<strong>Content-Type on bodyless requests</strong> — HTTP client no longer sends <code class="highlighter-rouge">Content-Type: text/plain</code> on GET and other bodyless requests (<a href="https://github.com/citrusframework/citrus/issues/1826">#1826</a>)</li>
+  <li>
+<strong>CitrusSettings refactoring</strong> — static final fields replaced with dynamic accessor methods so settings changes take effect at runtime (<a href="https://github.com/citrusframework/citrus/issues/1771">#1771</a>)</li>
+  <li>
+<strong>Send action error handling</strong> — send actions inside <code class="highlighter-rouge">assertException</code> no longer hang when message creation fails (<a href="https://github.com/citrusframework/citrus/issues/1798">#1798</a>)</li>
+</ul>
+
+<p>For the full list of changes see the <a href="/news/releases/">release changelog</a>.</p>
+
+<h2 id="update">Update</h2>
+
+<p>Update the Citrus BOM in your <code class="highlighter-rouge">pom.xml</code>:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>citrus-bom<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.1.0<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;type&gt;</span>pom<span class="nt">&lt;/type&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>import<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>Thank you to everyone who contributed to this release!</p>
+
+  </div>
+</article>
+
 
   <article>
   <h2>
@@ -1503,37 +1632,37 @@ Depending on the underlying framework our tests need runtime-specific wiring: di
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
     <span class="nt">&lt;artifactId&gt;</span>citrus-quarkus<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>5.0.2<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.1.0<span class="nt">&lt;/version&gt;</span>
     <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 <span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
     <span class="nt">&lt;artifactId&gt;</span>citrus-camel<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>5.0.2<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.1.0<span class="nt">&lt;/version&gt;</span>
     <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 <span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
     <span class="nt">&lt;artifactId&gt;</span>citrus-junit-jupiter<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>5.0.2<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.1.0<span class="nt">&lt;/version&gt;</span>
     <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 <span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
     <span class="nt">&lt;artifactId&gt;</span>citrus-kafka<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>5.0.2<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.1.0<span class="nt">&lt;/version&gt;</span>
     <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 <span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
     <span class="nt">&lt;artifactId&gt;</span>citrus-testcontainers<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>5.0.2<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.1.0<span class="nt">&lt;/version&gt;</span>
     <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 <span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
     <span class="nt">&lt;artifactId&gt;</span>citrus-validation-json<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>5.0.2<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.1.0<span class="nt">&lt;/version&gt;</span>
     <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 </code></pre></div></div>
@@ -1689,7 +1818,7 @@ Depending on the underlying framework our tests need runtime-specific wiring: di
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
     <span class="nt">&lt;artifactId&gt;</span>citrus-spring<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>5.0.2<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.1.0<span class="nt">&lt;/version&gt;</span>
     <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 </code></pre></div></div>
@@ -4556,7 +4685,7 @@ The reward is high — complete confidence that every routing path produces the 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
     <span class="nt">&lt;artifactId&gt;</span>citrus-knative<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>5.0.2<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.1.0<span class="nt">&lt;/version&gt;</span>
     <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 </code></pre></div></div>
@@ -5034,7 +5163,7 @@ Ce-Source: order-service
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
     <span class="nt">&lt;artifactId&gt;</span>citrus-ws<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>5.0.2<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.1.0<span class="nt">&lt;/version&gt;</span>
     <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 </code></pre></div></div>
@@ -5682,13 +5811,13 @@ DELETE /fruits  --&gt;  direct:deleteFruit --&gt;  CXF client  --&gt;  SOAP
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
     <span class="nt">&lt;artifactId&gt;</span>citrus-ws<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>5.0.2<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.1.0<span class="nt">&lt;/version&gt;</span>
     <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 <span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
     <span class="nt">&lt;artifactId&gt;</span>citrus-validation-xml<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>5.0.2<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.1.0<span class="nt">&lt;/version&gt;</span>
     <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 </code></pre></div></div>
@@ -5992,7 +6121,7 @@ DELETE /fruits  --&gt;  direct:deleteFruit --&gt;  CXF client  --&gt;  SOAP
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
     <span class="nt">&lt;artifactId&gt;</span>citrus-camel<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>5.0.2<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.1.0<span class="nt">&lt;/version&gt;</span>
     <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 </code></pre></div></div>
@@ -6353,7 +6482,7 @@ However, the list of new contributors emerges and Citrus benefits from many comm
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>org.citrusframework<span class="nt">&lt;/groupId&gt;</span>
     <span class="nt">&lt;artifactId&gt;</span>citrus-bom<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>5.0.2<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.1.0<span class="nt">&lt;/version&gt;</span>
     <span class="nt">&lt;type&gt;</span>pom<span class="nt">&lt;/type&gt;</span>
     <span class="nt">&lt;scope&gt;</span>import<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
@@ -8827,7 +8956,7 @@ the Citrus project is located in a sub module in that git repository you can loa
       <span class="nt">&lt;images&gt;</span>
         <span class="nt">&lt;image&gt;</span>
           <span class="nt">&lt;alias&gt;</span>citrus-tests<span class="nt">&lt;/alias&gt;</span>
-          <span class="nt">&lt;name&gt;</span>sample-app/citrus-tests:5.0.2<span class="nt">&lt;/name&gt;</span>
+          <span class="nt">&lt;name&gt;</span>sample-app/citrus-tests:5.1.0<span class="nt">&lt;/name&gt;</span>
           <span class="nt">&lt;build&gt;</span>
             <span class="nt">&lt;from&gt;</span>consol/citrus-admin:1.0.1<span class="nt">&lt;/from&gt;</span>
             <span class="nt">&lt;assembly&gt;</span>
@@ -9700,7 +9829,7 @@ We need to add this library to our project as test scoped dependency if not alre
 <figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>com.consol.citrus<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>citrus-camel<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>5.0.2<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;version&gt;</span>5.1.0<span class="nt">&lt;/version&gt;</span>
   <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span></code></pre></figure>
 
@@ -10660,6 +10789,10 @@ http://www.citrusframework.org/samples/my-testcase-info/my-testcase-info.xsd"</s
     <h4>Posts</h4>
     <ul>
         
+        
+        <li class="">
+          <a href="/news/2026/10/19/release-5.1.0/">» Citrus 5.1.0</a>
+        </li>
         
         <li class="">
           <a href="/news/2026/09/18/camel-testing-strategies/">» Camel Testing Strategies</a>
