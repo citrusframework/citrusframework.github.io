@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Citrus Framework</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="generator" content="Citrus 5.1.0">
+  <meta name="generator" content="Citrus 5.2.0">
   <meta name="description" content="Citrus Framework Website"/>
   <meta name="author" content="ConSol Software GmbH"/>
   <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
@@ -255,6 +255,250 @@
           </div>
           <h1>Release history</h1>
           
+<h2 id="v5.2.0">v5.2.0</h2>
+<h7>2026-11-16</h7>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Id</th>
+      <th style="text-align: center">Changes</th>
+      <th style="text-align: center">By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1574">#1574</a></td>
+      <td style="text-align: center">Port Citrus JBang CLI from Picocli to Aesh</td>
+      <td style="text-align: center">asuruceanu</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1936">#1936</a></td>
+      <td style="text-align: center">Add container listener for lifecycle callbacks of ActionContainers</td>
+      <td style="text-align: center">tschlat</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1938">#1938</a></td>
+      <td style="text-align: center">Report nested action execution of test action containers</td>
+      <td style="text-align: center">tschlat</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1889">#1889</a></td>
+      <td style="text-align: center">Support Cucumber suite hooks, DocString/DataTable steps and parallel scenarios</td>
+      <td style="text-align: center">asuruceanu</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1874">#1874</a></td>
+      <td style="text-align: center">Leverage Cucumber 8 glue selection, package-private glue and named hooks</td>
+      <td style="text-align: center">asuruceanu</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1882">#1882</a></td>
+      <td style="text-align: center">Add autoSetProperties option to Camel CLI run action</td>
+      <td style="text-align: center">asuruceanu</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1919">#1919</a></td>
+      <td style="text-align: center">Complete HTTP YAML/XML DSL parity</td>
+      <td style="text-align: center">asuruceanu</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1918">#1918</a></td>
+      <td style="text-align: center">Describe catalog metadata and reject unknown YAML actions</td>
+      <td style="text-align: center">asuruceanu</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/896">#896</a></td>
+      <td style="text-align: center">Summarize binary bodies in HTTP logging interceptors</td>
+      <td style="text-align: center">asuruceanu</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1852">#1852</a></td>
+      <td style="text-align: center">Detect endpoint dependencies from createEndpoint test actions</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1851">#1851</a></td>
+      <td style="text-align: center">Report final actions in dedicated finally section</td>
+      <td style="text-align: center">asuruceanu</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1888">#1888</a></td>
+      <td style="text-align: center">Simplify messaging endpoint definitions in YAML and XML DSL</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1850">#1850</a></td>
+      <td style="text-align: center">Use colon delimiter for test action names in schema aggregate catalog</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1825">#1825</a></td>
+      <td style="text-align: center">Resolve reporter output directory lazily from settings</td>
+      <td style="text-align: center">asuruceanu</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1970">#1970</a></td>
+      <td style="text-align: center">Camel verify action finds already-running integrations by name</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1957">#1957</a></td>
+      <td style="text-align: center">Add –skip-plugins option to CamelRunIntegrationAction</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1973">#1973</a></td>
+      <td style="text-align: center">Add test variable metadata to <a href="https://github.com/SchemaType" class="user-mention">@SchemaType</a> and generated schemas</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1981">#1981</a></td>
+      <td style="text-align: center">Minify generated JSON schema files to reduce artifact size</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1319">#1319</a></td>
+      <td style="text-align: center">Report skipped tests in JUnit XML report</td>
+      <td style="text-align: center">officialasishkumar</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-add"></i></td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Accept Camel EndpointProducerBuilder in CamelExchangeActionBuilder</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1849">#1849</a></td>
+      <td style="text-align: center">Use colon-separated action group hierarchy for infra action names</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1174">#1174</a></td>
+      <td style="text-align: center">Resolve SQL script paths by prefix (classpath/file/URL)</td>
+      <td style="text-align: center">asuruceanu</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/701">#701</a></td>
+      <td style="text-align: center">Execute all configured SQL script resources in declaration order</td>
+      <td style="text-align: center">asuruceanu</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1853">#1853</a></td>
+      <td style="text-align: center">Detect endpoints regardless of YAML section ordering</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1878">#1878</a></td>
+      <td style="text-align: center">Make static lookup caches thread-safe on first use</td>
+      <td style="text-align: center">asuruceanu</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1884">#1884</a></td>
+      <td style="text-align: center">Resolve header validators outside the lookup lock to avoid deadlock</td>
+      <td style="text-align: center">asuruceanu</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1887">#1887</a></td>
+      <td style="text-align: center">Add auto-create-queue attribute to DirectEndpointType in XSD</td>
+      <td style="text-align: center">asuruceanu</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1913">#1913</a></td>
+      <td style="text-align: center">Add playwright dependency to schema generator</td>
+      <td style="text-align: center">asuruceanu</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1960">#1960</a></td>
+      <td style="text-align: center">Resolve actual bound HTTP server port for dynamic ports</td>
+      <td style="text-align: center">asuruceanu</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1974">#1974</a></td>
+      <td style="text-align: center">Fix dispatcher servlet configuring beans from parent context</td>
+      <td style="text-align: center">asuruceanu</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1976">#1976</a></td>
+      <td style="text-align: center">Make ZipMessage payload serialization deterministic</td>
+      <td style="text-align: center">asuruceanu</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1880">#1880</a></td>
+      <td style="text-align: center">Fix gRPC idle timeout and GraphQL test port issues</td>
+      <td style="text-align: center">asuruceanu</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-fix"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1871">#1871</a></td>
+      <td style="text-align: center">Run Cucumber TestNG unit tests only once</td>
+      <td style="text-align: center">asuruceanu</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-update"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1858">#1858</a></td>
+      <td style="text-align: center">Migrate Cucumber runtime to JUnit Platform engine</td>
+      <td style="text-align: center">asuruceanu</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-update"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1860">#1860</a></td>
+      <td style="text-align: center">Migrate cucumber-steps modules to JUnit Platform engine</td>
+      <td style="text-align: center">asuruceanu</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-update"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1873">#1873</a></td>
+      <td style="text-align: center">Migrate tests from TestNG to JUnit Jupiter</td>
+      <td style="text-align: center">asuruceanu</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-update"></i></td>
+      <td style="text-align: center"><a href="https://github.com/citrusframework/citrus/issues/1864">#1864</a></td>
+      <td style="text-align: center">Migrate date functions from legacy Calendar to java.time</td>
+      <td style="text-align: center">bbortt</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><i class="fa fa-update"></i></td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">Update dependency versions</td>
+      <td style="text-align: center">christophd</td>
+    </tr>
+  </tbody>
+</table>
+
 <h2 id="v5.1.0">v5.1.0</h2>
 <h7>2026-10-19</h7>
 

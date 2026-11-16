@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Citrus Framework</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="generator" content="Citrus 5.1.0">
+  <meta name="generator" content="Citrus 5.2.0">
   <meta name="description" content="Citrus Framework Website"/>
   <meta name="author" content="ConSol Software GmbH"/>
   <link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Citrus Integration Tests" />
@@ -498,7 +498,7 @@ Let’s add some scenarios representing the user login service.</p>
         </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
         </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"nickname"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">},</span><span class="w">
@@ -552,11 +552,11 @@ route incoming requests to this scenario based on that information.</p>
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@isNumber()@"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@notEmpty()@"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@notEmpty()@"</span><span class="w">
+  </span><span class="s2">"nickname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@notEmpty()@"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
-<p>The control user object verifies that the elements <code class="highlighter-rouge">id</code>, <code class="highlighter-rouge">username</code> and <code class="highlighter-rouge">password</code> are present. In addition to that we can use Citrus validation matchers in order to validate the element values. The scenario produces a proper response 
+<p>The control user object verifies that the elements <code class="highlighter-rouge">id</code>, <code class="highlighter-rouge">username</code> and <code class="highlighter-rouge">nickname</code> are present. In addition to that we can use Citrus validation matchers in order to validate the element values. The scenario produces a proper response 
 only in case the incoming request matches the expected control Json object. The simulator scenario is able to use the full Citrus validation power for comparing message data in Json, XML and plaintext message format. JsonPath and XPath expression evaluation and validation
 is also possible here.</p>
 
@@ -589,7 +589,7 @@ is also possible here.</p>
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"citrus:randomNumber(10)"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"citrus:randomEnumValue('amy', 'penny', 'sheldon', 'leonard', 'rajesh', 'howard', 'bernadette')"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"citrus:randomString(10)"</span><span class="w">
+  </span><span class="s2">"nickname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"citrus:randomString(10)"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
@@ -647,7 +647,7 @@ operations via Http REST. The simulator will verify the incoming request data an
 <p>You can test the simulator by pointing your browser to the following URLs:</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://localhost:8080/services/rest/v1/user/test
-http://localhost:8080/services/rest/v1/user/login?username=christoph&amp;password=secr3t
+http://localhost:8080/services/rest/v1/user/login?username=christoph&amp;password=changeit
 http://localhost:8080/services/rest/v1/user/logout
 </code></pre></div></div>
 
