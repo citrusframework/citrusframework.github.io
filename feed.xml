@@ -1,4 +1,178 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2026-11-16T08:58:36+01:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Citrus Integration Tests</title><subtitle>Automated integration tests for message protocols and data formats that you require</subtitle><entry><title type="html">Citrus 5.1.0</title><link href="http://0.0.0.0:4000/news/2026/10/19/release-5.1.0/" rel="alternate" type="text/html" title="Citrus 5.1.0" /><published>2026-10-19T00:00:00+02:00</published><updated>2026-10-19T00:00:00+02:00</updated><id>http://0.0.0.0:4000/news/2026/10/19/release-5.1.0</id><content type="html" xml:base="http://0.0.0.0:4000/news/2026/10/19/release-5.1.0/">&lt;p&gt;The Citrus community is happy to announce the release of &lt;strong&gt;Citrus 5.1.0&lt;/strong&gt;! 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2026-11-16T09:20:59+01:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Citrus Integration Tests</title><subtitle>Automated integration tests for message protocols and data formats that you require</subtitle><entry><title type="html">Citrus 5.2.0</title><link href="http://0.0.0.0:4000/news/2026/11/16/release-5.2.0/" rel="alternate" type="text/html" title="Citrus 5.2.0" /><published>2026-11-16T00:00:00+01:00</published><updated>2026-11-16T00:00:00+01:00</updated><id>http://0.0.0.0:4000/news/2026/11/16/release-5.2.0</id><content type="html" xml:base="http://0.0.0.0:4000/news/2026/11/16/release-5.2.0/">&lt;p&gt;The Citrus community is happy to announce the release of &lt;strong&gt;Citrus 5.2.0&lt;/strong&gt;!
+This release brings significant improvements to the Cucumber integration, the JBang CLI, test reporting and YAML/XML DSL completeness.&lt;/p&gt;
+
+&lt;p&gt;The release contains &lt;strong&gt;22 new features and enhancements&lt;/strong&gt;, &lt;strong&gt;13 bug fixes&lt;/strong&gt; and several &lt;strong&gt;dependency and migration updates&lt;/strong&gt;.
+Here is a look at the highlights.&lt;/p&gt;
+
+&lt;h2 id=&quot;java-21-required&quot;&gt;Java 21 required&lt;/h2&gt;
+
+&lt;p&gt;As announced with the 5.1.0 release, Citrus 5.2.0 &lt;strong&gt;requires Java 21&lt;/strong&gt; as the minimum version. Java 17 is no longer supported. If you have not migrated yet, please update your runtime before upgrading to Citrus 5.2.0.&lt;/p&gt;
+
+&lt;h2 id=&quot;jbang-cli-ported-to-aesh&quot;&gt;JBang CLI ported to Aesh&lt;/h2&gt;
+
+&lt;p&gt;The Citrus JBang CLI has been ported from Picocli to &lt;a href=&quot;https://github.com/aeshell/aesh&quot;&gt;Aesh&lt;/a&gt; (&lt;a href=&quot;https://github.com/citrusframework/citrus/issues/1574&quot;&gt;#1574&lt;/a&gt;), the same command-line framework used by Apache Camel and Quarkus. Aesh provides interactive shell capabilities, command completion and a consistent user experience across the Camel ecosystem. If you use the Citrus JBang commands, the switch is transparent — all existing commands continue to work, and you benefit from improved tab completion and interactive mode support.&lt;/p&gt;
+
+&lt;h2 id=&quot;cucumber-8-improvements&quot;&gt;Cucumber 8 improvements&lt;/h2&gt;
+
+&lt;p&gt;Citrus 5.2.0 brings a substantial overhaul of the Cucumber integration:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Suite hooks, DocString/DataTable steps and parallel scenarios&lt;/strong&gt; — Cucumber tests can now use &lt;code class=&quot;highlighter-rouge&quot;&gt;@BeforeAll&lt;/code&gt;/&lt;code class=&quot;highlighter-rouge&quot;&gt;@AfterAll&lt;/code&gt; suite hooks, DocString and DataTable step definitions, and run scenarios in parallel (&lt;a href=&quot;https://github.com/citrusframework/citrus/issues/1889&quot;&gt;#1889&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Glue selection, package-private glue and named hooks&lt;/strong&gt; — leverages Cucumber 8’s improved glue class scanning, supports package-private step definitions, and enables named hooks for better traceability (&lt;a href=&quot;https://github.com/citrusframework/citrus/issues/1874&quot;&gt;#1874&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;JUnit Platform engine migration&lt;/strong&gt; — the Cucumber runtime and all cucumber-steps modules have been migrated from the legacy runner to the JUnit Platform engine, aligning with modern JUnit 5 test execution (&lt;a href=&quot;https://github.com/citrusframework/citrus/issues/1858&quot;&gt;#1858&lt;/a&gt;, &lt;a href=&quot;https://github.com/citrusframework/citrus/issues/1860&quot;&gt;#1860&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;complete-http-yamlxml-dsl-parity&quot;&gt;Complete HTTP YAML/XML DSL parity&lt;/h2&gt;
+
+&lt;p&gt;The HTTP module now has full DSL parity across Java, YAML and XML (&lt;a href=&quot;https://github.com/citrusframework/citrus/issues/1919&quot;&gt;#1919&lt;/a&gt;). Every HTTP test action that was previously only available in the Java DSL can now be expressed in YAML and XML as well. This is part of a broader effort to ensure that all Citrus capabilities are available in every DSL flavor.&lt;/p&gt;
+
+&lt;h2 id=&quot;simplified-messaging-endpoint-definitions&quot;&gt;Simplified messaging endpoint definitions&lt;/h2&gt;
+
+&lt;p&gt;Messaging endpoint definitions in YAML and XML have been streamlined (&lt;a href=&quot;https://github.com/citrusframework/citrus/issues/1888&quot;&gt;#1888&lt;/a&gt;). The new simplified syntax reduces boilerplate when declaring endpoints, making test definitions cleaner and easier to read.&lt;/p&gt;
+
+&lt;h2 id=&quot;test-reporting-improvements&quot;&gt;Test reporting improvements&lt;/h2&gt;
+
+&lt;p&gt;Test reporting has been enhanced in several areas:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Nested action reporting&lt;/strong&gt; — test action containers now report the execution of their nested actions, giving better visibility into what happens inside iterating, conditional and parallel containers (&lt;a href=&quot;https://github.com/citrusframework/citrus/issues/1938&quot;&gt;#1938&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Container lifecycle callbacks&lt;/strong&gt; — a new container listener allows hooking into lifecycle events of action containers for custom reporting or monitoring (&lt;a href=&quot;https://github.com/citrusframework/citrus/issues/1936&quot;&gt;#1936&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Dedicated finally section&lt;/strong&gt; — final (cleanup) actions are now reported in their own section, clearly separated from the main test flow (&lt;a href=&quot;https://github.com/citrusframework/citrus/issues/1851&quot;&gt;#1851&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Skipped tests in JUnit XML&lt;/strong&gt; — the JUnit XML report now correctly includes skipped tests, improving compatibility with CI dashboards and test aggregation tools (&lt;a href=&quot;https://github.com/citrusframework/citrus/issues/1319&quot;&gt;#1319&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;yamlxml-dsl-and-catalog-improvements&quot;&gt;YAML/XML DSL and catalog improvements&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Catalog metadata and unknown action rejection&lt;/strong&gt; — the YAML action catalog now carries rich metadata descriptions and rejects unknown action names with helpful error messages instead of silently ignoring them (&lt;a href=&quot;https://github.com/citrusframework/citrus/issues/1918&quot;&gt;#1918&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Colon-delimited action names&lt;/strong&gt; — schema aggregate catalogs now use colon delimiters for test action names, providing a cleaner namespace hierarchy (&lt;a href=&quot;https://github.com/citrusframework/citrus/issues/1850&quot;&gt;#1850&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Test variable metadata in schemas&lt;/strong&gt; — &lt;code class=&quot;highlighter-rouge&quot;&gt;@SchemaType&lt;/code&gt; annotations now include test variable metadata, and the generated JSON schemas carry this information for tooling support (&lt;a href=&quot;https://github.com/citrusframework/citrus/issues/1973&quot;&gt;#1973&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Minified JSON schemas&lt;/strong&gt; — generated JSON schema files are now minified, reducing artifact size (&lt;a href=&quot;https://github.com/citrusframework/citrus/issues/1981&quot;&gt;#1981&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Endpoint dependency detection&lt;/strong&gt; — Citrus now detects endpoint dependencies from &lt;code class=&quot;highlighter-rouge&quot;&gt;createEndpoint&lt;/code&gt; test actions, improving dependency tracking and validation (&lt;a href=&quot;https://github.com/citrusframework/citrus/issues/1852&quot;&gt;#1852&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;camel-integration-improvements&quot;&gt;Camel integration improvements&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Verify running integrations by name&lt;/strong&gt; — the Camel verify action can now find already-running Camel integrations by name, useful when testing against long-lived integration routes (&lt;a href=&quot;https://github.com/citrusframework/citrus/issues/1970&quot;&gt;#1970&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Skip plugins option&lt;/strong&gt; — &lt;code class=&quot;highlighter-rouge&quot;&gt;CamelRunIntegrationAction&lt;/code&gt; supports a new &lt;code class=&quot;highlighter-rouge&quot;&gt;--skip-plugins&lt;/code&gt; option for faster startup when plugins are not needed (&lt;a href=&quot;https://github.com/citrusframework/citrus/issues/1957&quot;&gt;#1957&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;EndpointProducerBuilder support&lt;/strong&gt; — &lt;code class=&quot;highlighter-rouge&quot;&gt;CamelExchangeActionBuilder&lt;/code&gt; now accepts Camel’s &lt;code class=&quot;highlighter-rouge&quot;&gt;EndpointProducerBuilder&lt;/code&gt; for type-safe endpoint URIs&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Auto-set properties&lt;/strong&gt; — a new &lt;code class=&quot;highlighter-rouge&quot;&gt;autoSetProperties&lt;/code&gt; option on the Camel CLI run action simplifies property configuration (&lt;a href=&quot;https://github.com/citrusframework/citrus/issues/1882&quot;&gt;#1882&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;notable-fixes&quot;&gt;Notable fixes&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Thread safety&lt;/strong&gt; — static lookup caches are now thread-safe on first use, and header validator resolution avoids the lookup lock to prevent deadlocks (&lt;a href=&quot;https://github.com/citrusframework/citrus/issues/1878&quot;&gt;#1878&lt;/a&gt;, &lt;a href=&quot;https://github.com/citrusframework/citrus/issues/1884&quot;&gt;#1884&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;SQL script resolution&lt;/strong&gt; — SQL scripts are now resolved by prefix (&lt;code class=&quot;highlighter-rouge&quot;&gt;classpath:&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;file:&lt;/code&gt;, URL) and execute in declaration order (&lt;a href=&quot;https://github.com/citrusframework/citrus/issues/1174&quot;&gt;#1174&lt;/a&gt;, &lt;a href=&quot;https://github.com/citrusframework/citrus/issues/701&quot;&gt;#701&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Dynamic HTTP server ports&lt;/strong&gt; — the actual bound server port is now correctly resolved when using dynamic port allocation (&lt;a href=&quot;https://github.com/citrusframework/citrus/issues/1960&quot;&gt;#1960&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Deterministic ZipMessage serialization&lt;/strong&gt; — zip message payload serialization is now deterministic, eliminating flaky assertions caused by non-deterministic entry ordering (&lt;a href=&quot;https://github.com/citrusframework/citrus/issues/1976&quot;&gt;#1976&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;HTTP binary body logging&lt;/strong&gt; — HTTP logging interceptors now summarize binary bodies instead of dumping raw bytes (&lt;a href=&quot;https://github.com/citrusframework/citrus/issues/896&quot;&gt;#896&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;migration-updates&quot;&gt;Migration updates&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Cucumber runtime and step modules migrated to JUnit Platform engine (&lt;a href=&quot;https://github.com/citrusframework/citrus/issues/1858&quot;&gt;#1858&lt;/a&gt;, &lt;a href=&quot;https://github.com/citrusframework/citrus/issues/1860&quot;&gt;#1860&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;Tests migrated from TestNG to JUnit Jupiter (&lt;a href=&quot;https://github.com/citrusframework/citrus/issues/1873&quot;&gt;#1873&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;Date functions migrated from legacy &lt;code class=&quot;highlighter-rouge&quot;&gt;Calendar&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;java.time&lt;/code&gt; API (&lt;a href=&quot;https://github.com/citrusframework/citrus/issues/1864&quot;&gt;#1864&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For the full list of changes see the &lt;a href=&quot;/docs/history/#v5.2.0&quot;&gt;release changelog&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;major-library-versions&quot;&gt;Major library versions&lt;/h2&gt;
+
+&lt;p&gt;Citrus 5.2.0 ships with the following major dependency versions:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Library&lt;/th&gt;
+      &lt;th&gt;Version&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Apache Camel&lt;/td&gt;
+      &lt;td&gt;4.23.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Quarkus&lt;/td&gt;
+      &lt;td&gt;3.40.1.2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Framework&lt;/td&gt;
+      &lt;td&gt;7.0.10&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Boot&lt;/td&gt;
+      &lt;td&gt;4.1.2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Kafka&lt;/td&gt;
+      &lt;td&gt;4.4.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Selenium&lt;/td&gt;
+      &lt;td&gt;4.52.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Playwright&lt;/td&gt;
+      &lt;td&gt;1.65.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Cucumber&lt;/td&gt;
+      &lt;td&gt;8.0.4&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;JUnit Jupiter&lt;/td&gt;
+      &lt;td&gt;6.1.3&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;TestNG&lt;/td&gt;
+      &lt;td&gt;7.12.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Testcontainers&lt;/td&gt;
+      &lt;td&gt;2.0.5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Kubernetes Client&lt;/td&gt;
+      &lt;td&gt;8.0.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Apache ActiveMQ Artemis&lt;/td&gt;
+      &lt;td&gt;2.57.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Vert.x&lt;/td&gt;
+      &lt;td&gt;5.2.3&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Jetty&lt;/td&gt;
+      &lt;td&gt;12.1.15&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Netty&lt;/td&gt;
+      &lt;td&gt;4.2.20.Final&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;update&quot;&gt;Update&lt;/h2&gt;
+
+&lt;p&gt;Update the Citrus BOM in your &lt;code class=&quot;highlighter-rouge&quot;&gt;pom.xml&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.citrusframework&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;citrus-bom&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;5.2.0&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;type&amp;gt;&lt;/span&gt;pom&lt;span class=&quot;nt&quot;&gt;&amp;lt;/type&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;scope&amp;gt;&lt;/span&gt;import&lt;span class=&quot;nt&quot;&gt;&amp;lt;/scope&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Thank you to everyone who contributed to this release!&lt;/p&gt;</content><author><name>Christoph Deppisch</name></author></entry><entry><title type="html">Citrus 5.1.0</title><link href="http://0.0.0.0:4000/news/2026/10/19/release-5.1.0/" rel="alternate" type="text/html" title="Citrus 5.1.0" /><published>2026-10-19T00:00:00+02:00</published><updated>2026-10-19T00:00:00+02:00</updated><id>http://0.0.0.0:4000/news/2026/10/19/release-5.1.0</id><content type="html" xml:base="http://0.0.0.0:4000/news/2026/10/19/release-5.1.0/">&lt;p&gt;The Citrus community is happy to announce the release of &lt;strong&gt;Citrus 5.1.0&lt;/strong&gt;! 
 This release brings three new modules, major improvements to browser-based testing with Selenium and a fresh set of validation capabilities with AssertJ.&lt;/p&gt;
 
 &lt;p&gt;The release is packed with &lt;strong&gt;21 new features and enhancements&lt;/strong&gt;, &lt;strong&gt;13 bug fixes&lt;/strong&gt; and many &lt;strong&gt;dependency version updates&lt;/strong&gt;.
@@ -3818,373 +3992,4 @@ This is the normalizer pattern delivering on its promise: N inputs, one canonica
   &lt;li&gt;&lt;strong&gt;Normalizer tests are fast.&lt;/strong&gt; Unlike aggregator or resequencer tests that must wait for completion conditions or batch timeouts, normalizer tests verify a stateless 1:1 translation. Output appears almost immediately, so retry windows can be shorter.&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;fork=true&lt;/code&gt; on the &lt;code class=&quot;highlighter-rouge&quot;&gt;send&lt;/code&gt; handles multi-hop async processing.&lt;/strong&gt; The translator processes messages asynchronously. Rather than inserting fixed sleeps, Citrus initializes the &lt;code class=&quot;highlighter-rouge&quot;&gt;receive&lt;/code&gt; immediately until the translated message appears. The non-blocking send operation gives the full pipeline time to complete and the Kafka consumer time to initialize without any racing conditions.&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;Two runtimes, one test pattern.&lt;/strong&gt; Whether you run on Quarkus or Spring Boot, the test structure — send partner-specific input, receive canonical output, validate the mapping — stays the same. Only the bootstrap annotations and dependency injection change.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://0.0.0.0:4000/img/icons/camel.png" /></entry><entry><title type="html">Testing the Aggregator Pattern with Citrus</title><link href="http://0.0.0.0:4000/samples/camel-eip/aggregator/" rel="alternate" type="text/html" title="Testing the Aggregator Pattern with Citrus" /><published>2026-09-21T00:00:00+02:00</published><updated>2026-09-21T00:00:00+02:00</updated><id>http://0.0.0.0:4000/samples/camel-eip/sample-eip-aggregator</id><content type="html" xml:base="http://0.0.0.0:4000/samples/camel-eip/aggregator/">&lt;p&gt;In many of the patterns covered so far — content-based router, splitter, message filter — each incoming message is processed individually.
-One message in, one routing decision out.
-Many integration scenarios often work the other way around: &lt;em&gt;multiple&lt;/em&gt; messages need to be combined into one before a downstream service can act on them.&lt;/p&gt;
-
-&lt;p&gt;Consider an order processing system where each line item is processed independently — inventory checked, price calculated, warehouse assigned.
-Eventually, those individual results need to be reassembled into a single order response.
-The fulfillment service cannot send 50 separate “your item shipped” emails — it needs one email listing all 50 items.&lt;/p&gt;
-
-&lt;p&gt;The &lt;a href=&quot;https://www.enterpriseintegrationpatterns.com/patterns/messaging/Aggregator.html&quot;&gt;Aggregator&lt;/a&gt; pattern, described by Hohpe and Woolf, solves this.
-It collects related messages by a &lt;em&gt;correlation key&lt;/em&gt;, combines them using an &lt;em&gt;aggregation strategy&lt;/em&gt;, and emits the result when a &lt;em&gt;completion condition&lt;/em&gt; is met.
-Three questions define every aggregator: which messages belong together, how are they combined, and when is the aggregation complete.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://camel.apache.org&quot;&gt;Apache Camel&lt;/a&gt; implements this with the &lt;code class=&quot;highlighter-rouge&quot;&gt;aggregate()&lt;/code&gt; EIP — one of the most powerful and configurable patterns in the framework.
-Camel’s aggregator manages an internal repository of in-progress aggregations, correlates incoming messages by an expression, delegates combination logic to an &lt;code class=&quot;highlighter-rouge&quot;&gt;AggregationStrategy&lt;/code&gt;, and flushes completed aggregations based on size, timeout, or a custom predicate.&lt;/p&gt;
-
-&lt;p&gt;Testing an aggregator is fundamentally different from testing stateless patterns.
-The aggregator is &lt;em&gt;stateful&lt;/em&gt;: it holds messages, tracks correlation groups, and only produces output when a completion condition fires.
-A test must send multiple messages, wait for the aggregator to collect and combine them, and then verify the assembled result.
-This time-dependent, multi-message behavior is exactly what makes integration testing with &lt;a href=&quot;https://citrusframework.org&quot;&gt;Citrus&lt;/a&gt; valuable — you exercise the full pipeline end-to-end against real infrastructure, proving that correlation, combination, and completion all work together.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-scenario&quot;&gt;The scenario&lt;/h2&gt;
-
-&lt;p&gt;Line items arrive on a Kafka topic &lt;code class=&quot;highlighter-rouge&quot;&gt;eip.orders.line-items&lt;/code&gt; as individual JSON messages.
-Each line item carries an &lt;code class=&quot;highlighter-rouge&quot;&gt;order_id&lt;/code&gt;, a product SKU, a quantity, and a price.
-The aggregator route collects line items that share the same &lt;code class=&quot;highlighter-rouge&quot;&gt;order_id&lt;/code&gt;, assembles them into a complete order with a &lt;code class=&quot;highlighter-rouge&quot;&gt;line_items&lt;/code&gt; array and a &lt;code class=&quot;highlighter-rouge&quot;&gt;total_amount&lt;/code&gt;, and publishes the result to &lt;code class=&quot;highlighter-rouge&quot;&gt;eip.orders.complete&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;The aggregator uses &lt;code class=&quot;highlighter-rouge&quot;&gt;completionSize(3)&lt;/code&gt; — it waits until three line items have been collected for the same order before flushing.
-A &lt;code class=&quot;highlighter-rouge&quot;&gt;completionTimeout(10000)&lt;/code&gt; acts as a safety net: if fewer than three items arrive within 10 seconds, the aggregator flushes whatever it has collected.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-camel-route&quot;&gt;The Camel route&lt;/h2&gt;
-
-&lt;h3 id=&quot;quarkus&quot;&gt;Quarkus&lt;/h3&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@ApplicationScoped&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AggregatorRoute&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RouteBuilder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;configure&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;kafka:eip.orders.line-items?brokers={{kafka.brokers}}&amp;amp;groupId=aggregator-demo&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;routeId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;order-aggregator&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;unmarshal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Received line item for order ${body[order_id]}: ${body[item_sku]}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;aggregate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;jsonpath&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;$.order_id&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OrderAggregationStrategy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;completionSize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;completionTimeout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Aggregated complete order ${body[order_id]} with ${body[line_items].size} items, total=${body[total_amount]}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;marshal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;kafka:eip.orders.complete?brokers={{kafka.brokers}}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OrderAggregationStrategy&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AggregationStrategy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-        &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Exchange&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;aggregate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Exchange&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;oldExchange&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Exchange&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newExchange&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lineItem&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newExchange&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getIn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBody&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;oldExchange&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;order&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LinkedHashMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;();&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;put&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;order_id&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lineItem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;order_id&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;put&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;customer_id&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lineItem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;customer_id&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;put&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;line_items&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ArrayList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-                    &lt;span class=&quot;s&quot;&gt;&quot;item_sku&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lineItem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;item_sku&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt;
-                    &lt;span class=&quot;s&quot;&gt;&quot;quantity&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lineItem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;quantity&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt;
-                    &lt;span class=&quot;s&quot;&gt;&quot;price&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lineItem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;price&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;))));&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;put&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;total_amount&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Number&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lineItem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;price&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;doubleValue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;put&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;status&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;ASSEMBLED&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;newExchange&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getIn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setBody&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newExchange&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-            &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;order&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;oldExchange&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getIn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBody&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;items&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;line_items&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-                &lt;span class=&quot;s&quot;&gt;&quot;item_sku&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lineItem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;item_sku&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt;
-                &lt;span class=&quot;s&quot;&gt;&quot;quantity&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lineItem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;quantity&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt;
-                &lt;span class=&quot;s&quot;&gt;&quot;price&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lineItem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;price&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-            &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;total&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Number&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;total_amount&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;doubleValue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Number&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lineItem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;price&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;doubleValue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;put&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;total_amount&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;total&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;oldExchange&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The route reads from the &lt;code class=&quot;highlighter-rouge&quot;&gt;eip.orders.line-items&lt;/code&gt; Kafka topic, unmarshals each message to a &lt;code class=&quot;highlighter-rouge&quot;&gt;Map&lt;/code&gt;, and feeds it into the &lt;code class=&quot;highlighter-rouge&quot;&gt;aggregate()&lt;/code&gt; EIP.
-The correlation expression &lt;code class=&quot;highlighter-rouge&quot;&gt;jsonpath(&quot;$.order_id&quot;)&lt;/code&gt; groups line items by their order ID.
-The &lt;code class=&quot;highlighter-rouge&quot;&gt;OrderAggregationStrategy&lt;/code&gt; handles the combination logic: on the first message for a given order, it initializes a new order structure with a &lt;code class=&quot;highlighter-rouge&quot;&gt;line_items&lt;/code&gt; list and a running &lt;code class=&quot;highlighter-rouge&quot;&gt;total_amount&lt;/code&gt;.
-Each subsequent message for the same order adds its line item and increments the total.&lt;/p&gt;
-
-&lt;h3 id=&quot;spring-boot&quot;&gt;Spring Boot&lt;/h3&gt;
-
-&lt;p&gt;The Spring Boot variant is identical in route logic — only the CDI annotation changes:&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Component&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AggregatorRoute&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RouteBuilder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;configure&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;kafka:eip.orders.line-items?brokers={{kafka.brokers}}&amp;amp;groupId=aggregator-demo&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;routeId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;order-aggregator&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;unmarshal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Received line item for order ${body[order_id]}: ${body[item_sku]}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;aggregate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;jsonpath&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;$.order_id&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OrderAggregationStrategy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;completionSize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;completionTimeout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Aggregated complete order ${body[order_id]} with ${body[line_items].size} items, total=${body[total_amount]}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;marshal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;kafka:eip.orders.complete?brokers={{kafka.brokers}}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;c1&quot;&gt;// OrderAggregationStrategy is identical ...&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;@Component&lt;/code&gt; replaces &lt;code class=&quot;highlighter-rouge&quot;&gt;@ApplicationScoped&lt;/code&gt; — the route logic stays the same across both runtimes.&lt;/p&gt;
-
-&lt;h2 id=&quot;completion-conditions-and-why-they-matter-for-testing&quot;&gt;Completion conditions and why they matter for testing&lt;/h2&gt;
-
-&lt;p&gt;Camel’s aggregator supports multiple completion conditions that can be combined with OR semantics — whichever fires first triggers emission:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Condition&lt;/th&gt;
-      &lt;th&gt;Description&lt;/th&gt;
-      &lt;th&gt;Use case&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;completionSize(N)&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;Emit after N messages are collected&lt;/td&gt;
-      &lt;td&gt;Known number of parts&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;completionTimeout(ms)&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;Emit if no new message arrives within the timeout&lt;/td&gt;
-      &lt;td&gt;Unknown number of parts&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;completionInterval(ms)&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;Emit on a fixed schedule&lt;/td&gt;
-      &lt;td&gt;Periodic batching&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;completionPredicate(expr)&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;Emit when a condition is true&lt;/td&gt;
-      &lt;td&gt;All required stages complete&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;forceCompletionOnStop()&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;Emit incomplete aggregations when route stops&lt;/td&gt;
-      &lt;td&gt;Graceful shutdown&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;For testing, these conditions directly shape the test design.
-Our route uses &lt;code class=&quot;highlighter-rouge&quot;&gt;completionSize(3)&lt;/code&gt; as the primary trigger and &lt;code class=&quot;highlighter-rouge&quot;&gt;completionTimeout(10000)&lt;/code&gt; as a safety net.
-If the test sends exactly three line items with the same order ID, the aggregator flushes immediately when the third arrives — no waiting.
-If it sends fewer than three, the test must wait for the timeout.&lt;/p&gt;
-
-&lt;p&gt;This dual-condition behavior is exactly the kind of nuance that unit tests with mocked endpoints miss.
-An integration test with real Kafka infrastructure surfaces the actual timing behavior.&lt;/p&gt;
-
-&lt;h2 id=&quot;message-templates&quot;&gt;Message templates&lt;/h2&gt;
-
-&lt;p&gt;The tests use JSON templates with Citrus variable placeholders for dynamic values.
-Here is the line item template that represents individual messages sent to the aggregator:&lt;/p&gt;
-
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;order_id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ORD-org.citrusframework:citrus-website:pom:1.1.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;customer_id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;CUST-org.citrusframework:citrus-website:pom:1.1.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;item_sku&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;${sku}&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;quantity&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;quantity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;price&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;price&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;And the expected output after aggregation — the complete order:&lt;/p&gt;
-
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;order_id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ORD-org.citrusframework:citrus-website:pom:1.1.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;customer_id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;CUST-org.citrusframework:citrus-website:pom:1.1.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;line_items&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;@ignore@&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;total_amount&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;@ignore@&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;status&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ASSEMBLED&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;@ignore@&lt;/code&gt; markers are a Citrus validation feature.
-They tell the framework to accept any value for &lt;code class=&quot;highlighter-rouge&quot;&gt;line_items&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;total_amount&lt;/code&gt; during message comparison.
-The test validates the structural fields (&lt;code class=&quot;highlighter-rouge&quot;&gt;order_id&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;customer_id&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;status&lt;/code&gt;) while deliberately ignoring the computed fields whose exact values depend on the combination of individual items.
-This keeps the assertion focused: we care that the aggregator produced a complete order with the correct identity and status, not the exact JSON structure of the nested line items array.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-aggregator-test&quot;&gt;The aggregator test&lt;/h2&gt;
-
-&lt;p&gt;The test sends three line items with the same order ID, then verifies that the aggregator produces a single complete order on the output topic.&lt;/p&gt;
-
-&lt;h3 id=&quot;quarkus-test&quot;&gt;Quarkus test&lt;/h3&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@QuarkusTest&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@CitrusSupport&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;EipTests&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;EipTestSupport&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@CitrusResource&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;TestCaseRunner&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Inject&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@BindToRegistry&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;CamelContext&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;camelContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Nested&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AggregatorTest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-        &lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;shouldAggregateThreeLineItemsIntoCompleteOrder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;given&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;createVariables&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;variable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;citrus:randomNumber(4)&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;variable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sku&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;SKU-ABC-42&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;variable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;quantity&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;variable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;price&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-            &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;given&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;waitForCamelRouteStarted&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;order-aggregator&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;camelContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-
-            &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;kafka:eip.orders.line-items&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Resources&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;templates/line-item.json&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;KafkaMessageHeaders&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;MESSAGE_KEY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;ORD-org.citrusframework:citrus-website:pom:1.1.0&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-            &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;createVariables&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;variable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sku&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;SKU-DEF-77&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;variable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;quantity&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;variable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;price&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;kafka:eip.orders.line-items&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Resources&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;templates/line-item.json&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;KafkaMessageHeaders&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;MESSAGE_KEY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;ORD-org.citrusframework:citrus-website:pom:1.1.0&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-            &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;createVariables&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;variable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sku&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;SKU-GHI-13&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;variable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;quantity&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;variable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;price&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;kafka:eip.orders.line-items&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Resources&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;templates/line-item.json&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;KafkaMessageHeaders&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;MESSAGE_KEY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;ORD-org.citrusframework:citrus-website:pom:1.1.0&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-            &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;repeatOnError&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;times&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;actions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-                        &lt;span class=&quot;n&quot;&gt;receive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;kafka:eip.orders.complete?consumerGroup=citrus-complete-group&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Resources&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;templates/complete-order.json&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Let’s walk through the test structure.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Given — set up variables and wait for the route.&lt;/strong&gt;
-The test generates a random 4-digit order ID that will be shared across all three line items, creating the correlation key.
-The first set of variables defines the SKU, quantity, and price for the first line item.
-It then waits for the &lt;code class=&quot;highlighter-rouge&quot;&gt;order-aggregator&lt;/code&gt; route to reach &lt;code class=&quot;highlighter-rouge&quot;&gt;Started&lt;/code&gt; status.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;When — send three correlated line items.&lt;/strong&gt;
-Three line items go to the &lt;code class=&quot;highlighter-rouge&quot;&gt;eip.orders.line-items&lt;/code&gt; Kafka topic.
-Between each send, the test updates the &lt;code class=&quot;highlighter-rouge&quot;&gt;sku&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;quantity&lt;/code&gt;, and &lt;code class=&quot;highlighter-rouge&quot;&gt;price&lt;/code&gt; variables — but &lt;em&gt;not&lt;/em&gt; the &lt;code class=&quot;highlighter-rouge&quot;&gt;id&lt;/code&gt;.
-This is how the test creates three distinct line items that share the same &lt;code class=&quot;highlighter-rouge&quot;&gt;order_id&lt;/code&gt;: the template reads &lt;code class=&quot;highlighter-rouge&quot;&gt;org.citrusframework:citrus-website:pom:1.1.0&lt;/code&gt; for the order identity (which stays constant) and &lt;code class=&quot;highlighter-rouge&quot;&gt;${sku}&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;${quantity}&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;${price}&lt;/code&gt; for the item-specific fields (which change).
-All three messages use the same Kafka message key &lt;code class=&quot;highlighter-rouge&quot;&gt;ORD-org.citrusframework:citrus-website:pom:1.1.0&lt;/code&gt;, ensuring they land on the same partition for consistent ordering.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Then — verify the aggregated output.&lt;/strong&gt;
-The test receives the complete order from the &lt;code class=&quot;highlighter-rouge&quot;&gt;eip.orders.complete&lt;/code&gt; topic and validates its body against the &lt;code class=&quot;highlighter-rouge&quot;&gt;complete-order.json&lt;/code&gt; template.
-The &lt;code class=&quot;highlighter-rouge&quot;&gt;repeatOnError()&lt;/code&gt; block retries up to 15 times with 1-second intervals — giving the aggregator enough time to receive all three line items, combine them, and publish the result.&lt;/p&gt;
-
-&lt;p&gt;Because the test sends exactly three line items (matching the &lt;code class=&quot;highlighter-rouge&quot;&gt;completionSize(3)&lt;/code&gt; threshold), the aggregator should flush almost immediately after the third message arrives.
-The retry window is generous to account for Kafka consumer lag and Camel processing time, but in practice the assertion typically succeeds within 2-3 seconds.&lt;/p&gt;
-
-&lt;p&gt;For the test infrastructure setup, shared test utilities, runtime wiring, dependencies, and how to run the tests, see the &lt;a href=&quot;/samples/camel-eip/&quot;&gt;Camel EIP examples&lt;/a&gt; overview page.&lt;/p&gt;
-
-&lt;h2 id=&quot;persistent-aggregation&quot;&gt;Persistent aggregation&lt;/h2&gt;
-
-&lt;p&gt;The in-memory aggregation repository works fine for development and testing, but in production an application restart would lose all in-flight aggregations.
-The example project includes a persistent aggregator variant that stores aggregation state in PostgreSQL via Camel’s &lt;code class=&quot;highlighter-rouge&quot;&gt;JdbcAggregationRepository&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;kafka:eip.orders.line-items?brokers={{kafka.brokers}}&amp;amp;groupId=persistent-aggregator-demo&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;routeId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;persistent-order-aggregator&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;unmarshal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;aggregate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;jsonpath&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;$.order_id&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PersistentOrderAggregationStrategy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;completionSize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;completionTimeout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;15000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;aggregationRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;#jdbcAggregationRepo&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;marshal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;kafka:eip.orders.complete-persistent?brokers={{kafka.brokers}}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;aggregationRepository(&quot;#jdbcAggregationRepo&quot;)&lt;/code&gt; directive tells Camel to store partial aggregation state in a PostgreSQL table rather than in memory.
-If the service restarts mid-aggregation, the pending items are recovered from the database and aggregation resumes.&lt;/p&gt;
-
-&lt;p&gt;The test for the persistent aggregator follows the same structure — send three line items, receive one complete order — but validates against a template that includes a &lt;code class=&quot;highlighter-rouge&quot;&gt;persistent: true&lt;/code&gt; marker:&lt;/p&gt;
-
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;order_id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ORD-org.citrusframework:citrus-website:pom:1.1.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;customer_id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;CUST-org.citrusframework:citrus-website:pom:1.1.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;line_items&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;@ignore@&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;total_amount&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;@ignore@&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;persistent&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This simple marker field distinguishes persistent aggregator output from the in-memory variant, making it easy to verify that the correct route processed the messages.&lt;/p&gt;
-
-&lt;h2 id=&quot;why-aggregator-tests-are-different-from-stateless-pattern-tests&quot;&gt;Why aggregator tests are different from stateless pattern tests&lt;/h2&gt;
-
-&lt;p&gt;Aggregator tests require a fundamentally different approach compared to testing stateless patterns like a content-based router or a message filter:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Multiple inputs produce a single output.&lt;/strong&gt;
-Most pattern tests follow a 1:1 model — one message in, one message out (or one routing decision).
-The aggregator flips this: N messages in, one message out.
-The test must coordinate multiple sends and verify a single receive.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;The completion condition defines the test timing.&lt;/strong&gt;
-With a stateless pattern, the output appears almost immediately after the input.
-An aggregator holds messages until the completion condition fires.
-When the test sends the exact number of messages matching &lt;code class=&quot;highlighter-rouge&quot;&gt;completionSize&lt;/code&gt;, the output appears promptly.
-When it sends fewer, the test must wait for the timeout — which is a valid test scenario but requires a longer retry window.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Correlation is a first-class concern.&lt;/strong&gt;
-The test must ensure that all input messages share the same correlation key.
-If one line item has a different &lt;code class=&quot;highlighter-rouge&quot;&gt;order_id&lt;/code&gt;, it starts a separate aggregation group and the expected completion never occurs.
-The Citrus variable &lt;code class=&quot;highlighter-rouge&quot;&gt;org.citrusframework:citrus-website:pom:1.1.0&lt;/code&gt; — set once in the &lt;code class=&quot;highlighter-rouge&quot;&gt;given&lt;/code&gt; phase and reused across all sends — naturally enforces this.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Consumer group isolation prevents cross-test interference.&lt;/strong&gt;
-The aggregator consumes from a shared topic, but each test uses a dedicated Citrus consumer group for receiving output.
-This prevents one test from accidentally consuming another test’s aggregated results.&lt;/p&gt;
-
-&lt;h2 id=&quot;key-takeaways&quot;&gt;Key takeaways&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Aggregators are stateful and multi-message.&lt;/strong&gt; Unlike stateless routing patterns, they accumulate messages before producing output. Integration tests must send multiple correlated messages and wait for the completion condition to fire.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Correlation keys are critical.&lt;/strong&gt; All messages that belong to the same aggregation group must share the same correlation expression value. In Citrus, setting the &lt;code class=&quot;highlighter-rouge&quot;&gt;org.citrusframework:citrus-website:pom:1.1.0&lt;/code&gt; variable once and reusing it across multiple sends naturally enforces this.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;completionSize&lt;/code&gt; vs &lt;code class=&quot;highlighter-rouge&quot;&gt;completionTimeout&lt;/code&gt; shapes the test.&lt;/strong&gt; Sending exactly N messages (matching the completion size) triggers immediate output. Sending fewer tests the timeout path — both are valid scenarios worth covering.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;@ignore@&lt;/code&gt; keeps assertions focused.&lt;/strong&gt; Rather than asserting the exact structure of computed fields like &lt;code class=&quot;highlighter-rouge&quot;&gt;line_items&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;total_amount&lt;/code&gt;, Citrus’s ignore markers let you validate the structural identity of the aggregated message without brittle assertions on intermediate values.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;repeatOnError()&lt;/code&gt; handles async verification gracefully.&lt;/strong&gt; Rather than inserting fixed sleeps, Citrus retries the receive action until it succeeds or the retry limit is reached — making tests both reliable and as fast as possible.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Persistent aggregation adds infrastructure but not test complexity.&lt;/strong&gt; The test structure for a JDBC-backed aggregator is identical to the in-memory variant. The difference is in the route configuration, not the test design.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Two runtimes, one test pattern.&lt;/strong&gt; Whether you run on Quarkus or Spring Boot, the test structure — send correlated items, wait for the aggregator, verify the assembled result — stays the same. Only the bootstrap annotations and infrastructure wiring change.&lt;/li&gt;
 &lt;/ul&gt;</content><author><name></name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://0.0.0.0:4000/img/icons/camel.png" /></entry></feed>
